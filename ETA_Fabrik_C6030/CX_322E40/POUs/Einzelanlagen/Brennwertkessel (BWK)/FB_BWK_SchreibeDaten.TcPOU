@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BWK_SchreibeDaten" Id="{dcd11783-e60e-452e-b231-84e49a9b4f16}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BWK_SchreibeDaten
+VAR_INPUT
+	WP_Stellung : BOOL;
+END_VAR
+VAR_OUTPUT
+	OUT_WP_Stellung : BOOL;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[OUT_WP_Stellung := WP_Stellung;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BWK_SchreibeDaten">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

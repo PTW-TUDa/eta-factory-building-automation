@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_WS_Konvertierung" Id="{0ab61b2e-da34-4417-bdf8-ef41c844e747}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_WS_Konvertierung
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Windgeschwindigkeit_Value	: REAL;
+	Aussentemperatur_Value		: REAL;
+	Daemmerung_Value			: REAL;
+	Regensensor_Value			: BOOL;
+END_VAR
+VAR
+	Group_0_0_1			: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=1);
+	Group_0_0_2			: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=2);
+	Group_0_0_3			: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=3);
+	Group_0_0_4			: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=4);
+
+	Windgeschwindigkeit	: EIB_2OCTET_FLOAT_REC;
+	Temperatur			: EIB_2OCTET_FLOAT_REC;
+	Daemmerung			: EIB_2OCTET_FLOAT_REC;
+	Regen				: EIB_BIT_REC;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF(KL_Wetterstation.bReady) THEN
+	Windgeschwindigkeit(
+		Group_Address := Group_0_0_1,
+		strData_Rec := KL_Wetterstation.str_Data_Rec
+	);
+
+	Temperatur(
+		Group_Address := Group_0_0_2,
+		strData_Rec := KL_Wetterstation.str_Data_Rec
+	);
+
+	Daemmerung(
+		Group_Address := Group_0_0_3,
+		strData_Rec := KL_Wetterstation.str_Data_Rec
+	);
+
+	Regen(
+		Group_Address := Group_0_0_4,
+		strData_Rec := KL_Wetterstation.str_Data_Rec
+	);
+
+	Windgeschwindigkeit_Value := Windgeschwindigkeit.rData;
+	Aussentemperatur_Value := Temperatur.rData;
+	Daemmerung_Value := Daemmerung.rData;
+	Regensensor_Value := Regen.bData;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_WS_Konvertierung">
+      <LineId Id="20" Count="25" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_KKKW_Stellwert" Id="{5a4603f9-5235-4187-b75b-dd0bf1f96b9a}">
+    <Declaration><![CDATA[TYPE ST_System_KKKW_Stellwert :
+STRUCT
+	Anford_Stellventil		: BOOL;
+	Anford_Pumpe			: BOOL;
+	Einschaltperiode_Max	: TIME := T#5S;
+	Einschalten				: BOOL;
+	Modus_Pumpe				: SINT;
+	Sollw_Pumpe				: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

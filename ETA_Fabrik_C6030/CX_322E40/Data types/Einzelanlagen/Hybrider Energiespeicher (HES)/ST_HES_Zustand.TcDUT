@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_HES_Zustand" Id="{b0d9f79e-c89b-4cf1-8540-e119d840dc1e}">
+    <Declaration><![CDATA[TYPE ST_HES_Zustand :
+STRUCT
+	Betrieb				: BOOL;
+	Kuehlung_Anford		: BOOL;
+	Kuehlung_XS_Temp	: REAL;
+
+	Kommunikation		: BOOL;
+
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+	Quittierung			: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

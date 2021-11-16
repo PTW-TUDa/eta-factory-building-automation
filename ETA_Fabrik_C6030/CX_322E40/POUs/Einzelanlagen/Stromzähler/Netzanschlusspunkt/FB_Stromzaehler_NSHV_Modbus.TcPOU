@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Stromzaehler_NSHV_Modbus" Id="{a0a4bf1d-f84a-43fb-8db8-f6e26ed45444}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Stromzaehler_NSHV_Modbus
+VAR_IN_OUT
+	Stromzaehler_NSHV	: ST_NSHV_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	MB_KM				:	ARRAY[1..1] OF ST_NSHV_Modbus;
+	ModbusAddress	 	: ARRAY [1..1] OF BYTE := [1]; (*Modbusadressen der beiden Geräte*)
+	FtrigBusy			: F_TRIG;
+	Timeout 			: TIME := T#300ms;		(* timeout while waiting for an answer of the modbus slave *)
+	Unit				: BYTE;
+	state				: INT;
+	busy				: BOOL;
+	LetzterFehlerState	: INT;
+	LetzterModbusFehler	: ST_ModbusErrorDiagnostics;
+	CounterError		: DINT;
+	CounterSuccess		: DINT;
+	NSHV_Wert_zuweisen	: FB_NSHV_Wert_zuweisen;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE state OF
+	0:
+		Modbus_NSHV.ReadRegs(Execute:= FALSE); (* Initialisierung*)
+		Modbus_NSHV.WriteRegs(Execute:= FALSE);
+
+		(*Auswahl von Modbus-Slaves 1 und 2*)
+		Unit := Unit + 1;
+		IF Unit  >1 THEN
+			Unit := 1;
+		END_IF
+
+		state := state + 1;
+
+
+	1:	(*= NSHV_Spannung_PH1_N lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1002,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1002]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1002]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	2:	(*= NSHV_Spannung_PH2_N lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1004,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1004]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1004]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	3:	(*= NSHV_Spannung_PH3_N lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1006,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1006]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1006]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	4:	(*= NSHV_Strom_PH1 lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1010,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1010]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1010]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	5:	(*= NSHV_Strom_PH2 lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1012,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1012]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1012]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	6:	(*= NSHV_Strom_PH3 lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1014,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1014]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1014]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	7:	(*= NSHV_Wirkleistung lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#102E,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#102E]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#102E]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	8:	(*= NSHV_Blindleistung lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1036,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1036]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1036]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+
+	9:	(*= NSHV_Scheinleistung lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1026,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1026]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1026]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	10:	(*= NSHV_Frequenz lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1046,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1046]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1046]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	11:	(*= NSHV_Harmonische_Verzerrung_U_PH1_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1048,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1048]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1048]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	12:	(*= NSHV_Harmonische_Verzerrung_U_PH2_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#104A,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#104A]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#104A]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	13:	(*= NSHV_Harmonische_Verzerrung_U_PH3_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#104C,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#104C]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#104C]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	14:	(*= NSHV_Harmonische_Verzerrung_I_PH1_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#104E,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#104E]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#104E]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	15:	(*= NSHV_Harmonische_Verzerrung_I_PH2_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1050,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1050]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1050]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	16:	(*= NSHV_Harmonische_Verzerrung_I_PH3_THD lesen =*)
+		Modbus_NSHV.ReadRegs(
+				UnitID:= ModbusAddress[Unit], (* station address *)
+				Quantity:= 2, (*Datenwörter *)
+				MBAddr:= 16#1052,
+				cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1052]),
+				pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1052]),
+				Execute:= TRUE,
+				Timeout:= Timeout,
+				Busy => busy	);
+			IF NOT busy THEN
+				Modbus_NSHV.ReadRegs(Execute:= FALSE);
+				IF Modbus_NSHV.Error THEN
+					MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+					state := 0;
+				ELSE
+					MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+					state := state + 1;
+				END_IF
+			END_IF
+
+	17:	(*= NSHV_Importierte_Wirkenergie lesen =*)
+			Modbus_NSHV.ReadRegs(
+					UnitID:= ModbusAddress[Unit], (* station address *)
+					Quantity:= 2, (*Datenwörter *)
+					MBAddr:= 16#103E,
+					cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#103E]),
+					pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#103E]),
+					Execute:= TRUE,
+					Timeout:= Timeout,
+					Busy => busy	);
+				IF NOT busy THEN
+					Modbus_NSHV.ReadRegs(Execute:= FALSE);
+					IF Modbus_NSHV.Error THEN
+						MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+						state := 0;
+					ELSE
+						MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+						state := state + 1;
+					END_IF
+				END_IF
+
+	18:	(*= NSHV_Exportierte_Wirkenergie lesen =*)
+			Modbus_NSHV.ReadRegs(
+					UnitID:= ModbusAddress[Unit], (* station address *)
+					Quantity:= 2, (*Datenwörter *)
+					MBAddr:= 16#1042,
+					cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1042]),
+					pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1042]),
+					Execute:= TRUE,
+					Timeout:= Timeout,
+					Busy => busy	);
+				IF NOT busy THEN
+					Modbus_NSHV.ReadRegs(Execute:= FALSE);
+					IF Modbus_NSHV.Error THEN
+						MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+						state := 0;
+					ELSE
+						MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+						state := state + 1;
+					END_IF
+				END_IF
+
+	19:	(*= NSHV_Max_LN_Wirkleistung_Demand lesen =*)
+			Modbus_NSHV.ReadRegs(
+					UnitID:= ModbusAddress[Unit], (* station address *)
+					Quantity:= 2, (*Datenwörter *)
+					MBAddr:= 16#1070,
+					cbLength:= SIZEOF(MB_KM[Unit].Modbus_Adresse1[16#1070]),
+					pMemoryAddr:= ADR(MB_KM[Unit].Modbus_Adresse1[16#1070]),
+					Execute:= TRUE,
+					Timeout:= Timeout,
+					Busy => busy	);
+				IF NOT busy THEN
+					Modbus_NSHV.ReadRegs(Execute:= FALSE);
+					IF Modbus_NSHV.Error THEN
+						MB_KM[Unit].Modbus_Unit_Online := FALSE; (*Modbus Gerät ist offline*)
+						state := 0;
+					ELSE
+						MB_KM[Unit].Modbus_Unit_Online := TRUE; (*Modbus Gerät ist online*)
+						state := 0;
+					END_IF
+				END_IF
+END_CASE
+
+(*Zählen von erfolgreichen und fehlgeschlagenen Leseversuchen*)
+FtrigBusy(CLK:=Modbus_NSHV.BUSY );
+IF FtrigBusy.Q THEN
+	IF Modbus_NSHV.Error THEN
+		LetzterModbusFehler := Modbus_NSHV.ErrorDiagnostics;
+		LetzterFehlerState := state;
+		CounterError := CounterError + 1;
+	ELSE
+		CounterSuccess := CounterSuccess + 1;
+	END_IF
+END_IF
+
+(* Zuweisen der Modbus-Werte zu den Zaehler Variablen *)
+
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1002], Output => Stromzaehler_NSHV.Spannung_Ph1_N);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1004], Output => Stromzaehler_NSHV.Spannung_Ph2_N);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1006], Output => Stromzaehler_NSHV.Spannung_Ph3_N);
+
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1010], Output => Stromzaehler_NSHV.Strom_Ph1);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1012], Output => Stromzaehler_NSHV.Strom_Ph2);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1014], Output => Stromzaehler_NSHV.Strom_Ph3);
+
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#102E], Output => Stromzaehler_NSHV.Wirkleistung);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1036], Output => Stromzaehler_NSHV.Blindleistung);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1026], Output => Stromzaehler_NSHV.Scheinleistung);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1046], Output => Stromzaehler_NSHV.Frequenz);
+
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1048], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_U_Ph1_THD);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#104A], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_U_Ph2_THD);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#104C], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_U_Ph3_THD );
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#104E], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_I_Ph1_THD);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1050], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_I_Ph2_THD);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1052], Output => Stromzaehler_NSHV.Harmonische_Verzerrung_I_Ph3_THD);
+
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#103E], Output => Stromzaehler_NSHV.Importierte_Wirkenergie);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1042], Output => Stromzaehler_NSHV.Exportierte_Wirkenergie);
+NSHV_Wert_zuweisen(Input:= MB_KM[1].Modbus_Adresse1[16#1070], Output => Stromzaehler_NSHV.Max_Wirkleistung_Demand_System );
+
+
+
+Stromzaehler_NSHV.Stoerung := NOT MB_KM[1].Modbus_Unit_Online;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Stromzaehler_NSHV_Modbus">
+      <LineId Id="20" Count="460" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

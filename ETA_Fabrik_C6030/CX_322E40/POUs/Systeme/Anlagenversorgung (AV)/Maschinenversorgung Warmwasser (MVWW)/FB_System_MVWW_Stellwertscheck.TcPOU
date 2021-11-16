@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_MVWW_Stellwertscheck" Id="{c9b86014-ea80-4d48-8f39-15dd3c3b9d2b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_MVWW_Stellwertscheck
+VAR_INPUT
+	Stellwert	: ST_System_MVWW_Stellwert;
+	Zustand		: ST_System_MVWW_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1		: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* überprüft, dass eine bestimmte Zeitperiode (Einschaltperiode_Max) vergangen ist, bis sich eine Pumpe wieder einschalten darf *)
+Timer1(	IN := Zustand.Betrieb_Soll = FALSE AND Zustand.Stoerung = TRUE,
+		PT := Stellwert.Einschaltperiode_Max,
+		Q => Stellwert.Einschalten
+);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_MVWW_Stellwertscheck">
+      <LineId Id="10" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

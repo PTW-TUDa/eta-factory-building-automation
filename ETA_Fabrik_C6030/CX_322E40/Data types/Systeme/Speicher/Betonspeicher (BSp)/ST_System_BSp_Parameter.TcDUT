@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BSp_Parameter" Id="{8a3f21c3-1ee1-4ebc-b0af-e0986a9f1278}">
+    <Declaration><![CDATA[TYPE ST_System_BSp_Parameter :
+STRUCT
+	AutoQuittierung			: BOOL;
+	Kennlinie_Tctr			: DINT;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

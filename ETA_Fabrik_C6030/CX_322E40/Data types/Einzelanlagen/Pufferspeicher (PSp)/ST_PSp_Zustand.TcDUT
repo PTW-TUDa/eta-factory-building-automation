@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_PSp_Zustand" Id="{119d4355-69e1-4be3-8350-e102fdce32f9}">
+    <Declaration><![CDATA[TYPE ST_PSp_Zustand :
+STRUCT
+	Temp_oben	: REAL;
+	Temp_mitte	: REAL;
+	Temp_unten	: REAL;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

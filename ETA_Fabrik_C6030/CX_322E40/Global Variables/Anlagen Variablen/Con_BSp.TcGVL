@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_BSp" Id="{dbd7d6b3-cf4e-44b0-ae33-58b4120e7adf}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* BSp_Zustand_Regelung_Modus *)
+	E_BSp_Regelung_Modus_konst						: SINT := 0;
+	E_BSp_Regelung_Modus_Laden_T_int				: SINT := 1;
+	E_BSp_Regelung_Modus_Laden_T_ext				: SINT := 2;
+	E_BSp_Regelung_Modus_Laden_dT					: SINT := 3;
+	E_BSp_Regelung_Modus_Entladen_dT				: SINT := -3;
+	E_BSp_Regelung_Modus_Entladen_T_int				: SINT := -1;
+	E_BSp_Regelung_Modus_Entladen_T_ext				: SINT := -2;
+
+
+	(* System_BSp_Zustand_Status *)
+	E_System_BSp_Zustand_Status_Idle_Sperre			: SINT := 0;
+	E_System_BSp_Zustand_Status_Betriebsbereit		: SINT := 1;
+	E_System_BSp_Zustand_Status_Nachl_Stellventil	: SINT := 2;
+	E_System_BSp_Zustand_Status_Vorl_Stellventil	: SINT := 3;
+	E_System_BSp_Zustand_Status_Nachl_Pumpen		: SINT := 4;
+	E_System_BSp_Zustand_Status_Vorl_Pumpen			: SINT := 5;
+	E_System_BSp_Zustand_Status_Betrieb				: SINT := 8;
+	E_System_BSp_Zustand_Status_Betrieb_Sperre		: SINT := 9;
+	E_System_BSp_Zustand_Status_Stoerung			: SINT := 99;
+
+	(* System_BSp_KueW_Zustand_Status *)
+	E_System_BSp_KueW_Zustand_Status_Idle_Sperre	: SINT := 0;
+	E_System_BSp_KueW_Zustand_Status_Betriebsbereit	: SINT := 1;
+	E_System_BSp_KueW_Zustand_Status_Nachl			: SINT := 4;
+	E_System_BSp_KueW_Zustand_Status_Vorl			: SINT := 5;
+	E_System_BSp_KueW_Zustand_Status_Betrieb		: SINT := 8;
+	E_System_BSp_KueW_Zustand_Status_Betrieb_Sperre	: SINT := 9;
+	E_System_BSp_KueW_Zustand_Status_Stoerung		: SINT := 99;
+
+	(* System_BSp_Verb_Zustand_Status *)
+	E_System_BSp_Verb_Zustand_Status_Idle_Sperre	: SINT := 0;
+	E_System_BSp_Verb_Zustand_Status_Betriebsbereit	: SINT := 1;
+	E_System_BSp_Verb_Zustand_Status_Nachl_Pumpe	: SINT := 4;
+	E_System_BSp_Verb_Zustand_Status_Vorl_Pumpe		: SINT := 5;
+	E_System_BSp_Verb_Zustand_Status_Betrieb		: SINT := 8;
+	E_System_BSp_Verb_Zustand_Status_Betrieb_Sperre	: SINT := 9;
+	E_System_BSp_Verb_Zustand_Status_Stoerung		: SINT := 99;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

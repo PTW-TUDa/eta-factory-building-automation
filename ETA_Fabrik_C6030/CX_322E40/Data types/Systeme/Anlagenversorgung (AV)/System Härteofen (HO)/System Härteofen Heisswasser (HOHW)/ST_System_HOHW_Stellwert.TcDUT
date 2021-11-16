@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_HOHW_Stellwert" Id="{f43d615e-321e-4bac-949b-3f9c5e3175d6}">
+    <Declaration><![CDATA[TYPE ST_System_HOHW_Stellwert :
+STRUCT
+	Anford_Stellventil		: BOOL;
+	Anford_Pumpe		: BOOL;
+	Freigabe_Anlage		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

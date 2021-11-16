@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BWK_Input" Id="{2749fb2b-8e5d-4df6-aa41-efe656e59158}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BWK_Input
+VAR_INPUT
+	IN_Leistung			: SINT;	(* 0..100 % *)
+	IN_Temp_Ist			: REAL;
+END_VAR
+VAR_OUTPUT
+	Leistung				: SINT;	(* 0..100 % *)
+	Temp_Ist			: REAL;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IN_Leistung		:= Leistung;
+IN_Temp_Ist		:= Temp_Ist;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BWK_Input">
+      <LineId Id="11" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

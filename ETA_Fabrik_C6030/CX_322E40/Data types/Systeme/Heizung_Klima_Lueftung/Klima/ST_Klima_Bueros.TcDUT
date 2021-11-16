@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Klima_Bueros" Id="{653ca4c6-a82f-4e16-90e1-b42adc04d50c}">
+    <Declaration><![CDATA[TYPE ST_Klima_Bueros :
+STRUCT
+	Temperatur			: REAL;
+	Luftfeuchte_rel		: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

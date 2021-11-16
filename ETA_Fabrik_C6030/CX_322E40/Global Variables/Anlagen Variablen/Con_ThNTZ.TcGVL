@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_ThNTZ" Id="{76c7d64a-2a2d-43f1-885e-b96e99235274}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* ThNTZ_Zustand_Status *)
+	E_ThNTZ_Zustand_Status_Idle_Sperre		: SINT := 0;
+	E_ThNTZ_Zustand_Status_Betriebsbereit	: SINT := 1;
+	E_ThNTZ_Zustand_Status_Betrieb			: SINT := 8;
+	E_ThNTZ_Zustand_Status_Betrieb_Sperre	: SINT := 9;
+	E_ThNTZ_Zustand_Status_Stoerung			: SINT := 99;
+
+	(* ThNTZ_Zustand_Regelung_Modus *)
+	E_ThNTZ_Regelung_Modus_Auto				: SINT := 0;
+	E_ThNTZ_Regelung_Modus_T_Unten			: SINT := 1;
+	E_ThNTZ_Regelung_Modus_T_Oben			: SINT := 2;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

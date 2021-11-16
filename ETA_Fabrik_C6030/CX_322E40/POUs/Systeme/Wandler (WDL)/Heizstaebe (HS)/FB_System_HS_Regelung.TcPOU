@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_HS_Regelung" Id="{e3eb8bbd-edde-4094-a922-d5ad959f4302}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_HS_Regelung
+VAR_INPUT
+	PSp_Zustand	: ST_PSp_Zustand;
+END_VAR
+VAR_IN_OUT
+	Zustand		: ST_System_HS_Zustand;
+	Steuerung	: ST_System_HS_Steuerung;
+	Parameter	: ST_System_HS_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Zustand.Betrieb_Soll ) THEN
+	CASE Zustand.Regelung_Modus OF (*gibt die Temperatur des Pufferspeichers an, die geregelt werden soll *)
+
+		E_HS_Regelung_Modus_Default_unten:
+			(* Zustand.Temp_Regelungswert := PSp_Zustand.Temp_unten; *)
+			Zustand.Regelung_Sollw := PSp_Zustand.Temp_unten;
+
+		E_HS_Regelung_Modus_oben :
+			Zustand.Regelung_Sollw := PSp_Zustand.Temp_oben;
+	
+		E_HS_Regelung_Modus_mitte :
+			Zustand.Regelung_Sollw := PSp_Zustand.Temp_mitte;
+	
+		E_HS_Regelung_Modus_unten :
+			Zustand.Regelung_Sollw := PSp_Zustand.Temp_unten;
+
+	END_CASE;
+
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_HS_Regelung">
+      <LineId Id="13" Count="18" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

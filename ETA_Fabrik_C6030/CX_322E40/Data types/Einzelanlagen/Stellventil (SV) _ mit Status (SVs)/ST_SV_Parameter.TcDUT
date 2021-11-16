@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_SV_Parameter" Id="{3551da96-ca16-49fc-88d7-ea3cb74ea2ca}">
+    <Declaration><![CDATA[TYPE ST_SV_Parameter :
+STRUCT
+	Zeit_Stellen1			: DINT;
+	Zeit_Stellen0			: DINT;
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

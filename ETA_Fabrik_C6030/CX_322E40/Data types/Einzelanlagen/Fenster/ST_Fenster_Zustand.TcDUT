@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Fenster_Zustand" Id="{7956098d-0350-4aa1-9ab3-0a0b0d8eebf1}">
+    <Declaration><![CDATA[TYPE ST_Fenster_Zustand :
+STRUCT
+	Stellung_AUF		: BOOL;
+	Stellung_ZU 		: BOOL;
+
+	Stellung_Soll_AUF		: BOOL;
+	Stellung_Soll_ZU		: BOOL;
+
+	Freigabe			: BOOL;
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+	Status				: SINT;
+
+	Stellungwechsel01	: BOOL;
+	Stellungwechsel10	: BOOL;
+
+
+
+	Fenster_AUF			: BOOL;
+	Fenster_ZU			: BOOL;
+
+
+	Quittierung							: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

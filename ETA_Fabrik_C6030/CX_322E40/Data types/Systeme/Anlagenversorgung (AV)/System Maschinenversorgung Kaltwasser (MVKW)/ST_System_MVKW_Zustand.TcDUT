@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_MVKW_Zustand" Id="{f15edcc8-9b25-4c92-931d-d78cb8df0b90}">
+    <Declaration><![CDATA[TYPE ST_System_MVKW_Zustand :
+STRUCT
+	Betrieb_Anford			: BOOL;
+	Betrieb_Soll				: BOOL;
+	Betrieb					: BOOL;
+
+	Netze_Anford				: ST_Zustand_Netze_Anford;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt			: BOOL;
+	Freigabe_Code			: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code			: WORD;
+
+	Warnung					: BOOL;
+	Warnung_Code			: WORD;
+
+	Status					: SINT;
+	Status_Vorl_Stellventil		: BOOL;
+	Status_Vorl_Pumpe		: BOOL;
+	Status_Nachl_Stellventil	: BOOL;
+	Status_Nachl_Pumpe		: BOOL;
+
+	Quittierung				: BOOL;
+
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

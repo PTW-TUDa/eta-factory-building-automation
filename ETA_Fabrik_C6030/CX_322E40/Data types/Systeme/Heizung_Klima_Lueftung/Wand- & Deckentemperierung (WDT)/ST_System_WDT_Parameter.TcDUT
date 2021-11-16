@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_WDT_Parameter" Id="{3b7e6b98-a80f-4f16-88ea-060ab35a79da}">
+    <Declaration><![CDATA[TYPE ST_System_WDT_Parameter :
+STRUCT
+	Temp_Vorl_Max			: REAL;
+	Temp_Vorl_Min			: REAL;
+    Temp_Heizung_Max         : REAL;
+
+	Temp_Warmwasser_Max    : REAL;
+	Temp_Warmwasser_Min    : REAL;
+
+	Temp_Kaltwasser_Max    : REAL;
+	Temp_Kaltwasser_Min    : REAL;
+
+
+	Kennlinie_Heizung		: ST_Parameter_Kennlinie_Heizung_Kuehlung;
+	Kennlinie_Kuehlung		: ST_Parameter_Kennlinie_Heizung_Kuehlung;
+	Kennlinie_Tctr			: DINT;
+
+	Nachtabsenkung_Mo		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_Di		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_Mi		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_Do		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_Fr		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_Sa		: ST_Parameter_Nachtabsenkung;
+	Nachtabsenkung_So		: ST_Parameter_Nachtabsenkung;
+
+	Systemdruck_Max			: REAL;	(* mbar *)
+	Systemdruck_Min			: REAL;		(* mbar *)
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

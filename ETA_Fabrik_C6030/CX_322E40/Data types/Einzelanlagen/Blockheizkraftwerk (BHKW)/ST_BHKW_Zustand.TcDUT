@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_BHKW_Zustand" Id="{f4cd2b12-c7af-407a-a029-c0917f6b224d}">
+    <Declaration><![CDATA[TYPE ST_BHKW_Zustand :
+STRUCT
+	Betrieb_Anford		: BOOL;
+	Betrieb_Soll		: BOOL;
+	Betrieb				: BOOL;
+
+	Regelung_Modus		: SINT;
+	Regelung_Istw		: REAL;
+	Regelung_Sollw		: REAL;
+
+	Leistung			: SINT;	(* 0..100 % *)
+
+	Freigabe			: BOOL;
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+
+	Stoerung_Modbus		: BOOL;
+
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+	Status_Vorl			: BOOL;
+	Status_Nachl		: BOOL;
+
+	Quittierung			: BOOL;
+
+	Zeit_Betrieb		: REAL;	(* h *)
+	Zeit_bisWartung		: REAL;	(* h *)
+	Temp_Abgas			: REAL;
+	Temp_Schallhaube	: REAL;
+	Temp_Kuehlwasser	: REAL;
+	Kuehlwasser_heiss	: BOOL; (*Kühlwasser über Grenzwert*)
+	Temp_Vorlauf		: REAL;
+	Temp_Ruecklauf		: REAL;
+	Oeldruck			: REAL;	(* bar *)
+	Anzahl_Starts		: UINT;
+	Leistung_elek		: REAL;
+	Drehzahl			: REAL;	(* U/min *)
+	Spannung_Generator	: REAL;
+	Spannung_Netz		: REAL;
+	Strom_Generator		: REAL;
+	Frequenz_Netz		: REAL;
+	Frequenz_Generator	: REAL;
+	CosPHI				: REAL;
+	Modul_Modus			: UINT;	(* 0: Aus // 1: Hand // 2: Auto *)
+	Modul_Status		: UINT;	(* 0: Aus // 1: Bereit // 2: Start // 3: Betrieb // 4: Störung *)
+
+
+
+	Modul_Betriebsart		: UINT;	(* 0: Aus // 1: Hand // 2: Netzersatz // 3:--- // 4: Anwahl 100% // 5: Sollwert 100% *)
+	Modul_Meld_Code1	: WORD;	(* Bedeutung s. Datenblatt *)
+	Modul_Meld_Code2	: WORD;	(* Bedeutung s. Datenblatt *)
+	Modul_Meld_Code3	: WORD;	(* Bedeutung s. Datenblatt *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

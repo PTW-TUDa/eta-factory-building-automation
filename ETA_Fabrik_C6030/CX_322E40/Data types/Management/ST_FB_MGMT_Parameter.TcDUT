@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_FB_MGMT_Parameter" Id="{870da6d3-75d5-44e7-8a8a-88e4f1d9ec31}">
+    <Declaration><![CDATA[TYPE ST_FB_MGMT_Parameter :
+STRUCT
+	Temp_Max				: REAL;
+	Temp_Min				: REAL;
+
+(*Heizung*)
+
+	Hysterese_BHKW_Range : REAL; (*Range für BHKW-Hysterese - Wenn Netze den Sollwert berechnet*)
+	Hysterese_PTW1_Range : REAL; (*Range für PTW1-Hysterese - Wenn Netze den Sollwert berechnet*)
+	Hysterese_BWT_Range : REAL; (*Range für BWT-Hysterese - Wenn Netze den Sollwert berechnet*)
+	Hysterese_WP_gruennetz_Range: REAL; (*Range für Wärmepumpe_Heizung-Hysterese - Wenn Netze den Sollwert berechnet*)
+
+(*Kühlung*)
+
+	Hysterese_blaunetz_Kuehlung_Range : REAL; (*Range für blaunetz-Hysterese - Wenn Netze den Sollwert berechnet*)
+	Hysterese_KKKW_Kuehlung_Range : REAL; (*Range für KKKW-Hysterese - Wenn Netze den Sollwert berechnet*)
+
+	Hysterese_gruennetz_Kuehlung_Range : REAL; (*Range für gruennetz-Hysterese - Wenn Netze den Sollwert berechnet*)
+	Hysterese_WP_Range : REAL; (*Range für WärmePumpe-Hysterese - Wenn Netze den Sollwert berechnet*)
+
+    AutoQuittierung			: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

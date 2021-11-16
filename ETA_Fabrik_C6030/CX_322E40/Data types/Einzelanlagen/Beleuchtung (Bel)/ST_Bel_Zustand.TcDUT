@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Bel_Zustand" Id="{3d65db2d-f3c7-4674-b253-158df8952a1d}">
+    <Declaration><![CDATA[TYPE ST_Bel_Zustand :
+STRUCT
+	Betrieb_Anford		: BOOL;
+	Betrieb_Soll		: BOOL;
+	Betrieb				: BOOL;
+
+	Regelung_Modus		: SINT;
+	Regelung_Istw		: REAL;
+	Regelung_Sollw		: REAL;
+
+	Steuerung_Istw		: REAL;
+	Steuerung_Sollw		: REAL;
+
+	Leistung				: REAL;	(* 0..100 % *)
+
+	Freigabe				: BOOL;
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+	Helligkeit			: REAL;
+	Kommunikation		: BOOL;
+
+	Lampen_Monitoring	: ARRAY [0..30] OF ST_Bel_Lampen_Monitoring;
+
+	Stoerung				: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+	Status_Vorl			: BOOL;
+	Status_Nachl			: BOOL;
+
+	Quittierung			: BOOL;
+
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Steuerung_auto_manu_String" Id="{3a57093f-a4b9-46be-89cf-1a41460479b7}">
+    <Declaration><![CDATA[TYPE ST_Steuerung_auto_manu_String :
+STRUCT
+	auto			: STRING;
+	manu			: STRING;
+	manu_Modus		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

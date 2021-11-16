@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_PSp_Zustandscheck" Id="{f0fe1af8-710d-4613-998e-4bae394c7ab6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PSp_Zustandscheck
+VAR_IN_OUT
+	Zustand		: ST_PSp_Zustand;
+END_VAR
+VAR_INPUT
+	Parameter	: ST_PSp_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Warnung_Code
+		0:	Allgemein Warnung Pufferspeicher
+		2:	Grenztemperaturen unter- oder ueberschritten
+*)
+
+(* Interne Stoerungen / Warnungen *)
+(* Warnung - Grenztemperaturen unter- oder ueberschritten *)
+Zustand.Warnung_Code.2	:= Zustand.Temp_oben > Parameter.Temp_Max OR Zustand.Temp_unten < Parameter.Temp_Min;
+
+(* Warnmeldung *)
+IF Zustand.Warnung_Code > 0 THEN
+	Zustand.Warnung := TRUE;
+ELSE
+	Zustand.Warnung := FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PSp_Zustandscheck">
+      <LineId Id="11" Count="15" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_PU_Regelung" Id="{f93f8dbb-3272-46ec-9661-ae736ea99c38}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PU_Regelung
+VAR_IN_OUT
+	Stellwert		: ST_PU_Stellwert;
+	Zustand		: ST_PU_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_PU_Steuerung;
+	Parameter	: ST_PU_Parameter;
+END_VAR
+VAR
+	Regler_PI			: FB_CTRL_PI;
+	Regler_PI_Parameter	: ST_CTRL_PI_PARAMS;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Zustand.Regelung_Invert	:= Zustand.Regelung_Modus < 0;
+Zustand.Regelung_Modus	:= ABS(Zustand.Regelung_Modus);
+
+(* IST-Wert berechnen *)
+CASE Zustand.Regelung_Modus OF
+
+	E_PU_Regelung_Modus_P:									(* P_konst // Konstante Leistungsvorgabe (ungeregelt) *)
+		Zustand.Regelung_Istw := Zustand.Leistung;
+
+	E_PU_Regelung_Modus_dT:									(* dT // Temperaturdifferenz: dT = T_intern - T_extern *)
+		Zustand.Regelung_Istw :=Zustand.Temp_intern - Zustand.Temp_extern;	(* dT *)
+
+	E_PU_Regelung_Modus_dT_invert:							(* dT_invert // Temperaturdifferenz invertiert: dT_invert = T_extern - T_intern *)
+		Zustand.Regelung_Istw := Zustand.Temp_extern - Zustand.Temp_intern;	(* dT_invert *)
+
+	E_PU_Regelung_Modus_T_int:								(* T_intern // Temperatur intern *)
+		Zustand.Regelung_Istw := Zustand.Temp_intern; 		(* T_intern *)
+
+	E_PU_Regelung_Modus_T_ext:								(* T_extern // Temperatur extern *)
+		Zustand.Regelung_Istw := Zustand.Temp_extern;		(* T_extern *)
+
+END_CASE
+
+(* Regler *)
+IF( Stellwert.Betrieb ) THEN
+	(* Regler-Parameter *)
+	Regler_PI_Parameter.fKp 				:= Parameter.Regelung_PI_Kp;
+	Regler_PI_Parameter.tTn 				:= DINT_TO_TIME(Parameter.Regelung_PI_Tn);
+	Regler_PI_Parameter.fOutMaxLimit		:= Parameter.Stellwert_Leistung_Max;
+	Regler_PI_Parameter.fOutMinLimit		:= Parameter.Stellwert_Leistung_Min;
+	Regler_PI_Parameter.tTaskCycleTime		:= GA_global.Zeit_TaskCycle;
+	Regler_PI_Parameter.tCtrlCycleTime		:= DINT_TO_TIME(Parameter.Regelung_PI_Tctr);
+	Regler_PI_Parameter.bARWOnIPartOnly		:= FALSE; (* FALSE: Hold the I-part if the entire control output reaches a limit. TRUE: Hold the I-part if only the I-part reaches a limit. *)
+	CASE Zustand.Regelung_Modus OF
+		E_PU_Regelung_Modus_P:	(* P_konst // Konstante Leistungsvorgabe (ungeregelt) *)
+			Stellwert.Leistung := REAL_TO_USINT(Zustand.Regelung_Sollw);
+
+		E_PU_Regelung_Modus_dT,
+		E_PU_Regelung_Modus_dT_invert,
+		E_PU_Regelung_Modus_T_int,
+		E_PU_Regelung_Modus_T_ext:
+			Regler_PI (
+				fSetpointValue	:= 0,
+				fActualValue	:= 1/(Zustand.Regelung_Sollw-Zustand.Regelung_Istw + 0.000000000000001), (*Umrechnung in Massenstrom*)
+				fManSyncValue	:= 0,
+				bSync			:= FALSE,
+				eMode			:= 2, (* mode active *)
+				bHold			:= FALSE,
+				stParams		:= Regler_PI_Parameter,
+			);
+			Stellwert.Leistung :=LREAL_TO_SINT(Regler_PI.fOut);
+
+		E_PU_Regelung_Modus_dp_auto:	(* dp-auto // Druckdifferenz-Auto-Adapt *)
+			(*Zustand.Regelung_Istw := 0; *)
+			Stellwert.Leistung := 100;		(* wird durch Pumpe automatisch übersteuert *)
+
+			(* E_PU_Regelung_Modus_dp:
+			Zustand.Regelung_Istw := Zustand.Druckdifferenz;
+			Stellwert.Druckdifferenz := REAL_TO_USINT(Zustand.Regelung_Sollw *);
+			(* Stellwert.Regelungsmodus := ... s. Pumpen-Doku *)
+
+	ELSE
+		Stellwert.Leistung := 0;
+	END_CASE;
+ELSE
+	Stellwert.Leistung := 0;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PU_Regelung">
+      <LineId Id="13" Count="66" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

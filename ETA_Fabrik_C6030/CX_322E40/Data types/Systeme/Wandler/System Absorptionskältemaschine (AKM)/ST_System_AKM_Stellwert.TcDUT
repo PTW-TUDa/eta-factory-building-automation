@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_AKM_Stellwert" Id="{d847565c-83ed-45d6-8d74-22502ad66d91}">
+    <Declaration><![CDATA[TYPE ST_System_AKM_Stellwert :
+STRUCT
+	Betrieb		: BOOL;
+	Modus		: SINT;
+	Temperatur	: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

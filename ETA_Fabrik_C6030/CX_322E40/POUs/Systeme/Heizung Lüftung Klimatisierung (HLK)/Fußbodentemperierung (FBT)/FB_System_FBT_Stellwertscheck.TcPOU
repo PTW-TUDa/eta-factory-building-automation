@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_FBT_Stellwertscheck" Id="{60aad8fe-e68e-4f83-b1a6-8e2e51600089}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_FBT_Stellwertscheck
+VAR_IN_OUT
+	Stellwert		: ST_System_FBT_Stellwert;
+END_VAR
+VAR_INPUT
+	Zustand		: ST_System_FBT_Zustand;
+	Parameter	: ST_System_FBT_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Zustand.Betrieb_Soll ) THEN
+	(* Max-Min-Grenzen erzwingen *)
+	Stellwert.Temp_Vorl := MIN(Parameter.Temp_Vorl_Max, Zustand.Regelung_Stellw);
+	Stellwert.Temp_Vorl := MAX(Parameter.Temp_Vorl_Min, Stellwert.Temp_Vorl);
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_FBT_Stellwertscheck">
+      <LineId Id="12" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Klima_Halle" Id="{19b77ffb-5953-4cbc-88c4-431d037d347c}">
+    <Declaration><![CDATA[TYPE ST_Klima_Halle :
+STRUCT
+	Temperatur_Sektor1	: REAL;
+	Temperatur_Sektor2	: REAL;
+	Temperatur_Sektor3	: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_SHZ_Stellwert" Id="{bc784673-5be4-4367-bae3-38f97adf9475}">
+    <Declaration><![CDATA[TYPE ST_System_SHZ_Stellwert :
+STRUCT
+	Anford_Pumpe		: BOOL;
+	Anford_Regelventil	: BOOL;
+	Temp_Vorl			: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

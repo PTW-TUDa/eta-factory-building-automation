@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_DLK_Zustandscheck" Id="{773fe99c-ec71-4281-ad5d-e1c211528bd5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_DLK_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_DLK_Zustand;
+END_VAR
+VAR_INPUT
+	Regelventil_Zustand		: ST_RV_Zustand;
+	Pumpe_Zustand			: ST_PU_Zustand;
+	DLK_Zustand				: ST_DLK_Zustand;
+	DLK_Parameter			: ST_DLK_Parameter;
+	Steuerung				: ST_System_DLK_Steuerung;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7	: TON;
+	Timer6	: TON;
+	Timer6a	: TOF;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System Druckluftkompressor
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	Störung Druckluftkompressor (s. Anlage für Details)
+		4:
+		5:
+		6:
+		7:
+
+	Warnung_Code
+		0:	Allgemein Warnung System Druckluftkompressor
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	Warnung Druckluftkompressor (s. Anlage für Details)
+		4:	 
+		5:
+		6:	Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+
+(* Zustandsdefinitionen *)
+Zustand.Betrieb	:= Pumpe_Zustand.Betrieb AND DLK_Zustand.Betrieb;
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Regelventil_Zustand.Stoerung;
+Zustand.Stoerung_Code.2 := Pumpe_Zustand.Stoerung;
+Zustand.Stoerung_Code.3 := DLK_Zustand.Stoerung;
+Zustand.Warnung_Code.1 := Regelventil_Zustand.Warnung;
+Zustand.Warnung_Code.2 := Pumpe_Zustand.Warnung;
+Zustand.Warnung_Code.3 := DLK_Zustand.Warnung;
+
+(* Warnung 6 - Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig) *)
+Zustand.Warnung_Code.6 := (Pumpe_Zustand.Temp_extern > Zustand.Netze_Anford.Warmwasser.Temp_Unten_Max) OR (Pumpe_Zustand.Temp_extern > Zustand.Netze_Anford.Warmwasser.Temp_Unten_Min);
+
+(* Warnung 7 - keine Betriebsrückmeldung trotz Betriebsanforderung nach 10 Minuten *)
+Timer7(	IN := Zustand.Betrieb_Soll <> Zustand.Betrieb,
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+
+
+(* Netz_Anford *)
+IF( Zustand.Betrieb_Soll ) THEN
+	Zustand.Netze_Anford.Warmwasser.Aktiv				:= TRUE;
+	Zustand.Netze_Anford.Warmwasser.Temp_Max		:= DLK_Parameter.Temp_Warmwasser_Max;
+ELSE
+	Zustand.Netze_Anford.Warmwasser.Aktiv			:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_DLK_Zustandscheck">
+      <LineId Id="18" Count="76" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

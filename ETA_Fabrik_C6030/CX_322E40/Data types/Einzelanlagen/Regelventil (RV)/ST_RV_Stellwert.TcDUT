@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_RV_Stellwert" Id="{3410b94e-bad9-45d8-b37c-c43864ae91fe}">
+    <Declaration><![CDATA[TYPE ST_RV_Stellwert :
+STRUCT
+	Betrieb			: BOOL;
+	Freigabe		: BOOL;
+	Stellung		: USINT;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

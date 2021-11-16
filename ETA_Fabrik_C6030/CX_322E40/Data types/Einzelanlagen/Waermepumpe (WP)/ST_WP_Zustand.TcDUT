@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_WP_Zustand" Id="{e126c0fa-b530-46b9-b466-9741c40f2e6d}">
+    <Declaration><![CDATA[TYPE ST_WP_Zustand :
+STRUCT
+	Betrieb_Anford		: BOOL;
+	Betrieb_Soll		: BOOL;
+	Betrieb				: BOOL;
+
+	Temp_Ist			: REAL;
+	Temp_Soll			: REAL;
+
+	Freigabe			: BOOL;
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+(* hier noch zustände von Wärmepumpe sind nicht bekannt!!!*)
+
+
+
+
+	Kommunikation		: BOOL;
+
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+	Quittierung			: BOOL;
+
+	WP_Stellung			: BOOL;
+
+	Aussentemperatur	: REAL;
+	Temp_Vorlauf		: REAL;
+
+	Status_Vorl			: BOOL;
+	Status_Nachl		: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

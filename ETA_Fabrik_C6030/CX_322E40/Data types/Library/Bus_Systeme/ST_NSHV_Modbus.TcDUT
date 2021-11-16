@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_NSHV_Modbus" Id="{a5504c43-4b86-45dc-98cd-92db5726f5fa}">
+    <Declaration><![CDATA[TYPE ST_NSHV_Modbus :
+STRUCT
+	Modbus_Unit_Online	: BOOL; (*True = online, False = Offline*)
+	Modbus_Adresse1  : ARRAY[16#1000..16#1568] OF DWORD;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

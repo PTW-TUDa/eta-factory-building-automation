@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_WDT_Zustand" Id="{5bba5b2f-4d8d-45c0-827b-37e5025ffd07}">
+    <Declaration><![CDATA[TYPE ST_System_WDT_Zustand :
+STRUCT
+	Betrieb_Anford					: BOOL;
+	Betrieb_Soll					: BOOL;
+	Betrieb							: BOOL;
+
+	Temp_Warmwasser_Max    : REAL;
+	Temp_Warmwasser_Min    : REAL;
+
+	Temp_Kaltwasser_Max    : REAL;
+	Temp_Kaltwasser_Min    : REAL;
+
+	Regelung_Modus					: SINT;
+	Regelung_Nachtabs				: BOOL;
+	Regelung_Sollw					: REAL;
+	Regelung_Sollw_Anford			: REAL;
+	Regelung_Stellw					: REAL;
+
+	Modus_Heizung					: BOOL;
+	Modus_Kuehlung					: BOOL;
+	Modus_viaNetz					: BOOL;
+	Modus_viaAussenfassade			: BOOL;
+
+	Netze_Anford					: ST_Zustand_Netze_Anford;
+
+	Temp_Halle_Sektor1				: REAL;
+	Temp_Halle_Sektor2				: REAL;
+	Temp_Halle_Sektor3				: REAL;
+	Wetter_Temperatur				: REAL;
+	Temp_Rueckl_Wand_Ost_Sektor1	: REAL;
+	Temp_Rueckl_Wand_Ost_Sektor2	: REAL;
+	Temp_Rueckl_Wand_Ost_Sektor3	: REAL;
+	Temp_Rueckl_Wand_West_Sektor1	: REAL;
+	Temp_Rueckl_Wand_West_Sektor2	: REAL;
+	Temp_Rueckl_Wand_West_Sektor3	: REAL;
+	Temp_Rueckl_Decke_Ost_Sektor1	: REAL;
+	Temp_Rueckl_Decke_Ost_Sektor2	: REAL;
+	Temp_Rueckl_Decke_Ost_Sektor3	: REAL;
+	Temp_Rueckl_Decke_West_Sektor1	: REAL;
+	Temp_Rueckl_Decke_West_Sektor2	: REAL;
+	Temp_Rueckl_Decke_West_Sektor3	: REAL;
+	Temp_Rueckl_Aussen_Ost			: REAL;
+	Temp_Rueckl_Aussen_West			: REAL;
+	Temp_Rueckkuehler		        : REAL;
+	Temp_Ruecklauf					: REAL;
+	Temp_Vorlauf					: REAL;
+	Temp_Innen_Mittelw		        : REAL;
+	Systemdruck				        : REAL;
+
+	Freigabe						: BOOL;
+	Freigabe_Deakt					: BOOL;
+	Freigabe_Code					: WORD;
+
+	Stoerung						: BOOL;
+	Stoerung_Code					: WORD;
+
+	Warnung							: BOOL;
+	Warnung_Code					: WORD;
+
+	Status							: SINT;
+	Status_Vorl_Stellventil			: BOOL;
+	Status_Vorl_Pumpe				: BOOL;
+	Status_Vorl_Regelventil			: BOOL;
+	Status_Nachl_Stellventil		: BOOL;
+	Status_Nachl_Pumpe				: BOOL;
+	Status_Nachl_Regelventil		: BOOL;
+
+	Quittierung						: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

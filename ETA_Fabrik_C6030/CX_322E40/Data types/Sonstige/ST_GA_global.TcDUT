@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_GA_global" Id="{a7e6b2db-5a3b-4be6-8a42-74b57cb41c5c}">
+    <Declaration><![CDATA[TYPE ST_GA_global :
+STRUCT
+	Optimierer_Freigabe		: BOOL;
+	Quittierung				: BOOL;
+	Warnung					: BOOL;
+	Stoerung				: BOOL;
+	Systemzeit_Monat		: SINT;
+	Systemzeit_Tag			: SINT;
+	Systemzeit_Wochentag	: SINT;
+	Systemzeit_Stunde		: REAL;
+	Zeit_TaskCycle			: TIME := T#50ms;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

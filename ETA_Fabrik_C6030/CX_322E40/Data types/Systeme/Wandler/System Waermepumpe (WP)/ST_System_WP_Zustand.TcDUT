@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_WP_Zustand" Id="{47c67bcd-d32e-4aee-be20-d6db16e3ecc6}">
+    <Declaration><![CDATA[TYPE ST_System_WP_Zustand :
+STRUCT
+	Betrieb_Anford				: BOOL;
+	Betrieb_Soll				: BOOL;
+	Betrieb						: BOOL;
+
+	Regelung_Sollw				: REAL;
+
+	Netze_Anford				: ST_Zustand_Netze_Anford;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt				: BOOL;
+	Freigabe_Code				: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code				: WORD;
+
+	Warnung						: BOOL;
+	Warnung_Code				: WORD;
+
+	Status						: SINT;
+	Status_Vorl_Stellventil		: BOOL;
+	Status_Vorl_SV_KW			: BOOL;
+	Status_Vorl_SV_WW			: BOOL;
+	Status_Vorl_WP				: BOOL;
+	Status_Nachl_Stellventil	: BOOL;
+	Status_Nachl_SV_KW			: BOOL;
+	Status_Nachl_SV_WW			: BOOL;
+	Status_Nachl_WP				: BOOL;
+
+	Quittierung					: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

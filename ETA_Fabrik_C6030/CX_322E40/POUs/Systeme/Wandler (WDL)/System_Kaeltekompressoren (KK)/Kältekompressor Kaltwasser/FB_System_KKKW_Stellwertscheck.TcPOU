@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_KKKW_Stellwertscheck" Id="{b881eb8f-ba00-4ba1-a920-1108c1361f85}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_KKKW_Stellwertscheck
+VAR_INPUT
+	Stellwert	: ST_System_KKKW_Stellwert;
+	Zustand		: ST_System_KKKW_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1		: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* überprüft, dass eine bestimmte Zeitperiode (Einschaltperiode_Max) vergangen ist, bis sich eine Pumpe wieder einschalten darf *)
+Timer1(	IN := Zustand.Betrieb_Soll = FALSE AND Zustand.Stoerung = TRUE,
+		PT := Stellwert.Einschaltperiode_Max,
+		Q => Stellwert.Einschalten
+);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_KKKW_Stellwertscheck">
+      <LineId Id="10" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Ampel_Out" Id="{d3e2f786-e1f9-4180-93b9-5ed00e1211db}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Ampel_Out
+VAR_INPUT
+	Stellung_Rot		: BOOL;
+	Stellung_Orange		: BOOL;
+	Stellung_Gruen		: BOOL;
+	Stellung_Blau		: BOOL;
+	Stellung_Buzz		: BOOL;
+	Zustand				: ST_Ampel_Zustand;
+END_VAR
+VAR_OUTPUT
+	OUT_Stellung_Rot			: BOOL;
+	OUT_Stellung_Orange			: BOOL;
+	OUT_Stellung_Gruen			: BOOL;
+	OUT_Stellung_Blau			: BOOL;
+	OUT_Stellung_Buzz			: BOOL;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[OUT_Stellung_Rot			:= Stellung_Rot;
+OUT_Stellung_Orange			:= Stellung_Orange;
+OUT_Stellung_Gruen			:= Stellung_Gruen;
+OUT_Stellung_Blau			:= Stellung_Blau;
+OUT_Stellung_Buzz			:= Stellung_Buzz;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Ampel_Out">
+      <LineId Id="18" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

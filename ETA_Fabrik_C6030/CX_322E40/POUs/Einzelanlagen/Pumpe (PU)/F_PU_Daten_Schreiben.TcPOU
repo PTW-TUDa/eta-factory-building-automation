@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_PU_Daten_Schreiben" Id="{d8cf5c53-5e14-41a2-a6cd-d1a75a54aaa6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_PU_Daten_Schreiben : BOOL
+VAR_IN_OUT
+	ControlModul1	: DWORD;
+	ControlModul2	: DWORD;
+END_VAR
+VAR_INPUT
+	Zustand		: ST_PU_Zustand;
+	Stellwert		: ST_PU_Stellwert;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Stellwert.Betrieb ) THEN
+
+	IF( Zustand.Regelung_Modus = 9) THEN
+		(* dp-auto // Druckdifferenz-Auto-Adapt *)
+		ControlModul1.1 := TRUE;
+	ELSE
+		ControlModul1.1 := FALSE;
+		(* Leistungsvorgabe *)
+	END_IF;
+ELSE
+	(* Leistungsvorgabe *)
+	ControlModul1.1 := FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="F_PU_Daten_Schreiben">
+      <LineId Id="11" Count="12" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

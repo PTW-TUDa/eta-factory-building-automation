@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_HS_Sollwertscheck" Id="{014a0265-d067-43a8-ac33-2f4f1315964d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_HS_Sollwertscheck
+VAR_IN_OUT
+	Zustand		: ST_System_HS_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_System_HS_Steuerung;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Priorisierung Regelung_Modus *)
+IF(Steuerung.Regelung_Modus.manu_Modus) THEN
+	Zustand.Regelung_Modus := Steuerung.Regelung_Modus.manu;
+ELSIF(Steuerung.Regelung_Modus.opti_Modus) THEN
+	Zustand.Regelung_Modus := Steuerung.Regelung_Modus.opti;
+ELSE
+	Zustand.Regelung_Modus := Steuerung.Regelung_Modus.auto;
+END_IF;
+(* Priorisierung Regelung_Sollwert *)
+IF(Steuerung.Regelung_Sollw.manu_Modus) THEN
+	Zustand.Regelung_Sollw := Steuerung.Regelung_Sollw.manu;
+ELSIF(Steuerung.Regelung_Sollw.opti_Modus) THEN
+	Zustand.Regelung_Sollw := Steuerung.Regelung_Sollw.opti;
+ELSE
+	Zustand.Regelung_Sollw := Steuerung.Regelung_Sollw.auto;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_HS_Sollwertscheck">
+      <LineId Id="9" Count="15" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

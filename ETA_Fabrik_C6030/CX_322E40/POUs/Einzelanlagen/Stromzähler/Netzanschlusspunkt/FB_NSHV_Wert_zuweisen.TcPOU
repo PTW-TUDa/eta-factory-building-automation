@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_NSHV_Wert_zuweisen" Id="{28f65a11-af76-4257-ab67-ca42fff49cf4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_NSHV_Wert_zuweisen
+VAR_INPUT
+	Input	: DWORD;
+END_VAR
+VAR_OUTPUT
+	Output	: REAL;
+END_VAR
+VAR
+	high: DWORD;
+	low	: DWORD;
+	DWORD_BYTE_TAUSCH : DWORD;
+
+	Modbus_Wert : POINTER TO REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Wert von Modbus in DWORD / Tauschen der beiden low Byte mit den beiden high Byte und Zuweisen zu einer NSHV-Variable *)
+
+high := SHL(Input, 16); (*bitweises Links-Shift eines Operanden *)
+low:= SHR(Input, 16);	(*bitweises Rechts-Shift eines Operanden *)
+
+DWORD_BYTE_TAUSCH := high OR low;
+
+Modbus_Wert := ADR(DWORD_BYTE_TAUSCH);
+Output := (Modbus_Wert^)/1000;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_NSHV_Wert_zuweisen">
+      <LineId Id="14" Count="8" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

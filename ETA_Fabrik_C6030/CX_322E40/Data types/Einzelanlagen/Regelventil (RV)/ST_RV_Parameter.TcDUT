@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_RV_Parameter" Id="{72702c50-3bcf-45b4-9600-24893b3ea5b8}">
+    <Declaration><![CDATA[TYPE ST_RV_Parameter :
+STRUCT
+	Regelung_PI_Kp					: REAL;
+	Regelung_PI_Tn					: DINT;
+	Regelung_PI_Tctr				: DINT;
+
+	Regelung_Sollw_Rampe_Steig_pos	: REAL;		(* unit/s *)
+	Regelung_Sollw_Rampe_Steig_neg	: REAL;		(* unit/s *)
+	Regelung_Sollw_Max				: REAL;
+	Regelung_Sollw_Min				: REAL;
+
+	Zeit_Vorl						: DINT;		 (* ms *)
+	Zeit_Nachl						: DINT;		 (* ms *)
+
+	Stellwert_Stellung_Max			: REAL;
+	Stellwert_Stellung_Min			: REAL;
+
+	AutoQuittierung					: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

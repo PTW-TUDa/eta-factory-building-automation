@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_AKM_Zuweisung" Id="{b2e88ef8-150f-435b-9997-28638590d870}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AKM_Zuweisung
+VAR_IN_OUT
+	{attribute 'OPC.UA.DA' := '1'} Zustand		: ST_AKM_Zustand;		
+END_VAR                                                                 
+VAR_INPUT                                                               
+END_VAR                                                                 
+VAR_OUTPUT                                                              
+	{attribute 'OPC.UA.DA' := '1'} Parameter	: ST_AKM_Parameter;		
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Zuweisung der zu schreibenden Daten gemäß ROMTECH-Programm*)
+Parameter.Temp_blau_soll_max 	:= Speicher.Pufferspeicher_Kaltwasser_195.Parameter.Temp_Max;
+Parameter.Temp_gruen_soll_min	:= Speicher.Pufferspeicher_Warmwasser_295.Parameter.Temp_Min;
+Zustand.Temp_HW_Rueckl			:= Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_mitte;
+Zustand.Temp_WW_Rueckl			:= Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_mitte;
+Zustand.Temp_KW_Rueckl			:= Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_AKM_Zuweisung">
+      <LineId Id="11" Count="6" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

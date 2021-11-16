@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_SV_Output" Id="{e7b398e5-2eb1-4028-aa94-58f5fe50f259}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SV_Output
+VAR_INPUT
+	Stellung			: BOOL;
+END_VAR
+VAR_OUTPUT
+	OUT_Stellung	: BOOL;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[OUT_Stellung := Stellung;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_SV_Output">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

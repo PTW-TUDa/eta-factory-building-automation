@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_WP_Parameter" Id="{4d20587a-1993-462c-98c7-4d6516d98f71}">
+    <Declaration><![CDATA[TYPE ST_WP_Parameter :
+STRUCT
+	Zeit_Vorl					: DINT;
+	Zeit_Nachl					: DINT;
+
+	Temp_Warmwasser        : REAL;
+	Temp_Warmwasser_Max    : REAL;
+	Temp_Warmwasser_Min    : REAL;
+
+	Temp_Kaltwasser        : REAL;
+	Temp_Kaltwasser_Max    : REAL;
+	Temp_Kaltwasser_Min    : REAL;
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

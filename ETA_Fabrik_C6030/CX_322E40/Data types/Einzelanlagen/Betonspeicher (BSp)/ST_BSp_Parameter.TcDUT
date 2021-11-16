@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_BSp_Parameter" Id="{1507dce8-84a6-4257-94ca-d0dc51292f7e}">
+    <Declaration><![CDATA[TYPE ST_BSp_Parameter :
+STRUCT
+	Temp_Max		: REAL;
+	Temp_Min		: REAL;
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

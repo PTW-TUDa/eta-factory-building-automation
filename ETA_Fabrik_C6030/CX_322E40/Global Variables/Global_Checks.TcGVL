@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Global_Checks" Id="{f38aa0aa-986d-4318-8216-a9dbd64b0f9c}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL
+	CheckBounds_ErrCnt 			: DINT;
+	CheckByteZeroDiv_ErrCnt 		: DINT;
+	CheckDWordZeroDiv_ErrCnt 	: DINT;
+	CheckRealZeroDiv_ErrCnt 		: DINT;
+	CheckWordZeroDiv_ErrCnt 		: DINT;
+	CheckRangeSigned_ErrCnt		: DINT;
+	CheckRangeUnsigned_ErrCnt	: DINT;
+	CheckDintZeroDiv_ErrCnt 		: DINT;
+	CheckIntZeroDiv_ErrCnt		: DINT;
+	CheckLrealZeroDiv_ErrCnt		: DINT;
+	CheckSIntZeroDiv_ErrCnt		: DINT;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

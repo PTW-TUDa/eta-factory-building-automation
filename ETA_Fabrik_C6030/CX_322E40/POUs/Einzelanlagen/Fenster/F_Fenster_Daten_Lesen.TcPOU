@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_Fenster_Daten_Lesen" Id="{bf6f2503-bf35-4618-863e-916b0657aada}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Fenster_Daten_Lesen : BOOL
+VAR_IN_OUT
+	Zustand	: ST_System_Fenster_Zustand;
+END_VAR
+VAR_INPUT
+
+	IN_Servomotor_Fenster_O_W_auf		: BOOL;
+	IN_Oberlichter_Halle_Stellung		: BOOL;
+	IN_Oberlichter_Treppenhaus_Stellung	: BOOL;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Zustand.Servomotor_Fenster_O_W_auf	 		:= IN_Servomotor_Fenster_O_W_auf;
+Zustand.Oberlichter_Halle_Stellung			:= IN_Oberlichter_Halle_Stellung;
+Zustand.Oberlichter_Treppenhaus_Stellung    := IN_Oberlichter_Treppenhaus_Stellung;]]></ST>
+    </Implementation>
+    <LineIds Name="F_Fenster_Daten_Lesen">
+      <LineId Id="12" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

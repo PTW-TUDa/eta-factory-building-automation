@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_FBT_Regelung" Id="{cc8c2347-8438-4696-b94c-620e16b4bace}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_FBT_Regelung
+VAR_IN_OUT
+	Stellwert		: ST_System_FBT_Stellwert;
+	Zustand		: ST_System_FBT_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_System_FBT_Steuerung;
+	Parameter	: ST_System_FBT_Parameter;
+END_VAR
+VAR
+	Kennlinie				: FB_CTRL_FLOW_TEMP_SETPOINT_GEN;
+	Kennlinie_Parameter	: ST_CTRL_FLOW_TEMP_SETPOINT_GEN_PARAMS;
+	Kennlinie_Verschiebung	: REAL;
+	Test1					: REAL;
+	Test2					: REAL;
+
+
+    Timer1                  : TON;
+	Temp_Low: BOOL;
+
+    Timer2                  : TON;
+	Temp_High: BOOL;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Identifiziere Modus - Heiz- oder Kühlfall oder deaktiviert *)
+IF( Zustand.Freigabe OR Zustand.Regelung_Modus = E_System_FBT_Regelung_Modus_Automatik ) THEN	(* AUTOMATIK *)
+
+	(* Identifiziere Heiz- oder Kühlfall anhand des Datums. Von November bis März heizen, von Mai bis August kühlen. In der Übergangszeit abhängig von der Temperatur.*)
+	IF(GA_Global.Systemzeit_Monat < 4 OR GA_Global.Systemzeit_Monat > 9) THEN
+		Zustand.Modus_Heizung := TRUE;
+		Zustand.Modus_Kuehlung := FALSE;
+		Zustand.Regelung_Nachtabs := TRUE; (* Heizung mit Nachtabsenkung *)
+	ELSIF(GA_Global.Systemzeit_Monat > 4 AND GA_Global.Systemzeit_Monat < 10) THEN
+		Zustand.Modus_Kuehlung := TRUE;
+		Zustand.Modus_Heizung := FALSE;
+	ELSE
+		(* Identifiziere Heiz- oder Kühlfall anhand der beiden Kennlinien *)
+		IF( Zustand.Temp_Aussen < Parameter.Kennlinie_Heizung.Temp_Aussen_Max OR Zustand.Temp_Aussen > Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min) THEN
+			IF( Zustand.Temp_Aussen < Parameter.Kennlinie_Heizung.Temp_Aussen_Max ) THEN
+			(* Heizfall *)
+				Temp_Low	:= TRUE;
+				Temp_High	:= FALSE;
+				Zustand.Regelung_Nachtabs := TRUE; (* Heizung mit Nachtabsenkung *)
+			ELSIF( Zustand.Temp_Aussen > Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min ) THEN
+			(* Kühlfall *)
+				Temp_Low	:= FALSE;
+				Temp_High	:= TRUE;
+			END_IF;
+			Timer1(	IN := Temp_High,
+					PT := T#30m,
+					Q => Zustand.Modus_Kuehlung
+			);
+
+			Timer2(	IN := Temp_Low,
+					PT := T#30m,
+					Q => Zustand.Modus_Heizung
+			);
+		ELSE	(* weder Heizung noch Kühlung ==> System deaktvieren *)
+			Temp_Low	:= FALSE;
+			Temp_High	:= FALSE;
+			Zustand.Modus_Heizung	:= FALSE;
+			Zustand.Modus_Kuehlung	:= FALSE;
+			Zustand.Betrieb_Soll	:= FALSE;
+		END_IF;
+	END_IF;
+END_IF;
+
+(* Steuerung *)
+
+IF( Zustand.Betrieb_Soll ) THEN
+	(* Kennlinie-Parameter *)
+	IF( Zustand.Modus_Heizung ) THEN
+		Kennlinie_Parameter.fForeRunTempMax	:= Parameter.Kennlinie_Heizung.Temp_Vorl_Max;
+		Kennlinie_Parameter.fForeRunTempMin	:= Parameter.Kennlinie_Heizung.Temp_Vorl_Min;
+		Kennlinie_Parameter.fAmbientTempMax	:= Parameter.Kennlinie_Heizung.Temp_Aussen_Max;
+		Kennlinie_Parameter.fAmbientTempMin	:= Parameter.Kennlinie_Heizung.Temp_Aussen_Min;
+	ELSE
+		Kennlinie_Parameter.fForeRunTempMax	:= Parameter.Kennlinie_Kuehlung.Temp_Vorl_Max;
+		Kennlinie_Parameter.fForeRunTempMin	:= Parameter.Kennlinie_Kuehlung.Temp_Vorl_Min;
+		Kennlinie_Parameter.fAmbientTempMax	:= Parameter.Kennlinie_Kuehlung.Temp_Aussen_Max;
+		Kennlinie_Parameter.fAmbientTempMin	:= Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min;
+	END_IF;
+	Kennlinie_Parameter.tTaskCycleTime	:= GA_global.Zeit_TaskCycle;
+	Kennlinie_Parameter.tCtrlCycleTime		:= DINT_TO_TIME(Parameter.Kennlinie_Tctr);
+
+	(* Verschiebung der Kennlinie entsprechend Wochentag und Tageszeit *)
+	Kennlinie_Verschiebung	:= 0;
+	IF( Zustand.Modus_Heizung AND Zustand.Regelung_Nachtabs ) THEN
+		CASE GA_Global.Systemzeit_Wochentag OF
+			0: (* Sonntag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_So.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mo.Temp_Absenkung;
+				END_IF;
+
+			1: (* Montag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mo.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Di.Temp_Absenkung;
+				END_IF;
+
+			2: (* Dienstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Di.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mi.Temp_Absenkung;
+				END_IF;
+
+			3: (* Mittwoch *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mi.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Do.Temp_Absenkung;
+				END_IF;
+
+			4: (* Donnerstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Do.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Fr.Temp_Absenkung;
+				END_IF;
+
+			5: (* Freitag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Fr.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Sa.Temp_Absenkung;
+				END_IF;
+
+			6: (* Samstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Sa.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_So.Temp_Absenkung;
+				END_IF;
+
+		END_CASE;
+	END_IF;
+
+
+	(* Ausühren des angefragten Regelungsmodus *)
+	CASE Zustand.Regelung_Modus OF
+		E_System_FBT_Regelung_Modus_Heizen_konst,
+		E_System_FBT_Regelung_Modus_Kuehlen_konst:
+			Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+
+		E_System_FBT_Regelung_Modus_Heizen_Kurve,
+		E_System_FBT_Regelung_Modus_Heizen_Kurve_Nachtabs,
+		E_System_FBT_Regelung_Modus_Kuehlen_Kurve,
+		E_System_FBT_Regelung_Modus_Automatik:
+			Kennlinie (
+				fAmbientTemperature	:= Zustand.Temp_Aussen,
+				fOffsetTemperature  := Kennlinie_Verschiebung,
+				stParams			:= Kennlinie_Parameter,
+				bLimitFlowTemp		:= TRUE
+			);
+			Zustand.Regelung_Sollw	:= Kennlinie.fOut;
+			Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+	END_CASE;
+
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_FBT_Regelung">
+      <LineId Id="24" Count="138" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

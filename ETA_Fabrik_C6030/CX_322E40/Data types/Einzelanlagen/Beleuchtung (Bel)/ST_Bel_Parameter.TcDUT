@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Bel_Parameter" Id="{6e64a456-d0e2-4076-861f-0efba0a424a9}">
+    <Declaration><![CDATA[TYPE ST_Bel_Parameter :
+STRUCT
+	(*Parameter Regelung*)
+	Regelung_PI_Kp				: REAL := 0.04;
+	Regelung_PI_Tn				: DINT := 60000;
+	Regelung_PI_Tctr			: DINT := 5000;
+
+	Stellwert_Leistung_Max		: SINT := 100;
+	Stellwert_Leistung_Min		: SINT := 40;
+
+	AutoQuittierung				: BOOL := 0;
+
+	Zeit_Vorl					: DINT := 0; (* milisecs *)
+	Zeit_Nachl					: DINT := 300; (* milisecs *)
+
+	Adresse						: BYTE;
+
+	(* Sonstige eigenschaften?*)
+
+	(*Parameter Filter*)
+	Filter_Tctr					: TIME := T#5000ms;
+	Filter_fKp					: REAL := 1;
+	Filter_Tn					: TIME := T#2s;
+	Helligkeit_Sollw			: REAL := 60;
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

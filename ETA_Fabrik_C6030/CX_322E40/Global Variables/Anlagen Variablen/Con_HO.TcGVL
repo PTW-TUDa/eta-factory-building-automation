@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_HO" Id="{3b5ec337-cbb7-482d-9196-5de790748c20}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* HO_Zustand_Status *)
+	E_HO_Zustand_Status_Idle_Sperre				: SINT := 0;
+	E_HO_Zustand_Status_Betriebsbereit			: SINT := 1;
+	E_HO_Zustand_Status_Nachl					: SINT := 2;
+	E_HO_Zustand_Status_Vorl					: SINT := 3;
+	E_HO_Zustand_Status_Betrieb					: SINT := 4;
+	E_HO_Zustand_Status_Betrieb_Sperre			: SINT := 5;
+	E_HO_Zustand_Status_Stoerung				: SINT := 99;
+
+	(* System_HO_Zustand_Status *)
+	E_System_HO_Zustand_Status_Idle_Sperre			: SINT := 0;
+	E_System_HO_Zustand_Status_Betriebsbereit		: SINT := 1;
+	E_System_HO_Zustand_Status_Nachl_Regelventil	: SINT := 2;
+	E_System_HO_Zustand_Status_Vorl_Regelventil		: SINT := 3;
+	E_System_HO_Zustand_Status_Nachl_Pumpe			: SINT := 4;
+	E_System_HO_Zustand_Status_Vorl_Pumpe			: SINT := 5;
+	(*E_System_HO_Zustand_Status_Nachl_HO			: SINT := 6;
+	E_System_HO_Zustand_Status_Vorl_HO				: SINT := 7;	*)
+	E_System_HO_Zustand_Status_Betrieb				: SINT := 8;
+	E_System_HO_Zustand_Status_Betrieb_Sperre		: SINT := 9;
+	E_System_HO_Zustand_Status_Stoerung				: SINT := 99;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

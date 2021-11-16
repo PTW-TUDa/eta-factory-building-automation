@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Modbus" Id="{757b69ca-4af1-412b-92a7-85e36a6b714c}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL
+    mb_Input_Coils        : ARRAY [0..255] OF BOOL;
+    mb_Output_Coils       : ARRAY [0..255] OF BOOL;
+    mb_Input_Registers    : ARRAY [0..255] OF WORD;
+    mb_Output_Registers   : ARRAY [0..255] OF WORD;
+
+
+	Modbus_NSHV : ModbusRtuMaster_KL6x22B;
+	(*~
+				(MSR-Tools:
+				Beschreibung = NSHV_ETA_Feld_N03
+				COM/Terminal = K526A1_Serielle_RS422RS485)
+				*)
+
+	Telegramm_UMG604	: ARRAY [1..2] OF BYTE;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

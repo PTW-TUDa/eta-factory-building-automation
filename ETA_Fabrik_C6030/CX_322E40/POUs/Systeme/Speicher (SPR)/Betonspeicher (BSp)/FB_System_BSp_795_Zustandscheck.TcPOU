@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_BSp_795_Zustandscheck" Id="{d69796ba-5150-4e1e-994d-e309bc088177}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_BSp_795_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_BSp_Zustand;
+	Pumpe_Steuerung			: ST_PU_Steuerung;
+	Pumpe_Sp_Steuerung		: ST_PU_Schuetz_Steuerung;
+	Stellventil_Steuerung	: ST_SV_Steuerung;
+	Pumpe_Zustand			: ST_PU_Zustand;
+	Pumpe_Sp_Zustand		: ST_PU_Schuetz_Zustand;
+	Stellventil_Zustand		: ST_SV_Zustand;
+END_VAR
+VAR_INPUT
+	BSp_Zustand				: ST_BSp_Zustand;
+	Temp_Netz_KW			: REAL;
+	Steuerung				: ST_System_BSp_Steuerung;
+	Parameter				: ST_System_BSp_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7				: TON;
+	Hysterese			: FB_CTRL_2POINT;
+	Hysterese_Parameter	: ST_CTRL_2POINT_PARAMS;
+	Timer4				: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System BSp
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	Störung Pumpe Speicher (s. Anlage für Details)
+		4: 	Störung Betriebsspeicher
+
+	Warnung_Code
+		0:	Allgemein Warnung System BSp
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	Warnung Pumpe Speicher (s. Anlage für Details)
+		5;	Warnung Speicher wird unerwartet entladen (Modus Laden)
+		6:	Warnung Speicher wird unerwartet geladen (Modus Entladen)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+		8: 	Warnung Betriebsspeicher
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+(* Identifikation Modus Laden oder Entladen *)
+IF (Temp_Netz_KW < BSp_Zustand.Temp_unten) THEN
+	Zustand.Modus_Laden := TRUE;
+	Zustand.Modus_Entladen := FALSE;
+ELSE
+	Zustand.Modus_Entladen := TRUE;
+	Zustand.Modus_Laden := FALSE;
+END_IF
+
+
+(* Zustandsdefinitionen *)
+Zustand.Betrieb						:= Stellventil_Zustand.Stellung AND Pumpe_Zustand.Betrieb AND Pumpe_Sp_Zustand.Betrieb;
+(*
+IF (Steuerung.Betrieb_Anford.auto) THEN
+	(* Identifiziere Verfuegbarkeit Laden/Entladen via Hysterese *)
+	Hysterese_Parameter.tTaskCycleTime	:= GA_global.Zeit_TaskCycle;
+	Hysterese_Parameter.tCtrlCycleTime		:= DINT_TO_TIME(Parameter.Kennlinie_Tctr);
+	Hysterese_Parameter.fHysteresisRange	:= 1;	(* 1 K *)
+	
+	(* Hysterese verhindert ständiges Umschalten zwischen Verfuegbarkeit; erst wenn sich die Temperatur um 2K geändert hat *)
+	Hysterese(
+		fSetpointValue	:= 1.5,
+		fActualValue	:= ABS(Temp_Netz_KW - BSp_Zustand.Temp_unten),
+		bSync			:= FALSE,
+		eMode			:= eCTRL_MODE_ACTIVE,
+		stParams		:= Hysterese_Parameter
+	);
+	Zustand.Modus_Laden_verfuegbar		:= Hysterese.bOut AND (Temp_Netz_KW < BSp_Zustand.Temp_unten);
+	Zustand.Modus_Entladen_verfuegbar	:= Hysterese.bOut AND (Temp_Netz_KW > BSp_Zustand.Temp_unten);
+END_IF
+*)
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Stellventil_Zustand.Stoerung;
+Zustand.Stoerung_Code.2 := Pumpe_Zustand.Stoerung;
+Zustand.Stoerung_Code.3 := Pumpe_Sp_Zustand.Stoerung;
+Zustand.Stoerung_Code.4 := BSp_Zustand.Stoerung;
+Zustand.Warnung_Code.1 := Stellventil_Zustand.Warnung;
+Zustand.Warnung_Code.2 := Pumpe_Zustand.Warnung;
+Zustand.Warnung_Code.3 := Pumpe_Sp_Zustand.Warnung;
+Zustand.Warnung_Code.8 := BSp_Zustand.Warnung;
+
+
+
+(* Warnung 5 - Warnung Speicher wird unerwartet entladen (Modus Laden)	*)
+Zustand.Warnung_Code.5 := Zustand.Modus_Laden AND (Pumpe_Zustand.Temp_extern > Pumpe_Zustand.Temp_intern);
+(* Warnung 6 - Warnung Speicher wird unerwartet geladen (Modus Entladen) 	*)
+Zustand.Warnung_Code.6 := Zustand.Modus_Entladen AND (Pumpe_Zustand.Temp_extern < Pumpe_Zustand.Temp_intern);
+
+(* Warnung 7 - keine Betriebsrückmeldung trotz Betriebsanforderung nach 10 Minuten *)
+Timer7(	IN := Zustand.Betrieb_Soll <> Zustand.Betrieb,
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF (Zustand.Stoerung_Code > 0) THEN
+	Zustand.Stoerung := TRUE;
+	Steuerung.Quittierung := FALSE;
+END_IF;
+
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+
+
+(* Netz_Anford *)
+IF( Zustand.Betrieb_Anford ) THEN
+	Zustand.Netze_Anford.Kaltwasser.Aktiv			:= TRUE;
+	Zustand.Netze_Anford.Kaltwasser.Temp_Oben		:= Pumpe_Zustand.Temp_extern;
+	Zustand.Netze_Anford.Kaltwasser.Temp_Unten	:= Pumpe_Zustand.Temp_intern;
+ELSE
+	Zustand.Netze_Anford.Kaltwasser.Aktiv			:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_BSp_795_Zustandscheck">
+      <LineId Id="24" Count="106" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

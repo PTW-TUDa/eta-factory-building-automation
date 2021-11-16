@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Fenster_Output" Id="{76eed4bb-62f7-4432-a80a-61b7ae7ef53f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Fenster_Output
+
+VAR_INPUT
+	Servo_Fenster_AUF			: BOOL;
+	Servo_Fenster_ZU			: BOOL;
+END_VAR
+VAR_OUTPUT
+	OUT_Servo_Fenster_AUF		: BOOL;
+	OUT_Servo_Fenster_ZU		: BOOL;
+END_VAR
+VAR
+	tmp_Leistung : INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+OUT_Servo_Fenster_AUF := Servo_Fenster_AUF;
+OUT_Servo_Fenster_ZU := Servo_Fenster_ZU;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Fenster_Output">
+      <LineId Id="13" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_Fenster_Stellwert" Id="{0d49a395-fb45-4be4-88ce-124fe021218c}">
+    <Declaration><![CDATA[TYPE ST_System_Fenster_Stellwert :
+STRUCT
+	Freigabe		: BOOL;
+	Stellung		: BOOL;
+
+	Fenster_OST_AUF			: BOOL;
+	Fenster_OST_ZU			: BOOL;
+	Fenster_WEST_AUF		: BOOL;
+	Fenster_WEST_ZU			: BOOL;
+
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

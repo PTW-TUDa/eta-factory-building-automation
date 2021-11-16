@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_Bel_Stellwert" Id="{431d25c0-d305-4ab8-8fd2-51035b0ba70e}">
+    <Declaration><![CDATA[TYPE ST_System_Bel_Stellwert :
+STRUCT
+	Betrieb		: BOOL;
+	Modus		: SINT;
+	Leistung	: REAL;
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

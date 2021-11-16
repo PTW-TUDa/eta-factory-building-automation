@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_Fenster_Steuerung" Id="{f3543f1c-4ec5-4b95-b22f-4da3ea269f98}">
+    <Declaration><![CDATA[TYPE ST_System_Fenster_Steuerung :
+STRUCT
+
+	Freigabe				: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt			: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford			: ST_Steuerung_auto_manu_BOOL;
+
+
+	Quittierung				: BOOL;
+
+
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

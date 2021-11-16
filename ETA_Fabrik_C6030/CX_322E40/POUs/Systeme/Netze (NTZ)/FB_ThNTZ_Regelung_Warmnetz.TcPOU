@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_ThNTZ_Regelung_Warmnetz" Id="{3d52c2db-22bc-4fcd-817f-bdb92c4d78e3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ThNTZ_Regelung_Warmnetz
+VAR_IN_OUT
+	Stellwert	: ST_ThNTZ_Stellwert;
+	Zustand		: ST_ThNTZ_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_ThNTZ_Steuerung;
+	Parameter	: ST_ThNTZ_Parameter;
+END_VAR
+VAR
+    Zaehler_W          : INT; (*Zähler für Schleife - Warmnetz*)
+    Zaehler_WOM        : INT; (*Zähler für Schleife - Warmnetz_Max_Temp*)
+	Zaehler_WUM        : INT; (*Zähler für Schleife - Warmnetz_Min_Temp*)
+	Array_Laenge       : INT; (*Länge vom Zustand.Netze_Anforderung*)
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+(*Die Länge vom Array aus FB_WW_Zuweisungen auslesen und hier eintragen*)
+
+    Array_Laenge := 7;
+
+IF( Zustand.Betrieb_Soll )THEN
+
+	Zustand.Regelung_Sollw := 20; (*Start Wert*)
+
+	IF (NOT Zustand.Netze_Anford[1].Warmwasser.Aktiv) THEN
+    Zustand.Netze_Anford[1].Warmwasser.Temp := 0;
+	ELSE
+	Zustand.Regelung_Sollw := Zustand.Netze_Anford[1].Warmwasser.Temp;
+ 	END_IF
+
+		FOR Zaehler_W:=2 TO Array_Laenge BY 1 DO
+
+			IF (Zustand.Netze_Anford[Zaehler_W].Warmwasser.Temp>Zustand.Regelung_Sollw) AND (Zustand.Netze_Anford[Zaehler_W].Warmwasser.Aktiv) THEN
+			Zustand.Regelung_Sollw:= Zustand.Netze_Anford[Zaehler_W].Warmwasser.Temp;
+
+			END_IF
+
+		END_FOR
+
+	Zustand.Regelung_Sollw_Max := 50; (*Start Wert*)
+
+	IF (NOT Zustand.Netze_Anford[1].Warmwasser.Aktiv) THEN
+    Zustand.Netze_Anford[1].Warmwasser.Temp_Max := 100;
+	ELSE
+	Zustand.Regelung_Sollw_Max:= Zustand.Netze_Anford[1].Warmwasser.Temp_Max;
+ 	END_IF
+
+
+		FOR Zaehler_WOM:=2 TO Array_Laenge BY 1 DO
+
+			IF ( Zustand.Netze_Anford[Zaehler_WOM].Warmwasser.Temp_Max< Zustand.Regelung_Sollw_Max) AND (Zustand.Netze_Anford[Zaehler_WOM].Warmwasser.Aktiv) AND (Zustand.Netze_Anford[Zaehler_WOM].Warmwasser.Temp_Max > 0) THEN
+			Zustand.Regelung_Sollw_Max:=  Zustand.Netze_Anford[Zaehler_WOM].Warmwasser.Temp_Max;
+
+			END_IF
+
+		END_FOR
+
+	Zustand.Regelung_Sollw_Min := 20; (*Start Wert*)
+
+	IF (NOT Zustand.Netze_Anford[1].Warmwasser.Aktiv) THEN
+    Zustand.Netze_Anford[1].Warmwasser.Temp_Min := 0;
+	ELSE
+	Zustand.Regelung_Sollw_Min:= Zustand.Netze_Anford[1].Warmwasser.Temp_Min;
+ 	END_IF
+
+
+		FOR Zaehler_WUM:=2 TO Array_Laenge BY 1 DO
+
+			IF ( Zustand.Netze_Anford[Zaehler_WUM].Warmwasser.Temp_Min> Zustand.Regelung_Sollw_Min) AND (Zustand.Netze_Anford[Zaehler_WUM].Warmwasser.Aktiv) THEN
+			Zustand.Regelung_Sollw_Min:=  Zustand.Netze_Anford[Zaehler_WUM].Warmwasser.Temp_Min;
+
+			END_IF
+
+		END_FOR
+
+
+END_IF
+
+(*Minimum Wert von Sollwert wird hier zugewiesen*)
+Zustand.Regelung_Sollw	   := MIN (Zustand.Regelung_Sollw, Parameter.Regelung_Sollw_Max);
+Zustand.Regelung_Sollw	   := MAX (Zustand.Regelung_Sollw, Parameter.Regelung_Sollw_Min);
+Zustand.Regelung_Sollw_Max := MIN (Zustand.Regelung_Sollw_Max, Parameter.Regelung_Sollw_KRITIKAL_OBEN_TEMP);
+Zustand.Regelung_Sollw_Min := MAX (Zustand.Regelung_Sollw_Min, Parameter.Regelung_Sollw_KRITIKAL_UNTEN_TEMP);
+
+
+Zustand.Regelung_Sollw     := MIN (Zustand.Regelung_Sollw	, Zustand.Regelung_Sollw_Max);
+Zustand.Regelung_Sollw     := MAX (Zustand.Regelung_Sollw	, Zustand.Regelung_Sollw_Min);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ThNTZ_Regelung_Warmnetz">
+      <LineId Id="16" Count="72" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

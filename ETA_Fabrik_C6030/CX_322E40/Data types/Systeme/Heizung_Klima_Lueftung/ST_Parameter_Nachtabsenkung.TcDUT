@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Parameter_Nachtabsenkung" Id="{c124e2ad-0454-43a9-9feb-72116e748a16}">
+    <Declaration><![CDATA[TYPE ST_Parameter_Nachtabsenkung :
+STRUCT
+	Temp_Absenkung			: REAL;
+	Uhrzeit_Stunde_Start	: REAL;	(* in 0-24h ggf. am Vortag *)
+	Uhrzeit_Stunde_Ende		: REAL;	(* in 0-24h *)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

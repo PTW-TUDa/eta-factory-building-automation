@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_MV_MAFAC_GT_Zustand" Id="{68bfccb9-0092-44c2-bf25-5249c509cb03}">
+    <Declaration><![CDATA[TYPE ST_MV_MAFAC_GT_Zustand :
+STRUCT
+	Anford_Kuehl_KSS		: BOOL;
+	Anford_Kuehl_Maschine	: BOOL;
+	Betrieb					: BOOL;
+	Kommunikation			: BOOL;
+	Warnung					: BOOL;
+	Warnung_Code			: WORD;
+	Stoerung				: BOOL;
+	Stoerung_Code			: WORD;
+
+	Kuehl_KSS_Sollwert_VL_Temp	: REAL ;
+	Kuehl_Maschine_Sollwert_VL_Temp	: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

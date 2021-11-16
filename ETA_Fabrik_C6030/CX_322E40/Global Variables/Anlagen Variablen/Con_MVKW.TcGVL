@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_MVKW" Id="{27f924bf-18de-4a21-a3e8-a85d508e0fc4}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* MVKW_Zustand_Status *)
+	(*E_MVKW_Zustand_Status_Idle_Sperre			: SINT := 0;
+	E_MVKW_Zustand_Status_Betriebsbereit			: SINT := 1;
+	E_MVKW_Zustand_Status_Nachl				: SINT := 2;
+	E_MVKW_Zustand_Status_Vorl					: SINT := 3;
+	E_MVKW_Zustand_Status_Betrieb				: SINT := 4;
+	E_MVKW_Zustand_Status_Betrieb_Sperre		: SINT := 5;
+	E_MVKW_Zustand_Status_Stoerung				: SINT := 99;
+
+	(* MVKW_Zustand_Regelung_Modus *)
+	E_MVKW_Regelung_Modus_P					: SINT := 0;
+	E_MVKW_Regelung_Modus_T_SH_Max			: SINT := 1;*)
+
+	(* System_MVKW_Zustand_Status *)
+	E_System_MVKW_Zustand_Status_Idle_Sperre		: SINT := 0;
+	E_System_MVKW_Zustand_Status_Betriebsbereit		: SINT := 1;
+	E_System_MVKW_Zustand_Status_Nachl_Stellventil	: SINT := 2;
+	E_System_MVKW_Zustand_Status_Vorl_Stellventil	: SINT := 3;
+	E_System_MVKW_Zustand_Status_Nachl_Pumpe		: SINT := 4;
+	E_System_MVKW_Zustand_Status_Vorl_Pumpe			: SINT := 5;
+	E_System_MVKW_Zustand_Status_Betrieb			: SINT := 8;
+	E_System_MVKW_Zustand_Status_Betrieb_Sperre		: SINT := 9;
+	E_System_MVKW_Zustand_Status_Stoerung			: SINT := 99;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

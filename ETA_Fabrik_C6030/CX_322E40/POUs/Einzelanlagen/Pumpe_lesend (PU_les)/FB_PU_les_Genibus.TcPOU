@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_PU_les_Genibus" Id="{bd00d70f-2e00-4d19-bd0d-5488eca1391b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PU_les_Genibus
+VAR_INPUT
+	Reply						:  POINTER TO ST_PU_Genibus; 	(*This is mapped to PB_DPV0 Module 43 "DirectDataReply"*)
+	Request 					:  POINTER TO ST_PU_Genibus; 	(*This is mapped to PB_DPV0 Module 42 "DirectDataRequest"*)
+END_VAR
+VAR_OUTPUT
+	preciseInternalTemperature 	: REAL;	(*Here the resulting precise Value will be stored *)
+	Volumenstrom				: LREAL;
+END_VAR
+VAR
+	bInitialize				: BOOL := FALSE;
+	volume					: BOOL := FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Initialize PROGRAM*)
+IF bInitialize = FALSE THEN
+	Request^.DestAddress 		:= 16#FF; 		(* Set destination to "Broadcast"*)
+	Request^.Class				:= 16#0B;		(* Select Class 11 as Provided by Grundfos*)
+	Request^.OpLength			:= 16#01;		(* Operation = GET (0), Length = 1*)
+	Request^.SequenceNumber 	:= 1;			(* Trigger first Request*)
+
+	IF volume = FALSE THEN
+		Request^.Data1				:= 16#22;		(* ID = 34 (Probably for internal Temperature) ||  Volumenstrom ID = 53 (in hex: 16#35) *)
+	ELSE
+		Request^.Data1				:= 16#35;
+	END_IF
+	bInitialize := TRUE;
+
+ELSE
+
+(*Programm is now ready for reading*)
+	IF Reply^.SequenceNumber = Request^.SequenceNumber THEN (*Sequence Number of Incoming data has to match that of request!*)
+
+		IF Reply^.OpLength = 16#02 AND Request^.Data1= 16#22 THEN (* otherwise an error occured ! *)
+			IF (Reply^.Data1*255+Reply^.Data2)*0.01-273.16 >0 THEN
+				preciseInternalTemperature := (Reply^.Data1*255+Reply^.Data2)*0.01-273.16;  (*Data1 contains the Highbyte, Data2 the Lowbyte. Resulting Value is in [K], substract 273.16 for getting [°C]*)
+			END_IF
+			volume := TRUE;
+			Request^.SequenceNumber := Request^.SequenceNumber +1;
+		ELSIF Reply^.OpLength = 16#10 AND Request^.Data1= 16#35 THEN
+			Volumenstrom := (Reply^.Data1*255+Reply^.Data2)*0.01;
+			volume := FALSE;
+			Request^.SequenceNumber := Request^.SequenceNumber +1;
+		ELSE
+			volume := FALSE;
+			Request^.SequenceNumber := Request^.SequenceNumber +1;
+		END_IF
+		bInitialize := FALSE;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PU_les_Genibus">
+      <LineId Id="13" Count="35" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_SHZ_Zustand" Id="{3afb4a36-a877-45b3-a314-7aea36bc4551}">
+    <Declaration><![CDATA[TYPE ST_System_SHZ_Zustand :
+STRUCT
+	Betrieb_Anford				: BOOL;
+	Betrieb_Soll				: BOOL;
+	Betrieb						: BOOL;
+	Betrieb_Kennlinie			: BOOL;
+
+	Regelung_Modus				: SINT:=0;
+	Regelung_Nachtabs			: BOOL;
+	Regelung_Sollw				: REAL;
+	Regelung_Sollw_Anford		: REAL;
+	Regelung_Stellw				: REAL;
+
+	Netze_Anford				: ST_Zustand_Netze_Anford;
+
+	Temp_Innen					: REAL;
+	Temp_Aussen					: REAL;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt				: BOOL;
+	Freigabe_Code				: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code				: WORD;
+
+	Warnung						: BOOL;
+	Warnung_Code				: WORD;
+
+	Status						: SINT;
+	Status_Vorl_Pumpe			: BOOL;
+	Status_Vorl_Regelventil		: BOOL;
+	Status_Nachl_Pumpe			: BOOL;
+	Status_Nachl_Regelventil	: BOOL;
+
+	Quittierung					: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

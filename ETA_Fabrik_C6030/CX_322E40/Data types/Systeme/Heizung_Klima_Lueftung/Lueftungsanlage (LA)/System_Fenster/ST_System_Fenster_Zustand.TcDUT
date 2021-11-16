@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_Fenster_Zustand" Id="{c9c04430-0067-4d97-88df-0cd45824157e}">
+    <Declaration><![CDATA[TYPE ST_System_Fenster_Zustand :
+STRUCT
+	Freigabe			: BOOL;
+	Freigabe_Code		: WORD;
+	Stellung			: BOOL;
+	Stellung_Soll		: BOOL;
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+	Status				: SINT;
+
+	Stellungwechsel01	: BOOL;
+	Stellungwechsel10	: BOOL;
+
+
+	Servomotor_Fenster_O_W_auf			: BOOL;
+	Oberlichter_Halle_Stellung			: BOOL;
+	Oberlichter_Treppenhaus_Stellung	: BOOL;
+
+	Fenster_OST_AUF			: BOOL;
+	Fenster_OST_ZU			: BOOL;
+	Fenster_WEST_AUF		: BOOL;
+	Fenster_WEST_ZU			: BOOL;
+
+	Quittierung							: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

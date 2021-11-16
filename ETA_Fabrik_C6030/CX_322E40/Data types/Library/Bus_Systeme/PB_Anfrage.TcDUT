@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="PB_Anfrage" Id="{8f059856-2201-4da5-be9b-ca712f8860ca}">
+    <Declaration><![CDATA[TYPE PB_Anfrage :
+STRUCT
+	pAuslass 			: PB_Dateneintrag;
+
+	tAuslass 				: PB_Dateneintrag;
+	
+	tDruckTau			: PB_Dateneintrag;
+	
+	tUmgebung			: PB_Dateneintrag;
+
+	tAqEin				: PB_Dateneintrag;
+
+	tAqAus				: PB_Dateneintrag;
+	
+	mechState			: PB_Dateneintrag;
+
+	hBetrieb				: PB_Dateneintrag;
+
+	hGeringeLast			: PB_Dateneintrag;
+
+	vErzeugtesVolumen	: PB_Dateneintrag;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

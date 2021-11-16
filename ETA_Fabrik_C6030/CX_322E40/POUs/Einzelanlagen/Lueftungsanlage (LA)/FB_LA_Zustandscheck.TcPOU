@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_LA_Zustandscheck" Id="{e393a229-0937-4b73-84cc-2b48329030c2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LA_Zustandscheck
+VAR_INPUT
+	Zustand	: ST_LA_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung LA (intern)
+		1: 	Stoerung Abluftrauchmelder
+		2: 	Stoerung Abluftventilator
+		3: 	Froststörung
+		4: 	Register Pumpe Störung
+		5: 	Sammelstörung Anlage
+		6: 	Zuluftrauchmelder Störung
+		7: 	Zuluftventilator Störung
+
+	Warnung_Code
+		0:	Allgemein Warnung LA (intern)
+		1:	Kommunikation unterbrochen
+
+*)
+(* Interne Stoerungen / Warnungen *)
+Zustand.Warnung_Code.1	:= NOT Zustand.Kommunikation;
+
+Zustand.Stoerung_Code.1 := Zustand.Abluftrauchmelder_SM;
+Zustand.Stoerung_Code.2 := Zustand.Abluftventilator_SM;
+Zustand.Stoerung_Code.3 := Zustand.Frost_Stoerung;
+Zustand.Stoerung_Code.4 := Zustand.Register_Pumpe_Stoerung;
+Zustand.Stoerung_Code.5	:= Zustand.Sammelstoerung_Anlage;
+Zustand.Stoerung_Code.6	:= Zustand.Zuluftrauchmelder_SM;
+Zustand.Stoerung_Code.7	:= Zustand.Zuluftventilator_SM;
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF ( Zustand.Stoerung_Code > 0 ) THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+IF ( Zustand.Warnung_Code > 0 ) THEN
+	Zustand.Warnung := TRUE;
+ELSE
+	Zustand.Warnung := FALSE;
+END_IF;
+
+(* Kommunikation TRUE, wenn Lueftungsanlage über Modbus meldet, dass sie läuft *)
+IF Zustand.Betrieb = TRUE THEN
+	Zustand.Kommunikation := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_LA_Zustandscheck">
+      <LineId Id="8" Count="45" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

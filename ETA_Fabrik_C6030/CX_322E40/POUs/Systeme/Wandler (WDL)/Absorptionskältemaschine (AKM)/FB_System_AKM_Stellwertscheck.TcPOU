@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_AKM_Stellwertscheck" Id="{b76cf995-c612-407e-9053-480c6cb0e06d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_AKM_Stellwertscheck
+VAR_IN_OUT
+	Stellwert	: ST_System_AKM_Stellwert;
+END_VAR
+
+VAR_INPUT
+	Zustand		: ST_System_AKM_Zustand;
+	Parameter	: ST_System_AKM_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Stellwert.Betrieb ) THEN
+
+	CASE Zustand.Regelung_Modus OF
+		E_AKM_Regelung_Modus_T_KW:	(* Kaeltegeführt *)
+			(* Max-Min-Grenzen erzwingen *)
+			Stellwert.Temperatur	 := MIN(Parameter.Stellwert_Temperatur_KW_max, Stellwert.Temperatur);
+			Stellwert.Temperatur	 := MAX(Parameter.Stellwert_Temperatur_KW_min, Stellwert.Temperatur);
+
+		E_AKM_Regelung_Modus_T_WW:	(* Wärmegeführt *)
+			(* Max-Min-Grenzen erzwingen *)
+			Stellwert.Temperatur	 := MIN(Parameter.Stellwert_Temperatur_WW_max, Stellwert.Temperatur);
+			Stellwert.Temperatur	 := MAX(Parameter.Stellwert_Temperatur_WW_min, Stellwert.Temperatur);
+	ELSE
+		Stellwert.Temperatur	:= 0;
+	END_CASE;
+ELSE
+	Stellwert.Temperatur	:= 0;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_AKM_Stellwertscheck">
+      <LineId Id="13" Count="17" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

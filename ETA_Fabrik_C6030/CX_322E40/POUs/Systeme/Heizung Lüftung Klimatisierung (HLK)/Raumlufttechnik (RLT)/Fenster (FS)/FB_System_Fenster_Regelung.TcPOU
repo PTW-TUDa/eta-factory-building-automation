@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_Fenster_Regelung" Id="{a440ac63-d5aa-4255-b72d-24628bdeb988}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_Fenster_Regelung
+VAR_IN_OUT
+	Parameter				: ST_System_Fenster_Parameter;
+	Steuerung				: ST_System_Fenster_Steuerung;
+	Stellwert				: ST_System_Fenster_Stellwert;
+	Zustand					: ST_System_Fenster_Zustand;
+END_VAR
+VAR_INPUT
+
+END_VAR
+VAR
+
+	Temp_Innen_Mittelwert: REAL;
+	Temp_Differenz: REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+Temp_Innen_Mittelwert := ((*Umwelt.Temp_Halle_Sektor1+*)Umwelt.Temp_Halle_Sektor2+Umwelt.Temp_Halle_Sektor3)/2; (*Tempt_Halle_Sektor1 ist kaputt wenn es wieder Ok wird, soll es auch in den formel rein.*)
+Temp_Differenz := Temp_Innen_Mittelwert - Umwelt.Temp_Aussen_WS_Mittelw;
+
+
+
+
+
+IF Zustand.Stellung_Soll THEN
+
+	IF NOT Umwelt.Regen THEN
+		IF Temp_Differenz < 5 AND Temp_Differenz > 2 THEN
+			Stellwert.Fenster_OST_AUF := TRUE;
+			Stellwert.Fenster_WEST_AUF := TRUE;
+			Stellwert.Fenster_OST_ZU := FALSE;
+			Stellwert.Fenster_WEST_ZU := FALSE;
+
+		ELSE
+
+			Stellwert.Fenster_OST_AUF := FALSE;
+			Stellwert.Fenster_WEST_AUF := FALSE;
+			Stellwert.Fenster_OST_ZU := TRUE;
+			Stellwert.Fenster_WEST_ZU := TRUE;
+		END_IF;
+	ELSE
+		Stellwert.Fenster_OST_AUF := FALSE;
+		Stellwert.Fenster_WEST_AUF := FALSE;
+		Stellwert.Fenster_OST_ZU := TRUE;
+		Stellwert.Fenster_WEST_ZU := TRUE;
+	END_IF;
+ELSE
+	Stellwert.Fenster_OST_AUF := FALSE;
+	Stellwert.Fenster_WEST_AUF := FALSE;
+	Stellwert.Fenster_OST_ZU := FALSE;
+	Stellwert.Fenster_WEST_ZU := FALSE;
+
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_Fenster_Regelung">
+      <LineId Id="15" Count="37" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

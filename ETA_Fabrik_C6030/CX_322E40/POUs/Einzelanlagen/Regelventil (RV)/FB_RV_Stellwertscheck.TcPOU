@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_RV_Stellwertscheck" Id="{1487e52e-9fa3-4d2d-ad7b-519ffe9679c6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_RV_Stellwertscheck
+VAR_IN_OUT
+	Stellwert	: ST_RV_Stellwert;
+END_VAR
+VAR_INPUT
+	Zustand		: ST_RV_Zustand;
+	Parameter	: ST_RV_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1			: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Stellwert.Betrieb ) THEN
+	(* Max-Min-Grenzen erzwingen *)
+	Stellwert.Stellung := REAL_TO_USINT(MIN(Parameter.Stellwert_Stellung_max, Zustand.Regelung_Stellw));
+	Stellwert.Stellung := REAL_TO_USINT(MAX(Parameter.Stellwert_Stellung_min, Stellwert.Stellung));
+ELSE
+	Stellwert.Stellung := 0;
+END_IF;
+
+
+Timer1(	IN := Stellwert.Betrieb = FALSE,
+		PT := T#15S,
+		Q => Stellwert.Freigabe
+);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_RV_Stellwertscheck">
+      <LineId Id="13" Count="14" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

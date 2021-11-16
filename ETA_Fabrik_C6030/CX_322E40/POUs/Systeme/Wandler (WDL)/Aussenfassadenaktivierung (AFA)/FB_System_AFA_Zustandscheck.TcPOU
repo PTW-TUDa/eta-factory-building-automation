@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_AFA_Zustandscheck" Id="{4d18d43d-ad85-45e7-8e01-30928edcb5e4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_AFA_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_AFA_Zustand;
+END_VAR
+VAR_INPUT
+	Stellventil_Zustand		: ST_SVs_Zustand;
+	Pumpe_Zustand			: ST_PU_Zustand;
+	Regelventil_Zustand		: ST_RV_Zustand;
+	Parameter				: ST_System_AFA_Parameter;
+	Steuerung				: ST_System_AFA_Steuerung;
+	Stellwert				: ST_System_AFA_Stellwert;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer4	: TON;
+	Timer7	: TON;
+	Temp_stellbar_Max	: REAL;
+	Temp_stellbar_Min	: REAL;
+	Timer_Temp_aktuell	: TON;
+	Timer_Temp_aktuell_halten	: TOF;
+	Prognose 			: BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System AFA
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	Störung Regelventil (s. Anlage für Details)
+		4:	Maximal-Temperatur zu lange überschritten / Minimal-Temperatur zu langen unterschritten
+
+	Warnung_Code
+		0:	Allgemein Warnung System AFA
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	Warnung Regelventil (s. Anlage für Details)
+		4:	Maximal-Temperatur überschritten / Minimal-Temperatur unterschritten
+		5:	Rücklauftemperatur unerwartet hinsichtlich Regelung_Modus (unerwartete Wärmeabsorption  im Rückkühl-Modus bzw. Rückkühlung im Wärmeabsorption-Modus) 
+		6:	Sollwertanpassung aktiv (Kondensationsschutz oder Hitzeschutz)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+
+
+
+(* Berechne stellbare Temperaturen *)
+IF (Prognose) THEN
+	Zustand.Temp_stellbar_Max	:= Umwelt.Temp_Aussen_WS - 2;
+	Zustand.Temp_stellbar_Min	:= Umwelt.Temp_Aussen_WS + 2;
+ELSE
+	Zustand.Temp_stellbar_Max	:= Zustand.Temp_Ruecklauf;
+	Zustand.Temp_stellbar_Min	:= Zustand.Temp_Ruecklauf;
+END_IF
+
+(* Wenn die Pumpe läuft übernehme aktuelle Temperatur nach 5 Minuten und halte diese für 30 Minuten *)
+Timer_Temp_aktuell(	IN := Zustand.Betrieb,
+		PT := T#5M,
+);
+Timer_Temp_aktuell_halten(	IN := Timer_Temp_aktuell.Q,
+		PT := T#30M,
+);
+
+Prognose := NOT Timer_Temp_aktuell_halten.Q;
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Stellventil_Zustand.Stoerung;
+Zustand.Stoerung_Code.2 := Pumpe_Zustand.Stoerung;
+Zustand.Stoerung_Code.3 := Regelventil_Zustand.Stoerung;
+Zustand.Warnung_Code.1 := Stellventil_Zustand.Warnung;
+Zustand.Warnung_Code.2 := Pumpe_Zustand.Warnung;
+Zustand.Warnung_Code.3 := Regelventil_Zustand.Warnung;
+
+(* Warnung/Stoerung 4 - Maximal-Temperatur überschritten / Minimal-Temperatur unterschritten *)
+Zustand.Warnung_Code.4	:= Zustand.Betrieb_Soll AND ((Pumpe_Zustand.Temp_intern > Parameter.Temp_Vorl_Max) OR (Pumpe_Zustand.Temp_intern < Parameter.Temp_Vorl_Min));
+Timer4(	IN := Zustand.Warnung_Code.4,
+		PT := T#15M,
+		Q => Zustand.Stoerung_Code.4
+);
+
+(* Warnung 5 - Rücklauftemperatur unerwartet hinsichtlich Regelung_Modus (unerwartete Wärmeabsorption  im Rückkühl-Modus bzw. Rückkühlung im Wärmeabsorption-Modus) *)
+Zustand.Warnung_Code.5	:= Zustand.Betrieb_Soll AND ((Zustand.Modus_Rueckkuehlung AND (Pumpe_Zustand.Temp_intern < Pumpe_Zustand.Temp_extern)) OR (Zustand.Modus_Waermeabsorption AND (Pumpe_Zustand.Temp_intern > Pumpe_Zustand.Temp_extern)));
+
+(* Warnung 6 - Stellwertanpassung aktiv (Kondensationsschutz oder Hitzeschutz) *)
+Zustand.Warnung_Code.6	:= Zustand.Betrieb_Soll AND (Zustand.Regelung_Stellw <> Stellwert.Temp_Vorl);
+
+(* Warnung 7 - Betriebsrückmeldung Zeitüberschreitung *)
+Timer7(	IN := Zustand.Betrieb_Soll <> Zustand.Betrieb,
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF (Zustand.Stoerung_Code > 0) THEN
+	Zustand.Stoerung := TRUE;
+	Steuerung.Quittierung := FALSE;
+END_IF;
+
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_AFA_Zustandscheck">
+      <LineId Id="23" Count="93" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

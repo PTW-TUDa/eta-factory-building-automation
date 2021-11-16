@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_LA_Zustandscheck" Id="{b9e910b6-23b3-4cc8-bf9b-be81d9f4e207}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_LA_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_LA_Zustand;
+	Stellwert				: ST_System_LA_Stellwert;
+END_VAR
+VAR_INPUT
+	Stellventil1_Zustand		: ST_SVs_Zustand;
+	Stellventil2_Zustand		: ST_SVs_Zustand;
+	Pumpe_Zustand			: ST_PU_les_Zustand;
+	Regelventil_Zustand		: ST_RV_les_Zustand;
+	Lueftungsanlage_Zustand	: ST_LA_Zustand;
+	FBT_Zustand				: ST_System_FBT_Zustand;
+	Parameter				: ST_System_LA_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System LA
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	Störung Regelventil (s. Anlage für Details)
+		4: 	Störung Lüftungsanlage
+
+	Warnung_Code
+		0:	Allgemein Warnung System LA
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	Warnung Regelventil (s. Anlage für Details)
+		4: 	Warnung Lüftungsanlage
+*)
+
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Stellventil1_Zustand.Stoerung OR Stellventil2_Zustand.Stoerung;
+
+Zustand.Stoerung_Code.4 := Lueftungsanlage_Zustand.Stoerung;
+
+Zustand.Warnung_Code.1 := Stellventil1_Zustand.Warnung OR Stellventil2_Zustand.Warnung;
+
+Zustand.Warnung_Code.4 := Lueftungsanlage_Zustand.Warnung;
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+(* Heizen oder Kühlen setzen *)
+IF FBT_Zustand.Modus_Kuehlung THEN
+	Zustand.Modus_Kuehlung := TRUE;
+	Zustand.Modus_Heizung := FALSE;
+ELSE
+	Zustand.Modus_Heizung := TRUE;
+	Zustand.Modus_Kuehlung := FALSE;
+END_IF;
+
+(* Netz_Anford*)
+IF( Zustand.Betrieb_Soll ) THEN
+	IF Zustand.Modus_Heizung THEN
+		Zustand.Netze_Anford.Heisswasser.Aktiv				:= TRUE;
+		(*Zustand.Netze_Anford.Heisswasser.Temp				:= Lueftungsanlage_Zustand.Temp_Vorl_HW_Min;*)
+		Zustand.Netze_Anford.Heisswasser.Temp               := Lueftungsanlage_Zustand.Sollwert_aktuell;
+		Zustand.Netze_Anford.Heisswasser.Temp_Max			:= Parameter.Temp_Heisswasser_Max;
+		Zustand.Netze_Anford.Heisswasser.Temp_Min 			:= Parameter.Temp_Heisswasser_Min;
+		Zustand.Netze_Anford.Kaltwasser.Aktiv				:= FALSE;
+	ELSE	(* Zustand.Modus_Kuehlung *)
+		Zustand.Netze_Anford.Kaltwasser.Aktiv				:= TRUE;
+		Zustand.Netze_Anford.Heisswasser.Temp				:= Lueftungsanlage_Zustand.Sollwert_aktuell;
+		Zustand.Netze_Anford.Heisswasser.Temp_Max			:= Parameter.Temp_Kaltwasser_Max;
+		Zustand.Netze_Anford.Heisswasser.Temp_Min           := Parameter.Temp_Kaltwasser_Min;
+		Zustand.Netze_Anford.Heisswasser.Aktiv				:= FALSE;
+	END_IF;
+ELSE
+	Zustand.Netze_Anford.Kaltwasser.Aktiv			:= FALSE;
+	Zustand.Netze_Anford.Heisswasser.Aktiv			:= FALSE;
+
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_LA_Zustandscheck">
+      <LineId Id="18" Count="67" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

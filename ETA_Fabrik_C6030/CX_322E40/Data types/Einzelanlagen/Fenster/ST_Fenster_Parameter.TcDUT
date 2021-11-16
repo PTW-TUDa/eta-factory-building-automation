@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Fenster_Parameter" Id="{e25c2723-7e1d-4bdb-9a3b-ab612f8c2024}">
+    <Declaration><![CDATA[TYPE ST_Fenster_Parameter :
+STRUCT
+	Zeit_Stellen1			: DINT;
+	Zeit_Stellen0			: DINT;
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

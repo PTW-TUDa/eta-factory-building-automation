@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_WS_Init" Id="{538d4ce0-1291-472a-8d49-bfcf1f61783e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_WS_Init
+VAR_INPUT
+	KL_Wetterstation_group_0_0_1	: EIB_GROUP_ADDR;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+END_VAR
+VAR
+	KL_init_done 					: BOOL := FALSE;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* KL initialisierung*)
+
+KL_Wetterstation(KL6301_IN:=KL_Wetterstation_IN, KL6301_OUT:=KL_Wetterstation_OUT);
+
+IF(NOT KL_init_done) THEN
+	KL_Wetterstation.EIB_PHYS_ADDR.Area:=1;
+	KL_Wetterstation.EIB_PHYS_ADDR.Line:=1;
+	KL_Wetterstation.EIB_PHYS_ADDR.Device:=5;
+	KL_Wetterstation.EIB_GROUP_FILTER[1].GROUP_ADDR:=KL_Wetterstation_group_0_0_1;
+	KL_Wetterstation.EIB_GROUP_FILTER[1].GROUP_LEN:=12;
+	KL_Wetterstation.bActivate:=TRUE;
+	KL_Wetterstation.idx:=1;
+	KL_Wetterstation.iMode:=1;
+
+	IF(KL_Wetterstation.bReady) THEN
+		KL_init_done := TRUE;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_WS_Init">
+      <LineId Id="12" Count="17" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

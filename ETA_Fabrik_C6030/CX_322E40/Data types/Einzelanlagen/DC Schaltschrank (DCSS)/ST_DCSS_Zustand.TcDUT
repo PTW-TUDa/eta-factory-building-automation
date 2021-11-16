@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_DCSS_Zustand" Id="{bcf3717d-bd30-474c-a03f-1ade2ade3250}">
+    <Declaration><![CDATA[TYPE ST_DCSS_Zustand :
+STRUCT
+	Betrieb			: BOOL;
+	Kommunikation	: BOOL;
+	Warnung			: BOOL;
+	Warnung_Code	: WORD;
+	Stoerung		: BOOL;
+	Stoerung_Code	: WORD;
+	DC_Schaltschrank_aktiv	: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

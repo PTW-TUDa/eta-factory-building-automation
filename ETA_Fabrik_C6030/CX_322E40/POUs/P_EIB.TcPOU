@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="P_EIB" Id="{cac2756f-9026-46d2-847c-2cef0568ca3b}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_EIB
+VAR
+	fbKL6301				: KL6301;
+	grpAdr					: EIB_GROUP_ADDR := (MAIN:=0, SUB_MAIN:=0, NUMBER:=1);
+	KL_Wetterstation_IN_1		AT%I*	: ARRAY[1..24]OF BYTE;
+	KL_Wetterstation_OUT_1		AT%Q*		: ARRAY[1..24]OF BYTE;
+	stDataRec              : EIB_REC;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+fbKL6301(
+	bActivate:= TRUE,
+	idx:= 1,
+	EIB_PHYS_ADDR:= grpAdr,
+	EIB_GROUP_FILTER:= ,
+	iMode:= ,
+	KL6301_IN:= KL_Wetterstation_IN_1,
+	KL6301_OUT:= KL_Wetterstation_OUT_1,
+	bActive=> ,
+	bReady=> , 
+	bError=> , 
+	iErrorId=> , 
+	str_Data_Rec=> stDataRec);
+
+
+
+
+EIB_2OCTET_FLOAT_REC(
+	Group_Address:= ,
+	strData_Rec:= stDataRec,
+	bDataReceive=> ,
+	rData=> );]]></ST>
+    </Implementation>
+    <LineIds Name="P_EIB">
+      <LineId Id="8" Count="23" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

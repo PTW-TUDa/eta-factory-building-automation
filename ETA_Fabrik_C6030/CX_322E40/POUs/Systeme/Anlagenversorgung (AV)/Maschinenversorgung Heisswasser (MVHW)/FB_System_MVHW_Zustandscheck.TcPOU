@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_MVHW_Zustandscheck" Id="{3eb86da3-56e1-45b3-8cec-1c81c3a141da}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_MVHW_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_MVHW_Zustand;
+END_VAR
+VAR_INPUT
+	Stellventil_Zustand		: ST_SV_Zustand;
+	Pumpe_Zustand			: ST_PU_Zustand;
+	MV_JAVA_Zustand			: ST_MV_JAVA_Zustand;
+	MV_JAVA_Parameter		: ST_MV_JAVA_Parameter;
+	Steuerung				: ST_System_MVHW_Steuerung;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7	: TON;
+	Timer6	: TON;
+	Timer6a	: TOF;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System Maschinenversorgung Heisswasser
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	
+		4:
+		5:
+		6:
+		7:
+
+	Warnung_Code
+		0:	Allgemein Warnung System Maschinenversorgung Heisswasser
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	
+		4:	 
+		5:
+		6:	Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+
+(* Zustandsdefinitionen *)
+Zustand.Betrieb	:= Stellventil_Zustand.Stellung AND Pumpe_Zustand.Betrieb AND MV_JAVA_Zustand.Betrieb;
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Stellventil_Zustand.Stoerung;
+Zustand.Stoerung_Code.2 := Pumpe_Zustand.Stoerung;
+Zustand.Stoerung_Code.3 := MV_JAVA_Zustand.Stoerung;
+Zustand.Warnung_Code.1 := Stellventil_Zustand.Warnung;
+Zustand.Warnung_Code.2 := Pumpe_Zustand.Warnung;
+Zustand.Warnung_Code.3 := MV_JAVA_Zustand.Warnung;
+
+(* Warnung 6 - Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig) *)
+Zustand.Warnung_Code.6 := (Pumpe_Zustand.Temp_extern > Zustand.Netze_Anford.Heisswasser.Temp_Unten_Max) OR (Pumpe_Zustand.Temp_extern > Zustand.Netze_Anford.Heisswasser.Temp_Unten_Min);
+
+(* Warnung 7 - keine Betriebsrückmeldung trotz Betriebsanforderung nach 10 Minuten *)
+Timer7(	IN := Zustand.Betrieb_Soll <> Zustand.Betrieb,
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+Timer6(	IN := Zustand.Warnung_Code.6,
+		PT := T#5M,
+		Q => Zustand.Freigabe_Code.6
+);
+Timer6a(	IN := Zustand.Freigabe_Code.6,
+		PT := T#30M,
+		Q => Zustand.Freigabe_Code.6
+);
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+
+
+
+(* Netz_Anford *)
+IF( Zustand.Betrieb_Soll ) THEN
+	Zustand.Netze_Anford.Heisswasser.Aktiv				:= TRUE;
+	Zustand.Netze_Anford.Heisswasser.Temp			:= MV_JAVA_Parameter.Temp_Heisswasser;
+	Zustand.Netze_Anford.Heisswasser.Temp_Max		:= MV_JAVA_Parameter.Temp_Heisswasser_Max;
+	Zustand.Netze_Anford.Heisswasser.Temp_Min		:= MV_JAVA_Parameter.Temp_Heisswasser_Min;
+ELSIF( Zustand.Netz_vorheizen ) THEN
+	Zustand.Netze_Anford.Heisswasser.Aktiv				:= TRUE;
+	Zustand.Netze_Anford.Heisswasser.Temp			:= 58;
+	Zustand.Netze_Anford.Heisswasser.Temp_Max		:= 75;
+	Zustand.Netze_Anford.Heisswasser.Temp_Min		:= 50;
+ELSE
+	Zustand.Netze_Anford.Heisswasser.Aktiv			:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_MVHW_Zustandscheck">
+      <LineId Id="18" Count="92" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

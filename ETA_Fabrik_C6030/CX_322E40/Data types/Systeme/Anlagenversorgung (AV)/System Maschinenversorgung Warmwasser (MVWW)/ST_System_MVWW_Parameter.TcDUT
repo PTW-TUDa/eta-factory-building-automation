@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_MVWW_Parameter" Id="{17faab87-7505-476f-bdf3-1f4b58a7da4b}">
+    <Declaration><![CDATA[TYPE ST_System_MVWW_Parameter :
+STRUCT
+	AutoQuittierung			: BOOL;
+	Temp_Warmwasser         : REAL;
+	Temp_Warmwasser_Max		: REAL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

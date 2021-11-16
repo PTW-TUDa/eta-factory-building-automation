@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_AFA_Regelung" Id="{50c36cfc-be6c-4fd7-973b-ea0e2eb7fea8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_AFA_Regelung
+VAR_IN_OUT
+	Stellwert	: ST_System_AFA_Stellwert;
+	Zustand		: ST_System_AFA_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_System_AFA_Steuerung;
+	Parameter	: ST_System_AFA_Parameter;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Identifiziere Rueckkuehler oder Waermeabsorber Modus *)
+Zustand.Modus_Waermeabsorption	:= (Zustand.Regelung_Modus > 0);
+Zustand.Modus_Rueckkuehlung		:= NOT Zustand.Modus_Waermeabsorption;
+
+(* setze Außentemperatur als die Temperatur der Außenfassade *)
+Zustand.Temp_Fassade_Decke 	:= Umwelt.Temp_Aussen_WS;
+Zustand.Temp_Fassade_Ost 	:= Umwelt.Temp_Aussen_WS;
+Zustand.Temp_Fassade_West 	:= Umwelt.Temp_Aussen_WS;
+Zustand.Temp_Rueckl_Ost		:= Umwelt.Temp_Aussen_WS;
+Zustand.Temp_Rueckl_West	:= Umwelt.Temp_Aussen_WS;
+
+
+(* Steuerung *)
+IF( Zustand.Betrieb_Soll ) THEN
+
+	Stellwert.Anford_Regelventil_Ost	:= TRUE;
+	Stellwert.Anford_Regelventil_West	:= TRUE;
+
+	CASE Zustand.Regelung_Modus OF
+		E_System_AFA_Regelung_Modus_Wanddeckentemperierung :
+			Zustand.Modus_viaWanddeckentemperierung := TRUE;
+			Zustand.Modus_Netz	:= FALSE;
+		E_System_AFA_Regelung_Modus_Netz :
+			Zustand.Modus_viaWanddeckentemperierung := FALSE;
+			Zustand.Modus_Netz	:= TRUE;
+	END_CASE
+
+(* später implementieren --> Stand 23.04.18: Spezialfälle aktuell nicht zu berücksichtigen*)
+(*
+	CASE Zustand.Regelung_Modus OF
+
+		E_System_AFA_Regelung_Modus_Waermeabsorber_Automatik :
+			IF( Zustand.Kommunikation ) THEN
+				IF( Zustand.Temp_Fassade_Ost >
+			ELSE
+			END_IF;
+		E_System_AFA_Regelung_Modus_Waermeabsorber_DachWaende :
+		E_System_AFA_Regelung_Modus_Waermeabsorber_Dach :
+		E_System_AFA_Regelung_Modus_Rueckkuehler_Automatik :
+		E_System_AFA_Regelung_Modus_Rueckkuehler_DachWaende :
+		E_System_AFA_Regelung_Modus_Rueckkuehler_Dach :
+
+
+		E_System_AFA_Regelung_Modus_Heizen_konst,
+		E_System_AFA_Regelung_Modus_Kuehlen_konst:
+			Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+
+		E_System_AFA_Regelung_Modus_Heizen_Kurve,
+		E_System_AFA_Regelung_Modus_Heizen_Kurve_Nachtabs,
+		E_System_AFA_Regelung_Modus_Kuehlen_Kurve:
+			Kennlinie (
+				fAmbientTemperature	:= Zustand.Temp_Aussen,
+				fOffsetTemperature  := Kennlinie_Verschiebung,
+				stParams			:= Kennlinie_Parameter,
+				bLimitFlowTemp		:= TRUE
+			);
+			Zustand.Regelung_Stellw	:= Kennlinie.fOut;
+	END_CASE;
+
+*)
+
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_AFA_Regelung">
+      <LineId Id="11" Count="61" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

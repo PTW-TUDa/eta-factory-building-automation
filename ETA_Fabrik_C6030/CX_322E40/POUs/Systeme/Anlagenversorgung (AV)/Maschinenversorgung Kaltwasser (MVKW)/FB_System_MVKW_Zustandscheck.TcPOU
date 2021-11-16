@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_MVKW_Zustandscheck" Id="{36effea6-1e8b-478c-a8b1-84e7c0436c18}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_MVKW_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_MVKW_Zustand;
+END_VAR
+VAR_INPUT
+	Zustand_Stellventil		: ST_SV_Zustand;
+	Zustand_Pumpe			: ST_PU_Zustand;
+	Zustand_MV_MAFAC_GT		: ST_MV_MAFAC_GT_Zustand;
+	Zustand_MV_HD			: ST_MV_HD_Zustand;
+	Parameter_MV_MAFAC_GT	: ST_MV_MAFAC_GT_Parameter;
+	Steuerung				: ST_System_MVKW_Steuerung;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7	: TON;
+	Timer6	: TON;
+	Timer6a	: TOF;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System Maschinenversorgung Kaltwasser
+		1:	Störung Stellventil (s. Anlage für Details)
+		2:	Störung Pumpe (s. Anlage für Details)
+		3:	Störung MAFAC GT
+		4:	Störung Hydraulikdemonstrator
+		5:
+		6:
+		7:
+
+	Warnung_Code
+		0:	Allgemein Warnung System Maschinenversorgung Kaltwasser
+		1:	Warnung Stellventil (s. Anlage für Details)
+		2:	Warnung Pumpe (s. Anlage für Details)
+		3:	Warnung MAFAC GT
+		4:	Warnung Hydraulikdemonstrator 
+		5:
+		6:	Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+
+(* Zustandsdefinitionen *)
+Zustand.Betrieb	:= Zustand_Stellventil.Stellung AND Zustand_Pumpe.Betrieb AND (Zustand_MV_MAFAC_GT.Betrieb OR Zustand_MV_HD.Betrieb);
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Zustand_Stellventil.Stoerung;
+Zustand.Stoerung_Code.2 := Zustand_Pumpe.Stoerung;
+Zustand.Stoerung_Code.3 := Zustand_MV_MAFAC_GT.Stoerung;
+Zustand.Stoerung_Code.4 := Zustand_MV_HD.Stoerung;
+Zustand.Warnung_Code.1 := Zustand_Stellventil.Warnung;
+Zustand.Warnung_Code.2 := Zustand_Pumpe.Warnung;
+Zustand.Warnung_Code.3 := Zustand_MV_MAFAC_GT.Warnung;
+Zustand.Warnung_Code.4 := Zustand_MV_HD.Warnung;
+
+(* Warnung 6 - Verletzung Netzanforderungen (Rücklauftemperatur zu hoch oder zu niedrig) *)
+Zustand.Warnung_Code.6 := ((Zustand_Pumpe.Temp_extern > Zustand.Netze_Anford.Kaltwasser.Temp_Unten_Max) OR (Zustand_Pumpe.Temp_extern > Zustand.Netze_Anford.Kaltwasser.Temp_Unten_Min));
+
+(* Warnung 7 - keine Betriebsrückmeldung trotz Betriebsanforderung nach 10 Minuten *)
+Timer7(	IN := (Zustand.Betrieb_Soll <> Zustand.Betrieb),
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+Timer6(	IN := Zustand.Warnung_Code.6,
+		PT := T#5M,
+		Q => Zustand.Freigabe_Code.6
+);
+Timer6a(	IN := Zustand.Freigabe_Code.6,
+		PT := T#30M,
+		Q => Zustand.Freigabe_Code.6
+);
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+
+
+
+(* Netz_Anford *)
+IF( Zustand.Betrieb_Soll ) THEN
+
+	Zustand.Netze_Anford.Kaltwasser.Aktiv			:= TRUE;
+	Zustand.Netze_Anford.Kaltwasser.Temp			:= Zustand_MV_MAFAC_GT.Kuehl_Maschine_Sollwert_VL_Temp;
+	Zustand.Netze_Anford.Kaltwasser.Temp_Max		:= Parameter_MV_MAFAC_GT.Temp_Kaltwasser_Max;
+	Zustand.Netze_Anford.Kaltwasser.Temp_Min		:= Parameter_MV_MAFAC_GT.Temp_Kaltwasser_Min;
+ELSE
+
+	Zustand.Netze_Anford.Kaltwasser.Temp			:= 30;
+	Zustand.Netze_Anford.Kaltwasser.Temp_Max		:= 30;
+	Zustand.Netze_Anford.Kaltwasser.Aktiv			:= FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_MVKW_Zustandscheck">
+      <LineId Id="19" Count="93" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

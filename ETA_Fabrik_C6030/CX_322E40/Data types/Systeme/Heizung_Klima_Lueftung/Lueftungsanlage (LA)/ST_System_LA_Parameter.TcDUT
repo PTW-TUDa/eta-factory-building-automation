@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_LA_Parameter" Id="{1f3dbf14-0771-4ec0-9f80-a108f851c3e3}">
+    <Declaration><![CDATA[TYPE ST_System_LA_Parameter :
+STRUCT
+
+	AutoQuittierung					: BOOL := 0;
+
+
+	Temp_Heisswasser_Max    : REAL;
+	Temp_Heisswasser_Min    : REAL;
+
+
+	Temp_Kaltwasser_Max    : REAL;
+	Temp_Kaltwasser_Min    : REAL;
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

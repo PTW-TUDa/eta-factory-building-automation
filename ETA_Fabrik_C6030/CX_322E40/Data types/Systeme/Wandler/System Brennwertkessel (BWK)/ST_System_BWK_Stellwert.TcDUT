@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BWK_Stellwert" Id="{1d9e942d-7133-41b5-abf1-2cf38a91f6ab}">
+    <Declaration><![CDATA[TYPE ST_System_BWK_Stellwert :
+STRUCT
+	Anford_Stellventil		: BOOL;
+	Anford_BWK			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

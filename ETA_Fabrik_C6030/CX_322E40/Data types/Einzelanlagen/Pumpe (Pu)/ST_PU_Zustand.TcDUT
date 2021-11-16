@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_PU_Zustand" Id="{0feb1e2c-b835-4de7-8cd2-cf834501ae22}">
+    <Declaration><![CDATA[TYPE ST_PU_Zustand :
+STRUCT
+	Betrieb_Anford		: BOOL;
+	Betrieb_Soll		: BOOL;
+	Betrieb				: BOOL;
+
+	Regelung_Modus		: SINT;
+	Regelung_Invert		: BOOL;
+	Regelung_Istw		: REAL;
+	Regelung_Sollw		: REAL;
+
+	Freigabe			: BOOL;	(* (1) Pumpe zum Betrieb freigegeben / (2) Pumpe zum Betrieb nicht freigegeben *)
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+
+	Kommunikation		: BOOL;
+
+	Leistung			: REAL;	(* 0..100 % *)
+
+	Leistung_elek		: REAL;	(* W *)
+	Leistung_therm		: REAL;	(* W *)
+	Energie_elek			: REAL;
+	Energie_therm		: REAL;
+	Volumenstrom		: REAL;
+	Volumenstrom_intern	: REAL;
+	Volumen				: REAL;
+	Temp_intern			: REAL;
+	Temp_extern			: REAL;
+	Temp_elek			: REAL;
+	Drehzahl				: REAL;	(* U/min *)
+	Druckdifferenz				: REAL;
+	Frequenz_Motor		: REAL;	(* Hz *)
+	Zeit_Betrieb			: REAL;	(* h *)
+	Anzahl_Starts			: REAL;
+(*	Drehmoment			: REAL;*)
+	Modul_Status			: WORD;	(* StatusModule, Byte 1 + Byte 2 *)
+	Modul_Regelungsart	: USINT;	(* StatusModule, Byte 5 *)
+	Modul_Betriebsart		: USINT; (* StatusModule, Byte 6 *)
+	Modul_Meld_Code1	: WORD;
+	Modul_Meld_Code2	: WORD;
+
+	Stoerung				: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+	Status_Vorl			: BOOL;
+	Status_Nachl			: BOOL;
+
+	Quittierung			: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

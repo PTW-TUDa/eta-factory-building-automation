@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_NSHV_Zustand" Id="{91cabe20-94c9-4a8a-a542-6ca1bb920142}">
+    <Declaration><![CDATA[TYPE ST_NSHV_Zustand :
+STRUCT
+	Spannung_Ph1_N						: REAL;
+	Spannung_Ph2_N						: REAL;
+	Spannung_Ph3_N						: REAL;
+	Strom_Ph1							: REAL;
+	Strom_Ph2							: REAL;
+	Strom_Ph3							: REAL;
+	Wirkleistung						: REAL;
+	Blindleistung						: REAL;
+	Scheinleistung						: REAL;
+	Frequenz							: REAL;
+	Harmonische_Verzerrung_U_Ph1_THD	: REAL;
+	Harmonische_Verzerrung_U_Ph2_THD	: REAL;
+	Harmonische_Verzerrung_U_Ph3_THD	: REAL;
+	Harmonische_Verzerrung_I_Ph1_THD	: REAL;
+	Harmonische_Verzerrung_I_Ph2_THD	: REAL;
+	Harmonische_Verzerrung_I_Ph3_THD	: REAL;
+	Importierte_Wirkenergie				: REAL;
+	Exportierte_Wirkenergie				: REAL;
+	Max_Wirkleistung_Demand_System		: REAL;
+
+	Stoerung							: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

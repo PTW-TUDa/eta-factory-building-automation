@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_HO_Zustand" Id="{82d29e9b-6246-407d-865e-6d4fc2b1baf9}">
+    <Declaration><![CDATA[TYPE ST_HO_Zustand :
+STRUCT
+	Betrieb				: BOOL;
+	Kuehlung_WW_Anford	: BOOL;
+	Kuehlung_HW_Anford	: BOOL;
+
+	Kommunikation		: BOOL;
+
+	Stoerung			: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

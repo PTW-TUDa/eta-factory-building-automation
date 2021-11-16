@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BSp_Steuerung" Id="{d633eb99-1b07-47b7-9e85-3deaf4560a9e}">
+    <Declaration><![CDATA[TYPE ST_System_BSp_Steuerung :
+STRUCT
+	Freigabe				: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt		: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford		: ST_Steuerung_auto_manu_opti_BOOL;
+
+	Regelung_Modus		: ST_Steuerung_auto_manu_opti_SINT;
+	Regelung_Sollw		: ST_Steuerung_auto_manu_opti_REAL;
+
+	Quittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

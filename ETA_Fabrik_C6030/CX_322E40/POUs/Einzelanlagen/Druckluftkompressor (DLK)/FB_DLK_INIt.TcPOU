@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_DLK_INIt" Id="{b4001e71-4ddb-4b9e-afdd-9e8eaf355b07}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FB_DLK_INIt : PB_Anfrage
+VAR_INPUT
+	CAN_Adress : USINT;
+END_VAR
+VAR
+	template: PB_Dateneintrag;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*----Definiere Standard DataRecords---*)
+
+template.CANAdress 	:= CAN_Adress;
+template.Parameter 	:= 16#0000;
+template.Value		:= 16#0000;
+template.Status		:= 16#0000;
+
+
+	(* 0 = Durck Kompressorauslass mBar *)
+FB_DLK_INIt.pAuslass  := template ;
+FB_DLK_INIt.pAuslass.Parameter := 16#0000;
+
+	(* 2 = Temperatur Elementauslass 0,1°C *)
+FB_DLK_INIt.tAuslass := template ;
+FB_DLK_INIt.tAuslass.Parameter := 2;
+
+	(* 3 = Temperatur Drucktauptunk	0,1°C*)
+FB_DLK_INIt.tDruckTau := template;
+FB_DLK_INIt.tDruckTau.Parameter := 3;
+
+	(* 4 = Temperatur Umgebungsluft	0,1°C*)
+FB_DLK_INIt.tUmgebung := template;
+FB_DLK_INIt.tUmgebung.Parameter	:= 16#0004;
+
+	(* 5 = Temperatur Wärmerückgewinnung Wasser Einlass	0,1°C*)
+FB_DLK_INIt.tAqEin := template;
+FB_DLK_INIt.tAqEin.Parameter	:= 16#0005;
+
+	(* 6 = Temperatur Wärmerückgewinnung Wasser Auslass	0,1°C*)
+FB_DLK_INIt.tAqAus := template;
+FB_DLK_INIt.tAqAus.Parameter	:= 16#0006;
+
+	(* 700 = Mechanical State*)
+FB_DLK_INIt.mechState := template;
+FB_DLK_INIt.mechState.Parameter := 700;
+
+	(* 1000 = Betriebsstunden (in s Doku)*)
+FB_DLK_INIt.hBetrieb := template;
+FB_DLK_INIt.hBetrieb.Parameter := 1000;
+
+	(* 1023	= Geringe LastStunden*)
+FB_DLK_INIt.hGeringeLast  := template;
+FB_DLK_INIt.hGeringeLast.Parameter  := 1023;
+
+	(*1011 Gesamtvolumen*)
+FB_DLK_INIt.vErzeugtesVolumen := template;
+FB_DLK_INIt.vErzeugtesVolumen.Parameter := 1011;
+
+	(* Weitere Parameter siehe Excel Datei von AC*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_DLK_INIt">
+      <LineId Id="7" Count="48" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

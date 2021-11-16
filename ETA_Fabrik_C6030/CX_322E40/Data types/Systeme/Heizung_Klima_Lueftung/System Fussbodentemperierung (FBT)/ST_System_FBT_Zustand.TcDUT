@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_FBT_Zustand" Id="{1f805520-0d97-447e-a8ab-8787c15b1ced}">
+    <Declaration><![CDATA[TYPE ST_System_FBT_Zustand :
+STRUCT
+	Betrieb_Anford			: BOOL;
+	Betrieb_Soll				: BOOL;
+	Betrieb					: BOOL;
+
+	Regelung_Modus			: SINT;
+	Regelung_Nachtabs		: BOOL;
+	Regelung_Sollw			: REAL;
+	Regelung_Sollw_Anford	: REAL;
+	Regelung_Stellw			: REAL;
+
+	Modus_Heizung			: BOOL;
+	Modus_Kuehlung			: BOOL;
+
+	Netze_Anford				: ST_Zustand_Netze_Anford;
+
+
+	Temp_Aussen			: REAL;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt			: BOOL;
+	Freigabe_Code			: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code			: WORD;
+
+	Warnung					: BOOL;
+	Warnung_Code			: WORD;
+
+	Status					: SINT;
+	Status_Vorl_Pumpe		: BOOL;
+	Status_Vorl_Regelventil	: BOOL;
+	Status_Nachl_Pumpe		: BOOL;
+	Status_Nachl_Regelventil	: BOOL;
+
+	Quittierung				: BOOL;
+	Autoquittierung			: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

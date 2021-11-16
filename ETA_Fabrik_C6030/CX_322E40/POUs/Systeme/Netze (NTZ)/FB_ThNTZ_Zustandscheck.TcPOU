@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_ThNTZ_Zustandscheck" Id="{2181c957-abf0-4971-b38e-6a0dfe79a99a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ThNTZ_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_ThNTZ_Zustand;
+END_VAR
+VAR_INPUT
+	Parameter				: ST_ThNTZ_Parameter;
+	Steuerung				: ST_ThNTZ_Steuerung;
+	Zustand_PSp				: ST_PSp_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7	: TON;
+	Timer6	: TON;
+	Timer6a	: TOF;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung Netz
+
+	Warnung_Code
+		0:	Allgemein Warnung Netz
+		1:	Warnung Pufferspeicher
+		2:	Regelung Sollwert Widerspruch
+		6:	Verletzung Temperaturgrenzen
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+		6:	Freigabe durch Verletzung Temperaturgrenzen entzogen
+*)
+(* Netztemperatur entspricht den Temperaturen in den Pufferspeichern *)
+Zustand.Temp_Oben := Zustand_PSp.Temp_oben;
+Zustand.Temp_Unten := Zustand_PSp.Temp_unten;
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Warnung_Code.1	:= Zustand_PSp.Warnung;
+Zustand.Warnung_Code.2	:= Zustand.Regelung_Sollw_Widerspruch;
+
+(* Warnung 6 - Verletzung Temperaturgrenzen *)
+Zustand.Warnung_Code.6 := (Zustand.Temp_Max > Parameter.Temp_Max) OR (Zustand.Temp_Min < Parameter.Temp_Min);
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+Timer6(	IN := Zustand.Warnung_Code.6,
+		PT := T#5M,
+		Q => Zustand.Freigabe_Code.6
+);
+Timer6a(	IN := Zustand.Freigabe_Code.6,
+		PT := T#30M,
+		Q => Zustand.Freigabe_Code.6
+);
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ThNTZ_Zustandscheck">
+      <LineId Id="16" Count="55" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

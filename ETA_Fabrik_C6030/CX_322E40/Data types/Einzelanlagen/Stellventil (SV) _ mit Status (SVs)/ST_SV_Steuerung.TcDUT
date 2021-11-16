@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_SV_Steuerung" Id="{266bbb4f-015d-4b2e-96c1-4c61f5a6c602}">
+    <Declaration><![CDATA[TYPE ST_SV_Steuerung :
+STRUCT
+	Freigabe			: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt	: ST_Steuerung_auto_manu_BOOL;
+	Stellung_Anford	: ST_Steuerung_auto_manu_opti_BOOL;
+	Quittierung		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

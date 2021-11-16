@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_SL_Stellwert" Id="{d439b3da-132e-451f-8da0-e129c50a2fec}">
+    <Declaration><![CDATA[TYPE ST_SL_Stellwert :
+STRUCT
+	Freigabe		: BOOL;
+	Stellung		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

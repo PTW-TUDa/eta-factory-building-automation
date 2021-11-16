@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_WDT_Regelung" Id="{e600df9b-9531-42fb-8ddc-65b831dc4afd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_WDT_Regelung
+VAR_IN_OUT
+	Stellwert	: ST_System_WDT_Stellwert;
+	Zustand		: ST_System_WDT_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_System_WDT_Steuerung;
+	Parameter	: ST_System_WDT_Parameter;
+END_VAR
+VAR
+	Kennlinie				: FB_CTRL_FLOW_TEMP_SETPOINT_GEN;
+	Kennlinie_Parameter		: ST_CTRL_FLOW_TEMP_SETPOINT_GEN_PARAMS;
+	Kennlinie_Verschiebung	: REAL;
+
+   	Timer1                 	: TOF;
+	Temp_Low				: BOOL;
+
+	Timer2                  : TOF;
+	Temp_High				: BOOL;
+
+	Hysterese_AFA_Aussen			: FB_CTRL_2POINT;
+	Hysterese_AFA_Aussen_Parameter	: ST_CTRL_2POINT_PARAMS;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Zustand.Regelung_Modus = E_System_WDT_Regelung_Modus_Automatik ) THEN	(* AUTOMATIK *)
+	(* Identifiziere Heiz- oder Kühlfall anhand des Datums. Von November bis März heizen, von Juni bis August kühlen. In der Übergangszeit abhängig von der Temperatur.*)
+	IF(GA_Global.Systemzeit_Monat < 4 OR GA_Global.Systemzeit_Monat > 10) THEN
+		Zustand.Modus_Heizung := TRUE;
+		Zustand.Modus_Kuehlung := FALSE;
+		Zustand.Regelung_Nachtabs := TRUE; (* Heizung mit Nachtabsenkung *)
+		Steuerung.Betrieb_Anford.auto	:= TRUE;
+	ELSIF(GA_Global.Systemzeit_Monat > 5 AND GA_Global.Systemzeit_Monat < 10) THEN
+		Zustand.Modus_Kuehlung := TRUE;
+		Zustand.Modus_Heizung := FALSE;
+		Steuerung.Betrieb_Anford.auto	:= TRUE;
+	ELSE
+		(* Identifiziere Heiz- oder Kühlfall anhand der beiden Kennlinien *)
+		IF( Zustand.Wetter_Temperatur < Parameter.Kennlinie_Heizung.Temp_Aussen_Max OR Zustand.Wetter_Temperatur > Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min) THEN
+			IF( Zustand.Wetter_Temperatur < Parameter.Kennlinie_Heizung.Temp_Aussen_Max ) THEN
+			(* Heizfall *)
+				Temp_Low	:= TRUE;
+				Temp_High	:= FALSE;
+				Zustand.Regelung_Nachtabs := TRUE; (* Heizung mit Nachtabsenkung *)
+				Steuerung.Betrieb_Anford.auto	:= TRUE;
+			ELSIF( Zustand.Wetter_Temperatur > Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min ) THEN
+			(* Kühlfall *)
+				Temp_Low	:= FALSE;
+				Temp_High	:= TRUE;
+				Steuerung.Betrieb_Anford.auto	:= TRUE;
+			END_IF;
+				Timer1(	IN := Temp_High,
+						PT := T#30m,
+						Q => Zustand.Modus_Kuehlung
+				);
+
+				Timer2(	IN := Temp_Low,
+						PT := T#1m,
+						Q => Zustand.Modus_Heizung
+				);
+		ELSE	(* weder Heizung noch Kühlung ==> System deaktvieren *)
+			Temp_Low	:= FALSE;
+			Temp_High	:= FALSE;
+			Zustand.Modus_Heizung	:= FALSE;
+			Zustand.Modus_Kuehlung	:= FALSE;
+			Zustand.Betrieb_Soll	:= FALSE;
+		END_IF;
+	END_IF;
+END_IF;
+
+(* Steuerung *)
+
+IF( Zustand.Betrieb_Soll ) THEN
+	(* Kennlinie-Parameter *)
+    IF( Zustand.Modus_Heizung ) THEN
+		Kennlinie_Parameter.fForeRunTempMax	:= Parameter.Kennlinie_Heizung.Temp_Vorl_Max;
+		Kennlinie_Parameter.fForeRunTempMin	:= Parameter.Kennlinie_Heizung.Temp_Vorl_Min;
+		Kennlinie_Parameter.fAmbientTempMax	:= Parameter.Kennlinie_Heizung.Temp_Aussen_Max;
+		Kennlinie_Parameter.fAmbientTempMin	:= Parameter.Kennlinie_Heizung.Temp_Aussen_Min;
+
+		(* Im Modus Heizung muss die Temperatur der Außenfasade > Temperatur des Vorlauf sein damit über die Aussenfasade geheizt wird *)
+		Hysterese_AFA_Aussen.fActualValue	:= Zustand.Temp_Vorlauf - Zustand.Temp_Rueckkuehler;
+	ELSE
+		Kennlinie_Parameter.fForeRunTempMax	:= Parameter.Kennlinie_Kuehlung.Temp_Vorl_Max;
+		Kennlinie_Parameter.fForeRunTempMin	:= Parameter.Kennlinie_Kuehlung.Temp_Vorl_Min;
+		Kennlinie_Parameter.fAmbientTempMax	:= Parameter.Kennlinie_Kuehlung.Temp_Aussen_Max;
+		Kennlinie_Parameter.fAmbientTempMin	:= Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min;
+
+		(* Im Modus Heizung muss der Temperatur der Außenfasade < Temperatur des Rücklaufs sein damit über die Aussenfasade gekühlt wird *)
+		Hysterese_AFA_Aussen.fActualValue	:= Zustand.Temp_Ruecklauf - Zustand.Temp_Rueckkuehler;
+	END_IF;
+	Kennlinie_Parameter.tTaskCycleTime	:= GA_global.Zeit_TaskCycle;
+	Kennlinie_Parameter.tCtrlCycleTime		:= DINT_TO_TIME(Parameter.Kennlinie_Tctr);
+
+	(* Identifiziere Versorgung viaNetz oder viaRueckkuehler (Außenfassadenaktivierung) *)
+	Hysterese_AFA_Aussen_Parameter.tTaskCycleTime	:= GA_global.Zeit_TaskCycle;
+	Hysterese_AFA_Aussen_Parameter.tCtrlCycleTime	:= DINT_TO_TIME(Parameter.Kennlinie_Tctr);
+	Hysterese_AFA_Aussen_Parameter.fHysteresisRange	:= 1;	(* 1 K *)
+	(* Hysterese verhindert ständiges Umschalten zwischen Rückkühler und Netz, Hysterese zwischen 1,5 und 2,5 K Temperaturdifferenz *)
+	Hysterese_AFA_Aussen(
+		fSetpointValue	:= 2,
+		bSync			:= FALSE,
+		eMode			:= eCTRL_MODE_ACTIVE,
+		stParams		:= Hysterese_AFA_Aussen_Parameter
+	);
+
+	Kennlinie_Verschiebung	:= 0;
+	IF( Zustand.Modus_Heizung AND Zustand.Regelung_Nachtabs ) THEN
+		CASE GA_Global.Systemzeit_Wochentag OF
+			0: (* Sonntag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_So.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mo.Temp_Absenkung;
+				END_IF;
+
+			1: (* Montag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mo.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Di.Temp_Absenkung;
+				END_IF;
+
+			2: (* Dienstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Di.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mi.Temp_Absenkung;
+				END_IF;
+
+			3: (* Mittwoch *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Mi.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Do.Temp_Absenkung;
+				END_IF;
+
+			4: (* Donnerstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Do.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Fr.Temp_Absenkung;
+				END_IF;
+
+			5: (* Freitag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Fr.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Sa.Temp_Absenkung;
+				END_IF;
+
+			6: (* Samstag *)
+				IF( GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Ende ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_Sa.Temp_Absenkung;
+				ELSIF( GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Start ) THEN
+					Kennlinie_Verschiebung := Parameter.Nachtabsenkung_So.Temp_Absenkung;
+				END_IF;
+
+		END_CASE;
+	END_IF;
+
+	CASE Zustand.Regelung_Modus OF
+		E_System_WDT_Regelung_Modus_Heizen_viaNetz_konst,
+		E_System_WDT_Regelung_Modus_Kuehlen_viaNetz_konst:
+			Zustand.Modus_viaNetz			:= TRUE;
+			Zustand.Modus_viaAussenfassade	:= FALSE;
+			Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+
+		E_System_WDT_Regelung_Modus_Heizen_viaRueckkuehler_konst,
+		E_System_WDT_Regelung_Modus_Kuehlen_viaRueckkuehler_konst:
+			Zustand.Modus_viaNetz			:= FALSE;
+			Zustand.Modus_viaAussenfassade	:= TRUE;
+			Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+
+		E_System_WDT_Regelung_Modus_Heizen_viaNetz_kurve,
+		E_System_WDT_Regelung_Modus_Kuehlen_viaNetz_kurve:
+			Zustand.Modus_viaNetz			:= TRUE;
+			Zustand.Modus_viaAussenfassade	:= FALSE;
+			Kennlinie (
+				fAmbientTemperature	:= Zustand.Wetter_Temperatur,
+				fOffsetTemperature  := Kennlinie_Verschiebung,
+				bLimitFlowTemp		:= TRUE,
+				stParams			:= Kennlinie_Parameter
+			);
+			Zustand.Regelung_Stellw	:= Kennlinie.fOut;
+
+		E_System_WDT_Regelung_Modus_Heizen_viaRueckkuehler_Kurve,
+		E_System_WDT_Regelung_Modus_Kuehlen_viaRueckkuehler_Kurve:
+			Zustand.Modus_viaNetz			:= FALSE;
+			Zustand.Modus_viaAussenfassade	:= TRUE;
+			Kennlinie (
+				fAmbientTemperature	:= Zustand.Wetter_Temperatur,
+				fOffsetTemperature  := Kennlinie_Verschiebung,
+				bLimitFlowTemp		:= TRUE,
+				stParams			:= Kennlinie_Parameter
+			);
+			Zustand.Regelung_Stellw	:= Kennlinie.fOut;
+
+		E_System_WDT_Regelung_Modus_Automatik:
+			IF(Zustand.Modus_Heizung) THEN
+				Zustand.Modus_viaAussenfassade 	:= Hysterese_AFA_Aussen.bOut;
+				Zustand.Modus_viaNetz			:= NOT Zustand.Modus_viaAussenfassade;
+			ELSE
+				Zustand.Modus_viaAussenfassade 	:= NOT Hysterese_AFA_Aussen.bOut AND (GA_Global.Systemzeit_Stunde < 9 OR GA_Global.Systemzeit_Stunde > 22) AND NOT Management.Stellwert.Anford_Kuehlwasser;
+(*				Zustand.Modus_viaNetz			:= NOT Zustand.Modus_viaAussenfassade;*)
+				Zustand.Modus_viaNetz			:= FALSE; (* Aktuell keine Kühlung übers Netz, da nicht genug Kühler verbaut. Kühlung nur über AFA Stand 30.06.20 *)
+			END_IF;
+			(* Wenn Kühlen über AFA, Abrufen der maximalen Kühlleistung *)
+			IF(Zustand.Modus_Kuehlung AND Zustand.Modus_viaAussenfassade) THEN
+				Zustand.Regelung_Stellw	:= Zustand.Regelung_Sollw;
+			ELSE
+				Kennlinie (
+					fAmbientTemperature	:= Zustand.Wetter_Temperatur,
+					fOffsetTemperature  := Kennlinie_Verschiebung,
+					bLimitFlowTemp		:= TRUE,
+					stParams			:= Kennlinie_Parameter
+				);
+				Zustand.Regelung_Stellw	:= Kennlinie.fOut;
+			END_IF;
+	END_CASE;
+
+END_IF;
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_WDT_Regelung">
+      <LineId Id="23" Count="198" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

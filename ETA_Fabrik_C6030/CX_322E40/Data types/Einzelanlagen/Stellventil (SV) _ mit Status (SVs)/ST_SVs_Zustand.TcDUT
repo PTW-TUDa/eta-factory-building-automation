@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_SVs_Zustand" Id="{4b1f24f1-75c2-411c-9092-b4946eff4534}">
+    <Declaration><![CDATA[TYPE ST_SVs_Zustand :
+STRUCT
+	Stellung_Anford				: BOOL;
+	Stellung_Soll				: BOOL;
+	Stellung					: BOOL;
+
+	Stellungrueckmeldung0		: BOOL;
+	Stellungrueckmeldung1		: BOOL;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt				: BOOL;
+	Freigabe_Code				: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code				: WORD;
+
+	Warnung						: BOOL;
+	Warnung_Code				: WORD;
+
+	Status						: SINT;
+
+	Stellungwechsel01			: BOOL;
+	Stellungwechsel10			: BOOL;
+
+	Quittierung					: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

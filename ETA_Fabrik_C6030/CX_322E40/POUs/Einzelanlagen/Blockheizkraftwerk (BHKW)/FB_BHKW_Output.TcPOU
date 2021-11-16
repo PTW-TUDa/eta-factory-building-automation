@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BHKW_Output" Id="{f32be747-727d-48c7-b12b-7f9bfb93979f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BHKW_Output
+VAR_INPUT
+	OUT_Betrieb		: BOOL;
+	OUT_Leistung	: USINT;
+END_VAR
+VAR_OUTPUT
+	Betrieb			: BOOL;
+	Leistung		: INT;
+END_VAR
+VAR
+	tmp_Leistung : INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Betrieb			:= OUT_Betrieb;
+tmp_Leistung	:= USINT_TO_INT(OUT_Leistung);
+Leistung		:= tmp_Leistung * 327; (* skaliere von 0-100 auf 0-32767 *)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BHKW_Output">
+      <LineId Id="12" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

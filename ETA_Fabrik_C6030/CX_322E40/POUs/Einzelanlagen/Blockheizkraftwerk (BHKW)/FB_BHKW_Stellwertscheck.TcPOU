@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BHKW_Stellwertscheck" Id="{724ccb13-c718-4e2a-92e2-9f937dcbf758}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BHKW_Stellwertscheck
+VAR_IN_OUT
+	Stellwert	: ST_BHKW_Stellwert;
+END_VAR
+
+VAR_INPUT
+(*	Steuerung	: ST_BHKW_Steuerung; *)
+(*	Zustand	: ST_PU_Zustand; *)
+	Parameter	: ST_BHKW_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1			: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Stellwert.Betrieb ) THEN
+	(* Max-Min-Grenzen erzwingen *)
+	Stellwert.Leistung := MIN(Parameter.Stellwert_Leistung_max, Stellwert.Leistung);
+	Stellwert.Leistung := MAX(Parameter.Stellwert_Leistung_min, Stellwert.Leistung);
+ELSE
+	Stellwert.Leistung := 0;
+END_IF;
+
+Timer1(	IN := Stellwert.Betrieb = FALSE,
+		PT := T#15S,
+		Q => Stellwert.Freigabe
+);
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BHKW_Stellwertscheck">
+      <LineId Id="15" Count="12" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

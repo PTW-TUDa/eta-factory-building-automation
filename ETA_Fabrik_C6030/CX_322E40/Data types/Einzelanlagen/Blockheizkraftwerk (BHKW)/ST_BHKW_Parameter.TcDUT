@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_BHKW_Parameter" Id="{94ad00a0-53de-45ff-8ec1-451ddd8be8c9}">
+    <Declaration><![CDATA[TYPE ST_BHKW_Parameter :
+STRUCT
+	Regelung_PI_Kp			: REAL ;
+	Regelung_PI_Tn			: INT ;
+	Regelung_PI_Tctr			: DINT ;
+
+	Zeit_Vorl					: DINT;
+	Zeit_Nachl				: DINT;
+
+	Stellwert_Leistung_Max		: SINT ;
+	Stellwert_Leistung_Min		: SINT ;
+
+	Temp_Ruecklauf_Max		: REAL ;
+	Temp_Ruecklauf_Min		: REAL ;
+	Temp_Kuehlwasser_Max	: REAL;
+
+	AutoQuittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

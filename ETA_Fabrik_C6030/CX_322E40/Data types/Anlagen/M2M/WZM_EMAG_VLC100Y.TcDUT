@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="WZM_EMAG_VLC100Y" Id="{42ff5917-f9cd-42e1-b3bf-679634682118}">
+    <Declaration><![CDATA[TYPE WZM_EMAG_VLC100Y :
+STRUCT
+	OPCUA_Server		: st_OPCUA_Server;	(* *)
+	OPCUA_Nodes		: ARRAY[1..2] OF st_OPCUA_Node_BOOL;
+	OPCUA_Handler		: fb_OPCUA_Handler;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_UW_Temp_Mittelung" Id="{a90a20a1-89a3-42d4-b436-bbcfc30bde99}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_UW_Temp_Mittelung
+VAR_INPUT
+	Einzelwert				: REAL;
+END_VAR
+VAR_OUTPUT
+	Tagesmittel				: REAL;
+END_VAR
+VAR
+	stParams				: ST_CTRL_MOVING_AVERAGE_PARAMS;
+	Moving_Avg 				: FB_CTRL_MOVING_AVERAGE;
+	Buffer 					: ARRAY [1..2880] OF REAL;
+
+	fbGetSystemTime			: GETSYSTEMTIME;
+	fileTime				: T_FILETIME;
+
+
+	SystemTimeStruct		: TIMESTRUCT;
+
+	DateTimeNow				: DT;
+	initialisiert 			: BOOL := FALSE;
+	Initialisierung			: REAL := 12;
+	SommerMittel			: REAL := 17;
+	WinterMittel			: REAL := 7;
+
+	bSync					: BOOL := FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Finde heraus, ob Winter/Sommer ist und setze entsprechend die Initialisierungstemperatur *)
+fbGetSystemTime( timeLoDW=>fileTime.dwLowDateTime, timeHiDW=>fileTime.dwHighDateTime );
+DateTimeNow := SYSTEMTIME_TO_DT( TIMESTR:=SystemTimeStruct );
+SystemTimeStruct := FILETIME_TO_SYSTEMTIME( fileTime );
+
+IF 5 <= SystemTimeStruct.wMonth AND SystemTimeStruct.wMonth <= 10 THEN
+	(* Sommer *)
+	Initialisierung := SommerMittel;
+ELSE
+	(* Winter *)
+	Initialisierung := WinterMittel;
+END_IF;
+
+(* Parameter definieren - jede Minuten neuen Wert zum Mittel hinzufügen *)
+stParams.tCtrlCycleTime := T#1m;
+stParams.tTaskCycleTime := T#5ms;
+stParams.nSamplesToFilter := 1440; (* 1min*1440=24h *)
+stParams.pWorkArray_ADR := ADR(Buffer); (* size 1440*2 *)
+stParams.nWorkArray_SIZEOF := SIZEOF(Buffer);
+
+Moving_Avg(
+	fIn := Einzelwert,
+	fManSyncValue := Initialisierung,
+	bSync := bSync,
+	eMode := 2,
+	bHold := FALSE,
+	stParams := stParams,
+);
+
+(* initialisieren *)
+IF Moving_Avg.bSyncRequest = TRUE THEN
+	Tagesmittel := Initialisierung;
+ELSE
+	Tagesmittel := Moving_Avg.fOut;
+END_IF;
+
+
+IF NOT(initialisiert) THEN
+	bSync := TRUE;
+	Tagesmittel := Initialisierung;
+	initialisiert := TRUE;
+END_IF;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_UW_Temp_Mittelung">
+      <LineId Id="26" Count="42" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Global_Variables" Id="{7f5eddb1-d55e-4a81-adf4-e98316ed376c}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL
+	GA_Allgemein 	: FB_GA_Allgemein;
+	{attribute 'OPC.UA.DA' := '1'} GA_global		: ST_GA_global;		
+
+	(* Kategorien Programme *)
+	Wetterstation				: FB_WS;
+	Heizung_Lueftung_Klima		: FB_HLK;
+	Wandler						: FB_WDL;
+	Speicher					: FB_SPR;
+	Netze						: FB_NTZ;
+	Umwelt						: FB_UMWELT;
+	Management					: FB_MGMT;
+
+	Beleuchtung					: FB_Beleuchtung;
+
+	Anlagenversorgung			: FB_AV;
+	Zaehler						: FB_ZAE;
+	Signal_Ampel				: FB_System_Ampel;
+	Counter_Genibus				: DINT;
+
+	Dali_K522A1_DALI_IN		 	AT %I* : ST_DALIV2InData;	(*~ Eingangspuffer für Dali Klemme *)
+	Dali_K522A1_DALI_OUT 		AT %Q* : ST_DALIV2OutData;	(*~ Ausgangspuffer für Dali Klemme *)
+
+	(* Wetterstation *)
+	KL_Wetterstation			: KL6301;
+	KL_Wetterstation_IN			AT %I* : ARRAY[1..24]OF BYTE;
+	KL_Wetterstation_OUT		AT %Q* : ARRAY[1..24]OF BYTE;
+
+	Initialisierung				: ST_Initialisierungsroutine;
+	Initialisierungsroutine	: FB_Initialisierungsroutine;
+
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

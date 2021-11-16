@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_LA_Zustand" Id="{8e9d5047-c8d9-468e-b8de-0d3e9840cc5f}">
+    <Declaration><![CDATA[TYPE ST_LA_Zustand :
+STRUCT
+	Betrieb				: BOOL;
+
+	Kommunikation		: BOOL;
+
+	Modus_Heizung		: BOOL;
+	Modus_Kuehlung		: BOOL;
+
+	Stoerung				: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+
+	Quittierung			: BOOL;
+
+	Abluftfilterueberwachung 		: BOOL;
+	Abluftklappe_oeffnet 			: BOOL;
+	Abluftrauchmelder_SM 			: BOOL;
+	Abluftrauchmelder_WM 			: BOOL;
+	Abluftventilator_BM 			: BOOL;
+	Abluftventilator_Freigabe 		: BOOL;
+	Abluftventilator_SM 			: BOOL;
+	Anfahrschaltung_aktiv 			: BOOL;
+	Anfahrschaltung_Grenzwert_RL	: REAL;
+
+	Aussenluftfilterueberwachung	: BOOL;
+	Aussenluftklappe_oeffnet 		: BOOL;
+	AutoQuittierung					: BOOL := 0;
+	Betriebsart_Anlage_RM			: REAL;
+	Betriebsartenschalter_Anlage	: REAL := 30 ;
+	Brandmeldezentrale_AM 			: BOOL;
+	Change_Overventile_umschalten 	: BOOL;
+
+
+
+	Frost_Stoerung					: BOOL;
+	Halle_BSK1_offen_RM				: BOOL;
+	Halle_BSK2_offen_RM 			: BOOL;
+	Option 							: BOOL;
+	Register_Pumpe_BM				: BOOL;
+	Register_Pumpe_Freigabe			: BOOL;
+	Register_Pumpe_Stoerung			: BOOL;
+	Sammelstoerung_Anlage			: BOOL;
+	Seminarraum_BSK_offen_RM 		: BOOL;
+	Seminarraum_BSK1_offen_RM 		: BOOL;
+	Seminarraum_BSK2_offen_RM 		: BOOL;
+	Seminarraum_BSK3_offen_RM 		: BOOL;
+
+	Sollwert_aktuell 				: REAL;
+	Sollwert_berech_aus_Schiebung 	: REAL;
+	Sommer_Winter_Umschaltung_Winter_Rueckmeldung : BOOL;
+	Zuluftrauchmelder_SM 			: BOOL;
+	Zuluftrauchmelder_WM 			: BOOL;
+	Zuluftventilator_BM 			: BOOL;
+	Zuluftventilator_Freigabe 		: BOOL;
+	Zuluftventilator_SM 			: BOOL;
+
+	Abluefter_Drehzahl_Istwert 		: REAL;
+	Abluefter_Druck_Istwert			: REAL;
+	Abluftklappe_Stellung			: REAL;
+	Ablufttemperatur_Istwert 		: REAL;
+
+	Aussenlufttemperatur_Istwert 	: REAL;
+
+	Fortlufttemperatur_Istwert 		: REAL;
+
+	Halle_Abluft_VSR_Betriebsartenschalter 	: REAL;
+	Halle_Raumtemperatur_Istwert 	: REAL;
+	Halle_Zuluft_VSR_Betriebsartenschalter 	: REAL;
+
+	Ruecklauftemperatur_Istwert 	: REAL;
+	Seminarraum_Abluft_VSR1_Istwert : REAL;
+	Seminarraum_Abluft_VSR2_Istwert : REAL;
+	Seminarraum_CO2_Istwert 		: REAL;
+
+	Seminarraum_Raumtemperatur_Istwert 		: REAL;
+	Seminarraum_Zuluft_VSR1_Istwert : REAL;
+	Seminarraum_Zuluft_VSR2_Istwert : REAL;
+
+	Zuluefter_Drehzahl_Istwert 		: REAL;
+	Zuluefter_Druck_Istwert 		: REAL;
+
+	Zulufttemperatur_Istwert		: REAL;
+
+
+
+	Temp_Vorl_HW_Min				: REAL;
+	Temp_Vorl_HW_Max				: REAL;
+	Temp_Vorl_KW_Min				: REAL;
+	Temp_Vorl_KW_Max				: REAL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BSp_KueW_Zustand" Id="{13305e40-4348-4abd-b5c1-bc4802655904}">
+    <Declaration><![CDATA[TYPE ST_System_BSp_KueW_Zustand :
+STRUCT
+	Betrieb_Anford		: BOOL;
+	Betrieb_Soll			: BOOL;
+	Betrieb				: BOOL;
+
+	Regelung_Modus		: SINT;
+	Regelung_Istw		: REAL;
+	Regelung_Sollw		: REAL;
+
+	Freigabe				: BOOL;
+	Freigabe_Deakt		: BOOL;
+	Freigabe_Code		: WORD;
+
+	Temp_oben			: REAL;
+	Temp_unten			: REAL;
+
+	Stoerung				: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+
+	Status				: SINT;
+	Status_Vorl			: BOOL;
+	Status_Nachl			: BOOL;
+
+	Status_Vorl_Stellventil		: BOOL; (* Philipp *)
+	Status_Vorl_Pumpen		: BOOL; (* Philipp *)
+	Status_Nachl_Stellventil	: BOOL; (* Philipp *)
+	Status_Nachl_Pumpen		: BOOL; (* Philipp *)
+	Status_Wiedereinschalten	: BOOL;
+
+	Quittierung			: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_PU_Schuetz_Parameter" Id="{d85b2d1a-8bfb-4e25-8867-c9b1773933e9}">
+    <Declaration><![CDATA[TYPE ST_PU_Schuetz_Parameter :
+STRUCT
+	Zeit_Vorl			: DINT;
+	Zeit_Nachl			: DINT;
+
+	AutoQuittierung		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Fenster_Input" Id="{d5fcaa59-22ed-4b0c-8cfa-0c6c4254bfbe}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Fenster_Input
+VAR_IN_OUT
+	Zustand					: ST_System_Fenster_Zustand;
+
+END_VAR
+VAR_INPUT
+	Zustand_Fenster_Ost				: ST_Fenster_Zustand;
+	Zustand_Fenster_WEST			: ST_Fenster_Zustand;
+
+
+	IN_Servomotor_Fenster_O_W_auf		: BOOL;
+	IN_Oberlichter_Halle_Stellung		: BOOL;
+	IN_Oberlichter_Treppenhaus_Stellung	: BOOL;
+	Steuerung				: ST_System_Fenster_Steuerung;
+END_VAR
+VAR_OUTPUT
+	Zustand_Servomotor_Fenster_O_W_auf	 	 :BOOL;
+	Zustand_Oberlichter_Halle_Stellung		 :BOOL;
+	Zustand_Oberlichter_Treppenhaus_Stellung :BOOL;
+
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Zustand_Servomotor_Fenster_O_W_auf	 		:= IN_Servomotor_Fenster_O_W_auf;
+Zustand_Oberlichter_Halle_Stellung			:= IN_Oberlichter_Halle_Stellung;
+Zustand_Oberlichter_Treppenhaus_Stellung    := IN_Oberlichter_Treppenhaus_Stellung;
+
+Zustand.Fenster_OST_AUF		:= Zustand_Fenster_Ost.Fenster_AUF	;
+Zustand.Fenster_OST_ZU		:= Zustand_Fenster_Ost.Fenster_ZU;
+Zustand.Fenster_WEST_AUF	:= Zustand_Fenster_WEST.Fenster_AUF;
+Zustand.Fenster_WEST_ZU		:= Zustand_Fenster_WEST.Fenster_ZU;
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Fenster_Input">
+      <LineId Id="23" Count="14" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

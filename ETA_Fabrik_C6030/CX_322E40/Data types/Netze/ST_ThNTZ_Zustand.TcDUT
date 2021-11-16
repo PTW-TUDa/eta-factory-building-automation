@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_ThNTZ_Zustand" Id="{0d96fe78-39ab-44d3-bf21-bed10aa1caf4}">
+    <Declaration><![CDATA[TYPE ST_ThNTZ_Zustand :
+STRUCT
+	Betrieb_Anford			: BOOL;
+	Betrieb_Soll			: BOOL;
+	Betrieb					: BOOL;
+
+	Regelung_Modus				: SINT;
+	Regelung_Sollw_Widerspruch	: BOOL;
+	Regelung_Sollw				: REAL;
+	Regelung_Sollw_Max          : REAL;
+	Regelung_Sollw_Min			: REAL;
+
+	Regelung_Sollw_Anford		: REAL;
+	Regelung_Sollw_Oben			: REAL;
+	Regelung_Sollw_Oben_Max		: REAL;
+	Regelung_Sollw_Oben_Min		: REAL;
+	Regelung_Sollw_Unten		: REAL;
+	Regelung_Sollw_Unten_Max	: REAL;
+	Regelung_Sollw_Unten_Min	: REAL;
+	Regelung_Stellw				: REAL;
+	Regelung_Istw				: REAL;
+
+	Temp_Max				: REAL;
+	Temp_Oben				: REAL;
+	Temp_Min				: REAL;
+	Temp_Unten				: REAL;
+
+	Freigabe				: BOOL;
+	Freigabe_Deakt			: BOOL;
+	Freigabe_Code			: WORD;
+
+    Netze_Anford            : ARRAY [1..20] OF ST_Zustand_Netze_Anford;
+
+	Stoerung				: BOOL;
+	Stoerung_Code			: WORD;
+
+	Warnung					: BOOL;
+	Warnung_Code			: WORD;
+
+	Status					: SINT;
+
+	Quittierung				: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

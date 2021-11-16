@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_MGMT_ThNTZ_Aktor_Parameter" Id="{be41f2a7-02e7-4c96-9197-051d9cef997e}">
+    <Declaration><![CDATA[TYPE ST_MGMT_ThNTZ_Aktor_Parameter :
+STRUCT
+	Anford_Netz_KW			: ST_Zustand_Netz_Anford;
+	Anford_Netz_WW			: ST_Zustand_Netz_Anford;
+	Anford_Netz_HW			: ST_Zustand_Netz_Anford;
+	Regelung_Netz_KW		: ST_Parameter_NTZ_Aktor_Regelung;	(* Aktiv: Bool, Grenzwert_Oben: REAL, Grenzwert_Unten: REAL, Prioritaet: SINT;*)
+	Regelung_Netz_WW		: ST_Parameter_NTZ_Aktor_Regelung;
+	Regelung_Netz_HW		: ST_Parameter_NTZ_Aktor_Regelung;
+
+	Kennlinie_Tctr			: DINT := 5000;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

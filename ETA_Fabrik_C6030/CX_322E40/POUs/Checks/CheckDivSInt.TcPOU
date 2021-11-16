@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="CheckDivSInt" Id="{e7df892b-aa57-4a29-867e-0165a404fdfa}" SpecialFunc="CheckDivInt32">
+    <Declaration><![CDATA[FUNCTION CheckDivSInt : SINT
+VAR_INPUT
+	divisor			 	: SINT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF divisor = 0 THEN
+	CheckSIntZeroDiv_ErrCnt := CheckSIntZeroDiv_ErrCnt + 1;
+	CheckDivSInt := 1;
+ELSE
+	CheckDivSInt := divisor;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="CheckDivSInt">
+      <LineId Id="7" Count="5" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

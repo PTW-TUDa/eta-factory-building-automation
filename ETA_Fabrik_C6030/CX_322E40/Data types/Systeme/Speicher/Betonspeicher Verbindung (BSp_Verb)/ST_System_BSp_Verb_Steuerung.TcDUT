@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BSp_Verb_Steuerung" Id="{74ca1f43-8f10-4d64-9715-d209c017f468}">
+    <Declaration><![CDATA[TYPE ST_System_BSp_Verb_Steuerung :
+STRUCT
+	Freigabe				: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt		: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford		: ST_Steuerung_auto_manu_opti_BOOL;
+
+	Quittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

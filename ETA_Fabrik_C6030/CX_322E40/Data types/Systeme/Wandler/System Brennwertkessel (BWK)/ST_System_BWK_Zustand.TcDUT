@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_BWK_Zustand" Id="{d65db874-84f9-4543-b6b3-aff9e0e70eee}">
+    <Declaration><![CDATA[TYPE ST_System_BWK_Zustand :
+STRUCT
+	Betrieb_Anford			: BOOL;
+	Betrieb_Soll				: BOOL;
+	Betrieb					: BOOL;
+
+	Regelung_Sollw			: REAL;
+
+	Netze_Anford				: ST_Zustand_Netze_Anford;
+
+	Freigabe					: BOOL;
+	Freigabe_Deakt			: BOOL;
+	Freigabe_Code			: WORD;
+
+	Stoerung					: BOOL;
+	Stoerung_Code			: WORD;
+
+	Warnung					: BOOL;
+	Warnung_Code			: WORD;
+
+	Status					: SINT;
+	Status_Vorl_Stellventil		: BOOL;
+	Status_Vorl_BWK			: BOOL;
+	Status_Nachl_Stellventil	: BOOL;
+	Status_Nachl_BWK		: BOOL;
+
+	Quittierung				: BOOL;
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

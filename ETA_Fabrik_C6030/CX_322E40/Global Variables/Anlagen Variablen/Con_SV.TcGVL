@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_SV" Id="{4287c2ab-213b-4de6-b695-10b4e58bb4d1}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* Stellventil_Zustand_Status *)
+	E_Stellventil_Zustand_Status_Stellungrueckmeldung0_Sperre	: SINT := 0;
+	E_Stellventil_Zustand_Status_Stellungrueckmeldung0			: SINT := 1;
+	E_Stellventil_Zustand_Stellungwechsel10						: SINT := 2;
+	E_Stellventil_Zustand_Stellungwechsel01						: SINT := 3;
+	E_Stellventil_Zustand_Status_Stellungrueckmeldung1			: SINT := 4;
+	E_Stellventil_Zustand_Status_Stellungrueckmeldung1_Sperre	: SINT := 5;
+	E_Stellventil_Zustand_Status_Stoerung						: SINT := 99;
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

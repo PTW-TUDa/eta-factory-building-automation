@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_MVWW_Steuerung" Id="{f4a07800-5d14-40e8-9b98-f8cfec936f9b}">
+    <Declaration><![CDATA[TYPE ST_System_MVWW_Steuerung :
+STRUCT
+	Freigabe			: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt		: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford		: ST_Steuerung_auto_manu_opti_BOOL;
+	Regelung_Modus		: ST_Steuerung_auto_manu_opti_SINT;
+	Regelung_Sollw		: ST_Steuerung_auto_manu_opti_REAL;
+	Quittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

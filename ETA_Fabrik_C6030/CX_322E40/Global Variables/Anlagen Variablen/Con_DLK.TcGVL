@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <GVL Name="Con_DLK" Id="{7993aff6-bcd1-412c-86cd-5a17fbf6f024}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL
+	IN_Profibus_DLK			AT %I*: ARRAY [0..63] OF BYTE;
+	OUT_Profibus_DLK		AT %Q* : ARRAY [0..63] OF BYTE;
+
+	OUT_UMG_Anfrage		AT %Q* 	:	BYTE;
+	IN_UMG				AT %I*	:	ARRAY[0..31] OF UINT;
+
+	(* System_DLK_Zustand_Status *)
+	E_System_DLK_Zustand_Status_Idle_Sperre			: SINT := 0;
+	E_System_DLK_Zustand_Status_Betriebsbereit		: SINT := 1;
+	E_System_DLK_Zustand_Status_Nachl_Regelventil	: SINT := 2;
+	E_System_DLK_Zustand_Status_Vorl_Regelventil	: SINT := 3;
+	E_System_DLK_Zustand_Status_Nachl_Pumpe			: SINT := 4;
+	E_System_DLK_Zustand_Status_Vorl_Pumpe			: SINT := 5;
+	E_System_DLK_Zustand_Status_Nachl_BWK			: SINT := 6;
+	E_System_DLK_Zustand_Status_Vorl_BWK			: SINT := 7;
+	E_System_DLK_Zustand_Status_Betrieb				: SINT := 8;
+	E_System_DLK_Zustand_Status_Betrieb_Sperre		: SINT := 9;
+	E_System_DLK_Zustand_Status_Stoerung			: SINT := 99;
+
+
+
+
+
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

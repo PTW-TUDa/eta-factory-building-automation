@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_BSp_Zustand" Id="{b5d4513f-ad46-499c-8f67-5443e2db66b7}">
+    <Declaration><![CDATA[TYPE ST_BSp_Zustand :
+STRUCT
+	Temp_oben	: REAL;
+	Temp_unten	: REAL;
+
+	Fuellstandsalarm	: BOOL;
+
+	Freigabe_Code: WORD;
+
+	Stoerung				: BOOL;
+	Stoerung_Code		: WORD;
+
+	Warnung				: BOOL;
+	Warnung_Code		: WORD;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

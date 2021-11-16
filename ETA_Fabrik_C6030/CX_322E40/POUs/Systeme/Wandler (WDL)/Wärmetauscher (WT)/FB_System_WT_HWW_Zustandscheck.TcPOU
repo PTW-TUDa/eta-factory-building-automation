@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_WT_HWW_Zustandscheck" Id="{151f8489-5e44-499f-8201-ad1aa0418897}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_WT_HWW_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_WT_HWW_Zustand;
+END_VAR
+VAR_INPUT
+	Zustand_Stellventil_WW	: ST_SV_Zustand;
+	Zustand_Stellventil_HW	: ST_SV_Zustand;
+	Zustand_Pumpe_WW		: ST_PU_Zustand;
+	Zustand_Pumpe_HW		: ST_PU_Zustand;
+	Steuerung				: ST_System_WT_HWW_Steuerung;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer7	: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	Allgemein Störung System WT_HWW
+		1:	Störung Stellventil_WW (s. Anlage für Details)
+		2:	Störung Stellventil_HW (s. Anlage für Details)
+		3:	Störung Pumpe_WW (s. Anlage für Details)
+		4:	Störung Pumpe_HW (s. Anlage für Details)
+		5:
+		6:
+		7:
+
+	Warnung_Code
+		0:	Allgemein Warnung System WT_HWW
+		1:	Warnung Stellventil_WW (s. Anlage für Details)
+		2:	Warnung Stellventil_HW (s. Anlage für Details)
+		3:	Warnung Pumpe_WW (s. Anlage für Details)
+		4:	Warnung Pumpe_HW (s. Anlage für Details)
+		5:	Verletzung Netzanforderungen WW (Rücklauftemperatur zu hoch oder zu niedrig)
+		6:	Verletzung Netzanforderungen HW (Rücklauftemperatur zu hoch oder zu niedrig)
+		7:	Betriebsrückmeldung Zeitüberschreitung
+
+	Freigabe_Code
+		0:	Freigabe durch Automatik entzogen
+		1:	Freigabe durch Manuell entzogen
+		2:	Freigabe durch Stoerung entzogen
+*)
+
+(* Zustandsdefinitionen *)
+Zustand.Betrieb	:= Zustand_Stellventil_WW.Stellung AND Zustand_Stellventil_HW.Stellung AND Zustand_Pumpe_WW.Betrieb AND Zustand_Pumpe_HW.Betrieb;
+
+(* Interne Stoerungen / Warnungen *)
+Zustand.Stoerung_Code.1 := Zustand_Stellventil_WW.Stoerung;
+Zustand.Stoerung_Code.2 := Zustand_Stellventil_HW.Stoerung;
+Zustand.Stoerung_Code.3 := Zustand_Pumpe_WW.Stoerung;
+Zustand.Stoerung_Code.4 := Zustand_Pumpe_HW.Stoerung;
+
+Zustand.Warnung_Code.1 := Zustand_Stellventil_WW.Warnung;
+Zustand.Warnung_Code.2 := Zustand_Stellventil_HW.Warnung;
+Zustand.Warnung_Code.3 := Zustand_Pumpe_WW.Warnung;
+Zustand.Warnung_Code.4 := Zustand_Pumpe_HW.Warnung;
+
+(* Warnung 5 - Verletzung Netzanforderungen WW (Rücklauftemperatur zu hoch oder zu niedrig) *)
+Zustand.Warnung_Code.5 := (Zustand_Pumpe_WW.Temp_extern > Zustand.Netze_Anford.Warmwasser.Temp_Unten_Max) OR (Zustand_Pumpe_WW.Temp_extern > Zustand.Netze_Anford.Warmwasser.Temp_Unten_Min);
+(* Warnung 6 - Verletzung Netzanforderungen HW (Rücklauftemperatur zu hoch oder zu niedrig) *)
+Zustand.Warnung_Code.6 := (Zustand_Pumpe_HW.Temp_extern > Zustand.Netze_Anford.Heisswasser.Temp_Unten_Max) OR (Zustand_Pumpe_HW.Temp_extern > Zustand.Netze_Anford.Heisswasser.Temp_Unten_Min);
+
+(* Warnung 7 - keine Betriebsrückmeldung trotz Betriebsanforderung nach 10 Minuten *)
+Timer7(	IN := Zustand.Betrieb_Soll <> Zustand.Betrieb,
+		PT := T#10M,
+		Q => Zustand.Warnung_Code.7
+);
+
+
+
+(* ------------------------------------------------------------------- *)
+(* Stoermeldung *)
+IF Zustand.Stoerung_Code > 0 THEN
+	Zustand.Stoerung := TRUE;
+(*ELSE - wird nur durch Quittierung gelöscht
+	Zustand.Stoerung := FALSE; *)
+END_IF;
+
+(* Warnmeldung *)
+Zustand.Warnung	:= Zustand.Warnung_Code > 0;
+
+
+(* ----- Freigabe_Code -------- *)
+Zustand.Freigabe_Code.0 := NOT(Steuerung.Freigabe.auto);
+Zustand.Freigabe_Code.1 := Steuerung.Freigabe.manu_Modus AND NOT Steuerung.Freigabe.manu;
+Zustand.Freigabe_Code.2 := Zustand.Stoerung;
+
+(* Freigabe *)
+Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.auto;
+
+
+(* Netz_Anford *)
+Zustand.Netze_Anford.Heisswasser.Temp			:= Netze.Warmwasser_2xx.Zustand.Regelung_Sollw + 15;
+IF( Zustand.Betrieb_Soll ) THEN
+	Zustand.Netze_Anford.Heisswasser.Aktiv			:= TRUE;
+	Zustand.Netze_Anford.Heisswasser.Temp_Oben		:= Zustand_Pumpe_HW.Temp_intern;
+	Zustand.Netze_Anford.Heisswasser.Temp_Unten		:= Zustand_Pumpe_HW.Temp_extern;
+	Zustand.Netze_Anford.Heisswasser.Temp_Unten_Min	:= Zustand.Regelung_Sollw + 2;
+	Zustand.Netze_Anford.Warmwasser.Aktiv			:= TRUE;
+	Zustand.Netze_Anford.Warmwasser.Temp_Oben		:= Zustand_Pumpe_WW.Temp_intern;
+	Zustand.Netze_Anford.Warmwasser.Temp_Unten		:= Zustand_Pumpe_WW.Temp_extern;
+
+
+ELSE
+	Zustand.Netze_Anford.Heisswasser.Aktiv			:= FALSE;
+	Zustand.Netze_Anford.Warmwasser.Aktiv			:= FALSE;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_WT_HWW_Zustandscheck">
+      <LineId Id="16" Count="90" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

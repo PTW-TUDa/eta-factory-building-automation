@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Parameter_NTZ_Aktor_Regelung" Id="{d2703718-5341-45d2-986b-7faa97581b70}">
+    <Declaration><![CDATA[TYPE ST_Parameter_NTZ_Aktor_Regelung :
+STRUCT
+	Heizung				: BOOL	:= FALSE;
+	Prioritaet_Heizung		: SINT	:= 0;
+	Grenzwert_Heizung	: REAL;
+	Hysterese_Heizung	: REAL;
+	Invertiert_Heizung		: BOOL	:= TRUE;		(* bei TRUE wird bei aktiver Regelung ausgeschaltet statt eingeschaltet*)
+
+	Kuehlung				: BOOL	:= FALSE;
+	Prioritaet_Kuehlung	: SINT	:= 0;
+	Grenzwert_Kuehlung	: REAL;
+	Hysterese_Kuehlung	: REAL;
+	Invertiert_Kuehlung	: BOOL	:= TRUE;		(* bei TRUE wird bei aktiver Regelung ausgeschaltet statt eingeschaltet*)
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

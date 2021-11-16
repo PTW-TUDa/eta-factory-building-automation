@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_Parameter_Kennlinie_Heizung_Kuehlung" Id="{5e38ea98-5395-4fe0-84c1-9dc3639e6992}">
+    <Declaration><![CDATA[TYPE ST_Parameter_Kennlinie_Heizung_Kuehlung :
+STRUCT
+	Temp_Vorl_Max			: REAL;
+	Temp_Vorl_Min			: REAL;
+	Temp_Aussen_Max			: REAL;
+	Temp_Aussen_Min			: REAL;
+
+
+
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_System_WDT_Stellwertscheck" Id="{2222336d-ca45-470e-99f7-d87baa9da195}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_WDT_Stellwertscheck
+VAR_IN_OUT
+	Stellwert	: ST_System_WDT_Stellwert;
+END_VAR
+VAR_INPUT
+	Zustand		: ST_System_WDT_Zustand;
+	Parameter	: ST_System_WDT_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Hysterese			: FB_CTRL_2POINT;
+	Hysterese_Parameter	: ST_CTRL_2POINT_PARAMS;
+	Hysterese_Istw		: REAL;
+	Hysterese_Sollw		: REAL;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF( Zustand.Betrieb_Soll ) THEN
+	(* Max-Min-Grenzen erzwingen *)
+
+	Stellwert.Temp_Vorl := MIN(Parameter.Temp_Vorl_Max, Zustand.Regelung_Stellw);
+	Stellwert.Temp_Vorl := MAX(Parameter.Temp_Vorl_Min, Stellwert.Temp_Vorl);
+
+	IF (Zustand.Modus_viaAussenfassade) THEN
+		Stellwert.Anford_Aussenfassadenaktivierung := TRUE;
+	ELSE
+		Stellwert.Anford_Aussenfassadenaktivierung := FALSE;
+	END_IF
+
+END_IF;
+
+(* Berechne Nahe schätzung von Temp_potential mit Berücksichtigung der Feuchtigkeit und des Temp_aussens
+
+    IF (Daemmerung < 278 ! ) THEN      (* feuchtigkeit zwichen 50% und 70*)
+		IF (Temp_aussen< 15 ) TEHN 
+			Delta_T =: 3 ;
+			ELSE
+			Delta_T=: 6;
+		END IF
+	END IF
+	IF (Daemmerung < 278 ! ) THEN      (* feuchtigkeit zwichen 70% und 90*)
+		IF (Temp_aussen< 15 ) TEHN 
+			Delta_T =: 1 ;
+			ELSE
+			Delta_T=: 3;
+		END IF
+	END IF
+ 	IF (Daemmerung < 278 ! ) THEN      (* feuchtigkeit zwichen 90 und 100*)
+		IF (Temp_aussen< 15 ) TEHN 
+			Delta_T =: 0 ;
+			ELSE
+			Delta_T=: 1;
+		END IF
+	END IF
+Temp_potential =: Temp_Aussen + 2 - Delta_T ; *) 
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_WDT_Stellwertscheck">
+      <LineId Id="17" Count="38" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_UWT" Id="{9e39a615-c9af-42e5-96e8-2e2495964ac9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_UWT
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}Wetter_Temperatur		: REAL;		
+	{attribute 'OPC.UA.DA' := '1'}Temperatur_Aussen_TF	: REAL;		
+	{attribute 'OPC.UA.DA' := '1'}Temp_Halle_Sektor1		: REAL;	
+	{attribute 'OPC.UA.DA' := '1'}Temp_Halle_Sektor2		: REAL;	
+	{attribute 'OPC.UA.DA' := '1'}Temp_Halle_Sektor3		: REAL;	
+	{attribute 'OPC.UA.DA' := '1'}Temp_Aussen_Mittelw		: REAL;	
+	{attribute 'OPC.UA.DA' := '1'}Luftfeuchtigkeit_rel	: REAL;		
+	{attribute 'OPC.UA.DA' := '1'}Daemmerung				: REAL;	
+	{attribute 'OPC.UA.DA' := '1'}Regen					: BOOL;		
+
+	(* Mittelwert	berechnung	: FB_CTRL_MOVING_AVERAGE;	*)
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	Wetter_Temperatur	:= 20.0;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_UWT">
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

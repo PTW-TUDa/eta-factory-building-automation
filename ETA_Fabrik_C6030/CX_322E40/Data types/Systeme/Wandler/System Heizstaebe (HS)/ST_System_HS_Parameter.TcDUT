@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_HS_Parameter" Id="{d3f97e9c-cad7-47c9-b0e7-9929ca059337}">
+    <Declaration><![CDATA[TYPE ST_System_HS_Parameter :
+STRUCT
+	Temp_Sollwert				: REAL;
+	Temp_Spreizung		: SINT; (*Hysterese-Range*)
+
+	AutoQuittierung			: BOOL;
+	Kennlinie_Tctr			: DINT;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

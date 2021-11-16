@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_GZ_DLK" Id="{6a7a7ab0-f484-4df4-8c5f-9b7292dec060}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GZ_DLK (*Programm für das Universalmessgerät 604 *)
+VAR_IN_OUT
+	Zustand				: ST_GZ_DLK_Zustand;
+END_VAR
+VAR_INPUT
+END_VAR
+VAR
+	DATA				: 	POINTER TO PB_UMG604;
+	(*DATA				: ARRAY[0..31] OF UINT;*)
+
+	initialGasCounter 	:	REAL 	:= 0.0;
+	Init				: 	BOOL 	:= FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT Init AND Zustand.Freigabe THEN
+	DATA := ADR(IN_UMG);
+	OUT_UMG_Anfrage := 4;
+	Init := TRUE;
+ELSE
+;
+
+	Zustand.Wirkleistung	:=	DATA^.Wirkleistung;
+	Zustand.Blindleistung	:=	DATA^.Blindleistung;
+	Zustand.Scheinleistung	:=	DATA^.Scheinleistung;
+
+	Zustand.Wirkarbeit		:=	DATA^.Wirkarbeit;
+	Zustand.Blindarbeit		:=	DATA^.Blindarbeit;
+	Zustand.Scheinarbeit	:=	DATA^.Scheinarbeit;
+
+	Zustand.Zaehler_Hauptanschluss_Volumen	:= 	DATA^.DiZaehlstand + initialGasCounter;
+	(* An das Janitza-Messgerät ist der Pulsausgang des zentralen Gaszählers der ETA angeschlossen, sodass hier auch der Gasverbrauch der ETA aufläuft*)
+
+
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_GZ_DLK">
+      <LineId Id="13" Count="20" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

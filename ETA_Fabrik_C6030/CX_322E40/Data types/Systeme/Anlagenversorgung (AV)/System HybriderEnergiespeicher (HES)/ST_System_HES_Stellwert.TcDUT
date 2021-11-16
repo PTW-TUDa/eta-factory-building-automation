@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_HES_Stellwert" Id="{013ef4b7-8708-4dcb-b046-efb5e3e70aab}">
+    <Declaration><![CDATA[TYPE ST_System_HES_Stellwert :
+STRUCT
+	Anford_Stellventil		: BOOL;
+	Anford_Pumpe		: BOOL;
+	Anford_Kompressor	: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

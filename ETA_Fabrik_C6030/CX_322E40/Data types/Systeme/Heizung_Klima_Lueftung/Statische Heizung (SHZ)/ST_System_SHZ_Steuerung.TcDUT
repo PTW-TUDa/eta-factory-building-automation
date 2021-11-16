@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_SHZ_Steuerung" Id="{0d1cd913-df42-42d5-b85a-b7055e1da6c8}">
+    <Declaration><![CDATA[TYPE ST_System_SHZ_Steuerung :
+STRUCT
+	Freigabe				: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt		: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford		: ST_Steuerung_auto_manu_opti_BOOL;
+
+	Regelung_Modus		: ST_Steuerung_auto_manu_opti_SINT;
+	Regelung_Nachtabs	: ST_Steuerung_auto_manu_opti_BOOL;
+	Regelung_Sollw		: ST_Steuerung_auto_manu_opti_REAL;
+
+	Quittierung			: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

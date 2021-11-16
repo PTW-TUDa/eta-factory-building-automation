@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_PU_Schuetz_Steuerung" Id="{073a63dd-c3ff-490c-a4d8-49bddd9d8966}">
+    <Declaration><![CDATA[TYPE ST_PU_Schuetz_Steuerung :
+STRUCT
+	Freigabe			: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt	: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford	: ST_Steuerung_auto_manu_opti_BOOL;
+	Quittierung		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

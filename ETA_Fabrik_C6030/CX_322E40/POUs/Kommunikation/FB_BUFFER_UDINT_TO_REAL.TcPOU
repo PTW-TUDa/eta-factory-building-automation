@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_BUFFER_UDINT_TO_REAL" Id="{0dc9fb9e-e606-49c5-bd96-81ec97ecd894}" SpecialFunc="None">
+    <Declaration><![CDATA[(* converts 4 Bytes into REAL and buffers last value if no new value *)
+
+FUNCTION_BLOCK FB_BUFFER_UDINT_TO_REAL
+VAR_INPUT
+	raw_input :UDINT;
+END_VAR
+VAR_OUTPUT
+	real_output :REAL;
+END_VAR
+VAR
+	last_value : REAL;
+	temp : DWORD;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[temp := UDINT_TO_DWORD(raw_input);
+temp := BE32_TO_HOST(temp);
+MEMCPY(ADR(real_output), ADR(temp), SIZEOF(temp));
+
+(* IsFinite prüft auf finitheit und auf NaN *)
+
+IF NOT IsFinite(F_REAL(real_output)) THEN
+	real_output := last_value;
+ELSE
+	last_value := real_output;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BUFFER_UDINT_TO_REAL">
+      <LineId Id="13" Count="10" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

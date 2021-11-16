@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_TF" Id="{46bf8a5e-eb11-4b33-b2aa-228bd4c3f4f2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TF
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Status		: USINT;
+	Temperatur	:REAL;
+END_VAR
+VAR
+	IN_Status 		AT %I* : USINT;
+	IN_Temperatur 	AT %I* : INT;
+
+	IN_Temperatur_Buffer : FB_BUFFER_INT_TO_REAL;
+
+
+	VAR_Temperatur: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Status 		:= IN_Status;
+
+(*IN_Temperatur_Buffer(raw_input := IN_Temperatur);
+Temperatur	:= IN_Temperatur_Buffer.real_output;*)
+
+VAR_Temperatur  := IN_Temperatur;
+
+
+Temperatur   := VAR_Temperatur * 0.01 ;  (* skaliert [-10k,10k] auf [-100,100] *)
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_TF">
+      <LineId Id="17" Count="13" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

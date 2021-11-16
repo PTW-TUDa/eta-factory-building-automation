@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_Initialisierungsroutine" Id="{e01287f0-f797-46a0-91e0-77f8d5512078}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Initialisierungsroutine
+VAR_OUTPUT
+END_VAR
+VAR
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Management Parameter*)
+
+Initialisierung.MGMT_Parameter.Temp_Max :=100; (*Grad Celsius*)
+Initialisierung.MGMT_Parameter.Temp_Min :=0; (*Grad Celsius*)
+Initialisierung.MGMT_Parameter.AutoQuittierung := 0;
+
+(*Management Parameter- Heizen*)
+
+Initialisierung.MGMT_Parameter.Hysterese_BHKW_Range := 3; (*Grad Celsius*) (*Range von die Hysterese für BHKW*)
+Initialisierung.MGMT_Parameter.Hysterese_BWT_Range := 5; (*Grad Celsius*) (*Range von die Hysterese für BWT*)
+Initialisierung.MGMT_Parameter.Hysterese_PTW1_Range := 3; (*Grad Celsius*) (*Range von die Hysterese für PWT*)
+
+
+(*Management Parameter- Kühlen*)
+Initialisierung.MGMT_Parameter.Hysterese_blaunetz_Kuehlung_Range := 2; (*Grad Celsius*) (*Range von Blaunetz_Hysterese *)
+Initialisierung.MGMT_Parameter.Hysterese_KKKW_Kuehlung_Range := 2; (*Grad Celsius*) (*Range von Kältekompressor_Hysterese*)
+Initialisierung.MGMT_Parameter.Hysterese_gruennetz_Kuehlung_Range := 2; (*Grad Celsius*) (*Range von Grünnetz_Hysterese*)
+Initialisierung.MGMT_Parameter.Hysterese_WP_gruennetz_Range := 2; (*Grad Celsius*) (*Range von Wärmepumpe für gruenNetz *)
+Initialisierung.MGMT_Parameter.Hysterese_WP_Range := 2; (*Grad Celsius*) (*Range von Hysterese_Regelung für Wärmepumpe blau_kuehlmodus_Kuehlung*)
+
+(*Netze Parameter*)
+Initialisierung.Netze_Parameter.Heisswasser.Regelung_Sollw_Max_Min := 50; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Heisswasser.Regelung_Sollw_Min := 30; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Heisswasser.Regelung_Sollw_KRITIKAL_OBEN_TEMP := 90; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Heisswasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 20; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_Max := 45; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_Min := 25; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_KRITIKAL_OBEN_TEMP := 65; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 15; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_Max := 25; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_KRITIKAL_OBEN_TEMP := 28; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 6; (*Grad Celsius*)
+
+Initialisierung.Netze_Parameter.Heisswasser.Temp_Max := 100; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Heisswasser.Temp_Min := 0; (*Grad Celsius*)
+
+Initialisierung.Netze_Parameter.Heisswasser.AutoQuittierung := 0;
+Initialisierung.Netze_Parameter.Warmwasser.AutoQuittierung := 0;
+Initialisierung.Netze_Parameter.Kaltwasser.AutoQuittierung := 0;
+
+(*Parameter System Aussenfassadenaktivierung *)
+	Initialisierung.System_AFA_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_AFA_Parameter.Freigabe_Berieselung := FALSE;
+	Initialisierung.System_AFA_Parameter.Temp_Vorl_Max := 45; (*Grad Celsius*)
+	Initialisierung.System_AFA_Parameter.Temp_Vorl_Min := 4; (*Grad Celsius*)
+	Initialisierung.System_AFA_Parameter.Zeit_Nachl := 30; (*Millisekunden*)
+
+	Initialisierung.Stellventil_605_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_605_Parameter.Zeit_Stellen0 := 10000; (*Millisekunden*)
+	Initialisierung.Stellventil_605_Parameter.Zeit_Stellen1 := 10000; (*Millisekunden*)
+
+	Initialisierung.Stellventil_235_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_235_Parameter.Zeit_Stellen0 := 10000; (*Millisekunden*)
+	Initialisierung.Stellventil_235_Parameter.Zeit_Stellen1 := 10000; (*Millisekunden*)
+
+	Initialisierung.Pumpe_600_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_600_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Pumpe_600_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Pumpe_600_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Pumpe_600_Parameter.Stellwert_Leistung_Max := 100; (*Prozent*)
+	Initialisierung.Pumpe_600_Parameter.Stellwert_Leistung_Min := 30; (*Prozent*)
+	Initialisierung.Pumpe_600_Parameter.Zeit_Nachl := 2000; (*Millisekunden*)
+	Initialisierung.Pumpe_600_Parameter.Zeit_Vorl := 2000; (*Millisekunden*)
+
+	Initialisierung.Pumpe_235_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_235_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Pumpe_235_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Pumpe_235_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Pumpe_235_Parameter.Stellwert_Leistung_Max := 100; (*Prozent*)
+	Initialisierung.Pumpe_235_Parameter.Stellwert_Leistung_Min := 30; (*Prozent*)
+	Initialisierung.Pumpe_235_Parameter.Zeit_Nachl := 2000; (*Millisekunden*)
+	Initialisierung.Pumpe_235_Parameter.Zeit_Vorl := 2000; (*Millisekunden*)
+
+	Initialisierung.Regelventil_600_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_600_Parameter.Regelung_PI_Kp := 0.5;
+	Initialisierung.Regelventil_600_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Regelventil_600_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_600_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_600_Parameter.Regelung_Sollw_Min := 5; (*Grad Celsius*)
+	Initialisierung.Regelventil_600_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_600_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_600_Parameter.Stellwert_Stellung_Max := 100; (*Prozent*)
+	Initialisierung.Regelventil_600_Parameter.Stellwert_Stellung_Min := 0; (*Prozent*)
+	Initialisierung.Regelventil_600_Parameter.Zeit_Nachl := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_600_Parameter.Zeit_Vorl := 15000; (*Millisekunden*)
+
+	Initialisierung.Regelventil_640_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_640_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_Sollw_Min := 5;(*Grad Celsius*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_640_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_640_Parameter.Stellwert_Stellung_Max := 100; (*Prozent*)
+	Initialisierung.Regelventil_640_Parameter.Stellwert_Stellung_Min := 0; (*Prozent*)
+	Initialisierung.Regelventil_640_Parameter.Zeit_Nachl := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_640_Parameter.Zeit_Vorl := 15000; (*Millisekunden*)
+
+	Initialisierung.Regelventil_660_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_660_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_Sollw_Min := 5; (*Grad Celsius*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_660_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0055;(*Einheit: K/s,  0,0055 K/s ~ 20 K/h*)
+	Initialisierung.Regelventil_660_Parameter.Stellwert_Stellung_Max := 100; (*Prozent*)
+	Initialisierung.Regelventil_660_Parameter.Stellwert_Stellung_Min := 0; (*Prozent*)
+	Initialisierung.Regelventil_660_Parameter.Zeit_Nachl := 15000; (*Millisekunden*)
+	Initialisierung.Regelventil_660_Parameter.Zeit_Vorl := 15000; (*Millisekunden*)
+
+
+(*Parameter System Absorptionskältemaschine *)
+	Initialisierung.System_AKM_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_AKM_Parameter.Stellwert_Temperatur_KW_Max := 20; (*Grad Celsius*)
+	Initialisierung.System_AKM_Parameter.Stellwert_Temperatur_KW_Min := 10; (*Grad Celsius*)
+	Initialisierung.System_AKM_Parameter.Stellwert_Temperatur_WW_Max := 50; (*Grad Celsius*)
+	Initialisierung.System_AKM_Parameter.Stellwert_Temperatur_WW_Min := 30; (*Grad Celsius*)
+	Initialisierung.System_AKM_Parameter.Zeit_Nachl := 30; (*Millisekunden*)
+	Initialisierung.System_AKM_Parameter.Zeit_Vorl := 30; (*Millisekunden*)
+
+
+
+(*Parameter System Beleuchtung *)
+	Initialisierung.System_Bel_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_Bel_Parameter.Zeit_Vorl := 1000; (* Millisekunden *)
+	Initialisierung.System_Bel_Parameter.Zeit_Nachl := 1000; (* Millisekunden *)
+	Initialisierung.System_Bel_Parameter.Nachtabsenkung_Uhrzeit_Stunde_Start := 23; (*Uhr*)
+	Initialisierung.System_Bel_Parameter.Nachtabsenkung_Uhrzeit_Stunde_Ende := 6; (*Uhr*)
+
+(*Parameter System Betonspeicher allgemein *)
+	Initialisierung.System_BSp_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_BSp_Parameter.Kennlinie_Tctr := 5000; (*Millisekunden*)
+
+
+(*Parameter System Betonspeicher 795 *)
+	Initialisierung.Stellventil_105_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_105_Parameter.Zeit_Stellen0 := 35000; (*Millisekunden*)
+	Initialisierung.Stellventil_105_Parameter.Zeit_Stellen1 := 20000; (*Millisekunden*)
+
+	Initialisierung.Pumpe_105_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_105_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Pumpe_105_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Pumpe_105_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Pumpe_105_Parameter.Stellwert_Leistung_Max := 100; (*Prozent*)
+	Initialisierung.Pumpe_105_Parameter.Stellwert_Leistung_Min := 30; (*Prozent*)
+	Initialisierung.Pumpe_105_Parameter.Zeit_Nachl := 2000; (*Millisekunden*)
+	Initialisierung.Pumpe_105_Parameter.Zeit_Vorl := 2000; (*Millisekunden*)
+
+
+
+(*Parameter System Betonspeicher 797 *)
+	Initialisierung.Stellventil_205_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_205_Parameter.Zeit_Stellen0 := 35000; (*Millisekunden*)
+	Initialisierung.Stellventil_205_Parameter.Zeit_Stellen1 := 20000; (*Millisekunden*)
+
+	Initialisierung.Pumpe_205_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_205_Parameter.Regelung_PI_Kp := 0.265; (*Einheitslos*)
+	Initialisierung.Pumpe_205_Parameter.Regelung_PI_Tctr := 5000; (*Millisekunden*)
+	Initialisierung.Pumpe_205_Parameter.Regelung_PI_Tn := 15000; (*Millisekunden*)
+	Initialisierung.Pumpe_205_Parameter.Stellwert_Leistung_Max := 100; (*Prozent*)
+	Initialisierung.Pumpe_205_Parameter.Stellwert_Leistung_Min := 30; (*Prozent*)
+	Initialisierung.Pumpe_205_Parameter.Zeit_Nachl := 2000; (*Millisekunden*)
+	Initialisierung.Pumpe_205_Parameter.Zeit_Vorl := 2000; (*Millisekunden*)
+
+
+(*Parameter System Blockheizkraftwerk allgemein *)
+	Initialisierung.System_BHKW_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_BHKW_Parameter.Zeit_Vorl := T#1m; (*Minuten*)(*Zeit, nach der BHKW auch ohne Rückmeldung angeschaltet wird *)
+	Initialisierung.System_BHKW_Parameter.Zeit_Nachl := T#15m; (*Minuten*)
+
+
+(*Parameter System BHKW 921 *)
+	Initialisierung.Anlage_BHKW_921_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_BHKW_921_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Anlage_BHKW_921_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Regelung_PI_Tn := 15;(*Millisekunden*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Stellwert_Leistung_Min := 0;(*Prozent*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Temp_Ruecklauf_Max := 62; (*Grad Celsius*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Temp_Ruecklauf_Min := 30; (*Grad Celsius*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Zeit_Nachl := 900000; (*Millisekunden*)(*15 min*)
+	Initialisierung.Anlage_BHKW_921_Parameter.Zeit_Vorl := 120000; (*Millisekunden*)(*120 sec *)
+	Initialisierung.Anlage_BHKW_921_Parameter.Temp_Kuehlwasser_Max := 90; (*Grad Celsius*)
+(*	Initialisierung.Anlage_BHKW_921_Parameter.Temp_Kuehlwasser_Max_Dauer := T#2m; (*Minuten*)*)
+
+	Initialisierung.Stellventil_321_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_321_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_321_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_321_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_321_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_321_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_321_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_321_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_321_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_321_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_321_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_321_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_321_Parameter.Regelung_PI_Kp := 5;
+	Initialisierung.Regelventil_321_Parameter.Regelung_PI_Tctr := 500;(*Millisekunden*)
+	Initialisierung.Regelventil_321_Parameter.Regelung_PI_Tn := 150000;(*Millisekunden*)
+	Initialisierung.Regelventil_321_Parameter.Regelung_Sollw_Max := 80;(*Grad Celsius*)
+	Initialisierung.Regelventil_321_Parameter.Regelung_Sollw_Min := 40;(*Grad Celsius*)
+	Initialisierung.Regelventil_321_Parameter.Regelung_Sollw_Rampe_Steig_neg := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_321_Parameter.Regelung_Sollw_Rampe_Steig_pos := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_321_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_321_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_321_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_321_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System BHKW 922 *)
+	Initialisierung.Anlage_BHKW_922_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_BHKW_922_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Anlage_BHKW_922_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Regelung_PI_Tn := 15;(*Millisekunden*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Stellwert_Leistung_Min := 0;(*Prozent*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Temp_Ruecklauf_Max := 62; (*Grad Celsius*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Temp_Ruecklauf_Min := 30; (*Grad Celsius*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Zeit_Nachl := 900000; (*Millisekunden*)(*15 min*)
+	Initialisierung.Anlage_BHKW_922_Parameter.Zeit_Vorl := 30000;(*Millisekunden*) (*30 sec *)
+	Initialisierung.Anlage_BHKW_922_Parameter.Temp_Kuehlwasser_Max := 90; (*Grad Celsius*)
+(*	Initialisierung.Anlage_BHKW_922_Parameter.Temp_Kuehlwasser_Max_Dauer := T#5m; (*Minuten*)*)
+
+	Initialisierung.Stellventil_322_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_322_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_322_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_322_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_322_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_322_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_322_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_322_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_322_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_322_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_322_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_322_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_322_Parameter.Regelung_PI_Kp := 5;
+	Initialisierung.Regelventil_322_Parameter.Regelung_PI_Tctr := 500;(*Millisekunden*)
+	Initialisierung.Regelventil_322_Parameter.Regelung_PI_Tn := 150000;(*Millisekunden*)
+	Initialisierung.Regelventil_322_Parameter.Regelung_Sollw_Max := 80;(*Grad Celsius*)
+	Initialisierung.Regelventil_322_Parameter.Regelung_Sollw_Min := 40;(*Grad Celsius*)
+	Initialisierung.Regelventil_322_Parameter.Regelung_Sollw_Rampe_Steig_neg := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_322_Parameter.Regelung_Sollw_Rampe_Steig_pos := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_322_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_322_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_322_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_322_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System Brennwertkessel *)
+	Initialisierung.System_BWK_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_331_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_331_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_331_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Anlage_BWK_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_BWK_Parameter.Stellwert_Leistung_Max := 100;
+	Initialisierung.Anlage_BWK_Parameter.Stellwert_Leistung_Min := 0;
+	Initialisierung.Anlage_BWK_Parameter.Stellwert_Temperatur_Max := 100; (*Grad Celsius*)
+	Initialisierung.Anlage_BWK_Parameter.Stellwert_Temperatur_Min := 30; (*Grad Celsius*)
+	Initialisierung.Anlage_BWK_Parameter.Temp_Ruecklauf_Max := 85; (*Grad Celsius*)
+	Initialisierung.Anlage_BWK_Parameter.Temp_Ruecklauf_Min := 30; (*Grad Celsius*)
+	Initialisierung.Anlage_BWK_Parameter.Zeit_Nachl := 300000; (*Millisekunden*)(*5 min -> geändert von 15 min MLi 29.04.21*)
+	Initialisierung.Anlage_BWK_Parameter.Zeit_Vorl := 60000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_331_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_331_Parameter.Regelung_PI_Kp := 0.5;
+	Initialisierung.Regelventil_331_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_331_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_331_Parameter.Regelung_Sollw_Max := 45;(*Grad Celsius*)
+	Initialisierung.Regelventil_331_Parameter.Regelung_Sollw_Min := 15;(*Grad Celsius*)
+	Initialisierung.Regelventil_331_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.003; (*Einheit: K/s,  0,003 K/s ~ 10 K/h*)
+	Initialisierung.Regelventil_331_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.003; (*Einheit: K/s*)
+	Initialisierung.Regelventil_331_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_331_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_331_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_331_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System Druckluftkompressor *)
+	Initialisierung.System_DLK_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_251_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_251_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_251_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_251_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_251_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_251_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_251_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_251_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_251_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_251_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_251_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_251_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_251_Parameter.Regelung_PI_Kp := 5;
+	Initialisierung.Regelventil_251_Parameter.Regelung_PI_Tctr := 500;(*Millisekunden*)
+	Initialisierung.Regelventil_251_Parameter.Regelung_PI_Tn := 150000;(*Millisekunden*)
+	Initialisierung.Regelventil_251_Parameter.Regelung_Sollw_Max := 60;(*Grad Celsius*)
+	Initialisierung.Regelventil_251_Parameter.Regelung_Sollw_Min := 15;(*Grad Celsius*)
+	Initialisierung.Regelventil_251_Parameter.Regelung_Sollw_Rampe_Steig_neg := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_251_Parameter.Regelung_Sollw_Rampe_Steig_pos := 3; (*Einheit: K/s*)
+	Initialisierung.Regelventil_251_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_251_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_251_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_251_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(* Parameter Anlage Druckluftkompressor *)
+	Initialisierung.Anlage_DLK_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_DLK_Parameter.Temp_Warmwasser_Max := 45; (*Grad Celsius*)
+
+(*Parameter System Fenster *)
+
+	Initialisierung.Fenster_Halle_OST_Parameter.AutoQuittierung := 0;
+	Initialisierung.Fenster_Halle_OST_Parameter.Zeit_Stellen0 := 120000;(*Millisekunden*)
+	Initialisierung.Fenster_Halle_OST_Parameter.Zeit_Stellen1 := 120000;(*Millisekunden*)
+
+	Initialisierung.Fenster_Halle_WEST_Parameter.AutoQuittierung := 0;
+	Initialisierung.Fenster_Halle_WEST_Parameter.Zeit_Stellen0 := 120000;(*Millisekunden*)
+	Initialisierung.Fenster_Halle_WEST_Parameter.Zeit_Stellen1 := 120000;(*Millisekunden*)
+
+(*Parameter System Fußbodentemperierung *)
+
+	Initialisierung.System_FBT_Parameter.Temp_Warmwasser_Max := 45; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Temp_Warmwasser_Min := 35; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Temp_Kaltwasser_Max := 20; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Temp_Kaltwasser_Min := 12 ; (*Grad Celsius*)
+
+	Initialisierung.System_FBT_Parameter.Temp_Vorl_Max := 45;
+	Initialisierung.System_FBT_Parameter.Temp_Vorl_Min := 5;
+	(* Heizkurve mit Neigung 0.6 https://www.vaillant.de/heizung/heizung-verstehen/tipps-rund-um-ihre-heizung/vorlauf-rucklauftemperatur/*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Heizung.Temp_Aussen_Max := 15; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Heizung.Temp_Aussen_Min := -12; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Heizung.Temp_Vorl_Max := 43; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Heizung.Temp_Vorl_Min := 25; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Kuehlung.Temp_Aussen_Max := 28; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min := 16; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Kuehlung.Temp_Vorl_Max := 18; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Kennlinie_Kuehlung.Temp_Vorl_Min := 16; (*Grad Celsius*)
+
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mo.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Di.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mi.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Do.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Fr.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Sa.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_So.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_FBT_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+
+	Initialisierung.Stellventil_423_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_423_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_423_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_424_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_424_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_424_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_425_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_425_Parameter.Regelung_PI_Kp := 0.5;
+	Initialisierung.Regelventil_425_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_425_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_425_Parameter.Regelung_Sollw_Max := 45;(*Grad Celsius*)
+	Initialisierung.Regelventil_425_Parameter.Regelung_Sollw_Min := 15;(*Grad Celsius*)
+	Initialisierung.Regelventil_425_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.003; (*Einheit: K/s,  0,003 K/s ~ 10 K/h*)
+	Initialisierung.Regelventil_425_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.003; (*Einheit: K/s*)
+	Initialisierung.Regelventil_425_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_425_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_425_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_425_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_425_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_425_Parameter.Regelung_PI_Kp := 0.4;
+	Initialisierung.Pumpe_425_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_425_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_425_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_425_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_425_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_425_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+(*Parameter System Hybrider Energiespeicher *)
+	Initialisierung.System_HES_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Anlage_HES_Parameter.Temp_Kuehlwasser_Max := 17; (*Grad Celsius*)
+	Initialisierung.Anlage_HES_Parameter.Temp_Kuehlwasser_Min := 12; (*Grad Celsius*)
+	Initialisierung.Anlage_HES_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_191_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_191_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_191_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_191_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_191_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_191_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_191_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_191_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_191_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_191_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_191_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+(*Parameter System Härteofen Heißwasser *)
+	Initialisierung.System_HOHW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Anlage_HO_Parameter.Temp_Heisswasser_Max := 85; (*Grad Celsius*)
+	Initialisierung.Anlage_HO_Parameter.Temp_Warmwasser:= 35; (*Grad Celsius*)
+	Initialisierung.Anlage_HO_Parameter.Temp_Warmwasser_Max := 60; (*Grad Celsius*)
+
+	Initialisierung.Stellventil_361_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_361_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_361_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_361_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_361_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_361_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_361_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_361_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_361_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_361_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_361_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_361_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_361_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_361_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_361_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_361_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_361_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_361_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_361_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_361_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_361_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_361_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_361_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System Härteofen Warmwasser *)
+	Initialisierung.System_HOWW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_261_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_261_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_261_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_261_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_261_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_261_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_261_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_261_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_261_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_261_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_261_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_261_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_261_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_261_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_261_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_261_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_261_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_261_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_261_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_261_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_261_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_261_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_261_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System Heizstaebe *)
+	Initialisierung.System_HS_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_HS_Parameter.Kennlinie_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.System_HS_Parameter.Temp_Spreizung := 2; (*Grad Celsius*)
+
+
+(*Parameter System Kältekompressor Kaltwasser *)
+	Initialisierung.System_KKKW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_145_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_145_Parameter.Zeit_Stellen0 := 35000;(*Millisekunden*)
+	Initialisierung.Stellventil_145_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_145_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_145_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_145_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_145_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_145_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_145_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_145_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_145_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+(*Parameter System Maschinenversorgung Warmwasser *)
+	Initialisierung.System_MVWW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser:= 42; (*Grad Celsius*)
+	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser_Max := 47; (*Grad Celsius*)
+
+	Initialisierung.Stellventil_245_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_245_Parameter.Zeit_Stellen0 := 35000;(*Millisekunden*)
+	Initialisierung.Stellventil_245_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_245_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_245_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_245_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_245_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_245_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_245_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_245_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_245_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+
+(*Parameter System Lüftungsanlage *)
+	Initialisierung.System_LA_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_LA_Parameter.Temp_Heisswasser_Max := 90 ; (*Grad Celsius*)
+	Initialisierung.System_LA_Parameter.Temp_Heisswasser_Min := 45 ; (*Grad Celsius*)
+	Initialisierung.System_LA_Parameter.Temp_Kaltwasser_Max := 25 ; (*Grad Celsius*)
+	Initialisierung.System_LA_Parameter.Temp_Kaltwasser_Min := 8 ; (*Grad Celsius*)
+
+	Initialisierung.Stellventil_453_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_453_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_453_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_454_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_454_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_454_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	(*Parameter Anlage Lüftungsanlage *)
+	Initialisierung.Anlage_LA_Parameter.Temp_Kuehlwasser_Max := 45; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Temp_Kuehlwasser_Min := 20; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Abluefter_Druck_Sollwert := 100; (*Prozent*)
+	Initialisierung.Anlage_LA_Parameter.Ausschaltverz_Anlage_nach_Taster := 480;(*Millisekunden*)
+	Initialisierung.Anlage_LA_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_LA_Parameter.Betriebsartenschalter_Anlage := 9;
+	Initialisierung.Anlage_LA_Parameter.Freie_Nachtkuehlung_AT_Grenzwert := 15; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Freie_Nachtkuehlung_Diff_AT_zu_RT_Grenzwert := 3; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Freie_Nachtkuehlung_Nacht_Raumsollwert := 22; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Seminarraum_CO2_Sollwert_bei_Lueftungsbetrieb := 1000; (*ppm?*)
+	Initialisierung.Anlage_LA_Parameter.Seminarraum_Grenzwert_CO2_Lueftung_Aus := 900; (*ppm*)
+	Initialisierung.Anlage_LA_Parameter.Seminarraum_Grenzwert_CO2_Lueftung_Ein := 1200; (*ppm*)
+	Initialisierung.Anlage_LA_Parameter.Sollwertschiebung_Anlage_Max_AT_Sollwert := 32; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Sollwertschiebung_Anlage_Max_Sollwert := 26; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Sollwertschiebung_Anlage_Min_AT_Sollwert := 18; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Sollwertschiebung_Anlage_Min_Sollwert := 22; (*Grad Celsius*)
+	Initialisierung.Anlage_LA_Parameter.Zuluefter_Drucksollwert := 350; (* mbar *)
+
+
+(*Parameter System Maschinenversorgung Heißwasser *)
+	Initialisierung.System_MVHW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Anlage_MVHW_Parameter.Temp_Heisswasser     := 75; (*Grad Celsius*)
+	Initialisierung.Anlage_MVHW_Parameter.Temp_Heisswasser_Max := 90; (*Grad Celsius*)
+	Initialisierung.Anlage_MVHW_Parameter.Temp_Heisswasser_Min := 60; (*Grad Celsius*)
+
+	Initialisierung.Stellventil_300_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_300_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_300_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_300_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_300_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_300_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_300_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_300_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_300_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_300_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_300_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+(*Parameter System Maschinenversorgung Kaltwasser *)
+	Initialisierung.System_MVKW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Anlage_MVKW_Parameter.Temp_Kaltwasser := 14; (*Grad Celsius*)
+	Initialisierung.Anlage_MVKW_Parameter.Temp_Kaltwasser_Max := 20; (*Grad Celsius*)
+	Initialisierung.Anlage_MVKW_Parameter.Temp_Kaltwasser_Min := 10; (*Grad Celsius*)
+
+	Initialisierung.Stellventil_100_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_100_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_100_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_100_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_100_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_100_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_100_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_100_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_100_Parameter.Stellwert_Leistung_Min := 30;(*Prozent*)
+	Initialisierung.Pumpe_100_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_100_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+
+
+
+(*Parameter System Statische Heizung *)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Aussen_Max:= 15; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Aussen_Min := -15; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Max := 65; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Min := 30; (*Grad Celsius*)
+
+	Initialisierung.System_SHZ_Parameter.Temp_Heisswasser_Max := 65 ; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Temp_Heisswasser_Min := 30 ; (*Grad Celsius*)
+
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mo.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Di.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mi.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Do.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Fr.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Sa.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_So.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+
+	Initialisierung.Regelventil_350_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_350_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_350_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_350_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_350_Parameter.Regelung_Sollw_Max := 70; (*Grad Celsius*)
+	Initialisierung.Regelventil_350_Parameter.Regelung_Sollw_Min := 30; (*Grad Celsius*)
+	Initialisierung.Regelventil_350_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.008;(*Einheit: K/s,  0,008 K/s ~ 30 K/h*)
+	Initialisierung.Regelventil_350_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.008;(*Einheit: K/s,  0,008 K/s ~ 30 K/h*)
+	Initialisierung.Regelventil_350_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_350_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_350_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_350_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_350_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_350_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_350_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_350_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_350_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_350_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_350_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_350_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+
+(*Parameter System Thermisches Netz *)
+	Initialisierung.System_ThNTZ_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_ThNTZ_Parameter.Regelung_PI_Oben_Kp := 1;
+	Initialisierung.System_ThNTZ_Parameter.Regelung_PI_Oben_Tctr := 1;(*Millisekunden*)
+	Initialisierung.System_ThNTZ_Parameter.Regelung_PI_Oben_Tn := 1;(*Millisekunden*)
+	Initialisierung.System_ThNTZ_Parameter.Regelung_Sollw_Max := 95;(*Prozent*)
+	Initialisierung.System_ThNTZ_Parameter.Regelung_Sollw_Min := 5;(*Prozent*)
+	Initialisierung.System_ThNTZ_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.System_ThNTZ_Parameter.Stellwert_Leistung_Min := -100;(*Prozent*)
+	Initialisierung.System_ThNTZ_Parameter.Temp_Max := 100; (*Grad Celsius*)
+	Initialisierung.System_ThNTZ_Parameter.Temp_Min := 0; (*Grad Celsius*)
+
+
+
+(*Parameter System Wand- und Deckentemperierung *)
+
+	Initialisierung.System_WDT_Parameter.Temp_Warmwasser_Max := 45 ; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Temp_Warmwasser_Min := 35   ; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Temp_Kaltwasser_Max := 17 ; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Temp_Kaltwasser_Min := 12  ; (*Grad Celsius*)
+
+	(* Heizkurve mit Neigung 0.6 https://www.vaillant.de/heizung/heizung-verstehen/tipps-rund-um-ihre-heizung/vorlauf-rucklauftemperatur/*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Heizung.Temp_Aussen_Max := 15; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Heizung.Temp_Aussen_Min := -2; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Heizung.Temp_Vorl_Max := 38; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Heizung.Temp_Vorl_Min := 25; (*Grad Celsius*)
+
+	Initialisierung.System_WDT_Parameter.Kennlinie_Kuehlung.Temp_Aussen_Max := 40; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Kuehlung.Temp_Aussen_Min := 25; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Kuehlung.Temp_Vorl_Max := 22; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Kuehlung.Temp_Vorl_Min := 20; (*Grad Celsius*)
+
+	Initialisierung.System_WDT_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_WDT_Parameter.Temp_Vorl_Max := 41; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Temp_Vorl_Min := 12; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Kennlinie_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.System_WDT_Parameter.Systemdruck_Max := 2500;(* mbar *)
+	Initialisierung.System_WDT_Parameter.Systemdruck_Min := 500;(* mbar *)
+
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mo.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mo.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Di.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Di.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mi.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Mi.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Do.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Do.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Fr.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Fr.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Sa.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_Sa.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_So.Temp_Absenkung := 10; (*Grad Celsius*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Start := 21;(*Uhr*)
+	Initialisierung.System_WDT_Parameter.Nachtabsenkung_So.Uhrzeit_Stunde_Ende := 3.5;(*Uhr*)
+
+	Initialisierung.Regelventil_500_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_500_Parameter.Regelung_PI_Kp := 0.5;
+	Initialisierung.Regelventil_500_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_500_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_500_Parameter.Regelung_Sollw_Max := 45; (*Grad Celsius*)
+	Initialisierung.Regelventil_500_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_500_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_500_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_500_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_500_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_500_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_500_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_541_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_541_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_541_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_541_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_541_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_541_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_541_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_541_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_541_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_541_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_541_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_541_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_542_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_542_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_542_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_542_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_542_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_542_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_542_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_542_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_542_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_542_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_542_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_542_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_543_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_543_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_543_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_543_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_543_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_543_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_543_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_543_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_543_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_543_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_543_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_543_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+
+	Initialisierung.Regelventil_551_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_551_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_551_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_551_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_551_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_551_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_551_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_551_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_551_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_551_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_551_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_551_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_552_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_552_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_552_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_552_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_552_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_552_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_552_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_552_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_552_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_552_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_552_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_552_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_553_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_553_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_553_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_553_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_553_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_553_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_553_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_553_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_553_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_553_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_553_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_553_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+
+	Initialisierung.Regelventil_561_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_561_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_561_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_561_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_561_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_561_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_561_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_561_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_561_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_561_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_561_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_561_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_562_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_562_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_562_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_562_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_562_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_562_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_562_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_562_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_562_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_562_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_562_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_562_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_563_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_563_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_563_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_563_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_563_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_563_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_563_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_563_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_563_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_563_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_563_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_563_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_571_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_571_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_571_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_571_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_571_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_571_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_571_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_571_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_571_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_571_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_571_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_571_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_572_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_572_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_572_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_572_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_572_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_572_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_572_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_572_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_572_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_572_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_572_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_572_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_573_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_573_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_573_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_573_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_573_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_573_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_573_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_573_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_573_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_573_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_573_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_573_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_401_402_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_401_402_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_401_402_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_403_404_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_403_404_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_403_404_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_504_505_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_504_505_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_504_505_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_405_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_405_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_405_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_405_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_405_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_405_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_405_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_405_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_500_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_500_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_500_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_500_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_500_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_500_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_500_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_500_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+(*Parameter System Wärmetauscher *)
+	Initialisierung.System_WT_HWW_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_215_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_215_Parameter.Zeit_Stellen0 := 75000;(*Millisekunden*)
+	Initialisierung.Stellventil_215_Parameter.Zeit_Stellen1 := 20000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_315_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_315_Parameter.Zeit_Stellen0 := 75000;(*Millisekunden*)
+	Initialisierung.Stellventil_315_Parameter.Zeit_Stellen1 := 20000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_215_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_215_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_215_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_215_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_215_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_215_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_215_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_215_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Pumpe_315_Parameter.AutoQuittierung := 0;
+	Initialisierung.Pumpe_315_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Pumpe_315_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Pumpe_315_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Pumpe_315_Parameter.Stellwert_Leistung_Max := 100;(*Prozent*)
+	Initialisierung.Pumpe_315_Parameter.Stellwert_Leistung_Min := 50;(*Prozent*)
+	Initialisierung.Pumpe_315_Parameter.Zeit_Nachl := 2000;(*Millisekunden*)
+	Initialisierung.Pumpe_315_Parameter.Zeit_Vorl := 2000;(*Millisekunden*)
+
+	Initialisierung.Regelventil_215_Parameter.AutoQuittierung := 0;
+	Initialisierung.Regelventil_215_Parameter.Regelung_PI_Kp := 0.265;
+	Initialisierung.Regelventil_215_Parameter.Regelung_PI_Tctr := 5000;(*Millisekunden*)
+	Initialisierung.Regelventil_215_Parameter.Regelung_PI_Tn := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_215_Parameter.Regelung_Sollw_Max := 35; (*Grad Celsius*)
+	Initialisierung.Regelventil_215_Parameter.Regelung_Sollw_Min := 15; (*Grad Celsius*)
+	Initialisierung.Regelventil_215_Parameter.Regelung_Sollw_Rampe_Steig_neg := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_215_Parameter.Regelung_Sollw_Rampe_Steig_pos := 0.0005;(*Einheit: K/s,  0,0005 K/s ~ 2 K/h*)
+	Initialisierung.Regelventil_215_Parameter.Stellwert_Stellung_Max := 100;(*Prozent*)
+	Initialisierung.Regelventil_215_Parameter.Stellwert_Stellung_Min := 0;(*Prozent*)
+	Initialisierung.Regelventil_215_Parameter.Zeit_Nachl := 15000;(*Millisekunden*)
+	Initialisierung.Regelventil_215_Parameter.Zeit_Vorl := 15000;(*Millisekunden*)
+
+(*Parameter System Wärmepumpe *)
+	Initialisierung.System_WP_946_Parameter.AutoQuittierung := 0;
+
+	Initialisierung.Stellventil_146_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_146_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_146_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Stellventil_246_Parameter.AutoQuittierung := 0;
+	Initialisierung.Stellventil_246_Parameter.Zeit_Stellen0 := 10000;(*Millisekunden*)
+	Initialisierung.Stellventil_246_Parameter.Zeit_Stellen1 := 10000;(*Millisekunden*)
+
+	Initialisierung.Anlage_WP_946_Parameter.AutoQuittierung := 0;
+	Initialisierung.Anlage_WP_946_Parameter.Temp_Kaltwasser 	:= 17; (*Grad Celsius*)
+	Initialisierung.Anlage_WP_946_Parameter.Temp_Kaltwasser_Max := 20; (*Grad Celsius*)
+	Initialisierung.Anlage_WP_946_Parameter.Temp_Kaltwasser_Min := 8; (*Grad Celsius*)
+
+	Initialisierung.Anlage_WP_946_Parameter.Zeit_Nachl := 900000; (*Millisekunden*)(*15 min*)
+	Initialisierung.Anlage_WP_946_Parameter.Zeit_Vorl := 60000;(*Millisekunden*)
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Initialisierungsroutine">
+      <LineId Id="6" Count="981" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

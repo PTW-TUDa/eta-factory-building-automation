@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_ABB_Lesen" Id="{cf633bfc-11c8-4c92-ad73-938bea2a4590}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ABB_Lesen
+VAR_INPUT
+	Reg1Value	: LREAL;
+	Reg42Value	: LREAL;
+	Reg42Unit 	: STRING;
+END_VAR
+VAR_OUTPUT
+	Arbeit 		: LREAL;
+	Leistung 	: LREAL;
+	CosPhi		: LREAL;
+	(*Scheinleistung: LREAL;
+	Blindleistung: LREAL;*)
+END_VAR
+VAR
+	Telegram 	: INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Der Zähler sendet 5 Versch. Diagramme, es werden jedoch von der Klemme immer nur 2 Diagramme gelesen. Durch prüfen der Einheit des Registers 42 kann bestimmt werden welches Diagramm aktuell gelesen wird.
+Reg42.sUnit = 'W' --> Telegram 1+2 werden aktuell ausgelesen
+Reg42.sUnit = 'Wh' --> Telegram 3+4 werden aktuell ausgelesen
+Reg42.sUnit = '' --> Telegram 5 wird aktuell ausgelesen
+*)
+
+IF REG42Unit = 'W' THEN
+	Telegram :=1;
+ELSIF REG42Unit = 'Wh' THEN
+	Telegram :=3;
+ELSIF REG42Unit = '' THEN
+	Telegram :=5;
+END_IF
+
+CASE Telegram OF
+	1: 	Arbeit := Reg1Value;
+		Leistung := Reg42Value;
+	3:	CosPhi := Reg1Value/INT_TO_LREAL(1000);
+END_CASE;
+
+(*
+(*Scheinleistung berechnen, abfangen von div by 0 error*)
+IF  CosPhi<>0  THEN
+Scheinleistung := Leistung/CosPhi;
+END_IF
+
+(*Blindleistung aus geom Summe berechen, abfangen einer "negativen Wurzel")*)
+IF Scheinleistung>Blindleistung THEN
+Blindleistung := SQRT(Scheinleistung*Scheinleistung-Leistung*Leistung);
+END_IF
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ABB_Lesen">
+      <LineId Id="16" Count="30" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_PU_Genibus_old" Id="{466a7447-96b3-43ae-a076-6bfbf5714294}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM FB_PU_Genibus_old
+VAR_INPUT
+	Reply						:  POINTER TO ST_PU_Genibus; 	(*This is mapped to PB_DPV0 Module 43 "DirectDataReply"*)
+	Request 					:  POINTER TO ST_PU_Genibus; 	(*This is mapped to PB_DPV0 Module 42 "DirectDataRequest"*)
+END_VAR
+VAR_OUTPUT
+	preciseInternalTemperature :	REAL;	(*Here the resulting precise Value will be stored *)
+END_VAR
+VAR
+	bInitialize					: BOOL := FALSE;
+
+	last_request: TIME;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Initialize PROGRAM*)
+IF bInitialize = FALSE THEN
+	Request^.DestAddress 		:= 16#FF; 	(* Set destination to "Broadcast"*)
+	Request^.Class				:= 16#0B;		(* Select Class 11 as Provided by Grundfos*)
+	Request^.OpLength			:= 16#01;		(*Operation = GET (0), Length = 1*)
+	Request^.Data1				:= 16#22;		(* ID = 34 (Probably for internal Temperature)*)
+	Request^.SequenceNumber 	:= 1;			(*Trigger first Request*)
+
+	bInitialize := TRUE;
+ELSE
+(*Programm is now ready for reading*)
+	IF Reply^.SequenceNumber = Request^.SequenceNumber THEN (*Sequence Number of Incoming data has to match that of request!*)
+
+		IF Reply^.OpLength = 16#02 THEN (* otherwise an error occured ! *)
+			preciseInternalTemperature := (Reply^.Data1*255+Reply^.Data2)*0.01-273.16;  (*Data1 contains the Highbyte, Data2 the Lowbyte. Resulting Value is in [K], substract 273.16 for getting [°C]*)
+		END_IF
+		Request^.SequenceNumber := Request^.SequenceNumber +1;	(* Increase SequenceNumber to trigger next Request*)
+	END_IF
+END_IF
+
+(*(* Initialize PROGRAM*)
+IF bInitialize = FALSE THEN
+	Request^.DestAddress 		:= 16#FF; 		(* Set destination to "Broadcast"*)
+	Request^.Class				:= 16#0B;		(* Select Class 11 as Provided by Grundfos*)
+	Request^.OpLength			:= 16#01;		(*Operation = GET (0), Length = 1*)
+	Request^.Data1				:= 16#22;		(* ID = 34 (Probably for internal Temperature) ||  Volumenstrom ID = 53 (in hex: 16#35) *)
+	Request^.SequenceNumber 	:= 1;			(*Trigger first Request*)
+
+	bInitialize := TRUE;
+
+	last_request := TIME();
+
+ELSE
+
+(*Programm is now ready for reading*)
+	IF Reply^.SequenceNumber = Request^.SequenceNumber THEN (*Sequence Number of Incoming data has to match that of request!*)
+
+		IF Reply^.OpLength = 16#02 THEN (* otherwise an error occured ! *)
+			preciseInternalTemperature := (Reply^.Data1*255+Reply^.Data2)*0.01-273.16;  (*Data1 contains the Highbyte, Data2 the Lowbyte. Resulting Value is in [K], substract 273.16 for getting [°C]*)
+		END_IF
+
+		IF  TIME()-last_request >= T#1s THEN
+			Request^.SequenceNumber := Request^.SequenceNumber +1;	(* Increase SequenceNumber to trigger next Request*)
+			last_request := TIME();
+		END_IF
+
+	END_IF
+END_IF
+
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PU_Genibus_old">
+      <LineId Id="13" Count="49" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

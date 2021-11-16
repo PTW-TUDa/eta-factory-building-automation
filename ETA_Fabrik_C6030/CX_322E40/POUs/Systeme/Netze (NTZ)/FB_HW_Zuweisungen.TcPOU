@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_HW_Zuweisungen" Id="{fabac8cd-b484-41c7-9367-49e2697114e2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HW_Zuweisungen
+VAR_INPUT
+END_VAR
+
+VAR_IN_OUT
+
+	Zustand		: ST_ThNTZ_Zustand;
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Zustand.Netze_Anford[1]:=Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Zustand.Netze_Anford;
+Zustand.Netze_Anford[2]:=Heizung_Lueftung_Klima.System_StatischeHeizung_350.Zustand.Netze_Anford;
+Zustand.Netze_Anford[3]:=Anlagenversorgung.System_Maschinenversorgung_HW_300.Zustand.Netze_Anford;
+Zustand.Netze_Anford[4]:=Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Zustand.Netze_Anford;
+Zustand.Netze_Anford[5]:=Wandler.System_Absorptionskaeltemaschine_941.Zustand.Netze_Anford;
+Zustand.Netze_Anford[6]:=Wandler.System_Waermetauscher_915.Zustand.Netze_Anford;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HW_Zuweisungen">
+      <LineId Id="10" Count="5" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

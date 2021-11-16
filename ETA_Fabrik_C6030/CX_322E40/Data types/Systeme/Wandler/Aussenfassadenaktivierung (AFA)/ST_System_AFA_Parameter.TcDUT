@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <DUT Name="ST_System_AFA_Parameter" Id="{4b94bc22-7c81-4968-8e2a-339616f67711}">
+    <Declaration><![CDATA[TYPE ST_System_AFA_Parameter :
+STRUCT
+
+	Zeit_Nachl				: REAL	:= 30;
+
+	Temp_Vorl_Max			: REAL	:= 60;
+	Temp_Vorl_Min			: REAL	:= 5;
+
+	Freigabe_Berieselung	: BOOL := FALSE;
+
+	AutoQuittierung			: BOOL := 0;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
