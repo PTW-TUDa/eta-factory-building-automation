@@ -447,9 +447,9 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{C418C312-DF88-4AFD-AB48-3E2DDB9D5D29}" Name="CX_322E40" PrjFilePath="CX_322E40\CX_322E40.plcproj" TmcFilePath="CX_322E40\CX_322E40.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CX_322E40\CX_322E40.tmc">
-					<Name>CX_322E40 Instance</Name>
+			<Project GUID="{C418C312-DF88-4AFD-AB48-3E2DDB9D5D29}" Name="CP_5C7432" PrjFilePath="CP_5C7432\CP_5C7432.plcproj" TmcFilePath="CP_5C7432\CP_5C7432.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CP_5C7432\CP_5C7432.tmc">
+					<Name>CP_5C7432 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>ComTask Inputs</Name>
@@ -11583,7 +11583,7 @@ PU245
 				</Box>
 				<Profibus>
 					<Fcxxxx>
-						<DevSettings NetId="a9fe8e550701" EquiCycleTime="500000" NcAccessTime="37500"/>
+						<DevSettings NetId="0a1680200701" EquiCycleTime="500000" NcAccessTime="37500"/>
 						<DevParameter CycleTime="250000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
 					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="21596" MaxRetryLimit="1" MinSlaveInterval="250" PollTimeout="8" DataControlTime="18"/>
@@ -18853,7 +18853,7 @@ Revision: Rev. 1
 				</Box>
 				<Profibus>
 					<Fcxxxx>
-						<DevSettings NetId="a9fe8e550301" EquiCycleTime="250000" NcAccessTime="37500"/>
+						<DevSettings NetId="0a1680200301" EquiCycleTime="250000" NcAccessTime="37500"/>
 						<DevParameter CycleTime="250000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
 					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="250" PollTimeout="8" DataControlTime="27"/>
@@ -18862,7 +18862,7 @@ Revision: Rev. 1
 		</Io>
 	</Project>
 	<Mappings>
-		<OwnerA Name="TIPC^CX_322E40^CX_322E40 Instance">
+		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 2 (EK1200)^Box 3 (BK1250)">
 				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[10]" VarB="K523A1_EIB^Channel 1^Input Data 8"/>
 				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[11]" VarB="K523A1_EIB^Channel 1^Input Data 9"/>
