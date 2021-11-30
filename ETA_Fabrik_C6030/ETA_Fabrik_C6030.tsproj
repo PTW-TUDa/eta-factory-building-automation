@@ -421,12 +421,12 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
-			<BitSize>1</BitSize>
+			<Name GUID="{18071995-0000-0000-0000-00200000000A}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..9] OF BIT</Name>
+			<BitSize>10</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>1</Elements>
+				<Elements>10</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -461,14 +461,11 @@
 				<Task Id="5" Priority="6" CycleTime="250000" AmsPort="350" AdtTasks="true">
 					<Name>ComTask</Name>
 				</Task>
-				<Task Id="7" Priority="12" CycleTime="500000" AmsPort="351" AdtTasks="true">
+				<Task Id="7" Priority="10" CycleTime="500000" AmsPort="351" AdtTasks="true">
 					<Name>MBus_Zaehler_Task</Name>
 				</Task>
-				<Task Id="8" Priority="10" CycleTime="500000" AmsPort="352" AdtTasks="true">
+				<Task Id="8" Priority="8" CycleTime="500000" AmsPort="352" AdtTasks="true">
 					<Name>Standard</Name>
-				</Task>
-				<Task Id="3" Priority="8" CycleTime="400000" AmsPort="353" AdtTasks="true">
-					<Name>Device 1 (OPC UA Virtual)_Task_58</Name>
 				</Task>
 			</Tasks>
 		</System>
@@ -3319,7 +3316,7 @@
 							<ManualConfig>
 								<OTCID>#x02010080</OTCID>
 							</ManualConfig>
-							<Priority>10</Priority>
+							<Priority>8</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 						<Context>
@@ -3328,14 +3325,14 @@
 							<ManualConfig>
 								<OTCID>#x02010070</OTCID>
 							</ManualConfig>
-							<Priority>12</Priority>
+							<Priority>10</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="6" OTCID="#x08502004"/>
-						<TaskPouOid Prio="10" OTCID="#x08502003"/>
-						<TaskPouOid Prio="12" OTCID="#x08502001"/>
+						<TaskPouOid Prio="6" OTCID="#x08502003"/>
+						<TaskPouOid Prio="8" OTCID="#x08502002"/>
+						<TaskPouOid Prio="10" OTCID="#x08502004"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -6925,8 +6922,8 @@ PU245
 						<EtherCAT SlaveType="5" AdsServerAddress="0a1680200301ec03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
-							<SyncMan>0013b8002400010003000000000000000000001324010000</SyncMan>
-							<SyncMan>002018052000010004000000000000000000802120010000</SyncMan>
+							<SyncMan>0013aa002400010003000000000000000000001324010000</SyncMan>
+							<SyncMan>0020ba042000010004000000000000000000802120010000</SyncMan>
 							<Fmmu>0000000000000000001300020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002000010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -7918,95 +7915,13 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 17 (CIM/CIU 150 pump)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
-								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6030" Sub="#x02" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6030" Sub="#x03" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x04" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x05" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.Frequency_0_0" Index="#x6030" Sub="#x06" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6030" Sub="#x07" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6030" Sub="#x08" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6030" Sub="#x09" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6030" Sub="#x0a" Flags="#x00000100">
-									<Type>REAL</Type>
-								</Entry>
-								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6030" Sub="#x0b" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6030" Sub="#x0c" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6030" Sub="#x0d" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6030" Sub="#x0e" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x0f" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x10" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.Speed_0_0" Index="#x6030" Sub="#x11" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.Energy_0_0" Index="#x6030" Sub="#x12" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.Power_0_0" Index="#x6030" Sub="#x13" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6030" Sub="#x14" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6030" Sub="#x15" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6030" Sub="#x16" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="Eingänge.Volume_0_0" Index="#x6030" Sub="#x17" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
-								</Entry>
-								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Box 17 (CIM/CIU 150 pump)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
-								</Entry>
-								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7030" Sub="#x02" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
-								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6034" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7034" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
 									<Type>USINT</Type>
 								</Entry>
 								<Entry>
@@ -8062,16 +7977,12 @@ PU245
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 17 (CIM/CIU 150 pump)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>1f1f</DefaultDataMask>
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
 								<Entry Name="Device 2 (EL6731)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>0e0e</DefaultDataMask>
+									<DefaultDataMask>0d0d</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
 								<Entry Name="Device 2 (EL6731)_ActualModulo" Index="#xf100" Sub="#x03" Flags="#x00000100">
@@ -8116,14 +8027,11 @@ PU245
 								<Entry Name="Box 16 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0b0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 17 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+									<Type GUID="{18071995-0000-0000-0000-00200000000A}">ARRAY [0..9] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="203166601"/>
@@ -14096,14 +14004,14 @@ PU235]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10288</BitOffs>
+							<BitOffs>9536</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10417</BitOffs>
+							<BitOffs>9657</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="30" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20101113220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -14584,14 +14492,14 @@ PU215
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10296</BitOffs>
+							<BitOffs>9544</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10418</BitOffs>
+							<BitOffs>9658</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="32" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -15074,14 +14982,14 @@ PU315
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10304</BitOffs>
+							<BitOffs>9552</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10419</BitOffs>
+							<BitOffs>9659</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="33" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -15563,14 +15471,14 @@ PU322]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10312</BitOffs>
+							<BitOffs>9560</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10420</BitOffs>
+							<BitOffs>9660</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="34" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -16053,14 +15961,14 @@ PU321
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10320</BitOffs>
+							<BitOffs>9568</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10421</BitOffs>
+							<BitOffs>9661</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="35" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -16543,14 +16451,14 @@ PU600
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10328</BitOffs>
+							<BitOffs>9576</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10422</BitOffs>
+							<BitOffs>9662</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="38" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -17033,14 +16941,14 @@ PU500
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10336</BitOffs>
+							<BitOffs>9584</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10423</BitOffs>
+							<BitOffs>9663</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="39" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -17523,14 +17431,14 @@ PU425
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10344</BitOffs>
+							<BitOffs>9592</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10424</BitOffs>
+							<BitOffs>9664</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="40" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -18013,14 +17921,14 @@ PU405
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10352</BitOffs>
+							<BitOffs>9600</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10425</BitOffs>
+							<BitOffs>9665</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="42" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -18502,14 +18410,14 @@ PU251]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10360</BitOffs>
+							<BitOffs>9608</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10426</BitOffs>
+							<BitOffs>9666</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="43" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -18992,14 +18900,14 @@ PU455
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10368</BitOffs>
+							<BitOffs>9616</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10427</BitOffs>
+							<BitOffs>9667</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="44" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -19481,14 +19389,14 @@ PU350]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10376</BitOffs>
+							<BitOffs>9624</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10428</BitOffs>
+							<BitOffs>9668</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="45" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -19934,7 +19842,7 @@ PU350]]></Comment>
 						</GsdModule>
 					</Profibus>
 				</Box>
-				<Box Id="20" BoxType="1003">
+				<Box Id="20" Disabled="true" BoxType="1003">
 					<Name>Box 17 (CIM/CIU 150 pump)</Name>
 					<Comment><![CDATA[Vendor:   GRUNDFOS
 Revision: R1
@@ -20541,14 +20449,14 @@ Revision: Rev. 1
 132	= slave, waiting for station no. from PLC
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10392</BitOffs>
+							<BitOffs>9632</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10430</BitOffs>
+							<BitOffs>9669</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="UMG604" StationNo="81" MinSlaveInterval="1" Ident="2881" Modular="1" MaxModule="12" MaxInputLen="124" MaxOutputLen="16" MaxDataLen="140" WatchDogTime="500" SupportFlags="1023" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000060004000001" C2Settings="e803000000000000000000000000" CfgData="c0005f" FixPresetModules="true">
@@ -20572,7 +20480,7 @@ Revision: Rev. 1
 								<Var>
 									<Name>STD: 32 Word In, 1 Byte Out_0_0</Name>
 									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
-									<BitOffs>9776</BitOffs>
+									<BitOffs>9024</BitOffs>
 								</Var>
 							</Vars>
 							<Vars VarGrpType="2">
@@ -20580,7 +20488,7 @@ Revision: Rev. 1
 								<Var>
 									<Name>STD: 32 Word In, 1 Byte Out_1_0</Name>
 									<Type>USINT</Type>
-									<BitOffs>1456</BitOffs>
+									<BitOffs>1344</BitOffs>
 								</Var>
 							</Vars>
 						</GsdModule>
@@ -20591,20 +20499,20 @@ Revision: Rev. 1
 						<DevSettings NetId="0a1680200301" EquiCycleTime="250000" NcAccessTime="75000"/>
 						<DevParameter CycleTime="250000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
-					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="250" PollTimeout="8" DataControlTime="27"/>
+					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="32123" MaxRetryLimit="1" MinSlaveInterval="250" PollTimeout="8" DataControlTime="26"/>
 				</Profibus>
 			</Device>
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0220-500832000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0120-500821000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0120-500890000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0020-500810000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0020-5008C0000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{08502001-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502003-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502003-00C0-0304-0020-5008C0000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500890000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-500810000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0020-5008C0000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{08502002-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502002-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502004-00C0-0304-0020-5008C0000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Box 4 (BK1250)">
 				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[0]" VarB="Term 48 (KL6781)^Channel 1^Data In 0"/>
