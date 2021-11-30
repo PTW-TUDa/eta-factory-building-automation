@@ -15,7 +15,7 @@ VAR
 	nErrorID		: DWORD;
 	bDone 	: BOOL;
 
-	OPC_UA_SERVER_URL 	: STRING := 'opc.tcp://192.168.115.121:4840';
+	OPC_UA_SERVER_URL 	: STRING ;
 
 	SessionConnectInfo		: ST_UASessionConnectInfo;
 	sOpcUA_URL			: STRING(MAX_STRING_LENGTH);
@@ -90,6 +90,7 @@ END_VAR]]></Declaration>
 
 			bInit := TRUE;
 END_IF
+OPC_UA_SERVER_URL := Global_OPC_UA.IVA_Ofen_Read_REAL;
 
 IF NOT bDONE THEN
 	CASE iState OF
@@ -233,7 +234,9 @@ IF NOT bDONE THEN
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="IVA_Ofen_Read_REAL">
-      <LineId Id="52" Count="176" />
+      <LineId Id="52" Count="36" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="89" Count="139" />
     </LineIds>
   </POU>
 </TcPlcObject>
