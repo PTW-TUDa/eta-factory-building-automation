@@ -452,6 +452,11 @@
 			<Settings>
 				<IoIdleTask Priority="4"/>
 			</Settings>
+			<Licenses CacheOrCheckLicensesOnStartup="true">
+				<Target>
+					<LicenseDevice DongleHardwareId="2" DongleDevice="#x0302001e" DongleLevel="70" DongleSystemId="{2C64A9DA-9521-D07C-E97D-40148B0A3376}" DongleSerialNumber="0100106826"/>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="5" Priority="6" CycleTime="250000" AmsPort="350" AdtTasks="true">
 					<Name>ComTask</Name>
