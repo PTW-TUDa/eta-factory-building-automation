@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.22">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.22" TcVersionFixed="true">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
@@ -394,21 +394,21 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
-			<BitSize>7</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>7</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-001300000040}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..63] OF BYTE</Name>
-			<BitSize>512</BitSize>
+			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
+			<BitSize>8</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>64</Elements>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000009}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..8] OF BIT</Name>
+			<BitSize>9</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>9</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -420,15 +420,32 @@
 				<Elements>32</Elements>
 			</ArrayInfo>
 		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-001300000040}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..63] OF BYTE</Name>
+			<BitSize>512</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>64</Elements>
+			</ArrayInfo>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
-		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c0ffffffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1001">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1002">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c00000ffc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c00000ffc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c000ff00c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
-		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ff000000000000ff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000000000ff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c00000c00000c00000c00000c00000c0ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c600ffffc6c6c60000c0c6c6c600ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6ff0000c6c6c60000c0c6c6c6ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c60000ffc6c6c60000c0c6c6c60000ff808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6008400c6c6c60000c0c6c6c6008400808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1005">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1001">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c00000ffc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c00000ffc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c000ff00c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
+		<ImageData Id="1002">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ff000000000000ff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff000000ff00ffff00ff000000ff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000000000ff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c00000c00000c00000c00000c00000c0ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c600ffffc6c6c60000c0c6c6c600ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6ff0000c6c6c60000c0c6c6c6ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c60000ffc6c6c60000c0c6c6c60000ff808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6008400c6c6c60000c0c6c6c6008400808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1005">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
 	<Project ProjectGUID="{00CACF35-1DB4-4749-82B1-534521295F64}" Target64Bit="true" AutoPrioManagement="true" ShowHideConfigurations="#x106">
 		<System>
@@ -3316,39 +3333,7 @@
 			</Project>
 		</Plc>
 		<Io>
-			<Device Id="1" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="10.22.128.32.2.1" RemoteName="Gerät 1 (EtherCAT)" InfoImageId="5">
-				<Name>Gerät 1 (EtherCAT)</Name>
-				<AddressInfo>
-					<Ccat>
-						<Address>-801112064</Address>
-						<Offset>131072</Offset>
-						<Size>8192</Size>
-						<BaseAddr>0</BaseAddr>
-						<BusNo>3</BusNo>
-						<SlotNo>0</SlotNo>
-						<VendorId>5612</VendorId>
-						<DeviceId>20480</DeviceId>
-						<Dma>
-							<Address>0</Address>
-							<Offset>4096</Offset>
-							<Size>256</Size>
-							<BaseAddr>2</BaseAddr>
-							<RxChn>0</RxChn>
-							<TxChn>1</TxChn>
-						</Dma>
-					</Ccat>
-				</AddressInfo>
-				<Image Id="4" AddrType="9" ImageType="3">
-					<Name>Gerät 1-Prozessabbild</Name>
-				</Image>
-				<Box Id="2" BoxType="9099">
-					<Name>Klemme 2 (EK1200)</Name>
-					<ImageId>1000</ImageId>
-					<EtherCAT PdiType="#x0100" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04b02c52" RevisionNo="#x00001388" InfoDataState="false" PortPhys="49" Type="EK1200-5000 EtherCAT Netzteil (2A E-Bus)" Desc="EK1200" PortABoxInfo="#x00ffffff"/>
-				</Box>
-				<EtherCAT AtLeastTwoFrameCmds="false"/>
-			</Device>
-			<Device Id="6" Disabled="true" DevType="86" AmsPort="28678" AmsNetId="10.22.128.32.7.1" RemoteName="Gerät 6 (EL6731)">
+			<Device Id="6" DevType="86" AmsPort="28678" AmsNetId="10.22.128.32.7.1" RemoteName="Gerät 6 (EL6731)">
 				<Name>Gerät 6 (EL6731)</Name>
 				<AddressInfo>
 					<Ecat>
@@ -6339,11 +6324,11 @@ PU245
 				</Image>
 				<Box Id="31" BoxType="9099">
 					<Name>Term 31 (EK1100)</Name>
-					<ImageId>1001</ImageId>
+					<ImageId>1000</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x044c2c52" RevisionNo="#x00120000" PortPhys="305" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1100 EtherCAT Coupler (2A E-Bus)" Desc="EK1100" PortABoxInfo="#x00ffffff"/>
 					<Box Id="30" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 30 (EL6070-0033)</Name>
-						<ImageId>1002</ImageId>
+						<ImageId>1001</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="35" FoeType="1" VendorId="#x00000002" ProductCode="#x17b63052" RevisionNo="#x00130021" InfoDataAddr="true" RepeatSupport="true" TimeoutMailbox2="3000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6070-0033 1Ch. Licence key terminal, individual licences" Desc="EL6070-0033" PortABoxInfo="#x0100001f">
 							<SyncMan>001000012600010001000000300000010001001026010000</SyncMan>
 							<SyncMan>001100012200010002000000300000010001001122010000</SyncMan>
@@ -6354,28 +6339,569 @@ PU245
 					</Box>
 					<Box Id="3" BoxType="9093">
 						<Name>Profibus_1 (EL6731)</Name>
-						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="a9fe8e550b040000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
+						<ImageId>1002</ImageId>
+						<EtherCAT SlaveType="5" AdsServerAddress="0a1680200701eb03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
-							<SyncMan>001300002400000003000000000000000000001324010000</SyncMan>
-							<SyncMan>802102002000010004000000000000000000802120010000</SyncMan>
-							<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
+							<SyncMan>001354002400010003000000000000000000001324010000</SyncMan>
+							<SyncMan>802140022000010004000000000000000000802120010000</SyncMan>
+							<Fmmu>0000000000000000001300020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000802100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010140200181402</BootStrapData>
 							<SuName>Klemme 2 (EL6731)</SuName>
 							<DcMode>53796e6368726f6e00000000000000004672656552756e2f534d2d53796e6368726f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="Device" Index="#x1a80" Flags="#x0011" SyncMan="3">
-								<Entry Name="Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 1 (CIM/CIU 150 pump)_IN" Index="#x1a00" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6000" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6000" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6000" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6000" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6000" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6000" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6000" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6000" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6000" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6000" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6000" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6000" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6000" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6000" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6000" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6000" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6000" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6000" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6000" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6000" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6000" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6000" Sub="#x16" Flags="#x00000100">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6000" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 1 (CIM/CIU 150 pump)_OUT" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7000" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7000" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 2 (CIM/CIU 150 pump)_IN" Index="#x1a01" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6004" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6004" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6004" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6004" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6004" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6004" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6004" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6004" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6004" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6004" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6004" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6004" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6004" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6004" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6004" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6004" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6004" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6004" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6004" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6004" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6004" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6004" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6004" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 2 (CIM/CIU 150 pump)_OUT" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7004" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7004" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 3 (CIM/CIU 150 pump)_IN" Index="#x1a02" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6008" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6008" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6008" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6008" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6008" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6008" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6008" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6008" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6008" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6008" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6008" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6008" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6008" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6008" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6008" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6008" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6008" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6008" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6008" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6008" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6008" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6008" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6008" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 3 (CIM/CIU 150 pump)_OUT" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7008" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7008" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 4 (CIM/CIU 150 pump)_IN" Index="#x1a03" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x600c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x600c" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x600c" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x600c" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x600c" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x600c" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x600c" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x600c" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x600c" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x600c" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x600c" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x600c" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x600c" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x600c" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x600c" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x600c" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x600c" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x600c" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x600c" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x600c" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x600c" Sub="#x15" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x600c" Sub="#x16" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x600c" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 4 (CIM/CIU 150 pump)_OUT" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x700c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x700c" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 5 (CIM/CIU 150 pump)_IN" Index="#x1a04" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6010" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6010" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6010" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6010" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6010" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6010" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6010" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6010" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6010" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6010" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6010" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6010" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6010" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6010" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6010" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6010" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6010" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6010" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6010" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6010" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6010" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6010" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6010" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.SetpointRangeMax_0_0" Index="#x6010" Sub="#x18" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000002}">ARRAY [0..1] OF BYTE</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 5 (CIM/CIU 150 pump)_OUT" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7010" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7010" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 6 (CIM/CIU 150 pump)_IN" Index="#x1a05" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6014" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6014" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6014" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6014" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6014" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6014" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6014" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6014" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6014" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6014" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6014" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6014" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6014" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6014" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6014" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6014" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6014" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6014" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6014" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6014" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6014" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6014" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6014" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 6 (CIM/CIU 150 pump)_OUT" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7014" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7014" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Gerät 6 (EL6731)" Index="#x1a80" Flags="#x0011" SyncMan="3">
+								<Entry Name="Box 1 (CIM/CIU 150 pump)_DpState" Index="#xa000" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 2 (CIM/CIU 150 pump)_DpState" Index="#xa010" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 3 (CIM/CIU 150 pump)_DpState" Index="#xa020" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 4 (CIM/CIU 150 pump)_DpState" Index="#xa030" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 5 (CIM/CIU 150 pump)_DpState" Index="#xa040" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 6 (CIM/CIU 150 pump)_DpState" Index="#xa050" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Gerät 6 (EL6731)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>0606</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Gerät 6 (EL6731)_ActualModulo" Index="#xf100" Sub="#x03" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Gerät 6 (EL6731)_DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 1 (CIM/CIU 150 pump)_DiagFlag" Index="#xa000" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 2 (CIM/CIU 150 pump)_DiagFlag" Index="#xa010" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 3 (CIM/CIU 150 pump)_DiagFlag" Index="#xa020" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 4 (CIM/CIU 150 pump)_DiagFlag" Index="#xa030" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 5 (CIM/CIU 150 pump)_DiagFlag" Index="#xa040" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 6 (CIM/CIU 150 pump)_DiagFlag" Index="#xa050" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+									<Type GUID="{18071995-0000-0000-0000-002000000009}">ARRAY [0..8] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="203166601"/>
@@ -6387,28 +6913,1209 @@ PU245
 					</Box>
 					<Box Id="5" BoxType="9093" BoxFlags="#x00000020">
 						<Name>Profibus_2 (EL6731)</Name>
-						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="a9fe8e550b060000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
+						<ImageId>1002</ImageId>
+						<EtherCAT SlaveType="5" AdsServerAddress="0a1680200301ec03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
-							<SyncMan>001300002400000003000000000000000000001324010000</SyncMan>
-							<SyncMan>002002002000010004000000000000000000802120010000</SyncMan>
-							<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
+							<SyncMan>0013b8002400010003000000000000000000001324010000</SyncMan>
+							<SyncMan>002018052000010004000000000000000000802120010000</SyncMan>
+							<Fmmu>0000000000000000001300020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002000010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010140200181402</BootStrapData>
 							<SuName>Term 5 (EL6731)</SuName>
 							<DcMode>53796e6368726f6e00000000000000004672656552756e2f534d2d53796e6368726f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="Device" Index="#x1a80" Flags="#x0011" SyncMan="3">
-								<Entry Name="Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 1 (CIM/CIU 150 pump)_IN" Index="#x1a00" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6000" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6000" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6000" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6000" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6000" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6000" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6000" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6000" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6000" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6000" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6000" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6000" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6000" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6000" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6000" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6000" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6000" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6000" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6000" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6000" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6000" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6000" Sub="#x16" Flags="#x00000100">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6000" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 1 (CIM/CIU 150 pump)_OUT" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7000" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7000" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 3 (CIM/CIU 150 pump)_IN" Index="#x1a01" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6004" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6004" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6004" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6004" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6004" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6004" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6004" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6004" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6004" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6004" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6004" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6004" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6004" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6004" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6004" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6004" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6004" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6004" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6004" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6004" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6004" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6004" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6004" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 3 (CIM/CIU 150 pump)_OUT" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7004" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7004" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 4 (CIM/CIU 150 pump)_IN" Index="#x1a02" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6008" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6008" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6008" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6008" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6008" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6008" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6008" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6008" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6008" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6008" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6008" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6008" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6008" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6008" Sub="#x0e" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6008" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6008" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6008" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6008" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6008" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6008" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6008" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6008" Sub="#x16" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6008" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 4 (CIM/CIU 150 pump)_OUT" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7008" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7008" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 5 (CIM/CIU 150 pump)_IN" Index="#x1a03" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x600c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x600c" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x600c" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x600c" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x600c" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x600c" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x600c" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x600c" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x600c" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x600c" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x600c" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x600c" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x600c" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x600c" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x600c" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x600c" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x600c" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x600c" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x600c" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x600c" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x600c" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x600c" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x600c" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 5 (CIM/CIU 150 pump)_OUT" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x700c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x700c" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 6 (CIM/CIU 150 pump)_IN" Index="#x1a04" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6010" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6010" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6010" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6010" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6010" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6010" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6010" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6010" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6010" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6010" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6010" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6010" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6010" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6010" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6010" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6010" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6010" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6010" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6010" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6010" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6010" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6010" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6010" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 6 (CIM/CIU 150 pump)_OUT" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7010" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7010" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 9 (CIM/CIU 150 pump)_IN" Index="#x1a05" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6014" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6014" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6014" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6014" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6014" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6014" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6014" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6014" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6014" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6014" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6014" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6014" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6014" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6014" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6014" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6014" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6014" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6014" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6014" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6014" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6014" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6014" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6014" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 9 (CIM/CIU 150 pump)_OUT" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7014" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7014" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 10 (CIM/CIU 150 pump)_IN" Index="#x1a06" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6018" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6018" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6018" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6018" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6018" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6018" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6018" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6018" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6018" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6018" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6018" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6018" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6018" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6018" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6018" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6018" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6018" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6018" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6018" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6018" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6018" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6018" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6018" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 10 (CIM/CIU 150 pump)_OUT" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7018" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7018" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 11 (CIM/CIU 150 pump)_IN" Index="#x1a07" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x601c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x601c" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x601c" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x601c" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x601c" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x601c" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x601c" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x601c" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x601c" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x601c" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x601c" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x601c" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x601c" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x601c" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x601c" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x601c" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x601c" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x601c" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x601c" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x601c" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x601c" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x601c" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x601c" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 11 (CIM/CIU 150 pump)_OUT" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x701c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x701c" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 13 (CIM/CIU 150 pump)_IN" Index="#x1a08" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6020" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6020" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6020" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6020" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6020" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6020" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6020" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6020" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6020" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6020" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6020" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6020" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6020" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6020" Sub="#x0e" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6020" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6020" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6020" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6020" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6020" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6020" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6020" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6020" Sub="#x16" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6020" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 13 (CIM/CIU 150 pump)_OUT" Index="#x1608" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7020" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7020" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 14 (CIM/CIU 150 pump)_IN" Index="#x1a09" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6024" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6024" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6024" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6024" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6024" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6024" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6024" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6024" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6024" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6024" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6024" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6024" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6024" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6024" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6024" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6024" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6024" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6024" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6024" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6024" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6024" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6024" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6024" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 14 (CIM/CIU 150 pump)_OUT" Index="#x1609" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7024" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7024" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 15 (CIM/CIU 150 pump)_IN" Index="#x1a0a" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6028" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6028" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6028" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6028" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6028" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6028" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6028" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6028" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6028" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6028" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6028" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6028" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6028" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6028" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6028" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6028" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6028" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6028" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6028" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6028" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6028" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6028" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6028" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 15 (CIM/CIU 150 pump)_OUT" Index="#x160a" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7028" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7028" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 16 (CIM/CIU 150 pump)_IN" Index="#x1a0b" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x602c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x602c" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x602c" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x602c" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x602c" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x602c" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x602c" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x602c" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x602c" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x602c" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x602c" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x602c" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x602c" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x602c" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x602c" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x602c" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x602c" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x602c" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x602c" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x602c" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x602c" Sub="#x15" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x602c" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x602c" Sub="#x17" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 16 (CIM/CIU 150 pump)_OUT" Index="#x160b" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x702c" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x702c" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 17 (CIM/CIU 150 pump)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6030" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6030" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6030" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6030" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6030" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6030" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6030" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6030" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6030" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6030" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6030" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6030" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6030" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6030" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6030" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6030" Sub="#x15" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6030" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6030" Sub="#x17" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 17 (CIM/CIU 150 pump)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7030" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6034" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7034" Sub="#x01" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Device 2 (EL6731)" Index="#x1a80" Flags="#x0011" SyncMan="3">
+								<Entry Name="Box 1 (CIM/CIU 150 pump)_DpState" Index="#xa000" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 3 (CIM/CIU 150 pump)_DpState" Index="#xa010" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 4 (CIM/CIU 150 pump)_DpState" Index="#xa020" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 5 (CIM/CIU 150 pump)_DpState" Index="#xa030" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 6 (CIM/CIU 150 pump)_DpState" Index="#xa040" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 9 (CIM/CIU 150 pump)_DpState" Index="#xa050" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 10 (CIM/CIU 150 pump)_DpState" Index="#xa060" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 11 (CIM/CIU 150 pump)_DpState" Index="#xa070" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 13 (CIM/CIU 150 pump)_DpState" Index="#xa080" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 14 (CIM/CIU 150 pump)_DpState" Index="#xa090" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 15 (CIM/CIU 150 pump)_DpState" Index="#xa0a0" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 16 (CIM/CIU 150 pump)_DpState" Index="#xa0b0" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 17 (CIM/CIU 150 pump)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 2 (EL6731)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>0e0e</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 2 (EL6731)_ActualModulo" Index="#xf100" Sub="#x03" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Device 2 (EL6731)_DiagFlag" Index="#xf100" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 1 (CIM/CIU 150 pump)_DiagFlag" Index="#xa000" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 3 (CIM/CIU 150 pump)_DiagFlag" Index="#xa010" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 4 (CIM/CIU 150 pump)_DiagFlag" Index="#xa020" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 5 (CIM/CIU 150 pump)_DiagFlag" Index="#xa030" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 6 (CIM/CIU 150 pump)_DiagFlag" Index="#xa040" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 9 (CIM/CIU 150 pump)_DiagFlag" Index="#xa050" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 10 (CIM/CIU 150 pump)_DiagFlag" Index="#xa060" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 11 (CIM/CIU 150 pump)_DiagFlag" Index="#xa070" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 13 (CIM/CIU 150 pump)_DiagFlag" Index="#xa080" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 14 (CIM/CIU 150 pump)_DiagFlag" Index="#xa090" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 15 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0a0" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 16 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0b0" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 17 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="203166601"/>
@@ -6420,7 +8127,7 @@ PU245
 					</Box>
 					<Box Id="1" BoxType="9081" AmsPort="28929">
 						<Name>Box 3 (BK1250)</Name>
-						<ImageId>1004</ImageId>
+						<ImageId>1003</ImageId>
 						<Vars VarGrpType="1">
 							<Name>Eingänge</Name>
 							<Var>
@@ -11626,11 +13333,11 @@ PU245
 				</Box>
 				<Box Id="15" BoxType="9099">
 					<Name>Klemme 15 (EK1100)</Name>
-					<ImageId>1001</ImageId>
+					<ImageId>1000</ImageId>
 					<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x044c2c52" RevisionNo="#x00120000" PortPhys="305" Type="EK1100 EtherCAT-Koppler (2A E-Bus)" Desc="EK1100" PortABoxInfo="#x0200001f"/>
 					<Box Id="27" BoxType="9099">
 						<Name>Klemme 27 (EL3068)</Name>
-						<ImageId>1005</ImageId>
+						<ImageId>1004</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bfc3052" RevisionNo="#x00140000" InfoDataAddr="true" PortPhys="51" Type="EL3068 8K. Ana. Eingang 0-10V" Desc="EL3068" PortABoxInfo="#x0100000f">
 							<SyncMan>001080002600010001000000000000008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000000000008000801022010000</SyncMan>
@@ -11939,7 +13646,7 @@ PU245
 					</Box>
 					<Box Id="28" BoxType="9099">
 						<Name>Klemme 28 (EL4008)</Name>
-						<ImageId>1006</ImageId>
+						<ImageId>1005</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0405" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0fa83052" RevisionNo="#x00140000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" Type="EL4008 8K. Ana. Ausgang 0-10V, 12bit" Desc="EL4008" PortABoxInfo="#x0100001b">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
@@ -12002,7 +13709,7 @@ PU245
 					</Box>
 					<Box Id="29" BoxType="9081" AmsPort="28928">
 						<Name>Box 4 (BK1250)</Name>
-						<ImageId>1004</ImageId>
+						<ImageId>1003</ImageId>
 						<Vars VarGrpType="1">
 							<Name>Eingänge</Name>
 							<Var>
@@ -12016,7 +13723,7 @@ PU245
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>24784</BitOffs>
+								<BitOffs>37072</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -12027,7 +13734,7 @@ PU245
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>24784</BitOffs>
+								<BitOffs>37072</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -12040,277 +13747,277 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>24800</BitOffs>
+										<BitOffs>37088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>24816</BitOffs>
+										<BitOffs>37104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>24824</BitOffs>
+										<BitOffs>37112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>24832</BitOffs>
+										<BitOffs>37120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>24840</BitOffs>
+										<BitOffs>37128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>24848</BitOffs>
+										<BitOffs>37136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>24856</BitOffs>
+										<BitOffs>37144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>24864</BitOffs>
+										<BitOffs>37152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>24872</BitOffs>
+										<BitOffs>37160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>24880</BitOffs>
+										<BitOffs>37168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>24888</BitOffs>
+										<BitOffs>37176</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>24896</BitOffs>
+										<BitOffs>37184</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>24904</BitOffs>
+										<BitOffs>37192</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>24912</BitOffs>
+										<BitOffs>37200</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>24920</BitOffs>
+										<BitOffs>37208</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>24928</BitOffs>
+										<BitOffs>37216</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>24936</BitOffs>
+										<BitOffs>37224</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>24944</BitOffs>
+										<BitOffs>37232</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>24952</BitOffs>
+										<BitOffs>37240</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>24960</BitOffs>
+										<BitOffs>37248</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>24968</BitOffs>
+										<BitOffs>37256</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>24976</BitOffs>
+										<BitOffs>37264</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>24984</BitOffs>
+										<BitOffs>37272</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>24800</BitOffs>
+										<BitOffs>37088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>24816</BitOffs>
+										<BitOffs>37104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>24824</BitOffs>
+										<BitOffs>37112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>24832</BitOffs>
+										<BitOffs>37120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>24840</BitOffs>
+										<BitOffs>37128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>24848</BitOffs>
+										<BitOffs>37136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>24856</BitOffs>
+										<BitOffs>37144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>24864</BitOffs>
+										<BitOffs>37152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>24872</BitOffs>
+										<BitOffs>37160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>24880</BitOffs>
+										<BitOffs>37168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>24888</BitOffs>
+										<BitOffs>37176</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>24896</BitOffs>
+										<BitOffs>37184</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>24904</BitOffs>
+										<BitOffs>37192</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>24912</BitOffs>
+										<BitOffs>37200</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>24920</BitOffs>
+										<BitOffs>37208</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>24928</BitOffs>
+										<BitOffs>37216</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>24936</BitOffs>
+										<BitOffs>37224</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>24944</BitOffs>
+										<BitOffs>37232</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>24952</BitOffs>
+										<BitOffs>37240</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>24960</BitOffs>
+										<BitOffs>37248</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>24968</BitOffs>
+										<BitOffs>37256</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>24976</BitOffs>
+										<BitOffs>37264</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>24984</BitOffs>
+										<BitOffs>37272</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12334,7 +14041,7 @@ PU245
 				</Box>
 				<EtherCAT AtLeastTwoFrameCmds="false"/>
 			</Device>
-			<Device Id="2" Disabled="true" DevType="86" AmsPort="28674" AmsNetId="10.22.128.32.3.1" RemoteName="Device 2 (EL6731)">
+			<Device Id="2" DevType="86" AmsPort="28674" AmsNetId="10.22.128.32.3.1" RemoteName="Device 2 (EL6731)">
 				<Name>Device 2 (EL6731)</Name>
 				<AddressInfo>
 					<Ecat>
@@ -18874,17 +20581,20 @@ Revision: Rev. 1
 				<Profibus>
 					<Fcxxxx>
 						<DevSettings NetId="0a1680200301" EquiCycleTime="250000" NcAccessTime="75000"/>
-						<DevParameter CycleTime="500000" AutoBaudDisabled="true"/>
+						<DevParameter CycleTime="250000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
-					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="500" PollTimeout="8" DataControlTime="27"/>
+					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="250" PollTimeout="8" DataControlTime="27"/>
 				</Profibus>
 			</Device>
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030070"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-5008C0000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0120-500890000403}" Id="#x02030060"/>
 		<MappingInfo Identifier="{00000000-2003-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{08502002-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{08502002-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{08502003-00C0-0304-0020-5008C0000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
