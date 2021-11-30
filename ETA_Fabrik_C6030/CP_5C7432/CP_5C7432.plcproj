@@ -900,6 +900,12 @@
     <PlaceholderReference Include="Tc3_PLCopen_OpcUa">
       <DefaultResolution>Tc3_PLCopen_OpcUa, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_PLCopen_OpcUa</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>NMAXNODEIDSINLIST</Key>
+          <Value>20</Value>
+        </Parameter>
+      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

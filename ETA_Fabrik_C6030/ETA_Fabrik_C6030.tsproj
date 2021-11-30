@@ -461,11 +461,14 @@
 				<Task Id="5" Priority="6" CycleTime="250000" AmsPort="350" AdtTasks="true">
 					<Name>ComTask</Name>
 				</Task>
-				<Task Id="7" Priority="10" CycleTime="500000" AmsPort="351" AdtTasks="true">
+				<Task Id="7" Priority="12" CycleTime="500000" AmsPort="351" AdtTasks="true">
 					<Name>MBus_Zaehler_Task</Name>
 				</Task>
-				<Task Id="8" Priority="8" CycleTime="500000" AmsPort="352" AdtTasks="true">
+				<Task Id="8" Priority="10" CycleTime="500000" AmsPort="352" AdtTasks="true">
 					<Name>Standard</Name>
+				</Task>
+				<Task Id="3" Priority="8" CycleTime="400000" AmsPort="353" AdtTasks="true">
+					<Name>Device 1 (OPC UA Virtual)_Task_58</Name>
 				</Task>
 			</Tasks>
 		</System>
@@ -3316,7 +3319,7 @@
 							<ManualConfig>
 								<OTCID>#x02010080</OTCID>
 							</ManualConfig>
-							<Priority>8</Priority>
+							<Priority>10</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 						<Context>
@@ -3325,14 +3328,14 @@
 							<ManualConfig>
 								<OTCID>#x02010070</OTCID>
 							</ManualConfig>
-							<Priority>10</Priority>
+							<Priority>12</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="6" OTCID="#x08502001"/>
-						<TaskPouOid Prio="8" OTCID="#x08502002"/>
+						<TaskPouOid Prio="6" OTCID="#x08502004"/>
 						<TaskPouOid Prio="10" OTCID="#x08502003"/>
+						<TaskPouOid Prio="12" OTCID="#x08502001"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -20594,13 +20597,13 @@ Revision: Rev. 1
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-2001-0850-0020-5008C0000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500890000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0220-500832000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{08502002-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502002-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0120-500821000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2003-0850-0120-500890000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0020-500810000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0020-5008C0000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{08502001-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502003-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{08502003-00C0-0304-0020-5008C0000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Box 4 (BK1250)">
