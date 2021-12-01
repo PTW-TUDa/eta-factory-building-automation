@@ -2131,30 +2131,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>.Netze.DS_100_KWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_100_KWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_200_WWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_200_WWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_300_HWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_300_HWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>.Umwelt.Tempfuehler_Halle_Sektor1.IN_Status</Name>
 							<Type>USINT</Type>
 						</Var>
@@ -2817,6 +2793,30 @@
 						<Var>
 							<Name>.IN_Profibus_DLK</Name>
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_100_KWN.IN_Status</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_100_KWN.IN_Druck</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_200_WWN.IN_Status</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_200_WWN.IN_Druck</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_300_HWN.IN_Status</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>.Netze.DS_300_HWN.IN_Druck</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
