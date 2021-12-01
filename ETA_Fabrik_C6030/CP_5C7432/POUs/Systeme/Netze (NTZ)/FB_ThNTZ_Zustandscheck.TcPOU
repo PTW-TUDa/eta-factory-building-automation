@@ -37,6 +37,7 @@ END_VAR]]></Declaration>
 (* Netztemperatur entspricht den Temperaturen in den Pufferspeichern *)
 Zustand.Temp_Oben := Zustand_PSp.Temp_oben;
 Zustand.Temp_Unten := Zustand_PSp.Temp_unten;
+Zustand.Temp_Mitte := Zustand_PSp.Temp_mitte;
 
 (* Interne Stoerungen / Warnungen *)
 Zustand.Warnung_Code.1	:= Zustand_PSp.Warnung;
@@ -76,7 +77,9 @@ Steuerung.Freigabe.auto := (Zustand.Freigabe_Code = 0) AND Steuerung.Freigabe.au
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_ThNTZ_Zustandscheck">
-      <LineId Id="16" Count="55" />
+      <LineId Id="16" Count="18" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="35" Count="36" />
     </LineIds>
   </POU>
 </TcPlcObject>

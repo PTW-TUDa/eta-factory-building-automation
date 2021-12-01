@@ -164,7 +164,7 @@ Hysterese_Parameter_PWT_915.tCtrlCycleTime := GA_global.Zeit_TaskCycle;
 
 Hysterese_PWT_915(
 	fSetpointValue  := Zustand.Regelung_Sollw_PTW1,
-	fActualValue    := Zustand.Temp_Unten_Warmnetz,
+	fActualValue    := Zustand.Temp_Mitte_Warmnetz,
 	bSync			:= FALSE,
 	eMode			:= eCTRL_MODE_ACTIVE,
 	stParams		:= Hysterese_Parameter_PWT_915

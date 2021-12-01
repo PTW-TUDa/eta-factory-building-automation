@@ -53,7 +53,7 @@ Hysterese_Parameter_gruennetz_Kuehlung.tCtrlCycleTime := GA_global.Zeit_TaskCycl
 
 Hysterese_gruennetz_Kuehlung(
 	fSetpointValue 	:= Zustand.Regelung_Sollw_gruennetz_Kuehlung,
-	fActualValue    := Zustand.Temp_Oben_Warmnetz,
+	fActualValue    := Zustand.Temp_Mitte_Warmnetz,
 	bSync			:= FALSE,
 	eMode			:= eCTRL_MODE_ACTIVE,
 	stParams 		:= Hysterese_Parameter_gruennetz_Kuehlung

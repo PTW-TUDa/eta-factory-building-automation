@@ -16,6 +16,7 @@ END_VAR]]></Declaration>
 Zustand.Temp_Oben_Heissnetz :=Netze.Heisswasser_3xx.Zustand.Temp_Oben;
 Zustand.Temp_Unten_Heissnetz:= Netze.Heisswasser_3xx.Zustand.Temp_Unten;
 Zustand.Temp_Oben_Warmnetz:= Netze.Warmwasser_2xx.Zustand.Temp_Oben;
+Zustand.Temp_Mitte_Warmnetz:= Netze.Warmwasser_2xx.Zustand.Temp_Mitte;
 Zustand.Temp_Unten_Warmnetz:=Netze.Warmwasser_2xx.Zustand.Temp_Unten;
 Zustand.Temp_Oben_Kaltnetz:=Netze.Kaltwasser_1xx.Zustand.Temp_Oben;
 Zustand.Temp_Unten_Kaltnetz:=Netze.Kaltwasser_1xx.Zustand.Temp_Unten;
@@ -34,7 +35,9 @@ Zustand.Warmwasser_2xx_Zustand_Regelung_Sollw_Max := Netze.Warmwasser_2xx.Zustan
 Zustand.Kaltwasser_1xx_Zustand_Regelung_Sollw:=Netze.Kaltwasser_1xx.Zustand.Regelung_Sollw;]]></ST>
     </Implementation>
     <LineIds Name="FB_Zuweisungen">
-      <LineId Id="10" Count="19" />
+      <LineId Id="10" Count="3" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="14" Count="15" />
     </LineIds>
   </POU>
 </TcPlcObject>
