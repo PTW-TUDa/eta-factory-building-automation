@@ -101,12 +101,12 @@ CASE iState OF
 	
 	3:	(* Get Node Handle *)
 		fbUA_NodeGetHandle(
-			Execute			:=,
+			Execute			:= TRUE,
 			ConnectionHdl	:= nConnectionHdl,
 			NodeID			:= Node.NodeID,
 			NodeHdl			=> Node.NodeHdl
 		);
-Return;
+
 		IF NOT fbUA_NodeGetHandle.Busy THEN
 			fbUA_NodeGetHandle(Execute := FALSE);
 	
