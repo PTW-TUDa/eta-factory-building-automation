@@ -23,7 +23,7 @@ VAR
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*Serverparameter setzen*)
-OPC_UA_SERVER_URL 		:= Global_OPC_UA.FB_HO_Server;
+OPC_UA_SERVER_URL 		:= Global_IP_Adresses.FB_HO_Server;
 sNamespaceName			:= '';
 
 (*Define Nodes to Read*)

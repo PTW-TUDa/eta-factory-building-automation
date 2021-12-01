@@ -40,7 +40,7 @@ VAR
 	OPC_UA_SERVER_URL 	: STRING;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[OPC_UA_SERVER_URL := Global_OPC_UA.PRG_Read_LREAL;
+      <ST><![CDATA[OPC_UA_SERVER_URL := Global_IP_Adresses.PRG_Read_LREAL;
 
 CASE iState OF
 0:	(* idle *)

@@ -90,7 +90,7 @@ END_VAR]]></Declaration>
 
 			bInit := TRUE;
 END_IF
-OPC_UA_SERVER_URL := Global_OPC_UA.IVA_Ofen_Read_REAL;
+OPC_UA_SERVER_URL := Global_IP_Adresses.IVA_Ofen_Read_REAL;
 
 IF NOT bDONE THEN
 	CASE iState OF

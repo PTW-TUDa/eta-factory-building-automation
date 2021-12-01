@@ -27,7 +27,7 @@ END_VAR]]></Declaration>
 Parameter :=  Parameter_init;
 
 (*Serverparameter setzen*)
-OPC_UA_SERVER_URL 		:=Global_OPC_UA.FB_MV_JAVA;
+OPC_UA_SERVER_URL 		:=Global_IP_Adresses.FB_MV_JAVA;
 sNamespaceName			:= 'http://www.boschrexroth.com/IndraLogic';
 
 (*Define Nodes to Read*)

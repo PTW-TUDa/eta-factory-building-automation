@@ -23,7 +23,7 @@ VAR
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*Serverparameter setzen*)
-OPC_UA_SERVER_URL 		:= Global_OPC_UA.FB_HES_Server;
+OPC_UA_SERVER_URL 		:= Global_IP_Adresses.FB_HES_Server;
 sNamespaceName			:= 'http://www.boschrexroth.com/IndraLogic';
 
 (*Parameter_init zuweisung zu Parameter*)

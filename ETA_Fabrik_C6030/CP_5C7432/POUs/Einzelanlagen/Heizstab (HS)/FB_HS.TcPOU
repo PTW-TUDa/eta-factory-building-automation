@@ -21,7 +21,7 @@ VAR
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*Serverparameter setzen*)
-OPC_UA_SERVER_URL 		:= Global_OPC_UA.FB_HS_Server;
+OPC_UA_SERVER_URL 		:= Global_IP_Adresses.FB_HS_Server;
 sNamespaceName			:= 'http://www.boschrexroth.com/IndraLogic';
 
 (*Define Nodes to Read*)

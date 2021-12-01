@@ -22,7 +22,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*Serverparameter setzen*)
-OPC_UA_SERVER_URL 		:=Global_OPC_UA.FB_KKKW_Server;
+OPC_UA_SERVER_URL 		:=Global_IP_Adresses.FB_KKKW_Server;
 sNamespaceName			:= 'http://rittal.com/OpcUaModelll/';
 
 (*Define Nodes to Write*)
