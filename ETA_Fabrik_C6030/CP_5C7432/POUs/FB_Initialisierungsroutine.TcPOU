@@ -39,7 +39,7 @@ Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_KRITIKAL_OBEN_TEMP := 
 Initialisierung.Netze_Parameter.Warmwasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 15; (*Grad Celsius*)
 Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_Max := 25; (*Grad Celsius*)
 Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_KRITIKAL_OBEN_TEMP := 28; (*Grad Celsius*)
-Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 6; (*Grad Celsius*)
+Initialisierung.Netze_Parameter.Kaltwasser.Regelung_Sollw_KRITIKAL_UNTEN_TEMP := 7; (*Grad Celsius*)
 
 Initialisierung.Netze_Parameter.Heisswasser.Temp_Max := 100; (*Grad Celsius*)
 Initialisierung.Netze_Parameter.Heisswasser.Temp_Min := 0; (*Grad Celsius*)
@@ -514,8 +514,8 @@ Initialisierung.Netze_Parameter.Kaltwasser.AutoQuittierung := 0;
 (*Parameter System Maschinenversorgung Warmwasser *)
 	Initialisierung.System_MVWW_Parameter.AutoQuittierung := 0;
 
-	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser:= 42; (*Grad Celsius*)
-	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser_Max := 47; (*Grad Celsius*)
+	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser:= 41; (*Grad Celsius*)
+	Initialisierung.System_MVWW_Parameter.Temp_Warmwasser_Max := 42; (*Grad Celsius*)
 
 	Initialisierung.Stellventil_245_Parameter.AutoQuittierung := 0;
 	Initialisierung.Stellventil_245_Parameter.Zeit_Stellen0 := 35000;(*Millisekunden*)
@@ -613,12 +613,12 @@ Initialisierung.Netze_Parameter.Kaltwasser.AutoQuittierung := 0;
 
 
 (*Parameter System Statische Heizung *)
-	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Aussen_Max:= 15; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Aussen_Max:= 5; (*Grad Celsius*)
 	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Aussen_Min := -15; (*Grad Celsius*)
-	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Max := 65; (*Grad Celsius*)
-	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Min := 30; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Max := 67; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Kennlinie_Heizung.Temp_Vorl_Min := 44; (*Grad Celsius*)
 
-	Initialisierung.System_SHZ_Parameter.Temp_Heisswasser_Max := 65 ; (*Grad Celsius*)
+	Initialisierung.System_SHZ_Parameter.Temp_Heisswasser_Max := 67 ; (*Grad Celsius*)
 	Initialisierung.System_SHZ_Parameter.Temp_Heisswasser_Min := 30 ; (*Grad Celsius*)
 
 	Initialisierung.System_SHZ_Parameter.Nachtabsenkung_Mo.Temp_Absenkung := 10; (*Grad Celsius*)
