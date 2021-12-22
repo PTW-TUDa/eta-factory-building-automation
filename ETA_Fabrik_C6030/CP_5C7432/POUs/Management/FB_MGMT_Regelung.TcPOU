@@ -103,6 +103,10 @@ ttag:=GA_global.Systemzeit_Tag;
 tstunde:=GA_global.Systemzeit_Stunde;
 aktuell_Modus:=2;
 
+ELSE
+	
+aktuell_Modus := 2;
+
 END_IF
 
 CASE aktuell_Modus OF
@@ -272,7 +276,10 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_MGMT_Regelung">
-      <LineId Id="42" Count="225" />
+      <LineId Id="42" Count="57" />
+      <LineId Id="310" Count="0" />
+      <LineId Id="314" Count="2" />
+      <LineId Id="100" Count="167" />
     </LineIds>
   </POU>
 </TcPlcObject>
