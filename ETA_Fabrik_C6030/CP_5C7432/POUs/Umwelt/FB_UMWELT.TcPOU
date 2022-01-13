@@ -845,43 +845,6 @@ END_VAR]]></Declaration>
                     <v n="DestPinId">121L</v>
                     <v n="Id">128L</v>
                   </o>
-                  <o t="CFCCommentElement">
-                    <o n="Text" t="CFCText">
-                      <v n="Bounds">"0, 0, 0, 0"</v>
-                      <n n="ElementGroupId" />
-                      <v n="Text">"16.10.19: Wetterstation kaputt, deswegen 12 Grad als Standardwert. Rücksetzen, wenn sie wieder funktioniert."</v>
-                      <v n="Modifiable">true</v>
-                      <v n="Id">130L</v>
-                    </o>
-                    <v n="PageArea">0</v>
-                    <v n="Bounds">"34, 6, 0, 0"</v>
-                    <n n="ElementGroupId" />
-                    <v n="OwningPageId">-1L</v>
-                    <v n="Id">129L</v>
-                  </o>
-                  <o t="CFCInputElement">
-                    <o n="Output" t="CFCOutputPin">
-                      <v n="Bounds">"0, 0, 0, 0"</v>
-                      <n n="ElementGroupId" />
-                      <v n="Negated">false</v>
-                      <v n="SetReset" t="SetReset">None</v>
-                      <v n="SetResetRef" t="SetResetRef">None</v>
-                      <v n="PretendsToBeConnected">false</v>
-                      <v n="Id">133L</v>
-                    </o>
-                    <o n="Text" t="CFCText">
-                      <v n="Bounds">"0, 0, 0, 0"</v>
-                      <n n="ElementGroupId" />
-                      <v n="Text">"Wetterstation.Wetterstation_Lesen.Aussentemperatur"</v>
-                      <v n="Modifiable">true</v>
-                      <v n="Id">132L</v>
-                    </o>
-                    <v n="PageArea">0</v>
-                    <v n="Bounds">"20, 5, 0, 0"</v>
-                    <n n="ElementGroupId" />
-                    <v n="OwningPageId">-1L</v>
-                    <v n="Id">131L</v>
-                  </o>
                 </l2>
               </o>
               <n n="ParameterInitializationMethodGenerator" />
@@ -1221,19 +1184,19 @@ END_VAR]]></Declaration>
                         <v n="X">19</v>
                         <v n="Y">45</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">31</v>
                         <v n="Y">45</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">41</v>
+                        <v n="Flags">9</v>
                       </o>
                       <o>
                         <v n="X">31</v>
                         <v n="Y">48</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">38</v>
+                        <v n="Flags">6</v>
                       </o>
                       <o>
                         <v n="X">43</v>
@@ -1253,7 +1216,6 @@ END_VAR]]></Declaration>
           <TypeList>
             <Type n="Boolean">System.Boolean</Type>
             <Type n="CFCBoxElement">{f5becf35-b1f3-4274-b411-81d4b63a1516}</Type>
-            <Type n="CFCCommentElement">{3487d131-7fd4-48ac-9e99-9e275c3b8ff8}</Type>
             <Type n="CFCConnection">{5ae2e111-ecff-4a21-b647-2d4da63f8db7}</Type>
             <Type n="CFCImplementationObject">{32d3375e-c010-41e2-9e43-b2fbf4f2b374}</Type>
             <Type n="CFCInputElement">{d51129f5-df27-4886-99d1-c564d2e2c1f6}</Type>
