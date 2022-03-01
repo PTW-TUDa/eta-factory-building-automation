@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="FB_eChiller" Id="{7e215da2-dce2-4fe4-9d0d-730727e6f73a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_eChiller EXTENDS FB_ActorContinous
+VAR_INPUT
+	fExternalTemperature : REAL; //External temperature in °C
+END_VAR
+VAR_OUTPUT
+	bError : BOOL; // Returns eChiller error
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_eChillerDefaultParameters;
+
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_PumpGrundfosMagna3State;
+	
+	//analog converters
+	OutputConverter_SetpointValue : FB_AnalogOutput(fUpperLimit := 28, fLowerLimit := 10);
+	OutputConverter_ActualTemperature : FB_AnalogOutput(fUpperLimit := 28, fLowerLimit := 10);
+	
+	//I/O Links
+	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
+	nActualTemperature_OUT 	AT %Q* : INT; //Actual temperature in buffer storage linked to terminal
+	bSetStatusOn_OUT 		AT %Q* : BOOL; //SetStatus linked to terminal
+	bError_IN 				AT %I* : BOOL; //Error state linked to terminal
+	bWarning_IN 			AT %I* : BOOL; //Warning state linked to terminal
+	bStatusOn_IN 			AT %I* : BOOL; //Working state linked to terminal
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();]]></ST>
+    </Implementation>
+    <Method Name="SetSetPointLimits" Id="{82f16133-ac21-4ac5-a66f-92b7e00118cd}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{9a6c47f7-ea6e-4c3e-920a-75e879b7df48}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//control state
+controlState.bStatusOn := bStatusOn_IN;
+bStatusOn := bStatusOn_IN;
+
+//setpoint state
+setPointState.fSetPoint := fSetPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.fOperatingPoint := fExternalTemperature;
+fOperatingPoint := fExternalTemperature;
+setPointState.sOperatingPointUnit := 'degreeC';
+setPointState.aSetPointLimits := aSetPointLimits;
+
+//local state
+bError := bError_IN;
+localState.bError := bError_IN;
+localState.bWarning := bWarning_IN;
+//local state is read via opc ua
+
+//outputs
+OutputConverter_SetpointValue(fValue := fSetPoint);
+OutputConverter_ActualTemperature(fValue := fExternalTemperature);
+nSetPoint_OUT := OutputConverter_SetpointValue.nValue;
+nActualTemperature_OUT := OutputConverter_ActualTemperature.nValue;
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{20d3a184-1967-45b0-9961-ea708863c107}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_eChillerDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{901cc618-f8d1-47ab-ab6a-9d9261429614}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{384cfc6d-c604-4a47-9e36-0c0e6877f348}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_eChiller">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChiller.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChiller.SetState">
+      <LineId Id="6" Count="23" />
+    </LineIds>
+    <LineIds Name="FB_eChiller.ST_DefaultParameters.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChiller.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

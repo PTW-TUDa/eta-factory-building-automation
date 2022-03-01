@@ -4,9 +4,23 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	init_done		: BOOL := FALSE;
+	
+	//strategy controller
+	Strategy : BaseStrategyController; 
+
+	//thermal networks
+	CN : CoolingNetwork;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[//Updated implementation
+Strategy(fTemperature_CN := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte);
+
+CN(fSetPointTemperature := Strategy.fSetPoint_CN,
+	bSetStatusOn_eChiller := Strategy.bSetStatusOn_eChiller,
+	bSetStatusOn_HeatPump := Strategy.bSetStatusOn_HeatPump);
+
+//Current implementation
+
 (* --------------------------------------------------------------------------------------------------------------------------- *)
 
 (* Analog- & Binaer Eingaenge - LESEN *)
@@ -76,6 +90,9 @@ END_VAR]]></Declaration>
 (* BUS Kommunikation - SCHREIBEN *)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="75" Count="0" />
+      <LineId Id="85" Count="3" />
+      <LineId Id="76" Count="2" />
       <LineId Id="4" Count="67" />
     </LineIds>
   </POU>

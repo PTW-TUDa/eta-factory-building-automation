@@ -14,6 +14,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Data types" />
+    <Folder Include="Data types\01 Actors\CoolingUnits" />
+    <Folder Include="Data types\01 Actors\HeatingUnits" />
+    <Folder Include="Data types\01 Actors\Pumps" />
     <Folder Include="Data types\Anlagen" />
     <Folder Include="Data types\Anlagen\M2M" />
     <Folder Include="Data types\Einzelanlagen" />
@@ -52,6 +55,10 @@
     <Folder Include="Data types\Library\Bus_Systeme" />
     <Folder Include="Data types\Management" />
     <Folder Include="Data types\Netze" />
+    <Folder Include="Data types\01 Actors" />
+    <Folder Include="Data types\02 Sensors" />
+    <Folder Include="Data types\03 Systems" />
+    <Folder Include="Data types\05 Strategy" />
     <Folder Include="Data types\OPC-UA" />
     <Folder Include="Data types\Sonstige" />
     <Folder Include="Data types\Systeme" />
@@ -91,6 +98,9 @@
     <Folder Include="Global Variables\Anlagen Variablen" />
     <Folder Include="Global Variables\Bus_Systeme" />
     <Folder Include="POUs" />
+    <Folder Include="POUs\01 Actors\CoolingUnits" />
+    <Folder Include="POUs\01 Actors\HeatingUnits" />
+    <Folder Include="POUs\01 Actors\Pumps" />
     <Folder Include="POUs\Checks" />
     <Folder Include="POUs\Einzelanlagen" />
     <Folder Include="POUs\Einzelanlagen\Absorptionskältemaschine (AKM)" />
@@ -137,6 +147,11 @@
     <Folder Include="POUs\Library (allgemein)" />
     <Folder Include="POUs\Management" />
     <Folder Include="POUs\Management\Alte Struktur" />
+    <Folder Include="POUs\01 Actors" />
+    <Folder Include="POUs\02 Sensors" />
+    <Folder Include="POUs\03 Systems" />
+    <Folder Include="POUs\04 Networks" />
+    <Folder Include="POUs\05 Strategy" />
     <Folder Include="POUs\OPC_UA_Client_Maschienen (Romtech _ alt)" />
     <Folder Include="POUs\Systeme" />
     <Folder Include="POUs\Systeme\Anlagenversorgung (AV)" />
@@ -179,6 +194,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComTask.TcTTO" />
+    <Compile Include="Data types\01 Actors\CoolingUnits\ST_eChillerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\01 Actors\CoolingUnits\ST_eChillerState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\ST_HVFASystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\Anlagen\M2M\WZM_EMAG_VLC100Y.TcDUT">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
@@ -439,6 +463,10 @@
     <Compile Include="Global Variables\Bus_Systeme\M_Bus.TcGVL" />
     <Compile Include="Global Variables\Bus_Systeme\Profibus.TcGVL" />
     <Compile Include="Global Variables\Globale_Variablen.TcGVL" />
+    <Compile Include="Global Variables\GlobalVariables.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="Global Variables\Global_Checks.TcGVL" />
     <Compile Include="Global Variables\Global_IP_Adresses.TcGVL">
       <SubType>Code</SubType>
@@ -447,6 +475,36 @@
     <Compile Include="Global Variables\Global_Variables.TcGVL" />
     <Compile Include="Global Variables\Variablen_Konfiguration.TcGVL" />
     <Compile Include="MBus_Zaehler_Task.TcTTO" />
+    <Compile Include="POUs\01 Actors\CoolingUnits\FB_eChiller.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actors\Pumps\FB_PumpGrundfosCM.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02 Sensors\FB_BufferStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02 Sensors\FB_HVFAStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Systems\FB_eChillerSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Systems\FB_HeatPumpSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Systems\FB_HVFASystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Networks\CoolingNetwork.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Strategy\BaseStrategyController.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Checks\CheckBounds.TcPOU" />
     <Compile Include="POUs\Checks\CheckDivByte.TcPOU" />
     <Compile Include="POUs\Checks\CheckDivDint.TcPOU" />
@@ -828,6 +886,10 @@
     <Compile Include="Standard.TcTTO" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="AutomationBaseClasses">
+      <DefaultResolution>AutomationBaseClasses, * (PTW TU Darmstadt)</DefaultResolution>
+      <Namespace>AutomationBaseClasses</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_ControllerToolbox">
       <DefaultResolution>Tc2_ControllerToolbox, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_ControllerToolbox</Namespace>
