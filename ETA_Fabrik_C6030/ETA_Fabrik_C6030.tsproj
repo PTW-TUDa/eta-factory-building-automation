@@ -2,6 +2,56 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.22" TcVersionFixed="true">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus" AutoDeleteType="true">ST_KL6781inData22B</Name>
+			<Comment><![CDATA[
+	This data type is corresponding to the
+	KL6781 data structure used in the
+	TwinCAT SystemManager
+]]></Comment>
+			<BitSize>192</BitSize>
+			<SubItem>
+				<Name>Status</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>D</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>22</Elements>
+				</ArrayInfo>
+				<BitSize>176</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus" AutoDeleteType="true">ST_KL6781outData22B</Name>
+			<Comment><![CDATA[
+	This data type is corresponding to the
+	KL6781 data structure used in the
+	TwinCAT SystemManager
+]]></Comment>
+			<BitSize>192</BitSize>
+			<SubItem>
+				<Name>Ctrl</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>D</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>22</Elements>
+				</ArrayInfo>
+				<BitSize>176</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
 			<BitSize>192</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -317,56 +367,6 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus" AutoDeleteType="true">ST_KL6781inData22B</Name>
-			<Comment><![CDATA[
-	This data type is corresponding to the
-	KL6781 data structure used in the
-	TwinCAT SystemManager
-]]></Comment>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Status</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus" AutoDeleteType="true">ST_KL6781outData22B</Name>
-			<Comment><![CDATA[
-	This data type is corresponding to the
-	KL6781 data structure used in the
-	TwinCAT SystemManager
-]]></Comment>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Ctrl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-001300000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BYTE</Name>
 			<BitSize>32</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -458,14 +458,17 @@
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="5" Priority="6" CycleTime="250000" AmsPort="350" AdtTasks="true">
+				<Task Id="5" Priority="8" CycleTime="250000" AmsPort="350" AdtTasks="true">
 					<Name>ComTask</Name>
 				</Task>
-				<Task Id="7" Priority="10" CycleTime="500000" AmsPort="351" AdtTasks="true">
+				<Task Id="7" Priority="12" CycleTime="500000" AmsPort="351" AdtTasks="true">
 					<Name>MBus_Zaehler_Task</Name>
 				</Task>
-				<Task Id="8" Priority="8" CycleTime="500000" AmsPort="352" AdtTasks="true">
+				<Task Id="8" Priority="10" CycleTime="500000" AmsPort="352" AdtTasks="true">
 					<Name>Standard</Name>
+				</Task>
+				<Task Id="3" Priority="6" CycleTime="80000" AmsPort="353" AdtTasks="true">
+					<Name>MBus_WZaehler_Task</Name>
 				</Task>
 			</Tasks>
 		</System>
@@ -475,6 +478,20 @@
 					<Name>CP_5C7432 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
+						<Name>MBus_WZaehler_Task Inputs</Name>
+						<Var>
+							<Name>.IN_WZaehler</Name>
+							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>MBus_WZaehler_Task Outputs</Name>
+						<Var>
+							<Name>.OUT_WZaehler</Name>
+							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 						<Name>ComTask Inputs</Name>
 						<Var>
 							<Name>.KL_Wetterstation_IN</Name>
@@ -489,7 +506,7 @@
 							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2" AreaNo="1">
+					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 						<Name>ComTask Outputs</Name>
 						<Var>
 							<Name>.KL_Wetterstation_OUT</Name>
@@ -504,7 +521,7 @@
 							<Type GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU">MB_KL6outData22B</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="1" ContextId="1" AreaNo="16">
+					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>Standard Inputs</Name>
 						<Var>
 							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -2947,7 +2964,7 @@
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2" ContextId="1" AreaNo="17">
+					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>Standard Outputs</Name>
 						<Var>
 							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
@@ -3465,61 +3482,63 @@
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
+					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
 						<Name>MBus_Zaehler_Task Inputs</Name>
 						<Var>
 							<Name>.IN_Stromzaehler</Name>
 							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
 						</Var>
-						<Var>
-							<Name>.IN_WZaehler</Name>
-							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
-						</Var>
 					</Vars>
-					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
+					<Vars VarGrpType="2" ContextId="3" AreaNo="49">
 						<Name>MBus_Zaehler_Task Outputs</Name>
 						<Var>
 							<Name>.OUT_Stromzaehler</Name>
-							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
-						</Var>
-						<Var>
-							<Name>.OUT_WZaehler</Name>
 							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
 						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
+							<Name>MBus_WZaehler_Task</Name>
+							<ManualConfig>
+								<OTCID>#x02010030</OTCID>
+							</ManualConfig>
+							<Priority>6</Priority>
+							<CycleTime>8000000</CycleTime>
+						</Context>
+						<Context>
+							<Id NeedCalleeCall="true">1</Id>
 							<Name>ComTask</Name>
 							<ManualConfig>
 								<OTCID>#x02010050</OTCID>
 							</ManualConfig>
-							<Priority>6</Priority>
+							<Priority>8</Priority>
 							<CycleTime>25000000</CycleTime>
 						</Context>
 						<Context>
-							<Id NeedCalleeCall="true">1</Id>
+							<Id NeedCalleeCall="true">2</Id>
 							<Name>Standard</Name>
 							<ManualConfig>
 								<OTCID>#x02010080</OTCID>
 							</ManualConfig>
-							<Priority>8</Priority>
+							<Priority>10</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 						<Context>
-							<Id NeedCalleeCall="true">2</Id>
+							<Id NeedCalleeCall="true">3</Id>
 							<Name>MBus_Zaehler_Task</Name>
 							<ManualConfig>
 								<OTCID>#x02010070</OTCID>
 							</ManualConfig>
-							<Priority>10</Priority>
+							<Priority>12</Priority>
 							<CycleTime>50000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
-						<TaskPouOid Prio="6" OTCID="#x08502003"/>
-						<TaskPouOid Prio="8" OTCID="#x08502002"/>
-						<TaskPouOid Prio="10" OTCID="#x08502004"/>
+						<TaskPouOid Prio="6" OTCID="#x08502004"/>
+						<TaskPouOid Prio="8" OTCID="#x08502001"/>
+						<TaskPouOid Prio="10" OTCID="#x08502002"/>
+						<TaskPouOid Prio="12" OTCID="#x08502003"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -8244,7 +8263,7 @@ PU245
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>312</BitOffs>
+								<BitOffs>12496</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -8255,7 +8274,7 @@ PU245
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>312</BitOffs>
+								<BitOffs>12496</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -8268,25 +8287,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>328</BitOffs>
+										<BitOffs>12512</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>344</BitOffs>
+										<BitOffs>12528</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>328</BitOffs>
+										<BitOffs>12512</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>344</BitOffs>
+										<BitOffs>12528</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -8299,277 +8318,277 @@ PU245
 									<Var>
 										<Name>Parameter Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>360</BitOffs>
+										<BitOffs>12544</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>376</BitOffs>
+										<BitOffs>12560</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>384</BitOffs>
+										<BitOffs>12568</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>392</BitOffs>
+										<BitOffs>12576</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>400</BitOffs>
+										<BitOffs>12584</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>408</BitOffs>
+										<BitOffs>12592</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>416</BitOffs>
+										<BitOffs>12600</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>424</BitOffs>
+										<BitOffs>12608</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>432</BitOffs>
+										<BitOffs>12616</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>440</BitOffs>
+										<BitOffs>12624</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>448</BitOffs>
+										<BitOffs>12632</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>456</BitOffs>
+										<BitOffs>12640</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>464</BitOffs>
+										<BitOffs>12648</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>472</BitOffs>
+										<BitOffs>12656</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>480</BitOffs>
+										<BitOffs>12664</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>488</BitOffs>
+										<BitOffs>12672</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>496</BitOffs>
+										<BitOffs>12680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>504</BitOffs>
+										<BitOffs>12688</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>512</BitOffs>
+										<BitOffs>12696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>520</BitOffs>
+										<BitOffs>12704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>528</BitOffs>
+										<BitOffs>12712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>536</BitOffs>
+										<BitOffs>12720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Input Data 22</Name>
 										<Type>USINT</Type>
-										<BitOffs>544</BitOffs>
+										<BitOffs>12728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Control</Name>
 										<Type>UINT</Type>
-										<BitOffs>360</BitOffs>
+										<BitOffs>12544</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>376</BitOffs>
+										<BitOffs>12560</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>384</BitOffs>
+										<BitOffs>12568</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>392</BitOffs>
+										<BitOffs>12576</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>400</BitOffs>
+										<BitOffs>12584</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>408</BitOffs>
+										<BitOffs>12592</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>416</BitOffs>
+										<BitOffs>12600</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>424</BitOffs>
+										<BitOffs>12608</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>432</BitOffs>
+										<BitOffs>12616</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>440</BitOffs>
+										<BitOffs>12624</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>448</BitOffs>
+										<BitOffs>12632</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>456</BitOffs>
+										<BitOffs>12640</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>464</BitOffs>
+										<BitOffs>12648</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>472</BitOffs>
+										<BitOffs>12656</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>480</BitOffs>
+										<BitOffs>12664</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>488</BitOffs>
+										<BitOffs>12672</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>496</BitOffs>
+										<BitOffs>12680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>504</BitOffs>
+										<BitOffs>12688</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>512</BitOffs>
+										<BitOffs>12696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>520</BitOffs>
+										<BitOffs>12704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>528</BitOffs>
+										<BitOffs>12712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>536</BitOffs>
+										<BitOffs>12720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Output Data 22</Name>
 										<Type>USINT</Type>
-										<BitOffs>544</BitOffs>
+										<BitOffs>12728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -8582,133 +8601,133 @@ PU245
 									<Var>
 										<Name>Parameter Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>552</BitOffs>
+										<BitOffs>12736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 1</Name>
 										<Type>UDINT</Type>
-										<BitOffs>568</BitOffs>
+										<BitOffs>12752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 2</Name>
 										<Type>UDINT</Type>
-										<BitOffs>600</BitOffs>
+										<BitOffs>12784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 3</Name>
 										<Type>UDINT</Type>
-										<BitOffs>632</BitOffs>
+										<BitOffs>12816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 4</Name>
 										<Type>UDINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>12848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 5</Name>
 										<Type>UDINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>12880</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 6</Name>
 										<Type>UDINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>12912</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 7</Name>
 										<Type>UDINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>12944</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Input Data 8</Name>
 										<Type>UDINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>12976</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Type</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>13008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>LON Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>13016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Control</Name>
 										<Type>UINT</Type>
-										<BitOffs>552</BitOffs>
+										<BitOffs>12736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 1</Name>
 										<Type>UDINT</Type>
-										<BitOffs>568</BitOffs>
+										<BitOffs>12752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 2</Name>
 										<Type>UDINT</Type>
-										<BitOffs>600</BitOffs>
+										<BitOffs>12784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 3</Name>
 										<Type>UDINT</Type>
-										<BitOffs>632</BitOffs>
+										<BitOffs>12816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 4</Name>
 										<Type>UDINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>12848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 5</Name>
 										<Type>UDINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>12880</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 6</Name>
 										<Type>UDINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>12912</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 7</Name>
 										<Type>UDINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>12944</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Parameter Output Data 8</Name>
 										<Type>UDINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>12976</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>CMD</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>13008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Idx</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>13016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -8721,277 +8740,277 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>13024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>13040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>13048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>13056</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>880</BitOffs>
+										<BitOffs>13064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>888</BitOffs>
+										<BitOffs>13072</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>896</BitOffs>
+										<BitOffs>13080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>904</BitOffs>
+										<BitOffs>13088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>912</BitOffs>
+										<BitOffs>13096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>920</BitOffs>
+										<BitOffs>13104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>928</BitOffs>
+										<BitOffs>13112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>936</BitOffs>
+										<BitOffs>13120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>944</BitOffs>
+										<BitOffs>13128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>952</BitOffs>
+										<BitOffs>13136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>960</BitOffs>
+										<BitOffs>13144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>968</BitOffs>
+										<BitOffs>13152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>976</BitOffs>
+										<BitOffs>13160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>984</BitOffs>
+										<BitOffs>13168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>13176</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1000</BitOffs>
+										<BitOffs>13184</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>13192</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>13200</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>13208</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>13024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>13040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>13048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>13056</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>880</BitOffs>
+										<BitOffs>13064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>888</BitOffs>
+										<BitOffs>13072</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>896</BitOffs>
+										<BitOffs>13080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>904</BitOffs>
+										<BitOffs>13088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>912</BitOffs>
+										<BitOffs>13096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>920</BitOffs>
+										<BitOffs>13104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>928</BitOffs>
+										<BitOffs>13112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>936</BitOffs>
+										<BitOffs>13120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>944</BitOffs>
+										<BitOffs>13128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>952</BitOffs>
+										<BitOffs>13136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>960</BitOffs>
+										<BitOffs>13144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>968</BitOffs>
+										<BitOffs>13152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>976</BitOffs>
+										<BitOffs>13160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>984</BitOffs>
+										<BitOffs>13168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>13176</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1000</BitOffs>
+										<BitOffs>13184</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>13192</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>13200</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>13208</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9004,277 +9023,277 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>13216</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>13232</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>13240</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>13248</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>13256</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>13264</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>13272</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>13280</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>13288</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>13296</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>13304</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>13312</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>13320</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>13328</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>13336</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>13344</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>13352</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>13360</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1184</BitOffs>
+										<BitOffs>13368</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1192</BitOffs>
+										<BitOffs>13376</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1200</BitOffs>
+										<BitOffs>13384</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1208</BitOffs>
+										<BitOffs>13392</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1216</BitOffs>
+										<BitOffs>13400</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>13216</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>13232</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>13240</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>13248</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>13256</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>13264</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>13272</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>13280</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>13288</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>13296</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>13304</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>13312</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>13320</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>13328</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>13336</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>13344</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>13352</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>13360</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1184</BitOffs>
+										<BitOffs>13368</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1192</BitOffs>
+										<BitOffs>13376</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1200</BitOffs>
+										<BitOffs>13384</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1208</BitOffs>
+										<BitOffs>13392</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1216</BitOffs>
+										<BitOffs>13400</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9291,7 +9310,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Hauptschalter</Name>
 										<Type>BIT</Type>
-										<BitOffs>4744</BitOffs>
+										<BitOffs>16928</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9300,7 +9319,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Phasenueberwachung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4745</BitOffs>
+										<BitOffs>16929</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9309,7 +9328,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Ueberspannungsschutz</Name>
 										<Type>BIT</Type>
-										<BitOffs>4746</BitOffs>
+										<BitOffs>16930</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9318,7 +9337,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Steuerspannung_230VAC</Name>
 										<Type>BIT</Type>
-										<BitOffs>4747</BitOffs>
+										<BitOffs>16931</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9327,7 +9346,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Steuerspannung_24VAC</Name>
 										<Type>BIT</Type>
-										<BitOffs>4748</BitOffs>
+										<BitOffs>16932</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9336,7 +9355,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Steuerspannung_24VDC</Name>
 										<Type>BIT</Type>
-										<BitOffs>4749</BitOffs>
+										<BitOffs>16933</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9345,7 +9364,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Quittieren</Name>
 										<Type>BIT</Type>
-										<BitOffs>4750</BitOffs>
+										<BitOffs>16934</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9354,7 +9373,7 @@ PU245
 									<Var>
 										<Name>bi_ISP01_Steuerspannung_24VAC_NSHV</Name>
 										<Type>BIT</Type>
-										<BitOffs>4751</BitOffs>
+										<BitOffs>16935</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9367,7 +9386,7 @@ PU245
 									<Var>
 										<Name>bi_Stoerung_BMA</Name>
 										<Type>BIT</Type>
-										<BitOffs>4752</BitOffs>
+										<BitOffs>16936</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9376,7 +9395,7 @@ PU245
 									<Var>
 										<Name>bi_Stoerung_Lueftung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4753</BitOffs>
+										<BitOffs>16937</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9385,7 +9404,7 @@ PU245
 									<Var>
 										<Name>bi_Störung Aufzug</Name>
 										<Type>BIT</Type>
-										<BitOffs>4754</BitOffs>
+										<BitOffs>16938</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9394,7 +9413,7 @@ PU245
 									<Var>
 										<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4755</BitOffs>
+										<BitOffs>16939</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9403,7 +9422,7 @@ PU245
 									<Var>
 										<Name>bi_Stoerung_Hebeanlage</Name>
 										<Type>BIT</Type>
-										<BitOffs>4756</BitOffs>
+										<BitOffs>16940</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9412,7 +9431,7 @@ PU245
 									<Var>
 										<Name>bi_AU000_SC7_RWA_RM_AUF_Halle</Name>
 										<Type>BIT</Type>
-										<BitOffs>4757</BitOffs>
+										<BitOffs>16941</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9421,7 +9440,7 @@ PU245
 									<Var>
 										<Name>bi_AU000_SC8_RWA_RM_AUF_Treppenhaus</Name>
 										<Type>BIT</Type>
-										<BitOffs>4758</BitOffs>
+										<BitOffs>16942</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9430,7 +9449,7 @@ PU245
 									<Var>
 										<Name>bi_BHKW321_Sammelstoerung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4759</BitOffs>
+										<BitOffs>16943</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9439,7 +9458,7 @@ PU245
 									<Var>
 										<Name>bi_SV100_KW_Halle_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4760</BitOffs>
+										<BitOffs>16944</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9448,7 +9467,7 @@ PU245
 									<Var>
 										<Name>bi_SV100_KW_Halle_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4761</BitOffs>
+										<BitOffs>16945</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9457,7 +9476,7 @@ PU245
 									<Var>
 										<Name>bi_GS100_Prozessgas_Leckage_Container</Name>
 										<Type>BIT</Type>
-										<BitOffs>4762</BitOffs>
+										<BitOffs>16946</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9466,7 +9485,7 @@ PU245
 									<Var>
 										<Name>bi_SV361_KWN_Nitrierofen_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4763</BitOffs>
+										<BitOffs>16947</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9475,7 +9494,7 @@ PU245
 									<Var>
 										<Name>bi_SV261_WWN_Nitrierofen_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4764</BitOffs>
+										<BitOffs>16948</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9484,7 +9503,7 @@ PU245
 									<Var>
 										<Name>bi_SV251_WW_Druckluftkompr_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4765</BitOffs>
+										<BitOffs>16949</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9493,7 +9512,7 @@ PU245
 									<Var>
 										<Name>bi_SV331_Heißwasser_Gasbrennwert_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4766</BitOffs>
+										<BitOffs>16950</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9502,7 +9521,7 @@ PU245
 									<Var>
 										<Name>bi_SV322_HKW_9_20_KWN_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4767</BitOffs>
+										<BitOffs>16951</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9515,7 +9534,7 @@ PU245
 									<Var>
 										<Name>bi_SV321_HKW_6_15_KWN_RM_Absperrventil_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4768</BitOffs>
+										<BitOffs>16952</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9524,7 +9543,7 @@ PU245
 									<Var>
 										<Name>bi_SV321_HKW_6_15_KWN_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4769</BitOffs>
+										<BitOffs>16953</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9533,7 +9552,7 @@ PU245
 									<Var>
 										<Name>bi_SV322_HKW_9_20_KWN_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4770</BitOffs>
+										<BitOffs>16954</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9542,7 +9561,7 @@ PU245
 									<Var>
 										<Name>bi_SV331_Heisswasser_Gasbrennwert_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4771</BitOffs>
+										<BitOffs>16955</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9551,7 +9570,7 @@ PU245
 									<Var>
 										<Name>bi_SV251_WW_Druckluftkompr_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4772</BitOffs>
+										<BitOffs>16956</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9560,7 +9579,7 @@ PU245
 									<Var>
 										<Name>bi_GS100_Prozessgas_Leckage_Halle</Name>
 										<Type>BIT</Type>
-										<BitOffs>4773</BitOffs>
+										<BitOffs>16957</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9569,7 +9588,7 @@ PU245
 									<Var>
 										<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4774</BitOffs>
+										<BitOffs>16958</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9578,7 +9597,7 @@ PU245
 									<Var>
 										<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4775</BitOffs>
+										<BitOffs>16959</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9587,7 +9606,7 @@ PU245
 									<Var>
 										<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4776</BitOffs>
+										<BitOffs>16960</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9596,7 +9615,7 @@ PU245
 									<Var>
 										<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4777</BitOffs>
+										<BitOffs>16961</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9605,7 +9624,7 @@ PU245
 									<Var>
 										<Name>bi_SV423_FBH_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4778</BitOffs>
+										<BitOffs>16962</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9614,7 +9633,7 @@ PU245
 									<Var>
 										<Name>bi_SV423_FBH_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4779</BitOffs>
+										<BitOffs>16963</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9623,7 +9642,7 @@ PU245
 									<Var>
 										<Name>bi_SV424_FBH_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4780</BitOffs>
+										<BitOffs>16964</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9632,7 +9651,7 @@ PU245
 									<Var>
 										<Name>bi_SV424_FBH_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4781</BitOffs>
+										<BitOffs>16965</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9641,7 +9660,7 @@ PU245
 									<Var>
 										<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4782</BitOffs>
+										<BitOffs>16966</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9650,7 +9669,7 @@ PU245
 									<Var>
 										<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4783</BitOffs>
+										<BitOffs>16967</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9663,7 +9682,7 @@ PU245
 									<Var>
 										<Name>bi_SV605_Keller_KaRoMa_aussen_PWT2_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4784</BitOffs>
+										<BitOffs>16968</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9672,7 +9691,7 @@ PU245
 									<Var>
 										<Name>bi_SV605_Keller_KaRoMa_aussen_PWT2_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4785</BitOffs>
+										<BitOffs>16969</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9681,7 +9700,7 @@ PU245
 									<Var>
 										<Name>bi_SV261_WWN_Nitrierofen_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4786</BitOffs>
+										<BitOffs>16970</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9690,7 +9709,7 @@ PU245
 									<Var>
 										<Name>bi_SV361_KWN_Nitrierofen_RM_Absperrventil_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4787</BitOffs>
+										<BitOffs>16971</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9699,7 +9718,7 @@ PU245
 									<Var>
 										<Name>bi_SV453_Umschaltung_HW_KW_VL_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4788</BitOffs>
+										<BitOffs>16972</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9708,7 +9727,7 @@ PU245
 									<Var>
 										<Name>bi_SV453_Umschaltung_HW_KW_VL_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4789</BitOffs>
+										<BitOffs>16973</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9717,7 +9736,7 @@ PU245
 									<Var>
 										<Name>bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4790</BitOffs>
+										<BitOffs>16974</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9726,7 +9745,7 @@ PU245
 									<Var>
 										<Name>bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4791</BitOffs>
+										<BitOffs>16975</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9735,7 +9754,7 @@ PU245
 									<Var>
 										<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4792</BitOffs>
+										<BitOffs>16976</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9744,7 +9763,7 @@ PU245
 									<Var>
 										<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4793</BitOffs>
+										<BitOffs>16977</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9753,7 +9772,7 @@ PU245
 									<Var>
 										<Name>bi_GS100_Prozessgas_Stoerung_Gaswarnanlage</Name>
 										<Type>BIT</Type>
-										<BitOffs>4794</BitOffs>
+										<BitOffs>16978</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9762,7 +9781,7 @@ PU245
 									<Var>
 										<Name>bi_GS100_Prozessgas_Alarm_1_Gaswarnanlage</Name>
 										<Type>BIT</Type>
-										<BitOffs>4795</BitOffs>
+										<BitOffs>16979</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9771,7 +9790,7 @@ PU245
 									<Var>
 										<Name>bi_GS100_Prozessgas_Alarm_2_Gaswarnanlage</Name>
 										<Type>BIT</Type>
-										<BitOffs>4796</BitOffs>
+										<BitOffs>16980</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9780,7 +9799,7 @@ PU245
 									<Var>
 										<Name>bi_BHKW322_Sammelstoerung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4797</BitOffs>
+										<BitOffs>16981</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9789,7 +9808,7 @@ PU245
 									<Var>
 										<Name>bi_D4_Störung_Enthaertungsanlage</Name>
 										<Type>BIT</Type>
-										<BitOffs>4798</BitOffs>
+										<BitOffs>16982</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9798,7 +9817,7 @@ PU245
 									<Var>
 										<Name>bi_B5_Störung_Rohrbegleitheizung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4799</BitOffs>
+										<BitOffs>16983</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -9811,7 +9830,7 @@ PU245
 									<Var>
 										<Name>bo_ISP01_Sammelstoerung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4744</BitOffs>
+										<BitOffs>16928</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9820,7 +9839,7 @@ PU245
 									<Var>
 										<Name>ISP01 Ampel_Rot</Name>
 										<Type>BIT</Type>
-										<BitOffs>4745</BitOffs>
+										<BitOffs>16929</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9829,7 +9848,7 @@ PU245
 									<Var>
 										<Name>ISP01 Ampel_Orange</Name>
 										<Type>BIT</Type>
-										<BitOffs>4746</BitOffs>
+										<BitOffs>16930</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9838,7 +9857,7 @@ PU245
 									<Var>
 										<Name>ISP01 Ampel_Gruen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4747</BitOffs>
+										<BitOffs>16931</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9847,7 +9866,7 @@ PU245
 									<Var>
 										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_Ost_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4748</BitOffs>
+										<BitOffs>16932</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9856,7 +9875,7 @@ PU245
 									<Var>
 										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_OST_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4749</BitOffs>
+										<BitOffs>16933</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9865,7 +9884,7 @@ PU245
 									<Var>
 										<Name>bo_SV100_KWHalle_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4750</BitOffs>
+										<BitOffs>16934</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9874,7 +9893,7 @@ PU245
 									<Var>
 										<Name>bo_SV105_KW_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4751</BitOffs>
+										<BitOffs>16935</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9883,7 +9902,7 @@ PU245
 									<Var>
 										<Name>bo_SV145_KWPufffersp_WP_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4752</BitOffs>
+										<BitOffs>16936</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9892,7 +9911,7 @@ PU245
 									<Var>
 										<Name>bo_SV191_KWSMS_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4753</BitOffs>
+										<BitOffs>16937</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9901,7 +9920,7 @@ PU245
 									<Var>
 										<Name>bo_SV235_WW_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4754</BitOffs>
+										<BitOffs>16938</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9910,7 +9929,7 @@ PU245
 									<Var>
 										<Name>bo_SV215_WW_vom_PWT1_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4755</BitOffs>
+										<BitOffs>16939</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9919,7 +9938,7 @@ PU245
 									<Var>
 										<Name>bo_SV245_WW_Puffersp_WP_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4756</BitOffs>
+										<BitOffs>16940</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9928,7 +9947,7 @@ PU245
 									<Var>
 										<Name>bo_SV300_Heisswasser_Halle_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4757</BitOffs>
+										<BitOffs>16941</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9937,7 +9956,7 @@ PU245
 									<Var>
 										<Name>bo_SV315_Heisswasser_zum_PWT1Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4758</BitOffs>
+										<BitOffs>16942</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9946,7 +9965,7 @@ PU245
 									<Var>
 										<Name>bo_SV321_HKW_6_15_KWN_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4759</BitOffs>
+										<BitOffs>16943</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9959,7 +9978,7 @@ PU245
 									<Var>
 										<Name>bo_SV322_HKW_9_20_KWN_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4760</BitOffs>
+										<BitOffs>16944</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9968,7 +9987,7 @@ PU245
 									<Var>
 										<Name>bo_SV331_Heisswasser_Gasbrennwert_Absperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4761</BitOffs>
+										<BitOffs>16945</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9977,7 +9996,7 @@ PU245
 									<Var>
 										<Name>bo_SV251_WW_DruckluftkomprAbsperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4762</BitOffs>
+										<BitOffs>16946</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9986,7 +10005,7 @@ PU245
 									<Var>
 										<Name>bo_JK322_Aussenluft_Nachstroemung_Druckl_BHKW</Name>
 										<Type>BIT</Type>
-										<BitOffs>4763</BitOffs>
+										<BitOffs>16947</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -9995,7 +10014,7 @@ PU245
 									<Var>
 										<Name>bo_SV403_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4764</BitOffs>
+										<BitOffs>16948</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10004,7 +10023,7 @@ PU245
 									<Var>
 										<Name>bo_SV404_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4765</BitOffs>
+										<BitOffs>16949</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10013,7 +10032,7 @@ PU245
 									<Var>
 										<Name>bo_SV423_FBH_zw_Kalt_und_WW_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4766</BitOffs>
+										<BitOffs>16950</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10022,7 +10041,7 @@ PU245
 									<Var>
 										<Name>bo_SV424_FBH_zw_Kalt_und_WW_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4767</BitOffs>
+										<BitOffs>16951</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10031,7 +10050,7 @@ PU245
 									<Var>
 										<Name>bo_PU690_Keller_Schaltsignal_der_Berieselungspumpe</Name>
 										<Type>BIT</Type>
-										<BitOffs>4768</BitOffs>
+										<BitOffs>16952</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10040,7 +10059,7 @@ PU245
 									<Var>
 										<Name>bo_BHKW321_Freigabe_Schaltbefehl_EIN</Name>
 										<Type>BIT</Type>
-										<BitOffs>4769</BitOffs>
+										<BitOffs>16953</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10049,7 +10068,7 @@ PU245
 									<Var>
 										<Name>bo_BHKW322_Freigabe_Schaltbefehl_EIN</Name>
 										<Type>BIT</Type>
-										<BitOffs>4770</BitOffs>
+										<BitOffs>16954</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10058,7 +10077,7 @@ PU245
 									<Var>
 										<Name>bo_SV505_Keller_KaRoMa_innen_PWT_2_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4771</BitOffs>
+										<BitOffs>16955</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10067,7 +10086,7 @@ PU245
 									<Var>
 										<Name>bo_SV605_Keller_KaRoMa_aussen_PWT_2_3WegUmSVen</Name>
 										<Type>BIT</Type>
-										<BitOffs>4772</BitOffs>
+										<BitOffs>16956</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10076,7 +10095,7 @@ PU245
 									<Var>
 										<Name>bo_SV261_WWN_NitrierofenAbsperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4773</BitOffs>
+										<BitOffs>16957</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10085,7 +10104,7 @@ PU245
 									<Var>
 										<Name>bo_SV361_KWN_NitrierofenAbsperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4774</BitOffs>
+										<BitOffs>16958</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10094,7 +10113,7 @@ PU245
 									<Var>
 										<Name>bo_GB331_Heißwasser_Gasbrennwert_ Freigabe</Name>
 										<Type>BIT</Type>
-										<BitOffs>4775</BitOffs>
+										<BitOffs>16959</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10107,7 +10126,7 @@ PU245
 									<Var>
 										<Name>bo_SV453_Lueftungsgeraet_Umschaltung_HW_KW_VLAbsperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4776</BitOffs>
+										<BitOffs>16960</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10116,7 +10135,7 @@ PU245
 									<Var>
 										<Name>bo_SV454_Lueftungsgeraet_Umschaltung_HW_KW_RLAbsperrventil</Name>
 										<Type>BIT</Type>
-										<BitOffs>4777</BitOffs>
+										<BitOffs>16961</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10125,7 +10144,7 @@ PU245
 									<Var>
 										<Name>bo_PU710_Aussenbereich_Speicherpumpe_Kaltw</Name>
 										<Type>BIT</Type>
-										<BitOffs>4778</BitOffs>
+										<BitOffs>16962</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10134,7 +10153,7 @@ PU245
 									<Var>
 										<Name>bo_PU716_Aussenbereich_Speicherpumpe_Mischw</Name>
 										<Type>BIT</Type>
-										<BitOffs>4779</BitOffs>
+										<BitOffs>16963</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10143,7 +10162,7 @@ PU245
 									<Var>
 										<Name>bo_PU720_Aussenbereich_Speicherpumpe_Warmw</Name>
 										<Type>BIT</Type>
-										<BitOffs>4780</BitOffs>
+										<BitOffs>16964</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10152,7 +10171,7 @@ PU245
 									<Var>
 										<Name>bo_PU726_Aussenbereich_Speicherpumpe_Mischw</Name>
 										<Type>BIT</Type>
-										<BitOffs>4781</BitOffs>
+										<BitOffs>16965</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10161,7 +10180,7 @@ PU245
 									<Var>
 										<Name>bo_PU760_Aussenbereich_Speicherpumpe_Glykolnetz</Name>
 										<Type>BIT</Type>
-										<BitOffs>4782</BitOffs>
+										<BitOffs>16966</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10170,7 +10189,7 @@ PU245
 									<Var>
 										<Name>bo_Frei_BO39</Name>
 										<Type>BIT</Type>
-										<BitOffs>4783</BitOffs>
+										<BitOffs>16967</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10179,7 +10198,7 @@ PU245
 									<Var>
 										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_AUF</Name>
 										<Type>BIT</Type>
-										<BitOffs>4784</BitOffs>
+										<BitOffs>16968</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10188,7 +10207,7 @@ PU245
 									<Var>
 										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_ZU</Name>
 										<Type>BIT</Type>
-										<BitOffs>4785</BitOffs>
+										<BitOffs>16969</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10197,7 +10216,7 @@ PU245
 									<Var>
 										<Name>LI### Keller Schaltsignal vom Licht in Büros</Name>
 										<Type>BIT</Type>
-										<BitOffs>4786</BitOffs>
+										<BitOffs>16970</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10206,7 +10225,7 @@ PU245
 									<Var>
 										<Name>bo_Waermepumpe_945_Stellung</Name>
 										<Type>BIT</Type>
-										<BitOffs>4787</BitOffs>
+										<BitOffs>16971</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10215,7 +10234,7 @@ PU245
 									<Var>
 										<Name>bo_SV145_Waermepumpe_Stellventil_BlauesNetz</Name>
 										<Type>BIT</Type>
-										<BitOffs>4788</BitOffs>
+										<BitOffs>16972</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10224,7 +10243,7 @@ PU245
 									<Var>
 										<Name>bo_SV245_Waermepumpe_Stelventil_GruenesNetz</Name>
 										<Type>BIT</Type>
-										<BitOffs>4789</BitOffs>
+										<BitOffs>16973</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10233,7 +10252,7 @@ PU245
 									<Var>
 										<Name>bo_Ampel_Blau</Name>
 										<Type>BIT</Type>
-										<BitOffs>4790</BitOffs>
+										<BitOffs>16974</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10242,7 +10261,7 @@ PU245
 									<Var>
 										<Name>bo_Ampel_Buzz</Name>
 										<Type>BIT</Type>
-										<BitOffs>4791</BitOffs>
+										<BitOffs>16975</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10255,25 +10274,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1224</BitOffs>
+										<BitOffs>13408</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF050_EG_Nord_AT</Name>
 										<Type>INT</Type>
-										<BitOffs>1240</BitOffs>
+										<BitOffs>13424</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1224</BitOffs>
+										<BitOffs>13408</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1240</BitOffs>
+										<BitOffs>13424</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10282,25 +10301,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1256</BitOffs>
+										<BitOffs>13440</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI01</Name>
 										<Type>INT</Type>
-										<BitOffs>1272</BitOffs>
+										<BitOffs>13456</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1256</BitOffs>
+										<BitOffs>13440</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1272</BitOffs>
+										<BitOffs>13456</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10309,25 +10328,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1288</BitOffs>
+										<BitOffs>13472</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI02</Name>
 										<Type>INT</Type>
-										<BitOffs>1304</BitOffs>
+										<BitOffs>13488</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1288</BitOffs>
+										<BitOffs>13472</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1304</BitOffs>
+										<BitOffs>13488</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10336,25 +10355,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1320</BitOffs>
+										<BitOffs>13504</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI03</Name>
 										<Type>INT</Type>
-										<BitOffs>1336</BitOffs>
+										<BitOffs>13520</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1320</BitOffs>
+										<BitOffs>13504</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1336</BitOffs>
+										<BitOffs>13520</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10367,25 +10386,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1352</BitOffs>
+										<BitOffs>13536</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF195_HydrW_KWN_Temp_1_oben</Name>
 										<Type>INT</Type>
-										<BitOffs>1368</BitOffs>
+										<BitOffs>13552</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1352</BitOffs>
+										<BitOffs>13536</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1368</BitOffs>
+										<BitOffs>13552</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10394,25 +10413,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1384</BitOffs>
+										<BitOffs>13568</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF195_HydrW_KWN_Temp_1_mitte</Name>
 										<Type>INT</Type>
-										<BitOffs>1400</BitOffs>
+										<BitOffs>13584</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1384</BitOffs>
+										<BitOffs>13568</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1400</BitOffs>
+										<BitOffs>13584</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10421,25 +10440,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1416</BitOffs>
+										<BitOffs>13600</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF195_HydrW_KWN_Temp_1_unten</Name>
 										<Type>INT</Type>
-										<BitOffs>1432</BitOffs>
+										<BitOffs>13616</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1416</BitOffs>
+										<BitOffs>13600</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1432</BitOffs>
+										<BitOffs>13616</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10448,25 +10467,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1448</BitOffs>
+										<BitOffs>13632</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF295_HydrW_WWN_Temp_1_oben</Name>
 										<Type>INT</Type>
-										<BitOffs>1464</BitOffs>
+										<BitOffs>13648</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1448</BitOffs>
+										<BitOffs>13632</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1464</BitOffs>
+										<BitOffs>13648</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10479,25 +10498,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1480</BitOffs>
+										<BitOffs>13664</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF295_HydrW_WWN_Temp_1_mitte</Name>
 										<Type>INT</Type>
-										<BitOffs>1496</BitOffs>
+										<BitOffs>13680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1480</BitOffs>
+										<BitOffs>13664</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1496</BitOffs>
+										<BitOffs>13680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10506,25 +10525,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1512</BitOffs>
+										<BitOffs>13696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF295_HydrW_WWN_Temp_1_unten</Name>
 										<Type>INT</Type>
-										<BitOffs>1528</BitOffs>
+										<BitOffs>13712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1512</BitOffs>
+										<BitOffs>13696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1528</BitOffs>
+										<BitOffs>13712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10533,25 +10552,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1544</BitOffs>
+										<BitOffs>13728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI10</Name>
 										<Type>INT</Type>
-										<BitOffs>1560</BitOffs>
+										<BitOffs>13744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1544</BitOffs>
+										<BitOffs>13728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1560</BitOffs>
+										<BitOffs>13744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10560,25 +10579,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1576</BitOffs>
+										<BitOffs>13760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI11</Name>
 										<Type>INT</Type>
-										<BitOffs>1592</BitOffs>
+										<BitOffs>13776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1576</BitOffs>
+										<BitOffs>13760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1592</BitOffs>
+										<BitOffs>13776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10591,25 +10610,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1608</BitOffs>
+										<BitOffs>13792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI12</Name>
 										<Type>INT</Type>
-										<BitOffs>1624</BitOffs>
+										<BitOffs>13808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1608</BitOffs>
+										<BitOffs>13792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1624</BitOffs>
+										<BitOffs>13808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10618,25 +10637,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1640</BitOffs>
+										<BitOffs>13824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI13</Name>
 										<Type>INT</Type>
-										<BitOffs>1656</BitOffs>
+										<BitOffs>13840</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1640</BitOffs>
+										<BitOffs>13824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1656</BitOffs>
+										<BitOffs>13840</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10645,25 +10664,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1672</BitOffs>
+										<BitOffs>13856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI14</Name>
 										<Type>INT</Type>
-										<BitOffs>1688</BitOffs>
+										<BitOffs>13872</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1672</BitOffs>
+										<BitOffs>13856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1688</BitOffs>
+										<BitOffs>13872</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10672,25 +10691,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1704</BitOffs>
+										<BitOffs>13888</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI15</Name>
 										<Type>INT</Type>
-										<BitOffs>1720</BitOffs>
+										<BitOffs>13904</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1704</BitOffs>
+										<BitOffs>13888</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1720</BitOffs>
+										<BitOffs>13904</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10703,25 +10722,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1736</BitOffs>
+										<BitOffs>13920</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1752</BitOffs>
+										<BitOffs>13936</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1736</BitOffs>
+										<BitOffs>13920</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1752</BitOffs>
+										<BitOffs>13936</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10730,25 +10749,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1768</BitOffs>
+										<BitOffs>13952</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1784</BitOffs>
+										<BitOffs>13968</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1768</BitOffs>
+										<BitOffs>13952</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1784</BitOffs>
+										<BitOffs>13968</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10757,25 +10776,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1800</BitOffs>
+										<BitOffs>13984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1816</BitOffs>
+										<BitOffs>14000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1800</BitOffs>
+										<BitOffs>13984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1816</BitOffs>
+										<BitOffs>14000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10784,25 +10803,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1832</BitOffs>
+										<BitOffs>14016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF551_KaRoMa_DeIn_Ost_Sek_1_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1848</BitOffs>
+										<BitOffs>14032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1832</BitOffs>
+										<BitOffs>14016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1848</BitOffs>
+										<BitOffs>14032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10815,25 +10834,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1864</BitOffs>
+										<BitOffs>14048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF552_KaRoMa_DeIn_Ost_Sek_2_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1880</BitOffs>
+										<BitOffs>14064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1864</BitOffs>
+										<BitOffs>14048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1880</BitOffs>
+										<BitOffs>14064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10842,25 +10861,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1896</BitOffs>
+										<BitOffs>14080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF553_KaRoMa_DeIn_Ost_Sek_3_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1912</BitOffs>
+										<BitOffs>14096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1896</BitOffs>
+										<BitOffs>14080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1912</BitOffs>
+										<BitOffs>14096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10869,25 +10888,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1928</BitOffs>
+										<BitOffs>14112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1944</BitOffs>
+										<BitOffs>14128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1928</BitOffs>
+										<BitOffs>14112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1944</BitOffs>
+										<BitOffs>14128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10896,25 +10915,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1960</BitOffs>
+										<BitOffs>14144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>1976</BitOffs>
+										<BitOffs>14160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1960</BitOffs>
+										<BitOffs>14144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>1976</BitOffs>
+										<BitOffs>14160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10927,25 +10946,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>1992</BitOffs>
+										<BitOffs>14176</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2008</BitOffs>
+										<BitOffs>14192</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>1992</BitOffs>
+										<BitOffs>14176</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2008</BitOffs>
+										<BitOffs>14192</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10954,25 +10973,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2024</BitOffs>
+										<BitOffs>14208</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2040</BitOffs>
+										<BitOffs>14224</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2024</BitOffs>
+										<BitOffs>14208</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2040</BitOffs>
+										<BitOffs>14224</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -10981,25 +11000,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2056</BitOffs>
+										<BitOffs>14240</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2072</BitOffs>
+										<BitOffs>14256</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2056</BitOffs>
+										<BitOffs>14240</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2072</BitOffs>
+										<BitOffs>14256</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11008,25 +11027,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2088</BitOffs>
+										<BitOffs>14272</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2104</BitOffs>
+										<BitOffs>14288</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2088</BitOffs>
+										<BitOffs>14272</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2104</BitOffs>
+										<BitOffs>14288</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11039,25 +11058,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2120</BitOffs>
+										<BitOffs>14304</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF640_KaRoMa_WaAu_Ost_Sek_1_3_zentrale_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2136</BitOffs>
+										<BitOffs>14320</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2120</BitOffs>
+										<BitOffs>14304</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2136</BitOffs>
+										<BitOffs>14320</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11066,25 +11085,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2152</BitOffs>
+										<BitOffs>14336</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI29</Name>
 										<Type>INT</Type>
-										<BitOffs>2168</BitOffs>
+										<BitOffs>14352</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2152</BitOffs>
+										<BitOffs>14336</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2168</BitOffs>
+										<BitOffs>14352</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11093,25 +11112,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2184</BitOffs>
+										<BitOffs>14368</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_TF660_KaRoMa_WaAu_West_Sek_1_3_zentrale_RLT</Name>
 										<Type>INT</Type>
-										<BitOffs>2200</BitOffs>
+										<BitOffs>14384</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2184</BitOffs>
+										<BitOffs>14368</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2200</BitOffs>
+										<BitOffs>14384</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11120,25 +11139,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2216</BitOffs>
+										<BitOffs>14400</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI31</Name>
 										<Type>INT</Type>
-										<BitOffs>2232</BitOffs>
+										<BitOffs>14416</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2216</BitOffs>
+										<BitOffs>14400</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2232</BitOffs>
+										<BitOffs>14416</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11151,25 +11170,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2248</BitOffs>
+										<BitOffs>14432</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI32</Name>
 										<Type>INT</Type>
-										<BitOffs>2264</BitOffs>
+										<BitOffs>14448</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2248</BitOffs>
+										<BitOffs>14432</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2264</BitOffs>
+										<BitOffs>14448</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11178,25 +11197,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2280</BitOffs>
+										<BitOffs>14464</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI33</Name>
 										<Type>INT</Type>
-										<BitOffs>2296</BitOffs>
+										<BitOffs>14480</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2280</BitOffs>
+										<BitOffs>14464</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2296</BitOffs>
+										<BitOffs>14480</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11205,25 +11224,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2312</BitOffs>
+										<BitOffs>14496</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI34</Name>
 										<Type>INT</Type>
-										<BitOffs>2328</BitOffs>
+										<BitOffs>14512</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2312</BitOffs>
+										<BitOffs>14496</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2328</BitOffs>
+										<BitOffs>14512</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11232,25 +11251,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2344</BitOffs>
+										<BitOffs>14528</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI35</Name>
 										<Type>INT</Type>
-										<BitOffs>2360</BitOffs>
+										<BitOffs>14544</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2344</BitOffs>
+										<BitOffs>14528</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2360</BitOffs>
+										<BitOffs>14544</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11263,25 +11282,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2376</BitOffs>
+										<BitOffs>14560</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI36</Name>
 										<Type>INT</Type>
-										<BitOffs>2392</BitOffs>
+										<BitOffs>14576</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2376</BitOffs>
+										<BitOffs>14560</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2392</BitOffs>
+										<BitOffs>14576</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11290,25 +11309,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2408</BitOffs>
+										<BitOffs>14592</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI37</Name>
 										<Type>INT</Type>
-										<BitOffs>2424</BitOffs>
+										<BitOffs>14608</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2408</BitOffs>
+										<BitOffs>14592</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2424</BitOffs>
+										<BitOffs>14608</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11317,25 +11336,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2440</BitOffs>
+										<BitOffs>14624</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI38</Name>
 										<Type>INT</Type>
-										<BitOffs>2456</BitOffs>
+										<BitOffs>14640</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2440</BitOffs>
+										<BitOffs>14624</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2456</BitOffs>
+										<BitOffs>14640</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11344,25 +11363,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2472</BitOffs>
+										<BitOffs>14656</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI39</Name>
 										<Type>INT</Type>
-										<BitOffs>2488</BitOffs>
+										<BitOffs>14672</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2472</BitOffs>
+										<BitOffs>14656</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2488</BitOffs>
+										<BitOffs>14672</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11375,25 +11394,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2504</BitOffs>
+										<BitOffs>14688</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI40</Name>
 										<Type>INT</Type>
-										<BitOffs>2520</BitOffs>
+										<BitOffs>14704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2504</BitOffs>
+										<BitOffs>14688</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2520</BitOffs>
+										<BitOffs>14704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11402,25 +11421,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2536</BitOffs>
+										<BitOffs>14720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI41</Name>
 										<Type>INT</Type>
-										<BitOffs>2552</BitOffs>
+										<BitOffs>14736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2536</BitOffs>
+										<BitOffs>14720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2552</BitOffs>
+										<BitOffs>14736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11429,25 +11448,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2568</BitOffs>
+										<BitOffs>14752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI42</Name>
 										<Type>INT</Type>
-										<BitOffs>2584</BitOffs>
+										<BitOffs>14768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2568</BitOffs>
+										<BitOffs>14752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2584</BitOffs>
+										<BitOffs>14768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11456,25 +11475,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2600</BitOffs>
+										<BitOffs>14784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI43</Name>
 										<Type>INT</Type>
-										<BitOffs>2616</BitOffs>
+										<BitOffs>14800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2600</BitOffs>
+										<BitOffs>14784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2616</BitOffs>
+										<BitOffs>14800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11487,25 +11506,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2632</BitOffs>
+										<BitOffs>14816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI44</Name>
 										<Type>INT</Type>
-										<BitOffs>2648</BitOffs>
+										<BitOffs>14832</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2632</BitOffs>
+										<BitOffs>14816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2648</BitOffs>
+										<BitOffs>14832</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11514,25 +11533,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2664</BitOffs>
+										<BitOffs>14848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI45</Name>
 										<Type>INT</Type>
-										<BitOffs>2680</BitOffs>
+										<BitOffs>14864</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2664</BitOffs>
+										<BitOffs>14848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2680</BitOffs>
+										<BitOffs>14864</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11541,25 +11560,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2696</BitOffs>
+										<BitOffs>14880</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI46</Name>
 										<Type>INT</Type>
-										<BitOffs>2712</BitOffs>
+										<BitOffs>14896</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2696</BitOffs>
+										<BitOffs>14880</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2712</BitOffs>
+										<BitOffs>14896</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11568,25 +11587,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2728</BitOffs>
+										<BitOffs>14912</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>ai_Frei_AI47</Name>
 										<Type>INT</Type>
-										<BitOffs>2744</BitOffs>
+										<BitOffs>14928</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2728</BitOffs>
+										<BitOffs>14912</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2744</BitOffs>
+										<BitOffs>14928</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11599,25 +11618,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2760</BitOffs>
+										<BitOffs>14944</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_DS100_KWN</Name>
 										<Type>INT</Type>
-										<BitOffs>2776</BitOffs>
+										<BitOffs>14960</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2760</BitOffs>
+										<BitOffs>14944</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2776</BitOffs>
+										<BitOffs>14960</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11626,25 +11645,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2792</BitOffs>
+										<BitOffs>14976</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_DS200_WWN</Name>
 										<Type>INT</Type>
-										<BitOffs>2808</BitOffs>
+										<BitOffs>14992</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2792</BitOffs>
+										<BitOffs>14976</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2808</BitOffs>
+										<BitOffs>14992</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11653,25 +11672,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2824</BitOffs>
+										<BitOffs>15008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_DS300_HWN</Name>
 										<Type>INT</Type>
-										<BitOffs>2840</BitOffs>
+										<BitOffs>15024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2824</BitOffs>
+										<BitOffs>15008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2840</BitOffs>
+										<BitOffs>15024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11680,25 +11699,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2856</BitOffs>
+										<BitOffs>15040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_DS500_KaRoMa_Innen</Name>
 										<Type>INT</Type>
-										<BitOffs>2872</BitOffs>
+										<BitOffs>15056</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2856</BitOffs>
+										<BitOffs>15040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2872</BitOffs>
+										<BitOffs>15056</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11711,25 +11730,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2888</BitOffs>
+										<BitOffs>15072</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_DS600_KaRoMa_Aussen</Name>
 										<Type>INT</Type>
-										<BitOffs>2904</BitOffs>
+										<BitOffs>15088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2888</BitOffs>
+										<BitOffs>15072</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2904</BitOffs>
+										<BitOffs>15088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11738,25 +11757,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2920</BitOffs>
+										<BitOffs>15104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Lichtsensor_Halle_Gruppe_01</Name>
 										<Type>INT</Type>
-										<BitOffs>2936</BitOffs>
+										<BitOffs>15120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2920</BitOffs>
+										<BitOffs>15104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2936</BitOffs>
+										<BitOffs>15120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11765,25 +11784,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2952</BitOffs>
+										<BitOffs>15136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Lichtsensor_Halle_Gruppe_02</Name>
 										<Type>INT</Type>
-										<BitOffs>2968</BitOffs>
+										<BitOffs>15152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2952</BitOffs>
+										<BitOffs>15136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>2968</BitOffs>
+										<BitOffs>15152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11792,25 +11811,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>2984</BitOffs>
+										<BitOffs>15168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI55</Name>
 										<Type>INT</Type>
-										<BitOffs>3000</BitOffs>
+										<BitOffs>15184</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>2984</BitOffs>
+										<BitOffs>15168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3000</BitOffs>
+										<BitOffs>15184</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11823,25 +11842,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3016</BitOffs>
+										<BitOffs>15200</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI56</Name>
 										<Type>INT</Type>
-										<BitOffs>3032</BitOffs>
+										<BitOffs>15216</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3016</BitOffs>
+										<BitOffs>15200</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3032</BitOffs>
+										<BitOffs>15216</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11850,25 +11869,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3048</BitOffs>
+										<BitOffs>15232</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI57</Name>
 										<Type>INT</Type>
-										<BitOffs>3064</BitOffs>
+										<BitOffs>15248</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3048</BitOffs>
+										<BitOffs>15232</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3064</BitOffs>
+										<BitOffs>15248</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11877,25 +11896,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3080</BitOffs>
+										<BitOffs>15264</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI58</Name>
 										<Type>INT</Type>
-										<BitOffs>3096</BitOffs>
+										<BitOffs>15280</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3080</BitOffs>
+										<BitOffs>15264</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3096</BitOffs>
+										<BitOffs>15280</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11904,25 +11923,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3112</BitOffs>
+										<BitOffs>15296</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI59</Name>
 										<Type>INT</Type>
-										<BitOffs>3128</BitOffs>
+										<BitOffs>15312</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3112</BitOffs>
+										<BitOffs>15296</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3128</BitOffs>
+										<BitOffs>15312</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11935,25 +11954,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3144</BitOffs>
+										<BitOffs>15328</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI60</Name>
 										<Type>INT</Type>
-										<BitOffs>3160</BitOffs>
+										<BitOffs>15344</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3144</BitOffs>
+										<BitOffs>15328</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3160</BitOffs>
+										<BitOffs>15344</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11962,25 +11981,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3176</BitOffs>
+										<BitOffs>15360</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI61</Name>
 										<Type>INT</Type>
-										<BitOffs>3192</BitOffs>
+										<BitOffs>15376</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3176</BitOffs>
+										<BitOffs>15360</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3192</BitOffs>
+										<BitOffs>15376</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -11989,25 +12008,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3208</BitOffs>
+										<BitOffs>15392</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI62</Name>
 										<Type>INT</Type>
-										<BitOffs>3224</BitOffs>
+										<BitOffs>15408</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3208</BitOffs>
+										<BitOffs>15392</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3224</BitOffs>
+										<BitOffs>15408</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12016,25 +12035,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3240</BitOffs>
+										<BitOffs>15424</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ai_Frei_AI63</Name>
 										<Type>INT</Type>
-										<BitOffs>3256</BitOffs>
+										<BitOffs>15440</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3240</BitOffs>
+										<BitOffs>15424</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>3256</BitOffs>
+										<BitOffs>15440</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12047,25 +12066,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3272</BitOffs>
+										<BitOffs>15456</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3288</BitOffs>
+										<BitOffs>15472</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3272</BitOffs>
+										<BitOffs>15456</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV241_InnenHalle_AKM_WWN</Name>
 										<Type>INT</Type>
-										<BitOffs>3288</BitOffs>
+										<BitOffs>15472</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12074,25 +12093,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3304</BitOffs>
+										<BitOffs>15488</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3320</BitOffs>
+										<BitOffs>15504</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3304</BitOffs>
+										<BitOffs>15488</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV141_InnenHalle_AKM_KWN</Name>
 										<Type>INT</Type>
-										<BitOffs>3320</BitOffs>
+										<BitOffs>15504</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12101,25 +12120,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3336</BitOffs>
+										<BitOffs>15520</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3352</BitOffs>
+										<BitOffs>15536</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3336</BitOffs>
+										<BitOffs>15520</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV341_InnenHalle_AKM_KWN</Name>
 										<Type>INT</Type>
-										<BitOffs>3352</BitOffs>
+										<BitOffs>15536</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12128,25 +12147,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3368</BitOffs>
+										<BitOffs>15552</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3384</BitOffs>
+										<BitOffs>15568</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3368</BitOffs>
+										<BitOffs>15552</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV350_Keller_statHeiz_KWN</Name>
 										<Type>INT</Type>
-										<BitOffs>3384</BitOffs>
+										<BitOffs>15568</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12159,25 +12178,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3400</BitOffs>
+										<BitOffs>15584</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3416</BitOffs>
+										<BitOffs>15600</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3400</BitOffs>
+										<BitOffs>15584</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO04</Name>
 										<Type>INT</Type>
-										<BitOffs>3416</BitOffs>
+										<BitOffs>15600</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12186,25 +12205,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3432</BitOffs>
+										<BitOffs>15616</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3448</BitOffs>
+										<BitOffs>15632</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3432</BitOffs>
+										<BitOffs>15616</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV425_Keller_FBH_Kalt_Warm_Mischnetz</Name>
 										<Type>INT</Type>
-										<BitOffs>3448</BitOffs>
+										<BitOffs>15632</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12213,25 +12232,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3464</BitOffs>
+										<BitOffs>15648</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3480</BitOffs>
+										<BitOffs>15664</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3464</BitOffs>
+										<BitOffs>15648</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_BHKW321_Leistung_Stellbefehl</Name>
 										<Type>INT</Type>
-										<BitOffs>3480</BitOffs>
+										<BitOffs>15664</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12240,25 +12259,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3496</BitOffs>
+										<BitOffs>15680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3512</BitOffs>
+										<BitOffs>15696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3496</BitOffs>
+										<BitOffs>15680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_BHKW322_Leistung_Stellbefehl</Name>
 										<Type>INT</Type>
-										<BitOffs>3512</BitOffs>
+										<BitOffs>15696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12271,25 +12290,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3528</BitOffs>
+										<BitOffs>15712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3544</BitOffs>
+										<BitOffs>15728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3528</BitOffs>
+										<BitOffs>15712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV500_KaRoMa_innen_Vorregelung</Name>
 										<Type>INT</Type>
-										<BitOffs>3544</BitOffs>
+										<BitOffs>15728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12298,25 +12317,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3560</BitOffs>
+										<BitOffs>15744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3576</BitOffs>
+										<BitOffs>15760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3560</BitOffs>
+										<BitOffs>15744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO09</Name>
 										<Type>INT</Type>
-										<BitOffs>3576</BitOffs>
+										<BitOffs>15760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12325,25 +12344,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3592</BitOffs>
+										<BitOffs>15776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3608</BitOffs>
+										<BitOffs>15792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3592</BitOffs>
+										<BitOffs>15776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV541_KaRoMa_WaIn_Ost_Sek_1</Name>
 										<Type>INT</Type>
-										<BitOffs>3608</BitOffs>
+										<BitOffs>15792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12352,25 +12371,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3624</BitOffs>
+										<BitOffs>15808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3640</BitOffs>
+										<BitOffs>15824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3624</BitOffs>
+										<BitOffs>15808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV542_KaRoMa_WaIn_Ost_Sek_2</Name>
 										<Type>INT</Type>
-										<BitOffs>3640</BitOffs>
+										<BitOffs>15824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12383,25 +12402,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3656</BitOffs>
+										<BitOffs>15840</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3672</BitOffs>
+										<BitOffs>15856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3656</BitOffs>
+										<BitOffs>15840</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV543_KaRoMa_WaIn_Ost_Sek_3</Name>
 										<Type>INT</Type>
-										<BitOffs>3672</BitOffs>
+										<BitOffs>15856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12410,25 +12429,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3688</BitOffs>
+										<BitOffs>15872</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3704</BitOffs>
+										<BitOffs>15888</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3688</BitOffs>
+										<BitOffs>15872</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV551_KaRoMa_DeIn_Ost_Sek_1</Name>
 										<Type>INT</Type>
-										<BitOffs>3704</BitOffs>
+										<BitOffs>15888</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12437,25 +12456,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3720</BitOffs>
+										<BitOffs>15904</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3736</BitOffs>
+										<BitOffs>15920</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3720</BitOffs>
+										<BitOffs>15904</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV552_KaRoMa_DeIn_Ost_Sek_2</Name>
 										<Type>INT</Type>
-										<BitOffs>3736</BitOffs>
+										<BitOffs>15920</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12464,25 +12483,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3752</BitOffs>
+										<BitOffs>15936</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3768</BitOffs>
+										<BitOffs>15952</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3752</BitOffs>
+										<BitOffs>15936</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV553_KaRoMa_DeIn_Ost_Sek_3</Name>
 										<Type>INT</Type>
-										<BitOffs>3768</BitOffs>
+										<BitOffs>15952</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12495,25 +12514,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3784</BitOffs>
+										<BitOffs>15968</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3800</BitOffs>
+										<BitOffs>15984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3784</BitOffs>
+										<BitOffs>15968</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV561_KaRoMa_WaIn_West_Sek_1</Name>
 										<Type>INT</Type>
-										<BitOffs>3800</BitOffs>
+										<BitOffs>15984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12522,25 +12541,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3816</BitOffs>
+										<BitOffs>16000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3832</BitOffs>
+										<BitOffs>16016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3816</BitOffs>
+										<BitOffs>16000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV562_KaRoMa_WaIn_West_Sek_2</Name>
 										<Type>INT</Type>
-										<BitOffs>3832</BitOffs>
+										<BitOffs>16016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12549,25 +12568,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3848</BitOffs>
+										<BitOffs>16032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3864</BitOffs>
+										<BitOffs>16048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3848</BitOffs>
+										<BitOffs>16032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV563_KaRoMa_WaIn_West_Sek_3</Name>
 										<Type>INT</Type>
-										<BitOffs>3864</BitOffs>
+										<BitOffs>16048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12576,25 +12595,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3880</BitOffs>
+										<BitOffs>16064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3896</BitOffs>
+										<BitOffs>16080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3880</BitOffs>
+										<BitOffs>16064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV571_KaRoMa_DeIn_West_Sek_1</Name>
 										<Type>INT</Type>
-										<BitOffs>3896</BitOffs>
+										<BitOffs>16080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12607,25 +12626,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3912</BitOffs>
+										<BitOffs>16096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3928</BitOffs>
+										<BitOffs>16112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3912</BitOffs>
+										<BitOffs>16096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV572_KaRoMa_DeIn_West_Sek_2</Name>
 										<Type>INT</Type>
-										<BitOffs>3928</BitOffs>
+										<BitOffs>16112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12634,25 +12653,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3944</BitOffs>
+										<BitOffs>16128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3960</BitOffs>
+										<BitOffs>16144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3944</BitOffs>
+										<BitOffs>16128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV573_KaRoMa_DeIn_West_Sek_3</Name>
 										<Type>INT</Type>
-										<BitOffs>3960</BitOffs>
+										<BitOffs>16144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12661,25 +12680,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>3976</BitOffs>
+										<BitOffs>16160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>3992</BitOffs>
+										<BitOffs>16176</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>3976</BitOffs>
+										<BitOffs>16160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV600_KaRoMa_DaAu_Sek_1_3</Name>
 										<Type>INT</Type>
-										<BitOffs>3992</BitOffs>
+										<BitOffs>16176</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12688,25 +12707,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4008</BitOffs>
+										<BitOffs>16192</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4024</BitOffs>
+										<BitOffs>16208</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4008</BitOffs>
+										<BitOffs>16192</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV640_KaRoMa_WaAu_Ost_Sek_1_3</Name>
 										<Type>INT</Type>
-										<BitOffs>4024</BitOffs>
+										<BitOffs>16208</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12719,25 +12738,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4040</BitOffs>
+										<BitOffs>16224</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4056</BitOffs>
+										<BitOffs>16240</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4040</BitOffs>
+										<BitOffs>16224</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_RV660_KaRoMa_WaAu_West_Sek_1_3</Name>
 										<Type>INT</Type>
-										<BitOffs>4056</BitOffs>
+										<BitOffs>16240</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12746,25 +12765,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4072</BitOffs>
+										<BitOffs>16256</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4088</BitOffs>
+										<BitOffs>16272</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4072</BitOffs>
+										<BitOffs>16256</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO25</Name>
 										<Type>INT</Type>
-										<BitOffs>4088</BitOffs>
+										<BitOffs>16272</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12773,25 +12792,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4104</BitOffs>
+										<BitOffs>16288</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4120</BitOffs>
+										<BitOffs>16304</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4104</BitOffs>
+										<BitOffs>16288</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO26</Name>
 										<Type>INT</Type>
-										<BitOffs>4120</BitOffs>
+										<BitOffs>16304</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12800,25 +12819,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4136</BitOffs>
+										<BitOffs>16320</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4152</BitOffs>
+										<BitOffs>16336</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4136</BitOffs>
+										<BitOffs>16320</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO27</Name>
 										<Type>INT</Type>
-										<BitOffs>4152</BitOffs>
+										<BitOffs>16336</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12831,25 +12850,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4168</BitOffs>
+										<BitOffs>16352</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4184</BitOffs>
+										<BitOffs>16368</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4168</BitOffs>
+										<BitOffs>16352</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO28</Name>
 										<Type>INT</Type>
-										<BitOffs>4184</BitOffs>
+										<BitOffs>16368</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12858,25 +12877,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4200</BitOffs>
+										<BitOffs>16384</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4216</BitOffs>
+										<BitOffs>16400</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4200</BitOffs>
+										<BitOffs>16384</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO29</Name>
 										<Type>INT</Type>
-										<BitOffs>4216</BitOffs>
+										<BitOffs>16400</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12885,25 +12904,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4232</BitOffs>
+										<BitOffs>16416</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4248</BitOffs>
+										<BitOffs>16432</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4232</BitOffs>
+										<BitOffs>16416</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO30</Name>
 										<Type>INT</Type>
-										<BitOffs>4248</BitOffs>
+										<BitOffs>16432</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12912,25 +12931,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4264</BitOffs>
+										<BitOffs>16448</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>Daten Ein</Name>
 										<Type>INT</Type>
-										<BitOffs>4280</BitOffs>
+										<BitOffs>16464</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4264</BitOffs>
+										<BitOffs>16448</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
 										<Name>ao_Frei_AO31</Name>
 										<Type>INT</Type>
-										<BitOffs>4280</BitOffs>
+										<BitOffs>16464</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12943,25 +12962,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4296</BitOffs>
+										<BitOffs>16480</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF795_HVFA_SP1_T_oben_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4312</BitOffs>
+										<BitOffs>16496</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4296</BitOffs>
+										<BitOffs>16480</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4312</BitOffs>
+										<BitOffs>16496</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -12970,25 +12989,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4328</BitOffs>
+										<BitOffs>16512</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF795_HVFA_SP1_unten_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4344</BitOffs>
+										<BitOffs>16528</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4328</BitOffs>
+										<BitOffs>16512</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4344</BitOffs>
+										<BitOffs>16528</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13001,25 +13020,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4360</BitOffs>
+										<BitOffs>16544</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF796_HVFA_SP2_T_oben_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4376</BitOffs>
+										<BitOffs>16560</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4360</BitOffs>
+										<BitOffs>16544</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4376</BitOffs>
+										<BitOffs>16560</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13028,25 +13047,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4392</BitOffs>
+										<BitOffs>16576</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF796_HVFA_SP2_unten_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4408</BitOffs>
+										<BitOffs>16592</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4392</BitOffs>
+										<BitOffs>16576</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4408</BitOffs>
+										<BitOffs>16592</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13059,25 +13078,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4424</BitOffs>
+										<BitOffs>16608</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF797_HVFA_SP3_T_oben_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4440</BitOffs>
+										<BitOffs>16624</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4424</BitOffs>
+										<BitOffs>16608</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4440</BitOffs>
+										<BitOffs>16624</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13086,25 +13105,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4456</BitOffs>
+										<BitOffs>16640</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF797_HVFA_SP3_unten_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4472</BitOffs>
+										<BitOffs>16656</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4456</BitOffs>
+										<BitOffs>16640</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4472</BitOffs>
+										<BitOffs>16656</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13117,25 +13136,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4488</BitOffs>
+										<BitOffs>16672</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF395_VSI _AT_oben_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4504</BitOffs>
+										<BitOffs>16688</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4488</BitOffs>
+										<BitOffs>16672</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4504</BitOffs>
+										<BitOffs>16688</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13144,25 +13163,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4520</BitOffs>
+										<BitOffs>16704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF395_VSI _AT_mitte_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4536</BitOffs>
+										<BitOffs>16720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4520</BitOffs>
+										<BitOffs>16704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4536</BitOffs>
+										<BitOffs>16720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13175,25 +13194,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4552</BitOffs>
+										<BitOffs>16736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF395_VSI _AT_unten_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4568</BitOffs>
+										<BitOffs>16752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4552</BitOffs>
+										<BitOffs>16736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4568</BitOffs>
+										<BitOffs>16752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13202,25 +13221,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4584</BitOffs>
+										<BitOffs>16768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF051_RT_Sek_1_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4600</BitOffs>
+										<BitOffs>16784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4584</BitOffs>
+										<BitOffs>16768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4600</BitOffs>
+										<BitOffs>16784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13233,25 +13252,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4616</BitOffs>
+										<BitOffs>16800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF052_RT_Sek_2_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4632</BitOffs>
+										<BitOffs>16816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4616</BitOffs>
+										<BitOffs>16800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4632</BitOffs>
+										<BitOffs>16816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13260,25 +13279,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4648</BitOffs>
+										<BitOffs>16832</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF053_RT_Sek_3_PT100</Name>
 										<Type>INT</Type>
-										<BitOffs>4664</BitOffs>
+										<BitOffs>16848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4648</BitOffs>
+										<BitOffs>16832</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4664</BitOffs>
+										<BitOffs>16848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13291,25 +13310,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4680</BitOffs>
+										<BitOffs>16864</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF650_KaRoMa_DeAu_Ost</Name>
 										<Type>INT</Type>
-										<BitOffs>4696</BitOffs>
+										<BitOffs>16880</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4680</BitOffs>
+										<BitOffs>16864</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4696</BitOffs>
+										<BitOffs>16880</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13318,25 +13337,25 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
-										<BitOffs>4712</BitOffs>
+										<BitOffs>16896</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>TF670_KaRoMa_DeAu_West</Name>
 										<Type>INT</Type>
-										<BitOffs>4728</BitOffs>
+										<BitOffs>16912</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Kontrolle</Name>
 										<Type>USINT</Type>
-										<BitOffs>4712</BitOffs>
+										<BitOffs>16896</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
 										<Name>Daten Aus</Name>
 										<Type>INT</Type>
-										<BitOffs>4728</BitOffs>
+										<BitOffs>16912</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -13349,7 +13368,7 @@ PU245
 									<Var>
 										<Name>LI000_Licht_Halle_Gruppe_01_Taster</Name>
 										<Type>BIT</Type>
-										<BitOffs>4800</BitOffs>
+										<BitOffs>16984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13358,7 +13377,7 @@ PU245
 									<Var>
 										<Name>LI000_Licht_Halle_Gruppe_02_Taster</Name>
 										<Type>BIT</Type>
-										<BitOffs>4801</BitOffs>
+										<BitOffs>16985</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13367,7 +13386,7 @@ PU245
 									<Var>
 										<Name>FS795_HVFA_SP1_Fuellstandalarm</Name>
 										<Type>BIT</Type>
-										<BitOffs>4802</BitOffs>
+										<BitOffs>16986</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13376,7 +13395,7 @@ PU245
 									<Var>
 										<Name>FS796_HVFA_SP2_Fuellstandalarm</Name>
 										<Type>BIT</Type>
-										<BitOffs>4803</BitOffs>
+										<BitOffs>16987</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13385,7 +13404,7 @@ PU245
 									<Var>
 										<Name>FS797_HVFA_SP3_Fuellstandalarm</Name>
 										<Type>BIT</Type>
-										<BitOffs>4804</BitOffs>
+										<BitOffs>16988</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13394,7 +13413,7 @@ PU245
 									<Var>
 										<Name>Eingang</Name>
 										<Type>BIT</Type>
-										<BitOffs>4805</BitOffs>
+										<BitOffs>16989</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13403,7 +13422,7 @@ PU245
 									<Var>
 										<Name>Eingang</Name>
 										<Type>BIT</Type>
-										<BitOffs>4806</BitOffs>
+										<BitOffs>16990</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13412,7 +13431,7 @@ PU245
 									<Var>
 										<Name>Eingang</Name>
 										<Type>BIT</Type>
-										<BitOffs>4807</BitOffs>
+										<BitOffs>16991</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
@@ -13826,7 +13845,7 @@ PU245
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>37072</BitOffs>
+								<BitOffs>312</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -13837,7 +13856,7 @@ PU245
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>37072</BitOffs>
+								<BitOffs>312</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -13850,277 +13869,277 @@ PU245
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>37088</BitOffs>
+										<BitOffs>328</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>37104</BitOffs>
+										<BitOffs>344</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>37112</BitOffs>
+										<BitOffs>352</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>37120</BitOffs>
+										<BitOffs>360</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>37128</BitOffs>
+										<BitOffs>368</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>37136</BitOffs>
+										<BitOffs>376</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>37144</BitOffs>
+										<BitOffs>384</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>37152</BitOffs>
+										<BitOffs>392</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>37160</BitOffs>
+										<BitOffs>400</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>37168</BitOffs>
+										<BitOffs>408</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>37176</BitOffs>
+										<BitOffs>416</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>37184</BitOffs>
+										<BitOffs>424</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>37192</BitOffs>
+										<BitOffs>432</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>37200</BitOffs>
+										<BitOffs>440</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>37208</BitOffs>
+										<BitOffs>448</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>37216</BitOffs>
+										<BitOffs>456</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>37224</BitOffs>
+										<BitOffs>464</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>37232</BitOffs>
+										<BitOffs>472</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>37240</BitOffs>
+										<BitOffs>480</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>37248</BitOffs>
+										<BitOffs>488</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>37256</BitOffs>
+										<BitOffs>496</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>37264</BitOffs>
+										<BitOffs>504</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>37272</BitOffs>
+										<BitOffs>512</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>37088</BitOffs>
+										<BitOffs>328</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>37104</BitOffs>
+										<BitOffs>344</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>37112</BitOffs>
+										<BitOffs>352</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>37120</BitOffs>
+										<BitOffs>360</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>37128</BitOffs>
+										<BitOffs>368</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>37136</BitOffs>
+										<BitOffs>376</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>37144</BitOffs>
+										<BitOffs>384</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>37152</BitOffs>
+										<BitOffs>392</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>37160</BitOffs>
+										<BitOffs>400</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>37168</BitOffs>
+										<BitOffs>408</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>37176</BitOffs>
+										<BitOffs>416</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>37184</BitOffs>
+										<BitOffs>424</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>37192</BitOffs>
+										<BitOffs>432</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>37200</BitOffs>
+										<BitOffs>440</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>37208</BitOffs>
+										<BitOffs>448</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>37216</BitOffs>
+										<BitOffs>456</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>37224</BitOffs>
+										<BitOffs>464</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>37232</BitOffs>
+										<BitOffs>472</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>37240</BitOffs>
+										<BitOffs>480</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>37248</BitOffs>
+										<BitOffs>488</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>37256</BitOffs>
+										<BitOffs>496</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>37264</BitOffs>
+										<BitOffs>504</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>37272</BitOffs>
+										<BitOffs>512</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -14139,6 +14158,7 @@ PU245
 							<Fmmu>0000000000000000001700010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010140200181402</BootStrapData>
+							<SuName>MBus_WZahler</SuName>
 						</EtherCAT>
 					</Box>
 				</Box>
@@ -20692,62 +20712,62 @@ Revision: Rev. 1
 		</Io>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500890000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-500810000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0020-5008C0000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0120-500810000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0120-500821000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500890000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0020-5008C0000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{08502002-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502002-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502004-00C0-0304-0020-5008C0000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502002-0020-0304-0020-500820000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502003-0020-0304-0020-500820000403}" Id="#x02030040" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Box 4 (BK1250)">
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[0]" VarB="Term 48 (KL6781)^Channel 1^Data In 0"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[10]" VarB="Term 48 (KL6781)^Channel 1^Data In 10"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[11]" VarB="Term 48 (KL6781)^Channel 1^Data In 11"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[12]" VarB="Term 48 (KL6781)^Channel 1^Data In 12"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[13]" VarB="Term 48 (KL6781)^Channel 1^Data In 13"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[14]" VarB="Term 48 (KL6781)^Channel 1^Data In 14"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[15]" VarB="Term 48 (KL6781)^Channel 1^Data In 15"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[16]" VarB="Term 48 (KL6781)^Channel 1^Data In 16"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[17]" VarB="Term 48 (KL6781)^Channel 1^Data In 17"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[18]" VarB="Term 48 (KL6781)^Channel 1^Data In 18"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[19]" VarB="Term 48 (KL6781)^Channel 1^Data In 19"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[1]" VarB="Term 48 (KL6781)^Channel 1^Data In 1"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[20]" VarB="Term 48 (KL6781)^Channel 1^Data In 20"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[21]" VarB="Term 48 (KL6781)^Channel 1^Data In 21"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[2]" VarB="Term 48 (KL6781)^Channel 1^Data In 2"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[3]" VarB="Term 48 (KL6781)^Channel 1^Data In 3"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[4]" VarB="Term 48 (KL6781)^Channel 1^Data In 4"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[5]" VarB="Term 48 (KL6781)^Channel 1^Data In 5"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[6]" VarB="Term 48 (KL6781)^Channel 1^Data In 6"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[7]" VarB="Term 48 (KL6781)^Channel 1^Data In 7"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[8]" VarB="Term 48 (KL6781)^Channel 1^Data In 8"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^D[9]" VarB="Term 48 (KL6781)^Channel 1^Data In 9"/>
-				<Link VarA="MBus_Zaehler_Task Inputs^.IN_WZaehler^Status" VarB="Term 48 (KL6781)^Channel 1^Status"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^Ctrl" VarB="Term 48 (KL6781)^Channel 1^Ctrl"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[0]" VarB="Term 48 (KL6781)^Channel 1^Data Out 0"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[10]" VarB="Term 48 (KL6781)^Channel 1^Data Out 10"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[11]" VarB="Term 48 (KL6781)^Channel 1^Data Out 11"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[12]" VarB="Term 48 (KL6781)^Channel 1^Data Out 12"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[13]" VarB="Term 48 (KL6781)^Channel 1^Data Out 13"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[14]" VarB="Term 48 (KL6781)^Channel 1^Data Out 14"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[15]" VarB="Term 48 (KL6781)^Channel 1^Data Out 15"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[16]" VarB="Term 48 (KL6781)^Channel 1^Data Out 16"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[17]" VarB="Term 48 (KL6781)^Channel 1^Data Out 17"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[18]" VarB="Term 48 (KL6781)^Channel 1^Data Out 18"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[19]" VarB="Term 48 (KL6781)^Channel 1^Data Out 19"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[1]" VarB="Term 48 (KL6781)^Channel 1^Data Out 1"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[20]" VarB="Term 48 (KL6781)^Channel 1^Data Out 20"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[21]" VarB="Term 48 (KL6781)^Channel 1^Data Out 21"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[2]" VarB="Term 48 (KL6781)^Channel 1^Data Out 2"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[3]" VarB="Term 48 (KL6781)^Channel 1^Data Out 3"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[4]" VarB="Term 48 (KL6781)^Channel 1^Data Out 4"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[5]" VarB="Term 48 (KL6781)^Channel 1^Data Out 5"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[6]" VarB="Term 48 (KL6781)^Channel 1^Data Out 6"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[7]" VarB="Term 48 (KL6781)^Channel 1^Data Out 7"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[8]" VarB="Term 48 (KL6781)^Channel 1^Data Out 8"/>
-				<Link VarA="MBus_Zaehler_Task Outputs^.OUT_WZaehler^D[9]" VarB="Term 48 (KL6781)^Channel 1^Data Out 9"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[0]" VarB="Term 48 (KL6781)^Channel 1^Data In 0"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[10]" VarB="Term 48 (KL6781)^Channel 1^Data In 10"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[11]" VarB="Term 48 (KL6781)^Channel 1^Data In 11"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[12]" VarB="Term 48 (KL6781)^Channel 1^Data In 12"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[13]" VarB="Term 48 (KL6781)^Channel 1^Data In 13"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[14]" VarB="Term 48 (KL6781)^Channel 1^Data In 14"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[15]" VarB="Term 48 (KL6781)^Channel 1^Data In 15"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[16]" VarB="Term 48 (KL6781)^Channel 1^Data In 16"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[17]" VarB="Term 48 (KL6781)^Channel 1^Data In 17"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[18]" VarB="Term 48 (KL6781)^Channel 1^Data In 18"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[19]" VarB="Term 48 (KL6781)^Channel 1^Data In 19"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[1]" VarB="Term 48 (KL6781)^Channel 1^Data In 1"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[20]" VarB="Term 48 (KL6781)^Channel 1^Data In 20"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[21]" VarB="Term 48 (KL6781)^Channel 1^Data In 21"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[2]" VarB="Term 48 (KL6781)^Channel 1^Data In 2"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[3]" VarB="Term 48 (KL6781)^Channel 1^Data In 3"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[4]" VarB="Term 48 (KL6781)^Channel 1^Data In 4"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[5]" VarB="Term 48 (KL6781)^Channel 1^Data In 5"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[6]" VarB="Term 48 (KL6781)^Channel 1^Data In 6"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[7]" VarB="Term 48 (KL6781)^Channel 1^Data In 7"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[8]" VarB="Term 48 (KL6781)^Channel 1^Data In 8"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^D[9]" VarB="Term 48 (KL6781)^Channel 1^Data In 9"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler^Status" VarB="Term 48 (KL6781)^Channel 1^Status"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^Ctrl" VarB="Term 48 (KL6781)^Channel 1^Ctrl"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[0]" VarB="Term 48 (KL6781)^Channel 1^Data Out 0"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[10]" VarB="Term 48 (KL6781)^Channel 1^Data Out 10"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[11]" VarB="Term 48 (KL6781)^Channel 1^Data Out 11"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[12]" VarB="Term 48 (KL6781)^Channel 1^Data Out 12"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[13]" VarB="Term 48 (KL6781)^Channel 1^Data Out 13"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[14]" VarB="Term 48 (KL6781)^Channel 1^Data Out 14"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[15]" VarB="Term 48 (KL6781)^Channel 1^Data Out 15"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[16]" VarB="Term 48 (KL6781)^Channel 1^Data Out 16"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[17]" VarB="Term 48 (KL6781)^Channel 1^Data Out 17"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[18]" VarB="Term 48 (KL6781)^Channel 1^Data Out 18"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[19]" VarB="Term 48 (KL6781)^Channel 1^Data Out 19"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[1]" VarB="Term 48 (KL6781)^Channel 1^Data Out 1"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[20]" VarB="Term 48 (KL6781)^Channel 1^Data Out 20"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[21]" VarB="Term 48 (KL6781)^Channel 1^Data Out 21"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[2]" VarB="Term 48 (KL6781)^Channel 1^Data Out 2"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[3]" VarB="Term 48 (KL6781)^Channel 1^Data Out 3"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[4]" VarB="Term 48 (KL6781)^Channel 1^Data Out 4"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[5]" VarB="Term 48 (KL6781)^Channel 1^Data Out 5"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[6]" VarB="Term 48 (KL6781)^Channel 1^Data Out 6"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[7]" VarB="Term 48 (KL6781)^Channel 1^Data Out 7"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[8]" VarB="Term 48 (KL6781)^Channel 1^Data Out 8"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler^D[9]" VarB="Term 48 (KL6781)^Channel 1^Data Out 9"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 27 (EL3068)">
 				<Link VarA="Standard Inputs^.Anlagenversorgung.System_Druckluftkompressor_951.Regelventil_251.IN_Stellung" VarB="AI Standard Channel 7^.Anlagenversorgung.System_Druckluftkompressor_951.Regelventil_251.IN_Stellung"/>
