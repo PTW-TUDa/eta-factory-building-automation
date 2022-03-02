@@ -33,7 +33,7 @@ IF(NOT KL_init_done) THEN
 	END_IF
 	
 	IF fb_rTrgig.Q THEN
-		KL_Wetterstation.bActivate:=TRUE;
+		KL_Wetterstation.bActivate:=FALSE;
 	ELSE
 		KL_Wetterstation.bActivate:=TRUE;
 	END_IF
