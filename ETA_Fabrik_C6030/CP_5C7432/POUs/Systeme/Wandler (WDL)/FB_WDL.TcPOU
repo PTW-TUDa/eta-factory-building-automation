@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_WDL" Id="{fb0f0b2a-3883-43ef-ac25-f61ab58a6e43}" SpecialFunc="None">
     <Declaration><![CDATA[
 FUNCTION_BLOCK FB_WDL
@@ -2145,7 +2145,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"System_Blockheizkraftwerk_921.BHKW_921.Zustand.Betrieb"</v>
+                      <v n="Text">"System_Blockheizkraftwerk_921.BHKW_921.Stellwert.Betrieb"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">316L</v>
                     </o>
@@ -2521,7 +2521,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"System_Blockheizkraftwerk_922.BHKW_922.Zustand.Betrieb"</v>
+                      <v n="Text">"System_Blockheizkraftwerk_922.BHKW_922.Stellwert.Betrieb"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">357L</v>
                     </o>
@@ -3820,7 +3820,7 @@ END_VAR]]></Declaration>
                         <v n="X">48</v>
                         <v n="Y">15</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">100</v>
+                        <v n="Flags">68</v>
                       </o>
                       <o>
                         <v n="X">57</v>
@@ -4586,7 +4586,7 @@ END_VAR]]></Declaration>
                         <v n="X">28</v>
                         <v n="Y">37</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
+                        <v n="Flags">100</v>
                       </o>
                       <o>
                         <v n="X">59</v>
