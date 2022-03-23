@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="CoolingNetwork" Id="{3e3c7edc-aa3e-40d5-adb7-105c87a52325}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK CoolingNetwork
 VAR_INPUT
 	//feed temperature setpoint and system enabling
-	fSetPointTemperature : REAL;
+	fSetPoint_CN : REAL;
+	fSetPoint_eChiller : REAL;
+	fSetPoint_HVFAStorage : REAL;
+	bLoading_HVFAStorage : BOOL;
 	bSetStatusOn_eChiller : BOOL;
-	bSetStatusOn_HeatPump : BOOL;	
+	bSetStatusOn_HeatPump : BOOL;
+	bSetStatusOn_HVFAStorage : BOOL;	
 END_VAR
 VAR_OUTPUT
 	//temperatures in buffer storage
@@ -19,7 +23,8 @@ VAR
 	//systems
 	BufferStorage : FB_BufferStorage;
 	eChillerSystem : FB_eChillerSystem;
-	HVFAStorage : FB_HVFASystem := (ST_DefaultParameters := ST_HVFADefaultParameters);
+	HVFAStorage_796 : FB_HVFASystem := (ST_DefaultParameters := ST_HVFADefaultParameters);
+	HVFAStorage_795 : FB_HVFAStorage;
 	HeatPumpSystem : FB_HeatPumpSystem;
 	
 	//internal variables
@@ -31,8 +36,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//check for algorithm permission
 bAlgorithmPermission := Limiter(fInput := BufferStorage.MidTemperature,
-								fLowerLimit := fSetPointTemperature-fAlgorithmPermissionTemperatureRange/2,
-								fUpperLimit := fSetPointTemperature+fAlgorithmPermissionTemperatureRange);
+								fLowerLimit := fSetPoint_CN-fAlgorithmPermissionTemperatureRange/2,
+								fUpperLimit := fSetPoint_CN+fAlgorithmPermissionTemperatureRange);
 
 //buffer storage system
 BufferStorage();
@@ -41,7 +46,7 @@ fTemperatureBufferStorage := BufferStorage.MidTemperature;
 //producer
 eChillerSystem(bSetStatusOnAutomatic := bSetStatusOn_eChiller,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := fSetPointTemperature,
+	fSetPointAutomatic := fSetPoint_eChiller,
 	fExternalTemperature := BufferStorage.MidTemperature);
 
 //NOTE: heat pump systems contains only two-point actors -> fSetPointAutomatic = 0	
@@ -49,12 +54,24 @@ HeatPumpSystem(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := 0);
 	
-//external storages
+//external storages with pumps 796
+HVFAStorage_796(bSetStatusOnAutomatic := bSetStatusOn_HVFAStorage,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint_HVFAStorage,
+	bLoading := bLoading_HVFAStorage);
+	
+//external storage without pumps 795
+HVFAStorage_795();
 
 				]]></ST>
     </Implementation>
     <LineIds Name="CoolingNetwork">
-      <LineId Id="35" Count="21" />
+      <LineId Id="35" Count="20" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="85" Count="2" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="95" Count="1" />
+      <LineId Id="56" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

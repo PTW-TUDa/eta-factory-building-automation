@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_Zuweisungen" Id="{621baf6c-a45c-4d8f-889e-61e37f5c2f0d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Zuweisungen
 VAR_INPUT
@@ -12,8 +12,7 @@ END_VAR
 VAR
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Zustand.Temp_Speicher795:= Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.Zustand.Temp_oben;
-Zustand.Temp_Oben_Heissnetz :=Netze.Heisswasser_3xx.Zustand.Temp_Oben;
+      <ST><![CDATA[Zustand.Temp_Oben_Heissnetz :=Netze.Heisswasser_3xx.Zustand.Temp_Oben;
 Zustand.Temp_Unten_Heissnetz:= Netze.Heisswasser_3xx.Zustand.Temp_Unten;
 Zustand.Temp_Oben_Warmnetz:= Netze.Warmwasser_2xx.Zustand.Temp_Oben;
 Zustand.Temp_Mitte_Warmnetz:= Netze.Warmwasser_2xx.Zustand.Temp_Mitte;
@@ -35,7 +34,7 @@ Zustand.Warmwasser_2xx_Zustand_Regelung_Sollw_Max := Netze.Warmwasser_2xx.Zustan
 Zustand.Kaltwasser_1xx_Zustand_Regelung_Sollw:=Netze.Kaltwasser_1xx.Zustand.Regelung_Sollw;]]></ST>
     </Implementation>
     <LineIds Name="FB_Zuweisungen">
-      <LineId Id="10" Count="3" />
+      <LineId Id="11" Count="2" />
       <LineId Id="41" Count="0" />
       <LineId Id="14" Count="15" />
     </LineIds>

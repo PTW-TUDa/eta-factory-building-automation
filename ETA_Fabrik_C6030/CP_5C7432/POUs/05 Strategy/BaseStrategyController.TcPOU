@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="BaseStrategyController" Id="{2cc24fef-e41e-40c1-8491-4b4c0461b6c2}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK BaseStrategyController
 VAR_INPUT
@@ -12,9 +12,11 @@ END_VAR
 VAR_OUTPUT
 	//outputs for cooling network
 	fSetPoint_CN : REAL; //Temperature setpoint for cooling network
+	fSetPoint_eChiller : REAL;
+	fSetPoint_HVFAStorage : REAL;
+	bLoading_CN_HVFAStorage : BOOL;
 	bSetStatusOn_eChiller : BOOL;
 	bSetStatusOn_HeatPump : BOOL;
-	bLoading_CN_HVFAStorage : BOOL;
 	bSetStatusOn_CN_HVFAStorage : BOOL;
 END_VAR
 VAR
@@ -28,6 +30,12 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//setpoint feed temperatures
 fSetPoint_CN := 15;
+fSetPoint_eChiller := fSetPoint_CN - 3;
+IF bLoading_CN_HVFAStorage = TRUE THEN
+	fSetPoint_HVFAStorage := fSetPoint_CN - 3;
+ELSE
+	fSetPoint_HVFAStorage := fSetPoint_CN;
+END_IF
 
 //set hysteresis parameters for two-point controllers in cooling network
 Controller_eChiller_Parameters.fHysteresisRange := 4;
@@ -56,7 +64,11 @@ bSetStatusOn_HeatPump := Controller_HeatPump.bOut;
 	]]></ST>
     </Implementation>
     <LineIds Name="BaseStrategyController">
-      <LineId Id="32" Count="26" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="85" Count="2" />
+      <LineId Id="89" Count="1" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="34" Count="24" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

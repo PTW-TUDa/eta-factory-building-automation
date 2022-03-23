@@ -591,86 +591,96 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.StatusModule_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.StatusModule_IN</Name>
 							<Comment><![CDATA[I/O links]]></Comment>
 							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.nAlarmCode_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.nAlarmCode_IN</Name>
 							<Type>USINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.nWarningCode_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.nWarningCode_IN</Name>
 							<Type>USINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fVolumeFlowRate_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fVolumeFlowRate_IN</Name>
 							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fPressureDifference_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fPressureDifference_IN</Name>
 							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fPowerElectric_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fPowerElectric_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fTemperatureInternal_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fTemperatureInternal_IN</Name>
 							<Comment><![CDATA[°C]]></Comment>
 							<Type>REAL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fActualSetpoint_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fActualSetpoint_IN</Name>
 							<Comment><![CDATA[%]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fRotationalSpeed_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fRotationalSpeed_IN</Name>
 							<Comment><![CDATA[rpm]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fTemperatureExternal_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fTemperatureExternal_IN</Name>
 							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fTemperatureDifference_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fTemperatureDifference_IN</Name>
 							<Comment><![CDATA[°C]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.fPowerThermal_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.fPowerThermal_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.SVx05.nOperatingPoint_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.SVx05.nOperatingPoint_IN</Name>
 							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.SVx06.nOperatingPoint_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.SVx06.nOperatingPoint_IN</Name>
 							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.RVx05.nOperatingPoint_IN</Name>
+							<Name>MAIN.CN.HVFAStorage_796.RVx05.nOperatingPoint_IN</Name>
 							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFAStorage_795.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFAStorage_795.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
@@ -2096,218 +2106,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.IN_Fuellstandsalarm</Name>
-							<Comment><![CDATA[	IN_Temp_oben		AT %I* : REAL;
-	IN_Temp_unten		AT %I* : REAL;
-]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.IN_Fuellstandsalarm</Name>
-							<Comment><![CDATA[	IN_Temp_oben		AT %I* : REAL;
-	IN_Temp_unten		AT %I* : REAL;
-]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>.Netze.DS_100_KWN.IN_Status</Name>
 							<Type>USINT</Type>
 						</Var>
@@ -3019,26 +2817,26 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PUx05.ControlModule_OUT</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PUx05.ControlModule_OUT</Name>
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.PU7x0.bSetStatusOn_OUT</Name>
+							<Name>MAIN.CN.HVFAStorage_796.PU7x0.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.SVx05.nSetPoint_OUT</Name>
+							<Name>MAIN.CN.HVFAStorage_796.SVx05.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.SVx06.nSetPoint_OUT</Name>
+							<Name>MAIN.CN.HVFAStorage_796.SVx06.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFAStorage.RVx05.nSetPoint_OUT</Name>
+							<Name>MAIN.CN.HVFAStorage_796.RVx05.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
 						</Var>
@@ -3362,38 +3160,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Stellventil_105.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_105.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_710.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Stellventil_205.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_205.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_720.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.OUT_Temp_intern_GeniRequest</Name>
 							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
 						</Var>
@@ -3514,6 +3280,27 @@
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2022-03-23T15:03:59">
+						<OwnerA Name="InputDst" Prefix="TIPC^CP_5C7432^CP_5C7432 Instance" Type="1">
+							<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Status" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_T_oben_PT100^Status" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Temperatur" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_T_oben_PT100^TF795_HVFA_SP1_T_oben_PT100" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Status" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_unten_PT100^Status" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Temperatur" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_unten_PT100^TF795_HVFA_SP1_unten_PT100" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Status" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_T_oben_PT100^Status" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Temperatur" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_T_oben_PT100^TF797_HVFA_SP3_T_oben_PT100" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Status" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_unten_PT100^Status" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Temperatur" TypeA="INT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000006}" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_unten_PT100^TF797_HVFA_SP3_unten_PT100" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+						<OwnerA Name="OutputSrc" Prefix="TIPC^CP_5C7432^CP_5C7432 Instance" Type="2">
+							<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_710.OUT_Stellung" TypeA="BOOL" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="K544A1_BO^bo_PU710_Aussenbereich_Speicherpumpe_Kaltw^bo_PU710_Aussenbereich_Speicherpumpe_Kaltw" Size="1" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Kaltwasser_795.Stellventil_105.OUT_Stellung" TypeA="BOOL" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="K540A1_BO^bo_SV105_KW_Absperrventil^bo_SV105_KW_Absperrventil" Size="1" RestoreInfo="ANotFound"/>
+								<Link VarA=".Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_720.OUT_Stellung" TypeA="BOOL" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="K544A1_BO^bo_PU720_Aussenbereich_Speicherpumpe_Warmw^bo_PU720_Aussenbereich_Speicherpumpe_Warmw" Size="1" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
@@ -21036,14 +20823,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_oben.IN_Temperatur" VarB="K550A1_AI-2/2^ai_TF295_HydrW_WWN_Temp_1_oben^ai_TF295_HydrW_WWN_Temp_1_oben"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_unten.IN_Status" VarB="K551A1_AI-1/2^ai_TF295_HydrW_WWN_Temp_1_unten^Status"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_unten.IN_Temperatur" VarB="K551A1_AI-1/2^ai_TF295_HydrW_WWN_Temp_1_unten^ai_TF295_HydrW_WWN_Temp_1_unten"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Status" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_T_oben_PT100^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_oben.IN_Temperatur" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_T_oben_PT100^TF795_HVFA_SP1_T_oben_PT100"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Status" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_unten_PT100^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Betonspeicher_795.TF_unten.IN_Temperatur" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_unten_PT100^TF795_HVFA_SP1_unten_PT100"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Status" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_T_oben_PT100^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_oben.IN_Temperatur" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_T_oben_PT100^TF797_HVFA_SP3_T_oben_PT100"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Status" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_unten_PT100^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.System_Betonspeicher_Warmwasser_797.Betonspeicher_797.TF_unten.IN_Temperatur" VarB="K576A1_AI (KL3222)^TF797_HVFA_SP3_unten_PT100^TF797_HVFA_SP3_unten_PT100"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor1.IN_Status" VarB="K578A1_AI (KL3222)^TF051_RT_Sek_1_PT100^Status"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor1.IN_Temperatur" VarB="K578A1_AI (KL3222)^TF051_RT_Sek_1_PT100^TF051_RT_Sek_1_PT100"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor2.IN_Status" VarB="K579A1_AI (KL3222)^TF052_RT_Sek_2_PT100^Status"/>
@@ -21071,6 +20850,10 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[7]" VarB="K524A1_LON^Channel 1^Parameter Input Data 7"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[8]" VarB="K524A1_LON^Channel 1^Parameter Input Data 8"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^wParameterStatus" VarB="K524A1_LON^Channel 1^Parameter Status"/>
+				<Link VarA="Standard Inputs^MAIN.CN.HVFAStorage_795.LowerTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_unten_PT100^TF795_HVFA_SP1_unten_PT100"/>
+				<Link VarA="Standard Inputs^MAIN.CN.HVFAStorage_795.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_SP1_T_oben_PT100^TF795_HVFA_SP1_T_oben_PT100"/>
+				<Link VarA="Standard Inputs^MAIN.CN.HVFAStorage_796.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K575A1_AI (KL3222)^TF796_HVFA_SP2_unten_PT100^TF796_HVFA_SP2_unten_PT100"/>
+				<Link VarA="Standard Inputs^MAIN.CN.HVFAStorage_796.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K575A1_AI (KL3222)^TF796_HVFA_SP2_T_oben_PT100^TF796_HVFA_SP2_T_oben_PT100"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.OUT_Stellung" VarB="K542A1_BO^bo_SV251_WW_DruckluftkomprAbsperrventil^bo_SV251_WW_DruckluftkomprAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Stellventil_361.OUT_Stellung" VarB="K542A1_BO^bo_SV361_KWN_NitrierofenAbsperrventil^bo_SV361_KWN_NitrierofenAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.OUT_Stellung" VarB="K542A1_BO^bo_SV261_WWN_NitrierofenAbsperrventil^bo_SV261_WWN_NitrierofenAbsperrventil"/>
@@ -21111,9 +20894,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Gruen" VarB="K540A1_BO^ISP01 Sammelstörung_rot^ISP01 Ampel_Gruen"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Orange" VarB="K540A1_BO^ISP01 Sammelstörung_gelb^ISP01 Ampel_Orange"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Rot" VarB="K540A1_BO^ISP01 Sammelstörung_gruen^ISP01 Ampel_Rot"/>
-				<Link VarA="Standard Outputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Pumpe_710.OUT_Stellung" VarB="K544A1_BO^bo_PU710_Aussenbereich_Speicherpumpe_Kaltw^bo_PU710_Aussenbereich_Speicherpumpe_Kaltw"/>
-				<Link VarA="Standard Outputs^.Speicher.System_Betonspeicher_Kaltwasser_795.Stellventil_105.OUT_Stellung" VarB="K540A1_BO^bo_SV105_KW_Absperrventil^bo_SV105_KW_Absperrventil"/>
-				<Link VarA="Standard Outputs^.Speicher.System_Betonspeicher_Warmwasser_797.Pumpe_720.OUT_Stellung" VarB="K544A1_BO^bo_PU720_Aussenbereich_Speicherpumpe_Warmw^bo_PU720_Aussenbereich_Speicherpumpe_Warmw"/>
 				<Link VarA="Standard Outputs^.Wandler.Lueftungsklappe_Keller.OUT_Stellung" VarB="K542A1_BO^bo_JK322_Aussenluft_Nachstroemung_Druckl_BHKW^bo_JK322_Aussenluft_Nachstroemung_Druckl_BHKW"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_690.OUT_Stellung" VarB="K542A1_BO^bo_PU690_Keller_Schaltsignal_der_Berieselungspumpe^bo_PU690_Keller_Schaltsignal_der_Berieselungspumpe"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_600.OUT_Stellung" VarB="K572A1_AO-2/2^ao_RV600_KaRoMa_DaAu_Sek_1_3^ao_RV600_KaRoMa_DaAu_Sek_1_3"/>
