@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_HVFASystem" Id="{5fa1e97c-987f-49c1-82cf-2ddae1379d7b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HVFASystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	bLoading : BOOL; //variable to determine if storage is in loading mode
 END_VAR
 VAR_OUTPUT
+	fUpperTemperature : REAL;
+	fLowerTemperature : REAL;
 END_VAR
 VAR
 	//default parameters
@@ -28,18 +30,6 @@ VAR
 	ST_RVx05DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,aSetPointLimitsPosition := [0,100],fDefaultPosition := 0, aSetPointLimitsTemperature := [0,100], 
 								fControllerAmplification := 0.265, tControllerIntegralTime := T#15S, 
 								tTaskCycleTime := GlobalVariables.tTaskCycleTime, tCtrlCycleTime := T#5S);
-
-	bFeedbackSignal : BOOL; //true if valve gets a feedback signal for acual position
-	fDefaultPosition : REAL; //default position when bSetStatusOn = false
-	fControlerAmplification : LREAL;
-	fControlerIntegralTime : DINT;
-	tTaskCycleTime	: TIME;
-	tCtrlCycleTime	: TIME;
-	aSetPointLimitsPosition	: ARRAY[1..2] OF REAL; //setpoint limits for position mode
-	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL; //setpoint limits for temperature mode
-	
-	
-	
 	
 	SVx05 : FB_MixingValve := (ST_DefaultParameters := ST_SVx05DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SVx06 : FB_MixingValve := (ST_DefaultParameters := ST_SVx06DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
@@ -67,6 +57,8 @@ END_VAR
 
 //storage
 HVFAStorage();
+fUpperTemperature := HVFAStorage.fUpperTemperature;
+fLowerTemperature := HVFAStorage.fLowerTemperature;
 
 //pumps
 PUx05(bSetStatusOnAutomatic := bSetStatusOn_PUx05,
@@ -234,7 +226,9 @@ END_IF
       </Implementation>
     </Method>
     <LineIds Name="FB_HVFASystem">
-      <LineId Id="69" Count="33" />
+      <LineId Id="69" Count="3" />
+      <LineId Id="165" Count="1" />
+      <LineId Id="73" Count="29" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFASystem.CheckError">
