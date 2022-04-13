@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CHPSystem" Id="{03be9f87-4e59-4877-a478-dceefb67f1c9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHPSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+- bestehend aus einer Magna 3 pumpen (PU32x)
+- disrcete valve SV32x
+- mixing valve RV32x
+- heat counter WMZ32x
+
+Logik:
+- RampUp: SV und RV öffnen
+- Operational: PUs anschalten, wenn BHKW an ist
+- Working: RV regelt auf Vorlauftemepratur an BHKW-Austritt
+- RampDown: Umgekehrte Reihenfolge
+
+- errorCheck: Prüfe auf pumpenerror, BHKW-Error und , falls SV32x Stellungsrückmeldung hat, ob Pumpe gegen geschlossenes Ventil pumpt
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CHPSystem">
+      <LineId Id="30" Count="0" />
+      <LineId Id="18" Count="10" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="29" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

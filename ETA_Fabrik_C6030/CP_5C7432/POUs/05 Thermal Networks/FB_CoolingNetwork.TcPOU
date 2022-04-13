@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CoolingNetwork" Id="{3e3c7edc-aa3e-40d5-adb7-105c87a52325}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CoolingNetwork
+VAR_INPUT
+	//control struct for cn
+	controlAutomatic : ST_CoolingNetworkControl;	
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_BufferStorageState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	eChillerSystem : FB_eChillerSystem;
+	HVFASystem : FB_HVFAStorageSystem;
+	
+	//internal variables
+	fSetPoint_HVFASystem : REAL;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState := BufferStorage.localState;
+
+//producer
+eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	fExternalTemperature := BufferStorage.localState.fMidTemperature);
+	
+//external storages
+//setpoint depends on loading mode -> storage must be cooler than setpoint temperature in network
+IF controlAutomatic.bLoading_HVFASystem THEN
+	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature-5;
+ELSE
+	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature;
+END_IF
+HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := fSetpoint_HVFASystem,
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem);
+
+				]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CoolingNetwork">
+      <LineId Id="40" Count="8" />
+      <LineId Id="54" Count="1" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="83" Count="2" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

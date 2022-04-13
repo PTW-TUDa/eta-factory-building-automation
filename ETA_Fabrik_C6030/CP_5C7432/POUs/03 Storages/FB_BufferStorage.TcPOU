@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_BufferStorage" Id="{2610907a-84da-47a6-a6a4-a2efbb133c01}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_BufferStorage
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
-	UpperTemperature : REAL;
-	MidTemperature : REAL;
-	LowerTemperature : REAL;
+	{attribute 'OPC.UA.DA' := '1'}	
+	localState : ST_BufferStorageState;
 END_VAR
 VAR
 	UpperTemperatureSensor : FB_TemperatureSensor; //upper temperature sensor
@@ -23,13 +22,13 @@ MidTemperatureSensor.SetState_AI();
 LowerTemperatureSensor.SetState_AI();
 
 //set outputs
-UpperTemperature := UpperTemperatureSensor.fTemperature;
-MidTemperature := MidTemperatureSensor.fTemperature;
-LowerTemperature := LowerTemperatureSensor.fTemperature;]]></ST>
+localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;
+localState.fMidTemperature := MidTemperatureSensor.fTemperature;
+localState.fLowerTemperature := LowerTemperatureSensor.fTemperature;]]></ST>
     </Implementation>
     <LineIds Name="FB_BufferStorage">
       <LineId Id="23" Count="7" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="46" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

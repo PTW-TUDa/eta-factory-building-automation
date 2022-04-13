@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CHP" Id="{b646d58b-e895-49ef-8279-111f006d4387}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHP EXTENDS FB_ActorContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+- kontinuierlich geregeltes Blockheizkraftwerk, erhält Stellgröße zwischen 0 und 1 via Analog Input
+- in bestehendem Projekt prüfen, welche Größen via AnalogOutput bzw. ModbusTCP zur Verfügung gestellt werden
+*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CHP">
+      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

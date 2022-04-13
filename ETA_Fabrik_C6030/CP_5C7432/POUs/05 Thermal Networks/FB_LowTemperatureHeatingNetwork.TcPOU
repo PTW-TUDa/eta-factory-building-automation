@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_LowTemperatureHeatingNetwork" Id="{41e3edb3-66e7-411c-a35e-b44e9a5d66f1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LowTemperatureHeatingNetwork
+VAR_INPUT
+	ambientState : ST_AmbientState;
+	
+	//control struct for hnlt
+	controlAutomatic : ST_LowTemperatureHeatingNetworkControl;	
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_BufferStorageState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	OuterCapillaryTubeMats : FB_OuterCapillaryTubeMats;
+	HVFASystem : FB_HVFAStorageSystem;
+	
+	//internal variables
+	fSetPoint_HVFASystem : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState := BufferStorage.localState;
+
+//producer
+
+//consumer
+OuterCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_OuterCapillaryTubeMats,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	stAmbientState := ambientState);
+	
+//external storages
+//setpoint depends on loading mode -> storage must be warmer than setpoint temperature in network
+IF controlAutomatic.bLoading_HVFASystem THEN
+	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature+5;
+ELSE
+	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature;
+END_IF
+HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := fSetpoint_HVFASystem,
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_LowTemperatureHeatingNetwork">
+      <LineId Id="32" Count="2" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="35" Count="4" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="122" Count="3" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="114" Count="2" />
+      <LineId Id="113" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

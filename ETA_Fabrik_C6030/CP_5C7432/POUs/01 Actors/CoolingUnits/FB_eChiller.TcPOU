@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_eChiller" Id="{7e215da2-dce2-4fe4-9d0d-730727e6f73a}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_eChiller EXTENDS FB_ActorContinous
 VAR_INPUT
@@ -13,7 +13,7 @@ VAR
 	localDefaultParameters : ST_eChillerDefaultParameters;
 
 	{attribute 'OPC.UA.DA' := '1'}
-	localState : ST_PumpGrundfosMagna3State;
+	localState : ST_eChillerState;
 	
 	//analog converters
 	OutputConverter_SetpointValue : FB_AnalogOutput(fUpperLimit := 28, fLowerLimit := 10);
@@ -30,8 +30,32 @@ END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[MAIN();]]></ST>
+      <ST><![CDATA[MAIN();
+OutputConverter_SetpointValue(fValue := fSetPoint);
+OutputConverter_ActualTemperature(fValue := fExternalTemperature);]]></ST>
     </Implementation>
+    <Method Name="GetState" Id="{e803f0fd-89d1-4b98-b999-a23105755d2f}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//control state
+controlState.bStatusOn := bStatusOn_IN;
+bStatusOn := bStatusOn_IN;
+
+//setpoint state
+setPointState.fOperatingPoint := fExternalTemperature;
+setPointState.sOperatingPointUnit := 'degreeC';
+fOperatingPoint := fExternalTemperature;
+
+//local state
+bError := bError_IN;
+localState.bError := bError_IN;
+localState.bWarning := bWarning_IN;
+//local state is read via opc ua]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetSetPointLimits" Id="{82f16133-ac21-4ac5-a66f-92b7e00118cd}">
       <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
 VAR_INPUT
@@ -48,27 +72,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//control state
-controlState.bStatusOn := bStatusOn_IN;
-bStatusOn := bStatusOn_IN;
-
-//setpoint state
+        <ST><![CDATA[//setpoint state
 setPointState.fSetPoint := fSetPoint;
 setPointState.sSetPointUnit := 'degreeC';
-setPointState.fOperatingPoint := fExternalTemperature;
-fOperatingPoint := fExternalTemperature;
-setPointState.sOperatingPointUnit := 'degreeC';
 setPointState.aSetPointLimits := aSetPointLimits;
 
-//local state
-bError := bError_IN;
-localState.bError := bError_IN;
-localState.bWarning := bWarning_IN;
-//local state is read via opc ua
-
 //outputs
-OutputConverter_SetpointValue(fValue := fSetPoint);
-OutputConverter_ActualTemperature(fValue := fExternalTemperature);
 nSetPoint_OUT := OutputConverter_SetpointValue.nValue;
 nActualTemperature_OUT := OutputConverter_ActualTemperature.nValue;
 bSetStatusOn_OUT := bSetStatusOn;]]></ST>
@@ -95,13 +104,29 @@ END_VAR
     </Property>
     <LineIds Name="FB_eChiller">
       <LineId Id="9" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChiller.GetState">
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="9" Count="4" />
+      <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChiller.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChiller.SetState">
-      <LineId Id="6" Count="23" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="2" />
     </LineIds>
     <LineIds Name="FB_eChiller.ST_DefaultParameters.Get">
       <LineId Id="2" Count="0" />

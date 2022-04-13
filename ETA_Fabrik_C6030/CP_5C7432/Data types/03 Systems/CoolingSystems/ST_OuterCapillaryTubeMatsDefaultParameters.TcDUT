@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_OuterCapillaryTubeMatsDefaultParameters" Id="{a4b79589-e073-42a8-8f06-81233cd2ef25}">
+    <Declaration><![CDATA[TYPE ST_OuterCapillaryTubeMatsDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [16,45];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

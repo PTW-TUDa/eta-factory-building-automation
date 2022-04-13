@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <DUT Name="ST_eChillerState" Id="{f6c1261c-08b2-4bf3-9b97-7dfe1e0ef89d}">
+  <DUT Name="ST_BufferStorageState" Id="{f1cfeddc-16fe-4dea-9294-ce50413afc83}">
     <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
-TYPE ST_eChillerState :
+TYPE ST_BufferStorageState :
 STRUCT
-	bError : BOOL;
-	bWarning: BOOL;
-	//implementation is missing, must be added after startup
+	fUpperTemperature : REAL;
+	fMidTemperature : REAL;
+	fLowerTemperature : REAL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

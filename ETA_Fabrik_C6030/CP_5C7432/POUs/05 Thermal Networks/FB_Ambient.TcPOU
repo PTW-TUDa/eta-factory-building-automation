@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Ambient" Id="{e5737b3d-b420-44a4-9ae1-301270e5edfa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Ambient
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_AmbientState;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//add ambient temperature rain etc. from weather station
+localState.fOutsideTemperature := Umwelt.Temp_Aussen_WS;
+localState.bRain := Umwelt.Regen;
+localState.fHallTemperature := Umwelt.Temp_Halle_Sektor1;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Ambient">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

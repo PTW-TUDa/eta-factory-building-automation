@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_HeatPumpSystem" Id="{7e7b5d95-fc91-49dd-b95e-a9f45915aabb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem EXTENDS FB_SystemContinous
 VAR_INPUT
@@ -11,8 +11,8 @@ VAR
 	HeatPump : FB_HeatPump;
 	
 	//valve 146 and valve 246
-	ST_SV146DefaultParameters : ST_DiscreteValveDefaultParameters := (bFeedbackSignal := FALSE);
-	ST_SV246DefaultParameters : ST_DiscreteValveDefaultParameters := (bFeedbackSignal := FALSE);	
+	ST_SV146DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	ST_SV246DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);	
 	SV146 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV146DefaultParameters);
 	SV246 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV246DefaultParameters);	
 	
@@ -38,15 +38,15 @@ HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
 HeatPump.SetState_BO();
 
 //valves
+SV146.GetState_BI();
 SV146(bSetStatusOnAutomatic := bSetStatusOn_SV146,
 		bAlgorithmPermission := bAlgorithmPermission);
-SV146.SetState_BI_BO();
-		
+SV146.SetState_BO();
+
+SV246.GetState_BI();
 SV246(bSetStatusOnAutomatic := bSetStatusOn_SV246,
 		bAlgorithmPermission := bAlgorithmPermission);
-SV246.SetState_BI_BO();
-
-]]></ST>
+SV246.SetState_BO();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6a4ede8-dc18-488e-9b82-544068cf9d4e}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -133,8 +133,12 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_HeatPumpSystem">
-      <LineId Id="33" Count="18" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="33" Count="10" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="44" Count="2" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="48" Count="2" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem.CheckError">
       <LineId Id="8" Count="0" />

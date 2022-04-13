@@ -6,22 +6,44 @@ VAR
 	init_done		: BOOL := FALSE;
 	
 	//strategy controller
-	Strategy : BaseStrategyController; 
+	Strategy : FB_BaseStrategyController; 
 
+	//states thermal networks
+	cnState : ST_BufferStorageState;
+	hnltState : ST_BufferStorageState;
+	
 	//thermal networks
-	CN : CoolingNetwork;
+	CN : FB_CoolingNetwork;
+	HNLT_CN : FB_HnltCnLinkage;
+	HNLT : FB_LowTemperatureHeatingNetwork;
+	
+	//ambient state
+	Ambient : FB_Ambient;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//Updated implementation
-Strategy(fTemperature_CN := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte);
+      <ST><![CDATA[//implement states and linked them to exisiting buffer storage components
+cnState.fLowerTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_unten;
+cnState.fMidTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte;
+cnState.fUpperTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_oben;
+hnltState.fLowerTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_unten;
+hnltState.fMidTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_mitte;
+hnltState.fUpperTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_oben;
 
-CN(fSetPoint_CN := Strategy.fSetPoint_CN,
-	fSetPoint_eChiller := Strategy.fSetPoint_eChiller,
-	fSetPoint_HVFAStorage := Strategy.fSetPoint_HVFAStorage,
-	bLoading_HVFAStorage := Strategy.bLoading_CN_HVFAStorage,
-	bSetStatusOn_eChiller := Strategy.bSetStatusOn_eChiller,
-	bSetStatusOn_HeatPump := Strategy.bSetStatusOn_HeatPump,
-	bSetStatusOn_HVFAStorage := Strategy.bSetStatusOn_CN_HVFAStorage);
+//strategy controller
+Strategy(ambientState := Ambient.localState,
+	cnState := cnState,
+	hnltState := hnltState);
+
+//ambient state
+Ambient();
+	
+//thermal networks
+CN(controlAutomatic := Strategy.cnControl);
+
+HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl);
+	
+HNLT(ambientState := Ambient.localState,
+	controlAutomatic := Strategy.hnltControl);
 
 //Current implementation
 
@@ -94,12 +116,12 @@ CN(fSetPoint_CN := Strategy.fSetPoint_CN,
 (* BUS Kommunikation - SCHREIBEN *)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="75" Count="0" />
-      <LineId Id="85" Count="2" />
-      <LineId Id="98" Count="1" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="76" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="146" Count="2" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="115" Count="14" />
       <LineId Id="102" Count="0" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="67" />

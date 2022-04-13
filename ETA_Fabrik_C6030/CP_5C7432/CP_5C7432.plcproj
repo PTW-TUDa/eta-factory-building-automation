@@ -14,9 +14,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Data types" />
+    <Folder Include="Data types\01 Actors" />
     <Folder Include="Data types\01 Actors\CoolingUnits" />
     <Folder Include="Data types\01 Actors\HeatingUnits" />
-    <Folder Include="Data types\01 Actors\Pumps" />
+    <Folder Include="Data types\02 Sensors" />
+    <Folder Include="Data types\03 Systems" />
+    <Folder Include="Data types\03 Systems\ConsumerSystems" />
+    <Folder Include="Data types\03 Systems\CoolingSystems" />
+    <Folder Include="Data types\03 Systems\HeatingSystems" />
+    <Folder Include="Data types\03 Systems\LinkageSystems" />
+    <Folder Include="Data types\03 Systems\StorageSystems" />
+    <Folder Include="Data types\03 Systems\StorageSystems\BufferStorage" />
+    <Folder Include="Data types\03 Systems\StorageSystems\HVFAStorage" />
+    <Folder Include="Data types\04 Thermal Networks" />
+    <Folder Include="Data types\05 Strategy" />
     <Folder Include="Data types\Anlagen" />
     <Folder Include="Data types\Anlagen\M2M" />
     <Folder Include="Data types\Einzelanlagen" />
@@ -55,10 +66,6 @@
     <Folder Include="Data types\Library\Bus_Systeme" />
     <Folder Include="Data types\Management" />
     <Folder Include="Data types\Netze" />
-    <Folder Include="Data types\01 Actors" />
-    <Folder Include="Data types\02 Sensors" />
-    <Folder Include="Data types\03 Systems" />
-    <Folder Include="Data types\05 Strategy" />
     <Folder Include="Data types\OPC-UA" />
     <Folder Include="Data types\Sonstige" />
     <Folder Include="Data types\Systeme" />
@@ -98,9 +105,21 @@
     <Folder Include="Global Variables\Anlagen Variablen" />
     <Folder Include="Global Variables\Bus_Systeme" />
     <Folder Include="POUs" />
+    <Folder Include="POUs\01 Actors" />
+    <Folder Include="POUs\01 Actors\ConsumerUnits" />
     <Folder Include="POUs\01 Actors\CoolingUnits" />
     <Folder Include="POUs\01 Actors\HeatingUnits" />
     <Folder Include="POUs\01 Actors\Pumps" />
+    <Folder Include="POUs\02 Sensors" />
+    <Folder Include="POUs\03 Storages" />
+    <Folder Include="POUs\04 Systems" />
+    <Folder Include="POUs\04 Systems\ConsumerSystems" />
+    <Folder Include="POUs\04 Systems\CoolingSystems" />
+    <Folder Include="POUs\04 Systems\HeatingSystems" />
+    <Folder Include="POUs\04 Systems\LinkageSystems" />
+    <Folder Include="POUs\04 Systems\StorageSystems" />
+    <Folder Include="POUs\05 Thermal Networks" />
+    <Folder Include="POUs\06 Strategy" />
     <Folder Include="POUs\Checks" />
     <Folder Include="POUs\Einzelanlagen" />
     <Folder Include="POUs\Einzelanlagen\Absorptionskältemaschine (AKM)" />
@@ -147,11 +166,6 @@
     <Folder Include="POUs\Library (allgemein)" />
     <Folder Include="POUs\Management" />
     <Folder Include="POUs\Management\Alte Struktur" />
-    <Folder Include="POUs\01 Actors" />
-    <Folder Include="POUs\02 Sensors" />
-    <Folder Include="POUs\03 Systems" />
-    <Folder Include="POUs\04 Networks" />
-    <Folder Include="POUs\05 Strategy" />
     <Folder Include="POUs\OPC_UA_Client_Maschienen (Romtech _ alt)" />
     <Folder Include="POUs\Systeme" />
     <Folder Include="POUs\Systeme\Anlagenversorgung (AV)" />
@@ -199,7 +213,40 @@
     <Compile Include="Data types\01 Actors\CoolingUnits\ST_eChillerState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\03 Systems\ST_HVFASystemDefaultParameters.TcDUT">
+    <Compile Include="Data types\03 Systems\CoolingSystems\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_AmbientState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_CoolingNetworkControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_HighTemperatureHeatingNetworkControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_HnhtHnltLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_HnltCnLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_LowTemperatureHeatingNetworkControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Thermal Networks\ST_ThermalNetworkState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\Anlagen\M2M\WZM_EMAG_VLC100Y.TcDUT">
@@ -480,31 +527,52 @@
     <Compile Include="POUs\01 Actors\CoolingUnits\FB_eChiller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CHP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\Pumps\FB_PumpGrundfosCM.TcPOU">
+    <Compile Include="POUs\01 Actors\Pumps\FB_Pump2Point.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\02 Sensors\FB_BufferStorage.TcPOU">
+    <Compile Include="POUs\03 Storages\FB_BufferStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\02 Sensors\FB_HVFAStorage.TcPOU">
+    <Compile Include="POUs\03 Storages\FB_HVFAStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\03 Systems\FB_eChillerSystem.TcPOU">
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_eChillerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\03 Systems\FB_HeatPumpSystem.TcPOU">
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_OuterCapillaryTubeMats.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\03 Systems\FB_HVFASystem.TcPOU">
+    <Compile Include="POUs\04 Systems\HeatingSystems\FB_CHPSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\04 Networks\CoolingNetwork.TcPOU">
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\05 Strategy\BaseStrategyController.TcPOU">
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_Ambient.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_CoolingNetwork.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_LowTemperatureHeatingNetwork.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_BaseStrategyController.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Checks\CheckBounds.TcPOU" />
