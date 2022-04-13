@@ -61,12 +61,11 @@ Timer(IN := bStartTimer,
 Clock();
 
 //pumps
-//differential temperature control according to PWT6 data sheet (CHECK sign of diff temp!)
 PU235.GetState_Profibus();
 PU235(bSetStatusOnAutomatic := bSetStatusOn_PU235,
-	fSetPointAutomatic := 5,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 3);
+	nControlModeAutomatic := 0);
 PU235.SetState_Profibus();
 
 //use AUTO-Adapt control mode
@@ -260,7 +259,6 @@ END_VAR]]></Declaration>
       <LineId Id="168" Count="0" />
       <LineId Id="282" Count="0" />
       <LineId Id="65" Count="1" />
-      <LineId Id="95" Count="0" />
       <LineId Id="387" Count="0" />
       <LineId Id="67" Count="4" />
       <LineId Id="174" Count="0" />
