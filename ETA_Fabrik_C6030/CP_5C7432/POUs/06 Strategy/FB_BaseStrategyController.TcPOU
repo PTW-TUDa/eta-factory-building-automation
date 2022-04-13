@@ -10,11 +10,11 @@ VAR_INPUT
 	hnltState : ST_BufferStorageState;
 END_VAR
 VAR_OUTPUT	
-	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA' := '1'}
 	cnControl : ST_CoolingNetworkControl;
-	{attribute 'OPC.UA.DA.StructuredType' := '1'}	
+	{attribute 'OPC.UA.DA' := '1'}	
 	hnltControl : ST_LowTemperatureHeatingNetworkControl;
-	{attribute 'OPC.UA.DA.StructuredType' := '1'}
+	{attribute 'OPC.UA.DA' := '1'}
 	hnltCnLinkageControl : ST_HnltCnLinkageControl;
 	
 END_VAR
@@ -135,8 +135,8 @@ Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//control heat depending on cooling demand in cn
-Controller_HeatPump(fSetpointValue := cnState.fMidTemperature,
+//control heat pump depending on cooling demand in cn
+Controller_HeatPump(fSetpointValue := cnState.fUpperTemperature,
 	fActualValue := cnControl.fTargetTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
