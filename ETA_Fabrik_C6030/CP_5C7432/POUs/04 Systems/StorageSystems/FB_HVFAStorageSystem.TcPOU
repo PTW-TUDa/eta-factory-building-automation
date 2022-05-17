@@ -34,7 +34,7 @@ VAR
 	
 	//internal variables
 	bSetStatusOn_PUx05 : BOOL;
-	bSetStatusOn_PU7x0 : BOOL;
+	bSetStatusOn_PU7x0 : BOOL := TRUE; //initialization is set to true because contactor is switched on when false;
 	bSetStatusOn_SVx05 : BOOL;
 	fSetPoint_SVx05 : REAL;
 	bSetStatusOn_SVx06 : BOOL;
@@ -125,8 +125,8 @@ VAR_OUTPUT
 	bSwitchToWorking : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//storage pump
-bSetStatusOn_PU7x0 := TRUE;
+        <ST><![CDATA[//storage pump - contactor is switched on when false
+bSetStatusOn_PU7x0 := FALSE;
 
 //network pump
 bSetStatusOn_PUx05 := TRUE;
@@ -148,7 +148,7 @@ VAR_OUTPUT
 	bRampDownFinished : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bSetStatusOn_PU7x0 := FALSE;
+        <ST><![CDATA[bSetStatusOn_PU7x0 := TRUE;
 bSetStatusOn_PUx05 := FALSE;
 bSetStatusOn_RVx05 := FALSE;
 

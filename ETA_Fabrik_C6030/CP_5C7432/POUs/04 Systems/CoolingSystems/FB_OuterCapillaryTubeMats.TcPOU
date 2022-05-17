@@ -178,7 +178,6 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_PU235 := TRUE;
 bSetStatusOn_PU600 := TRUE;
-
 AmbientControl();
 
 IF PU235.bStatusOn AND PU600.bStatusOn THEN
@@ -196,6 +195,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_PU600 := FALSE;
 bSetStatusOn_PU235 := FALSE;
+bSetStatusOn_PU690 := FALSE;
 bSetStatusOn_SV235 := FALSE;
 bSetStatusOn_RV600 := FALSE;
 bSetStatusOn_RV640 := FALSE;
@@ -308,7 +308,7 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_OuterCapillaryTubeMats.Operational">
       <LineId Id="8" Count="1" />
-      <LineId Id="18" Count="1" />
+      <LineId Id="19" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="7" Count="0" />
@@ -317,6 +317,7 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_OuterCapillaryTubeMats.RampDown">
       <LineId Id="8" Count="0" />
       <LineId Id="16" Count="0" />
+      <LineId Id="29" Count="0" />
       <LineId Id="9" Count="1" />
       <LineId Id="22" Count="1" />
       <LineId Id="11" Count="4" />
