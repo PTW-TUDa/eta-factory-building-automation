@@ -16,8 +16,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//get sensor inputs
-UpperTemperatureSensor.SetState_AI();
-LowerTemperatureSensor.SetState_AI();
+UpperTemperatureSensor.GetState_AI();
+LowerTemperatureSensor.GetState_AI();
 
 //set outputs
 localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;

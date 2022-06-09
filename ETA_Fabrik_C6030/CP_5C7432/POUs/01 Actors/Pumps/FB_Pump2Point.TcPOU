@@ -21,11 +21,25 @@ END_VAR
 bSetStatusOn_OUT := bSetStatusOn;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState_Inverted_BO" Id="{e0dd2a50-1f08-4a6f-b361-8e7d5875f380}">
+      <Declaration><![CDATA[METHOD SetState_Inverted_BO : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//output
+bSetStatusOn_OUT := NOT bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Pump2Point">
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_Pump2Point.SetState_BO">
       <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Pump2Point.SetState_Inverted_BO">
+      <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
