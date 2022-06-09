@@ -129,6 +129,68 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses" AutoDeleteType="true">ST_PumpGrundfosMagna3Genibus</Name>
+			<BitSize>72</BitSize>
+			<SubItem>
+				<Name>SequenceNumber</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<Comment><![CDATA[SequenceNumber: Is the trigger, every time the value changes a new reply will be generated. ]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>DestAddress</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<Comment><![CDATA[Address of GeniPro Slave, Broadcast = 16#FF]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Class</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<Comment><![CDATA[ no further Info provided]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>OpLength</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<Comment><![CDATA[ Operation and Length / for Reply Acknowledge and Length]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Data1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Data2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Data3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Data4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Data5</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF USINT</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
@@ -629,11 +691,6 @@
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureInternal_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN</Name>
 							<Comment><![CDATA[%]]></Comment>
 							<Type>UDINT</Type>
@@ -657,6 +714,10 @@
 							<Name>MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.CN.HVFASystem.SVx05.nOperatingPoint_IN</Name>
@@ -737,11 +798,6 @@
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureInternal_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fActualSetpoint_IN</Name>
 							<Comment><![CDATA[%]]></Comment>
 							<Type>UDINT</Type>
@@ -765,6 +821,10 @@
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerThermal_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.StatusModule_IN</Name>
@@ -795,11 +855,6 @@
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureInternal_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fActualSetpoint_IN</Name>
 							<Comment><![CDATA[%]]></Comment>
 							<Type>UDINT</Type>
@@ -823,6 +878,10 @@
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerThermal_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bStatusOn_IN</Name>
@@ -898,11 +957,6 @@
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fTemperatureInternal_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.HNLT.HVFASystem.PUx05.fActualSetpoint_IN</Name>
 							<Comment><![CDATA[%]]></Comment>
 							<Type>UDINT</Type>
@@ -926,6 +980,10 @@
 							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerThermal_IN</Name>
 							<Comment><![CDATA[W]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.HVFASystem.SVx05.nOperatingPoint_IN</Name>
@@ -3070,6 +3128,10 @@
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
@@ -3109,8 +3171,16 @@
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.ControlModule_OUT</Name>
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU690.bSetStatusOn_OUT</Name>
@@ -3145,6 +3215,10 @@
 						<Var>
 							<Name>MAIN.HNLT.HVFASystem.PUx05.ControlModule_OUT</Name>
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
@@ -21265,11 +21339,12 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureInternal_IN" VarB="PowerElectronicsTemp^Inputs^PowerElectronicsTemp_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 10 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
@@ -21528,11 +21603,12 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureInternal_IN" VarB="PumpLiquidTemp^Inputs^PumpLiquidTemp_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 6 (EL6731)^Box 1 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
