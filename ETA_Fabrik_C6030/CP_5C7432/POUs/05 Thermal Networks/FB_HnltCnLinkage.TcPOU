@@ -3,6 +3,8 @@
   <POU Name="FB_HnltCnLinkage" Id="{49b9fb4a-ee7f-4dd8-8511-b340abe8c57d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HnltCnLinkage
 VAR_INPUT
+	stAmbientState : ST_AmbientState;
+	
 	//control struct for hnlt cn linkage
 	controlAutomatic : ST_HnltCnLinkageControl;
 END_VAR
@@ -11,6 +13,7 @@ END_VAR
 VAR
 	//systems
 	HeatPumpSystem : FB_HeatPumpSystem;
+	InnerCapillaryTubeMats : FB_InnerCapillaryTubeMats;
 	
 	//internal variables
 	bAlgorithmPermission : BOOL;
@@ -23,7 +26,14 @@ bAlgorithmPermission := controlAutomatic.bAlgorithmPermission_CN AND controlAuto
 //NOTE: heat pump systems contains only two-point actors -> fSetPointAutomatic = 0	
 HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := 0);]]></ST>
+	fSetPointAutomatic := 0);
+	
+//NOTE: inner capillary tube mats are always on and recieve desired hall temperature as setpoint
+InnerCapillaryTubeMats(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature_ProductionHall,
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
+	stAmbientState := stAmbientState);]]></ST>
     </Implementation>
     <LineIds Name="FB_HnltCnLinkage">
       <LineId Id="21" Count="0" />
@@ -31,6 +41,9 @@ HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
       <LineId Id="22" Count="0" />
       <LineId Id="12" Count="2" />
       <LineId Id="9" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="4" />
+      <LineId Id="39" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -755,6 +755,275 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV500.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV541.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV542.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV543.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV551.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV552.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV553.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV561.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV562.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV563.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV571.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV572.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV573.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS541.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS542.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS543.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS551.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS552.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS553.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS561.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS562.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS563.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS571.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS572.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS573.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
@@ -3165,6 +3434,102 @@
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV246.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV500.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV541.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV542.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV543.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV551.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV552.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV553.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV561.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV562.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV563.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV571.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV572.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV573.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT</Name>
@@ -9795,36 +10160,36 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
+									<Name>bi_SV_CN_Closed</Name>
 									<Var>
-										<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
+										<Name>bi_SV_CN_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16958</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
+									<Name>bi_SV_CN_Open</Name>
 									<Var>
-										<Name>bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
+										<Name>bi_SV_CN_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16959</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
+									<Name>bi_SV_HNLT_Open</Name>
 									<Var>
-										<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU</Name>
+										<Name>bi_SV_HNLT_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16960</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
+									<Name>bi_SV_HNLT_Closed</Name>
 									<Var>
-										<Name>bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF</Name>
+										<Name>bi_SV_HNLT_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16961</BitOffs>
 										<InOut>0</InOut>
@@ -9867,18 +10232,18 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_ZU</Name>
+									<Name>bi_SV505_Closed</Name>
 									<Var>
-										<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_ZU</Name>
+										<Name>bi_SV505_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16966</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_AUF</Name>
+									<Name>bi_SV505_Open</Name>
 									<Var>
-										<Name>bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_AUF</Name>
+										<Name>bi_SV505_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16967</BitOffs>
 										<InOut>0</InOut>
@@ -9889,7 +10254,7 @@ PU245
 								<Name>K535A1_BI</Name>
 								<ImageId>7</ImageId>
 								<Vars VarGrpType="3">
-									<Name>bi_SV605_closed</Name>
+									<Name>bi_SV605_Closed</Name>
 									<Var>
 										<Name>bi_SV605_closed</Name>
 										<Type>BIT</Type>
@@ -9898,7 +10263,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV605_open</Name>
+									<Name>bi_SV605_Open</Name>
 									<Var>
 										<Name>bi_SV605_open</Name>
 										<Type>BIT</Type>
@@ -9961,18 +10326,18 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_ZU</Name>
+									<Name>bi_SV504_Closed</Name>
 									<Var>
-										<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_ZU</Name>
+										<Name>bi_SV504_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16976</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_AUF</Name>
+									<Name>bi_SV504_Open</Name>
 									<Var>
-										<Name>bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_AUF</Name>
+										<Name>bi_SV504_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16977</BitOffs>
 										<InOut>0</InOut>
@@ -10221,18 +10586,18 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV403_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
+									<Name>bo_SV_CN</Name>
 									<Var>
-										<Name>bo_SV403_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
+										<Name>bo_SV_CN</Name>
 										<Type>BIT</Type>
 										<BitOffs>16948</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV404_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
+									<Name>bo_SV_HNLT</Name>
 									<Var>
-										<Name>bo_SV404_PWT3_zw_Kalt_und_WW_3WegUmSVen</Name>
+										<Name>bo_SV_HNLT</Name>
 										<Type>BIT</Type>
 										<BitOffs>16949</BitOffs>
 										<InOut>1</InOut>
@@ -10284,9 +10649,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV505_Keller_KaRoMa_innen_PWT_2_3WegUmSVen</Name>
+									<Name>bo_SV505</Name>
 									<Var>
-										<Name>bo_SV505_Keller_KaRoMa_innen_PWT_2_3WegUmSVen</Name>
+										<Name>bo_SV505</Name>
 										<Type>BIT</Type>
 										<BitOffs>16955</BitOffs>
 										<InOut>1</InOut>
@@ -10929,7 +11294,7 @@ PU245
 								<Name>K552A1_AI-1/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT</Name>
+									<Name>ai_TF541</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -10937,7 +11302,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT</Name>
+										<Name>ai_TF541</Name>
 										<Type>INT</Type>
 										<BitOffs>13936</BitOffs>
 										<InOut>0</InOut>
@@ -10956,7 +11321,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT</Name>
+									<Name>ai_TF542</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -10964,7 +11329,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT</Name>
+										<Name>ai_TF542</Name>
 										<Type>INT</Type>
 										<BitOffs>13968</BitOffs>
 										<InOut>0</InOut>
@@ -10983,7 +11348,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT</Name>
+									<Name>ai_TF543</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -10991,7 +11356,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT</Name>
+										<Name>ai_TF543</Name>
 										<Type>INT</Type>
 										<BitOffs>14000</BitOffs>
 										<InOut>0</InOut>
@@ -11010,7 +11375,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF551_KaRoMa_DeIn_Ost_Sek_1_RLT</Name>
+									<Name>ai_TF551</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11018,7 +11383,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF551_KaRoMa_DeIn_Ost_Sek_1_RLT</Name>
+										<Name>ai_TF551</Name>
 										<Type>INT</Type>
 										<BitOffs>14032</BitOffs>
 										<InOut>0</InOut>
@@ -11041,7 +11406,7 @@ PU245
 								<Name>K552A1_AI-2/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF552_KaRoMa_DeIn_Ost_Sek_2_RLT</Name>
+									<Name>ai_TF552</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11049,7 +11414,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF552_KaRoMa_DeIn_Ost_Sek_2_RLT</Name>
+										<Name>ai_TF552</Name>
 										<Type>INT</Type>
 										<BitOffs>14064</BitOffs>
 										<InOut>0</InOut>
@@ -11068,7 +11433,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF553_KaRoMa_DeIn_Ost_Sek_3_RLT</Name>
+									<Name>ai_TF553</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11076,7 +11441,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF553_KaRoMa_DeIn_Ost_Sek_3_RLT</Name>
+										<Name>ai_TF553</Name>
 										<Type>INT</Type>
 										<BitOffs>14096</BitOffs>
 										<InOut>0</InOut>
@@ -11095,7 +11460,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT</Name>
+									<Name>ai_TF561</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11103,7 +11468,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT</Name>
+										<Name>ai_TF561</Name>
 										<Type>INT</Type>
 										<BitOffs>14128</BitOffs>
 										<InOut>0</InOut>
@@ -11122,7 +11487,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT</Name>
+									<Name>ai_TF562</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11130,7 +11495,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT</Name>
+										<Name>ai_TF562</Name>
 										<Type>INT</Type>
 										<BitOffs>14160</BitOffs>
 										<InOut>0</InOut>
@@ -11153,7 +11518,7 @@ PU245
 								<Name>K553A1_AI-1/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT</Name>
+									<Name>ai_TF563</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11161,7 +11526,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT</Name>
+										<Name>ai_TF563</Name>
 										<Type>INT</Type>
 										<BitOffs>14192</BitOffs>
 										<InOut>0</InOut>
@@ -11180,7 +11545,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT</Name>
+									<Name>ai_TF571</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11188,7 +11553,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT</Name>
+										<Name>ai_TF571</Name>
 										<Type>INT</Type>
 										<BitOffs>14224</BitOffs>
 										<InOut>0</InOut>
@@ -11207,7 +11572,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT</Name>
+									<Name>ai_TF572</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11215,7 +11580,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT</Name>
+										<Name>ai_TF572</Name>
 										<Type>INT</Type>
 										<BitOffs>14256</BitOffs>
 										<InOut>0</InOut>
@@ -11234,7 +11599,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT</Name>
+									<Name>ai_TF573</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11242,7 +11607,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT</Name>
+										<Name>ai_TF573</Name>
 										<Type>INT</Type>
 										<BitOffs>14288</BitOffs>
 										<InOut>0</InOut>
@@ -12497,7 +12862,7 @@ PU245
 								<Name>K571A1_AO-1/2</Name>
 								<ImageId>34</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ao_RV500_KaRoMa_innen_Vorregelung</Name>
+									<Name>ao_RV500</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12517,7 +12882,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV500_KaRoMa_innen_Vorregelung</Name>
+										<Name>ao_RV500</Name>
 										<Type>INT</Type>
 										<BitOffs>15728</BitOffs>
 										<InOut>1</InOut>
@@ -12551,7 +12916,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV541_KaRoMa_WaIn_Ost_Sek_1</Name>
+									<Name>ao_RV541</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12571,14 +12936,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV541_KaRoMa_WaIn_Ost_Sek_1</Name>
+										<Name>ao_RV541</Name>
 										<Type>INT</Type>
 										<BitOffs>15792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV542_KaRoMa_WaIn_Ost_Sek_2</Name>
+									<Name>ao_RV542</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12598,7 +12963,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV542_KaRoMa_WaIn_Ost_Sek_2</Name>
+										<Name>ao_RV542</Name>
 										<Type>INT</Type>
 										<BitOffs>15824</BitOffs>
 										<InOut>1</InOut>
@@ -12609,7 +12974,7 @@ PU245
 								<Name>K571A1_AO-2/2</Name>
 								<ImageId>34</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ao_RV543_KaRoMa_WaIn_Ost_Sek_3</Name>
+									<Name>ao_RV543</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12629,14 +12994,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV543_KaRoMa_WaIn_Ost_Sek_3</Name>
+										<Name>ao_RV543</Name>
 										<Type>INT</Type>
 										<BitOffs>15856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV551_KaRoMa_DeIn_Ost_Sek_1</Name>
+									<Name>ao_RV551</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12656,14 +13021,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV551_KaRoMa_DeIn_Ost_Sek_1</Name>
+										<Name>ao_RV551</Name>
 										<Type>INT</Type>
 										<BitOffs>15888</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV552_KaRoMa_DeIn_Ost_Sek_2</Name>
+									<Name>ao_RV552</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12683,14 +13048,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV552_KaRoMa_DeIn_Ost_Sek_2</Name>
+										<Name>ao_RV552</Name>
 										<Type>INT</Type>
 										<BitOffs>15920</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV553_KaRoMa_DeIn_Ost_Sek_3</Name>
+									<Name>ao_RV553</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12710,7 +13075,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV553_KaRoMa_DeIn_Ost_Sek_3</Name>
+										<Name>ao_RV553</Name>
 										<Type>INT</Type>
 										<BitOffs>15952</BitOffs>
 										<InOut>1</InOut>
@@ -12721,7 +13086,7 @@ PU245
 								<Name>K572A1_AO-1/2</Name>
 								<ImageId>34</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ao_RV561_KaRoMa_WaIn_West_Sek_1</Name>
+									<Name>ao_RV561</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12741,14 +13106,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV561_KaRoMa_WaIn_West_Sek_1</Name>
+										<Name>ao_RV561</Name>
 										<Type>INT</Type>
 										<BitOffs>15984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV562_KaRoMa_WaIn_West_Sek_2</Name>
+									<Name>ao_RV562</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12768,14 +13133,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV562_KaRoMa_WaIn_West_Sek_2</Name>
+										<Name>ao_RV562</Name>
 										<Type>INT</Type>
 										<BitOffs>16016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV563_KaRoMa_WaIn_West_Sek_3</Name>
+									<Name>ao_RV563</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12795,14 +13160,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV563_KaRoMa_WaIn_West_Sek_3</Name>
+										<Name>ao_RV563</Name>
 										<Type>INT</Type>
 										<BitOffs>16048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV571_KaRoMa_DeIn_West_Sek_1</Name>
+									<Name>ao_RV571</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12822,7 +13187,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV571_KaRoMa_DeIn_West_Sek_1</Name>
+										<Name>ao_RV571</Name>
 										<Type>INT</Type>
 										<BitOffs>16080</BitOffs>
 										<InOut>1</InOut>
@@ -12833,7 +13198,7 @@ PU245
 								<Name>K572A1_AO-2/2</Name>
 								<ImageId>34</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ao_RV572_KaRoMa_DeIn_West_Sek_2</Name>
+									<Name>ao_RV572</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12853,14 +13218,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV572_KaRoMa_DeIn_West_Sek_2</Name>
+										<Name>ao_RV572</Name>
 										<Type>INT</Type>
 										<BitOffs>16112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV573_KaRoMa_DeIn_West_Sek_3</Name>
+									<Name>ao_RV573</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12880,7 +13245,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV573_KaRoMa_DeIn_West_Sek_3</Name>
+										<Name>ao_RV573</Name>
 										<Type>INT</Type>
 										<BitOffs>16144</BitOffs>
 										<InOut>1</InOut>
@@ -21164,42 +21529,14 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_453.IN_Zustand_Stellungrueckmeldung1" VarB="K535A1_BI^bi_SV453_Umschaltung_HW_KW_VL_RM_3WegUmVen_ZU^bi_SV453_Umschaltung_HW_KW_VL_RM_3WegUmVen_ZU"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.IN_Zustand_Stellungrueckmeldung0" VarB="K535A1_BI^bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_AUF^bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_AUF"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.IN_Zustand_Stellungrueckmeldung1" VarB="K535A1_BI^bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_ZU^bi_SV454_Umschaltung_HW_KW_RL_RM_3WegUmVen_ZU"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.IN_Zustand_Stellungrueckmeldung0" VarB="K533A1_BI^bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU^bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.IN_Zustand_Stellungrueckmeldung1" VarB="K533A1_BI^bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF^bi_SV403_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.IN_Zustand_Stellungrueckmeldung0" VarB="K533A1_BI^bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF^bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_AUF"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.IN_Zustand_Stellungrueckmeldung1" VarB="K533A1_BI^bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU^bi_SV404_PWT3_zw_Kalt_u_WW_RM_3WegUmVen_ZU"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_504_Zustand_Stellungrueckmeldung0" VarB="K535A1_BI^bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_ZU^bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_ZU"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_504_Zustand_Stellungrueckmeldung1" VarB="K535A1_BI^bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_AUF^bi_SV504_Keller_KaRoMa_innen_PWT2_ RM_3WegUmVen_AUF"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_505_Zustand_Stellungrueckmeldung0" VarB="K533A1_BI^bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_ZU^bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_ZU"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_505_Zustand_Stellungrueckmeldung1" VarB="K533A1_BI^bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_AUF^bi_SV505_Keller_KaRoMa_innen_PWT2_RM_3WegUmVen_AUF"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_Ost.IN_Status" VarB="K553A1_AI-2/2^ai_TF640_KaRoMa_WaAu_Ost_Sek_1_3_zentrale_RLT^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_Ost.IN_Temperatur" VarB="K553A1_AI-2/2^ai_TF640_KaRoMa_WaAu_Ost_Sek_1_3_zentrale_RLT^ai_TF640_KaRoMa_WaAu_Ost_Sek_1_3_zentrale_RLT"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_West.IN_Status" VarB="K553A1_AI-2/2^ai_TF660_KaRoMa_WaAu_West_Sek_1_3_zentrale_RLT^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_West.IN_Temperatur" VarB="K553A1_AI-2/2^ai_TF660_KaRoMa_WaAu_West_Sek_1_3_zentrale_RLT^ai_TF660_KaRoMa_WaAu_West_Sek_1_3_zentrale_RLT"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Status" VarB="K551A1_AI-1/2^ai_Frei_AI11^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Temperatur" VarB="K552A1_AI-1/2^ai_TF551_KaRoMa_DeIn_Ost_Sek_1_RLT^ai_TF551_KaRoMa_DeIn_Ost_Sek_1_RLT"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI12^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Temperatur" VarB="K552A1_AI-2/2^ai_TF552_KaRoMa_DeIn_Ost_Sek_2_RLT^ai_TF552_KaRoMa_DeIn_Ost_Sek_2_RLT"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI13^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Temperatur" VarB="K552A1_AI-2/2^ai_TF553_KaRoMa_DeIn_Ost_Sek_3_RLT^ai_TF553_KaRoMa_DeIn_Ost_Sek_3_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor1.IN_Status" VarB="K553A1_AI-1/2^ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor1.IN_Temperatur" VarB="K553A1_AI-1/2^ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT^ai_TF571_KaRoMa_DeIn_West_Sek_1_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor2.IN_Status" VarB="K553A1_AI-1/2^ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor2.IN_Temperatur" VarB="K553A1_AI-1/2^ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT^ai_TF572_KaRoMa_DeIn_West_Sek_2_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Status" VarB="K553A1_AI-1/2^ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Temperatur" VarB="K553A1_AI-1/2^ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT^ai_TF573_KaRoMa_DeIn_West_Sek_3_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Status" VarB="K552A1_AI-1/2^ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Temperatur" VarB="K552A1_AI-1/2^ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT^ai_TF541_KaRoMa_WaIn_Ost_Sek_1_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor2.IN_Status" VarB="K552A1_AI-1/2^ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor2.IN_Temperatur" VarB="K552A1_AI-1/2^ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT^ai_TF542_KaRoMa_WaIn_Ost_Sek_2_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor3.IN_Status" VarB="K552A1_AI-1/2^ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor3.IN_Temperatur" VarB="K552A1_AI-1/2^ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT^ai_TF543_KaRoMa_WaIn_Ost_Sek_3_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor1.IN_Status" VarB="K552A1_AI-2/2^ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor1.IN_Temperatur" VarB="K552A1_AI-2/2^ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT^ai_TF561_KaRoMa_WaIn_West_Sek_1_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor2.IN_Status" VarB="K552A1_AI-2/2^ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor2.IN_Temperatur" VarB="K552A1_AI-2/2^ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT^ai_TF562_KaRoMa_WaIn_West_Sek_2_RLT"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor3.IN_Status" VarB="K553A1_AI-1/2^ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor3.IN_Temperatur" VarB="K553A1_AI-1/2^ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT^ai_TF563_KaRoMa_WaIn_West_Sek_3_RLT"/>
+				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Status" VarB="K553A1_AI-1/2^ai_TF573^Status"/>
 				<Link VarA="Standard Inputs^.Netze.DS_100_KWN.IN_Druck" VarB="K560A1_AI-1/2^ai_DS100_KWN^ai_DS100_KWN"/>
 				<Link VarA="Standard Inputs^.Netze.DS_100_KWN.IN_Status" VarB="K560A1_AI-1/2^ai_DS100_KWN^Status"/>
 				<Link VarA="Standard Inputs^.Netze.DS_200_WWN.IN_Druck" VarB="K560A1_AI-1/2^ai_DS200_WWN^ai_DS200_WWN"/>
@@ -21253,8 +21590,26 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_UpperTemperature^TF795_HVFA_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_LowerTemperature^TF797_HVFA_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_UpperTemperature^TF797_HVFA_UpperTemperature"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN" VarB="K535A1_BI^bi_SV605_closed^bi_SV605_closed"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN" VarB="K535A1_BI^bi_SV605_open^bi_SV605_open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN" VarB="K535A1_BI^bi_SV605_Closed^bi_SV605_closed"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN" VarB="K535A1_BI^bi_SV605_Open^bi_SV605_open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOff_IN" VarB="K533A1_BI^bi_SV505_Closed^bi_SV505_Closed"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOn_IN" VarB="K533A1_BI^bi_SV505_Open^bi_SV505_Open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOff_IN" VarB="K533A1_BI^bi_SV_CN_Closed^bi_SV_CN_Closed"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOn_IN" VarB="K533A1_BI^bi_SV_CN_Open^bi_SV_CN_Open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOff_IN" VarB="K533A1_BI^bi_SV_HNLT_Closed^bi_SV_HNLT_Closed"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOn_IN" VarB="K533A1_BI^bi_SV_HNLT_Open^bi_SV_HNLT_Open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS541.temperature_IN" VarB="K552A1_AI-1/2^ai_TF541^ai_TF541"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS542.temperature_IN" VarB="K552A1_AI-1/2^ai_TF542^ai_TF542"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS543.temperature_IN" VarB="K552A1_AI-1/2^ai_TF543^ai_TF543"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS551.temperature_IN" VarB="K552A1_AI-1/2^ai_TF551^ai_TF551"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS552.temperature_IN" VarB="K552A1_AI-2/2^ai_TF552^ai_TF552"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS553.temperature_IN" VarB="K552A1_AI-2/2^ai_TF553^ai_TF553"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS561.temperature_IN" VarB="K552A1_AI-2/2^ai_TF561^ai_TF561"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS562.temperature_IN" VarB="K552A1_AI-2/2^ai_TF562^ai_TF562"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS563.temperature_IN" VarB="K553A1_AI-1/2^ai_TF563^ai_TF563"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS571.temperature_IN" VarB="K553A1_AI-1/2^ai_TF571^ai_TF571"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS572.temperature_IN" VarB="K553A1_AI-1/2^ai_TF572^ai_TF572"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.TS573.temperature_IN" VarB="K553A1_AI-1/2^ai_TF573^ai_TF573"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.OUT_Stellung" VarB="K542A1_BO^bo_SV251_WW_DruckluftkomprAbsperrventil^bo_SV251_WW_DruckluftkomprAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Stellventil_361.OUT_Stellung" VarB="K542A1_BO^bo_SV361_KWN_NitrierofenAbsperrventil^bo_SV361_KWN_NitrierofenAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.OUT_Stellung" VarB="K542A1_BO^bo_SV261_WWN_NitrierofenAbsperrventil^bo_SV261_WWN_NitrierofenAbsperrventil"/>
@@ -21274,22 +21629,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_453.OUT_Stellung" VarB="K544A1_BO^bo_SV453_Lueftungsgeraet_Umschaltung_HW_KW_VLAbsperrventil^bo_SV453_Lueftungsgeraet_Umschaltung_HW_KW_VLAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.OUT_Stellung" VarB="K544A1_BO^bo_SV454_Lueftungsgeraet_Umschaltung_HW_KW_RLAbsperrventil^bo_SV454_Lueftungsgeraet_Umschaltung_HW_KW_RLAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Regelventil_350.OUT_Stellung" VarB="K570A1_AO-1/2^ao_RV350_Keller_statHeiz_KWN^ao_RV350_Keller_statHeiz_KWN"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_500.OUT_Stellung" VarB="K571A1_AO-1/2^ao_RV500_KaRoMa_innen_Vorregelung^ao_RV500_KaRoMa_innen_Vorregelung"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_541.OUT_Stellung" VarB="K571A1_AO-1/2^ao_RV541_KaRoMa_WaIn_Ost_Sek_1^ao_RV541_KaRoMa_WaIn_Ost_Sek_1"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_542.OUT_Stellung" VarB="K571A1_AO-1/2^ao_RV542_KaRoMa_WaIn_Ost_Sek_2^ao_RV542_KaRoMa_WaIn_Ost_Sek_2"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_543.OUT_Stellung" VarB="K571A1_AO-2/2^ao_RV543_KaRoMa_WaIn_Ost_Sek_3^ao_RV543_KaRoMa_WaIn_Ost_Sek_3"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_551.OUT_Stellung" VarB="K571A1_AO-2/2^ao_RV551_KaRoMa_DeIn_Ost_Sek_1^ao_RV551_KaRoMa_DeIn_Ost_Sek_1"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_552.OUT_Stellung" VarB="K571A1_AO-2/2^ao_RV552_KaRoMa_DeIn_Ost_Sek_2^ao_RV552_KaRoMa_DeIn_Ost_Sek_2"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_553.OUT_Stellung" VarB="K571A1_AO-2/2^ao_RV553_KaRoMa_DeIn_Ost_Sek_3^ao_RV553_KaRoMa_DeIn_Ost_Sek_3"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_561.OUT_Stellung" VarB="K572A1_AO-1/2^ao_RV561_KaRoMa_WaIn_West_Sek_1^ao_RV561_KaRoMa_WaIn_West_Sek_1"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_562.OUT_Stellung" VarB="K572A1_AO-1/2^ao_RV562_KaRoMa_WaIn_West_Sek_2^ao_RV562_KaRoMa_WaIn_West_Sek_2"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_563.OUT_Stellung" VarB="K572A1_AO-1/2^ao_RV563_KaRoMa_WaIn_West_Sek_3^ao_RV563_KaRoMa_WaIn_West_Sek_3"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_571.OUT_Stellung" VarB="K572A1_AO-1/2^ao_RV571_KaRoMa_DeIn_West_Sek_1^ao_RV571_KaRoMa_DeIn_West_Sek_1"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_572.OUT_Stellung" VarB="K572A1_AO-2/2^ao_RV572_KaRoMa_DeIn_West_Sek_2^ao_RV572_KaRoMa_DeIn_West_Sek_2"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_573.OUT_Stellung" VarB="K572A1_AO-2/2^ao_RV573_KaRoMa_DeIn_West_Sek_3^ao_RV573_KaRoMa_DeIn_West_Sek_3"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.OUT_Stellung" VarB="K542A1_BO^bo_SV403_PWT3_zw_Kalt_und_WW_3WegUmSVen^bo_SV403_PWT3_zw_Kalt_und_WW_3WegUmSVen"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.OUT_Stellung" VarB="K542A1_BO^bo_SV404_PWT3_zw_Kalt_und_WW_3WegUmSVen^bo_SV404_PWT3_zw_Kalt_und_WW_3WegUmSVen"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.OUT_505_Stellung" VarB="K542A1_BO^bo_SV505_Keller_KaRoMa_innen_PWT_2_3WegUmSVen^bo_SV505_Keller_KaRoMa_innen_PWT_2_3WegUmSVen"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Blau" VarB="K544A1_BO^bo_Frei_BO46^bo_Ampel_Blau"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Buzz" VarB="K544A1_BO^bo_Frei_BO47^bo_Ampel_Buzz"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Gruen" VarB="K540A1_BO^ISP01 Sammelstörung_rot^ISP01 Ampel_Gruen"/>
@@ -21329,6 +21668,22 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.HeatPumpSystem.HeatPump.bSetStatusOn_OUT" VarB="K544A1_BO^bo_HeatPump^bo_HeatPump"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.HeatPumpSystem.SV146.bSetStatusOn_OUT" VarB="K544A1_BO^bo_SV146^bo_SV146"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.HeatPumpSystem.SV246.bSetStatusOn_OUT" VarB="K544A1_BO^bo_SV246^bo_SV246"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV500.nSetPoint_OUT" VarB="K571A1_AO-1/2^ao_RV500^ao_RV500"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV541.nSetPoint_OUT" VarB="K571A1_AO-1/2^ao_RV541^ao_RV541"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV542.nSetPoint_OUT" VarB="K571A1_AO-1/2^ao_RV542^ao_RV542"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV543.nSetPoint_OUT" VarB="K571A1_AO-2/2^ao_RV543^ao_RV543"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV551.nSetPoint_OUT" VarB="K571A1_AO-2/2^ao_RV551^ao_RV551"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV552.nSetPoint_OUT" VarB="K571A1_AO-2/2^ao_RV552^ao_RV552"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV553.nSetPoint_OUT" VarB="K571A1_AO-2/2^ao_RV553^ao_RV553"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV561.nSetPoint_OUT" VarB="K572A1_AO-1/2^ao_RV561^ao_RV561"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV562.nSetPoint_OUT" VarB="K572A1_AO-1/2^ao_RV562^ao_RV562"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV563.nSetPoint_OUT" VarB="K572A1_AO-1/2^ao_RV563^ao_RV563"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV571.nSetPoint_OUT" VarB="K572A1_AO-1/2^ao_RV571^ao_RV571"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV572.nSetPoint_OUT" VarB="K572A1_AO-2/2^ao_RV572^ao_RV572"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.RV573.nSetPoint_OUT" VarB="K572A1_AO-2/2^ao_RV573^ao_RV573"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV505^bo_SV505"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV_CN^bo_SV_CN"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV_HNLT^bo_SV_HNLT"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 1 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
@@ -21347,26 +21702,20 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 10 (CIM/CIU 150 pump)">
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Drehzahl" VarB="Speed^Inputs^Speed_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Druckdifferenz" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Energie_elek" VarB="Energy^Inputs^Energy_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Energie_therm" VarB="HeatEnergyCounter^Inputs^HeatEnergyCounter_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Frequenz_Motor" VarB="Frequency^Inputs^Frequency_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung_elek" VarB="Power^Inputs^Power_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung_therm" VarB="HeatPower^Inputs^HeatPower_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Modul_Meld_Code1" VarB="WarningCode^Inputs^WarningCode_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Modul_Meld_Code2" VarB="FaultCode^Inputs^FaultCode_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_StatusModule" VarB="StatusModule^Inputs^StatusModule_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_elek" VarB="PowerElectronicsTemp^Inputs^PowerElectronicsTemp_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_extern" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_intern_GeniReply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Volumen" VarB="Volume^Inputs^Volume_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Volumenstrom" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Zeit_Betrieb" VarB="OperationTime^Inputs^OperationTime_0_0"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.OUT_ControlModule" VarB="ControlModule^Outputs^ControlModule_1_0"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.OUT_Temp_intern_GeniRequest" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 11 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
@@ -21391,26 +21740,21 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.OUT_Temp_intern_GeniRequest" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 13 (CIM/CIU 150 pump)">
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Drehzahl" VarB="Speed^Inputs^Speed_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Druckdifferenz" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Energie_elek" VarB="Energy^Inputs^Energy_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Energie_therm" VarB="HeatEnergyCounter^Inputs^HeatEnergyCounter_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Frequenz_Motor" VarB="Frequency^Inputs^Frequency_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung_elek" VarB="Power^Inputs^Power_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung_therm" VarB="HeatPower^Inputs^HeatPower_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Modul_Meld_Code1" VarB="WarningCode^Inputs^WarningCode_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Modul_Meld_Code2" VarB="FaultCode^Inputs^FaultCode_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_StatusModule" VarB="StatusModule^Inputs^StatusModule_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_elek" VarB="PowerElectronicsTemp^Inputs^PowerElectronicsTemp_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_extern" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_intern_GeniReply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Volumen" VarB="Volume^Inputs^Volume_0_0"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Volumenstrom" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Zeit_Betrieb" VarB="OperationTime^Inputs^OperationTime_0_0"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.OUT_ControlModule" VarB="ControlModule^Outputs^ControlModule_1_0"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.OUT_Temp_intern_GeniRequest" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 14 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
@@ -21602,6 +21946,7 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU600.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>

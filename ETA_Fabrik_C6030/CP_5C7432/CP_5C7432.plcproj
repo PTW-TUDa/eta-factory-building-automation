@@ -216,6 +216,12 @@
     <Compile Include="Data types\03 Systems\CoolingSystems\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\03 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\03 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -555,6 +561,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_InnerCapillaryTubeMats.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">

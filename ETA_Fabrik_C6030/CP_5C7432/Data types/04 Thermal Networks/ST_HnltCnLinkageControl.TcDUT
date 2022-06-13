@@ -2,9 +2,11 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <DUT Name="ST_HnltCnLinkageControl" Id="{f7c1de2f-a4d7-42fd-89b5-954c364eebb1}">
     <Declaration><![CDATA[TYPE ST_HnltCnLinkageControl :
-STRUCT
+STRUCT	
+	bHeatingMode : BOOL;
 	fTargetTemperature_HNLT : REAL;
 	fTargetTemperature_CN : REAL;
+	fTargetTemperature_ProductionHall : REAL;
 	bAlgorithmPermission_HNLT : BOOL;
 	bAlgorithmPermission_CN : BOOL;
 	bSetStatusOn_HeatPump : BOOL;
