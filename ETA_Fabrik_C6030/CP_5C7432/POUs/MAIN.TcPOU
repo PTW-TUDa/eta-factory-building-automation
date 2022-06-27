@@ -40,7 +40,8 @@ Ambient();
 //thermal networks
 CN(controlAutomatic := Strategy.cnControl);
 
-HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl);
+HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl,
+	stAmbientState := Ambient.localState);
 	
 HNLT(ambientState := Ambient.localState,
 	controlAutomatic := Strategy.hnltControl);
@@ -121,7 +122,9 @@ HNLT(ambientState := Ambient.localState,
       <LineId Id="146" Count="2" />
       <LineId Id="150" Count="0" />
       <LineId Id="142" Count="0" />
-      <LineId Id="115" Count="14" />
+      <LineId Id="115" Count="12" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="128" Count="1" />
       <LineId Id="102" Count="0" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="67" />
