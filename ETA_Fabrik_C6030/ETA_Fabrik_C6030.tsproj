@@ -21652,6 +21652,9 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Regelventil_331.OUT_Stellung" VarB="AO Outputs Channel 1^.Wandler.System_Brennwertkessel_931.Regelventil_331.OUT_Stellung"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Regelventil_215.OUT_Stellung" VarB="AO Outputs Channel 2^.Wandler.System_Waermetauscher_915.Regelventil_215.OUT_Stellung"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 42 (EL4008)">
+				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT" VarB="AO Outputs Channel 1^Analog output"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
 				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[10]" VarB="K523A1_EIB^Channel 1^Input Data 8"/>
 				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[11]" VarB="K523A1_EIB^Channel 1^Input Data 9"/>
