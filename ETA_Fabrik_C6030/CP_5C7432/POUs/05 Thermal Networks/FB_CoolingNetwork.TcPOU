@@ -30,7 +30,9 @@ localState := BufferStorage.localState;
 eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
-	fExternalTemperature := BufferStorage.localState.fMidTemperature);
+	fExternalTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte);
+	
+//fExternalTemperature := BufferStorage.localState.fMidTemperature);	
 	
 //external storages
 //setpoint depends on loading mode -> storage must be cooler than setpoint temperature in network
@@ -48,7 +50,9 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
     </Implementation>
     <LineIds Name="FB_CoolingNetwork">
       <LineId Id="40" Count="8" />
-      <LineId Id="54" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="138" Count="1" />
+      <LineId Id="55" Count="0" />
       <LineId Id="118" Count="0" />
       <LineId Id="88" Count="0" />
       <LineId Id="94" Count="0" />
