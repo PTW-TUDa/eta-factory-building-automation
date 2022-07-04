@@ -10720,9 +10720,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_PU710</Name>
+									<Name>bo_Frei_3</Name>
 									<Var>
-										<Name>bo_PU710</Name>
+										<Name>bo_Frei_3</Name>
 										<Type>BIT</Type>
 										<BitOffs>16962</BitOffs>
 										<InOut>1</InOut>
@@ -10738,9 +10738,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_PU720</Name>
+									<Name>bo_Frei_5</Name>
 									<Var>
-										<Name>bo_PU720</Name>
+										<Name>bo_Frei_5</Name>
 										<Type>BIT</Type>
 										<BitOffs>16964</BitOffs>
 										<InOut>1</InOut>
@@ -21652,8 +21652,24 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Regelventil_331.OUT_Stellung" VarB="AO Outputs Channel 1^.Wandler.System_Brennwertkessel_931.Regelventil_331.OUT_Stellung"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Regelventil_215.OUT_Stellung" VarB="AO Outputs Channel 2^.Wandler.System_Waermetauscher_915.Regelventil_215.OUT_Stellung"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 41 (EL2809)">
+				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT" VarB="Channel 4^Output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT" VarB="Channel 1^Output"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT.HVFASystem.PU7x0.bSetStatusOn_OUT" VarB="Channel 5^Output"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 42 (EL4008)">
-				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT" VarB="AO Outputs Channel 1^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT" VarB="AO Outputs Channel 3^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT" VarB="AO Outputs Channel 2^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT" VarB="AO Outputs Channel 7^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT" VarB="AO Outputs Channel 1^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT" VarB="AO Outputs Channel 6^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT" VarB="AO Outputs Channel 4^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.HNLT.HVFASystem.RVx05.nSetPoint_OUT" VarB="AO Outputs Channel 5^Analog output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 43 (EL1809)">
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bError_IN" VarB="Channel 1^Input"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN" VarB="Channel 4^Input"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bWarning_IN" VarB="Channel 3^Input"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
 				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[10]" VarB="K523A1_EIB^Channel 1^Input Data 8"/>
@@ -21949,8 +21965,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Wandler.System_Kaeltekompressor_KW_145.Stellventil_145.OUT_Stellung" VarB="K540A1_BO^bo_SV145_KWPufffersp_WP_Absperrventil^bo_SV145_KWPufffersp_WP_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung" VarB="K540A1_BO^bo_SV215_WW_vom_PWT1_Absperrventil^bo_SV215_WW_vom_PWT1_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_315.OUT_Stellung" VarB="K540A1_BO^bo_SV315_Heisswasser_zum_PWT1Absperrventil^bo_SV315_Heisswasser_zum_PWT1Absperrventil"/>
-				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT" VarB="K544A1_BO^bo_PU710^bo_PU710"/>
-				<Link VarA="Standard Outputs^MAIN.HNLT.HVFASystem.PU7x0.bSetStatusOn_OUT" VarB="K544A1_BO^bo_PU720^bo_PU720"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU690.bSetStatusOn_OUT" VarB="K542A1_BO^bo_PU690^bo_PU690"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.RV600.nSetPoint_OUT" VarB="K572A1_AO-2/2^ao_RV600^ao_RV600"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.RV640.nSetPoint_OUT" VarB="K572A1_AO-2/2^ao_RV640^ao_RV640"/>

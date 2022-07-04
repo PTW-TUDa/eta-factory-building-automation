@@ -71,7 +71,7 @@ PUx05.SetState_Profibus();
 
 PU7x0(bSetStatusOnAutomatic := bSetStatusOn_PU7x0,
 	bAlgorithmPermission := bAlgorithmPermission);
-PU7x0.SetState_Inverted_BO();
+PU7x0.SetState_BO();
 
 //valves
 SVx05.GetState_AI();
@@ -179,8 +179,8 @@ END_VAR
 bSetStatusOn_SVx06 := TRUE;
 
 IF bLoading = TRUE THEN
-	fSetPoint_SVx05 := 100;
-	fSetPoint_SVx06 := 100;
+	fSetPoint_SVx05 := 0;
+	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
 	(*
@@ -189,8 +189,8 @@ IF bLoading = TRUE THEN
 	END_IF
 	*)
 ELSE
-	fSetPoint_SVx05 := 0;
-	fSetPoint_SVx06 := 0;
+	fSetPoint_SVx05 := 100;
+	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
 	(*
@@ -256,13 +256,13 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[//check if loading mode has changed during operation
 IF bLoading = TRUE THEN
-	fSetPoint_SVx05 := 100;
-	fSetPoint_SVx06 := 100;
+	fSetPoint_SVx05 := 0;
+	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;
 ELSE
-	fSetPoint_SVx05 := 0;
-	fSetPoint_SVx06 := 0;
+	fSetPoint_SVx05 := 100;
+	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
 END_IF
