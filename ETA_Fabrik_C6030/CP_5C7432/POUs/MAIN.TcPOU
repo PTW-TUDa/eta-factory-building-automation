@@ -11,11 +11,13 @@ VAR
 	//states thermal networks
 	cnState : ST_BufferStorageState;
 	hnltState : ST_BufferStorageState;
+	hnhtState : ST_BufferStorageState;
 	
 	//thermal networks
 	CN : FB_CoolingNetwork;
 	HNLT_CN : FB_HnltCnLinkage;
-	HNLT : FB_LowTemperatureHeatingNetwork;
+	HNLT : FB_HeatingNetworkLowTemperature;
+	HNHT : FB_HeatingNetworkHighTemperature;
 	
 	//ambient state
 	Ambient : FB_Ambient;
@@ -28,11 +30,15 @@ cnState.fUpperTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp
 hnltState.fLowerTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_unten;
 hnltState.fMidTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_mitte;
 hnltState.fUpperTemperature := Speicher.Pufferspeicher_Warmwasser_295.Zustand.Temp_oben;
+hnhtState.fUpperTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_oben;
+hnhtState.fMidTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_mitte;
+hnhtState.fLowerTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_unten;
 
 //strategy controller
 Strategy(ambientState := Ambient.localState,
 	cnState := cnState,
-	hnltState := hnltState);
+	hnltState := hnltState,
+	hnhtState := hnhtState);
 
 //ambient state
 Ambient();
@@ -45,6 +51,8 @@ HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl,
 	
 HNLT(ambientState := Ambient.localState,
 	controlAutomatic := Strategy.hnltControl);
+	
+HNHT(controlAutomatic := Strategy.hnhtControl);
 
 //Current implementation
 
@@ -122,10 +130,14 @@ HNLT(ambientState := Ambient.localState,
       <LineId Id="146" Count="2" />
       <LineId Id="150" Count="0" />
       <LineId Id="142" Count="0" />
-      <LineId Id="115" Count="12" />
+      <LineId Id="194" Count="2" />
+      <LineId Id="115" Count="4" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="120" Count="7" />
       <LineId Id="169" Count="0" />
       <LineId Id="128" Count="1" />
       <LineId Id="102" Count="0" />
+      <LineId Id="188" Count="1" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="67" />
     </LineIds>

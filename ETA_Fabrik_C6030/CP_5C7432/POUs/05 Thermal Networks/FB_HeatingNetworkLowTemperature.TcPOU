@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <POU Name="FB_LowTemperatureHeatingNetwork" Id="{41e3edb3-66e7-411c-a35e-b44e9a5d66f1}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_LowTemperatureHeatingNetwork
+  <POU Name="FB_HeatingNetworkLowTemperature" Id="{41e3edb3-66e7-411c-a35e-b44e9a5d66f1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatingNetworkLowTemperature
 VAR_INPUT
 	ambientState : ST_AmbientState;
 	
 	//control struct for hnlt
-	controlAutomatic : ST_LowTemperatureHeatingNetworkControl;	
+	controlAutomatic : ST_HeatingNetworkLowTemperatureControl;	
 END_VAR
 VAR_OUTPUT
 	{attribute 'OPC.UA.DA' := '1'}
@@ -47,7 +47,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	fSetPointAutomatic := fSetpoint_HVFASystem,
 	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem);]]></ST>
     </Implementation>
-    <LineIds Name="FB_LowTemperatureHeatingNetwork">
+    <LineIds Name="FB_HeatingNetworkLowTemperature">
       <LineId Id="32" Count="2" />
       <LineId Id="42" Count="1" />
       <LineId Id="35" Count="4" />

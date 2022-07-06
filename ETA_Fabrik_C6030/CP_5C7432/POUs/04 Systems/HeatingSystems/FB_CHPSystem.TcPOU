@@ -5,31 +5,258 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
+	bSetStatusOnFeedback : BOOL; //Feedback if CHP unit should be switched on to be sent to supply air valve
 END_VAR
-VAR
+VAR	
+	//chp
+	CHP : FB_CHP;
+
+	//pump
+	stPU32xDefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	PU32x : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU32xDefaultParameters);
+	
+	//valves
+	stSV32xDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	SV32x : FB_DiscreteValve := (ST_DefaultParameters := stSV32xDefaultParameters);
+	RV32x : FB_MixingValve := (ST_DefaultParameters := stRV32xDefaultParameters);
+	WMZ32x : FB_MollineC3HeatCounter();
+	
+	//internal variables
+	bSetStatusOn_CHP   : BOOL;
+	bSetStatusOn_PU32x : BOOL;
+	bSetStatusOn_SV32x : BOOL;
+	bSetStatusOn_RV32x : BOOL; 	
+	
+	//timer
+	bStartTimer : BOOL;
+	Timer : TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(*
-- bestehend aus einer Magna 3 pumpen (PU32x)
-- disrcete valve SV32x
-- mixing valve RV32x
-- heat counter WMZ32x
+      <ST><![CDATA[bSetStatusOnFeedback := bSetStatusOn;
 
-Logik:
-- RampUp: SV und RV öffnen
-- Operational: PUs anschalten, wenn BHKW an ist
-- Working: RV regelt auf Vorlauftemepratur an BHKW-Austritt
-- RampDown: Umgekehrte Reihenfolge
+//use timer because valve has no feedback signal (75 sec)
+Timer(IN := bStartTimer,
+	PT := T#75S);
 
-- errorCheck: Prüfe auf pumpenerror, BHKW-Error und , falls SV32x Stellungsrückmeldung hat, ob Pumpe gegen geschlossenes Ventil pumpt
-*)]]></ST>
+MAIN();
+CHP.GetState();
+CHP(fSetPointAutomatic := 100,
+	bSetStatusOnAutomatic := bSetStatusOn_CHP,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0,
+	fExternalFeedTemperature := PU32x.fTemperatureInternal);
+CHP.SetState();
+
+SV32x.GetState_BI();
+SV32x(bSetStatusOnAutomatic := bSetStatusOn_SV32x,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV32x.SetState_BO();
+
+RV32x.GetState_AI();
+RV32x(fSetPointAutomatic := fSetPoint,
+	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU32x.fTemperatureInternal,
+	nControlModeAutomatic := 2);
+RV32x.SetState_AO();
+
+PU32x.GetState_Profibus();
+PU32x(fSetPointAutomatic := 100,
+	bSetStatusOnAutomatic := bSetStatusOn_PU32x,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU32x.SetState_Profibus();
+
+WMZ32x();]]></ST>
     </Implementation>
+    <Method Name="CheckError" Id="{684c4c5f-5b63-4ac1-a5ee-1759d03ff526}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	bError_PU32x : BOOL;
+	//bError_CHP : BOOL;
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check pumps for errors
+bError_PU32x := PU32x.bError;
+//bError_CHP := CHP.bError;
+
+//bError := bError_PU32x OR bError_CHP;
+bError := bError_PU32x;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{1a1d7ebc-5ebc-49ca-9755-166e1ea8616e}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_CHP := TRUE;
+
+
+//IF CHP.bStatusOn THEN
+bStartTimer := TRUE;
+IF TIMER.Q THEN
+	bSwitchToWorking := TRUE;
+	bStartTimer := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{0de23c98-c56a-469e-955b-2ff61016c0ab}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_CHP := FALSE;
+
+//IF NOT CHP.bStatusOn THEN
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bSetStatusOn_PU32x := FALSE;
+	bStartTimer := FALSE;
+END_IF
+
+IF NOT PU32x.bStatusOn THEN
+	bSetStatusOn_RV32x := FALSE;
+	bSetStatusOn_SV32x := FALSE;
+	bStartTimer := TRUE;
+
+	IF Timer.Q THEN
+		bRampDownFinished := TRUE;
+		bStartTimer := FALSE;
+	END_IF
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{3071767d-8111-44da-af02-b65d0afaa40d}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV32x := TRUE;
+bSetStatusOn_RV32x := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bSetStatusOn_PU32x := TRUE;
+END_IF
+
+IF PU32x.bStatusOn THEN
+	bStartTimer := FALSE; //resets timer	
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{8cfe0602-4afb-47e7-b900-5c78610daffb}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := CHP.ST_DefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := CHP.ST_DefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{6321a476-f7aa-4875-ae31-cebd1b5c7895}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_CHPSystem">
-      <LineId Id="30" Count="0" />
-      <LineId Id="18" Count="10" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="154" Count="1" />
+      <LineId Id="112" Count="1" />
+      <LineId Id="110" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="59" Count="6" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="74" Count="5" />
+      <LineId Id="83" Count="6" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="94" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.CheckError">
+      <LineId Id="15" Count="2" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="34" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.Operational">
+      <LineId Id="16" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="17" Count="0" />
       <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="46" Count="3" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="51" Count="2" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="3" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.SetSetPointLimits">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.Working">
+      <LineId Id="7" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatingNetworkHighTemperature" Id="{2ced51e0-a3cc-4f43-8e53-7f6a9427e782}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatingNetworkHighTemperature
+VAR_INPUT
+	//control struct for hnht
+	controlAutomatic : ST_HeatingNetworkHighTemperatureControl;	
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_BufferStorageState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	CHP1System : FB_CHPSystem;
+	CHP2System : FB_CHPSystem;
+	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
+		
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState := BufferStorage.localState;
+
+//producer
+CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature);
+
+CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature);
+
+SV_SupplyAir.GetState_BI();
+SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission);
+SV_SupplyAir.SetState_BO();
+				]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HeatingNetworkHighTemperature">
+      <LineId Id="40" Count="7" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="159" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="183" Count="3" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

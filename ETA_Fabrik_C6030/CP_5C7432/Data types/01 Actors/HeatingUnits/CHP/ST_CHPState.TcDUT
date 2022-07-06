@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CHPState" Id="{b9e15077-e170-47a5-b066-0bb5047daee0}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_CHPState :
+STRUCT
+	bError					: BOOL;
+	fOperatingTime			: REAL;	//hours
+	fTemperatureExhaustGas	: REAL; //degreeC
+	fTemperatureCoolingWater: REAL; //degreeC
+	fFeedTemperature		: REAL; //degreeC
+	fReturnTemperature		: REAL; //degreeC
+	nNumberOfStarts			: UINT;
+	fElectricalPower		: REAL; //W
+	fRotationalSpeed		: REAL;	//rotations per minute
+	fGeneratorVoltage		: REAL; //V
+	fGridVoltage			: REAL; //V
+	fGeneratorCurrent		: REAL; //A
+	fGridFrequency			: REAL; //Hz
+	fGeneratorFrequency		: REAL; //Hz
+	fCosPhi					: REAL;
+	nOperationStatus		: UINT;	// 0: Off // 1: Ready // 2: Start // 3: Operating // 4: Error
+	bReadRegsError_Modus	: BOOL;
+	//implementation for modul codes missing
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

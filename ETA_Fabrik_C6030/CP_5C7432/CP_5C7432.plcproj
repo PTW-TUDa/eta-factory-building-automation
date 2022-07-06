@@ -17,6 +17,7 @@
     <Folder Include="Data types\01 Actors" />
     <Folder Include="Data types\01 Actors\CoolingUnits" />
     <Folder Include="Data types\01 Actors\HeatingUnits" />
+    <Folder Include="Data types\01 Actors\HeatingUnits\CHP" />
     <Folder Include="Data types\02 Sensors" />
     <Folder Include="Data types\03 Systems" />
     <Folder Include="Data types\03 Systems\ConsumerSystems" />
@@ -213,6 +214,18 @@
     <Compile Include="Data types\01 Actors\CoolingUnits\ST_eChillerState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\01 Actors\HeatingUnits\CHP\E_CHPControlMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\01 Actors\HeatingUnits\CHP\ST_CHPDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\01 Actors\HeatingUnits\CHP\ST_CHPSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\01 Actors\HeatingUnits\CHP\ST_CHPState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\03 Systems\CoolingSystems\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -240,7 +253,7 @@
     <Compile Include="Data types\04 Thermal Networks\ST_CoolingNetworkControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Thermal Networks\ST_HighTemperatureHeatingNetworkControl.TcDUT">
+    <Compile Include="Data types\04 Thermal Networks\ST_HeatingNetworkHighTemperatureControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Thermal Networks\ST_HnhtHnltLinkageControl.TcDUT">
@@ -249,7 +262,7 @@
     <Compile Include="Data types\04 Thermal Networks\ST_HnltCnLinkageControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Thermal Networks\ST_LowTemperatureHeatingNetworkControl.TcDUT">
+    <Compile Include="Data types\04 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Thermal Networks\ST_ThermalNetworkState.TcDUT">
@@ -575,10 +588,13 @@
     <Compile Include="POUs\05 Thermal Networks\FB_CoolingNetwork.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkHighTemperature.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\05 Thermal Networks\FB_LowTemperatureHeatingNetwork.TcPOU">
+    <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkLowTemperature.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\06 Strategy\FB_BaseStrategyController.TcPOU">
