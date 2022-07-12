@@ -29,11 +29,13 @@ localState := BufferStorage.localState;
 //producer
 CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature);
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	aHeatCounterTelegramm := Telegramm_WZ_BHKW_1);
 
 CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature);
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	aHeatCounterTelegramm := Telegramm_WZ_BHKW_2);
 
 SV_SupplyAir.GetState_BI();
 SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
@@ -43,9 +45,11 @@ SV_SupplyAir.SetState_BO();
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
       <LineId Id="40" Count="7" />
+      <LineId Id="206" Count="0" />
       <LineId Id="161" Count="0" />
       <LineId Id="159" Count="1" />
       <LineId Id="158" Count="0" />
+      <LineId Id="207" Count="0" />
       <LineId Id="183" Count="3" />
       <LineId Id="56" Count="0" />
       <LineId Id="9" Count="0" />

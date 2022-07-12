@@ -3,6 +3,7 @@
   <POU Name="FB_CHPSystem" Id="{03be9f87-4e59-4877-a478-dceefb67f1c9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_CHPSystem EXTENDS FB_SystemContinous
 VAR_INPUT
+	aHeatCounterTelegramm : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 END_VAR
 VAR_OUTPUT
 	bSetStatusOnFeedback : BOOL; //Feedback if CHP unit should be switched on to be sent to supply air valve
@@ -69,7 +70,7 @@ PU32x(fSetPointAutomatic := 100,
 	nControlModeAutomatic := 0);
 PU32x.SetState_Profibus();
 
-WMZ32x();]]></ST>
+WMZ32x(aHeatCounterTelegramm := aHeatCounterTelegramm);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{684c4c5f-5b63-4ac1-a5ee-1759d03ff526}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -102,7 +103,6 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_CHP := TRUE;
 
-
 //IF CHP.bStatusOn THEN
 bStartTimer := TRUE;
 IF TIMER.Q THEN
@@ -132,11 +132,9 @@ END_IF
 IF NOT PU32x.bStatusOn THEN
 	bSetStatusOn_RV32x := FALSE;
 	bSetStatusOn_SV32x := FALSE;
-	bStartTimer := TRUE;
 
-	IF Timer.Q THEN
+	IF SV32x.bStatusOn THEN
 		bRampDownFinished := TRUE;
-		bStartTimer := FALSE;
 	END_IF
 END_IF
 
@@ -155,9 +153,8 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_SV32x := TRUE;
 bSetStatusOn_RV32x := TRUE;
-bStartTimer := TRUE;
 
-IF Timer.Q THEN
+IF SV32x.bStatusOn THEN
 	bSetStatusOn_PU32x := TRUE;
 END_IF
 
@@ -213,7 +210,6 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_CHPSystem.Operational">
       <LineId Id="16" Count="0" />
-      <LineId Id="26" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="17" Count="0" />
       <LineId Id="29" Count="0" />
@@ -232,9 +228,9 @@ END_VAR]]></Declaration>
       <LineId Id="55" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="43" Count="0" />
-      <LineId Id="46" Count="3" />
+      <LineId Id="46" Count="2" />
       <LineId Id="54" Count="0" />
-      <LineId Id="51" Count="2" />
+      <LineId Id="51" Count="1" />
       <LineId Id="50" Count="0" />
       <LineId Id="44" Count="1" />
       <LineId Id="26" Count="0" />
@@ -243,7 +239,7 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_CHPSystem.RampUp">
       <LineId Id="8" Count="0" />
       <LineId Id="15" Count="0" />
-      <LineId Id="17" Count="3" />
+      <LineId Id="18" Count="2" />
       <LineId Id="22" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="16" Count="0" />

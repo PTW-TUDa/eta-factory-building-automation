@@ -11,22 +11,26 @@ VAR_INPUT
 	hnhtState : ST_BufferStorageState;
 END_VAR
 VAR_OUTPUT	
-	{attribute 'OPC.UA.DA' := '1'}
 	cnControl : ST_CoolingNetworkControl;
-	{attribute 'OPC.UA.DA' := '1'}	
-	hnltControl : ST_HeatingNetworkLowTemperatureControl;
-	{attribute 'OPC.UA.DA' := '1'}	
+	hnltControl : ST_HeatingNetworkLowTemperatureControl;	
 	hnhtControl : ST_HeatingNetworkHighTemperatureControl;
-	{attribute 'OPC.UA.DA' := '1'}
 	hnltCnLinkageControl : ST_HnltCnLinkageControl;
-	
 END_VAR
 VAR
-	//temperature limits for thermal networks
-	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL := [70,90]; //temperature limits for high temperature heating network
-	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL := [30,45]; //temperature limits for low temperature heating network
-	aTemperatureLimits_CN : ARRAY[1..2] OF REAL := [5,25]; //temperature limits for cooling network
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_BaseStrategySetParameters;	
 
+	//default parameters
+	localDefaultParameters : ST_BaseStrategyDefaultParameters;
+
+	//internal variables
+	fTargetTemperature_HNHT : REAL;
+	fTargetTemperature_HNLT : REAL;
+	fTargetTemperature_CN : REAL;
+	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL;
+	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL;
+	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;	
+	
 	//controllers and variables for cooling network
 	Controller_eChiller : FB_CTRL_2POINT;
 	Controller_eChiller_Parameters : ST_CTRL_2POINT_PARAMS;
@@ -58,8 +62,7 @@ END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SetTargetTemperatures();
-CheckAlgorithmPermission();
+      <ST><![CDATA[SetTemperatures();
 ControlCN();
 ControlHNLT();
 ControlHNHT();
@@ -82,25 +85,6 @@ ELSE
 	//cooling mode	
 	hnltCnLinkageControl.bHeatingMode := FALSE;
 END_IF]]></ST>
-      </Implementation>
-    </Method>
-    <Method Name="CheckAlgorithmPermission" Id="{66275845-0f5f-4b5e-bd16-5cacbde5e92b}">
-      <Declaration><![CDATA[METHOD CheckAlgorithmPermission : BOOL
-VAR_INPUT
-END_VAR
-VAR
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//check for algorithm permissions
-cnControl.bAlgorithmPermission := Limiter(fInput := cnState.fMidTemperature,fLowerLimit := aTemperatureLimits_CN[1],fUpperLimit := aTemperatureLimits_CN[2]);
-hnltControl.bAlgorithmPermission := Limiter(fInput := hnltState.fMidTemperature, fLowerLimit := aTemperatureLimits_HNLT[1], fUpperLimit := aTemperatureLimits_HNLT[2]);
-
-
-//set algorithm permissions to linkage structs
-hnltCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
-hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
-]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlCN" Id="{c114617d-ff2b-491a-a80e-d1c974ffb859}">
@@ -155,14 +139,14 @@ ELSE
 END_IF
 
 
-Controller_CHP1(fSetpointValue := hnhtControl.fTargetTemperature+fOffset_TargetTemperature_CHP1,
+Controller_CHP1(fSetpointValue := hnhtControl.fTargetTemperature-fOffset_TargetTemperature_CHP1,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
 //hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
 hnhtControl.bSetStatusOn_CHP1 := FALSE;
 
-Controller_CHP2(fSetpointValue := hnhtControl.fTargetTemperature+fOffset_TargetTemperature_CHP2,
+Controller_CHP2(fSetpointValue := hnhtControl.fTargetTemperature-fOffset_TargetTemperature_CHP2,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
@@ -224,27 +208,55 @@ Controller_HeatPump_Permission(fSetpointValue := aTemperatureLimits_HNLT[2],
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetTargetTemperatures" Id="{6be7450f-8e0b-4497-9741-f2ddcfb682eb}">
-      <Declaration><![CDATA[METHOD SetTargetTemperatures : BOOL
+    <Method Name="SetTemperatures" Id="{1cbdec00-9365-4ae8-8bd7-9d18f1e0b65e}">
+      <Declaration><![CDATA[METHOD SetTemperatures : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//set default target temperatures
-cnControl.fTargetTemperature := 15;
-hnltControl.fTargetTemperature := 40;
-hnhtControl.fTargetTemperature := 60;
+        <ST><![CDATA[//set internal variables depending on prodution mode
+IF localSetParameters.bProductionModeActivated THEN
+	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_ProductionMode;
+	fTargetTemperature_HNLT := localDefaultParameters.fTargetTemperature_HNLT_ProductionMode;
+	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT_ProductionMode;
+	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN_ProductionMode;
+	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT_ProductionMode;
+	aTemperatureLimits_HNHT := localDefaultParameters.aTemperatureLimits_HNHT_ProductionMode;
 
-//set target temperatures to linkage structs
+ELSE
+	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN;
+	fTargetTemperature_HNLT := localDefaultParameters.fTargetTemperature_HNLT;
+	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT;
+	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN;
+	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT;
+	aTemperatureLimits_HNHT := localDefaultParameters.aTemperatureLimits_HNHT;
+END_IF
+
+//set target temperatures depending on production mode to control structs
+cnControl.fTargetTemperature := fTargetTemperature_CN;
+hnltControl.fTargetTemperature := fTargetTemperature_HNLT;
+hnhtControl.fTargetTemperature := fTargetTemperature_HNHT;
 hnltCnLinkageControl.fTargetTemperature_CN := cnControl.fTargetTemperature;
 hnltCnLinkageControl.fTargetTemperature_HNLT := hnltControl.fTargetTemperature;
-hnltCnLinkageControl.fTargetTemperature_ProductionHall := 21;
+hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
+
+//set algorithm permission depending on production mode to control structs 
+cnControl.bAlgorithmPermission := Limiter(fInput := cnState.fMidTemperature,
+	fLowerLimit := aTemperatureLimits_CN[1],
+	fUpperLimit := aTemperatureLimits_CN[2]);
+hnltControl.bAlgorithmPermission := Limiter(fInput := hnltState.fMidTemperature,
+	fLowerLimit := aTemperatureLimits_HNLT[1],
+	fUpperLimit := aTemperatureLimits_HNLT[2]);	
+hnhtControl.bAlgorithmPermission := Limiter(fInput := hnhtState.fMidTemperature,
+	fLowerLimit := aTemperatureLimits_HNHT[1],
+	fUpperLimit := aTemperatureLimits_HNHT[2]);
+hnltCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
+hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
 ]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_BaseStrategyController">
       <LineId Id="112" Count="0" />
-      <LineId Id="115" Count="0" />
       <LineId Id="168" Count="1" />
       <LineId Id="221" Count="0" />
       <LineId Id="170" Count="0" />
@@ -254,15 +266,6 @@ hnltCnLinkageControl.fTargetTemperature_ProductionHall := 21;
     <LineIds Name="FB_BaseStrategyController.AmbientControl">
       <LineId Id="6" Count="6" />
       <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_BaseStrategyController.CheckAlgorithmPermission">
-      <LineId Id="6" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="29" Count="1" />
-      <LineId Id="38" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlCN">
       <LineId Id="6" Count="3" />
@@ -314,14 +317,27 @@ hnltCnLinkageControl.fTargetTemperature_ProductionHall := 21;
       <LineId Id="23" Count="0" />
       <LineId Id="12" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.SetTargetTemperatures">
-      <LineId Id="6" Count="0" />
+    <LineIds Name="FB_BaseStrategyController.SetTemperatures">
+      <LineId Id="18" Count="0" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="10" Count="3" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="19" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="13" Count="3" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="12" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="26" Count="2" />
+      <LineId Id="48" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="7" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
