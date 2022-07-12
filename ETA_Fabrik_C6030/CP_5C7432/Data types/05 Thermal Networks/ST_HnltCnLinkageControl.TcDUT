@@ -4,8 +4,6 @@
     <Declaration><![CDATA[TYPE ST_HnltCnLinkageControl :
 STRUCT	
 	bHeatingMode : BOOL;
-	fTargetTemperature_HNLT : REAL;
-	fTargetTemperature_CN : REAL;
 	fTargetTemperature_ProductionHall : REAL;
 	bAlgorithmPermission_HNLT : BOOL;
 	bAlgorithmPermission_CN : BOOL;

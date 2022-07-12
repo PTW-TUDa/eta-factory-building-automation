@@ -15,6 +15,7 @@ VAR
 	BufferStorage : FB_BufferStorage;
 	CHP1System : FB_CHPSystem;
 	CHP2System : FB_CHPSystem;
+	CondensingBoilerSystem : FB_CondensingBoilerSystem;
 	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
 		
@@ -29,18 +30,22 @@ localState := BufferStorage.localState;
 //producer
 CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_1);
 
 CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_2);
 
 SV_SupplyAir.GetState_BI();
 SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission);
 SV_SupplyAir.SetState_BO();
+
+CondensingBoilerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CondensingBoiler,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature);
 				]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
@@ -52,6 +57,8 @@ SV_SupplyAir.SetState_BO();
       <LineId Id="207" Count="0" />
       <LineId Id="183" Count="3" />
       <LineId Id="56" Count="0" />
+      <LineId Id="209" Count="2" />
+      <LineId Id="208" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

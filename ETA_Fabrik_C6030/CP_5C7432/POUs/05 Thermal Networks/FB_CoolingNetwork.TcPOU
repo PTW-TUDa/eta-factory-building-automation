@@ -29,7 +29,7 @@ localState := BufferStorage.localState;
 //producer
 eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	fExternalTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte);
 	
 //fExternalTemperature := BufferStorage.localState.fMidTemperature);	
@@ -37,9 +37,9 @@ eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 //external storages
 //setpoint depends on loading mode -> storage must be cooler than setpoint temperature in network
 IF controlAutomatic.bLoading_HVFASystem THEN
-	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature-5;
+	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature-5;
 ELSE
-	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature;
+	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature;
 END_IF
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,

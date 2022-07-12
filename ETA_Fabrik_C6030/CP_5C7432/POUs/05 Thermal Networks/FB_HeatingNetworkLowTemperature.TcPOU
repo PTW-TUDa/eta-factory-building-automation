@@ -32,15 +32,15 @@ localState := BufferStorage.localState;
 //consumer
 OuterCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_OuterCapillaryTubeMats,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := controlAutomatic.fTargetTemperature,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Cooling,
 	stAmbientState := ambientState);
 	
 //external storages
 //setpoint depends on loading mode -> storage must be warmer than setpoint temperature in network
 IF controlAutomatic.bLoading_HVFASystem THEN
-	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature+5;
+	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature_Heating+5;
 ELSE
-	fSetPoint_HVFASystem := controlAutomatic.fTargetTemperature;
+	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature_Heating;
 END_IF
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
@@ -54,9 +54,8 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="87" Count="0" />
       <LineId Id="41" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="170" Count="4" />
       <LineId Id="149" Count="0" />
-      <LineId Id="122" Count="3" />
-      <LineId Id="121" Count="0" />
       <LineId Id="114" Count="2" />
       <LineId Id="113" Count="0" />
     </LineIds>

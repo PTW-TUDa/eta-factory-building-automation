@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CondensingBoiler" Id="{532a516d-9cc8-4820-b59b-bc9ad3e263f3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CondensingBoiler EXTENDS FB_Actor2Point
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//I/O Links
+	bSetStatusOn_OUT 	AT %Q* : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SelectControlMode();
+
+//input states may be read via LON connector - not implemented yet]]></ST>
+    </Implementation>
+    <Method Name="SetState_BO" Id="{fa4c4620-aa78-459b-9cb0-16279b461c9a}">
+      <Declaration><![CDATA[METHOD SetState_BO : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//output
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_CondensingBoiler">
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.SetState_BO">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

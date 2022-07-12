@@ -230,6 +230,9 @@
     <Compile Include="Data types\04 Systems\CoolingSystems\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\04 Systems\HeatingSystems\ST_CondensingBoilerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -264,9 +267,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_ThermalNetworkState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\06 Strategy\ST_BaseStrategyDefaultParameters.TcDUT">
@@ -556,6 +556,9 @@
     <Compile Include="POUs\01 Actors\HeatingUnits\FB_CHP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CondensingBoiler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -575,6 +578,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\HeatingSystems\FB_CHPSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\HeatingSystems\FB_CondensingBoilerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1.TcPOU">

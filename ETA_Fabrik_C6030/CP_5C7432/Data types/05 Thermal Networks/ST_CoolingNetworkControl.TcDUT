@@ -3,7 +3,7 @@
   <DUT Name="ST_CoolingNetworkControl" Id="{2ebe9d47-d36e-4403-85b0-0b683a1ea972}">
     <Declaration><![CDATA[TYPE ST_CoolingNetworkControl :
 STRUCT
-	fTargetTemperature : REAL;
+	fFeedTemperature : REAL;
 	bAlgorithmPermission : BOOL;
 	bSetStatusOn_eChiller : BOOL;
 	bSetStatusOn_HVFASystem : BOOL;

@@ -25,35 +25,51 @@ VAR
 
 	//internal variables
 	fTargetTemperature_HNHT : REAL;
-	fTargetTemperature_HNLT : REAL;
+	fTargetTemperature_HNLT_Cooling : REAL;
+	fTargetTemperature_HNLT_Heating : REAL;
 	fTargetTemperature_CN : REAL;
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL;
 	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL;
 	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;	
 	
 	//controllers and variables for cooling network
+	fOffset_FeedTemperature_CN : REAL := 2;
+	fOffset_TargetTemperature_eChiller : REAL;
 	Controller_eChiller : FB_CTRL_2POINT;
 	Controller_eChiller_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_HVFA_CN : FB_CTRL_2POINT;
 	Controller_HVFA_CN_Parameters : ST_CTRL_2POINT_PARAMS;
 	
 	//controllers and variables for low temperature heating network
+	fOffset_FeedTemperature_HNLT_Heating : REAL := 2;
+	fOffset_FeedTemperature_HNLT_Cooling : REAL := 2;
 	Controller_OuterCapillaryTubeMats : FB_CTRL_2POINT;
 	Controller_OuterCapillaryTubeMats_Parameters : ST_CTRL_2POINT_PARAMS;
 	
+	//controllers and variables for hnht and hnlt linkage
+	Controller_HeatExchanger1 : FB_CTRL_2POINT;
+	Controller_HeatExchanger1_Parameters : ST_CTRL_2POINT_PARAMS;
+	
 	//controllers and variables for hnlt and cn linkage
+	fOffset_TargetTemperature_HeatPump : REAL;
+	fOffset_TargetTemperature_HeatPump_Permission : REAL;
 	Controller_HeatPump : FB_CTRL_2POINT;
 	Controller_HeatPump_Parameters : ST_CTRL_2POINT_PARAMS;	
 	Controller_HeatPump_Permission : FB_CTRL_2POINT;
-	Controller_HeatPump_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_HeatPump_Permission_Parameters : ST_CTRL_2POINT_PARAMS;	
+
 	
 	//controller and variables for high temperature heating network
+	fOffset_FeedTemperature_HNHT : REAL := 2;
+	fOffset_TargetTemperature_CHP1 : REAL;
+	fOffset_TargetTemperature_CHP2 : REAL;
+	fOffset_TargetTemperature_CondensingBoiler : REAL := 2;	
 	Controller_CHP1 : FB_CTRL_2POINT;
 	Controller_CHP1_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_CHP2 : FB_CTRL_2POINT;
 	Controller_CHP2_Parameters : ST_CTRL_2POINT_PARAMS;
-	fOffset_TargetTemperature_CHP1 : REAL;
-	fOffset_TargetTemperature_CHP2 : REAL;
+	Controller_CondensingBoiler : FB_CTRL_2POINT;
+	Controller_CondensingBoiler_Parameters : ST_CTRL_2POINT_PARAMS;
 	
 	//clock
 	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
@@ -67,6 +83,7 @@ ControlCN();
 ControlHNLT();
 ControlHNHT();
 ControlHnltCnLinkage();
+ControlHnhtHnltLinkage();
 	
 	
 	]]></ST>
@@ -94,16 +111,18 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
-Controller_eChiller_Parameters.fHysteresisRange := 4;
+fOffset_TargetTemperature_eChiller := 2;
+Controller_eChiller_Parameters.fHysteresisRange := 5;
 Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_eChiller_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
 Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := cnControl.fTargetTemperature+2,
+	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_eChiller,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_eChiller_Parameters);
 cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
+cnControl.fFeedTemperature := fTargetTemperature_CN+fOffset_TargetTemperature_eChiller-Controller_eChiller_Parameters.fHysteresisRange/2-fOffset_FeedTemperature_CN;
 
 //control hvfa storage
 //hvfa storage is currently not used
@@ -129,6 +148,10 @@ Controller_CHP2_Parameters.fHysteresisRange := 5;
 Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+Controller_CondensingBoiler_Parameters.fHysteresisRange := 5;
+Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
 //operating hours of chp1 should be included
 IF ambientState.fOutsideTemperature > 15 THEN
 	fOffset_TargetTemperature_CHP1 := 0;
@@ -139,19 +162,48 @@ ELSE
 END_IF
 
 
-Controller_CHP1(fSetpointValue := hnhtControl.fTargetTemperature-fOffset_TargetTemperature_CHP1,
+Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
 //hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
 hnhtControl.bSetStatusOn_CHP1 := FALSE;
+hnhtControl.fFeedTemperature := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1+Controller_CHP1_Parameters.fHysteresisRange/2+fOffset_FeedTemperature_HNHT;
 
-Controller_CHP2(fSetpointValue := hnhtControl.fTargetTemperature-fOffset_TargetTemperature_CHP2,
+Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
 //hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
-hnhtControl.bSetStatusOn_CHP2 := FALSE;]]></ST>
+hnhtControl.bSetStatusOn_CHP2 := FALSE;
+
+//condensing boiler is switched if network temperature falls below critical temperature limit
+Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CondensingBoiler,
+	fActualValue := hnhtState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_CondensingBoiler_Parameters);
+//hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
+hnhtControl.bSetStatusOn_CHP2 := FALSE;
+
+
+hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ControlHnhtHnltLinkage" Id="{21b63b90-0f57-44e5-a2c8-ed6108ef7cfa}">
+      <Declaration><![CDATA[METHOD ControlHnhtHnltLinkage : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Controller_HeatExchanger1_Parameters.fHysteresisRange := 5;
+Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+//control heat exchanger 1
+Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating,
+	fActualValue := hnltState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_Parameters);]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
@@ -161,16 +213,19 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
-Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 4;
+Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 5;
 Controller_OuterCapillaryTubeMats_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_OuterCapillaryTubeMats_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
 Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fMidTemperature,
-	fActualValue := aTemperatureLimits_HNLT[2],
+	fActualValue := fTargetTemperature_HNLT_Cooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_OuterCapillaryTubeMats_Parameters);
 hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut;
+hnltControl.fFeedTemperature_Cooling := fTargetTemperature_HNLT_Cooling-Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange/2-fOffset_FeedTemperature_HNLT_Cooling;
+hnltControl.fFeedTemperature_Heating := fTargetTemperature_HNLT_Heating+Controller_HeatExchanger1_Parameters.fHysteresisRange/2+fOffset_FeedTemperature_HNLT_Heating;
 
 //control hvfa storage
 //hvfa storage is currently not used
@@ -185,27 +240,29 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for hnlt cn linkage systems
-Controller_HeatPump_Parameters.fHysteresisRange := 4;
+fOffset_TargetTemperature_HeatPump := 0;
+Controller_HeatPump_Parameters.fHysteresisRange := 5;
 Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
+fOffset_TargetTemperature_HeatPump_Permission := 2;
+Controller_HeatPump_Permission_Parameters.fHysteresisRange := 5;
 Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control heat pump depending on cooling demand in cn
 Controller_HeatPump(fSetpointValue := cnState.fUpperTemperature,
-	fActualValue := cnControl.fTargetTemperature,
+	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_HeatPump,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
-	
-//control heat pump permission depending on critical temperature in hnlt
-Controller_HeatPump_Permission(fSetpointValue := aTemperatureLimits_HNLT[2],
+
+Controller_HeatPump_Permission(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump_Permission,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
-	
-hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;]]></ST>
+hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
+
+hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetTemperatures" Id="{1cbdec00-9365-4ae8-8bd7-9d18f1e0b65e}">
@@ -217,7 +274,8 @@ END_VAR
         <ST><![CDATA[//set internal variables depending on prodution mode
 IF localSetParameters.bProductionModeActivated THEN
 	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_ProductionMode;
-	fTargetTemperature_HNLT := localDefaultParameters.fTargetTemperature_HNLT_ProductionMode;
+	fTargetTemperature_HNLT_Heating := localDefaultParameters.fTargetTemperature_HNLT_Heating_ProductionMode;
+	fTargetTemperature_HNLT_Cooling := localDefaultParameters.fTargetTemperature_HNLT_Cooling_ProductionMode;
 	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT_ProductionMode;
 	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN_ProductionMode;
 	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT_ProductionMode;
@@ -225,20 +283,13 @@ IF localSetParameters.bProductionModeActivated THEN
 
 ELSE
 	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN;
-	fTargetTemperature_HNLT := localDefaultParameters.fTargetTemperature_HNLT;
+	fTargetTemperature_HNLT_Heating := localDefaultParameters.fTargetTemperature_HNLT_Heating;
+	fTargetTemperature_HNLT_Cooling := localDefaultParameters.fTargetTemperature_HNLT_Cooling;
 	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT;
 	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN;
 	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT;
 	aTemperatureLimits_HNHT := localDefaultParameters.aTemperatureLimits_HNHT;
 END_IF
-
-//set target temperatures depending on production mode to control structs
-cnControl.fTargetTemperature := fTargetTemperature_CN;
-hnltControl.fTargetTemperature := fTargetTemperature_HNLT;
-hnhtControl.fTargetTemperature := fTargetTemperature_HNHT;
-hnltCnLinkageControl.fTargetTemperature_CN := cnControl.fTargetTemperature;
-hnltCnLinkageControl.fTargetTemperature_HNLT := hnltControl.fTargetTemperature;
-hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
 //set algorithm permission depending on production mode to control structs 
 cnControl.bAlgorithmPermission := Limiter(fInput := cnState.fMidTemperature,
@@ -260,6 +311,7 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="168" Count="1" />
       <LineId Id="221" Count="0" />
       <LineId Id="170" Count="0" />
+      <LineId Id="313" Count="0" />
       <LineId Id="57" Count="1" />
       <LineId Id="9" Count="0" />
     </LineIds>
@@ -268,8 +320,11 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlCN">
-      <LineId Id="6" Count="3" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="7" Count="2" />
       <LineId Id="13" Count="6" />
+      <LineId Id="41" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="36" Count="0" />
@@ -280,6 +335,9 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="6" Count="3" />
       <LineId Id="17" Count="2" />
       <LineId Id="16" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="51" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="34" Count="0" />
@@ -292,45 +350,62 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="12" Count="3" />
       <LineId Id="5" Count="0" />
       <LineId Id="43" Count="0" />
+      <LineId Id="62" Count="0" />
       <LineId Id="21" Count="4" />
       <LineId Id="20" Count="0" />
       <LineId Id="44" Count="0" />
+      <LineId Id="55" Count="5" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="61" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseStrategyController.ControlHnhtHnltLinkage">
+      <LineId Id="13" Count="1" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNLT">
-      <LineId Id="6" Count="9" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="10" Count="5" />
       <LineId Id="5" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="36" Count="0" />
       <LineId Id="20" Count="3" />
       <LineId Id="19" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnltCnLinkage">
       <LineId Id="11" Count="0" />
+      <LineId Id="38" Count="0" />
       <LineId Id="9" Count="1" />
       <LineId Id="5" Count="0" />
-      <LineId Id="32" Count="2" />
-      <LineId Id="31" Count="0" />
+      <LineId Id="39" Count="3" />
+      <LineId Id="32" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="13" Count="4" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="2" />
       <LineId Id="22" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="23" Count="0" />
       <LineId Id="12" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="48" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetTemperatures">
       <LineId Id="18" Count="0" />
-      <LineId Id="6" Count="3" />
+      <LineId Id="6" Count="2" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="9" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="16" Count="1" />
       <LineId Id="15" Count="0" />
-      <LineId Id="10" Count="3" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="13" Count="0" />
       <LineId Id="20" Count="1" />
       <LineId Id="19" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="26" Count="2" />
-      <LineId Id="48" Count="1" />
-      <LineId Id="33" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="40" Count="7" />
