@@ -15,7 +15,7 @@ STRUCT
 	aTemperatureLimits_CN : ARRAY[1..2] OF REAL := [10,20];	
 
 	//target temperatures for production mode
-	fTargetTemperature_HNHT_ProductionMode : REAL := 75;
+	fTargetTemperature_HNHT_ProductionMode : REAL := 70;
 	fTargetTemperature_HNLT_Cooling_ProductionMode : REAL := 35;
 	fTargetTemperature_HNLT_Heating_ProductionMode : REAL := 30;
 	fTargetTemperature_CN_ProductionMode : REAL := 15;

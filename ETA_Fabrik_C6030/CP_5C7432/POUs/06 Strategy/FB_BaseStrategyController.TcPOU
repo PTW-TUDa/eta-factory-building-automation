@@ -163,19 +163,19 @@ END_IF
 
 
 Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
-	fActualValue := hnhtState.fMidTemperature,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
-//hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
-hnhtControl.bSetStatusOn_CHP1 := FALSE;
+hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
+//hnhtControl.bSetStatusOn_CHP1 := FALSE;
 hnhtControl.fFeedTemperature := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1+Controller_CHP1_Parameters.fHysteresisRange/2+fOffset_FeedTemperature_HNHT;
 
 Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
-	fActualValue := hnhtState.fMidTemperature,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
-//hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
-hnhtControl.bSetStatusOn_CHP2 := FALSE;
+hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
+//hnhtControl.bSetStatusOn_CHP2 := FALSE;
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CondensingBoiler,
@@ -183,10 +183,8 @@ Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_Ta
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 //hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
-hnhtControl.bSetStatusOn_CHP2 := FALSE;
-
-
-hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;]]></ST>
+hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHnhtHnltLinkage" Id="{21b63b90-0f57-44e5-a2c8-ed6108ef7cfa}">
@@ -356,8 +354,7 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="44" Count="0" />
       <LineId Id="55" Count="5" />
       <LineId Id="54" Count="0" />
-      <LineId Id="64" Count="1" />
-      <LineId Id="63" Count="0" />
+      <LineId Id="64" Count="0" />
       <LineId Id="61" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnhtHnltLinkage">
