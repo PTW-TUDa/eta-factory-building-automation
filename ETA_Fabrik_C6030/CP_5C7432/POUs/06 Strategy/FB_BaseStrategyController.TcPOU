@@ -163,7 +163,7 @@ END_IF
 
 
 Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
-	fActualValue := hnhtState.fUpperTemperature,
+	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
 hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
@@ -171,7 +171,7 @@ hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
 hnhtControl.fFeedTemperature := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1+Controller_CHP1_Parameters.fHysteresisRange/2+fOffset_FeedTemperature_HNHT;
 
 Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
-	fActualValue := hnhtState.fUpperTemperature,
+	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
