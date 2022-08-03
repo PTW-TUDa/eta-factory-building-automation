@@ -5,23 +5,19 @@
 TYPE ST_CHPState :
 STRUCT
 	bError					: BOOL;
-	fOperatingTime			: REAL;	//hours
-	fTemperatureExhaustGas	: REAL; //degreeC
-	fTemperatureCoolingWater: REAL; //degreeC
-	fFeedTemperature		: REAL; //degreeC
-	fReturnTemperature		: REAL; //degreeC
+	fOperatingTime			: UINT;	//hours
+	fTemperatureExhaustGas	: INT; //degreeC
+	fTemperatureCoolingWater: INT; //degreeC
+	fFeedTemperature		: INT; //degreeC
+	fReturnTemperature		: INT; //degreeC
 	nNumberOfStarts			: UINT;
-	fElectricalPower		: REAL; //W
-	fRotationalSpeed		: REAL;	//rotations per minute
-	fGeneratorVoltage		: REAL; //V
-	fGridVoltage			: REAL; //V
-	fGeneratorCurrent		: REAL; //A
-	fGridFrequency			: REAL; //Hz
-	fGeneratorFrequency		: REAL; //Hz
-	fCosPhi					: REAL;
+	fElectricalPower		: INT; //W
+	fRotationalSpeed		: UINT;	//rotations per minute
+	fGeneratorVoltage		: INT; //V
+	fGridVoltage			: INT; //V
+	fGeneratorCurrent		: INT; //A
+	fCosPhi					: INT;
 	nOperationStatus		: UINT;	// 0: Off // 1: Ready // 2: Start // 3: Operating // 4: Error
-	bReadRegsError_Modus	: BOOL;
-	//implementation for modul codes missing
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_CHPSystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	aHeatCounterTelegramm : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	sIPAddressCHP : STRING(15);
 END_VAR
 VAR_OUTPUT
 	bSetStatusOnFeedback : BOOL; //Feedback if CHP unit should be switched on to be sent to supply air valve
@@ -47,7 +48,8 @@ CHP(fSetPointAutomatic := 100,
 	bSetStatusOnAutomatic := bSetStatusOn_CHP,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0,
-	fExternalFeedTemperature := PU32x.fTemperatureInternal);
+	fExternalFeedTemperature := PU32x.fTemperatureInternal,
+	sIPAddress := sIPAddressCHP);
 CHP.SetState();
 
 SV32x.GetState_BI();
@@ -195,7 +197,9 @@ END_VAR]]></Declaration>
       <LineId Id="112" Count="1" />
       <LineId Id="110" Count="1" />
       <LineId Id="55" Count="0" />
-      <LineId Id="59" Count="6" />
+      <LineId Id="59" Count="5" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="65" Count="0" />
       <LineId Id="67" Count="0" />
       <LineId Id="66" Count="0" />
       <LineId Id="69" Count="1" />
