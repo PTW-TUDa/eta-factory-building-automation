@@ -239,6 +239,9 @@
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_HeatExchanger1DefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -583,7 +586,7 @@
     <Compile Include="POUs\04 Systems\HeatingSystems\FB_CondensingBoilerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1.TcPOU">
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1System.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem.TcPOU">
@@ -602,6 +605,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkHighTemperature.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtHnltLinkage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">

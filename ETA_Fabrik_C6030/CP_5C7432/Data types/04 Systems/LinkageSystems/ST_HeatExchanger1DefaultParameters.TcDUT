@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_HeatExchanger1DefaultParameters" Id="{8e0901da-7e92-46eb-80aa-98619fdc5ec7}">
+    <Declaration><![CDATA[TYPE ST_HeatExchanger1DefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [0,100];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
