@@ -56,7 +56,7 @@ PU215.SetState_Profibus();
 
 //valves
 SV315.GetState_BI();
-SV315(bSetStatusOnAutomatic := bSetStatusOn_S315,
+SV315(bSetStatusOnAutomatic := bSetStatusOn_SV315,
 	bAlgorithmPermission := bAlgorithmPermission);
 SV315.SetState_BO();
 
