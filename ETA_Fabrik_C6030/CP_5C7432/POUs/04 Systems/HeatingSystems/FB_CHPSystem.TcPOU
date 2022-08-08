@@ -14,7 +14,7 @@ VAR
 	CHP : FB_CHP;
 
 	//pump
-	stPU32xDefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	stPU32xDefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	PU32x : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU32xDefaultParameters);
 	
 	//valves
