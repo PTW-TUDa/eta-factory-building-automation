@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_EMAG_GT" Id="{dbd9ce10-7a82-4b8e-8bad-50f9a3628b04}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EMAG_GT
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bStatusOn : BOOL;
+END_VAR
+VAR
+	OPC_UA				: FB_OPC_UA_READ;
+	stOPC_UA_Server		: ST_OPC_UA_Server;
+	sOPC_UA_Server_URL 	: STRING;
+	sNamespaceName		: STRING;
+	aNodes				: ARRAY[1..4] OF ST_OPC_UANode;
+	nNodeCount			: UDINT := 4;
+	stIndexRange		: ARRAY [1..nMaxIndexRange] OF ST_UAIndexRange;
+	currentNode			: UDINT := 1;
+	
+	bStatusOn_CoolingLubricant : BOOL;
+	bStatusOn_Machine : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[sOPC_UA_Server_URL 	:= GlobalVariables.sIP_EMAG_GT;
+sNamespaceName 		:= 'http://www.boschrexroth.com/IndraLogic';
+
+(*Define Nodes to Read*)
+aNodes[1].NodeID.sIdentifier			:= 'Application.Kuehlung_Anforderung.Kuehlung_KSS_blau_ON';
+aNodes[1].NodeID.eIdentifierType		:= eUAIdentifierType_String;
+aNodes[1].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);
+aNodes[1].NodeAddInfo.nIndexRangeCount 	:= 0;
+aNodes[1].NodeAddInfo.stIndexRange		:= stIndexRange;
+aNodes[1].TargetVar						:= ADR(bStatusOn_CoolingLubricant);
+
+aNodes[2].NodeID.sIdentifier			:= 'Application.Kuehlung_Anforderung.Kuehlung_Maschine_blau_ON';
+aNodes[2].NodeID.eIdentifierType		:= eUAIdentifierType_String;
+aNodes[2].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);
+aNodes[2].NodeAddInfo.nIndexRangeCount 	:= 0;
+aNodes[2].NodeAddInfo.stIndexRange		:= stIndexRange;
+aNodes[2].TargetVar						:= ADR(bStatusOn_Machine);
+
+OPC_UA(
+	stNode				:= aNodes[currentNode],
+	sOPC_UA_Server_Url 	:= sOPC_UA_Server_URL,
+	sNamespaceName		:= sNamespaceName);
+currentNode := currentNode + 1;
+IF currentNode > nNodeCount THEN
+	currentNode := 1;
+END_IF
+
+bStatusOn := bStatusOn_CoolingLubricant AND bStatusOn_Machine;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_EMAG_GT">
+      <LineId Id="25" Count="16" />
+      <LineId Id="56" Count="4" />
+      <LineId Id="62" Count="3" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="110" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

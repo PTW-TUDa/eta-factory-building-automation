@@ -3,8 +3,12 @@
   <GVL Name="GlobalVariables" Id="{03b0febb-bd51-42dd-a1dc-b1b77f4022cb}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+	//cycle times
 	tTaskCycleTime_MAIN	: TIME := T#50MS;
 	tCtrlCycleTime_MAIN	: TIME := T#5S;
+	
+	//ip addresses
+	sIP_EMAG_GT	: STRING := 'opc.tcp://192.168.116.33:4840';
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

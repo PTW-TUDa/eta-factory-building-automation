@@ -15,8 +15,13 @@ VAR
 	BufferStorage : FB_BufferStorage;
 	eChillerSystem : FB_eChillerSystem;
 	HVFASystem : FB_HVFAStorageSystem;
+	CentralMachineCoolingSystem : FB_CN_CentralMachineCooling;
+	
+	//machines
+	EMAG_GT : FB_EMAG_GT;
 	
 	//internal variables
+	bSetStatusOn_CentralMachineCooling : BOOL;
 	fSetPoint_HVFASystem : REAL;
 END_VAR
 
@@ -26,13 +31,22 @@ END_VAR
 BufferStorage();
 localState := BufferStorage.localState;
 
+//machines
+EMAG_GT();
+bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn;
+
 //producer
 eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	fExternalTemperature := Speicher.Pufferspeicher_Kaltwasser_195.Zustand.Temp_mitte);
-	
 //fExternalTemperature := BufferStorage.localState.fMidTemperature);	
+
+//consumer
+//PU100 in central machine cooling system control return temperature of 20 degree
+CentralMachineCoolingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineCooling,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 20);
 	
 //external storages
 //setpoint depends on loading mode -> storage must be cooler than setpoint temperature in network
@@ -49,9 +63,16 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 				]]></ST>
     </Implementation>
     <LineIds Name="FB_CoolingNetwork">
-      <LineId Id="40" Count="8" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="138" Count="1" />
+      <LineId Id="40" Count="2" />
+      <LineId Id="167" Count="2" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="43" Count="5" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="163" Count="1" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="139" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="118" Count="0" />
       <LineId Id="88" Count="0" />

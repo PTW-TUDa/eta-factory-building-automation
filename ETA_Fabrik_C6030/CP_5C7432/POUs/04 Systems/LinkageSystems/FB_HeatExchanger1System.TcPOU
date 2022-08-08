@@ -46,7 +46,7 @@ PU315.GetState_Profibus();
 PU315(bSetStatusOnAutomatic := bSetStatusOn_PU315,
 	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 1);
 PU315.SetState_Profibus();
 
 PU215.GetState_Profibus();
