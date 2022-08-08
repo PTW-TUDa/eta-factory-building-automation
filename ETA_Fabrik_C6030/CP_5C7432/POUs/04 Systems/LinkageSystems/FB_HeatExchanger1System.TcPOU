@@ -68,18 +68,7 @@ RV215(bSetStatusOnAutomatic := bSetStatusOn_RV215,
 	nControlModeAutomatic := 2);
 RV215.SetState_AO();
 
-WMZ215(aHeatCounterTelegramm := Telegramm_WZ_PWT_1);
-
-(*
-
-Logik:
-- RampUp: SV und RV öffnen
-- Operational: PUs anschalten
-- Working: RV regelt auf Vorlauftemepratur an PWT1
-- RampDown: Umgekehrte Reihenfolge
-
-- errorCheck: Prüfe auf pumpenerror, falls SV315 Stellugnsrückmeldung hat (in aktuellem bei Verknüpfungen prüfen), dann prüfen ob pumpe gegen geschlossenes Ventil pumpt
-*)]]></ST>
+WMZ215(aHeatCounterTelegramm := Telegramm_WZ_PWT_1);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{b54ba0ca-5b25-4c17-92f0-eb09cfdea800}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -186,14 +175,6 @@ END_VAR]]></Declaration>
       <LineId Id="191" Count="7" />
       <LineId Id="200" Count="0" />
       <LineId Id="153" Count="0" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="27" Count="3" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="18" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatExchanger1System.CheckError">
       <LineId Id="8" Count="0" />

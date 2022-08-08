@@ -245,7 +245,13 @@
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_HeatExchanger1DefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_VentilationDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_UnderfloorHeatingSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_VentilationSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
@@ -276,6 +282,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\05 Thermal Networks\ST_HnhtCnLinkageControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\06 Strategy\ST_BaseStrategyDefaultParameters.TcDUT">
@@ -604,6 +613,9 @@
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_UnderfloorHeatingSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_VentilationSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -614,6 +626,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkHighTemperature.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtCnLinkage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnhtHnltLinkage.TcPOU">

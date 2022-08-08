@@ -16,6 +16,7 @@ VAR_OUTPUT
 	hnhtControl : ST_HeatingNetworkHighTemperatureControl;
 	hnltCnLinkageControl : ST_HnltCnLinkageControl;
 	hnhtHnltLinkageControl : ST_HnhtHnltLinkageControl;
+	hnhtCnLinkageControl : ST_HnhtCnLinkageControl;
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
@@ -94,9 +95,11 @@ END_VAR
 IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
 	//heating mode
 	hnltCnLinkageControl.bHeatingMode := TRUE;
+	hnhtCnLinkageControl.bHeatingMode := TRUE;
 ELSE
 	//cooling mode	
 	hnltCnLinkageControl.bHeatingMode := FALSE;
+	hnhtCnLinkageControl.bHeatingMode := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -306,6 +309,8 @@ hnhtControl.bAlgorithmPermission := Limiter(fInput := hnhtState.fMidTemperature,
 	fUpperLimit := aTemperatureLimits_HNHT[2]);
 hnltCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
 hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
+hnhtCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
+hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermission;
 ]]></ST>
       </Implementation>
     </Method>
@@ -319,7 +324,10 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.AmbientControl">
-      <LineId Id="6" Count="6" />
+      <LineId Id="6" Count="3" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="17" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlCN">
@@ -418,6 +426,8 @@ hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermissi
       <LineId Id="39" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="34" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
