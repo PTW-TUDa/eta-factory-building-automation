@@ -16,7 +16,9 @@ VAR
 	//thermal networks
 	CN : FB_CoolingNetwork;
 	HNLT_CN : FB_HnltCnLinkage;
+	HNHT_CN : FB_HnhtCnLinkage;
 	HNLT : FB_HeatingNetworkLowTemperature;
+	HNHT_HNLT : FB_HnhtHnltLinkage;
 	HNHT : FB_HeatingNetworkHighTemperature;
 	
 	//ambient state
@@ -49,8 +51,12 @@ CN(controlAutomatic := Strategy.cnControl);
 HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl,
 	stAmbientState := Ambient.localState);
 	
+HNHT_CN(controlAutomatic := Strategy.hnhtCnLinkageControl);
+	
 HNLT(ambientState := Ambient.localState,
 	controlAutomatic := Strategy.hnltControl);
+	
+HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
 	
 HNHT(controlAutomatic := Strategy.hnhtControl);
 
@@ -135,9 +141,12 @@ HNHT(controlAutomatic := Strategy.hnhtControl);
       <LineId Id="193" Count="0" />
       <LineId Id="120" Count="7" />
       <LineId Id="169" Count="0" />
+      <LineId Id="217" Count="1" />
       <LineId Id="128" Count="1" />
       <LineId Id="102" Count="0" />
-      <LineId Id="188" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="221" Count="1" />
+      <LineId Id="189" Count="0" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="67" />
     </LineIds>

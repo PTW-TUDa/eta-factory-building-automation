@@ -182,13 +182,13 @@ END_VAR
         <ST><![CDATA[IF bHeatingMode THEN
 	bSetStatusOn_SV423 := FALSE;
 	bSetStatusOn_SV424 := FALSE;
-	IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
+	IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
 		bRampUpFinished := TRUE;		
 	END_IF	
 ELSE
 	bSetStatusOn_SV423 := TRUE;
 	bSetStatusOn_SV424 := TRUE;
-	IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
+	IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
 		bRampUpFinished := TRUE;		
 	END_IF	
 END_IF]]></ST>

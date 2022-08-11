@@ -52,7 +52,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF (PU100.bStatusOn AND SV100.localState.nPosition = 2) OR (NOT PU100.bStatusOn AND SV100.localState.nPosition = 3) THEN
+        <ST><![CDATA[IF PU100.bStatusOn AND SV100.localState.nPosition = 2 THEN
 	bError := TRUE;
 END_IF]]></ST>
       </Implementation>
