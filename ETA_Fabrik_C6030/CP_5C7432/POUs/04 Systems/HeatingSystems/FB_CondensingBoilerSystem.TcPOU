@@ -26,9 +26,6 @@ VAR
 	bStatusOn_SV331 : BOOL;
 	bSetStatusOn_RV331 : BOOL;
 	bStatusOn_RV331 : BOOL;
-	
-	bStartTimer : BOOL;
-	Timer : TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -47,7 +44,7 @@ RV331.GetState_AI();
 RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 2,
+	nControlModeAutomatic := 1,
 	fTemperatureExternal := WMZ331.fFeedTemperature);
 RV331.SetState_AO();
 
@@ -75,13 +72,7 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_CondensingBoiler := TRUE;
-bStartTimer := TRUE;
-
-//wait 75 seconds for condensing boiler to be switch on
-IF Timer.Q THEN
-	bStartTimer := FALSE;
-	bSwitchToWorking := TRUE;
-END_IF]]></ST>
+bSwitchToWorking := TRUE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="RampDown" Id="{f4498be3-ce38-4ec5-8af6-38d778115c09}">
@@ -93,13 +84,8 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_CondensingBoiler := FALSE;
-bStartTimer := TRUE;
-
-IF Timer.Q THEN
-	bStartTimer := FALSE;
-	bSetStatusOn_SV331 := FALSE;
-	bSetStatusOn_RV331 := FALSE;
-END_IF
+bSetStatusOn_SV331 := FALSE;
+bSetStatusOn_RV331 := FALSE;
 
 IF NOT SV331.bStatusOn AND NOT RV331.bStatusOn THEN
 	bRampDownFinished := TRUE;
@@ -164,20 +150,12 @@ END_VAR]]></Declaration>
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.Operational">
-      <LineId Id="7" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="11" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.RampDown">
-      <LineId Id="7" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="0" />
+      <LineId Id="7" Count="0" />
       <LineId Id="13" Count="1" />
-      <LineId Id="12" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="17" Count="1" />
