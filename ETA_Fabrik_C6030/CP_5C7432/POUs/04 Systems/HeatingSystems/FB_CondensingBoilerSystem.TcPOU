@@ -44,7 +44,7 @@ RV331.GetState_AI();
 RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 1,
+	nControlModeAutomatic := 2,
 	fTemperatureExternal := WMZ331.fFeedTemperature);
 RV331.SetState_AO();
 
