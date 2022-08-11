@@ -14,6 +14,7 @@ VAR
 	//systems
 	HeatPumpSystem : FB_HeatPumpSystem;
 	InnerCapillaryTubeMats : FB_InnerCapillaryTubeMats;
+	UnderfloorHeatingSystem : FB_UnderfloorHeatingSystem;
 	
 	//internal variables
 	bAlgorithmPermission : BOOL;
@@ -33,6 +34,13 @@ InnerCapillaryTubeMats(bSetStatusOnAutomatic := TRUE,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fTargetTemperature_ProductionHall,
 	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
+	stAmbientState := stAmbientState);
+
+//NOTE: underfloor heating is always on and recieves no setpoint because ambient temperature depending feed temperature is calculated inside FB
+UnderfloorHeatingSystem(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 0,
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
 	stAmbientState := stAmbientState);]]></ST>
     </Implementation>
     <LineIds Name="FB_HnltCnLinkage">
@@ -44,6 +52,8 @@ InnerCapillaryTubeMats(bSetStatusOnAutomatic := TRUE,
       <LineId Id="38" Count="0" />
       <LineId Id="40" Count="4" />
       <LineId Id="39" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="63" Count="5" />
     </LineIds>
   </POU>
 </TcPlcObject>

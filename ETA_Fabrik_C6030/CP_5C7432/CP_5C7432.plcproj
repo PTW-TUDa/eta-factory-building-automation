@@ -68,6 +68,7 @@
     <Folder Include="Data types\Management" />
     <Folder Include="Data types\Netze" />
     <Folder Include="Data types\03 Storages" />
+    <Folder Include="Data types\07 Utilities" />
     <Folder Include="Data types\OPC-UA" />
     <Folder Include="Data types\Sonstige" />
     <Folder Include="Data types\Systeme" />
@@ -168,6 +169,7 @@
     <Folder Include="POUs\Library (allgemein)" />
     <Folder Include="POUs\Management" />
     <Folder Include="POUs\Management\Alte Struktur" />
+    <Folder Include="POUs\07 Utilities" />
     <Folder Include="POUs\OPC_UA_Client_Maschienen (Romtech _ alt)" />
     <Folder Include="POUs\Systeme" />
     <Folder Include="POUs\Systeme\Anlagenversorgung (AV)" />
@@ -227,6 +229,9 @@
     <Compile Include="Data types\01 Actors\HeatingUnits\CHP\ST_CHPState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\04 Systems\ConsumerSystems\ST_CN_CentralMachineCoolingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\CoolingSystems\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -236,7 +241,22 @@
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_UnderfloorHeatingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\LinkageSystems\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_HeatExchanger1DefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_VentilationDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_UnderfloorHeatingSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\LinkageSystems\ST_VentilationSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
@@ -269,10 +289,19 @@
     <Compile Include="Data types\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data types\05 Thermal Networks\ST_HnhtCnLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\06 Strategy\ST_BaseStrategyDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\06 Strategy\ST_BaseStrategySetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\07 Utilities\ST_OPC_UANode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\07 Utilities\ST_OPC_UA_Server.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\Anlagen\M2M\WZM_EMAG_VLC100Y.TcDUT">
@@ -550,6 +579,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBus_Zaehler_Task.TcTTO" />
+    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_EMAG_GT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\01 Actors\CoolingUnits\FB_eChiller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -571,6 +603,9 @@
     <Compile Include="POUs\03 Storages\FB_HVFAStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\FB_CN_CentralMachineCooling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\04 Systems\CoolingSystems\FB_eChillerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -583,13 +618,19 @@
     <Compile Include="POUs\04 Systems\HeatingSystems\FB_CondensingBoilerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1.TcPOU">
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1System.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_InnerCapillaryTubeMats.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_UnderfloorHeatingSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_VentilationSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">
@@ -604,6 +645,12 @@
     <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkHighTemperature.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtCnLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtHnltLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -611,6 +658,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\06 Strategy\FB_BaseStrategyController.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\FB_OPC_UA_Read.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Checks\CheckBounds.TcPOU" />
