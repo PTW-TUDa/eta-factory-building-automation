@@ -48,6 +48,8 @@ VAR
 	//controllers and variables for low temperature heating network
 	Controller_OuterCapillaryTubeMats : FB_CTRL_2POINT;
 	Controller_OuterCapillaryTubeMats_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_OuterCapillaryTubeMats_Permission : FB_CTRL_2POINT;
+	Controller_OuterCapillaryTubeMats_Permission_Parameters : ST_CTRL_2POINT_PARAMS;	
 	
 	//controllers and variables for cooling network
 	fOffset_TargetTemperature_eChiller : REAL;
@@ -213,13 +215,23 @@ Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 5;
 Controller_OuterCapillaryTubeMats_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 Controller_OuterCapillaryTubeMats_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+Controller_OuterCapillaryTubeMats_Permission_Parameters.fHysteresisRange := 6;
+Controller_OuterCapillaryTubeMats_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_OuterCapillaryTubeMats_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
 
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
 Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fMidTemperature,
 	fActualValue := fTargetTemperature_HNLT_Cooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_OuterCapillaryTubeMats_Parameters);
-hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut;
+
+//permission controller to ensure that network ist not heated up if ambient temperature is too high
+Controller_OuterCapillaryTubeMats_Permission(fSetpointValue := hnltState.fMidTemperature-Controller_OuterCapillaryTubeMats_Permission_Parameters.fHysteresisRange,
+	fActualValue := ambientState.fOutsideTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_Parameters);
+hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
 
 //control hvfa storage
 //hvfa storage is currently not used
@@ -377,9 +389,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNLT">
       <LineId Id="6" Count="3" />
+      <LineId Id="41" Count="2" />
+      <LineId Id="39" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="10" Count="5" />
-      <LineId Id="5" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="45" Count="1" />
       <LineId Id="20" Count="3" />
       <LineId Id="19" Count="0" />
     </LineIds>
