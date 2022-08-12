@@ -40,7 +40,7 @@ END_VAR
 
 //use timer because valve has no feedback signal (75 sec)
 Timer(IN := bStartTimer,
-	PT := T#75S);
+	PT := T#120S);
 
 MAIN();
 CHP.GetState();
@@ -108,9 +108,12 @@ VAR_OUTPUT
 	bSwitchToWorking : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bSetStatusOn_CHP := TRUE;
+        <ST><![CDATA[bSetStatusOn_PU32x := TRUE;
 
-//IF CHP.bStatusOn THEN
+IF PU32x.bStatusOn THEN
+	bSetStatusOn_CHP := TRUE;
+END_IF
+
 bStartTimer := TRUE;
 IF TIMER.Q THEN
 	bSwitchToWorking := TRUE;
@@ -140,7 +143,7 @@ IF NOT PU32x.bStatusOn THEN
 	bSetStatusOn_RV32x := FALSE;
 	bSetStatusOn_SV32x := FALSE;
 
-	IF SV32x.bStatusOn THEN
+	IF SV32x.localState.nPosition = 2 THEN
 		bRampDownFinished := TRUE;
 	END_IF
 END_IF
@@ -161,12 +164,7 @@ END_VAR
         <ST><![CDATA[bSetStatusOn_SV32x := TRUE;
 bSetStatusOn_RV32x := TRUE;
 
-IF SV32x.bStatusOn THEN
-	bSetStatusOn_PU32x := TRUE;
-END_IF
-
-IF PU32x.bStatusOn THEN
-	bStartTimer := FALSE; //resets timer	
+IF SV32x.localState.nPosition = 3 THEN
 	bRampUpFinished := TRUE;
 END_IF]]></ST>
       </Implementation>
@@ -193,9 +191,9 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_CHPSystem">
-      <LineId Id="154" Count="1" />
-      <LineId Id="112" Count="1" />
-      <LineId Id="110" Count="1" />
+      <LineId Id="265" Count="3" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="111" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="59" Count="5" />
       <LineId Id="227" Count="0" />
@@ -221,8 +219,10 @@ END_VAR]]></Declaration>
       <LineId Id="34" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHPSystem.Operational">
-      <LineId Id="16" Count="0" />
-      <LineId Id="25" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="1" />
       <LineId Id="17" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="28" Count="0" />
@@ -253,11 +253,6 @@ END_VAR]]></Declaration>
       <LineId Id="15" Count="0" />
       <LineId Id="18" Count="2" />
       <LineId Id="22" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="26" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHPSystem.SetSetPointLimits">
       <LineId Id="9" Count="0" />
