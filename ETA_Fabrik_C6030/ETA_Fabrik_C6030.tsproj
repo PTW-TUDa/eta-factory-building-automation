@@ -566,7 +566,7 @@
 				<Task Id="7" Priority="8" CycleTime="100000" AmsPort="351" AdtTasks="true">
 					<Name>MBus_Zaehler_Task</Name>
 				</Task>
-				<Task Id="8" Priority="12" CycleTime="200000" AmsPort="352" AdtTasks="true">
+				<Task Id="8" Priority="12" CycleTime="200000" AmsPort="352" DisableFpExceptions="true" AdtTasks="true">
 					<Name>Standard</Name>
 				</Task>
 				<Task Id="3" Priority="6" CycleTime="60000" AmsPort="353" AdtTasks="true">
