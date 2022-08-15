@@ -8,8 +8,10 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	//default parameters
+	{attribute 'OPC.UA.DA' := '1'}
 	localSetParameters : ST_HVFAStorageSetParameters;
+	
+	//default parameters
 	localDefaultParameters : ST_HVFAStorageSystemDefaultParameters;	
 
 	//storage
@@ -57,6 +59,7 @@ Timer(IN := bStartTimer,
 	PT := T#75S);
 
 MAIN();
+SelectLoadingMode();
 
 //storage
 HVFAStorage();
@@ -90,10 +93,10 @@ SVx06.SetState_AO();
 
 RVx05.GetState_AI();
 RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
-	fSetPointAutomatic := fSetPoint,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := fExternalTemperature_RVx05,
-	nControlModeAutomatic := nControlMode_RVx05);
+	nControlModeAutomatic := 0);
 RVx05.SetState_AO();
 
 //insert heat counter telegramm from other task
@@ -151,6 +154,8 @@ END_VAR]]></Declaration>
         <ST><![CDATA[bSetStatusOn_PU7x0 := FALSE;
 bSetStatusOn_PUx05 := FALSE;
 bSetStatusOn_RVx05 := FALSE;
+bSetStatusOn_SVx05 := FALSE;
+bSetStatusOn_SVx06 := FALSE;
 
 (*
 IF RVx05.fOperatingPoint<10 AND NOT PUx05.bStatusOn THEN
@@ -179,8 +184,8 @@ END_VAR
 bSetStatusOn_SVx06 := TRUE;
 
 IF bLoading = TRUE THEN
-	fSetPoint_SVx05 := 0;
-	fSetPoint_SVx06 := 0;
+	fSetPoint_SVx05 := 100;
+	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
 	(*
@@ -189,8 +194,8 @@ IF bLoading = TRUE THEN
 	END_IF
 	*)
 ELSE
-	fSetPoint_SVx05 := 100;
-	fSetPoint_SVx06 := 100;
+	fSetPoint_SVx05 := 0;
+	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
 	(*
@@ -272,7 +277,9 @@ END_IF
     <LineIds Name="FB_HVFAStorageSystem">
       <LineId Id="169" Count="1" />
       <LineId Id="167" Count="1" />
-      <LineId Id="69" Count="5" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="336" Count="0" />
+      <LineId Id="70" Count="4" />
       <LineId Id="230" Count="0" />
       <LineId Id="75" Count="10" />
       <LineId Id="280" Count="0" />
@@ -295,6 +302,7 @@ END_IF
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.RampDown">
       <LineId Id="8" Count="2" />
+      <LineId Id="40" Count="1" />
       <LineId Id="27" Count="0" />
       <LineId Id="11" Count="2" />
       <LineId Id="7" Count="0" />
