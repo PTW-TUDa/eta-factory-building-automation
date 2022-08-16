@@ -47,22 +47,29 @@ VAR
 	nControlMode_RVx05 : E_MixingValveControlMode;
 	bLoading : BOOL;
 	
-	//timer will be deleted when DI-terminal has been installed
-	bStartTimer : BOOL;
-	Timer : TON;
+	//triggers
+	SwitchToLoading : R_TRIG;
+	SwitchToUnloading : F_TRIG;
+	bFinishedSwitchMode : BOOL := TRUE;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//timer will be deleted when DI-terminal has been installed
-Timer(IN := bStartTimer,
-	PT := T#75S);
-
-MAIN();
-SelectLoadingMode();
-
-//storage
+      <ST><![CDATA[//storage
 HVFAStorage();
+
+SelectLoadingMode();
+SwitchToLoading(CLK := bLoading);
+SwitchToUnloading(CLK := bLoading);
+
+//MAIN must be called before SwitchMode to prevent pump signal chattering (signal is written after SwitchMode function), SwitchMode may only be called if system is on
+MAIN();
+
+//disrupt calling SystemFlowControl via MAIN() when mode is switched and call SwitchMode()
+IF ((SwitchToLoading.Q OR SwitchToUnloading.Q) OR NOT bFinishedSwitchMode) AND bSetStatusOn THEN
+	SwitchMode(bSwitchToLoading := bLoading,
+		bFinishedSwitchMode => bFinishedSwitchMode);
+END_IF;
 
 //pumps
 PUx05.GetState_Profibus();
@@ -101,7 +108,13 @@ RVx05.SetState_AO();
 
 //insert heat counter telegramm from other task
 WMZ7x0();
-WMZx05();]]></ST>
+WMZx05();
+
+IF bLoading = TRUE THEN
+	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
+ELSE
+	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
+END_IF]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{0a750c43-7566-4b1a-a185-b01eaf088ced}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -157,18 +170,10 @@ bSetStatusOn_RVx05 := FALSE;
 bSetStatusOn_SVx05 := FALSE;
 bSetStatusOn_SVx06 := FALSE;
 
-(*
-IF RVx05.fOperatingPoint<10 AND NOT PUx05.bStatusOn THEN
+IF RVx05.fOperatingPoint<5 AND SVx05.fOperatingPoint<5 AND SVx06.fOperatingPoint<5 AND NOT PUx05.bStatusOn THEN
 	bRampDownFinished := TRUE;
 END_IF
-*)
-
-//delete when input terminal for feedback signal is installed
-bStartTimer := TRUE;
-IF Timer.Q THEN
-	bRampDownFinished := TRUE;
-	bStartTimer := FALSE;
-END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="RampUp" Id="{0ce76782-d529-4b5d-8974-d96ba13ac874}">
@@ -188,28 +193,17 @@ IF bLoading = TRUE THEN
 	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
-	(*
 	IF SVx05.fOperatingPoint>90 AND SVx06.fOperatingPoint>90 THEN
 		bRampUpFinished := TRUE;
 	END_IF
-	*)
 ELSE
 	fSetPoint_SVx05 := 0;
 	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
-	(*
 	IF SVx05.fOperatingPoint<10 AND SVx06.fOperatingPoint<10 THEN
 		bRampUpFinished := TRUE;
 	END_IF
-	*)
-END_IF
-
-//delete when input terminal for feedback signal is installed
-bStartTimer := TRUE;
-IF Timer.Q THEN
-	bRampUpFinished := TRUE;
-	bStartTimer := FALSE; //resets timer
 END_IF
 
 ]]></ST>
@@ -251,6 +245,51 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
+    <Method Name="SwitchMode" Id="{0eae4dfd-6df1-4d63-a8a7-6bb8ae2d2c72}">
+      <Declaration><![CDATA[METHOD PRIVATE SwitchMode : BOOL
+VAR_INPUT
+	bSwitchToLoading : BOOL; //if false switch to cooling
+END_VAR
+VAR_OUTPUT
+	bFinishedSwitchMode : BOOL := FALSE;
+END_VAR
+VAR_INST
+	bRampDownFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check system state
+IF bRampDownFinished THEN
+	IF bSwitchToLoading THEN
+		fSetPoint_SVx05 := 100;
+		fSetPoint_SVx06 := 100;
+		nControlMode_RVx05 := 2; //cooling mode (heats network)	
+		IF SVx05.fOperatingPoint>95 AND SVx06.fOperatingPoint>95 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PUx05 := TRUE;
+		END_IF
+		
+	ELSE
+		fSetPoint_SVx05 := 0;
+		fSetPoint_SVx06 := 0;
+		nControlMode_RVx05 := 1; //cooling mode (heats network)	
+		IF SVx05.fOperatingPoint<5 AND SVx06.fOperatingPoint<5 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PUx05 := TRUE;
+		END_IF
+	END_IF
+ELSE
+	bSetStatusOn_PUx05 := FALSE;
+	IF NOT PUx05.bStatusOn THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{c2454935-99da-4157-b03c-3bb74f66fa87}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -259,27 +298,18 @@ VAR_OUTPUT
 	bSwitchToOperational : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//check if loading mode has changed during operation
-IF bLoading = TRUE THEN
-	fSetPoint_SVx05 := 0;
-	fSetPoint_SVx06 := 0;
-	nControlMode_RVx05 := 2; //cooling mode (heats network)
-	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;
-ELSE
-	fSetPoint_SVx05 := 100;
-	fSetPoint_SVx06 := 100;
-	nControlMode_RVx05 := 1; //heating mode (cools network)
-	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
-END_IF
+        <ST><![CDATA[//empty method
 ]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_HVFAStorageSystem">
-      <LineId Id="169" Count="1" />
-      <LineId Id="167" Count="1" />
-      <LineId Id="69" Count="0" />
+      <LineId Id="407" Count="0" />
+      <LineId Id="405" Count="1" />
       <LineId Id="336" Count="0" />
-      <LineId Id="70" Count="4" />
+      <LineId Id="408" Count="0" />
+      <LineId Id="396" Count="8" />
+      <LineId Id="393" Count="0" />
+      <LineId Id="73" Count="1" />
       <LineId Id="230" Count="0" />
       <LineId Id="75" Count="10" />
       <LineId Id="280" Count="0" />
@@ -291,6 +321,11 @@ END_IF
       <LineId Id="9" Count="0" />
       <LineId Id="174" Count="2" />
       <LineId Id="173" Count="0" />
+      <LineId Id="412" Count="1" />
+      <LineId Id="417" Count="0" />
+      <LineId Id="421" Count="0" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="411" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.CheckError">
       <LineId Id="9" Count="0" />
@@ -303,32 +338,19 @@ END_IF
     <LineIds Name="FB_HVFAStorageSystem.RampDown">
       <LineId Id="8" Count="2" />
       <LineId Id="40" Count="1" />
-      <LineId Id="27" Count="0" />
       <LineId Id="11" Count="2" />
       <LineId Id="7" Count="0" />
       <LineId Id="26" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="19" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.RampUp">
-      <LineId Id="9" Count="7" />
-      <LineId Id="52" Count="0" />
+      <LineId Id="9" Count="2" />
+      <LineId Id="74" Count="2" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="16" Count="0" />
       <LineId Id="42" Count="0" />
-      <LineId Id="18" Count="1" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="20" Count="5" />
+      <LineId Id="18" Count="6" />
       <LineId Id="44" Count="0" />
-      <LineId Id="26" Count="1" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="37" Count="4" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="29" Count="0" />
+      <LineId Id="26" Count="3" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.SelectLoadingMode">
@@ -342,10 +364,29 @@ END_IF
     <LineIds Name="FB_HVFAStorageSystem.ST_DefaultParameters.Set">
       <LineId Id="2" Count="0" />
     </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SwitchMode">
+      <LineId Id="5" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="144" Count="1" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="146" Count="7" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="91" Count="2" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.Working">
-      <LineId Id="8" Count="0" />
-      <LineId Id="25" Count="4" />
-      <LineId Id="35" Count="4" />
       <LineId Id="19" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>

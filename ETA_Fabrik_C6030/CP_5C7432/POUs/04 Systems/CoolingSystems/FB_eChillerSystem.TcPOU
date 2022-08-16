@@ -22,20 +22,11 @@ VAR
 	//internal variables
 	bSetStatusOn_eChiller : BOOL;
 	bSetStatusOn_SV138 : BOOL;
-	
-	//timer will be deleted when DI-terminal has been installed
-	bStartTimer : BOOL;
-	Timer : TON;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//timer will be deleted when DI-terminal has been installed
-Timer(IN := bStartTimer,
-	PT := T#75S);
-
-
-MAIN();
+      <ST><![CDATA[MAIN();
 eChiller.GetState();
 eChiller(
 	bSetStatusOnAutomatic := bSetStatusOn_eChiller,
@@ -112,17 +103,9 @@ IF NOT eChiller.bStatusOn THEN
 	bSetStatusOn_SV138 := FALSE;
 END_IF
 
-(*
 //wait until valve is closed and ensure that eChiller is not switched on meanwhile
 IF SV138.fOperatingPoint < 5 AND NOT eChiller.bStatusOn THEN
 	bRampDownFinished := TRUE;
-END_IF
-*)
-
-bStartTimer := TRUE;
-IF Timer.Q THEN
-	bRampDownFinished := TRUE;
-	bStartTimer := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -138,17 +121,10 @@ END_VAR
         <ST><![CDATA[bSetStatusOn_SV138 := TRUE;
 
 //wait until valve is opened
-(* Comment, because DI-terminal is missing - Workaround use timer
 IF SV138.fOperatingPoint > 95 THEN
 	bRampUpFinished := TRUE;
 END_IF
-*)
-
-bStartTimer := TRUE;
-IF Timer.Q THEN
-	bRampUpFinished := TRUE;
-	bStartTimer := FALSE; //resets timer
-END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSetPointLimits" Id="{a4e2465f-3e29-44c1-a39b-c5d763bbb0bc}">
@@ -169,15 +145,10 @@ VAR_OUTPUT
 	bSwitchToOperational : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//check if eChiller is switched off (manually) but valve is still opened
-IF NOT eChiller.bStatusOn AND SV138.fOperatingPoint > 95 THEN
-	bSwitchToOperational := TRUE;
-END_IF]]></ST>
+        <ST><![CDATA[//empty method]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_eChillerSystem">
-      <LineId Id="72" Count="1" />
-      <LineId Id="69" Count="2" />
       <LineId Id="30" Count="0" />
       <LineId Id="113" Count="0" />
       <LineId Id="31" Count="7" />
@@ -198,31 +169,19 @@ END_IF]]></ST>
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.RampDown">
-      <LineId Id="8" Count="5" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="14" Count="3" />
+      <LineId Id="8" Count="9" />
       <LineId Id="7" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="24" Count="1" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="23" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.RampUp">
-      <LineId Id="9" Count="2" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="12" Count="1" />
+      <LineId Id="9" Count="4" />
       <LineId Id="8" Count="0" />
       <LineId Id="21" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="23" Count="3" />
-      <LineId Id="22" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.Working">
-      <LineId Id="23" Count="2" />
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>
