@@ -501,7 +501,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -576,11 +576,20 @@
 							<Name>.IN_WZaehler</Name>
 							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
 						</Var>
+						<Var>
+							<Name>.HeatCounters_Container_IN</Name>
+							<Comment><![CDATA[container]]></Comment>
+							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>MBus_WZaehler_Task Outputs</Name>
 						<Var>
 							<Name>.OUT_WZaehler</Name>
+							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
+						</Var>
+						<Var>
+							<Name>.HeatCounters_Container_OUT</Name>
 							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
 						</Var>
 					</Vars>
@@ -16054,7 +16063,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>37072</BitOffs>
+										<BitOffs>320</BitOffs>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="2">
@@ -16065,7 +16074,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>37072</BitOffs>
+										<BitOffs>320</BitOffs>
 									</Var>
 								</Vars>
 								<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -16078,277 +16087,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>UINT</Type>
-												<BitOffs>37088</BitOffs>
+												<BitOffs>336</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>37104</BitOffs>
+												<BitOffs>352</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>37112</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>37120</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>37128</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>37136</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>37144</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>37152</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>37160</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>37168</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>37176</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>37184</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>37192</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>37200</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>37208</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>37216</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>37224</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>37232</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>37240</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>37248</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>37256</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>37264</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>37272</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Ctrl</Name>
 												<Type>UINT</Type>
-												<BitOffs>37088</BitOffs>
+												<BitOffs>336</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>37104</BitOffs>
+												<BitOffs>352</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>37112</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>37120</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>37128</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>37136</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>37144</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>37152</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>37160</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>37168</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>37176</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>37184</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>37192</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>37200</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>37208</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>37216</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>37224</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>37232</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>37240</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>37248</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>37256</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>37264</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>37272</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -16392,7 +16401,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>320</BitOffs>
+								<BitOffs>624</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -16403,7 +16412,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>320</BitOffs>
+								<BitOffs>624</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -16416,277 +16425,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>State</Name>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>640</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>352</BitOffs>
+										<BitOffs>656</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>360</BitOffs>
+										<BitOffs>664</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>368</BitOffs>
+										<BitOffs>672</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>376</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>384</BitOffs>
+										<BitOffs>688</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>392</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>400</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>408</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>416</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>424</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>432</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>440</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>448</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>456</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>464</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>472</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>480</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>488</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>496</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>504</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>512</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>520</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>640</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>352</BitOffs>
+										<BitOffs>656</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>360</BitOffs>
+										<BitOffs>664</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>368</BitOffs>
+										<BitOffs>672</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>376</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>384</BitOffs>
+										<BitOffs>688</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>392</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>400</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>408</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>416</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>424</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>432</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>440</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>448</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>456</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>464</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>472</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>480</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>488</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>496</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>504</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>512</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>520</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -16696,7 +16705,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<ImageId>32</ImageId>
 							</Term>
 						</BusCoupler>
-						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1efa03" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x02000027">
+						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1efa03" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x00ffffff">
 							<SyncMan>001e00012600010001000000400000010001001e26010000</SyncMan>
 							<SyncMan>001f00012200010002000000400000010001001f22010000</SyncMan>
 							<SyncMan>00101a002400010003000000000000000000001024010000</SyncMan>
@@ -23260,6 +23269,7 @@ Revision: Rev. 1
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-5008C0000403}" Id="#x02030010"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-5008D4000403}" Id="#x02030090"/>
 		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-2003-0850-0220-500810000403}" Id="#x02030070"/>
 		<MappingInfo Identifier="{00000000-2004-0850-0320-500843000403}" Id="#x02030050"/>
@@ -23333,6 +23343,54 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP2System.RV32x.nSetPoint_OUT" VarB="ao_RV322^ao_RV322"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.RV331.nSetPoint_OUT" VarB="ao_RV331^ao_RV331"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nSetPoint_OUT" VarB="ao_RV215^ao_RV215"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Box 36 (BK1250)">
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 0"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 1" Size="8" OffsA="8"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 10" Size="8" OffsA="80"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 11" Size="8" OffsA="88"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 12" Size="8" OffsA="96"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 13" Size="8" OffsA="104"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 14" Size="8" OffsA="112"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 15" Size="8" OffsA="120"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 16" Size="8" OffsA="128"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 17" Size="8" OffsA="136"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 18" Size="8" OffsA="144"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 19" Size="8" OffsA="152"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 2" Size="8" OffsA="16"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 20" Size="8" OffsA="160"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 21" Size="8" OffsA="168"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 3" Size="8" OffsA="24"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 4" Size="8" OffsA="32"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 5" Size="8" OffsA="40"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 6" Size="8" OffsA="48"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 7" Size="8" OffsA="56"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 8" Size="8" OffsA="64"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^D" VarB="Term 98 (KL6781)^Channel 1^Data In 9" Size="8" OffsA="72"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.HeatCounters_Container_IN^Status" VarB="InfoData^State"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^Ctrl" VarB="Term 98 (KL6781)^Channel 1^Ctrl"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 0"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 1"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 10"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 11"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 12"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 13"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 14"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 15"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 16"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 17"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 18"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 19"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 2"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 20"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 21"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 3"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 4"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 5"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 6"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 7"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 8"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.HeatCounters_Container_OUT^D" VarB="Term 98 (KL6781)^Channel 1^Data Out 9"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 41 (EL2809)">
 				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT" VarB="bo_PU710^bo_PU710"/>
