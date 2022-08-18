@@ -419,6 +419,24 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{e5c5b4f3-b66a-4d74-b541-d34937c041d4}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := stAmbientState.fHallTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwitchMode" Id="{454a6e9c-2859-4a72-a2fb-db3e1e6f3e67}">
       <Declaration><![CDATA[METHOD PRIVATE SwitchMode : BOOL
 VAR_INPUT
@@ -594,6 +612,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_InnerCapillaryTubeMats.SetSetPointLimits">
       <LineId Id="9" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_InnerCapillaryTubeMats.SwitchMode">
       <LineId Id="5" Count="0" />

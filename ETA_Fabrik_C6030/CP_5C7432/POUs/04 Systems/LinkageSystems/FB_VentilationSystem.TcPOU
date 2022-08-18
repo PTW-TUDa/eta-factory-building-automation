@@ -128,6 +128,24 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{dda5a029-9e14-4d0f-a14d-27cdb04791c0}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := 0;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := 0;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := '-';
+setPointState.sOperatingPointUnit := '-';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{dce39cd8-64d1-4fc4-bf60-28fb44a7f369}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -177,6 +195,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_VentilationSystem.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_VentilationSystem.Working">
       <LineId Id="7" Count="0" />

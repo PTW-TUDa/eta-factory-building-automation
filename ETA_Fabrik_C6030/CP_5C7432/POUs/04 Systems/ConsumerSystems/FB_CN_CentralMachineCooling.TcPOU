@@ -116,6 +116,25 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{070992e0-f9f9-47d5-b026-51312d817469}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU100.fTemperatureExternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';
+]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{841d2a3c-59fc-4555-9ce9-0f784f18eb2c}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -165,6 +184,12 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_CN_CentralMachineCooling.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.SetState">
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
     </LineIds>
     <LineIds Name="FB_CN_CentralMachineCooling.Working">
       <LineId Id="7" Count="0" />

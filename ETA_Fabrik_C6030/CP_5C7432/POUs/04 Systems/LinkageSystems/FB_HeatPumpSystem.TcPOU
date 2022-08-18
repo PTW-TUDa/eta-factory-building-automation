@@ -121,6 +121,24 @@ aSetPointLimits[1] := 0;
 aSetPointLimits[2] := 100;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{a58ab0d6-0d51-48dc-bc27-2228d10311d9}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := 0;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := 0;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := '-';
+setPointState.sOperatingPointUnit := '-';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{80b089c4-4cdc-43e9-85f7-5ded4d853262}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -158,6 +176,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HeatPumpSystem.SetSetPointLimits">
       <LineId Id="6" Count="1" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem.Working">
       <LineId Id="7" Count="0" />

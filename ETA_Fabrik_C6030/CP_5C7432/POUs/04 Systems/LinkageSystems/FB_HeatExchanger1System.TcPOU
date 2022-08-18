@@ -151,6 +151,24 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{9b468ecf-33a9-49ee-a2cd-1270fe631d8f}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU215.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{2d7be513-42f4-4f0a-9e3f-306a74f1d37d}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -208,6 +226,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HeatExchanger1System.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatExchanger1System.Working">
       <LineId Id="7" Count="0" />

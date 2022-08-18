@@ -137,6 +137,24 @@ END_VAR
 aSetPointLimits[2] := eChiller.ST_DefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{dc79df30-22db-4a38-94da-2cf6081118d6}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := fExternalTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{40c6e2d0-ac93-45e6-921b-d845a8bf1ef9}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -180,6 +198,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_eChillerSystem.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.Working">
       <LineId Id="7" Count="0" />

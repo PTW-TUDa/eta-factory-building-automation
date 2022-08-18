@@ -118,6 +118,24 @@ END_VAR]]></Declaration>
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{89d56525-651c-4f36-9363-7c8b8df2e26d}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := WMZ331.fFeedTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Working" Id="{e08c068f-6841-4dc4-9eef-48381b4cb913}">
       <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
 VAR_INPUT
@@ -169,6 +187,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_CondensingBoilerSystem.SetSetPointLimits">
       <LineId Id="11" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.Working">
       <LineId Id="7" Count="0" />

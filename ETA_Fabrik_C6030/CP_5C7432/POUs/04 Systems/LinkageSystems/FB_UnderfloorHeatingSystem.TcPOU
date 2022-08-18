@@ -218,6 +218,24 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{5e916aa9-de43-48ca-bf50-12137a9ce652}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := 0;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := 0;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := '-';
+setPointState.sOperatingPointUnit := '-';]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SwitchMode" Id="{db0b0ee2-1b40-45b2-95bd-b1cb07d07506}">
       <Declaration><![CDATA[METHOD PRIVATE SwitchMode : BOOL
 VAR_INPUT
@@ -347,6 +365,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_UnderfloorHeatingSystem.SetSetPointLimits">
       <LineId Id="9" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_UnderfloorHeatingSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_UnderfloorHeatingSystem.SwitchMode">
       <LineId Id="5" Count="0" />

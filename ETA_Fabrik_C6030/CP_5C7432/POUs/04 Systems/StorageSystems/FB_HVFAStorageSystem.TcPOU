@@ -100,7 +100,7 @@ SVx06.SetState_AO();
 
 RVx05.GetState_AI();
 RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := fExternalTemperature_RVx05,
 	nControlModeAutomatic := 0);
@@ -234,6 +234,24 @@ END_VAR
 aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{e91ff025-34ce-4425-84b2-ec422191accc}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := fExternalTemperature_RVx05;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
     <Property Name="ST_DefaultParameters" Id="{f1db4656-edfb-47d5-af6a-23dbe9289a24}">
       <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_HVFAStorageSystemDefaultParameters]]></Declaration>
       <Set Name="Set" Id="{293bdd0c-657e-4a38-8183-ebcb37193829}">
@@ -360,6 +378,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HVFAStorageSystem.SetSetPointLimits">
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.ST_DefaultParameters.Set">
       <LineId Id="2" Count="0" />
