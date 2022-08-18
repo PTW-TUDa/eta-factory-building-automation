@@ -16,12 +16,15 @@ VAR
 	eChillerSystem : FB_eChillerSystem;
 	HVFASystem : FB_HVFAStorageSystem;
 	CentralMachineCoolingSystem : FB_CN_CentralMachineCooling;
+	FlywheelMassStorageSystem : FB_FlywheelMassStorageSystem;
 	
 	//machines
 	EMAG_GT : FB_EMAG_GT;
+	FlyhweelMassStorage : FB_FlywheelMassStorage;
 	
 	//internal variables
 	bSetStatusOn_CentralMachineCooling : BOOL;
+	bSetStatusOn_FlywheelMassStorage : BOOL;
 	fSetPoint_HVFASystem : REAL;
 END_VAR
 
@@ -34,6 +37,8 @@ localState := BufferStorage.localState;
 //machines
 EMAG_GT();
 bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn;
+FlyhweelMassStorage();
+bSetStatusOn_FlywheelMassStorage := FlyhweelMassStorage.bStatusOn;
 
 //producer
 eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
@@ -43,8 +48,13 @@ eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 //fExternalTemperature := BufferStorage.localState.fMidTemperature);	
 
 //consumer
-//PU100 in central machine cooling system control return temperature of 20 degree
+//PU100 in central machine cooling system controls return temperature of 20 degree
 CentralMachineCoolingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineCooling,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 20);
+
+//PU191 in central machine cooling system controls return temperature of 20 degree
+FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStorage,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 20);
 	
@@ -65,6 +75,8 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
     <LineIds Name="FB_CoolingNetwork">
       <LineId Id="40" Count="2" />
       <LineId Id="167" Count="2" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="201" Count="0" />
       <LineId Id="171" Count="0" />
       <LineId Id="43" Count="5" />
       <LineId Id="138" Count="0" />
@@ -72,6 +84,8 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="174" Count="0" />
       <LineId Id="165" Count="0" />
       <LineId Id="172" Count="1" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="204" Count="3" />
       <LineId Id="139" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="118" Count="0" />

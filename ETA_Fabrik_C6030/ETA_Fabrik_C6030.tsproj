@@ -501,15 +501,6 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-00200000000A}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..9] OF BIT</Name>
-			<BitSize>10</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>10</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -820,6 +811,73 @@
 						</Var>
 						<Var>
 							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -4001,6 +4059,19 @@
 						</Var>
 						<Var>
 							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -8430,8 +8501,8 @@ PU245
 						<EtherCAT SlaveType="5" AdsServerAddress="000000000301ec03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
-							<SyncMan>0013aa002400010003000000000000000000001324010000</SyncMan>
-							<SyncMan>0020ba042000010004000000000000000000802120010000</SyncMan>
+							<SyncMan>0013b8002400010003000000000000000000001324010000</SyncMan>
+							<SyncMan>002018052000010004000000000000000000802120010000</SyncMan>
 							<Fmmu>0000000000000000001300020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002000010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -9424,13 +9495,95 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
-								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 17 (CIM/CIU 150 pump)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.VolumeFlow_0_0" Index="#x6030" Sub="#x02" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.PumpLiquidTemp_0_0" Index="#x6030" Sub="#x03" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x04" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x05" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.Frequency_0_0" Index="#x6030" Sub="#x06" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.UserSetpoint_0_0" Index="#x6030" Sub="#x07" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DiffPressure_0_0" Index="#x6030" Sub="#x08" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.RemoteTemp2_0_0" Index="#x6030" Sub="#x09" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatEnergyCounter_0_0" Index="#x6030" Sub="#x0a" Flags="#x00000100">
+									<Type>REAL</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatPower_0_0" Index="#x6030" Sub="#x0b" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.HeatDiffTemp_0_0" Index="#x6030" Sub="#x0c" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.DirectDataReply_0_0" Index="#x6030" Sub="#x0d" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.NumberOfStarts_0_0" Index="#x6030" Sub="#x0e" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.ActualSetpoint_0_0" Index="#x6030" Sub="#x0f" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.OperationTime_0_0" Index="#x6030" Sub="#x10" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Speed_0_0" Index="#x6030" Sub="#x11" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Energy_0_0" Index="#x6030" Sub="#x12" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.Power_0_0" Index="#x6030" Sub="#x13" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.PowerElectronicsTemp_0_0" Index="#x6030" Sub="#x14" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Eingänge.FaultCode_0_0" Index="#x6030" Sub="#x15" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.WarningCode_0_0" Index="#x6030" Sub="#x16" Flags="#x00000100">
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Eingänge.Volume_0_0" Index="#x6030" Sub="#x17" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+								</Entry>
+								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 17 (CIM/CIU 150 pump)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+								</Entry>
+								<Entry Name="Ausgänge.DirectDataRequest_1_0" Index="#x7030" Sub="#x02" Flags="#x00000100">
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
+								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6034" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
+							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7034" Sub="#x01" Flags="#x00000100">
 									<Type>USINT</Type>
 								</Entry>
 								<Entry>
@@ -9486,12 +9639,16 @@ PU245
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
+								<Entry Name="Box 17 (CIM/CIU 150 pump)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
+									<DefaultDataMask>1f1f</DefaultDataMask>
+									<Type>USINT</Type>
+								</Entry>
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
 								<Entry Name="Device 2 (EL6731)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>0d0d</DefaultDataMask>
+									<DefaultDataMask>0e0e</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
 								<Entry Name="Device 2 (EL6731)_ActualModulo" Index="#xf100" Sub="#x03" Flags="#x00000100">
@@ -9536,11 +9693,14 @@ PU245
 								<Entry Name="Box 16 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0b0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Box 17 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-00200000000A}">ARRAY [0..9] OF BIT</Type>
+									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="203166601"/>
@@ -11210,9 +11370,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV191_KWSMS_Absperrventil</Name>
+									<Name>bo_SV191</Name>
 									<Var>
-										<Name>bo_SV191_KWSMS_Absperrventil</Name>
+										<Name>bo_SV191</Name>
 										<Type>BIT</Type>
 										<BitOffs>16937</BitOffs>
 										<InOut>1</InOut>
@@ -16598,14 +16758,14 @@ PU235]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9536</BitOffs>
+							<BitOffs>10288</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9657</BitOffs>
+							<BitOffs>10417</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="30" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20101113220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -17086,14 +17246,14 @@ PU215
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9544</BitOffs>
+							<BitOffs>10296</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9658</BitOffs>
+							<BitOffs>10418</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="33" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -17576,14 +17736,14 @@ PU315
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9552</BitOffs>
+							<BitOffs>10304</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9659</BitOffs>
+							<BitOffs>10419</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="32" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -18065,14 +18225,14 @@ PU322]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9560</BitOffs>
+							<BitOffs>10312</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9660</BitOffs>
+							<BitOffs>10420</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="34" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -18555,14 +18715,14 @@ PU321
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9568</BitOffs>
+							<BitOffs>10320</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9661</BitOffs>
+							<BitOffs>10421</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="35" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -19045,14 +19205,14 @@ PU600
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9576</BitOffs>
+							<BitOffs>10328</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9662</BitOffs>
+							<BitOffs>10422</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="38" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -19535,14 +19695,14 @@ PU500
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9584</BitOffs>
+							<BitOffs>10336</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9663</BitOffs>
+							<BitOffs>10423</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="39" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -20025,14 +20185,14 @@ PU425
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9592</BitOffs>
+							<BitOffs>10344</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9664</BitOffs>
+							<BitOffs>10424</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="40" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -20515,14 +20675,14 @@ PU405
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9600</BitOffs>
+							<BitOffs>10352</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9665</BitOffs>
+							<BitOffs>10425</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="42" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -21004,14 +21164,14 @@ PU251]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9608</BitOffs>
+							<BitOffs>10360</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9666</BitOffs>
+							<BitOffs>10426</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="43" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -21494,14 +21654,14 @@ PU455
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9616</BitOffs>
+							<BitOffs>10368</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9667</BitOffs>
+							<BitOffs>10427</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="44" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -21983,14 +22143,14 @@ PU350]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9624</BitOffs>
+							<BitOffs>10376</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9668</BitOffs>
+							<BitOffs>10428</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="45" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -22436,7 +22596,7 @@ PU350]]></Comment>
 						</GsdModule>
 					</Profibus>
 				</Box>
-				<Box Id="20" Disabled="true" BoxType="1003">
+				<Box Id="20" BoxType="1003">
 					<Name>Box 17 (CIM/CIU 150 pump)</Name>
 					<Comment><![CDATA[Vendor:   GRUNDFOS
 Revision: R1
@@ -23043,14 +23203,14 @@ Revision: Rev. 1
 132	= slave, waiting for station no. from PLC
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>9632</BitOffs>
+							<BitOffs>10392</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>9669</BitOffs>
+							<BitOffs>10430</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="UMG604" StationNo="81" MinSlaveInterval="1" Ident="2881" Modular="1" MaxModule="12" MaxInputLen="124" MaxOutputLen="16" MaxDataLen="140" WatchDogTime="500" SupportFlags="1023" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000060004000001" C2Settings="e803000000000000000000000000" CfgData="c0005f" FixPresetModules="true">
@@ -23074,7 +23234,7 @@ Revision: Rev. 1
 								<Var>
 									<Name>STD: 32 Word In, 1 Byte Out_0_0</Name>
 									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
-									<BitOffs>9024</BitOffs>
+									<BitOffs>9776</BitOffs>
 								</Var>
 							</Vars>
 							<Vars VarGrpType="2">
@@ -23082,7 +23242,7 @@ Revision: Rev. 1
 								<Var>
 									<Name>STD: 32 Word In, 1 Byte Out_1_0</Name>
 									<Type>USINT</Type>
-									<BitOffs>1344</BitOffs>
+									<BitOffs>1456</BitOffs>
 								</Var>
 							</Vars>
 						</GsdModule>
@@ -23093,7 +23253,7 @@ Revision: Rev. 1
 						<DevSettings NetId="000000000301" EquiCycleTime="160000" NcAccessTime="75000"/>
 						<DevParameter CycleTime="160000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
-					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="32123" MaxRetryLimit="1" MinSlaveInterval="160" PollTimeout="8" DataControlTime="26"/>
+					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="160" PollTimeout="8" DataControlTime="27"/>
 				</Profibus>
 			</Device>
 		</Io>
@@ -23460,7 +23620,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.OUT_Stellung" VarB="K542A1_BO^bo_SV251_WW_DruckluftkomprAbsperrventil^bo_SV251_WW_DruckluftkomprAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Stellventil_361.OUT_Stellung" VarB="K542A1_BO^bo_SV361_KWN_NitrierofenAbsperrventil^bo_SV361_KWN_NitrierofenAbsperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.OUT_Stellung" VarB="K542A1_BO^bo_SV261_WWN_NitrierofenAbsperrventil^bo_SV261_WWN_NitrierofenAbsperrventil"/>
-				<Link VarA="Standard Outputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Stellventil_191.OUT_Stellung" VarB="K540A1_BO^bo_SV191_KWSMS_Absperrventil^bo_SV191_KWSMS_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Maschinenversorgung_HW_300.Stellventil_300.OUT_Stellung" VarB="K540A1_BO^bo_SV300_Heisswasser_Halle_Absperrventil^bo_SV300_Heisswasser_Halle_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Anlagenversorgung.System_Maschinenversorgung_WW_245.Stellventil_245.OUT_Stellung" VarB="K540A1_BO^bo_SV245_WW_Puffersp_WP_Absperrventil^bo_SV245_WW_Puffersp_WP_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Dali_K522A1_DALI_OUT^nCtrl" VarB="K522A1_DALI^Channel 1^Kontrolle"/>
@@ -23489,6 +23648,7 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Wandler.System_Kaeltekompressor_KW_145.Stellventil_145.OUT_Stellung" VarB="K540A1_BO^bo_SV145_KWPufffersp_WP_Absperrventil^bo_SV145_KWPufffersp_WP_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung" VarB="K540A1_BO^bo_SV215^bo_SV215"/>
 				<Link VarA="Standard Outputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV100^bo_SV100"/>
+				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV191^bo_SV191"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP1System.CHP.bSetStatusOn_OUT" VarB="K542A1_BO^bo_CHP1^bo_CHP1_bSetStatusOn"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP1System.CHP.nSetPoint_OUT" VarB="K570A1_AO-2/2^ao_CHP1_fSetPoint^ao_CHP1_fSetPoint"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP1System.SV32x.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV321^bo_SV321"/>
@@ -23654,25 +23814,20 @@ Revision: Rev. 1
 				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.OUT_Temp_intern_GeniRequest" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 17 (CIM/CIU 150 pump)">
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Anzahl_Starts" VarB="NumberOfStarts^Inputs^NumberOfStarts_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Drehzahl" VarB="Speed^Inputs^Speed_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Druckdifferenz" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Energie_elek" VarB="Energy^Inputs^Energy_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Energie_therm" VarB="HeatEnergyCounter^Inputs^HeatEnergyCounter_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Frequenz_Motor" VarB="Frequency^Inputs^Frequency_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung_elek" VarB="Power^Inputs^Power_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung_therm" VarB="HeatPower^Inputs^HeatPower_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Modul_Meld_Code1" VarB="WarningCode^Inputs^WarningCode_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Modul_Meld_Code2" VarB="FaultCode^Inputs^FaultCode_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_StatusModule" VarB="StatusModule^Inputs^StatusModule_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_elek" VarB="PowerElectronicsTemp^Inputs^PowerElectronicsTemp_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_extern" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_intern" VarB="PumpLiquidTemp^Inputs^PumpLiquidTemp_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Volumen" VarB="Volume^Inputs^Volume_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Volumenstrom" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
-				<Link VarA="Standard Inputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Zeit_Betrieb" VarB="OperationTime^Inputs^OperationTime_0_0"/>
-				<Link VarA="Standard Outputs^.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.OUT_ControlModule" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
+				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 18 (GSD Box) (Mkv Gateway)">
 				<Link VarA="Standard Inputs^.IN_Profibus_DLK" VarB="64 bytes input^Inputs^64 bytes input_0_0"/>
