@@ -81,7 +81,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bError := PU315.bError OR PU215.bError;]]></ST>
+        <ST><![CDATA[bError := PU315.bError;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Operational" Id="{7ac6e3b2-880f-4ae7-8766-d8b22693c3d9}">
