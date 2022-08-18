@@ -11845,7 +11845,7 @@ PU245
 								<Name>K550A1_AI-2/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF195_HydrW_KWN_Temp_1_oben</Name>
+									<Name>ai_TF195_CN_BufferStorage_UpperTemperature</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11853,7 +11853,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF195_HydrW_KWN_Temp_1_oben</Name>
+										<Name>ai_TF195_CN_BufferStorage_UpperTemperature</Name>
 										<Type>INT</Type>
 										<BitOffs>13552</BitOffs>
 										<InOut>0</InOut>
@@ -11872,7 +11872,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF195_HydrW_KWN_Temp_1_mitte</Name>
+									<Name>ai_TF195_CN_BufferStorage_MidTemperature</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11880,7 +11880,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF195_HydrW_KWN_Temp_1_mitte</Name>
+										<Name>ai_TF195_CN_BufferStorage_MidTemperature</Name>
 										<Type>INT</Type>
 										<BitOffs>13584</BitOffs>
 										<InOut>0</InOut>
@@ -11899,7 +11899,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF195_HydrW_KWN_Temp_1_unten</Name>
+									<Name>ai_TF195_CN_BufferStorage_LowerTemperature</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -11907,7 +11907,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF195_HydrW_KWN_Temp_1_unten</Name>
+										<Name>ai_TF195_CN_BufferStorage_LowerTemperature</Name>
 										<Type>INT</Type>
 										<BitOffs>13616</BitOffs>
 										<InOut>0</InOut>
@@ -23544,12 +23544,6 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_oben.IN_Temperatur" VarB="K577A1_AI (KL3222)^TF395_VSI _AT_oben_PT100^TF395_VSI _AT_oben_PT100"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_unten.IN_Status" VarB="K578A1_AI (KL3222)^TF395_VSI _AT_unten_PT100^Status"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_unten.IN_Temperatur" VarB="K578A1_AI (KL3222)^TF395_VSI _AT_unten_PT100^TF395_VSI _AT_unten_PT100"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_mitte.IN_Status" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_mitte^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_mitte.IN_Temperatur" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_mitte^ai_TF195_HydrW_KWN_Temp_1_mitte"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_oben.IN_Status" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_oben^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_oben.IN_Temperatur" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_oben^ai_TF195_HydrW_KWN_Temp_1_oben"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_unten.IN_Status" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_unten^Status"/>
-				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Kaltwasser_195.TF_unten.IN_Temperatur" VarB="K550A1_AI-2/2^ai_TF195_HydrW_KWN_Temp_1_unten^ai_TF195_HydrW_KWN_Temp_1_unten"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_mitte.IN_Status" VarB="K551A1_AI-1/2^ai_TF295_HydrW_WWN_Temp_1_mitte^Status"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_mitte.IN_Temperatur" VarB="K551A1_AI-1/2^ai_TF295_HydrW_WWN_Temp_1_mitte^ai_TF295_HydrW_WWN_Temp_1_mitte"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Warmwasser_295.TF_oben.IN_Status" VarB="K550A1_AI-2/2^ai_TF295_HydrW_WWN_Temp_1_oben^Status"/>
@@ -23575,6 +23569,9 @@ Revision: Rev. 1
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[7]" VarB="K524A1_LON^Channel 1^Parameter Input Data 7"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[8]" VarB="K524A1_LON^Channel 1^Parameter Input Data 8"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^wParameterStatus" VarB="K524A1_LON^Channel 1^Parameter Status"/>
+				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_BufferStorage_LowerTemperature^ai_TF195_CN_BufferStorage_LowerTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_BufferStorage_MidTemperature^ai_TF195_CN_BufferStorage_MidTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_BufferStorage_UpperTemperature^ai_TF195_CN_BufferStorage_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN" VarB="K531A1_BI^bi_SV100_Closed^bi_SV100_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN" VarB="K531A1_BI^bi_SV100_Open^bi_SV100_Open"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_LowerTemperature^TF795_HVFA_LowerTemperature"/>
