@@ -201,7 +201,7 @@ Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
-hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;]]></ST>
+hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
