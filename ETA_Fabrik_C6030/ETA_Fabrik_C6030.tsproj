@@ -585,11 +585,20 @@
 							<Name>.IN_WZaehler</Name>
 							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
 						</Var>
+						<Var>
+							<Name>.HeatCounters_Container_IN</Name>
+							<Comment><![CDATA[container]]></Comment>
+							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>MBus_WZaehler_Task Outputs</Name>
 						<Var>
 							<Name>.OUT_WZaehler</Name>
+							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
+						</Var>
+						<Var>
+							<Name>.HeatCounters_Container_OUT</Name>
 							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
 						</Var>
 					</Vars>
