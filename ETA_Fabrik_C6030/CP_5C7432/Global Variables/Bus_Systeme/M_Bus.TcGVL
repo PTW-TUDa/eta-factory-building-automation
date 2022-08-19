@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <GVL Name="M_Bus" Id="{09f3b77d-e1a8-4a2e-b9d8-80d0df79e368}">
     <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
 VAR_GLOBAL
@@ -7,6 +7,11 @@ VAR_GLOBAL
 	OUT_Stromzaehler AT %Q* : ST_KL6781outData22B;
 	IN_WZaehler AT %I* 	: ST_KL6781inData22B;
 	OUT_WZaehler AT %Q* : ST_KL6781outData22B;
+	
+	//container
+	HeatCounters_Container_IN AT %I* : ST_KL6781inData22B;
+	HeatCounters_Container_OUT AT %Q* : ST_KL6781outData22B;
+	
 	(*
 			[1] ETA_3111U1006XHE321XXXXXXZ01, ELT_Zaehler_BHKW_321_01
 			Primaer-Adresse = 1
@@ -49,6 +54,10 @@ VAR_GLOBAL
 	Telegramm_WZ_PWT_1						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Ofenkuehlung				: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Abwaerme_Ofen_Abgasfackel	: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	
+	//heat counters container
+	aCommunication_MBus_Container : ST_MBUS_Communication;
+	aTelegramm_WMZ138 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 
 	Telegramm_SZ_BHKW_321		: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_SZ_BHKW_322		: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
