@@ -5,6 +5,8 @@
 VAR_INPUT
 	//control struct for hnht
 	controlAutomatic : ST_HeatingNetworkHighTemperatureControl;	
+	
+	stAmbientState : ST_AmbientState;
 END_VAR
 VAR_OUTPUT
 	{attribute 'OPC.UA.DA' := '1'}
@@ -16,6 +18,8 @@ VAR
 	CHP1System : FB_CHPSystem;
 	CHP2System : FB_CHPSystem;
 	CondensingBoilerSystem : FB_CondensingBoilerSystem;
+	StaticHeatingSystem : FB_StaticHeatingSystem;
+	
 	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
 		
@@ -48,7 +52,12 @@ SV_SupplyAir.SetState_BO();
 CondensingBoilerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CondensingBoiler,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature);
-				]]></ST>
+				
+//consumer
+StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_StaticHeating,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 0,
+	stAmbientState := stAmbientState);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
       <LineId Id="40" Count="7" />
@@ -64,6 +73,7 @@ CondensingBoilerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Co
       <LineId Id="209" Count="2" />
       <LineId Id="208" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="256" Count="4" />
     </LineIds>
   </POU>
 </TcPlcObject>

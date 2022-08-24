@@ -55,7 +55,8 @@ HNLT(ambientState := Ambient.localState,
 	
 HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
 	
-HNHT(controlAutomatic := Strategy.hnhtControl);
+HNHT(controlAutomatic := Strategy.hnhtControl,
+	stAmbientState := Ambient.localState);
 
 //Current implementation
 
@@ -143,6 +144,7 @@ HNHT(controlAutomatic := Strategy.hnhtControl);
       <LineId Id="188" Count="0" />
       <LineId Id="221" Count="1" />
       <LineId Id="189" Count="0" />
+      <LineId Id="245" Count="0" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="67" />
     </LineIds>
