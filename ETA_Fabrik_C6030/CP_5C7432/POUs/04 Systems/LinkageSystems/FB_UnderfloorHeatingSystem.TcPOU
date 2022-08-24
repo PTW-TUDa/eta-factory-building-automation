@@ -34,7 +34,7 @@ VAR
 	bSetStatusOn_SV423		: BOOL;
 	bSetStatusOn_SV424		: BOOL;
 	bSetStatusOn_RV425 		: BOOL;
-	fSetPoint_RV425 		: REAL;
+	fSetPoint_Internal 		: REAL;
 	nControlMode_RV425 		: E_MixingValveControlMode; 	
 	
 	//characteristic curves and controllers
@@ -51,6 +51,7 @@ END_VAR
       <ST><![CDATA[//check if heating mode has switched
 SelectUnderfloorHeatingControlMode();
 ControlUnderfloorHeating();
+fSetPointAutomatic := fSetPoint_Internal;
 SwitchToHeating(CLK := bHeatingMode);
 SwitchToCooling(CLK := bHeatingMode);
 
@@ -74,7 +75,7 @@ PU425.SetState_Profibus();
 //valves in thermal networks
 RV425.GetState_AI();
 RV425(bSetStatusOnAutomatic := bSetStatusOn_RV425,
-	fSetPointAutomatic := fSetPoint_RV425,
+	fSetPointAutomatic := fSetPoint_Internal,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU425.fTemperatureInternal,
 	nControlModeAutomatic := nControlMode_RV425);
@@ -124,7 +125,7 @@ CharacteristicCurve(fAmbientTemperature := stAmbientState.fOutsideTemperature,
 	fOffsetTemperature := 0,
 	bLimitFlowTemp := TRUE,
 	stParams := CharacteristicCurve_Parameters);
-fSetPoint_RV425 := LREAL_TO_REAL(CharacteristicCurve.fOut);
+fSetPoint_Internal := LREAL_TO_REAL(CharacteristicCurve.fOut);
 	
 IF bHeatingMode THEN
 	nControlMode_RV425 := 1;
@@ -226,14 +227,14 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := 0;
+        <ST><![CDATA[fOperatingPoint := PU425.fTemperatureInternal;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
-setPointState.fSetPoint := 0;
+setPointState.fSetPoint := fSetPoint;
 setPointState.fOperatingPoint := fOperatingPoint;
-setPointState.sSetPointUnit := '-';
-setPointState.sOperatingPointUnit := '-';]]></ST>
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
       </Implementation>
     </Method>
     <Method Name="SwitchMode" Id="{db0b0ee2-1b40-45b2-95bd-b1cb07d07506}">
@@ -298,6 +299,7 @@ END_VAR]]></Declaration>
       <LineId Id="218" Count="0" />
       <LineId Id="216" Count="0" />
       <LineId Id="633" Count="0" />
+      <LineId Id="765" Count="0" />
       <LineId Id="160" Count="1" />
       <LineId Id="284" Count="0" />
       <LineId Id="219" Count="0" />
