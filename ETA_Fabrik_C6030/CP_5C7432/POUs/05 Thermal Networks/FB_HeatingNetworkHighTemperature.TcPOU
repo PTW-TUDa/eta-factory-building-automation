@@ -19,10 +19,16 @@ VAR
 	CHP2System : FB_CHPSystem;
 	CondensingBoilerSystem : FB_CondensingBoilerSystem;
 	StaticHeatingSystem : FB_StaticHeatingSystem;
+	CentralMachineHeatingSystem : FB_HNHT_CentralMachineHeating;
 	
 	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
 		
+	//machines
+	MAFAC_Java : FB_MAFAC_Java;
+	
+	//internal variables
+	bSetStatusOn_CentralMachineHeating : BOOL;
 END_VAR
 
 ]]></Declaration>
@@ -57,7 +63,13 @@ CondensingBoilerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Co
 StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_StaticHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 0,
-	stAmbientState := stAmbientState);]]></ST>
+	stAmbientState := stAmbientState);
+	
+MAFAC_Java();
+bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn;
+CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 55);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
       <LineId Id="40" Count="7" />
@@ -74,6 +86,10 @@ StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Stati
       <LineId Id="208" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="256" Count="4" />
+      <LineId Id="286" Count="0" />
+      <LineId Id="294" Count="1" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="296" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
