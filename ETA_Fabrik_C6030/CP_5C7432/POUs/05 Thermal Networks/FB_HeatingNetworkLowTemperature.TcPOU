@@ -17,6 +17,7 @@ VAR
 	BufferStorage : FB_BufferStorage;
 	OuterCapillaryTubeMats : FB_OuterCapillaryTubeMats;
 	HVFASystem : FB_HVFAStorageSystem;
+	CompressorSystem : FB_CompressorSystem;
 	
 	//internal variables
 	fSetPoint_HVFASystem : REAL;
@@ -28,6 +29,9 @@ BufferStorage();
 localState := BufferStorage.localState;
 
 //producer
+CompressorSystem(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Heating);
 
 //consumer
 OuterCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_OuterCapillaryTubeMats,
@@ -50,6 +54,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
     <LineIds Name="FB_HeatingNetworkLowTemperature">
       <LineId Id="32" Count="2" />
       <LineId Id="42" Count="1" />
+      <LineId Id="196" Count="2" />
       <LineId Id="35" Count="4" />
       <LineId Id="87" Count="0" />
       <LineId Id="41" Count="0" />
