@@ -18,9 +18,17 @@ VAR
 	OuterCapillaryTubeMats : FB_OuterCapillaryTubeMats;
 	HVFASystem : FB_HVFAStorageSystem;
 	CompressorSystem : FB_CompressorSystem;
+	AnnealingOvenSealingSystem : FB_AnnealingOvenSealingSystem;
+	DCSystem : FB_DCSystem;
 	
+	//machines
+	AnnealingOvenSealing : FB_AnnealingOven;
+	DC : FB_DC;
+
 	//internal variables
 	fSetPoint_HVFASystem : REAL;
+	bSetStatusOn_AnnealingOven : BOOL;
+	bSetStatusOn_DC : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -39,6 +47,18 @@ OuterCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Ou
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Cooling,
 	stAmbientState := ambientState);
 	
+AnnealingOvenSealing();
+bSetStatusOn_AnnealingOven := AnnealingOvenSealing.bStatusOn_Sealing;
+AnnealingOvenSealingSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 35);
+	
+DC();
+bSetStatusOn_DC := DC.bStatusOn;
+DCSystem(bSetStatusOnAutomatic := bSetStatusOn_DC,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 35);
+
 //external storages
 //setpoint depends on loading mode -> storage must be warmer than setpoint temperature in network
 IF controlAutomatic.bLoading_HVFASystem THEN
@@ -58,6 +78,11 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="35" Count="4" />
       <LineId Id="87" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="234" Count="2" />
+      <LineId Id="240" Count="5" />
+      <LineId Id="231" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="170" Count="4" />
       <LineId Id="149" Count="0" />

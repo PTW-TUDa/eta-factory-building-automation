@@ -20,15 +20,18 @@ VAR
 	CondensingBoilerSystem : FB_CondensingBoilerSystem;
 	StaticHeatingSystem : FB_StaticHeatingSystem;
 	CentralMachineHeatingSystem : FB_HNHT_CentralMachineHeating;
+	AnnealingOvenExhaustGasSystem : FB_AnnealingOvenExhaustGasSystem;
 	
 	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
 		
 	//machines
 	MAFAC_Java : FB_MAFAC_Java;
+	AnnealingOvenExhaustGas : FB_AnnealingOven;
 	
 	//internal variables
 	bSetStatusOn_CentralMachineHeating : BOOL;
+	bSetStatusOn_AnnealingOven : BOOL;
 END_VAR
 
 ]]></Declaration>
@@ -69,7 +72,13 @@ MAFAC_Java();
 bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn;
 CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 55);]]></ST>
+	fSetPointAutomatic := 80);
+	
+AnnealingOvenExhaustGas();
+bSetStatusOn_AnnealingOven := AnnealingOvenExhaustGas.bStatusOn_ExhaustGas;
+AnnealingOvenExhaustGasSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
       <LineId Id="40" Count="7" />
@@ -90,6 +99,9 @@ CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachine
       <LineId Id="294" Count="1" />
       <LineId Id="287" Count="0" />
       <LineId Id="296" Count="1" />
+      <LineId Id="331" Count="2" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="337" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
