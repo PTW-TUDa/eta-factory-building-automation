@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_AnnealingOvenSealingDefaultParameters" Id="{9ad3c7a9-2096-416c-8744-6995631add5f}">
+    <Declaration><![CDATA[TYPE ST_AnnealingOvenSealingDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [30,40];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_AnnealingOven" Id="{9d60a342-9fa8-4850-9da6-ab1de2c9e1f5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AnnealingOven
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bStatusOn_ExhaustGas : BOOL;
+	bStatusOn_Sealing : BOOL;
+END_VAR
+VAR
+	OPC_UA				: FB_OPC_UA_READ;
+	stOPC_UA_Server		: ST_OPC_UA_Server;
+	sOPC_UA_Server_URL 	: STRING;
+	sNamespaceName		: STRING;
+	aNodes				: ARRAY[1..4] OF ST_OPC_UANode;
+	nNodeCount			: UDINT := 4;
+	stIndexRange		: ARRAY [1..nMaxIndexRange] OF ST_UAIndexRange;
+	currentNode			: UDINT := 1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[sOPC_UA_Server_URL 		:= GlobalVariables.sIP_Annealing_Oven;
+sNamespaceName			:= '';
+
+(*Define Nodes to Read*)
+aNodes[1].NodeID.sIdentifier			:= 'Application.PLCPROG.Ofen_Kuehlung_rt';
+aNodes[1].NodeID.eIdentifierType		:= eUAIdentifierType_String;
+aNodes[1].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);;
+aNodes[1].NodeAddInfo.nIndexRangeCount 	:= 0;
+aNodes[1].NodeAddInfo.stIndexRange		:= stIndexRange;
+aNodes[1].TargetVar						:= ADR(bStatusOn_ExhaustGas);
+
+aNodes[3].NodeID.sIdentifier			:= 'Application.PLCPROG.Ofen_kuehlung_gr';
+aNodes[3].NodeID.eIdentifierType		:= eUAIdentifierType_String;
+aNodes[3].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);;
+aNodes[3].NodeAddInfo.nIndexRangeCount 	:= 0;
+aNodes[3].NodeAddInfo.stIndexRange		:= stIndexRange;
+aNodes[3].TargetVar						:= ADR(bStatusOn_Sealing);
+
+OPC_UA(
+	stNode				:= aNodes[currentNode],
+	sOPC_UA_Server_Url 	:= sOPC_UA_Server_URL,
+	sNamespaceName		:= sNamespaceName);
+currentNode := currentNode + 1;
+IF currentNode > nNodeCount THEN
+	currentNode := 1;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_AnnealingOven">
+      <LineId Id="55" Count="9" />
+      <LineId Id="72" Count="6" />
+      <LineId Id="111" Count="7" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="49" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

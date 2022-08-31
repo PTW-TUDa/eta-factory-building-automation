@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CompressorDefaultParameters" Id="{bc828b99-84d2-4c8f-a5bb-aac7d31f5501}">
+    <Declaration><![CDATA[TYPE ST_CompressorDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [0,70];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

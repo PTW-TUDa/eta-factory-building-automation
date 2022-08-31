@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_StaticHeatingDefaultParameters" Id="{48d37d81-3f7b-4294-abe4-b1821f3dd4ac}">
+    <Declaration><![CDATA[TYPE ST_StaticHeatingDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [50,80];
+	
+	//parameters for characteristic heating and cooling curve
+	aLimitsAmbientTemperature: ARRAY[1..2] OF REAL := [-10,10];
+	aLimitsFeedTemperature: ARRAY[1..2] OF REAL := [70,50];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
