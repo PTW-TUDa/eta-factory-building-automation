@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM MBUS_WZaehler (* hier wird die Klemme, an welche der M-Bus mit den Zählern angeschlossen ist, alle 10ms aufgerufen *)
 VAR
 	Komm_Klemme_WZaehler		: FB_MBUSKL6781;
+	Komm_Klemme_WZaehler2		: FB_MBUSKL6781;
 	WMZ331_Brennwerttherme				: FB_MBUS_General_Ext;	(*1*)
 	WMZ321_BHKW_1						: FB_MBUS_General_Ext;	(*3*)
 	WMZ322_BHKW_2						: FB_MBUS_General_Ext;	(*4*)

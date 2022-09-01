@@ -920,6 +920,9 @@
     <Compile Include="POUs\Management\FB_MGMT_Zustandscheck.TcPOU" />
     <Compile Include="POUs\Management\FB_Zuweisungen.TcPOU" />
     <Compile Include="POUs\MBUS_WZaehler.TcPOU" />
+    <Compile Include="POUs\MBUS_WZaehler2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MBUS_Zaehler.TcPOU" />
     <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\AKM_941_Read_BOOL.TcPOU">
       <ExcludeFromBuild>true</ExcludeFromBuild>

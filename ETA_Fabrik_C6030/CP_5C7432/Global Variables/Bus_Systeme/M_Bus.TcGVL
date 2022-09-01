@@ -7,6 +7,8 @@ VAR_GLOBAL
 	OUT_Stromzaehler AT %Q* : ST_KL6781outData22B;
 	IN_WZaehler AT %I* 	: ST_KL6781inData22B;
 	OUT_WZaehler AT %Q* : ST_KL6781outData22B;
+	IN_WZaehler2 AT %I* 	: ST_KL6781inData22B;
+	OUT_WZaehler2 AT %Q* : ST_KL6781outData22B;
 	
 	//container
 	HeatCounters_Container_IN AT %I* : ST_KL6781inData22B;
@@ -46,7 +48,11 @@ VAR_GLOBAL
 	*)
 	Kommunikation_MBus	: ST_MBUS_Communication;
 	Komm_MBus_WZaehler	: ST_MBUS_Communication;
+	Komm_MBus_WZaehler2	: ST_MBUS_Communication;
 
+	Telegramm_WZ_WMZ1						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	Telegramm_WZ_WMZ2						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	
 	Telegramm_WZ_Brennwerttherme			: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_BHKW_1						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_BHKW_2						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
