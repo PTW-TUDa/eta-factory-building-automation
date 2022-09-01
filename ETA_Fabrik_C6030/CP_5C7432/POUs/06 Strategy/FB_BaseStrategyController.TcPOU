@@ -116,7 +116,7 @@ END_VAR
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
 fOffset_TargetTemperature_eChiller := 2;
 Controller_eChiller_Parameters.fHysteresisRange := 5;
-Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_eChiller_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
@@ -143,19 +143,19 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in high temperature heating network
 Controller_CHP1_Parameters.fHysteresisRange := 5;
-Controller_CHP1_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_CHP1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 Controller_CHP2_Parameters.fHysteresisRange := 5;
-Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 Controller_CondensingBoiler_Parameters.fHysteresisRange := 5;
-Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 Controller_StaticHeating_Parameters.fHysteresisRange := 5;
-Controller_StaticHeating_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_StaticHeating_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_StaticHeating_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //operating hours of chp1 should be included
@@ -207,7 +207,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[Controller_HeatExchanger1_Parameters.fHysteresisRange := 5;
-Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control heat exchanger 1
@@ -226,11 +226,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
 Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 5;
-Controller_OuterCapillaryTubeMats_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_OuterCapillaryTubeMats_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_OuterCapillaryTubeMats_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 Controller_OuterCapillaryTubeMats_Permission_Parameters.fHysteresisRange := 6;
-Controller_OuterCapillaryTubeMats_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_OuterCapillaryTubeMats_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_OuterCapillaryTubeMats_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 
@@ -244,7 +244,7 @@ Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fMidTemperature,
 Controller_OuterCapillaryTubeMats_Permission(fSetpointValue := hnltState.fMidTemperature-Controller_OuterCapillaryTubeMats_Permission_Parameters.fHysteresisRange,
 	fActualValue := ambientState.fOutsideTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HeatPump_Parameters);
+	stParams := Controller_OuterCapillaryTubeMats_Permission_Parameters);
 hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
 
 //control hvfa storage
@@ -262,12 +262,12 @@ END_VAR
         <ST><![CDATA[//set hysteresis parameters for hnlt cn linkage systems
 fOffset_TargetTemperature_HeatPump := 0;
 Controller_HeatPump_Parameters.fHysteresisRange := 5;
-Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 fOffset_TargetTemperature_HeatPump_Permission := 2;
 Controller_HeatPump_Permission_Parameters.fHysteresisRange := 5;
-Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control heat pump depending on cooling demand in cn
@@ -276,11 +276,14 @@ Controller_HeatPump(fSetpointValue := cnState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
 
+(* eChiller does not work yet
 Controller_HeatPump_Permission(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump_Permission,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
+*)
+hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut;
 
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;]]></ST>
       </Implementation>
@@ -427,12 +430,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="32" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="13" Count="4" />
+      <LineId Id="55" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="45" Count="2" />
       <LineId Id="22" Count="0" />
       <LineId Id="12" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="48" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="58" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetTemperatures">
       <LineId Id="18" Count="0" />
