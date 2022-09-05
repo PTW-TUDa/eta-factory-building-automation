@@ -4,6 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HVFAStorageSystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
+	aTelegramm_WMZ7x0 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZx05 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -107,8 +109,8 @@ RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
 RVx05.SetState_AO();
 
 //insert heat counter telegramm from other task
-WMZ7x0();
-WMZx05();
+WMZ7x0(aHeatCounterTelegramm := aTelegramm_WMZ7x0);
+WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);
 
 IF bLoading = TRUE THEN
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	

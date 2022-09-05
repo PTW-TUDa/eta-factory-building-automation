@@ -45,7 +45,7 @@ SV138(
 SV138.SetState_AO();
 
 //insert heat counter telegramm from other task
-WMZ135();
+WMZ135(aHeatCounterTelegramm := aTelegramm_WMZ135);
 WMZ138(aHeatCounterTelegramm := aTelegramm_WMZ138);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{87b68d69-7506-4fd5-920f-31c8ac6bc4f2}">

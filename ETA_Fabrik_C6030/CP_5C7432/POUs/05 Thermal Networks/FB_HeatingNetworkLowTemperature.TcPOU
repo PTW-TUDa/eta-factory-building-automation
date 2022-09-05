@@ -69,7 +69,9 @@ END_IF
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := fSetpoint_HVFASystem,
-	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem);]]></ST>
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
+	aTelegramm_WMZ7x0 := aTelegramm_WMZ720,
+	aTelegramm_WMZx05 := aTelegramm_WMZ205);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkLowTemperature">
       <LineId Id="32" Count="2" />
@@ -88,6 +90,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="149" Count="0" />
       <LineId Id="114" Count="2" />
       <LineId Id="113" Count="0" />
+      <LineId Id="275" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

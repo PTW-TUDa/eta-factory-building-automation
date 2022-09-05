@@ -67,7 +67,9 @@ END_IF
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := fSetpoint_HVFASystem,
-	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem);
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
+	aTelegramm_WMZ7x0 := aTelegramm_WMZ710,
+	aTelegramm_WMZx05 := aTelegramm_WMZ105);
 
 				]]></ST>
     </Implementation>
@@ -94,6 +96,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="91" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="83" Count="2" />
+      <LineId Id="236" Count="1" />
       <LineId Id="56" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
