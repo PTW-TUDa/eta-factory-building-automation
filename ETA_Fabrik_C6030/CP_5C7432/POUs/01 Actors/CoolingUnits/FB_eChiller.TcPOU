@@ -16,8 +16,8 @@ VAR
 	localState : ST_eChillerState;
 	
 	//analog converters
-	OutputConverter_SetpointValue : FB_AnalogOutput(fUpperLimit := 28, fLowerLimit := 10);
-	OutputConverter_ActualTemperature : FB_AnalogOutput(fUpperLimit := 28, fLowerLimit := 10);
+	OutputConverter_SetpointValue : FB_AnalogOutput(fUpperLimit := 60, fLowerLimit := -30);
+	OutputConverter_ActualTemperature : FB_AnalogOutput(fUpperLimit := 60, fLowerLimit := -30);
 	
 	//I/O Links
 	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal

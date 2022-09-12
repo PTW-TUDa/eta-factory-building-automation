@@ -121,7 +121,7 @@ END_VAR
         <ST><![CDATA[bSetStatusOn_SV138 := TRUE;
 
 //wait until valve is opened
-IF SV138.fOperatingPoint > 95 THEN
+IF SV138.fOperatingPoint > 85 THEN
 	bRampUpFinished := TRUE;
 END_IF
 ]]></ST>
