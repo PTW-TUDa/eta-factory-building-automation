@@ -44,7 +44,8 @@ bSetStatusOn_FlywheelMassStorage := FlyhweelMassStorage.bStatusOn;
 eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
-	fExternalTemperature := BufferStorage.localState.fMidTemperature);
+	fExternalTemperature := BufferStorage.localState.fMidTemperature,
+	fReturnTemperature_Consumers := BufferStorage.localState.fUpperTemperature);
 
 //consumer
 //PU100 in central machine cooling system controls return temperature of 20 degree
@@ -80,6 +81,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="201" Count="0" />
       <LineId Id="171" Count="0" />
       <LineId Id="43" Count="5" />
+      <LineId Id="265" Count="0" />
       <LineId Id="163" Count="1" />
       <LineId Id="174" Count="0" />
       <LineId Id="165" Count="0" />

@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_eChiller EXTENDS FB_ActorContinous
 VAR_INPUT
 	fExternalTemperature : REAL; //External temperature in °C
+	fReturnTemperature_Consumers : REAL;
 END_VAR
 VAR_OUTPUT
 	bError : BOOL; // Returns eChiller error
@@ -18,10 +19,12 @@ VAR
 	//analog converters
 	OutputConverter_SetpointValue : FB_AnalogOutput(fUpperLimit := 60, fLowerLimit := -30);
 	OutputConverter_ActualTemperature : FB_AnalogOutput(fUpperLimit := 60, fLowerLimit := -30);
+	OutputConverter_ReturnTemperature_Consumers : FB_AnalogOutput(fUpperLimit := 60, fLowerLimit := -30);
 	
 	//I/O Links
 	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
 	nActualTemperature_OUT 	AT %Q* : INT; //Actual temperature in buffer storage linked to terminal
+	nReturnTemperature_Consumers_OUT AT %Q* : INT;
 	bSetStatusOn_OUT 		AT %Q* : BOOL; //SetStatus linked to terminal
 	bError_IN 				AT %I* : BOOL; //Error state linked to terminal
 	bWarning_IN 			AT %I* : BOOL; //Warning state linked to terminal
@@ -32,7 +35,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[MAIN();
 OutputConverter_SetpointValue(fValue := fSetPoint);
-OutputConverter_ActualTemperature(fValue := fExternalTemperature);]]></ST>
+OutputConverter_ActualTemperature(fValue := fExternalTemperature);
+OutputConverter_ReturnTemperature_Consumers(fValue := fReturnTemperature_Consumers);]]></ST>
     </Implementation>
     <Method Name="GetState" Id="{e803f0fd-89d1-4b98-b999-a23105755d2f}">
       <Declaration><![CDATA[METHOD GetState : BOOL
@@ -80,6 +84,7 @@ setPointState.aSetPointLimits := aSetPointLimits;
 //outputs
 nSetPoint_OUT := OutputConverter_SetpointValue.nValue;
 nActualTemperature_OUT := OutputConverter_ActualTemperature.nValue;
+nReturnTemperature_Consumers_OUT := OutputConverter_ReturnTemperature_Consumers.nValue;
 bSetStatusOn_OUT := bSetStatusOn;]]></ST>
       </Implementation>
     </Method>
@@ -106,6 +111,7 @@ END_VAR
       <LineId Id="9" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="37" Count="0" />
+      <LineId Id="70" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChiller.GetState">
       <LineId Id="6" Count="1" />
@@ -126,7 +132,9 @@ END_VAR
       <LineId Id="10" Count="2" />
       <LineId Id="16" Count="1" />
       <LineId Id="24" Count="0" />
-      <LineId Id="27" Count="2" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChiller.ST_DefaultParameters.Get">
       <LineId Id="2" Count="0" />

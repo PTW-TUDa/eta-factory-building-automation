@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_eChillerSystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	fExternalTemperature : REAL; //External temperature of buffer storage
+	fReturnTemperature_Consumers : REAL;
 END_VAR
 VAR_OUTPUT
 END_VAR
@@ -32,7 +33,8 @@ eChiller(
 	bSetStatusOnAutomatic := bSetStatusOn_eChiller,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fExternalTemperature := fExternalTemperature);
+	fExternalTemperature := fExternalTemperature,
+	fReturnTemperature_Consumers := fReturnTemperature_Consumers);
 eChiller.SetState();
 
 //valve may only control position, not temperatures
@@ -169,7 +171,9 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_eChillerSystem">
       <LineId Id="30" Count="0" />
       <LineId Id="113" Count="0" />
-      <LineId Id="31" Count="7" />
+      <LineId Id="31" Count="4" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="36" Count="2" />
       <LineId Id="114" Count="0" />
       <LineId Id="39" Count="4" />
       <LineId Id="9" Count="0" />

@@ -54,9 +54,6 @@ VAR
 	Controller_OuterCapillaryTubeMats_Permission_Parameters : ST_CTRL_2POINT_PARAMS;	
 	
 	//controllers and variables for cooling network
-	fOffset_TargetTemperature_eChiller : REAL;
-	Controller_eChiller : FB_CTRL_2POINT;
-	Controller_eChiller_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_HVFA_CN : FB_CTRL_2POINT;
 	Controller_HVFA_CN_Parameters : ST_CTRL_2POINT_PARAMS;
 	
@@ -113,18 +110,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
-fOffset_TargetTemperature_eChiller := 2;
-Controller_eChiller_Parameters.fHysteresisRange := 5;
-Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_eChiller_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
-Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_eChiller,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_eChiller_Parameters);
-cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
+        <ST><![CDATA[//control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
+cnControl.bSetStatusOn_eChiller := TRUE;
 
 //control hvfa storage
 //hvfa storage is currently not used
@@ -360,10 +347,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlCN">
-      <LineId Id="6" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="7" Count="2" />
-      <LineId Id="13" Count="6" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="19" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="36" Count="0" />
