@@ -25,16 +25,11 @@ VAR
 	Ambient : FB_Ambient;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//implement states and linked them to exisiting buffer storage components
-hnhtState.fUpperTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_oben;
-hnhtState.fMidTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_mitte;
-hnhtState.fLowerTemperature := Speicher.Pufferspeicher_Heisswasser_395.Zustand.Temp_unten;
-
-//strategy controller
+      <ST><![CDATA[//strategy controller
 Strategy(ambientState := Ambient.localState,
 	cnState := CN.localState,
 	hnltState := HNLT.localState,
-	hnhtState := hnhtState);
+	hnhtState := HNHT.localState);
 
 //ambient state
 Ambient();
@@ -126,9 +121,7 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
 (* BUS Kommunikation - SCHREIBEN *)]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="112" Count="0" />
-      <LineId Id="194" Count="2" />
-      <LineId Id="115" Count="4" />
+      <LineId Id="116" Count="3" />
       <LineId Id="193" Count="0" />
       <LineId Id="120" Count="7" />
       <LineId Id="169" Count="0" />

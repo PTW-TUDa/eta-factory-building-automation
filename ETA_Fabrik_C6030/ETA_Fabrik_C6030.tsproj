@@ -12465,7 +12465,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF295_HNLT_LowerTemperature</Name>
+									<Name>ai_TF295_HNHT_MidTemperature_TEMPORARY</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12473,7 +12473,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF295_HNLT_LowerTemperature</Name>
+										<Name>ai_TF295_HNLT_MidTemperature_Temporary</Name>
 										<Type>INT</Type>
 										<BitOffs>13712</BitOffs>
 										<InOut>0</InOut>
@@ -16500,7 +16500,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201f803" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -25317,6 +25317,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN" VarB="K531A1_BI^bi_SV100_Open^bi_SV100_Open"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_LowerTemperature^TF795_HVFA_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_UpperTemperature^TF795_HVFA_UpperTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNHT_MidTemperature_TEMPORARY^ai_TF295_HNLT_MidTemperature_Temporary"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.CHP.bError_IN" VarB="K531A1_BI^bi_CHP1_Error^bi_CHP1_Error"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOff_IN" VarB="K533A1_BI^bi_SV321_Closed^bi_SV321_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOn_IN" VarB="K533A1_BI^bi_SV321_Open^bi_SV321_Open"/>
@@ -25329,7 +25330,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOn_IN" VarB="K535A1_BI^bi_SV453_Open^bi_SV453_Open"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOff_IN" VarB="K535A1_BI^bi_SV454_Closed^bi_SV454_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOn_IN" VarB="K535A1_BI^bi_SV454_Open^bi_SV454_Open"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNLT_LowerTemperature^ai_TF295_HNLT_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNLT_MidTemperature^ai_TF295_HNLT_MidTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF295_HNLT_UpperTemperature^ai_TF295_HNLT_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_LowerTemperature^TF797_HVFA_LowerTemperature"/>
