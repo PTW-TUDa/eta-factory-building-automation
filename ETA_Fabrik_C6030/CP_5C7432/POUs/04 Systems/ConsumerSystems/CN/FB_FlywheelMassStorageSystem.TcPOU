@@ -42,8 +42,8 @@ SV191.SetState_BO();
 PU191.GetState_Profibus();
 PU191(bSetStatusOnAutomatic := bSetStatusOn_PU191,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := fSetPoint,
-	nControlModeAutomatic := 1);
+	fSetPointAutomatic := 70,
+	nControlModeAutomatic := 0);
 PU191.SetState_Profibus();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{78f9e2f0-0900-4107-96ee-83c45787b471}">
