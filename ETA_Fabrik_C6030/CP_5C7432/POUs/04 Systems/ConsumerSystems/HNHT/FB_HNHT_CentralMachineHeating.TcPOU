@@ -118,8 +118,8 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
-aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetState" Id="{4e2ea92d-ea0a-4d3f-bc29-d3387dc8f5c1}">
@@ -130,14 +130,14 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := PU300.fTemperatureExternal;
+        <ST><![CDATA[fOperatingPoint := PU300.fOperatingPoint;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.fSetPoint := fSetPoint;
 setPointState.fOperatingPoint := fOperatingPoint;
-setPointState.sSetPointUnit := 'degreeC';
-setPointState.sOperatingPointUnit := 'degreeC';
+setPointState.sSetPointUnit := 'percent';
+setPointState.sOperatingPointUnit := 'percent';
 ]]></ST>
       </Implementation>
     </Method>
