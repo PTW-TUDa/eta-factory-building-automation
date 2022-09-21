@@ -9,15 +9,19 @@ VAR_OUTPUT
 	localState : ST_AmbientState;
 END_VAR
 VAR
+	WeatherStation : FB_WeatherStation;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//add ambient temperature rain etc. from weather station
+      <ST><![CDATA[WeatherStation();
+
+//add ambient temperature rain etc. from weather station
 localState.fOutsideTemperature := Umwelt.Temp_Aussen_WS;
 localState.bRain := Umwelt.Regen;
 localState.fHallTemperature := Umwelt.Temp_Halle_Sektor3;]]></ST>
     </Implementation>
     <LineIds Name="FB_Ambient">
+      <LineId Id="28" Count="1" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="13" Count="0" />
