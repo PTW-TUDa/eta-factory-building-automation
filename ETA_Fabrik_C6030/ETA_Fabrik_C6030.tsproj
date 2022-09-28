@@ -2302,6 +2302,11 @@
 							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Status</Name>
 							<Type>USINT</Type>
 						</Var>
@@ -15227,7 +15232,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>TF053_RT_Sek_3_PT100</Name>
+									<Name>TF053_HallTemperature_Sector3</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -15235,7 +15240,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF053_RT_Sek_3_PT100</Name>
+										<Name>TF053_HallTemperature_Sector3</Name>
 										<Type>INT</Type>
 										<BitOffs>16848</BitOffs>
 										<InOut>0</InOut>
@@ -25126,30 +25131,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT" VarB="ao_eChiller_fSetPoint^ao_eChiller_fSetPoint"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[10]" VarB="K523A1_EIB^Channel 1^Input Data 8"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[11]" VarB="K523A1_EIB^Channel 1^Input Data 9"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[12]" VarB="K523A1_EIB^Channel 1^Input Data 10"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[13]" VarB="K523A1_EIB^Channel 1^Input Data 11"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[14]" VarB="K523A1_EIB^Channel 1^Input Data 12"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[15]" VarB="K523A1_EIB^Channel 1^Input Data 13"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[16]" VarB="K523A1_EIB^Channel 1^Input Data 14"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[17]" VarB="K523A1_EIB^Channel 1^Input Data 15"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[18]" VarB="K523A1_EIB^Channel 1^Input Data 16"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[19]" VarB="K523A1_EIB^Channel 1^Input Data 17"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[1]" VarB="K523A1_EIB^Channel 1^Parameter Status"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[20]" VarB="K523A1_EIB^Channel 1^Input Data 18"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[21]" VarB="K523A1_EIB^Channel 1^Input Data 19"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[22]" VarB="K523A1_EIB^Channel 1^Input Data 20"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[23]" VarB="K523A1_EIB^Channel 1^Input Data 21"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[24]" VarB="K523A1_EIB^Channel 1^Input Data 22"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[2]" VarB="K523A1_EIB^Channel 1^Parameter Status" Size="8" OffsB="8"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[3]" VarB="K523A1_EIB^Channel 1^Input Data 1"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[4]" VarB="K523A1_EIB^Channel 1^Input Data 2"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[5]" VarB="K523A1_EIB^Channel 1^Input Data 3"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[6]" VarB="K523A1_EIB^Channel 1^Input Data 4"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[7]" VarB="K523A1_EIB^Channel 1^Input Data 5"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[8]" VarB="K523A1_EIB^Channel 1^Input Data 6"/>
-				<Link VarA="ComTask Inputs^.KL_Wetterstation_IN[9]" VarB="K523A1_EIB^Channel 1^Input Data 7"/>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 0"/>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 10"/>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[11]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 11"/>
@@ -25173,30 +25154,6 @@ PU105]]></Comment>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[8]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 8"/>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[9]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 9"/>
 				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^Status" VarB="K526A1_Serielle_RS422RS485^Channel 1^Status"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[10]" VarB="K523A1_EIB^Channel 1^Output Data 8"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[11]" VarB="K523A1_EIB^Channel 1^Output Data 9"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[12]" VarB="K523A1_EIB^Channel 1^Output Data 10"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[13]" VarB="K523A1_EIB^Channel 1^Output Data 11"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[14]" VarB="K523A1_EIB^Channel 1^Output Data 12"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[15]" VarB="K523A1_EIB^Channel 1^Output Data 13"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[16]" VarB="K523A1_EIB^Channel 1^Output Data 14"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[17]" VarB="K523A1_EIB^Channel 1^Output Data 15"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[18]" VarB="K523A1_EIB^Channel 1^Output Data 16"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[19]" VarB="K523A1_EIB^Channel 1^Output Data 17"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[1]" VarB="K523A1_EIB^Channel 1^Parameter Control"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[20]" VarB="K523A1_EIB^Channel 1^Output Data 18"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[21]" VarB="K523A1_EIB^Channel 1^Output Data 19"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[22]" VarB="K523A1_EIB^Channel 1^Output Data 20"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[23]" VarB="K523A1_EIB^Channel 1^Output Data 21"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[24]" VarB="K523A1_EIB^Channel 1^Output Data 22"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[2]" VarB="K523A1_EIB^Channel 1^Parameter Control" Size="8" OffsB="8"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[3]" VarB="K523A1_EIB^Channel 1^Output Data 1"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[4]" VarB="K523A1_EIB^Channel 1^Output Data 2"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[5]" VarB="K523A1_EIB^Channel 1^Output Data 3"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[6]" VarB="K523A1_EIB^Channel 1^Output Data 4"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[7]" VarB="K523A1_EIB^Channel 1^Output Data 5"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[8]" VarB="K523A1_EIB^Channel 1^Output Data 6"/>
-				<Link VarA="ComTask Outputs^.KL_Wetterstation_OUT[9]" VarB="K523A1_EIB^Channel 1^Output Data 7"/>
 				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^Ctrl" VarB="K526A1_Serielle_RS422RS485^Channel 1^Ctrl"/>
 				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 0"/>
 				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 10"/>
@@ -25303,8 +25260,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor1.IN_Temperatur" VarB="K578A1_AI (KL3222)^TF051_RT_Sek_1_PT100^TF051_RT_Sek_1_PT100"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor2.IN_Status" VarB="K579A1_AI (KL3222)^TF052_RT_Sek_2_PT100^Status"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor2.IN_Temperatur" VarB="K579A1_AI (KL3222)^TF052_RT_Sek_2_PT100^TF052_RT_Sek_2_PT100"/>
-				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor3.IN_Status" VarB="K579A1_AI (KL3222)^TF053_RT_Sek_3_PT100^Status"/>
-				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor3.IN_Temperatur" VarB="K579A1_AI (KL3222)^TF053_RT_Sek_3_PT100^TF053_RT_Sek_3_PT100"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Status" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^Status"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Temperatur" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^ai_TF050_EG_Nord_AT"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^byLONStatus" VarB="K524A1_LON^Channel 1^LON Status"/>
@@ -25318,6 +25273,29 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[7]" VarB="K524A1_LON^Channel 1^Parameter Input Data 7"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[8]" VarB="K524A1_LON^Channel 1^Parameter Input Data 8"/>
 				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^wParameterStatus" VarB="K524A1_LON^Channel 1^Parameter Status"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor.temperature_IN" VarB="K579A1_AI (KL3222)^TF053_HallTemperature_Sector3^TF053_HallTemperature_Sector3"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 1"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 10" Size="8" OffsA="72"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 11" Size="8" OffsA="80"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 12" Size="8" OffsA="88"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 13" Size="8" OffsA="96"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 14" Size="8" OffsA="104"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 15" Size="8" OffsA="112"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 16" Size="8" OffsA="120"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 17" Size="8" OffsA="128"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 18" Size="8" OffsA="136"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 19" Size="8" OffsA="144"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 2" Size="8" OffsA="8"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 20" Size="8" OffsA="152"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 21" Size="8" OffsA="160"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 22" Size="8" OffsA="168"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 3" Size="8" OffsA="16"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 4" Size="8" OffsA="24"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 5" Size="8" OffsA="32"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 6" Size="8" OffsA="40"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 7" Size="8" OffsA="48"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 8" Size="8" OffsA="56"/>
+				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 9" Size="8" OffsA="64"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_LowerTemperature^ai_TF195_CN_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_MidTemperature^ai_TF195_CN_MidTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_UpperTemperature^ai_TF195_CN_UpperTemperature"/>
@@ -25393,6 +25371,28 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^wParameterControl" VarB="K524A1_LON^Channel 1^Parameter Control"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Kaeltekompressor_KW_145.Stellventil_145.OUT_Stellung" VarB="K540A1_BO^bo_SV145_KWPufffersp_WP_Absperrventil^bo_SV145_KWPufffersp_WP_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung" VarB="K540A1_BO^bo_SV215^bo_SV215"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 1"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 10"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 11"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 12"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 13"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 14"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 15"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 16"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 17"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 18"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 19"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 2"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 20"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 21"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 22"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 3"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 4"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 5"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 6"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 7"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 8"/>
+				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 9"/>
 				<Link VarA="Standard Outputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV100^bo_SV100"/>
 				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV191^bo_SV191"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP1System.CHP.bSetStatusOn_OUT" VarB="K542A1_BO^bo_CHP1^bo_CHP1_bSetStatusOn"/>

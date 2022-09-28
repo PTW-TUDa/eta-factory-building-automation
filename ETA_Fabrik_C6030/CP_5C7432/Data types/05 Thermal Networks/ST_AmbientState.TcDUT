@@ -5,6 +5,7 @@
 TYPE ST_AmbientState :
 STRUCT
 	fOutsideTemperature : REAL;
+	fOutsideTemperature_Mean : REAL;
 	fHallTemperature : REAL;
 	bRain : BOOL;
 END_STRUCT
