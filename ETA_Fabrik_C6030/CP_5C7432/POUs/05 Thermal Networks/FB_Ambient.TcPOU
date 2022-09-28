@@ -9,17 +9,27 @@ VAR_OUTPUT
 	localState : ST_AmbientState;
 END_VAR
 VAR
+	WeatherStation : FB_WeatherStation;
+	HallTemperatureSensor : FB_TemperatureSensor;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//add ambient temperature rain etc. from weather station
-localState.fOutsideTemperature := Umwelt.Temp_Aussen_WS;
-localState.bRain := Umwelt.Regen;
-localState.fHallTemperature := Umwelt.Temp_Halle_Sektor3;]]></ST>
+      <ST><![CDATA[WeatherStation();
+HallTemperatureSensor();
+
+//add ambient temperature rain etc. from weather station
+localState.fOutsideTemperature := WeatherStation.fTemperature;
+localState.fOutsideTemperature_Mean := WeatherStation.fMeanTemperature;
+localState.bRain := WeatherStation.bRain;
+localState.fHallTemperature := HallTemperatureSensor.fTemperature;]]></ST>
     </Implementation>
     <LineIds Name="FB_Ambient">
+      <LineId Id="28" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="29" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
+      <LineId Id="40" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
