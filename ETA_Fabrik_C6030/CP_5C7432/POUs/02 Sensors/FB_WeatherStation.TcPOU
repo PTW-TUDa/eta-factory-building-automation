@@ -21,6 +21,16 @@ VAR
 	KL6301_IN 				AT %I* : ARRAY[1..24]OF BYTE;
 	KL6301_OUT 				AT %Q* : ARRAY[1..24]OF BYTE;
 	
+	Group_0_0_1		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=1);
+	Group_0_0_2		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=2);
+	Group_0_0_3		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=3);
+	Group_0_0_4		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=4);
+
+	recWindSpeed	: EIB_2OCTET_FLOAT_REC;
+	recTemperature	: EIB_2OCTET_FLOAT_REC;
+	recDawn			: EIB_2OCTET_FLOAT_REC;
+	recRain			: EIB_BIT_REC;
+	
 	//clock
 	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
 	Clock : FB_Clock := (ST_DefaultParameters := stDefaultParameters_Clock);
@@ -38,11 +48,35 @@ IF (NOT bInit_done) THEN
 	bInit_done := InitializeTerminal();
 END_IF
 
-//convert values from terminal
-ReadValues(fWindSpeed => fWindSpeed, fTemperature => fTemperature, fDawn => fDawn, bRain => bRain);
+IF(KL6301_Terminal.bReady) THEN
+	recWindSpeed(
+		Group_Address := Group_0_0_1,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recTemperature(
+		Group_Address := Group_0_0_2,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recDawn(
+		Group_Address := Group_0_0_3,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recRain(
+		Group_Address := Group_0_0_4,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	fWindSpeed := recWindSpeed.rData;
+	fTemperature := recTemperature.rData;
+	fDawn := recDawn.rData;
+	bRain := recRain.bData;
+END_IF
 
 //calculate moving average temperatrue
-fMeanTemperature := CalculateAverageTemperature(fActualTemperature := fTemperature);
+CalculateAverageTemperature(fActualTemperature := REAL_TO_LREAL(fTemperature), fMeanTemperature => fMeanTemperature);
 
 
 ]]></ST>
@@ -62,7 +96,7 @@ VAR_INST
 	fMeanTemperature_Winter_init : REAL := 5;
 	
 	stParameters_Average_Temperature : ST_CTRL_MOVING_AVERAGE_PARAMS;
-	aTemperatureBuffer 				: ARRAY [1..360] OF REAL;
+	aTemperatureBuffer 				: ARRAY [1..360] OF FLOAT;
 END_VAR
 ]]></Declaration>
       <Implementation>
@@ -88,7 +122,7 @@ Moving_Average_Temperature(
 	eMode := 2,
 	bHold := FALSE,
 	stParams := stParameters_Average_Temperature);
-fMeanTemperature := LREAL_TO_REAL(Moving_Average_Temperature.fOut);]]></ST>
+fMeanTemperature := Moving_Average_Temperature.fOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="InitializeTerminal" Id="{45dc9229-146c-4d2a-b134-156e4a7bbcc1}">
@@ -130,44 +164,11 @@ VAR_OUTPUT
 	bRain 			: BOOL;
 END_VAR
 VAR
-	Group_0_0_1		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=1);
-	Group_0_0_2		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=2);
-	Group_0_0_3		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=3);
-	Group_0_0_4		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=4);
 
-	recWindSpeed	: EIB_2OCTET_FLOAT_REC;
-	recTemperature	: EIB_2OCTET_FLOAT_REC;
-	recDawn			: EIB_2OCTET_FLOAT_REC;
-	recRain			: EIB_BIT_REC;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF(KL6301_Terminal.bReady) THEN
-	recWindSpeed(
-		Group_Address := Group_0_0_1,
-		strData_Rec := KL6301_Terminal.str_Data_Rec
-	);
-
-	recTemperature(
-		Group_Address := Group_0_0_2,
-		strData_Rec := KL6301_Terminal.str_Data_Rec
-	);
-
-	recDawn(
-		Group_Address := Group_0_0_3,
-		strData_Rec := KL6301_Terminal.str_Data_Rec
-	);
-
-	recRain(
-		Group_Address := Group_0_0_4,
-		strData_Rec := KL6301_Terminal.str_Data_Rec
-	);
-
-	fWindSpeed := recWindSpeed.rData;
-	fTemperature := recTemperature.rData;
-	fDawn := recDawn.rData;
-	bRain := recRain.bData;
-END_IF]]></ST>
+        <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_WeatherStation">
@@ -178,9 +179,9 @@ END_IF]]></ST>
       <LineId Id="24" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="18" Count="1" />
-      <LineId Id="142" Count="0" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="81" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="180" Count="24" />
+      <LineId Id="179" Count="0" />
       <LineId Id="151" Count="0" />
       <LineId Id="143" Count="0" />
       <LineId Id="31" Count="0" />
@@ -192,13 +193,12 @@ END_IF]]></ST>
       <LineId Id="62" Count="5" />
       <LineId Id="69" Count="1" />
       <LineId Id="72" Count="13" />
-      <LineId Id="125" Count="0" />
+      <LineId Id="142" Count="0" />
     </LineIds>
     <LineIds Name="FB_WeatherStation.InitializeTerminal">
       <LineId Id="14" Count="16" />
     </LineIds>
     <LineIds Name="FB_WeatherStation.ReadValues">
-      <LineId Id="6" Count="24" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
