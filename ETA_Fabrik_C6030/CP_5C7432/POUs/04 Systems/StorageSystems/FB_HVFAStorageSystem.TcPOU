@@ -8,6 +8,7 @@ VAR_INPUT
 	aTelegramm_WMZx05 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 END_VAR
 VAR_OUTPUT
+	localState : ST_HVFAStorageState;
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
@@ -58,7 +59,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//storage
-HVFAStorage();
+HVFAStorage(localState => localState);
 
 SelectLoadingMode();
 SwitchToLoading(CLK := bLoading);

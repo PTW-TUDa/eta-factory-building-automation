@@ -10,7 +10,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	{attribute 'OPC.UA.DA' := '1'}
-	localState : ST_BufferStorageState;
+	localState : ST_ThermalNetworkState;
 END_VAR
 VAR
 	//systems
@@ -34,7 +34,11 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//buffer storage system
 BufferStorage();
-localState := BufferStorage.localState;
+localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
+localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
+localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := HVFASystem.localState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := HVFASystem.localState.fLowerTemperature;
 
 //producer
 CompressorSystem(bSetStatusOnAutomatic := TRUE,
@@ -74,7 +78,9 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	aTelegramm_WMZx05 := aTelegramm_WMZ205);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkLowTemperature">
-      <LineId Id="32" Count="2" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="306" Count="3" />
+      <LineId Id="34" Count="0" />
       <LineId Id="42" Count="1" />
       <LineId Id="196" Count="2" />
       <LineId Id="35" Count="4" />

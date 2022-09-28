@@ -633,12 +633,12 @@
 					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>ComTask Outputs</Name>
 						<Var>
-							<Name>.KL_Wetterstation_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
 							<Name>.OUT_UMG_Anfrage</Name>
 							<Type>BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.KL_Wetterstation_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 						<Var>
 							<Name>.Modbus_NSHV.OutData</Name>
@@ -2296,6 +2296,15 @@
 							<Name>MAIN.HNHT.SV_SupplyAir.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Status</Name>
@@ -4397,15 +4406,6 @@
 							<Name>.IN_Profibus_DLK</Name>
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="3" AreaNo="49">
 						<Name>Standard Outputs</Name>
@@ -4894,6 +4894,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
 							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.OUT_Temp_intern_GeniRequest</Name>
 							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
 						</Var>
@@ -5316,10 +5320,6 @@
 						<Var>
 							<Name>.OUT_Profibus_DLK</Name>
 							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2022-03-23T15:03:59">

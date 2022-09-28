@@ -10,7 +10,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	{attribute 'OPC.UA.DA' := '1'}
-	localState : ST_BufferStorageState;
+	localState : ST_ThermalNetworkState;
 END_VAR
 VAR
 	//systems
@@ -38,7 +38,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//buffer storage system
 BufferStorage();
-localState := BufferStorage.localState;
+localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
+localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
+localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
 
 //producer
 CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
@@ -81,7 +83,9 @@ AnnealingOvenExhaustGasSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOve
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
-      <LineId Id="40" Count="7" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="372" Count="2" />
+      <LineId Id="43" Count="4" />
       <LineId Id="206" Count="0" />
       <LineId Id="232" Count="0" />
       <LineId Id="161" Count="0" />
