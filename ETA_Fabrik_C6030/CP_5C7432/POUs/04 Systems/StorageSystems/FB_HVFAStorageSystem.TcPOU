@@ -77,7 +77,7 @@ END_IF;
 //pumps
 PUx05.GetState_Profibus();
 PUx05(bSetStatusOnAutomatic := bSetStatusOn_PUx05,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PUx05.SetState_Profibus();
@@ -170,10 +170,8 @@ END_VAR]]></Declaration>
         <ST><![CDATA[bSetStatusOn_PU7x0 := FALSE;
 bSetStatusOn_PUx05 := FALSE;
 bSetStatusOn_RVx05 := FALSE;
-bSetStatusOn_SVx05 := FALSE;
-bSetStatusOn_SVx06 := FALSE;
 
-IF RVx05.fOperatingPoint<5 AND SVx05.fOperatingPoint<5 AND SVx06.fOperatingPoint<5 AND NOT PUx05.bStatusOn THEN
+IF RVx05.fOperatingPoint<20 AND NOT PUx05.bStatusOn THEN
 	bRampDownFinished := TRUE;
 END_IF
 ]]></ST>
@@ -196,7 +194,7 @@ IF bLoading = TRUE THEN
 	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
-	IF SVx05.fOperatingPoint>90 AND SVx06.fOperatingPoint>90 THEN
+	IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 ELSE
@@ -204,7 +202,7 @@ ELSE
 	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
-	IF SVx05.fOperatingPoint<10 AND SVx06.fOperatingPoint<10 THEN
+	IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 END_IF
@@ -285,7 +283,7 @@ IF bRampDownFinished THEN
 		fSetPoint_SVx05 := 100;
 		fSetPoint_SVx06 := 100;
 		nControlMode_RVx05 := 2; //cooling mode (heats network)	
-		IF SVx05.fOperatingPoint>95 AND SVx06.fOperatingPoint>95 THEN
+		IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -296,7 +294,7 @@ IF bRampDownFinished THEN
 		fSetPoint_SVx05 := 0;
 		fSetPoint_SVx06 := 0;
 		nControlMode_RVx05 := 1; //cooling mode (heats network)	
-		IF SVx05.fOperatingPoint<5 AND SVx06.fOperatingPoint<5 THEN
+		IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -357,15 +355,14 @@ END_VAR]]></Declaration>
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.RampDown">
-      <LineId Id="8" Count="2" />
-      <LineId Id="40" Count="1" />
-      <LineId Id="11" Count="2" />
+      <LineId Id="8" Count="5" />
       <LineId Id="7" Count="0" />
       <LineId Id="26" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.RampUp">
-      <LineId Id="9" Count="2" />
-      <LineId Id="74" Count="2" />
+      <LineId Id="85" Count="2" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="74" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="42" Count="0" />
