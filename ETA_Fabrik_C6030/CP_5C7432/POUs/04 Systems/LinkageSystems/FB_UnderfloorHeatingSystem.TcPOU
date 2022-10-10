@@ -254,8 +254,8 @@ END_VAR
 IF bRampDownFinished THEN
 	IF bSwitchToHeating THEN
 		//false - valve connects heating network
-		bSetStatusOn_SV423 := FALSE;
-		bSetStatusOn_SV424 := FALSE;	
+		bSetStatusOn_SV423 := TRUE;
+		bSetStatusOn_SV424 := TRUE;	
 
 		IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
 			//reset instant variable and switch on pump
@@ -266,8 +266,8 @@ IF bRampDownFinished THEN
 		
 	ELSE
 		//true - connects cooling network
-		bSetStatusOn_SV423 := TRUE;
-		bSetStatusOn_SV424 := TRUE;	
+		bSetStatusOn_SV423 := FALSE;
+		bSetStatusOn_SV424 := FALSE;	
 
 		IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
 			//reset instant variable and switch on pump

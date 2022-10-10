@@ -104,7 +104,6 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//check for heating or cooling mode
-(*
 IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
 	//heating mode
 	hnltCnLinkageControl.bHeatingMode := FALSE;
@@ -114,10 +113,12 @@ ELSE
 	hnltCnLinkageControl.bHeatingMode := TRUE;
 	hnhtCnLinkageControl.bHeatingMode := TRUE;
 END_IF
-*)
 
+
+(*
 hnltCnLinkageControl.bHeatingMode := FALSE;
-hnhtCnLinkageControl.bHeatingMode := FALSE;]]></ST>
+hnhtCnLinkageControl.bHeatingMode := FALSE;
+*)]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlCN" Id="{c114617d-ff2b-491a-a80e-d1c974ffb859}">
@@ -230,8 +231,8 @@ Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_Ta
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
-//hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
-hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;
+hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
+//hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_StaticHeating(fSetpointValue := 15,
@@ -258,9 +259,9 @@ Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
-//hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
+hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
 
-hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := FALSE;]]></ST>
+//hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
@@ -397,16 +398,16 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.AmbientControl">
-      <LineId Id="6" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="7" Count="2" />
+      <LineId Id="6" Count="3" />
       <LineId Id="16" Count="0" />
       <LineId Id="10" Count="2" />
       <LineId Id="17" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="22" Count="0" />
+      <LineId Id="29" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="23" Count="1" />
+      <LineId Id="30" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlCN">
       <LineId Id="51" Count="2" />
