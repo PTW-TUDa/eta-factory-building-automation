@@ -30,14 +30,14 @@ HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
 	fSetPointAutomatic := 0);
 	
 //NOTE: inner capillary tube mats are always on and recieve desired hall temperature as setpoint
-InnerCapillaryTubeMats(bSetStatusOnAutomatic := TRUE,
+InnerCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_InnerCapillaryTubeMats,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fTargetTemperature_ProductionHall,
 	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
 	stAmbientState := stAmbientState);
 
 //NOTE: underfloor heating is always on and recieves no setpoint because ambient temperature depending feed temperature is calculated inside FB
-UnderfloorHeatingSystem(bSetStatusOnAutomatic := TRUE,
+UnderfloorHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_UnderfloorHeating,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := 0,
 	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,

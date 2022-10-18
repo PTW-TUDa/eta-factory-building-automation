@@ -122,7 +122,7 @@ Moving_Average_Temperature(
 	eMode := 2,
 	bHold := FALSE,
 	stParams := stParameters_Average_Temperature);
-fMeanTemperature := Moving_Average_Temperature.fOut;]]></ST>
+fMeanTemperature := LREAL_TO_REAL(Moving_Average_Temperature.fOut);]]></ST>
       </Implementation>
     </Method>
     <Method Name="InitializeTerminal" Id="{45dc9229-146c-4d2a-b134-156e4a7bbcc1}">
