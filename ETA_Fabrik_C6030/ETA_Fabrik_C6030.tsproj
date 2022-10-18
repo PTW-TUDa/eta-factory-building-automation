@@ -14019,7 +14019,7 @@ PU245
 								<Name>K570A1_AO-1/2</Name>
 								<ImageId>34</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ao_RV241_InnenHalle_AKM_WWN</Name>
+									<Name>ao_RV241</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -14039,14 +14039,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV241_InnenHalle_AKM_WWN</Name>
+										<Name>ao_RV241</Name>
 										<Type>INT</Type>
 										<BitOffs>15472</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV141_InnenHalle_AKM_KWN</Name>
+									<Name>ao_RV141</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -14066,14 +14066,14 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV141_InnenHalle_AKM_KWN</Name>
+										<Name>ao_RV141</Name>
 										<Type>INT</Type>
 										<BitOffs>15504</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ao_RV341_InnenHalle_AKM_KWN</Name>
+									<Name>ao_RV341</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -14093,7 +14093,7 @@ PU245
 										<InOut>1</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ao_RV341_InnenHalle_AKM_KWN</Name>
+										<Name>ao_RV341</Name>
 										<Type>INT</Type>
 										<BitOffs>15536</BitOffs>
 										<InOut>1</InOut>
@@ -25262,17 +25262,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor2.IN_Temperatur" VarB="K579A1_AI (KL3222)^TF052_RT_Sek_2_PT100^TF052_RT_Sek_2_PT100"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Status" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^Status"/>
 				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Temperatur" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^ai_TF050_EG_Nord_AT"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^byLONStatus" VarB="K524A1_LON^Channel 1^LON Status"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^byParameterType" VarB="K524A1_LON^Channel 1^Parameter Type"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[1]" VarB="K524A1_LON^Channel 1^Parameter Input Data 1"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[2]" VarB="K524A1_LON^Channel 1^Parameter Input Data 2"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[3]" VarB="K524A1_LON^Channel 1^Parameter Input Data 3"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[4]" VarB="K524A1_LON^Channel 1^Parameter Input Data 4"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[5]" VarB="K524A1_LON^Channel 1^Parameter Input Data 5"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[6]" VarB="K524A1_LON^Channel 1^Parameter Input Data 6"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[7]" VarB="K524A1_LON^Channel 1^Parameter Input Data 7"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^stParameterReadValue^arrParameterInterface[8]" VarB="K524A1_LON^Channel 1^Parameter Input Data 8"/>
-				<Link VarA="Standard Inputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1^wParameterStatus" VarB="K524A1_LON^Channel 1^Parameter Status"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor.temperature_IN" VarB="K579A1_AI (KL3222)^TF053_HallTemperature_Sector3^TF053_HallTemperature_Sector3"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 1" Size="8" OffsA="16"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 10" Size="8" OffsA="88"/>
@@ -25359,17 +25348,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Gruen" VarB="K540A1_BO^ISP01 Sammelstörung_rot^ISP01 Ampel_Gruen"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Orange" VarB="K540A1_BO^ISP01 Sammelstörung_gelb^ISP01 Ampel_Orange"/>
 				<Link VarA="Standard Outputs^.Signal_Ampel.Signal_Ampel.OUT_Stellung_Rot" VarB="K540A1_BO^ISP01 Sammelstörung_gruen^ISP01 Ampel_Rot"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^byCMD" VarB="K524A1_LON^Channel 1^CMD"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^byIdx" VarB="K524A1_LON^Channel 1^Idx"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[1]" VarB="K524A1_LON^Channel 1^Parameter Output Data 1"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[2]" VarB="K524A1_LON^Channel 1^Parameter Output Data 2"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[3]" VarB="K524A1_LON^Channel 1^Parameter Output Data 3"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[4]" VarB="K524A1_LON^Channel 1^Parameter Output Data 4"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[5]" VarB="K524A1_LON^Channel 1^Parameter Output Data 5"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[6]" VarB="K524A1_LON^Channel 1^Parameter Output Data 6"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[7]" VarB="K524A1_LON^Channel 1^Parameter Output Data 7"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^stParametervalue^arrParameterInterface[8]" VarB="K524A1_LON^Channel 1^Parameter Output Data 8"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1^wParameterControl" VarB="K524A1_LON^Channel 1^Parameter Control"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Kaeltekompressor_KW_145.Stellventil_145.OUT_Stellung" VarB="K540A1_BO^bo_SV145_KWPufffersp_WP_Absperrventil^bo_SV145_KWPufffersp_WP_Absperrventil"/>
 				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung" VarB="K540A1_BO^bo_SV215^bo_SV215"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 1" Size="8" OffsA="16"/>

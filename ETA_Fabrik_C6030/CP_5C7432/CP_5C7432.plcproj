@@ -21,6 +21,7 @@
     <Folder Include="Data types\04 Systems\ConsumerSystems\CN" />
     <Folder Include="Data types\04 Systems\CoolingSystems" />
     <Folder Include="Data types\04 Systems\CoolingSystems\eChiller" />
+    <Folder Include="Data types\04 Systems\CoolingSystems\AbsorptionChillerSystem" />
     <Folder Include="Data types\04 Systems\CoolingSystems\OuterCapillaryTubeMats" />
     <Folder Include="Data types\04 Systems\HeatingSystems" />
     <Folder Include="Data types\04 Systems\HeatingSystems\CHP" />
@@ -241,6 +242,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\ConsumerSystems\HNLT\ST_CompressorDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\CoolingSystems\AbsorptionChillerSystem\ST_AbsorptionChillerDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\CoolingSystems\eChiller\ST_eChillerDefaultParameters.TcDUT">
@@ -672,6 +676,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\ConsumerSystems\HNLT\FB_CompressorSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_AbsorptionChillerSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\CoolingSystems\FB_eChillerSystem.TcPOU">

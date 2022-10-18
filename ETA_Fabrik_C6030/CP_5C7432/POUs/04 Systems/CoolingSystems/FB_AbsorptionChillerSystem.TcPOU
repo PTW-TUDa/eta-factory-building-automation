@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_AbsorptionChillerSystem" Id="{0d680238-b917-4b1b-839f-91d7fc50cfe5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AbsorptionChillerSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_AbsorptionChillerDefaultParameters;
+
+	//pumps
+	stPU341DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := TRUE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stPU241DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stPU141DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU341 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU341DefaultParameters);
+	PU241 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU241DefaultParameters);
+	PU141 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU141DefaultParameters);
+
+	//valves
+	stRV341DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV241DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV141DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	RV341 : FB_MixingValve := (ST_DefaultParameters := stRV341DefaultParameters);
+	RV241 : FB_MixingValve := (ST_DefaultParameters := stRV241DefaultParameters);
+	RV141 : FB_MixingValve := (ST_DefaultParameters := stRV141DefaultParameters);
+	
+	//internal variables
+	bSetStatusOn_PU341 : BOOL;
+	bSetStatusOn_PU241 : BOOL;
+	bSetStatusOn_PU141 : BOOL;
+	bSetStatusOn_RV341 : BOOL;
+	bSetStatusOn_RV241 : BOOL;
+	bSetStatusOn_RV141 : BOOL;
+	
+	//timer
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+//pumps
+PU341.GetState_Profibus();
+PU341(bSetStatusOnAutomatic := bSetStatusOn_PU341,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU341.SetState_Profibus();
+
+PU241.GetState_Profibus();
+PU241(bSetStatusOnAutomatic := bSetStatusOn_PU241,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU241.SetState_Profibus();
+
+PU141.GetState_Profibus();
+PU141(bSetStatusOnAutomatic := bSetStatusOn_PU141,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU141.SetState_Profibus();
+
+//use timer because valve has no feedback signal (75 sec)
+Timer(IN := bStartTimer,
+	PT := T#75S);
+
+//valves
+RV341.GetState_AI();
+RV341(bSetStatusOnAutomatic := bSetStatusOn_RV341,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU341.fTemperatureInternal,
+	nControlModeAutomatic := 0);
+RV341.SetState_AO();
+
+RV341.GetState_AI();
+RV341(bSetStatusOnAutomatic := bSetStatusOn_RV341,
+	fSetPointAutomatic := 85,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU341.fTemperatureInternal,
+	nControlModeAutomatic := 1);
+RV341.SetState_AO();
+
+RV241.GetState_AI();
+RV241(bSetStatusOnAutomatic := bSetStatusOn_RV241,
+	fSetPointAutomatic := 32,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU241.fTemperatureExternal,
+	nControlModeAutomatic := 2);
+RV241.SetState_AO();
+
+RV141.GetState_AI();
+RV141(bSetStatusOnAutomatic := bSetStatusOn_RV241,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU241.fTemperatureInternal,
+	nControlModeAutomatic := 1);
+RV141.SetState_AO();]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{01551388-85c9-4888-9024-384d5b14de4e}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := PU341.bError OR PU241.bError OR PU141.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{ce23bd3b-240c-460c-9563-038f4095d7f1}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU341 := TRUE;
+bSetStatusOn_PU241 := TRUE;
+bSetStatusOn_PU141 := TRUE;
+
+IF PU341.bStatusOn AND PU241.bStatusOn AND PU141.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{3a79203b-33ae-45b8-81fb-f910f35e6815}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU341 := FALSE;
+bSetStatusOn_PU241 := FALSE;
+bSetStatusOn_PU141 := FALSE;
+
+IF NOT PU341.bStatusOn AND NOT PU241.bStatusOn AND NOT PU141.bStatusOn THEN
+	bStartTimer := TRUE;
+	bSetStatusOn_RV341 := FALSE;
+	bSetStatusOn_RV241 := FALSE;
+	bSetStatusOn_RV141 := FALSE;
+	IF Timer.Q THEN
+		bRampDownFinished := TRUE;
+		bStartTimer := FALSE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{d04c8bcf-934e-48aa-9bcb-1e2492d10034}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV341 := TRUE;
+bSetStatusOn_RV241 := TRUE;
+bSetStatusOn_RV141 := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bRampUpFinished := TRUE;
+	bStartTimer := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{7d0d707c-e34d-4e57-acf1-0af6915ecaf3}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{c411e802-76b9-4fe9-be62-42cee6a4ac55}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU341.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{8bd5daef-b500-40c6-86ae-fe47058ac234}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_AbsorptionChillerSystem">
+      <LineId Id="160" Count="0" />
+      <LineId Id="164" Count="7" />
+      <LineId Id="384" Count="5" />
+      <LineId Id="383" Count="0" />
+      <LineId Id="391" Count="5" />
+      <LineId Id="390" Count="0" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="427" Count="1" />
+      <LineId Id="426" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="277" Count="4" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="398" Count="6" />
+      <LineId Id="397" Count="0" />
+      <LineId Id="406" Count="6" />
+      <LineId Id="405" Count="0" />
+      <LineId Id="414" Count="6" />
+      <LineId Id="413" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.RampDown">
+      <LineId Id="8" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.SetSetPointLimits">
+      <LineId Id="14" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AbsorptionChillerSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

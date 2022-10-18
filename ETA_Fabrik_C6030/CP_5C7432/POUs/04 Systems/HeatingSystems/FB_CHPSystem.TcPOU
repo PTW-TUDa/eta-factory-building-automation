@@ -58,16 +58,18 @@ SV32x(bSetStatusOnAutomatic := bSetStatusOn_SV32x,
 SV32x.SetState_BO();
 
 RV32x.GetState_AI();
-//RV32x(fSetPointAutomatic := fSetPoint,
-//	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
-//	bAlgorithmPermission := bAlgorithmPermission,
-//	fTemperatureExternal := PU32x.fTemperatureInternal,
-//	nControlModeAutomatic := 2);
+RV32x(fSetPointAutomatic := fSetPoint,
+	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU32x.fTemperatureInternal,
+	nControlModeAutomatic := 2);
+(*
 RV32x(fSetPointAutomatic := 100,
 	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU32x.fTemperatureInternal,
 	nControlModeAutomatic := 0);
+	*)
 RV32x.SetState_AO();
 
 PU32x.GetState_Profibus();
@@ -224,8 +226,10 @@ END_VAR]]></Declaration>
       <LineId Id="73" Count="0" />
       <LineId Id="72" Count="0" />
       <LineId Id="74" Count="4" />
+      <LineId Id="302" Count="0" />
       <LineId Id="189" Count="3" />
       <LineId Id="188" Count="0" />
+      <LineId Id="303" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="83" Count="6" />
       <LineId Id="82" Count="0" />
