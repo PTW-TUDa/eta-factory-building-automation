@@ -33,7 +33,9 @@ VAR
 	RV660 : FB_MixingValve := (ST_DefaultParameters := stRV660DefaultParameters); //west
 	
 	//sensors
-	WMZ235 : FB_MollineC3HeatCounter;
+	WMZ235	: FB_MollineC3HeatCounter;
+	TS640	: FB_TemperatureSensor; //return temperature east
+	TS660 	: FB_TemperatureSensor; //return temperature west
 	
 	//internal variables
 	bSetStatusOn_PU235 	: BOOL;
@@ -115,7 +117,12 @@ RV660(bSetStatusOnAutomatic := bSetStatusOn_RV660,
 RV660.SetState_AO();
 
 //insert heat counter telegramm from other task
-WMZ235();]]></ST>
+WMZ235();
+
+TS640();
+TS640.GetState_AI();
+TS660();
+TS660.GetState_AI();]]></ST>
     </Implementation>
     <Method Name="AmbientControl" Id="{88a15c5a-66ea-4cac-bc26-6cc439e986de}">
       <Declaration><![CDATA[METHOD AmbientControl : BOOL
@@ -311,6 +318,9 @@ END_VAR]]></Declaration>
       <LineId Id="156" Count="0" />
       <LineId Id="336" Count="1" />
       <LineId Id="335" Count="0" />
+      <LineId Id="503" Count="0" />
+      <LineId Id="502" Count="0" />
+      <LineId Id="504" Count="2" />
     </LineIds>
     <LineIds Name="FB_OuterCapillaryTubeMats.AmbientControl">
       <LineId Id="6" Count="2" />

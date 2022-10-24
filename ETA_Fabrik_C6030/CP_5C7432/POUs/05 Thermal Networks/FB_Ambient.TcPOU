@@ -10,24 +10,34 @@ VAR_OUTPUT
 END_VAR
 VAR
 	WeatherStation : FB_WeatherStation;
-	HallTemperatureSensor : FB_TemperatureSensor;
+	HallTemperatureSensor_Section1 : FB_TemperatureSensor;
+	HallTemperatureSensor_Section2 : FB_TemperatureSensor;
+	HallTemperatureSensor_Section3 : FB_TemperatureSensor;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[WeatherStation();
-HallTemperatureSensor();
-HallTemperatureSensor.GetState_AI();
+HallTemperatureSensor_Section1();
+HallTemperatureSensor_Section1.GetState_AI();
+HallTemperatureSensor_Section2();
+HallTemperatureSensor_Section2.GetState_AI();
+HallTemperatureSensor_Section3();
+HallTemperatureSensor_Section3.GetState_AI();
 
 //add ambient temperature rain etc. from weather station
 localState.fOutsideTemperature := WeatherStation.fTemperature;
 localState.fOutsideTemperature_Mean := WeatherStation.fMeanTemperature;
 localState.bRain := WeatherStation.bRain;
-localState.fHallTemperature := HallTemperatureSensor.fTemperature;]]></ST>
+localState.fHallTemperature := HallTemperatureSensor_Section3.fTemperature;]]></ST>
     </Implementation>
     <LineIds Name="FB_Ambient">
       <LineId Id="28" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="54" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="68" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="11" Count="0" />
