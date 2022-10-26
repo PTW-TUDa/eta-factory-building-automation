@@ -66,7 +66,7 @@ RV215.GetState_AI();
 RV215(bSetStatusOnAutomatic := bSetStatusOn_RV215,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := PU215.fTemperatureInternal,
+	fTemperatureExternal := PU215.fTemperatureExternal,
 	nControlModeAutomatic := 2);
 RV215.SetState_AO();
 
