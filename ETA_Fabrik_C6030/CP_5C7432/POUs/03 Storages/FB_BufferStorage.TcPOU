@@ -12,6 +12,7 @@ VAR
 	UpperTemperatureSensor : FB_TemperatureSensor; //upper temperature sensor
 	MidTemperatureSensor : FB_TemperatureSensor; //mid temperature sensor
 	LowerTemperatureSensor : FB_TemperatureSensor; //lower temperature sensor
+	PressureSensor : FB_PressureSensor; //pressure sensor
 END_VAR
 
 ]]></Declaration>
@@ -20,11 +21,13 @@ END_VAR
 UpperTemperatureSensor();
 MidTemperatureSensor();
 LowerTemperatureSensor();
+PressureSensor();
 
 //get sensor inputs
 UpperTemperatureSensor.GetState_AI();
 MidTemperatureSensor.GetState_AI();
 LowerTemperatureSensor.GetState_AI();
+PressureSensor.GetState_AI();
 
 //set outputs
 localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;
@@ -35,8 +38,11 @@ localState.fLowerTemperature := LowerTemperatureSensor.fTemperature;]]></ST>
       <LineId Id="64" Count="0" />
       <LineId Id="60" Count="0" />
       <LineId Id="62" Count="1" />
+      <LineId Id="79" Count="0" />
       <LineId Id="61" Count="0" />
-      <LineId Id="23" Count="7" />
+      <LineId Id="23" Count="3" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="27" Count="3" />
       <LineId Id="46" Count="0" />
     </LineIds>
   </POU>

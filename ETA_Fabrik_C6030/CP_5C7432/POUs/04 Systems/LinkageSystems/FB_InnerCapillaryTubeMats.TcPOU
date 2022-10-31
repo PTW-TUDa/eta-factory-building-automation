@@ -47,6 +47,7 @@ VAR
 	RV573 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling west 3
 	
 	//sensors
+	PS500 : FB_PressureSensor;
 	TS541 : FB_TemperatureSensor; //wall east section 1
 	TS542 : FB_TemperatureSensor; //wall east section 2
 	TS543 : FB_TemperatureSensor; //wall east section 3
@@ -242,6 +243,8 @@ RV573(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 RV573.SetState_AO();
 
 //sensors
+PS500();
+PS500.GetState_AI();
 TS541();
 TS541.GetState_AI();
 TS542();
@@ -538,6 +541,7 @@ END_VAR]]></Declaration>
       <LineId Id="390" Count="0" />
       <LineId Id="490" Count="0" />
       <LineId Id="489" Count="0" />
+      <LineId Id="718" Count="1" />
       <LineId Id="492" Count="0" />
       <LineId Id="501" Count="0" />
       <LineId Id="503" Count="0" />

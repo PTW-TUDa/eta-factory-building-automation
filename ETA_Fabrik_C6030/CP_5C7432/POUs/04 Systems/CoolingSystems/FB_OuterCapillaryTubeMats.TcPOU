@@ -36,6 +36,7 @@ VAR
 	WMZ235	: FB_MollineC3HeatCounter;
 	TS640	: FB_TemperatureSensor; //return temperature east
 	TS660 	: FB_TemperatureSensor; //return temperature west
+	PS600	: FB_PressureSensor;
 	
 	//internal variables
 	bSetStatusOn_PU235 	: BOOL;
@@ -118,6 +119,9 @@ RV660.SetState_AO();
 
 //insert heat counter telegramm from other task
 WMZ235();
+
+PS600();
+PS600.GetState_AI();
 
 TS640();
 TS640.GetState_AI();
@@ -318,6 +322,7 @@ END_VAR]]></Declaration>
       <LineId Id="156" Count="0" />
       <LineId Id="336" Count="1" />
       <LineId Id="335" Count="0" />
+      <LineId Id="561" Count="2" />
       <LineId Id="503" Count="0" />
       <LineId Id="502" Count="0" />
       <LineId Id="504" Count="2" />

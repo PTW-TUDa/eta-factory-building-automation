@@ -648,6 +648,382 @@
 					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
 						<Name>Standard Inputs</Name>
 						<Var>
+							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV246.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV246.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV500.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV541.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV542.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV543.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV551.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV552.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV553.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV561.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV562.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV563.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV571.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV572.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV573.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PS500.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS541.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS542.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS543.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS551.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS552.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS553.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS561.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS562.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS563.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS571.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS572.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS573.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.RV425.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
 							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
@@ -755,6 +1131,11 @@
 						</Var>
 						<Var>
 							<Name>MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.PressureSensor.nPressure_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
@@ -993,377 +1374,6 @@
 							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV246.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV246.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_HNLT.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV500.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV541.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV542.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV543.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV551.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV552.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV553.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV561.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV562.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV563.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV571.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV572.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.RV573.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS541.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS542.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS543.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS551.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS552.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS553.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS561.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS562.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS563.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS571.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS572.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.TS573.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.RV425.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Status</Name>
@@ -3481,6 +3491,11 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN</Name>
 							<Comment><![CDATA[I/O links]]></Comment>
 							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
@@ -3636,6 +3651,11 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.TS660.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PS600.nPressure_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
@@ -4057,6 +4077,11 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNHT.BufferStorage.PressureSensor.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNHT.CHP1System.CHP.bError_IN</Name>
 							<Comment><![CDATA[Error state linked to terminal]]></Comment>
 							<Type>BOOL</Type>
@@ -4430,106 +4455,6 @@
 					<Vars VarGrpType="2" ContextId="3" AreaNo="49">
 						<Name>Standard Outputs</Name>
 						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
-							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[SetStatus linked to terminal]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.HeatPump.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
@@ -4662,6 +4587,106 @@
 							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.RV425.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
+							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[SetStatus linked to terminal]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.OUT_Temp_intern_GeniRequest</Name>
@@ -13591,7 +13616,7 @@ PU245
 								<Name>K560A1_AI-1/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_DS100_KWN</Name>
+									<Name>ai_PS100</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -13599,7 +13624,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ai_DS100_KWN</Name>
+										<Name>ai_PS100</Name>
 										<Type>INT</Type>
 										<BitOffs>14960</BitOffs>
 										<InOut>0</InOut>
@@ -13618,7 +13643,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_DS200_WWN</Name>
+									<Name>ai_PS200</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -13626,7 +13651,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ai_DS200_WWN</Name>
+										<Name>ai_PS200</Name>
 										<Type>INT</Type>
 										<BitOffs>14992</BitOffs>
 										<InOut>0</InOut>
@@ -13645,7 +13670,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_DS300_HWN</Name>
+									<Name>ai_PS300</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -13653,7 +13678,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ai_DS300_HWN</Name>
+										<Name>ai_PS300</Name>
 										<Type>INT</Type>
 										<BitOffs>15024</BitOffs>
 										<InOut>0</InOut>
@@ -13672,7 +13697,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_DS500_KaRoMa_Innen</Name>
+									<Name>ai_DS500</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -13680,7 +13705,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ai_DS500_KaRoMa_Innen</Name>
+										<Name>ai_PS500</Name>
 										<Type>INT</Type>
 										<BitOffs>15056</BitOffs>
 										<InOut>0</InOut>
@@ -13703,7 +13728,7 @@ PU245
 								<Name>K560A1_AI-2/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_DS600_KaRoMa_Aussen</Name>
+									<Name>ai_PS600</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -13711,7 +13736,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x1">
-										<Name>ai_DS600_KaRoMa_Aussen</Name>
+										<Name>ai_PS600</Name>
 										<Type>INT</Type>
 										<BitOffs>15088</BitOffs>
 										<InOut>0</InOut>
@@ -16533,7 +16558,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201f803" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -25249,21 +25274,11 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin" VarB="K581A1_BI (KL1408)^LI000_Licht_Halle_Gruppe_01_Taster^LI000_Licht_Halle_Gruppe_01_Taster"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nData" VarB="K522A1_DALI^Channel 1^Daten Ein"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nStatus" VarB="K522A1_DALI^Channel 1^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.DS_500_Wand_Innen.IN_Druck" VarB="K560A1_AI-1/2^ai_DS500_KaRoMa_Innen^ai_DS500_KaRoMa_Innen"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.DS_500_Wand_Innen.IN_Status" VarB="K560A1_AI-1/2^ai_DS500_KaRoMa_Innen^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.DS_600_Wand_Aussen.IN_Druck" VarB="K560A1_AI-2/2^ai_DS600_KaRoMa_Aussen^ai_DS600_KaRoMa_Aussen"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.DS_600_Wand_Aussen.IN_Status" VarB="K560A1_AI-2/2^ai_DS600_KaRoMa_Aussen^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Fenster.IN_Servomotor_Fenster_O_W_auf" VarB="K531A1_BI^bi_FE_000_Servomotor_Fenst_Ost_West_AUF^bi_FE_000_Servomotor_Fenst_Ost_West_AUF"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Status" VarB="K551A1_AI-1/2^ai_Frei_AI11^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI12^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI13^Status"/>
 				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Status" VarB="K553A1_AI-1/2^ai_TF573^Status"/>
-				<Link VarA="Standard Inputs^.Netze.DS_100_KWN.IN_Druck" VarB="K560A1_AI-1/2^ai_DS100_KWN^ai_DS100_KWN"/>
-				<Link VarA="Standard Inputs^.Netze.DS_100_KWN.IN_Status" VarB="K560A1_AI-1/2^ai_DS100_KWN^Status"/>
-				<Link VarA="Standard Inputs^.Netze.DS_200_WWN.IN_Druck" VarB="K560A1_AI-1/2^ai_DS200_WWN^ai_DS200_WWN"/>
-				<Link VarA="Standard Inputs^.Netze.DS_200_WWN.IN_Status" VarB="K560A1_AI-1/2^ai_DS200_WWN^Status"/>
-				<Link VarA="Standard Inputs^.Netze.DS_300_HWN.IN_Druck" VarB="K560A1_AI-1/2^ai_DS300_HWN^ai_DS300_HWN"/>
-				<Link VarA="Standard Inputs^.Netze.DS_300_HWN.IN_Status" VarB="K560A1_AI-1/2^ai_DS300_HWN^Status"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_mitte.IN_Status" VarB="K577A1_AI (KL3222)^TF395_VSI _AT_mitte_PT100^Status"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_mitte.IN_Temperatur" VarB="K577A1_AI (KL3222)^TF395_VSI _AT_mitte_PT100^TF395_VSI _AT_mitte_PT100"/>
 				<Link VarA="Standard Inputs^.Speicher.Pufferspeicher_Heisswasser_395.TF_oben.IN_Status" VarB="K577A1_AI (KL3222)^TF395_VSI _AT_oben_PT100^Status"/>
@@ -25300,12 +25315,14 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Parameter Status"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_LowerTemperature^ai_TF195_CN_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_MidTemperature^ai_TF195_CN_MidTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS100^ai_PS100"/>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_UpperTemperature^ai_TF195_CN_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN" VarB="K531A1_BI^bi_SV100_Closed^bi_SV100_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN" VarB="K531A1_BI^bi_SV100_Open^bi_SV100_Open"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_LowerTemperature^TF795_HVFA_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_UpperTemperature^TF795_HVFA_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNHT_MidTemperature_TEMPORARY^ai_TF295_HNLT_MidTemperature_Temporary"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS300^ai_PS300"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.CHP.bError_IN" VarB="K531A1_BI^bi_CHP1_Error^bi_CHP1_Error"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOff_IN" VarB="K533A1_BI^bi_SV321_Closed^bi_SV321_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOn_IN" VarB="K533A1_BI^bi_SV321_Open^bi_SV321_Open"/>
@@ -25319,13 +25336,16 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOff_IN" VarB="K535A1_BI^bi_SV454_Closed^bi_SV454_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOn_IN" VarB="K535A1_BI^bi_SV454_Open^bi_SV454_Open"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNLT_MidTemperature^ai_TF295_HNLT_MidTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS200^ai_PS200"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF295_HNLT_UpperTemperature^ai_TF295_HNLT_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_LowerTemperature^TF797_HVFA_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_UpperTemperature^TF797_HVFA_UpperTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PS600.nPressure_IN" VarB="K560A1_AI-2/2^ai_PS600^ai_PS600"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN" VarB="K535A1_BI^bi_SV605_Closed^bi_SV605_closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN" VarB="K535A1_BI^bi_SV605_Open^bi_SV605_open"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.TS640.temperature_IN" VarB="K553A1_AI-2/2^ai_TF640^ai_TF640"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.TS660.temperature_IN" VarB="K553A1_AI-2/2^ai_TF660^ai_TF660"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PS500.nPressure_IN" VarB="K560A1_AI-1/2^ai_DS500^ai_PS500"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOff_IN" VarB="K533A1_BI^bi_SV505_Closed^bi_SV505_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV505.bStatusOn_IN" VarB="K533A1_BI^bi_SV505_Open^bi_SV505_Open"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.SV_CN.bStatusOff_IN" VarB="K533A1_BI^bi_SV_CN_HeatExchanger3_Closed^bi_SV_CN_HeatExchanger3_Closed"/>
