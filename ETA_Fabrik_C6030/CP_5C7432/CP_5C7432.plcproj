@@ -34,6 +34,7 @@
     <Folder Include="Data types\04 Systems\StorageSystems" />
     <Folder Include="Data types\04 Systems\StorageSystems\BufferStorage" />
     <Folder Include="Data types\04 Systems\StorageSystems\HVFAStorage" />
+    <Folder Include="Data types\04 Systems\StorageSystems\VSIStorage" />
     <Folder Include="Data types\05 Thermal Networks" />
     <Folder Include="Data types\06 Strategy" />
     <Folder Include="Data types\Anlagen" />
@@ -302,6 +303,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\05 Thermal Networks\ST_AmbientState.TcDUT">
@@ -651,6 +661,9 @@
     <Compile Include="POUs\03 Storages\FB_BufferStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\03 Storages\FB_VSIStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\03 Storages\FB_HVFAStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -709,6 +722,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\StorageSystems\FB_VSIStorageSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_Ambient.TcPOU">

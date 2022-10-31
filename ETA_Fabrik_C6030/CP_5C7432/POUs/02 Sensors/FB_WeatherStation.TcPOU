@@ -76,7 +76,7 @@ IF(KL6301_Terminal.bReady) THEN
 END_IF
 
 //calculate moving average temperatrue
-CalculateAverageTemperature(fActualTemperature := REAL_TO_LREAL(fTemperature), fMeanTemperature => fMeanTemperature);
+CalculateAverageTemperature(fActualTemperature := fTemperature, fMeanTemperature => fMeanTemperature);
 
 
 ]]></ST>
@@ -96,7 +96,7 @@ VAR_INST
 	fMeanTemperature_Winter_init : REAL := 5;
 	
 	stParameters_Average_Temperature : ST_CTRL_MOVING_AVERAGE_PARAMS;
-	aTemperatureBuffer 				: ARRAY [1..360] OF FLOAT;
+	aTemperatureBuffer 				: ARRAY [1..360] OF FLOAT := [360(15)];
 END_VAR
 ]]></Declaration>
       <Implementation>

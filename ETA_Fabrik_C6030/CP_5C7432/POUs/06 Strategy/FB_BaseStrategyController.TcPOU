@@ -241,6 +241,8 @@ Controller_StaticHeating(fSetpointValue := 15,
 	stParams := Controller_StaticHeating_Parameters);
 hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
 
+hnhtControl.bSetStatusOn_VSIStorage := FALSE;
+hnhtControl.bLoading_VSISystem := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -475,7 +477,9 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="54" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="81" Count="6" />
+      <LineId Id="93" Count="0" />
       <LineId Id="73" Count="0" />
+      <LineId Id="94" Count="0" />
       <LineId Id="61" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnhtHnltLinkage">

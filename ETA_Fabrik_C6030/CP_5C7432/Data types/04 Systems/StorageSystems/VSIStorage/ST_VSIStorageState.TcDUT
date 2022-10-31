@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_VSIStorageState" Id="{80437f27-b480-4fbd-9a21-100786caf34e}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_VSIStorageState :
+STRUCT
+	fUpperTemperature : REAL;
+	fMidTemperature : REAL;
+	fLowerTemperature : REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
