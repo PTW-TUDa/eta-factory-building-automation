@@ -7,8 +7,6 @@ VAR_GLOBAL
 	{attribute 'OPC.UA.DA' := '1'} GA_global		: ST_GA_global;		
 
 	Beleuchtung					: FB_Beleuchtung;
-	Zaehler						: FB_ZAE;
-
 
 	Dali_K522A1_DALI_IN		 	AT %I* : ST_DALIV2InData;	(*~ Eingangspuffer für Dali Klemme *)
 	Dali_K522A1_DALI_OUT 		AT %Q* : ST_DALIV2OutData;	(*~ Ausgangspuffer für Dali Klemme *)
