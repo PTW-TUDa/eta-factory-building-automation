@@ -23,6 +23,7 @@ VAR
 	
 	//ambient state
 	Ambient : FB_Ambient;
+	LowVoltageMainDistribution : FB_LowVoltageMainDistribution;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//strategy controller
@@ -33,6 +34,7 @@ Strategy(ambientState := Ambient.localState,
 
 //ambient state
 Ambient();
+LowVoltageMainDistribution();
 	
 //thermal networks
 CN(controlAutomatic := Strategy.cnControl);
@@ -79,7 +81,9 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
     <LineIds Name="MAIN">
       <LineId Id="116" Count="3" />
       <LineId Id="193" Count="0" />
-      <LineId Id="120" Count="7" />
+      <LineId Id="120" Count="2" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="123" Count="4" />
       <LineId Id="169" Count="0" />
       <LineId Id="217" Count="1" />
       <LineId Id="128" Count="1" />

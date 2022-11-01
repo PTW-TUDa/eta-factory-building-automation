@@ -653,6 +653,9 @@
     <Compile Include="POUs\01 Actors\Pumps\FB_Pump2Point.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\02 Sensors\FB_LowVoltageMainDistribution.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\02 Sensors\FB_WeatherStation.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -950,9 +953,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MBUS_Zaehler.TcPOU" />
-    <Compile Include="POUs\P_EIB.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="POUs\Systeme\Anlagenversorgung %28AV%29\FB_AV.TcPOU" />
     <Compile Include="POUs\Systeme\Anlagenversorgung %28AV%29\Kühlung Druckluftkompressor %28DLK%29\FB_System_DLK_951.TcPOU" />
     <Compile Include="POUs\Systeme\Anlagenversorgung %28AV%29\Kühlung Druckluftkompressor %28DLK%29\FB_System_DLK_Ablaufsteuerung.TcPOU" />
