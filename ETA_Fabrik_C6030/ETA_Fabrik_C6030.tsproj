@@ -161,49 +161,6 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..63] OF BYTE</Name>
-			<BitSize>512</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>64</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{EA333710-B8CB-A071-0EB1-579763401185}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF UINT</Name>
-			<BitSize>512</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>32</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU" AutoDeleteType="true">MB_KL6inData22B</Name>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Status</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>hide</Name>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
 			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
 			<BitSize>40</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -238,31 +195,6 @@
 				<Property>
 					<Name>obsolete</Name>
 					<Value>Use the structure ST_KL6811OutData instead!</Value>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
-			<Name GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU" AutoDeleteType="true">MB_KL6outData22B</Name>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Ctrl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>hide</Name>
 				</Property>
 			</Properties>
 		</DataType>
@@ -2310,6 +2242,10 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
+						</Var>
+						<Var>
 							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -2328,22 +2264,6 @@
 						<Var>
 							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
-						<Var>
-							<Name>.IN_Profibus_DLK</Name>
-							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.IN_UMG</Name>
-							<Type GUID="{EA333710-B8CB-A071-0EB1-579763401185}">ARRAY [0..31] OF UINT</Type>
-						</Var>
-						<Var>
-							<Name>.Modbus_NSHV.InData</Name>
-							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
@@ -2870,18 +2790,6 @@
 						<Var>
 							<Name>.Dali_K522A1_DALI_OUT</Name>
 							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
-						</Var>
-						<Var>
-							<Name>.OUT_Profibus_DLK</Name>
-							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.OUT_UMG_Anfrage</Name>
-							<Type>BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Modbus_NSHV.OutData</Name>
-							<Type GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU">MB_KL6outData22B</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2022-03-23T15:03:59">
@@ -22710,29 +22618,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin" VarB="K581A1_BI (KL1408)^LI000_Licht_Halle_Gruppe_01_Taster^LI000_Licht_Halle_Gruppe_01_Taster"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nData" VarB="K522A1_DALI^Channel 1^Daten Ein"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nStatus" VarB="K522A1_DALI^Channel 1^Status"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 0"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 10"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[11]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 11"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[12]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 12"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[13]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 13"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[14]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 14"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[15]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 15"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[16]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 16"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[17]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 17"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[18]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 18"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[19]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 19"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[1]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 1"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[20]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 20"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[21]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 21"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[2]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 2"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[3]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 3"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[4]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 4"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[5]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 5"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[6]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 6"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[7]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 7"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[8]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 8"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^D[9]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 9"/>
-				<Link VarA="Standard Inputs^.Modbus_NSHV.InData^Status" VarB="K526A1_Serielle_RS422RS485^Channel 1^Status"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN" VarB="K579A1_AI (KL3222)^TF052_HallTemperature_Section2^TF052_HallTemperature_Section2"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN" VarB="K579A1_AI (KL3222)^TF053_HallTemperature_Section3^TF053_HallTemperature_Section3"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 1" Size="8" OffsA="16"/>
@@ -22818,29 +22703,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOn_IN" VarB="K533A1_BI^bi_SV424_Open^bi_SV424_Open"/>
 				<Link VarA="Standard Outputs^.Dali_K522A1_DALI_OUT^nCtrl" VarB="K522A1_DALI^Channel 1^Kontrolle"/>
 				<Link VarA="Standard Outputs^.Dali_K522A1_DALI_OUT^nData" VarB="K522A1_DALI^Channel 1^Daten Aus"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^Ctrl" VarB="K526A1_Serielle_RS422RS485^Channel 1^Ctrl"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 0"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 10"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[11]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 11"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[12]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 12"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[13]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 13"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[14]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 14"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[15]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 15"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[16]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 16"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[17]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 17"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[18]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 18"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[19]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 19"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[1]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 1"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[20]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 20"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[21]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 21"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[2]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 2"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[3]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 3"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[4]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 4"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[5]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 5"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[6]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 6"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[7]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 7"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[8]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 8"/>
-				<Link VarA="Standard Outputs^.Modbus_NSHV.OutData^D[9]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 9"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 1" Size="8" OffsA="16"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 10" Size="8" OffsA="88"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 11" Size="8" OffsA="96"/>
@@ -23036,10 +22898,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 2 (EL6731)^Box 18 (GSD Box) (Mkv Gateway)">
-				<Link VarA="Standard Inputs^.IN_Profibus_DLK" VarB="64 bytes input^Inputs^64 bytes input_0_0"/>
-				<Link VarA="Standard Outputs^.OUT_Profibus_DLK" VarB="64 bytes output^Outputs^64 bytes output_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 3 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.PU215.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>

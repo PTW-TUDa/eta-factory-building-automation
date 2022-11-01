@@ -11,7 +11,7 @@ VAR_GLOBAL
 	Dali_K522A1_DALI_IN		 	AT %I* : ST_DALIV2InData;	(*~ Eingangspuffer für Dali Klemme *)
 	Dali_K522A1_DALI_OUT 		AT %Q* : ST_DALIV2OutData;	(*~ Ausgangspuffer für Dali Klemme *)
 
-	Initialisierung				: ST_Initialisierungsroutine;
+	Initialisierung			: ST_Initialisierungsroutine;
 	Initialisierungsroutine	: FB_Initialisierungsroutine;
 
 END_VAR
