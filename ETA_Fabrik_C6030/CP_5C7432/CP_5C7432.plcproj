@@ -180,7 +180,6 @@
     <Folder Include="POUs\Management" />
     <Folder Include="POUs\Management\Alte Struktur" />
     <Folder Include="POUs\07 Utilities" />
-    <Folder Include="POUs\OPC_UA_Client_Maschienen (Romtech _ alt)" />
     <Folder Include="POUs\Systeme" />
     <Folder Include="POUs\Systeme\Anlagenversorgung (AV)" />
     <Folder Include="POUs\Systeme\Anlagenversorgung (AV)\Kühlung Druckluftkompressor (DLK)" />
@@ -216,7 +215,6 @@
     <Folder Include="POUs\Systeme\Wandler (WDL)\Waermepumpe (WP)" />
     <Folder Include="POUs\Systeme\Wandler (WDL)\Wärmetauscher (WT)" />
     <Folder Include="POUs\Systeme\Zaehler (ZAE)" />
-    <Folder Include="POUs\Umwelt" />
     <Folder Include="Visualizations" />
   </ItemGroup>
   <ItemGroup>
@@ -953,27 +951,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MBUS_Zaehler.TcPOU" />
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\AKM_941_Read_BOOL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\AKM_941_Read_REAL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\AKM_941_Write_BOOL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\AKM_941_Write_REAL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\IVA_Ofen_Read_BOOL.TcPOU" />
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\IVA_Ofen_Read_REAL.TcPOU" />
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\PRG_Read_LREAL.TcPOU" />
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\SMS_Speicher_Read_BOOL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
-    <Compile Include="POUs\OPC_UA_Client_Maschienen %28Romtech _ alt%29\SMS_Speicher_Read_REAL.TcPOU">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </Compile>
     <Compile Include="POUs\P_EIB.TcPOU">
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
@@ -1123,9 +1100,6 @@
     <Compile Include="POUs\Systeme\Wandler %28WDL%29\Wärmetauscher %28WT%29\FB_System_WT_HWW_Sollwertscheck.TcPOU" />
     <Compile Include="POUs\Systeme\Wandler %28WDL%29\Wärmetauscher %28WT%29\FB_System_WT_HWW_Zustandscheck.TcPOU" />
     <Compile Include="POUs\Systeme\Zaehler %28ZAE%29\FB_ZAE.TcPOU" />
-    <Compile Include="POUs\Umwelt\FB_UMWELT.TcPOU" />
-    <Compile Include="POUs\Umwelt\FB_UWT.TcPOU" />
-    <Compile Include="POUs\Umwelt\FB_UW_Temp_Mittelung.TcPOU" />
     <Compile Include="Standard.TcTTO" />
   </ItemGroup>
   <ItemGroup>

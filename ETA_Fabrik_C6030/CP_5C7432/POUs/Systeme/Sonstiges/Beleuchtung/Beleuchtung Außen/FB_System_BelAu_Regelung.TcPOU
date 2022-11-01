@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_System_BelAu_Regelung" Id="{89ca6fd1-cf24-4433-9608-7f51feedac9b}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_System_BelAu_Regelung
 VAR_IN_OUT
@@ -26,11 +26,8 @@ VAR
 	Dunkel: BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF (Umwelt.Daemmerung < 100) THEN
-Dunkel := TRUE;
- ELSE
-Dunkel:= FALSE;
-END_IF
+      <ST><![CDATA[Dunkel:= FALSE;
+
 
 IF Steuerung.Farbcode.manu_Modus THEN
 
@@ -70,7 +67,7 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_System_BelAu_Regelung">
-      <LineId Id="24" Count="41" />
+      <LineId Id="27" Count="38" />
     </LineIds>
   </POU>
 </TcPlcObject>

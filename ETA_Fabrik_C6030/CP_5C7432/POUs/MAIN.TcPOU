@@ -73,52 +73,8 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
 	(* Allgemeine Parameter (Systemszeit, usw.) *)
 	GA_Allgemein();
 
-	(* Wandler *)
-	Wandler();
-
-	(* Speicher *)
-	Speicher();
-
-	(* Netze *)
-	Netze();
-
-	(* Management *)
-	Management();
-
 	(* Beleuchtung *)
-	Beleuchtung();
-
-	(*Anlagenversorgung*)
-	Anlagenversorgung();
-
-	(*Heizung Lüftung Klimatisierung*)
-	Heizung_Lueftung_Klima();
-
-	(*Umwelt*)
-	Umwelt();
-
-	(* Signal_Ampel *)
-	Signal_Ampel();
-
-
-	(*Test OPC-UA*)
-
-
-	(*
-	FAC_JAVA_READ_BOOL();
-	MAFAC_JAVA_Read_REAL();
-	IVA_Ofen_Read_BOOL();
-	IVA_Ofen_Read_REAL();
-*)
-	(*PRG_Read_LREAL();*)
-
-
-
-(* --------------------------------------------------------------------------------------------------------------------------- *)
-(* Analog- & Binaer Ausgaenge - SCHREIBEN *)
-(* P_Schreiben; *)
-
-(* BUS Kommunikation - SCHREIBEN *)]]></ST>
+	Beleuchtung();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="116" Count="3" />
@@ -133,7 +89,8 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
       <LineId Id="189" Count="0" />
       <LineId Id="245" Count="0" />
       <LineId Id="77" Count="1" />
-      <LineId Id="4" Count="67" />
+      <LineId Id="4" Count="20" />
+      <LineId Id="37" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>
