@@ -49,7 +49,7 @@ CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_1,
 	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_321,
 	aGasMeterTelegramm := Telegramm_GZ_BHKW_321,
-	sIPAddressCHP := Global_IP_Adresses.BHKW_921_ModbusTCP);
+	sIPAddressCHP := GlobalVariables.sIP_CHP1);
 
 CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
@@ -57,7 +57,7 @@ CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_2,
 	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_322,
 	aGasMeterTelegramm := Telegramm_GZ_BHKW_322,
-	sIPAddressCHP := Global_IP_Adresses.BHKW_922_ModbusTCP);
+	sIPAddressCHP := GlobalVariables.sIP_CHP2);
 
 SV_SupplyAir.GetState_BI();
 SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
