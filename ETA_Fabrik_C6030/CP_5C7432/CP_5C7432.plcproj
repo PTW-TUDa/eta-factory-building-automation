@@ -37,19 +37,18 @@
     <Folder Include="Data types\04 Systems\StorageSystems\VSIStorage" />
     <Folder Include="Data types\05 Thermal Networks" />
     <Folder Include="Data types\06 Strategy" />
-    <Folder Include="Data types\Einzelanlagen" />
-    <Folder Include="Data types\Einzelanlagen\Beleuchtung (Bel)" />
-    <Folder Include="Data types\Einzelanlagen\RGBW-Kanal" />
-    <Folder Include="Data types\Library" />
-    <Folder Include="Data types\Library\Allgemein" />
-    <Folder Include="Data types\Library\Bus_Systeme" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Library" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Sonstige" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Systeme" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29" />
     <Folder Include="Data types\07 Utilities" />
-    <Folder Include="Data types\Sonstige" />
-    <Folder Include="Data types\Systeme" />
-    <Folder Include="Data types\Systeme\Beleuchtung (Bel)" />
+    <Folder Include="Data types\08 Lighting %28from old implementation%29" />
     <Folder Include="Global Variables" />
-    <Folder Include="Global Variables\Anlagen Variablen" />
-    <Folder Include="Global Variables\Bus_Systeme" />
+    <Folder Include="Global Variables\Lighting %28from old implementation%29" />
     <Folder Include="POUs" />
     <Folder Include="POUs\01 Actors" />
     <Folder Include="POUs\01 Actors\ConsumerUnits" />
@@ -69,16 +68,17 @@
     <Folder Include="POUs\04 Systems\StorageSystems" />
     <Folder Include="POUs\05 Thermal Networks" />
     <Folder Include="POUs\06 Strategy" />
-    <Folder Include="POUs\Einzelanlagen" />
-    <Folder Include="POUs\Einzelanlagen\Beleuchtung (Bel)" />
-    <Folder Include="POUs\Einzelanlagen\Beleuchtung (Bel)\Bel_RGBW" />
-    <Folder Include="POUs\Library (allgemein)" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Library %28allgemein%29" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Systeme" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle" />
     <Folder Include="POUs\07 Utilities" />
-    <Folder Include="POUs\Systeme" />
-    <Folder Include="POUs\Systeme\Sonstiges" />
-    <Folder Include="POUs\Systeme\Sonstiges\Beleuchtung" />
-    <Folder Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen" />
-    <Folder Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle" />
+    <Folder Include="POUs\08 Lighting %28from old implementation%29" />
     <Folder Include="Visualizations" />
   </ItemGroup>
   <ItemGroup>
@@ -211,43 +211,88 @@
     <Compile Include="Data types\07 Utilities\ST_OPC_UA_Server.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Lampen_Monitoring.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Parameter.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Steuerung.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Zustand.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Stellwert.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Steuerung.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Zustand.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\RGBW-Kanal\ST_RGBW_Steuerung.TcDUT" />
-    <Compile Include="Data types\Einzelanlagen\RGBW-Kanal\ST_RGBW_Zustand.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Steuerung_auto_manu_BOOL.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Steuerung_auto_manu_opti_BOOL.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Steuerung_auto_manu_opti_REAL.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Steuerung_auto_manu_opti_SINT.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Steuerung_auto_manu_String.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Zustand_Netze_Anford.TcDUT" />
-    <Compile Include="Data types\Library\Allgemein\ST_Zustand_Netz_Anford.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\PB_64Byte.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\PB_Anfrage.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\PB_Dateneintrag.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\PB_GenibusType.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\PB_UMG604.TcDUT" />
-    <Compile Include="Data types\Library\Bus_Systeme\ST_NSHV_Modbus.TcDUT" />
-    <Compile Include="Data types\Sonstige\ST_GA_global.TcDUT" />
-    <Compile Include="Data types\Sonstige\ST_Initialisierungsroutine.TcDUT" />
-    <Compile Include="Data types\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Parameter.TcDUT" />
-    <Compile Include="Data types\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Stellwert.TcDUT" />
-    <Compile Include="Data types\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Steuerung.TcDUT" />
-    <Compile Include="Data types\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Zustand.TcDUT" />
-    <Compile Include="Global Variables\Anlagen Variablen\Con_Bel.TcGVL" />
-    <Compile Include="Global Variables\Bus_Systeme\M_Bus.TcGVL" />
-    <Compile Include="Global Variables\Globale_Variablen.TcGVL" />
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Lampen_Monitoring.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Parameter.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Stellwert.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_BOOL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_BOOL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_REAL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_SINT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_String.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netze_Anford.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netz_Anford.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Sonstige\ST_GA_global.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Sonstige\ST_Initialisierungsroutine.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Parameter.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Stellwert.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Global Variables\GlobalVariables.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="Global Variables\Global_Variables.TcGVL" />
-    <Compile Include="Global Variables\Variablen_Konfiguration.TcGVL" />
+    <Compile Include="Global Variables\Lighting %28from old implementation%29\Con_Bel.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Global Variables\Lighting %28from old implementation%29\Global_Variables.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Global Variables\Lighting %28from old implementation%29\Variablen_Konfiguration.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Global Variables\M_Bus.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MBus_WZaehler_Task.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -384,58 +429,145 @@
     <Compile Include="POUs\07 Utilities\FB_OPC_UA_Read.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe_1.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Ablaufsteuerung.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Logik.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Regelung.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Sued.TcPOU">
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Sued.TcPOU">
+      <SubType>Code</SubType>
       <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Ablaufsteuerung.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Filter.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Input.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Lichtsensor.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Logik.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Monitoring.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Output.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Sollwertscheck.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Stellwertscheck.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Steuerung.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster_Steuerung.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Zustandscheck.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Lesen.TcPOU" />
-    <Compile Include="POUs\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Schreiben.TcPOU" />
-    <Compile Include="POUs\FB_GA_Allgemein.TcPOU" />
-    <Compile Include="POUs\FB_Initialisierungsroutine.TcPOU" />
-    <Compile Include="POUs\Library %28allgemein%29\FB_SetResetFallTrigger.TcPOU" />
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Filter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Input.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Lichtsensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Monitoring.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Output.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Steuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster_Steuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Lesen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Schreiben.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\FB_GA_Allgemein.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\FB_Initialisierungsroutine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Library %28allgemein%29\FB_SetResetFallTrigger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sensorik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sensorik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\FB_Beleuchtung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting %28from old implementation%29\Systeme\Sonstiges\Beleuchtung\FB_System_Bel_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MAIN.TcPOU" />
     <Compile Include="POUs\MBUS_WZaehler.TcPOU" />
     <Compile Include="POUs\MBUS_WZaehler2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MBUS_Zaehler.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Ablaufsteuerung.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Logik.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Regelung.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sensorik.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sollwertscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Stellwertscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Zustandscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Ablaufsteuerung.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Logik.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Regelung.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sensorik.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sollwertscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Stellwertscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Zustandscheck.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\FB_Beleuchtung.TcPOU" />
-    <Compile Include="POUs\Systeme\Sonstiges\Beleuchtung\FB_System_Bel_Zustandscheck.TcPOU" />
     <Compile Include="Standard.TcTTO" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Bel_Stellwertscheck" Id="{8f265280-aa74-4a22-8dc8-9aca0f4a9bea}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Bel_Stellwertscheck
+VAR_IN_OUT
+	Stellwert	: ST_Bel_Stellwert;
+END_VAR
+
+VAR_INPUT
+(*	Steuerung	: ST_BHKW_Steuerung; *)
+(*	Zustand	: ST_PU_Zustand; *)
+	Parameter	: ST_Bel_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1			: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Timer1(	IN := Stellwert.Betrieb = FALSE,
+		PT := T#15S,
+		Q => Stellwert.Freigabe_Stellwert
+);
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Bel_Stellwertscheck">
+      <LineId Id="15" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

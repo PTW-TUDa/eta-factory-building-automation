@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Bel_Lichtsensor" Id="{a3310165-f3c5-4134-bb94-4ae1086b22f9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Bel_Lichtsensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	Helligkeit				: REAL;
+END_VAR
+VAR
+	IN_Helligkeit 		AT %I* 	: INT;
+	VAR_Helligkeit				: REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[VAR_Helligkeit := IN_Helligkeit;
+Helligkeit	:= (32767 - VAR_Helligkeit)/13.71 + 10 ; (* gibt die Helligkeit in Lux, laut Sensor-Datasheet*)
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Bel_Lichtsensor">
+      <LineId Id="10" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

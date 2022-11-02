@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Bel_Output" Id="{c112dd89-8f7b-4a8a-8db3-d23e892c66ce}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Bel_Output
+VAR_INPUT
+	Adresse					: BYTE;
+	Betrieb					: BOOL:= TRUE;
+	Leistung				: BYTE;
+
+END_VAR
+VAR_OUTPUT
+	OUT_Adresse				: BYTE;
+	OUT_Betrieb				: BOOL:= TRUE;
+	OUT_Leistung			: BYTE;
+
+END_VAR
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	OUT_Adresse					:=Adresse;
+	OUT_Leistung				:=REAL_TO_BYTE( Leistung*1.28+126);
+	OUT_Betrieb					:=Betrieb;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Bel_Output">
+      <LineId Id="15" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

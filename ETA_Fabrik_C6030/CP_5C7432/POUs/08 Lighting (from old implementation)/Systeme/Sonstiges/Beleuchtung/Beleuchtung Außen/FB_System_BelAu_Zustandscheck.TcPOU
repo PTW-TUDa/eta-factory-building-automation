@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_System_BelAu_Zustandscheck" Id="{7fcc9602-a56c-468e-a01f-dec610306807}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_BelAu_Zustandscheck
+VAR_IN_OUT
+	Zustand					: ST_System_Bel_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung				: ST_System_Bel_Steuerung;
+	Parameter				: ST_System_Bel_Parameter;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Timer1: TON;
+	Timer2: TON;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Stoerung_Code
+		0:	*Allgemein Störung Beleuchtung (intern)
+		1:	* Störung durch DALI-Lib
+		2:	..
+		3:
+		4:
+		5:
+		6:
+		7:
+
+	Warnung_Code
+		0:	*Allgemein Warnung Beleuchtung (intern)
+		1:	keine Betriebsrückmeldung
+		2:	keine Leistung
+		3:	*Beleuchtung im Handbetrieb
+		4:
+		5:
+		6:
+		7:
+
+	Freigabe_Code
+		0:	*Freigabe durch Automatik entzogen
+		1:	*Freigabe durch Manuell entzogen
+		2:	*Freigabe durch Stoerung entzogen
+		3: 	*Freigabe durch hohe Einschalthäufigkeiten entzogen
+		4: 	*Freigabe durch zu hohe Rücklauf-Temperaturen entzogen
+*)
+(* Zustandsdefinitionen *)
+Zustand.Betrieb	:= zustand.Betrieb_Anford AND Zustand.Freigabe  ;
+
+IF Steuerung.Farbcode.manu_Modus THEN
+	Zustand.Farbcode:= Steuerung.Farbcode.manu;
+ELSE
+	Zustand.Farbcode:= Steuerung.Farbcode.auto;
+END_IF
+
+Timer1(	IN := (Zustand.Betrieb_Anford <> Zustand.Betrieb),
+		PT := T#1M,
+		Q => Zustand.Warnung_Code.1
+);
+
+(* Warnung - keine Leistung im Betrieb nach 1 Minute *)
+Timer2(	IN := Zustand.Leistung <= 0 AND Zustand.Betrieb_Anford = TRUE,
+		PT := T#1M,
+		Q => Zustand.Warnung_Code.2
+);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_BelAu_Zustandscheck">
+      <LineId Id="14" Count="46" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

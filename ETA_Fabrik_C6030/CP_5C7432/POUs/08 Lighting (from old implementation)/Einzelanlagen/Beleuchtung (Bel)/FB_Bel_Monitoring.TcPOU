@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Bel_Monitoring" Id="{8baaa502-b25f-4e5a-ad0b-69c450862fdf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Bel_Monitoring (* Baustein dient dem Monitoring einzelner Lampen bei Lampengruppen, d.h. insbesondere der Hallenbeleuchtung *)
+VAR_INPUT
+	Settings_Array	: ARRAY [0..63] OF ST_DALIV2DeviceSettings;
+	Zustand			: ST_Bel_Zustand;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	i	: INT;
+	Relative_Leistung	: REAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR i := 0 TO 30 DO
+	Zustand.Lampen_Monitoring[i].Betrieb := Settings_Array[i].bPresent;
+	Relative_Leistung := Settings_Array[i].nActualLevel;
+	Zustand.Lampen_Monitoring[i].Relative_Leistung := (Relative_Leistung - 126)/ 1.28;
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Bel_Monitoring">
+      <LineId Id="11" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_Steuerung_auto_manu_opti_SINT" Id="{208c2cfe-312f-4d6d-a36b-6198edfb1631}">
+    <Declaration><![CDATA[TYPE ST_Steuerung_auto_manu_opti_SINT :
+STRUCT
+	auto			: SINT;
+	manu			: SINT;
+	manu_Modus		: BOOL;
+	opti			: SINT;
+	opti_Modus		: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>
