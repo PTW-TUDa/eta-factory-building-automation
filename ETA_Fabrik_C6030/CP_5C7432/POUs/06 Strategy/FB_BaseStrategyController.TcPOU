@@ -21,6 +21,8 @@ END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
 	localSetParameters : ST_BaseStrategySetParameters;	
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_BaseStrategyState;	
 
 	//default parameters
 	localDefaultParameters : ST_BaseStrategyDefaultParameters;
@@ -93,9 +95,7 @@ ControlHNLT();
 ControlHNHT();
 ControlHnltCnLinkage();
 ControlHnhtHnltLinkage();
-	
-	
-	]]></ST>
+SetState();]]></ST>
     </Implementation>
     <Method Name="AmbientControl" Id="{8ddd9501-e77a-4ac1-860b-ffb4d0e17ea0}">
       <Declaration><![CDATA[METHOD AmbientControl : BOOL
@@ -342,6 +342,28 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="SetState" Id="{fed71060-1f4b-4777-bd5e-031580854e91}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[localState.fTargetTemperature_HNHT := fTargetTemperature_HNHT;
+localState.fTargetTemperature_HNLT_Heating := fTargetTemperature_HNLT_Heating;
+localState.fTargetTemperature_HNLT_Cooling := fTargetTemperature_HNLT_Cooling;
+localState.fTargetTemperature_CN := fTargetTemperature_CN;
+localState.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
+
+localState.aTemperatureLimits_HNHT := aTemperatureLimits_HNHT;
+localState.aTemperatureLimits_HNLT := aTemperatureLimits_HNLT;
+localState.aTemperatureLimits_CN := aTemperatureLimits_CN;	
+
+localState.fFeedTemperature_HNHT := fTargetTemperature_HNHT+localDefaultParameters.fOffset_FeedTemperature_HNHT;
+localState.fFeedTemperature_HNLT_Heating := fTargetTemperature_HNLT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNLT_Heating;
+localState.fFeedTemperature_HNLT_Cooling := fTargetTemperature_HNLT_Cooling-localDefaultParameters.fOffset_FeedTemperature_HNLT_Cooling;
+localState.fFeedTemperature_CN := fTargetTemperature_CN-localDefaultParameters.fOffset_FeedTemperature_CN;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="SetTemperatures" Id="{1cbdec00-9365-4ae8-8bd7-9d18f1e0b65e}">
       <Declaration><![CDATA[METHOD SetTemperatures : BOOL
 VAR_INPUT
@@ -405,8 +427,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="221" Count="0" />
       <LineId Id="170" Count="0" />
       <LineId Id="313" Count="0" />
-      <LineId Id="57" Count="1" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="57" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.AmbientControl">
       <LineId Id="6" Count="3" />
@@ -523,6 +544,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="65" Count="1" />
       <LineId Id="68" Count="3" />
       <LineId Id="67" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseStrategyController.SetState">
+      <LineId Id="6" Count="12" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetTemperatures">
       <LineId Id="18" Count="0" />

@@ -8803,9 +8803,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF</Name>
+									<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF_Frei</Name>
 									<Var>
-										<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF</Name>
+										<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16939</BitOffs>
 										<InOut>0</InOut>
@@ -9606,9 +9606,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>LI### Keller Schaltsignal vom Licht in Büros</Name>
+									<Name>bo_Keller_Schaltsignal_Licht_Büros_Frei</Name>
 									<Var>
-										<Name>LI### Keller Schaltsignal vom Licht in Büros</Name>
+										<Name>bo_Keller_Schaltsignal_Lichts_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16970</BitOffs>
 										<InOut>1</InOut>
@@ -9664,7 +9664,7 @@ PU245
 								<Name>K550A1_AI-1/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF050_EG_Nord_AT</Name>
+									<Name>ai_TF050_OutsideTemperature_North_Frei</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -9672,7 +9672,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF050_EG_Nord_AT</Name>
+										<Name>ai_TF050_OutsideTemperature_North_Frei</Name>
 										<Type>INT</Type>
 										<BitOffs>13424</BitOffs>
 										<InOut>0</InOut>
@@ -13397,8 +13397,8 @@ PU245
 								<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07113052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1809 16K. Dig. Eingang 24V, 3ms" Desc="EL1809" PortABoxInfo="#x0100002a">
 									<SyncMan>001002000000010004000000000000000200001000010000</SyncMan>
 									<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-									<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Pdo Name="bi_eChiller_bError" Index="#x1a00" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bError" Index="#x6000" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
@@ -13407,13 +13407,13 @@ PU245
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
-									<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Pdo Name="bi_eChiller_bWarning" Index="#x1a02" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bWarning" Index="#x6020" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
-									<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Pdo Name="bi_eChiller_bStatusOn" Index="#x1a03" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bStatusOn" Index="#x6030" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
@@ -22547,9 +22547,9 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNLT.HVFASystem.SVx06.nSetPoint_OUT" VarB="ao_SV206^ao_SV206"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 43 (EL1809)">
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bError_IN" VarB="Channel 1^Input"/>
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN" VarB="Channel 4^Input"/>
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bWarning_IN" VarB="Channel 3^Input"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bError_IN" VarB="bi_eChiller_bError^bi_eChiller_bError"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN" VarB="bi_eChiller_bStatusOn^bi_eChiller_bStatusOn"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bWarning_IN" VarB="bi_eChiller_bWarning^bi_eChiller_bWarning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 51 (EL3068)">
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN" VarB="ai_RV105^ai_RV105"/>
