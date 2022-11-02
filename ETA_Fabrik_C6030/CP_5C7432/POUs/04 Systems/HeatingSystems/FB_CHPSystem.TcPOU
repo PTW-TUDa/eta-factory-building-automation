@@ -21,7 +21,7 @@ VAR
 	
 	//valves
 	stSV32xDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tControllerIntegralTime := T#1S, fOutMinLimit := 60,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
 	SV32x : FB_DiscreteValve := (ST_DefaultParameters := stSV32xDefaultParameters);
 	RV32x : FB_MixingValve := (ST_DefaultParameters := stRV32xDefaultParameters);
 	
@@ -30,11 +30,14 @@ VAR
 	EM32x : FB_ElectricityMeter();
 	GM32x : FB_GasMeter();
 	
+	PI_Controller				: FB_CTRL_PI;
+	PI_Controller_Parameters 	: ST_CTRL_PI_PARAMS;
+	
 	//internal variables
 	bSetStatusOn_CHP   : BOOL;
 	bSetStatusOn_PU32x : BOOL;
 	bSetStatusOn_SV32x : BOOL;
-	bSetStatusOn_RV32x : BOOL; 	
+	bSetStatusOn_RV32x : BOOL;
 	
 	//timer
 	bStartTimer : BOOL;
@@ -44,16 +47,16 @@ END_VAR
     <Implementation>
       <ST><![CDATA[bSetStatusOnFeedback := bSetStatusOn;
 
-//use timer because valve has no feedback signal (75 sec)
+//use timer because valve has no feedback signal (120 sec)
 Timer(IN := bStartTimer,
 	PT := T#120S);
 
 MAIN();
 CHP.GetState();
-CHP(fSetPointAutomatic := 100,
+CHP(fSetPointAutomatic :=  fSetPoint,
 	bSetStatusOnAutomatic := bSetStatusOn_CHP,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 0,
+	nControlModeAutomatic := 1,
 	fExternalFeedTemperature := PU32x.fTemperatureInternal,
 	sIPAddress := sIPAddressCHP);
 CHP.SetState();
@@ -64,10 +67,10 @@ SV32x(bSetStatusOnAutomatic := bSetStatusOn_SV32x,
 SV32x.SetState_BO();
 
 RV32x.GetState_AI();
-RV32x(fSetPointAutomatic := fSetPoint,
+RV32x(fSetPointAutomatic := 55,
 	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := PU32x.fTemperatureInternal,
+	fTemperatureExternal := CHP.fReturnTemperature,
 	nControlModeAutomatic := 2);
 RV32x.SetState_AO();
 
