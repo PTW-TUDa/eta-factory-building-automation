@@ -125,7 +125,7 @@ RV500.GetState_AI();
 RV500(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint_RV500,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := PU500.fTemperatureExternal,
+	fTemperatureExternal := PU500.fTemperatureInternal,
 	nControlModeAutomatic := nControlMode_RV500);
 RV500.SetState_AO();
 
