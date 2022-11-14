@@ -4,7 +4,7 @@
     <Declaration><![CDATA[TYPE ST_BaseStrategyDefaultParameters :
 STRUCT
 	//target temperatures for building mode
-	fTargetTemperature_HNHT : REAL := 60;
+	fTargetTemperature_HNHT : REAL := 55;
 	fTargetTemperature_HNLT_Cooling : REAL := 40;
 	fTargetTemperature_HNLT_Heating : REAL := 35;
 	fTargetTemperature_CN : REAL := 15;

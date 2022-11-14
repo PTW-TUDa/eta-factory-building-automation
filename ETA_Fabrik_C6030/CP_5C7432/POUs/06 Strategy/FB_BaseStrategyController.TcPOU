@@ -39,7 +39,7 @@ VAR
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
 	fOffset_TargetTemperature_CHP2 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
-	fOffset_TargetTemperature_CondensingBoiler : REAL := 2;	
+	fOffset_TargetTemperature_CondensingBoiler : REAL := 0;	
 	Controller_CHP1 : FB_CTRL_2POINT;
 	Controller_CHP1_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_CHP2 : FB_CTRL_2POINT;
@@ -204,11 +204,11 @@ Controller_StaticHeating_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycle
 
 //operating hours of chp1 should be included
 IF ambientState.fOutsideTemperature > 15 THEN
-	fOffset_TargetTemperature_CHP1 := 0;
-	fOffset_TargetTemperature_CHP2 := 2;
-ELSE
 	fOffset_TargetTemperature_CHP1 := 2;
-	fOffset_TargetTemperature_CHP2 := 0;
+	fOffset_TargetTemperature_CHP2 := 4;
+ELSE
+	fOffset_TargetTemperature_CHP1 := 4;
+	fOffset_TargetTemperature_CHP2 := 2;
 END_IF
 
 
