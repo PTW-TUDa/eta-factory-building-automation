@@ -67,7 +67,7 @@ SV32x(bSetStatusOnAutomatic := bSetStatusOn_SV32x,
 SV32x.SetState_BO();
 
 RV32x.GetState_AI();
-RV32x(fSetPointAutomatic := 55,
+RV32x(fSetPointAutomatic := fSetPoint-10,
 	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := CHP.fReturnTemperature,
