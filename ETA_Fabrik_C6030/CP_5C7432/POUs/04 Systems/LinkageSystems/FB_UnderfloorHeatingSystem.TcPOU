@@ -67,9 +67,9 @@ END_IF;
 //pumps
 PU425.GetState_Profibus();
 PU425(bSetStatusOnAutomatic := bSetStatusOn_PU425,
-	fSetPointAutomatic := 90000,
+	fSetPointAutomatic := 80,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 5);
+	nControlModeAutomatic := 0);
 PU425.SetState_Profibus();
 
 //valves in thermal networks

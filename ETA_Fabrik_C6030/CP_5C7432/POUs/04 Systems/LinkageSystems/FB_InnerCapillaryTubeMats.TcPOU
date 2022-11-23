@@ -115,9 +115,9 @@ PU405.SetState_Profibus();
 
 PU500.GetState_Profibus();
 PU500(bSetStatusOnAutomatic := bSetStatusOn_PU500,
-	fSetPointAutomatic := 90000,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 5);
+	nControlModeAutomatic := 0);
 PU500.SetState_Profibus();
 
 //valves in thermal networks
