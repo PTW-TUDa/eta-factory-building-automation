@@ -108,7 +108,7 @@ Clock();
 //pumps
 PU405.GetState_Profibus();
 PU405(bSetStatusOnAutomatic := bSetStatusOn_PU405,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU405.SetState_Profibus();

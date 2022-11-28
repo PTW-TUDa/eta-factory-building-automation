@@ -333,13 +333,18 @@ hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Contr
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
 //switch heating off during night
+hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
+hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+
+(*
 IF Clock.stClockState.fHour > 7 AND Clock.stClockState.fHour < 17 THEN
 	hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
 	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
 ELSE
 	hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := FALSE;
 	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;
-END_IF]]></ST>
+END_IF
+*)]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetState" Id="{fed71060-1f4b-4777-bd5e-031580854e91}">
@@ -541,9 +546,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="58" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="63" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="75" Count="0" />
       <LineId Id="65" Count="1" />
       <LineId Id="68" Count="3" />
       <LineId Id="67" Count="0" />
+      <LineId Id="76" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetState">
       <LineId Id="6" Count="12" />
