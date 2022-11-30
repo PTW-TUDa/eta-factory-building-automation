@@ -190,19 +190,19 @@ END_VAR
 bSetStatusOn_SVx06 := TRUE;
 
 IF bLoading = TRUE THEN
-	fSetPoint_SVx05 := 100;
-	fSetPoint_SVx06 := 100;
+	fSetPoint_SVx05 := 0;
+	fSetPoint_SVx06 := 0;
 	nControlMode_RVx05 := 2; //cooling mode (heats network)
 	fExternalTemperature_RVx05 := WMZ7x0.fReturnTemperazure;	
-	IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
+	IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 ELSE
-	fSetPoint_SVx05 := 0;
-	fSetPoint_SVx06 := 0;
+	fSetPoint_SVx05 := 100;
+	fSetPoint_SVx06 := 100;
 	nControlMode_RVx05 := 1; //heating mode (cools network)
 	fExternalTemperature_RVx05 := WMZx05.fFeedTemperature;
-	IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
+	IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 END_IF
@@ -280,10 +280,10 @@ END_VAR
         <ST><![CDATA[//check system state
 IF bRampDownFinished THEN
 	IF bSwitchToLoading THEN
-		fSetPoint_SVx05 := 100;
-		fSetPoint_SVx06 := 100;
+		fSetPoint_SVx05 := 0;
+		fSetPoint_SVx06 := 0;
 		nControlMode_RVx05 := 2; //cooling mode (heats network)	
-		IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
+		IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -291,10 +291,10 @@ IF bRampDownFinished THEN
 		END_IF
 		
 	ELSE
-		fSetPoint_SVx05 := 0;
-		fSetPoint_SVx06 := 0;
+		fSetPoint_SVx05 := 100;
+		fSetPoint_SVx06 := 100;
 		nControlMode_RVx05 := 1; //cooling mode (heats network)	
-		IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
+		IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
