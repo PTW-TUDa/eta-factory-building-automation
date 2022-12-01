@@ -47,13 +47,17 @@ CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_1,
-	sIPAddressCHP := Global_IP_Adresses.BHKW_921_ModbusTCP);
+	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_321,
+	aGasMeterTelegramm := Telegramm_GZ_BHKW_321,
+	sIPAddressCHP := GlobalVariables.sIP_CHP1);
 
 CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
 	aHeatCounterTelegramm := Telegramm_WZ_BHKW_2,
-	sIPAddressCHP := Global_IP_Adresses.BHKW_922_ModbusTCP);
+	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_322,
+	aGasMeterTelegramm := Telegramm_GZ_BHKW_322,
+	sIPAddressCHP := GlobalVariables.sIP_CHP2);
 
 SV_SupplyAir.GetState_BI();
 SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
@@ -92,11 +96,15 @@ VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStora
       <LineId Id="372" Count="2" />
       <LineId Id="43" Count="4" />
       <LineId Id="206" Count="0" />
+      <LineId Id="447" Count="0" />
+      <LineId Id="449" Count="0" />
       <LineId Id="232" Count="0" />
       <LineId Id="161" Count="0" />
       <LineId Id="159" Count="1" />
       <LineId Id="158" Count="0" />
       <LineId Id="207" Count="0" />
+      <LineId Id="448" Count="0" />
+      <LineId Id="450" Count="0" />
       <LineId Id="233" Count="0" />
       <LineId Id="183" Count="3" />
       <LineId Id="56" Count="0" />

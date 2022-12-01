@@ -8,6 +8,7 @@ VAR_INPUT
 	sIPAddress : STRING(15);
 END_VAR
 VAR_OUTPUT
+	fReturnTemperature : REAL;
 	bError : BOOL; // Returns CHP error
 END_VAR
 VAR
@@ -17,7 +18,7 @@ VAR
 	localSetParameters : ST_CHPSetParameters;
 	
 	//default parameters
-	localDefaultParameters : ST_CHPDefaultParameters;
+	localDefaultParameters : ST_CHPDefaultParameters:= (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
 	
 	//modbus tcp communication
 	ModbusReader : FB_MBReadRegs;
@@ -30,6 +31,11 @@ VAR
 	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
 	bSetStatusOn_OUT 		AT %Q* : BOOL; //SetStatus linked to terminal
 	bError_IN 				AT %I* : BOOL; //Error state linked to terminal
+	
+	//modbus
+	bReadModbus	: BOOL := FALSE;
+	bStartTimer : BOOL;
+	Timer : TON;
 	
 	//internal variables
 	nControlMode : E_CHPControlMode;
@@ -45,6 +51,15 @@ END_VAR
 SelectCHPControlMode();
 ControlCHP();
 OutputConverter(fValue := fSetPoint_internal);
+Timer(IN := bStartTimer,
+	PT := T#2S);
+	
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bReadModbus := TRUE;
+	bStartTimer := FALSE;	
+END_IF
+
 ModbusReader(sIPAddr := sIPAddress,
 	nTCPPort := 502,
 	nUnitID := 255,
@@ -52,8 +67,11 @@ ModbusReader(sIPAddr := sIPAddress,
 	nMBAddr := 16384,
 	cbLength := 122,
 	pDestAddr := ADR(aModbus),
-	bExecute := TRUE,
+	bExecute := bReadModbus,
 	tTimeout  := T#20S);
+bReadModbus := FALSE;
+
+fReturnTemperature := localState.fReturnTemperature;
 	]]></ST>
     </Implementation>
     <Method Name="ControlCHP" Id="{d887795e-232f-42f3-8d28-8fa56d1a0fe4}">
@@ -66,7 +84,7 @@ END_VAR
 PI_Controller_Parameters.fKp 				:= localDefaultParameters.fControllerAmplification;
 PI_Controller_Parameters.tTn 				:= localDefaultParameters.tControllerIntegralTime;
 PI_Controller_Parameters.fOutMaxLimit		:= 100.0;
-PI_Controller_Parameters.fOutMinLimit		:= 0.0;
+PI_Controller_Parameters.fOutMinLimit		:= 50;
 PI_Controller_Parameters.tTaskCycleTime		:= localDefaultParameters.tTaskCycleTime;
 PI_Controller_Parameters.tCtrlCycleTime		:= localDefaultParameters.tCtrlCycleTime;
 PI_Controller_Parameters.bARWOnIPartOnly	:= TRUE;
@@ -105,16 +123,16 @@ CASE WORD_TO_UINT(aModbus[2]) OF
 END_CASE
 bStatusOn := controlState.bStatusOn;
 bError := localState.bError;
-localState.fCosPhi := WORD_TO_INT(aModbus[59]);
-localState.fElectricalPower := WORD_TO_INT(aModbus[52]);
-localState.fFeedTemperature := WORD_TO_INT(aModbus[26]);
-localState.fGeneratorCurrent := WORD_TO_INT(aModbus[51]);
+localState.fCosPhi := WORD_TO_INT(aModbus[59])/1000;
+localState.fElectricalPower := WORD_TO_INT(aModbus[52])/10;
+localState.fFeedTemperature := WORD_TO_INT(aModbus[26])/10;
+localState.fGeneratorCurrent := WORD_TO_INT(aModbus[51])/10;
 localState.fGeneratorVoltage := WORD_TO_INT(aModbus[50]);
 localState.fGridVoltage := WORD_TO_INT(aModbus[49]);
 localState.fOperatingTime := WORD_TO_UINT(aModbus[13]);
-localState.fReturnTemperature := WORD_TO_INT(aModbus[25]);
+localState.fReturnTemperature := WORD_TO_INT(aModbus[25])/10;
 localState.fRotationalSpeed := WORD_TO_UINT(aModbus[37]);
-localState.fTemperatureCoolingWater := WORD_TO_INT(aModbus[24]);
+localState.fTemperatureCoolingWater := WORD_TO_INT(aModbus[24])/10;
 localState.fTemperatureExhaustGas := WORD_TO_INT(aModbus[20]);
 localState.nNumberOfStarts := WORD_TO_UINT(aModbus[15]);
 localState.nOperationStatus := WORD_TO_UINT(aModbus[2]);
@@ -208,10 +226,22 @@ END_VAR
       <LineId Id="100" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="59" Count="0" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="191" Count="0" />
       <LineId Id="137" Count="0" />
       <LineId Id="139" Count="2" />
       <LineId Id="143" Count="2" />
       <LineId Id="148" Count="1" />
+      <LineId Id="199" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="209" Count="0" />
       <LineId Id="142" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHP.ControlCHP">

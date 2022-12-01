@@ -38,7 +38,7 @@ RV251.GetState_AI();
 RV251(bSetStatusOnAutomatic := bSetStatusOn_RV251,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 2,
+	nControlModeAutomatic := 1,
 	fTemperatureExternal := PU251.fTemperatureInternal);
 RV251.SetState_AO();
 

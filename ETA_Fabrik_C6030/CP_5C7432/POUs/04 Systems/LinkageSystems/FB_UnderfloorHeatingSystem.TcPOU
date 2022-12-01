@@ -67,9 +67,9 @@ END_IF;
 //pumps
 PU425.GetState_Profibus();
 PU425(bSetStatusOnAutomatic := bSetStatusOn_PU425,
-	fSetPointAutomatic := 90000,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 5);
+	nControlModeAutomatic := 0);
 PU425.SetState_Profibus();
 
 //valves in thermal networks
@@ -162,10 +162,8 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_PU425 := FALSE;
 bSetStatusOn_RV425 := FALSE;
-bSetStatusOn_SV423 := FALSE;
-bSetStatusOn_SV424 := FALSE;
 	
-IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
+IF PU425.bStatusOn THEN
 	bRampDownFinished := TRUE;		
 END_IF	
 ]]></ST>
@@ -181,14 +179,14 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF bHeatingMode THEN
-	bSetStatusOn_SV423 := FALSE;
-	bSetStatusOn_SV424 := FALSE;
+	//bSetStatusOn_SV423 := FALSE;
+	//bSetStatusOn_SV424 := FALSE;
 	IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
 		bRampUpFinished := TRUE;		
 	END_IF	
 ELSE
-	bSetStatusOn_SV423 := TRUE;
-	bSetStatusOn_SV424 := TRUE;
+	//bSetStatusOn_SV423 := TRUE;
+	//bSetStatusOn_SV424 := TRUE;
 	IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
 		bRampUpFinished := TRUE;		
 	END_IF	
@@ -254,10 +252,10 @@ END_VAR
 IF bRampDownFinished THEN
 	IF bSwitchToHeating THEN
 		//false - valve connects heating network
-		bSetStatusOn_SV423 := TRUE;
-		bSetStatusOn_SV424 := TRUE;	
+		bSetStatusOn_SV423 := FALSE;
+		bSetStatusOn_SV424 := FALSE;	
 
-		IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
+		IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -266,10 +264,10 @@ IF bRampDownFinished THEN
 		
 	ELSE
 		//true - connects cooling network
-		bSetStatusOn_SV423 := FALSE;
-		bSetStatusOn_SV424 := FALSE;	
+		bSetStatusOn_SV423 := TRUE;
+		bSetStatusOn_SV424 := TRUE;	
 
-		IF SV423.localState.nPosition=3 AND SV424.localState.nPosition=3 THEN
+		IF SV423.localState.nPosition=2 AND SV424.localState.nPosition=2 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -344,8 +342,6 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_UnderfloorHeatingSystem.RampDown">
       <LineId Id="13" Count="0" />
       <LineId Id="30" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="36" Count="0" />
       <LineId Id="19" Count="3" />
       <LineId Id="14" Count="0" />
     </LineIds>
@@ -356,8 +352,7 @@ END_VAR]]></Declaration>
       <LineId Id="37" Count="1" />
       <LineId Id="36" Count="0" />
       <LineId Id="19" Count="0" />
-      <LineId Id="46" Count="3" />
-      <LineId Id="31" Count="0" />
+      <LineId Id="56" Count="4" />
       <LineId Id="17" Count="0" />
     </LineIds>
     <LineIds Name="FB_UnderfloorHeatingSystem.SelectUnderfloorHeatingControlMode">

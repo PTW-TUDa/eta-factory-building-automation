@@ -13,6 +13,15 @@ VAR_GLOBAL
 	sIP_MAFAC_Java : STRING := 'opc.tcp://192.168.116.48:4840';
 	sIP_Annealing_Oven : STRING := 'opc.tcp://192.168.116.38:4840';
 	sIP_DC : STRING := 'opc.tcp://192.168.116.41:4840';
+	sIP_AbsorptionChiller : STRING := 'opc.tcp://192.168.116.56:4840'; 
+	sIP_ImmersionHeater		: STRING := 'opc.tcp://192.168.115.56:4840';
+	sIP_HES		: STRING := 'opc.tcp://192.168.115.71:4840';	
+	sIP_CompressionChiller		: STRING := 'opc.tcp://192.168.116.19:4840';
+	sIP_EMAG_VLC100	: STRING := 'opc.tcp://192.168.116.24:4840';
+	sIP_HydraulicDemonstrator : STRING := 'opc.tcp://192.168.115.176:4840';
+	sIP_Ventilation : STRING := '192.168.116.58';
+	sIP_CHP1 : STRING := '192.168.116.118';
+	sIP_CHP2 : STRING := '192.168.116.119';
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

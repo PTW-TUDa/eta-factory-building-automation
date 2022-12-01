@@ -51,7 +51,7 @@ PU315.SetState_Profibus();
 
 PU215.GetState_Profibus();
 PU215(bSetStatusOnAutomatic := bSetStatusOn_PU215,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU215.SetState_Profibus();
@@ -115,7 +115,7 @@ IF NOT PU315.bStatusOn AND NOT PU215.bStatusOn THEN
 	bSetStatusOn_RV215 := FALSE;
 	bSetStatusOn_SV315 := FALSE;
 	bStartTimer := TRUE;
-	IF Timer.Q AND RV215.fOperatingPoint<10 THEN
+	IF Timer.Q THEN
 		bRampDownFinished := TRUE;
 		bStartTimer := FALSE;
 	END_IF

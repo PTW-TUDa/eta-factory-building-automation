@@ -32,18 +32,17 @@ END_VAR
 //pumps
 PU261.GetState_Profibus();
 PU261(bSetStatusOnAutomatic := bSetStatusOn_PU261,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 2);
 PU261.SetState_Profibus();
 
 //valves
 RV261.GetState_AI();
 RV261(bSetStatusOnAutomatic := bSetStatusOn_RV261,
-	fSetPointAutomatic := fSetPoint,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := PU261.fTemperatureInternal,
-	nControlModeAutomatic := 2);
+	nControlModeAutomatic := 0);
 RV261.SetState_AO();
 
 WMZ261(aHeatCounterTelegramm := Telegramm_WZ_Ofenkuehlung);]]></ST>
@@ -152,7 +151,8 @@ END_VAR]]></Declaration>
       <LineId Id="183" Count="0" />
       <LineId Id="191" Count="0" />
       <LineId Id="322" Count="0" />
-      <LineId Id="277" Count="4" />
+      <LineId Id="277" Count="2" />
+      <LineId Id="281" Count="0" />
       <LineId Id="274" Count="0" />
       <LineId Id="200" Count="0" />
       <LineId Id="153" Count="0" />

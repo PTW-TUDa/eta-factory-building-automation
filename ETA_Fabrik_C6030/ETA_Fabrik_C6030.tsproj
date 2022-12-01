@@ -52,74 +52,6 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
-			<BitSize>192</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>1</LBound>
-				<Elements>24</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{EA333710-B8CB-A071-0EB1-579763401185}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF UINT</Name>
-			<BitSize>512</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000005}">UINT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>32</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU" AutoDeleteType="true">MB_KL6inData22B</Name>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Status</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>hide</Name>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
-			<Name GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU" AutoDeleteType="true">MB_KL6outData22B</Name>
-			<BitSize>192</BitSize>
-			<SubItem>
-				<Name>Ctrl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>D</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<ArrayInfo>
-					<LBound>0</LBound>
-					<Elements>22</Elements>
-				</ArrayInfo>
-				<BitSize>176</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>hide</Name>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
 			<Name GUID="{12E80FF5-6251-C867-A464-3036E21E986D}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -191,123 +123,13 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF USINT</Name>
-			<BitSize>48</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
+			<BitSize>192</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
 			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>6</Elements>
+				<LBound>1</LBound>
+				<Elements>24</Elements>
 			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}" AutoDeleteType="true">ST_PU_Genibus</Name>
-			<BitSize>72</BitSize>
-			<SubItem>
-				<Name>SequenceNumber</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<Comment><![CDATA[SequenceNumber: Is the trigger, every time the value changes a new reply will be generated. ]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>DestAddress</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<Comment><![CDATA[Address of GeniPro Slave, Broadcast = 16#FF]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Class</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<Comment><![CDATA[ no further Info provided]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>OpLength</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<Comment><![CDATA[ Operation and Length / for Reply Acknowledge and Length]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>24</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Data1</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Data2</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>40</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Data3</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>48</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Data4</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>56</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>Data5</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>64</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{65B49FF3-3728-30E9-2AF0-23F4C48769BE}" Namespace="Tc2_LON" AutoDeleteType="true">ST_LON_ParameterInterface</Name>
-			<BitSize>256</BitSize>
-			<SubItem>
-				<Name>arrParameterInterface</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000007}">DWORD</Type>
-				<ArrayInfo>
-					<LBound>1</LBound>
-					<Elements>8</Elements>
-				</ArrayInfo>
-				<BitSize>256</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
-			<Name GUID="{6D3AE9A9-2FF0-F087-2699-40BA17B0D45C}" Namespace="Tc2_LON" AutoDeleteType="true">ST_LON_Parameter_IN_36B</Name>
-			<BitSize>320</BitSize>
-			<SubItem>
-				<Name>wParameterStatus</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>wDummy</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>stParameterReadValue</Name>
-				<Type GUID="{65B49FF3-3728-30E9-2AF0-23F4C48769BE}" Namespace="Tc2_LON">ST_LON_ParameterInterface</Type>
-				<BitSize>256</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>byParameterType</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>288</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>byLONStatus</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>296</BitOffs>
-			</SubItem>
 		</DataType>
 		<DataType>
 			<Name GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2InData</Name>
@@ -339,15 +161,6 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..63] OF BYTE</Name>
-			<BitSize>512</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>64</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
 			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
 			<BitSize>40</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -355,49 +168,6 @@
 				<LBound>0</LBound>
 				<Elements>5</Elements>
 			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF USINT</Name>
-			<BitSize>40</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>5</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{7F9AFC18-D717-A9B2-0A22-B8212E5A6FA8}" Namespace="Tc2_LON" AutoDeleteType="true">ST_LON_Parameter_OUT_36B</Name>
-			<BitSize>320</BitSize>
-			<SubItem>
-				<Name>wParameterControl</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>wDummy</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>stParametervalue</Name>
-				<Type GUID="{65B49FF3-3728-30E9-2AF0-23F4C48769BE}" Namespace="Tc2_LON">ST_LON_ParameterInterface</Type>
-				<BitSize>256</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>byCMD</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>288</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>byIdx</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>296</BitOffs>
-			</SubItem>
 		</DataType>
 		<DataType>
 			<Name GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2OutData</Name>
@@ -492,16 +262,16 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000400000020}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF WORD</Name>
-			<BitSize>512</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000A}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..9] OF BIT</Name>
+			<BitSize>10</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>32</Elements>
+				<Elements>10</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -536,6 +306,15 @@
 				<Elements>64</Elements>
 			</ArrayInfo>
 		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000400000020}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..31] OF WORD</Name>
+			<BitSize>512</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>32</Elements>
+			</ArrayInfo>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
 		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
@@ -560,13 +339,10 @@
 				</Target>
 			</Licenses>
 			<Tasks>
-				<Task Id="5" Priority="10" CycleTime="160000" AmsPort="350" AdtTasks="true">
-					<Name>ComTask</Name>
-				</Task>
 				<Task Id="7" Priority="8" CycleTime="100000" AmsPort="351" AdtTasks="true">
 					<Name>MBus_Zaehler_Task</Name>
 				</Task>
-				<Task Id="8" Priority="12" CycleTime="200000" AmsPort="352" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="8" Priority="10" CycleTime="200000" AmsPort="352" DisableFpExceptions="true" AdtTasks="true">
 					<Name>Standard</Name>
 				</Task>
 				<Task Id="3" Priority="6" CycleTime="60000" AmsPort="353" AdtTasks="true">
@@ -616,36 +392,6 @@
 						</Var>
 					</Vars>
 					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
-						<Name>ComTask Inputs</Name>
-						<Var>
-							<Name>.KL_Wetterstation_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.IN_UMG</Name>
-							<Type GUID="{EA333710-B8CB-A071-0EB1-579763401185}">ARRAY [0..31] OF UINT</Type>
-						</Var>
-						<Var>
-							<Name>.Modbus_NSHV.InData</Name>
-							<Type GUID="{F852D9F7-9DB9-AE77-EE6D-D9BA52CDE308}" Namespace="Tc2_ModbusRTU">MB_KL6inData22B</Type>
-						</Var>
-					</Vars>
-					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
-						<Name>ComTask Outputs</Name>
-						<Var>
-							<Name>.KL_Wetterstation_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.OUT_UMG_Anfrage</Name>
-							<Type>BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Modbus_NSHV.OutData</Name>
-							<Type GUID="{E4C24E72-EF65-C814-8E17-663F53275EE3}" Namespace="Tc2_ModbusRTU">MB_KL6outData22B</Type>
-						</Var>
-					</Vars>
-					<Vars VarGrpType="1" ContextId="3" AreaNo="48">
 						<Name>Standard Inputs</Name>
 						<Var>
 							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -1962,1472 +1708,8 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor1.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor2.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor2.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor3.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_Ost_Sektor3.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor1.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor1.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor2.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor2.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor3.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Wand_West_Sektor3.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor1.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor1.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor2.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor2.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_Ost.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_Ost.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_West.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Aussen_West.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Temp_Aussen_WS.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Temp_Aussen_WS.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_423.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_423.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_424.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_424.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Regelventil_425.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_504_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_504_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_505_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.IN_505_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_500.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_561.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_562.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_563.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_571.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_572.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_573.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_541.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_542.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_543.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_551.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_552.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_553.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_453.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_453.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_StatusModule</Name>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Regelventil_350.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.IN_Servomotor_Fenster_O_W_auf</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.IN_Oberlichter_Halle_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.IN_Oberlichter_Treppenhaus_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.DS_500_Wand_Innen.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.DS_500_Wand_Innen.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.DS_600_Wand_Aussen.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.DS_600_Wand_Aussen.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Stellventil_321.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Stellventil_321.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Regelventil_321.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.BHKW_921.IN_Sammelstoerung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Stellventil_322.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Stellventil_322.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Regelventil_322.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.BHKW_922.IN_Sammelstoerung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_605.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_605.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_235.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_235.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_600.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_Ost_640.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_West_660.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Regelventil_215.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Regelventil_331.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_IN_1</Name>
-							<Comment><![CDATA[ Kommunikation ]]></Comment>
-							<Type GUID="{6D3AE9A9-2FF0-F087-2699-40BA17B0D45C}" Namespace="Tc2_LON">ST_LON_Parameter_IN_36B</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_oben.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_oben.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_mitte.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_mitte.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_unten.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Kaltwasser_195.TF_unten.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_oben.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_oben.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_mitte.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_mitte.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_unten.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Warmwasser_295.TF_unten.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_oben.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_oben.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_mitte.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_mitte.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_unten.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Speicher.Pufferspeicher_Heisswasser_395.TF_unten.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_100_KWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_100_KWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_200_WWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_200_WWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_300_HWN.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Netze.DS_300_HWN.IN_Druck</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor1.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor1.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor2.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor2.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor3.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Halle_Sektor3.IN_Temperatur</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Status</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Temperatur</Name>
-							<Type>INT</Type>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
 						</Var>
 						<Var>
 							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
@@ -3448,618 +1730,6 @@
 						<Var>
 							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Regelventil_251.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_StatusModule</Name>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_intern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.IN_Zustand_Stellungrueckmeldung0</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.IN_Zustand_Stellungrueckmeldung1</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Regelventil_261.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Regelventil_361.IN_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_StatusModule</Name>
-							<Comment><![CDATA[Genibus					: FB_PU_Genibus_old;]]></Comment>
-							<Type GUID="{189ECD13-08C9-33F7-3CE7-1B1294068BF9}">ARRAY [0..5] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Leistung</Name>
-							<Comment><![CDATA[ 0..100% ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Leistung_elek</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Leistung_therm</Name>
-							<Comment><![CDATA[ W ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Energie_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Energie_therm</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Volumenstrom</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Volumen</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Temp_intern</Name>
-							<Type>REAL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Temp_extern</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Temp_elek</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Drehzahl</Name>
-							<Comment><![CDATA[ U/min ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Frequenz_Motor</Name>
-							<Comment><![CDATA[ Hz ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Zeit_Betrieb</Name>
-							<Comment><![CDATA[ h ]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Anzahl_Starts</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Modul_Meld_Code1</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Modul_Meld_Code2</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Druckdifferenz</Name>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.IN_Temp_intern_GeniReply</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
-						<Var>
-							<Name>.IN_Profibus_DLK</Name>
-							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -4596,7 +2266,7 @@
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2" ContextId="3" AreaNo="49">
+					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>Standard Outputs</Name>
 						<Var>
 							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
@@ -4972,428 +2642,8 @@
 							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Pumpe_425.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_423.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Stellventil_424.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Fussbodentemperierung_425.Regelventil_425.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_401_402.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_403_404.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Stellventil_504_505.OUT_505_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_500.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_500.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_561.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_562.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_563.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_571.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_572.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_573.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_541.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_542.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_543.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_551.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_552.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Regelventil_553.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_453.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Stellventil_454.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_Lueftungsanlage_955.Pumpe_455.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Pumpe_350.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.System_StatischeHeizung_350.Regelventil_350.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_OST.OUT_SERVO_Fenster_Halle_AUF</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_OST.OUT_SERVO_Fenster_Halle_ZU</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_WEST.OUT_SERVO_Fenster_Halle_AUF</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_WEST.OUT_SERVO_Fenster_Halle_ZU</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Pumpe_321.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Stellventil_321.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.Regelventil_321.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.BHKW_921.OUT_Betrieb</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_921.BHKW_921.OUT_Leistung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Pumpe_322.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Stellventil_322.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.Regelventil_322.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.BHKW_922.OUT_Betrieb</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Blockheizkraftwerk_922.BHKW_922.OUT_Leistung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_600.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_235.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Pumpe_690.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_605.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Stellventil_235.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_600.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_Ost_640.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Aussenfassadenaktivierung_600.Regelventil_West_660.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_215.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Pumpe_315.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Regelventil_215.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermetauscher_915.Stellventil_315.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Stellventil_331.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Regelventil_331.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.Kommunikation.LON_OUT_1</Name>
-							<Type GUID="{7F9AFC18-D717-A9B2-0A22-B8212E5A6FA8}" Namespace="Tc2_LON">ST_LON_Parameter_OUT_36B</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Brennwertkessel_931.Brennwertkessel_931.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Pumpe_145.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Kaeltekompressor_KW_145.Stellventil_145.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.Lueftungsklappe_Keller.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermepumpe_946.Waermepumpe_946.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermepumpe_946.SV_146.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Wandler.System_Waermepumpe_946.SV_246.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Pumpe_251.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Stellventil_251.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Druckluftkompressor_951.Regelventil_251.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Pumpe_191.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_HybriderEnergiespeicher_991.Stellventil_191.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Pumpe_100.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_KW_100.Stellventil_100.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Pumpe_300.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_HW_300.Stellventil_300.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Pumpe_261.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Stellventil_261.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Warmwasser_261.Regelventil_261.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Pumpe_361.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Stellventil_361.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Haerteofen_961.System_Haerteofen_Heisswasser_361.Regelventil_361.OUT_Stellung</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.OUT_Temp_intern_GeniRequest</Name>
-							<Type GUID="{40E8F352-EB3D-96EC-86F8-DE3647764DD6}">ST_PU_Genibus</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Pumpe_245.OUT_ControlModule</Name>
-							<Type GUID="{950F99FD-DF37-19EE-9700-580EB9CEAC91}">ARRAY [0..4] OF USINT</Type>
-						</Var>
-						<Var>
-							<Name>.Anlagenversorgung.System_Maschinenversorgung_WW_245.Stellventil_245.OUT_Stellung</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Signal_Ampel.Signal_Ampel.OUT_Stellung_Rot</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Signal_Ampel.Signal_Ampel.OUT_Stellung_Orange</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Signal_Ampel.Signal_Ampel.OUT_Stellung_Gruen</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Signal_Ampel.Signal_Ampel.OUT_Stellung_Blau</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Signal_Ampel.Signal_Ampel.OUT_Stellung_Buzz</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>.Dali_K522A1_DALI_OUT</Name>
 							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
-						</Var>
-						<Var>
-							<Name>.OUT_Profibus_DLK</Name>
-							<Type GUID="{41ED9519-F005-F75E-C949-7BAD9F19538C}">ARRAY [0..63] OF BYTE</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CHP1System.CHP.nSetPoint_OUT</Name>
@@ -5600,28 +2850,18 @@
 						</Context>
 						<Context>
 							<Id NeedCalleeCall="true">2</Id>
-							<Name>ComTask</Name>
-							<ManualConfig>
-								<OTCID>#x02010050</OTCID>
-							</ManualConfig>
-							<Priority>10</Priority>
-							<CycleTime>16000000</CycleTime>
-						</Context>
-						<Context>
-							<Id NeedCalleeCall="true">3</Id>
 							<Name>Standard</Name>
 							<ManualConfig>
 								<OTCID>#x02010080</OTCID>
 							</ManualConfig>
-							<Priority>12</Priority>
+							<Priority>10</Priority>
 							<CycleTime>20000000</CycleTime>
 						</Context>
 					</Contexts>
 					<TaskPouOids>
 						<TaskPouOid Prio="6" OTCID="#x08502001"/>
 						<TaskPouOid Prio="8" OTCID="#x08502002"/>
-						<TaskPouOid Prio="10" OTCID="#x08502003"/>
-						<TaskPouOid Prio="12" OTCID="#x08502004"/>
+						<TaskPouOid Prio="10" OTCID="#x08502004"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -8616,9 +5856,6 @@ PU245
 				<Image Id="3" AddrType="10" ImageType="3">
 					<Name>Prozessabbild-3</Name>
 				</Image>
-				<Image Id="4" AddrType="10" ImageType="3">
-					<Name>Prozessabbild-4</Name>
-				</Image>
 				<Box Id="31" BoxType="9099">
 					<Name>Term 31 (EK1100)</Name>
 					<ImageId>1000</ImageId>
@@ -8637,7 +5874,7 @@ PU245
 					<Box Id="3" BoxType="9093">
 						<Name>Profibus_1 (EL6731)</Name>
 						<ImageId>1002</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="000000000701eb03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
+						<EtherCAT SlaveType="5" AdsServerAddress="0000000007010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 							<SyncMan>001354002400010003000000000000000000001324010000</SyncMan>
@@ -9212,11 +6449,11 @@ PU245
 					<Box Id="5" BoxType="9093" BoxFlags="#x00000020">
 						<Name>Profibus_2 (EL6731)</Name>
 						<ImageId>1002</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="000000000301ec03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
+						<EtherCAT SlaveType="5" AdsServerAddress="0000000003010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000003">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
-							<SyncMan>0013b8002400010003000000000000000000001324010000</SyncMan>
-							<SyncMan>002018052000010004000000000000000000802120010000</SyncMan>
+							<SyncMan>0013b6002400010003000000000000000000001324010000</SyncMan>
+							<SyncMan>0020d8042000010004000000000000000000802120010000</SyncMan>
 							<Fmmu>0000000000000000001300020100000001000000000000000000000000000000</Fmmu>
 							<Fmmu>0000000000000000002000010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -10291,19 +7528,6 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
-								<Entry Name="Eingänge.STD: 32 Word In, 1 Byte Out_0_0" Index="#x6034" Sub="#x01" Flags="#x00000100">
-									<Type GUID="{18071995-0000-0000-0000-000400000020}">ARRAY [0..31] OF WORD</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Box 19 (GSD Box) (UMG604)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Ausgänge.STD: 32 Word In, 1 Byte Out_1_0" Index="#x7034" Sub="#x01" Flags="#x00000100">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
-								</Entry>
-							</Pdo>
 							<Pdo Name="Device 2 (EL6731)" Index="#x1a80" Flags="#x0011" SyncMan="3">
 								<Entry Name="Box 1 (CIM/CIU 150 pump)_DpState" Index="#xa000" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
@@ -10357,12 +7581,8 @@ PU245
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>1f1f</DefaultDataMask>
-									<Type>USINT</Type>
-								</Entry>
 								<Entry Name="Device 2 (EL6731)_Error" Index="#xf100" Sub="#x01" Flags="#x00000100">
-									<DefaultDataMask>0e0e</DefaultDataMask>
+									<DefaultDataMask>0d0d</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
 								<Entry Name="Device 2 (EL6731)_ActualModulo" Index="#xf100" Sub="#x03" Flags="#x00000100">
@@ -10410,11 +7630,8 @@ PU245
 								<Entry Name="Box 17 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 19 (GSD Box) (UMG604)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
-									<Type>BIT</Type>
-								</Entry>
 								<Entry>
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+									<Type GUID="{18071995-0000-0000-0000-00200000000A}">ARRAY [0..9] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<CoeProfile ProfileNo="203166601"/>
@@ -11586,9 +8803,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF</Name>
+									<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF_Frei</Name>
 									<Var>
-										<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF</Name>
+										<Name>bi_FE_000_Servomotor_Fenst_Ost_West_AUF_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16939</BitOffs>
 										<InOut>0</InOut>
@@ -12039,18 +9256,18 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>FE_000_Schaltsignal_Servomotoren_Fenster_Ost_AUF</Name>
+									<Name>bo_Windows_East_Open</Name>
 									<Var>
-										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_Ost_AUF</Name>
+										<Name>bo_Windows_East_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16932</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>FE_000_Schaltsignal_Servomotoren_Fenster_OST_ZU</Name>
+									<Name>bo_Windows_East_Closed</Name>
 									<Var>
-										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_OST_ZU</Name>
+										<Name>bo_Windows_East_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16933</BitOffs>
 										<InOut>1</InOut>
@@ -12371,27 +9588,27 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_AUF</Name>
+									<Name>bo_Windows_West_Open</Name>
 									<Var>
-										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_AUF</Name>
+										<Name>bo_Windows_West_Open</Name>
 										<Type>BIT</Type>
 										<BitOffs>16968</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_ZU</Name>
+									<Name>bo_Windows_West_Closed</Name>
 									<Var>
-										<Name>FE_000_Schaltsignal_Servomotoren_Fenster_West_ZU</Name>
+										<Name>bo_Windows_West_Closed</Name>
 										<Type>BIT</Type>
 										<BitOffs>16969</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>LI### Keller Schaltsignal vom Licht in Büros</Name>
+									<Name>bo_Keller_Schaltsignal_Licht_Büros_Frei</Name>
 									<Var>
-										<Name>LI### Keller Schaltsignal vom Licht in Büros</Name>
+										<Name>bo_Keller_Schaltsignal_Lichts_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16970</BitOffs>
 										<InOut>1</InOut>
@@ -12447,7 +9664,7 @@ PU245
 								<Name>K550A1_AI-1/2</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>ai_TF050_EG_Nord_AT</Name>
+									<Name>ai_TF050_OutsideTemperature_North_Frei</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12455,7 +9672,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF050_EG_Nord_AT</Name>
+										<Name>ai_TF050_OutsideTemperature_North_Frei</Name>
 										<Type>INT</Type>
 										<BitOffs>13424</BitOffs>
 										<InOut>0</InOut>
@@ -16180,8 +13397,8 @@ PU245
 								<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07113052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1809 16K. Dig. Eingang 24V, 3ms" Desc="EL1809" PortABoxInfo="#x0100002a">
 									<SyncMan>001002000000010004000000000000000200001000010000</SyncMan>
 									<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-									<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6000" Sub="#x01">
+									<Pdo Name="bi_eChiller_bError" Index="#x1a00" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bError" Index="#x6000" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
@@ -16190,13 +13407,13 @@ PU245
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
-									<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6020" Sub="#x01">
+									<Pdo Name="bi_eChiller_bWarning" Index="#x1a02" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bWarning" Index="#x6020" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
-									<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-										<Entry Name="Input" Index="#x6030" Sub="#x01">
+									<Pdo Name="bi_eChiller_bStatusOn" Index="#x1a03" Flags="#x0011" SyncMan="0">
+										<Entry Name="bi_eChiller_bStatusOn" Index="#x6030" Sub="#x01">
 											<Type>BIT</Type>
 										</Entry>
 									</Pdo>
@@ -17665,14 +14882,14 @@ PU235]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10288</BitOffs>
+							<BitOffs>9776</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10417</BitOffs>
+							<BitOffs>9897</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="30" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20101113220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -18153,14 +15370,14 @@ PU215
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10296</BitOffs>
+							<BitOffs>9784</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10418</BitOffs>
+							<BitOffs>9898</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="32" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -18643,14 +15860,14 @@ PU315
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10304</BitOffs>
+							<BitOffs>9792</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10419</BitOffs>
+							<BitOffs>9899</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="33" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -19132,14 +16349,14 @@ PU322]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10312</BitOffs>
+							<BitOffs>9800</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10420</BitOffs>
+							<BitOffs>9900</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="34" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -19622,14 +16839,14 @@ PU321
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10320</BitOffs>
+							<BitOffs>9808</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10421</BitOffs>
+							<BitOffs>9901</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="35" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211a1d20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -20112,14 +17329,14 @@ PU600
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10328</BitOffs>
+							<BitOffs>9816</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10422</BitOffs>
+							<BitOffs>9902</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="38" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -20602,14 +17819,14 @@ PU500
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10336</BitOffs>
+							<BitOffs>9824</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10423</BitOffs>
+							<BitOffs>9903</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="39" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -21092,14 +18309,14 @@ PU425
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10344</BitOffs>
+							<BitOffs>9832</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10424</BitOffs>
+							<BitOffs>9904</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="40" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220405" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -21582,14 +18799,14 @@ PU405
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10352</BitOffs>
+							<BitOffs>9840</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10425</BitOffs>
+							<BitOffs>9905</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="42" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b04211d1a201110132205" CfgData="15249393939393939393939393a89890939393939393939390" OwnPrmData="4" FixPresetModules="true">
@@ -22071,14 +19288,14 @@ PU251]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10360</BitOffs>
+							<BitOffs>9848</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10426</BitOffs>
+							<BitOffs>9906</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="43" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -22561,14 +19778,14 @@ PU455
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10368</BitOffs>
+							<BitOffs>9856</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10427</BitOffs>
+							<BitOffs>9907</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="44" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -23050,14 +20267,14 @@ PU350]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10376</BitOffs>
+							<BitOffs>9864</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10428</BitOffs>
+							<BitOffs>9908</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="45" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="991" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013220504" CfgData="15249393939393939393939393a89893939393939393939090" OwnPrmData="4" FixPresetModules="true">
@@ -23539,14 +20756,14 @@ PU191]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>10384</BitOffs>
+							<BitOffs>9872</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>10429</BitOffs>
+							<BitOffs>9909</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="46" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
@@ -24073,7 +21290,7 @@ Revision: 0.00
 						</GsdModule>
 					</Profibus>
 				</Box>
-				<Box Id="11" BoxType="1003">
+				<Box Id="11" Disabled="true" BoxType="1003">
 					<Name>Box 19 (GSD Box) (UMG604)</Name>
 					<Comment><![CDATA[Vendor:   Janitza electronics GmbH
 Revision: Rev. 1
@@ -24158,9 +21375,9 @@ Revision: Rev. 1
 				<Profibus>
 					<Fcxxxx>
 						<DevSettings NetId="000000000301" EquiCycleTime="160000" NcAccessTime="75000"/>
-						<DevParameter CycleTime="160000" AutoBaudDisabled="true"/>
+						<DevParameter CycleTime="200000" AutoBaudDisabled="true"/>
 					</Fcxxxx>
-					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="33696" MaxRetryLimit="1" MinSlaveInterval="160" PollTimeout="8" DataControlTime="27"/>
+					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="32585" MaxRetryLimit="1" MinSlaveInterval="200" PollTimeout="8" DataControlTime="27"/>
 				</Profibus>
 			</Device>
 			<Device Id="1" DevType="86" AmsPort="28673" AmsNetId="0.0.0.0.2.1" RemoteName="Gerät 1 (EL6731)">
@@ -25163,13 +22380,11 @@ PU105]]></Comment>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-5008C0000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2003-0850-0220-500810000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0320-500843000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0320-500850000403}" Id="#x02030090"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0320-500890000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{08502003-0020-0304-0020-500820000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502004-0010-0304-0020-500810000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502004-0020-0304-0020-500820000403}" Id="#x02030040" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0220-500810000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0220-500832000403}" Id="#x02030040"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0220-500850000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0220-500890000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{08502004-0020-0304-0020-500820000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 1 (EL6731)^Box 1 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN" VarB="Power^Inputs^Power_0_0"/>
@@ -25332,9 +22547,9 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNLT.HVFASystem.SVx06.nSetPoint_OUT" VarB="ao_SV206^ao_SV206"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 43 (EL1809)">
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bError_IN" VarB="Channel 1^Input"/>
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN" VarB="Channel 4^Input"/>
-				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bWarning_IN" VarB="Channel 3^Input"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bError_IN" VarB="bi_eChiller_bError^bi_eChiller_bError"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN" VarB="bi_eChiller_bStatusOn^bi_eChiller_bStatusOn"/>
+				<Link VarA="Standard Inputs^MAIN.CN.eChillerSystem.eChiller.bWarning_IN" VarB="bi_eChiller_bWarning^bi_eChiller_bWarning"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 15 (EK1100)^Term 39 (EK1521-0010)^Term 40 (EK1501-0010)^Term 51 (EL3068)">
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN" VarB="ai_RV105^ai_RV105"/>
@@ -25351,52 +22566,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT" VarB="ao_eChiller_fSetPoint^ao_eChiller_fSetPoint"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 31 (EK1100)^Box 3 (BK1250)">
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 0"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 10"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[11]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 11"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[12]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 12"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[13]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 13"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[14]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 14"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[15]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 15"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[16]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 16"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[17]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 17"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[18]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 18"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[19]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 19"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[1]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 1"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[20]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 20"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[21]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 21"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[2]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 2"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[3]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 3"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[4]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 4"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[5]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 5"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[6]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 6"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[7]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 7"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[8]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 8"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^D[9]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data In 9"/>
-				<Link VarA="ComTask Inputs^.Modbus_NSHV.InData^Status" VarB="K526A1_Serielle_RS422RS485^Channel 1^Status"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^Ctrl" VarB="K526A1_Serielle_RS422RS485^Channel 1^Ctrl"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[0]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 0"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[10]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 10"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[11]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 11"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[12]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 12"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[13]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 13"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[14]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 14"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[15]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 15"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[16]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 16"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[17]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 17"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[18]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 18"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[19]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 19"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[1]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 1"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[20]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 20"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[21]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 21"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[2]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 2"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[3]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 3"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[4]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 4"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[5]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 5"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[6]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 6"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[7]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 7"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[8]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 8"/>
-				<Link VarA="ComTask Outputs^.Modbus_NSHV.OutData^D[9]" VarB="K526A1_Serielle_RS422RS485^Channel 1^Data Out 9"/>
 				<Link VarA="MBus_Zaehler_Task Inputs^.IN_Stromzaehler^D[0]" VarB="K525A1_M_Bus^Channel 1^Data In 0"/>
 				<Link VarA="MBus_Zaehler_Task Inputs^.IN_Stromzaehler^D[10]" VarB="K525A1_M_Bus^Channel 1^Data In 10"/>
 				<Link VarA="MBus_Zaehler_Task Inputs^.IN_Stromzaehler^D[11]" VarB="K525A1_M_Bus^Channel 1^Data In 11"/>
@@ -25449,14 +22618,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin" VarB="K581A1_BI (KL1408)^LI000_Licht_Halle_Gruppe_01_Taster^LI000_Licht_Halle_Gruppe_01_Taster"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nData" VarB="K522A1_DALI^Channel 1^Daten Ein"/>
 				<Link VarA="Standard Inputs^.Dali_K522A1_DALI_IN^nStatus" VarB="K522A1_DALI^Channel 1^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Fenster.IN_Servomotor_Fenster_O_W_auf" VarB="K531A1_BI^bi_FE_000_Servomotor_Fenst_Ost_West_AUF^bi_FE_000_Servomotor_Fenst_Ost_West_AUF"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor1.IN_Status" VarB="K551A1_AI-1/2^ai_Frei_AI11^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor2.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI12^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_Ost_Sektor3.IN_Status" VarB="K551A1_AI-2/2^ai_Frei_AI13^Status"/>
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.Tempfuehler_Rueckl_Decke_West_Sektor3.IN_Status" VarB="K553A1_AI-1/2^ai_TF573^Status"/>
-				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Halle_Sektor1.IN_Temperatur" VarB="K578A1_AI (KL3222)^TF051_HallTemperature_Section1^TF051_HallTemperature_Section1"/>
-				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Status" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^Status"/>
-				<Link VarA="Standard Inputs^.Umwelt.Tempfuehler_Temperatur_Aussen_TF.IN_Temperatur" VarB="K550A1_AI-1/2^ai_TF050_EG_Nord_AT^ai_TF050_EG_Nord_AT"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN" VarB="K579A1_AI (KL3222)^TF052_HallTemperature_Section2^TF052_HallTemperature_Section2"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN" VarB="K579A1_AI (KL3222)^TF053_HallTemperature_Section3^TF053_HallTemperature_Section3"/>
 				<Link VarA="Standard Inputs^MAIN.Ambient.WeatherStation.KL6301_IN" VarB="K523A1_EIB^Channel 1^Input Data 1" Size="8" OffsA="16"/>
@@ -25542,11 +22703,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bStatusOn_IN" VarB="K533A1_BI^bi_SV424_Open^bi_SV424_Open"/>
 				<Link VarA="Standard Outputs^.Dali_K522A1_DALI_OUT^nCtrl" VarB="K522A1_DALI^Channel 1^Kontrolle"/>
 				<Link VarA="Standard Outputs^.Dali_K522A1_DALI_OUT^nData" VarB="K522A1_DALI^Channel 1^Daten Aus"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_OST.OUT_SERVO_Fenster_Halle_AUF" VarB="K540A1_BO^FE_000_Schaltsignal_Servomotoren_Fenster_Ost_AUF^FE_000_Schaltsignal_Servomotoren_Fenster_Ost_AUF"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_OST.OUT_SERVO_Fenster_Halle_ZU" VarB="K540A1_BO^FE_000_Schaltsignal_Servomotoren_Fenster_OST_ZU^FE_000_Schaltsignal_Servomotoren_Fenster_OST_ZU"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_WEST.OUT_SERVO_Fenster_Halle_AUF" VarB="K544A1_BO^FE_000_Schaltsignal_Servomotoren_Fenster_West_AUF^FE_000_Schaltsignal_Servomotoren_Fenster_West_AUF"/>
-				<Link VarA="Standard Outputs^.Heizung_Lueftung_Klima.Fenster.Fenster_Halle_WEST.OUT_SERVO_Fenster_Halle_ZU" VarB="K544A1_BO^FE_000_Schaltsignal_Servomotoren_Fenster_West_ZU^FE_000_Schaltsignal_Servomotoren_Fenster_West_ZU"/>
-				<Link VarA="Standard Outputs^.Wandler.System_Waermetauscher_915.Stellventil_215.OUT_Stellung" VarB="K540A1_BO^bo_SV215^bo_SV215"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 1" Size="8" OffsA="16"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 10" Size="8" OffsA="88"/>
 				<Link VarA="Standard Outputs^MAIN.Ambient.WeatherStation.KL6301_OUT" VarB="K523A1_EIB^Channel 1^Output Data 11" Size="8" OffsA="96"/>
@@ -25665,7 +22821,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 13 (CIM/CIU 150 pump)">
-				<Link VarA="Standard Inputs^.Heizung_Lueftung_Klima.System_Wanddeckentemperierung_500.Pumpe_405.IN_Zeit_Betrieb" VarB="OperationTime^Inputs^OperationTime_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
@@ -25743,14 +22898,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 2 (EL6731)^Box 18 (GSD Box) (Mkv Gateway)">
-				<Link VarA="Standard Inputs^.IN_Profibus_DLK" VarB="64 bytes input^Inputs^64 bytes input_0_0"/>
-				<Link VarA="Standard Outputs^.OUT_Profibus_DLK" VarB="64 bytes output^Outputs^64 bytes output_1_0"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 2 (EL6731)^Box 19 (GSD Box) (UMG604)">
-				<Link VarA="ComTask Inputs^.IN_UMG" VarB="STD: 32 Word In, 1 Byte Out^Inputs^STD: 32 Word In, 1 Byte Out_0_0"/>
-				<Link VarA="ComTask Outputs^.OUT_UMG_Anfrage" VarB="STD: 32 Word In, 1 Byte Out^Outputs^STD: 32 Word In, 1 Byte Out_1_0"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 3 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.PU215.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>

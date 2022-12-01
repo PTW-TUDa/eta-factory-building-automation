@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <GVL Name="Con_Bel" Id="{5d8e6133-29b9-43a4-8127-b9a9debe7c98}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+VAR_GLOBAL CONSTANT
+	(* System_Bel_Zustand_Status *)
+	E_Bel_Zustand_Status_Idle_Sperre				: SINT := 0;
+	E_Bel_Zustand_Status_Betriebsbereit				: SINT := 1;
+	E_Bel_Zustand_Status_Nachl						: SINT := 2;
+	E_Bel_Zustand_Status_Vorl						: SINT := 3;
+	E_Bel_Zustand_Status_Betrieb					: SINT := 4;
+	E_Bel_Zustand_Status_Betrieb_Sperre				: SINT := 5;
+	E_Bel_Zustand_Status_Stoerung					: SINT := 99;
+
+	(* Bel_Zustand_Regelung_Modus *)
+	E_Bel_Regelung_Modus_P							: SINT := 0;
+	E_Bel_Regelung_Modus_Lichtsensor				: SINT := 1;
+
+	(* System_Bel_Zustand_Status *)
+END_VAR
+	
+VAR_GLOBAL
+(* DALI *)
+	Dali_K522A1_DALI					: FB_DALIV2Communication;
+	(* Command Puffer für Dali_K522A1_DALI Klemme*)
+	Dali_K522A1_DALI_command_buffer 		: ST_DALIV2CommandBuffer;
+
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -21,6 +21,10 @@ VAR
 	bSetStatusOn_SV146 : BOOL;
 	bSetStatusOn_SV246 : BOOL;
 	
+	//sensors
+	WMZ146 : FB_StarkMultical302HeatCounter;
+	WMZ246 : FB_StarkMultical302HeatCounter;
+	
 	bStartTimer : BOOL;
 	Timer : TON;
 END_VAR
@@ -46,7 +50,11 @@ SV146.SetState_BO();
 SV246.GetState_BI();
 SV246(bSetStatusOnAutomatic := bSetStatusOn_SV246,
 		bAlgorithmPermission := bAlgorithmPermission);
-SV246.SetState_BO();]]></ST>
+SV246.SetState_BO();
+
+//sensors
+WMZ146(aHeatCounterTelegramm := Telegramm_WZ_4372_WP_946);
+WMZ246(aHeatCounterTelegramm := Telegramm_WZ_4371_WP_946);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6a4ede8-dc18-488e-9b82-544068cf9d4e}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -157,6 +165,9 @@ END_VAR]]></Declaration>
       <LineId Id="78" Count="0" />
       <LineId Id="77" Count="0" />
       <LineId Id="48" Count="2" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="1" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem.CheckError">
       <LineId Id="8" Count="0" />

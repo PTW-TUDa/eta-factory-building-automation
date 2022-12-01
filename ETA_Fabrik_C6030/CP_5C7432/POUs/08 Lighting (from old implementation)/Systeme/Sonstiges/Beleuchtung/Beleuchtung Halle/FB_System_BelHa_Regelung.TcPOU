@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_System_BelHa_Regelung" Id="{beee96c9-c5b1-4e62-90e7-a4fe0de494e3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_System_BelHa_Regelung
+VAR_IN_OUT
+	Stellwert					: ST_System_Bel_Stellwert;
+	Zustand						: ST_System_Bel_Zustand;
+END_VAR
+VAR_INPUT
+
+	Regelung_OPCUA				: BOOL;
+	Stellwert_Beleuchtung_1_OPCUA: REAL;
+	Stellwert_Beleuchtung_2_OPCUA: REAL;
+
+	Helligkeit_Sensor1			: REAL;
+	Helligkeit_Sensor2			: REAL;
+	Taster						: BOOL;
+	Parameter					: ST_System_Bel_Parameter;
+
+	IN_Set_Reset_Taster 		: BOOL;
+
+END_VAR
+VAR_OUTPUT
+	Steuerung_Stellw_auto_1		: REAL:= 90; (* Leistung 0-100%, Initialwert = 90%*)
+	Steuerung_Stellw_auto_2		: REAL:= 90; (* Leistung 0-100%, Initialwert = 90% *)
+	Set_Reset_Gruppe_1			: BOOL;
+	Set_Reset_Gruppe_2			: BOOL;
+END_VAR
+VAR
+	Verstaerkung: REAL ;
+
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* Regler *)
+IF( Stellwert.Betrieb ) THEN
+
+	Stellwert.Leistung  := Zustand.Leistung;
+	Stellwert.Modus		:= Zustand.Regelung_Modus;
+
+
+	CASE Zustand.Regelung_Modus OF
+		E_Bel_Regelung_Modus_P:				(* Steuerung durch Taster oder OPCUA *)
+			Set_Reset_Gruppe_1 := IN_Set_Reset_Taster;
+			Set_Reset_Gruppe_2 := IN_Set_Reset_Taster;
+
+			IF (Regelung_OPCUA) THEN
+				Steuerung_Stellw_auto_1 := Stellwert_Beleuchtung_1_OPCUA;
+				Steuerung_Stellw_auto_2 := Stellwert_Beleuchtung_2_OPCUA;
+
+			END_IF
+
+			IF (Taster AND IN_Set_Reset_Taster ) THEN
+				(* Licht wird immer voll angeschaltet, da dimmen durch Benni nicht gewünscht ist.*)
+				Steuerung_Stellw_auto_1 := 100;
+				Steuerung_Stellw_auto_2 := 100;
+
+				(*
+				(*Verstaerkung := Verstaerkung + 10;*)
+				Steuerung_Stellw_auto_1 := Steuerung_Stellw_auto_1 + 10;
+				Steuerung_Stellw_auto_2 := Steuerung_Stellw_auto_2 + 10;
+
+			(*IF (Verstaerkung = 100 ) THEN
+
+					Verstaerkung :=0;
+			END_IF;*)
+				IF (Steuerung_Stellw_auto_1 = 100) THEN
+						Steuerung_Stellw_auto_1 :=0;
+				END_IF
+
+				IF (Steuerung_Stellw_auto_2 = 100) THEN
+						Steuerung_Stellw_auto_2 :=0;
+				END_IF
+			*)
+
+			END_IF
+
+		E_Bel_Regelung_Modus_Lichtsensor:	(* Regelung durch Lichtsensor *)
+
+
+			IF (GA_Global.Systemzeit_Stunde < Parameter.Nachtabsenkung_Uhrzeit_Stunde_Start AND GA_Global.Systemzeit_Stunde > Parameter.Nachtabsenkung_Uhrzeit_Stunde_Ende)THEN
+				(* Regler für Beleuchtung1 *)
+				IF (Helligkeit_Sensor1 < 15) THEN
+					Steuerung_Stellw_auto_1 := 100;
+				ELSIF (Helligkeit_Sensor1 > 15 AND  Helligkeit_Sensor1 < 25)THEN
+					Steuerung_Stellw_auto_1 := 90;
+				ELSIF (Helligkeit_Sensor1 > 25 AND  Helligkeit_Sensor1 < 35)THEN
+					Steuerung_Stellw_auto_1 := 80;
+				ELSIF (Helligkeit_Sensor1 > 35 AND  Helligkeit_Sensor1 < 55)THEN
+					Steuerung_Stellw_auto_1 := 70;
+				ELSIF (Helligkeit_Sensor1 > 55 AND  Helligkeit_Sensor1 < 85)THEN
+					Steuerung_Stellw_auto_1 := 50;
+				ELSIF (Helligkeit_Sensor1 > 85)THEN
+					Steuerung_Stellw_auto_1 := 0;
+					Set_Reset_Gruppe_1:= FALSE;
+				ELSE
+					Steuerung_Stellw_auto_1 := 0;
+				END_IF;
+
+				(* Regler für Beleuchtung2 *)
+				IF (Helligkeit_Sensor2 < 15) THEN
+					Steuerung_Stellw_auto_2 := 100;
+				ELSIF (Helligkeit_Sensor2 > 15 AND  Helligkeit_Sensor2 < 25)THEN
+					Steuerung_Stellw_auto_2 := 90;
+				ELSIF (Helligkeit_Sensor2 > 25 AND  Helligkeit_Sensor2 < 35)THEN
+					Steuerung_Stellw_auto_2 := 80;
+				ELSIF (Helligkeit_Sensor2 > 35 AND  Helligkeit_Sensor2 < 55)THEN
+					Steuerung_Stellw_auto_2 := 70;
+				ELSIF (Helligkeit_Sensor2 > 55 AND  Helligkeit_Sensor2 < 85)THEN
+					Steuerung_Stellw_auto_2 := 50;
+				ELSIF (Helligkeit_Sensor2 > 85)THEN
+					Steuerung_Stellw_auto_2 := 0;
+					Set_Reset_Gruppe_2:= FALSE;
+				ELSE
+					Steuerung_Stellw_auto_2 := 0;
+				END_IF;
+			ELSE
+				Set_Reset_Gruppe_1 := FALSE;		(*zwichen 0 und 6 uhr aus *)
+				Set_Reset_Gruppe_2 := FALSE;
+			END_IF;
+		ELSE
+			Steuerung_Stellw_auto_2 := 0;
+			Steuerung_Stellw_auto_1 := 0;
+	END_CASE;
+ELSE
+	Steuerung_Stellw_auto_2 := 100; (*Im Zweifelsfall ist das Licht immer an.*)
+	Steuerung_Stellw_auto_1 := 100;	(*Im Zweifelsfall ist das Licht immer an.*)
+END_IF;
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_System_BelHa_Regelung">
+      <LineId Id="30" Count="100" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

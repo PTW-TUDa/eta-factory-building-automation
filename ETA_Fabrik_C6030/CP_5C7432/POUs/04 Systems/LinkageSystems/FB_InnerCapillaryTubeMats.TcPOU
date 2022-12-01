@@ -108,16 +108,16 @@ Clock();
 //pumps
 PU405.GetState_Profibus();
 PU405(bSetStatusOnAutomatic := bSetStatusOn_PU405,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU405.SetState_Profibus();
 
 PU500.GetState_Profibus();
 PU500(bSetStatusOnAutomatic := bSetStatusOn_PU500,
-	fSetPointAutomatic := 90000,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 5);
+	nControlModeAutomatic := 0);
 PU500.SetState_Profibus();
 
 //valves in thermal networks
@@ -125,7 +125,7 @@ RV500.GetState_AI();
 RV500(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint_RV500,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := PU500.fTemperatureExternal,
+	fTemperatureExternal := PU500.fTemperatureInternal,
 	nControlModeAutomatic := nControlMode_RV500);
 RV500.SetState_AO();
 
