@@ -103,12 +103,11 @@ END_VAR]]></Declaration>
 //wait until eChiller is switched off before closing valve
 IF NOT eChiller.bStatusOn THEN
 	bSetStatusOn_SV138 := FALSE;
+	IF SV138.fOperatingPoint < 20  THEN
+		bRampDownFinished := TRUE;
+	END_IF
 END_IF
-
-//wait until valve is closed and ensure that eChiller is not switched on meanwhile
-IF SV138.fOperatingPoint < 5 AND NOT eChiller.bStatusOn THEN
-	bRampDownFinished := TRUE;
-END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="RampUp" Id="{a35d72c4-c137-4825-b9db-822abc1571be}">
@@ -191,7 +190,10 @@ END_VAR]]></Declaration>
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.RampDown">
-      <LineId Id="8" Count="9" />
+      <LineId Id="8" Count="4" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="13" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.RampUp">

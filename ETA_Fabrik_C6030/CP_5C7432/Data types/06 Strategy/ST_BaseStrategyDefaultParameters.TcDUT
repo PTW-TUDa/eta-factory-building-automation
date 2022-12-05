@@ -5,13 +5,13 @@
 STRUCT
 	//target temperatures for building mode
 	fTargetTemperature_HNHT : REAL := 55;
-	fTargetTemperature_HNLT_Cooling : REAL := 40;
-	fTargetTemperature_HNLT_Heating : REAL := 35;
+	fTargetTemperature_HNLT_Cooling : REAL := 45;
+	fTargetTemperature_HNLT_Heating : REAL := 40;
 	fTargetTemperature_CN : REAL := 15;
 	
 	//temperature limits for thermal networks in building mode
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL := [50,70];
-	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL := [30,45];
+	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL := [30,50];
 	aTemperatureLimits_CN : ARRAY[1..2] OF REAL := [10,20];	
 
 	//target temperatures for production mode
