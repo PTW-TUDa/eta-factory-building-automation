@@ -223,8 +223,8 @@ Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTempera
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
-//hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
-hnhtControl.bSetStatusOn_CHP2 := FALSE;
+hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
+//hnhtControl.bSetStatusOn_CHP2 := FALSE;
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CondensingBoiler,
