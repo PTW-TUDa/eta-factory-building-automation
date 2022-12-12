@@ -28,6 +28,8 @@ HallTemperatureSensor_Section3.GetState_AI();
 localState.fOutsideTemperature := WeatherStation.fTemperature;
 localState.fOutsideTemperature_Mean := WeatherStation.fMeanTemperature;
 localState.bRain := WeatherStation.bRain;
+localState.fDawn := WeatherStation.fDawn;
+localState.fWindSpeed := WeatherStation.fWindSpeed;
 localState.fHallTemperature := HallTemperatureSensor_Section3.fTemperature;]]></ST>
     </Implementation>
     <LineIds Name="FB_Ambient">
@@ -43,6 +45,7 @@ localState.fHallTemperature := HallTemperatureSensor_Section3.fTemperature;]]></
       <LineId Id="11" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="13" Count="0" />
+      <LineId Id="83" Count="1" />
       <LineId Id="17" Count="0" />
     </LineIds>
   </POU>
