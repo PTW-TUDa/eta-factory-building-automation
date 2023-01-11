@@ -106,6 +106,7 @@ RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := fExternalTemperature_RVx05,
+	fThermalPowerExternal := WMZx05.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 RVx05.SetState_AO();
 
@@ -336,7 +337,9 @@ END_VAR]]></Declaration>
       <LineId Id="281" Count="0" />
       <LineId Id="91" Count="5" />
       <LineId Id="282" Count="0" />
-      <LineId Id="97" Count="5" />
+      <LineId Id="97" Count="4" />
+      <LineId Id="481" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="174" Count="2" />
       <LineId Id="173" Count="0" />

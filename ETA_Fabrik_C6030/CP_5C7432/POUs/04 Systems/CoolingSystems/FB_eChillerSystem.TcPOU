@@ -43,6 +43,7 @@ SV138(
 	bSetStatusOnAutomatic := bSetStatusOn_SV138,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZ135.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 SV138.SetState_AO();
 
@@ -174,7 +175,9 @@ END_VAR]]></Declaration>
       <LineId Id="139" Count="0" />
       <LineId Id="36" Count="2" />
       <LineId Id="114" Count="0" />
-      <LineId Id="39" Count="4" />
+      <LineId Id="39" Count="3" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="43" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="81" Count="0" />
       <LineId Id="80" Count="0" />
