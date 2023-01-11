@@ -15,7 +15,7 @@ VAR
 	
 	//valves
 	ST_SV331DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fOutMinLimit := 65,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);			
+	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);			
 	SV331 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV331DefaultParameters);
 	RV331 : FB_MixingValve := (ST_DefaultParameters := ST_RV331DefaultParameters);	
 	WMZ331 : FB_MollineC3HeatCounter;
@@ -42,10 +42,9 @@ SV331.SetState_BO();
 
 RV331.GetState_AI();
 RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
-	fSetPointAutomatic := fSetPoint,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 2,
-	fTemperatureExternal := WMZ331.fReturnTemperazure);
+	nControlModeAutomatic := 0);
 RV331.SetState_AO();
 
 WMZ331(aHeatCounterTelegramm := Telegramm_WZ_Brennwerttherme);]]></ST>
@@ -159,7 +158,7 @@ END_VAR]]></Declaration>
       <LineId Id="40" Count="2" />
       <LineId Id="47" Count="0" />
       <LineId Id="43" Count="0" />
-      <LineId Id="48" Count="1" />
+      <LineId Id="48" Count="0" />
       <LineId Id="39" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="50" Count="0" />
