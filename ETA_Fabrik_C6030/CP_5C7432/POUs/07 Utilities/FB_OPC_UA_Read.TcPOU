@@ -42,7 +42,7 @@ CASE iState OF
 		(* Parameterize *)
 		sOpcUA_URL						:= sOPC_UA_Server_Url;	(* OpcUA Url of the device with ip address *)
 
-		SessionConnectInfo.tConnectTimeout 	:= T#5S;
+		SessionConnectInfo.tConnectTimeout 	:= T#1M;
 		SessionConnectInfo.tSessionTimeout 	:= T#1M;
 		SessionConnectInfo.sApplicationName	:= '';
 		SessionConnectInfo.eSecurityMode 		:= eUASecurityMsgMode_None;
@@ -59,7 +59,7 @@ CASE iState OF
 			Execute				:= TRUE,
 			ServerURL			:= sOpcUA_URL,
 			SessionConnectInfo	:= SessionConnectInfo,
-			Timeout				:= T#5M,
+			Timeout				:= T#5S,
 			ConnectionHdl		=> nConnectionHdl
 		);
 		
