@@ -27,6 +27,7 @@ VAR
 		
 	//machines
 	MAFAC_Java : FB_MAFAC_Java;
+	BvL_CleaningSystem : FB_BvL_CleaningSystem;
 	AnnealingOvenExhaustGas : FB_AnnealingOven;
 	
 	//internal variables
@@ -75,7 +76,8 @@ StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Stati
 	stAmbientState := stAmbientState);
 	
 MAFAC_Java();
-bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn;
+BvL_CleaningSystem();
+bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn OR BvL_CleaningSystem.bStatusOn;
 CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 80);
@@ -113,7 +115,9 @@ VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStora
       <LineId Id="9" Count="0" />
       <LineId Id="256" Count="4" />
       <LineId Id="286" Count="0" />
-      <LineId Id="294" Count="1" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="295" Count="0" />
       <LineId Id="287" Count="0" />
       <LineId Id="296" Count="1" />
       <LineId Id="331" Count="2" />
