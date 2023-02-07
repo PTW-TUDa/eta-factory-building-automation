@@ -109,7 +109,7 @@ ELSE
 	fTemperature_init := fMeanTemperature_Winter_init;
 END_IF
 
-stParameters_Average_Temperature.tCtrlCycleTime := T#1M;
+stParameters_Average_Temperature.tCtrlCycleTime := T#60S;
 stParameters_Average_Temperature.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 stParameters_Average_Temperature.nSamplesToFilter := fHours_Moving_Average*60; (* 1min= 60 sec*)
 stParameters_Average_Temperature.pWorkArray_ADR := ADR(aTemperatureBuffer);
