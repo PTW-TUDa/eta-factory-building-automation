@@ -137,15 +137,19 @@ VAR_OUTPUT
 	bSwitchToWorking : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//storage pump
-bSetStatusOn_PU305 := TRUE;
-
-//network pump
-bSetStatusOn_PU306 := TRUE;
-
-IF PU305.bStatusOn AND PU306.bStatusOn THEN
-	bSwitchToWorking := TRUE;
+        <ST><![CDATA[IF bLoading = TRUE THEN
+	bSetStatusOn_PU305 := TRUE;
+	IF PU305.bStatusOn THEN
+		bSwitchToWorking := TRUE;
+	END_IF
+ELSE
+	bSetStatusOn_PU306 := TRUE;
+	IF PU306.bStatusOn THEN
+		bSwitchToWorking := TRUE;
+	END_IF
 END_IF
+
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -163,7 +167,7 @@ bSetStatusOn_PU306 := FALSE;
 IF NOT PU305.bStatusOn AND NOT PU306.bStatusOn THEN
 	bSetStatusOn_SV305 := FALSE;
 	bSetStatusOn_SV306 := FALSE;
-	bSetStatusOn_SV306 := FALSE;
+	bSetStatusOn_SV307 := FALSE;
 	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint<20 AND SV307.fOperatingPoint<20 THEN
 		bRampDownFinished := TRUE;
 	END_IF
@@ -186,14 +190,14 @@ bSetStatusOn_SV307 := TRUE;
 
 IF bLoading = TRUE THEN
 	fSetPoint_SV305 := 100;
-	fSetPoint_SV306 := 100;
-	IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint>80 THEN
+	fSetPoint_SV306 := 0;
+	IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint<20 AND SV307.fOperatingPoint>80 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 ELSE
 	fSetPoint_SV305 := 0;
-	fSetPoint_SV306 := 0;
-	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint<20 THEN
+	fSetPoint_SV306 := 100;
+	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint>80 AND SV307.fOperatingPoint>80 THEN
 		bRampUpFinished := TRUE;
 	END_IF
 END_IF
@@ -275,8 +279,8 @@ END_VAR
 IF bRampDownFinished THEN
 	IF bSwitchToLoading THEN
 		fSetPoint_SV305 := 100;
-		fSetPoint_SV306 := 100;
-		IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint>80 THEN
+		fSetPoint_SV306 := 0;
+		IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint<20 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -285,8 +289,8 @@ IF bRampDownFinished THEN
 		
 	ELSE
 		fSetPoint_SV305 := 0;
-		fSetPoint_SV306 := 0;
-		IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint<20 THEN
+		fSetPoint_SV306 := 100;
+		IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint>80 THEN
 			//reset instant variable and switch on pump
 			bRampDownFinished := FALSE;			
 			bFinishedSwitchMode := TRUE;
@@ -341,8 +345,17 @@ END_VAR]]></Declaration>
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.Operational">
-      <LineId Id="8" Count="4" />
-      <LineId Id="16" Count="3" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="19" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.RampDown">

@@ -90,7 +90,7 @@ AnnealingOvenExhaustGasSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOve
 	
 VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStorage,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := 70,
 	bLoadingAutomatic := controlAutomatic.bLoading_VSISystem);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
