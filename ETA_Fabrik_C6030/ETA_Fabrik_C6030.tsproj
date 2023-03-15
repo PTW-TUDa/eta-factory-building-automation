@@ -15178,7 +15178,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_SV307" Index="#x1a00" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a01</ExcludePdo>
 								<Entry Name="Underrange" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
@@ -15223,7 +15223,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AI Standard Channel 2" Index="#x1a02" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_SV306" Index="#x1a02" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a03</ExcludePdo>
 								<Entry Name="Underrange" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
@@ -15268,7 +15268,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AI Standard Channel 3" Index="#x1a04" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_SV305" Index="#x1a04" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a05</ExcludePdo>
 								<Entry Name="Underrange" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
@@ -15561,17 +15561,17 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<BootStrapData>0010f400f410f400</BootStrapData>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="AO Outputs Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="ao_SV307" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Analog output" Index="#x7000" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="ao_SV306" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Analog output" Index="#x7010" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="ao_SV305" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Analog output" Index="#x7020" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
@@ -25036,6 +25036,16 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.RV425.nSetPoint_OUT" VarB="K570A1_AO-2/2^ao_RV425^ao_RV425"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV423^bo_SV423"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV424^bo_SV424"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 67 (EL3068)">
+				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV305.nOperatingPoint_IN" VarB="ai_SV305^Value"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV306.nOperatingPoint_IN" VarB="ai_SV306^Value"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV307.nOperatingPoint_IN" VarB="ai_SV307^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 68 (EL4008)">
+				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV305.nSetPoint_OUT" VarB="ao_SV305^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV306.nSetPoint_OUT" VarB="ao_SV306^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV307.nSetPoint_OUT" VarB="ao_SV307^Analog output"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 1 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
