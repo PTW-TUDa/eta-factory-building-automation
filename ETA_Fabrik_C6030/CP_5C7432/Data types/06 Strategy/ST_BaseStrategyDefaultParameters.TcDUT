@@ -26,7 +26,7 @@ STRUCT
 	aTemperatureLimits_CN_ProductionMode : ARRAY[1..2] OF REAL := [10,20];
 	
 	//offset between target and feed temperatures
-	fOffset_FeedTemperature_HNHT : REAL := 2;
+	fOffset_FeedTemperature_HNHT : REAL := 4;
 	fOffset_FeedTemperature_HNLT_Heating : REAL := 2;
 	fOffset_FeedTemperature_HNLT_Cooling : REAL := 2;
 	fOffset_FeedTemperature_CN : REAL := 0;

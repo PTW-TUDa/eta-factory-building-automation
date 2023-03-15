@@ -42,6 +42,8 @@ BufferStorage();
 localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
 localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
 localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := VSIStorageSystem.localState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := VSIStorageSystem.localState.fLowerTemperature;
 
 //producer
 CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
@@ -96,6 +98,7 @@ VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStora
     <LineIds Name="FB_HeatingNetworkHighTemperature">
       <LineId Id="40" Count="1" />
       <LineId Id="372" Count="2" />
+      <LineId Id="520" Count="1" />
       <LineId Id="43" Count="4" />
       <LineId Id="206" Count="0" />
       <LineId Id="447" Count="0" />

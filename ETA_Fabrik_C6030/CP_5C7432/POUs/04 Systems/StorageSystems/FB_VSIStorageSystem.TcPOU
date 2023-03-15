@@ -137,17 +137,10 @@ VAR_OUTPUT
 	bSwitchToWorking : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF bLoading = TRUE THEN
-	bSetStatusOn_PU305 := TRUE;
-	IF PU305.bStatusOn THEN
-		bSwitchToWorking := TRUE;
-	END_IF
-ELSE
-	bSetStatusOn_PU306 := TRUE;
-	IF PU306.bStatusOn THEN
-		bSwitchToWorking := TRUE;
-	END_IF
+        <ST><![CDATA[IF PU305.bStatusOn OR PU306.bStatusOn THEN
+	bSwitchToWorking := TRUE;
 END_IF
+
 
 
 ]]></ST>
@@ -188,16 +181,20 @@ END_VAR
 bSetStatusOn_SV306 := TRUE;
 bSetStatusOn_SV307 := TRUE;
 
-IF bLoading = TRUE THEN
+IF bLoading THEN
 	fSetPoint_SV305 := 100;
 	fSetPoint_SV306 := 0;
 	IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint<20 AND SV307.fOperatingPoint>80 THEN
-		bRampUpFinished := TRUE;
+		bSetStatusOn_PU305 := TRUE;	
+		bSetStatusOn_PU306 := FALSE;	
+		bRampUpFinished := TRUE;	
 	END_IF
 ELSE
 	fSetPoint_SV305 := 0;
 	fSetPoint_SV306 := 100;
 	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint>80 AND SV307.fOperatingPoint>80 THEN
+		bSetStatusOn_PU305 := FALSE;	
+		bSetStatusOn_PU306 := TRUE;		
 		bRampUpFinished := TRUE;
 	END_IF
 END_IF
@@ -300,7 +297,7 @@ IF bRampDownFinished THEN
 ELSE
 	bSetStatusOn_PU305 := FALSE;
 	bSetStatusOn_PU306 := FALSE;
-	IF NOT PU305.bStatusOn AND PU306.bStatusOn THEN
+	IF NOT PU305.bStatusOn AND NOT PU306.bStatusOn THEN
 		bRampDownFinished := TRUE;
 	END_IF
 END_IF]]></ST>
@@ -345,14 +342,8 @@ END_VAR]]></Declaration>
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.Operational">
-      <LineId Id="8" Count="0" />
-      <LineId Id="25" Count="0" />
       <LineId Id="29" Count="1" />
       <LineId Id="28" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="32" Count="1" />
-      <LineId Id="31" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="19" Count="0" />
@@ -375,9 +366,15 @@ END_VAR]]></Declaration>
       <LineId Id="83" Count="1" />
       <LineId Id="74" Count="0" />
       <LineId Id="42" Count="0" />
-      <LineId Id="18" Count="4" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="19" Count="3" />
       <LineId Id="44" Count="0" />
-      <LineId Id="26" Count="3" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="27" Count="2" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.SelectLoadingMode">

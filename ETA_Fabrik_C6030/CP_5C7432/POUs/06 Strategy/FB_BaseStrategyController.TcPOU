@@ -39,7 +39,8 @@ VAR
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
 	fOffset_TargetTemperature_CHP2 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
-	fOffset_TargetTemperature_CondensingBoiler : REAL := 0;	
+	fOffset_TargetTemperature_CondensingBoiler : REAL := 2;
+	fOffset_TargetTemperature_VSI : REAL := 2;	
 	Controller_CHP_Prioritization : FB_CTRL_2POINT;
 	Controller_CHP_Prioritization_Parameters : ST_CTRL_2POINT_PARAMS;	
 	Controller_CHP1 : FB_CTRL_2POINT;
@@ -48,6 +49,12 @@ VAR
 	Controller_CHP2_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_CondensingBoiler : FB_CTRL_2POINT;
 	Controller_CondensingBoiler_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_VSI_Loading_Permission : FB_CTRL_2POINT;
+	Controller_VSI_Loading_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_VSI_Unloading_Permission : FB_CTRL_2POINT;
+	Controller_VSI_Unloading_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_Buffer_VSI_Unloading : FB_CTRL_2POINT;
+	Controller_Buffer_VSI_Unloading_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_StaticHeating : FB_CTRL_2POINT;
 	Controller_StaticHeating_Parameters : ST_CTRL_2POINT_PARAMS;
 	
@@ -192,19 +199,28 @@ Controller_CHP_Prioritization_Parameters.fHysteresisRange := 4;
 Controller_CHP_Prioritization_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP_Prioritization_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_CHP1_Parameters.fHysteresisRange := 5;
 Controller_CHP1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_CHP2_Parameters.fHysteresisRange := 5;
 Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_CondensingBoiler_Parameters.fHysteresisRange := 5;
+Controller_CondensingBoiler_Parameters.fHysteresisRange := 8;
 Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_StaticHeating_Parameters.fHysteresisRange := 5;
+Controller_Buffer_VSI_Unloading_Parameters.fHysteresisRange := 4;
+Controller_Buffer_VSI_Unloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_Buffer_VSI_Unloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_VSI_Unloading_Permission_Parameters.fHysteresisRange := 4;
+Controller_VSI_Unloading_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_VSI_Unloading_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_VSI_Loading_Permission_Parameters.fHysteresisRange := 4;
+Controller_VSI_Loading_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_VSI_Loading_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_StaticHeating_Parameters.fHysteresisRange := 4;
 Controller_StaticHeating_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_StaticHeating_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -215,12 +231,16 @@ Controller_CHP_Prioritization(fSetpointValue := 15,
 	stParams := Controller_CHP_Prioritization_Parameters);
 IF Controller_CHP_Prioritization.bOut THEN
 	//prioritize large CHP (CHP2) during cold temperatures
-	fOffset_TargetTemperature_CHP1 := 4;
+	Controller_CHP1_Parameters.fHysteresisRange := 12;
+	Controller_CHP2_Parameters.fHysteresisRange := 10;
+	fOffset_TargetTemperature_CHP1 := 3;
 	fOffset_TargetTemperature_CHP2 := 2;
 ELSE
-	//prioritize large CHP (CHP2) during cold temperatures	
+	//prioritize large CHP (CHP2) during cold temperatures
+	Controller_CHP1_Parameters.fHysteresisRange := 10;
+	Controller_CHP2_Parameters.fHysteresisRange := 12;	
 	fOffset_TargetTemperature_CHP1 := 2;
-	fOffset_TargetTemperature_CHP2 := 4;	
+	fOffset_TargetTemperature_CHP2 := 3;	
 END_IF
 
 Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
@@ -228,22 +248,39 @@ Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperat
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
 hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
-//hnhtControl.bSetStatusOn_CHP1 := FALSE;
 
 Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
-//hnhtControl.bSetStatusOn_CHP2 := FALSE;
 
-//condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CondensingBoiler,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
-//hnhtControl.bSetStatusOn_CondensingBoiler := FALSE;
+
+//buffer storage asks VSI for unloading when buffer storage temperature falls below limit
+Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_VSI,
+	fActualValue := hnhtState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_Buffer_VSI_Unloading_Parameters);
+
+//VSI storage may only be unloaded when upper temperature is between limits for unloading
+Controller_VSI_Unloading_Permission(fSetpointValue := hnhtState.fUpperTemperature_ActiveStorage,
+	fActualValue := fTargetTemperature_HNHT,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_VSI_Unloading_Permission_Parameters);
+	
+//VSI storage may only be loaded when lower temperature is between limits for loading
+Controller_VSI_Loading_Permission(fSetpointValue := fTargetTemperature_HNHT,
+	fActualValue := hnhtState.fLowerTemperature_ActiveStorage,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_VSI_Loading_Permission_Parameters);
+	
+hnhtControl.bSetStatusOn_VSIStorage := (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut) OR ((hnhtControl.bSetStatusOn_CHP1 OR hnhtControl.bSetStatusOn_CHP2) AND NOT Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Loading_Permission.bOut); 
+hnhtControl.bLoading_VSISystem := NOT (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut);
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_StaticHeating(fSetpointValue := 15,
@@ -252,8 +289,7 @@ Controller_StaticHeating(fSetpointValue := 15,
 	stParams := Controller_StaticHeating_Parameters);
 hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
 
-hnhtControl.bSetStatusOn_VSIStorage := FALSE;
-hnhtControl.bLoading_VSISystem := FALSE;
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -489,13 +525,21 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
     <LineIds Name="FB_BaseStrategyController.ControlHNHT">
       <LineId Id="6" Count="0" />
       <LineId Id="107" Count="1" />
-      <LineId Id="105" Count="1" />
+      <LineId Id="105" Count="0" />
       <LineId Id="7" Count="2" />
-      <LineId Id="17" Count="2" />
+      <LineId Id="19" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="52" Count="1" />
       <LineId Id="51" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="169" Count="1" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="181" Count="1" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="124" Count="2" />
+      <LineId Id="123" Count="0" />
       <LineId Id="78" Count="2" />
       <LineId Id="77" Count="0" />
       <LineId Id="104" Count="0" />
@@ -504,25 +548,34 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="109" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="115" Count="1" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="193" Count="0" />
       <LineId Id="41" Count="0" />
       <LineId Id="37" Count="0" />
       <LineId Id="114" Count="0" />
+      <LineId Id="196" Count="0" />
+      <LineId Id="195" Count="0" />
       <LineId Id="117" Count="0" />
       <LineId Id="39" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="12" Count="3" />
       <LineId Id="5" Count="0" />
-      <LineId Id="43" Count="0" />
       <LineId Id="21" Count="4" />
       <LineId Id="20" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="55" Count="5" />
+      <LineId Id="56" Count="4" />
       <LineId Id="54" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="81" Count="6" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="73" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="183" Count="9" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="207" Count="3" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="144" Count="1" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="82" Count="5" />
+      <LineId Id="133" Count="0" />
       <LineId Id="94" Count="0" />
       <LineId Id="61" Count="0" />
     </LineIds>
