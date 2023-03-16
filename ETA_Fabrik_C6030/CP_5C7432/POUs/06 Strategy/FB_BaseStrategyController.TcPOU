@@ -231,14 +231,14 @@ Controller_CHP_Prioritization(fSetpointValue := 15,
 	stParams := Controller_CHP_Prioritization_Parameters);
 IF Controller_CHP_Prioritization.bOut THEN
 	//prioritize large CHP (CHP2) during cold temperatures
-	Controller_CHP1_Parameters.fHysteresisRange := 12;
-	Controller_CHP2_Parameters.fHysteresisRange := 10;
+	Controller_CHP1_Parameters.fHysteresisRange := 14;
+	Controller_CHP2_Parameters.fHysteresisRange := 12;
 	fOffset_TargetTemperature_CHP1 := 3;
 	fOffset_TargetTemperature_CHP2 := 2;
 ELSE
 	//prioritize large CHP (CHP2) during cold temperatures
-	Controller_CHP1_Parameters.fHysteresisRange := 10;
-	Controller_CHP2_Parameters.fHysteresisRange := 12;	
+	Controller_CHP1_Parameters.fHysteresisRange := 12;
+	Controller_CHP2_Parameters.fHysteresisRange := 14;	
 	fOffset_TargetTemperature_CHP1 := 2;
 	fOffset_TargetTemperature_CHP2 := 3;	
 END_IF
