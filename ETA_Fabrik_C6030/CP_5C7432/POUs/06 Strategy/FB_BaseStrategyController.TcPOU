@@ -238,8 +238,8 @@ ELSE
 	//prioritize large CHP (CHP2) during cold temperatures
 	Controller_CHP1_Parameters.fHysteresisRange := 12;
 	Controller_CHP2_Parameters.fHysteresisRange := 14;	
-	fOffset_TargetTemperature_CHP1 := 1;
-	fOffset_TargetTemperature_CHP2 := 0;	
+	fOffset_TargetTemperature_CHP1 := 0;
+	fOffset_TargetTemperature_CHP2 := 1;	
 END_IF
 
 Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,

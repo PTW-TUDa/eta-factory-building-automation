@@ -115,7 +115,7 @@ PU405.SetState_Profibus();
 
 PU500.GetState_Profibus();
 PU500(bSetStatusOnAutomatic := bSetStatusOn_PU500,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU500.SetState_Profibus();
