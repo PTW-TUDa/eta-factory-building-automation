@@ -39,8 +39,7 @@ VAR
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
 	fOffset_TargetTemperature_CHP2 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
-	fOffset_TargetTemperature_CondensingBoiler : REAL := 2;
-	fOffset_TargetTemperature_VSI : REAL := 2;	
+	fOffset_TargetTemperature_CondensingBoiler : REAL := 1;	
 	Controller_CHP_Prioritization : FB_CTRL_2POINT;
 	Controller_CHP_Prioritization_Parameters : ST_CTRL_2POINT_PARAMS;	
 	Controller_CHP1 : FB_CTRL_2POINT;
@@ -204,7 +203,7 @@ Controller_CHP1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN
 Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_CondensingBoiler_Parameters.fHysteresisRange := 12;
+Controller_CondensingBoiler_Parameters.fHysteresisRange := 10;
 Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -233,14 +232,14 @@ IF Controller_CHP_Prioritization.bOut THEN
 	//prioritize large CHP (CHP2) during cold temperatures
 	Controller_CHP1_Parameters.fHysteresisRange := 14;
 	Controller_CHP2_Parameters.fHysteresisRange := 12;
-	fOffset_TargetTemperature_CHP1 := 3;
-	fOffset_TargetTemperature_CHP2 := 2;
+	fOffset_TargetTemperature_CHP1 := 1;
+	fOffset_TargetTemperature_CHP2 := 0;
 ELSE
 	//prioritize large CHP (CHP2) during cold temperatures
 	Controller_CHP1_Parameters.fHysteresisRange := 12;
 	Controller_CHP2_Parameters.fHysteresisRange := 14;	
-	fOffset_TargetTemperature_CHP1 := 2;
-	fOffset_TargetTemperature_CHP2 := 3;	
+	fOffset_TargetTemperature_CHP1 := 1;
+	fOffset_TargetTemperature_CHP2 := 0;	
 END_IF
 
 Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
@@ -255,14 +254,14 @@ Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTempera
 	stParams := Controller_CHP2_Parameters);
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
 
-Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CondensingBoiler,
+Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT+fOffset_TargetTemperature_CondensingBoiler,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
 
 //buffer storage asks VSI for unloading when buffer storage temperature falls below limit
-Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_VSI,
+Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT,
 	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_VSI_Unloading_Parameters);
@@ -299,7 +298,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Controller_HeatExchanger1_Parameters.fHysteresisRange := 5;
+        <ST><![CDATA[Controller_HeatExchanger1_Parameters.fHysteresisRange := 4;
 Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -320,7 +319,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
-Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 5;
+Controller_OuterCapillaryTubeMats_Parameters.fHysteresisRange := 4;
 Controller_OuterCapillaryTubeMats_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_OuterCapillaryTubeMats_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
