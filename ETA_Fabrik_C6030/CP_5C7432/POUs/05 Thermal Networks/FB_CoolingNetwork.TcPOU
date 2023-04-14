@@ -25,7 +25,6 @@ VAR
 	//internal variables
 	bSetStatusOn_CentralMachineCooling : BOOL;
 	bSetStatusOn_FlywheelMassStorage : BOOL;
-	fSetPoint_HVFASystem : REAL;
 END_VAR
 
 ]]></Declaration>
@@ -63,15 +62,9 @@ FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStor
 	fSetPointAutomatic := 20);
 	
 //external storages
-//setpoint depends on loading mode -> storage must be cooler than setpoint temperature in network
-IF controlAutomatic.bLoading_HVFASystem THEN
-	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature-5;
-ELSE
-	fSetPoint_HVFASystem := controlAutomatic.fFeedTemperature;
-END_IF
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := fSetpoint_HVFASystem,
+	fSetPointAutomatic := 50,
 	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
 	aTelegramm_WMZ7x0 := aTelegramm_WMZ710,
 	aTelegramm_WMZx05 := aTelegramm_WMZ105);
@@ -95,12 +88,6 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="204" Count="3" />
       <LineId Id="139" Count="0" />
       <LineId Id="55" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="91" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="83" Count="2" />
       <LineId Id="236" Count="1" />
