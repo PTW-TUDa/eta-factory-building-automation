@@ -34,9 +34,6 @@ VAR
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
 	SV307 : FB_MixingValve := (ST_DefaultParameters := stSV307DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
 	
-	//sensors
-	WMZ305 : FB_MollineC3HeatCounter;
-	
 	//internal variables
 	bSetStatusOn_PU305 : BOOL;
 	bSetStatusOn_PU306 : BOOL;
@@ -107,10 +104,7 @@ SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
-SV307.SetState_AO();
-
-//insert heat counter telegramm from other task
-WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);]]></ST>
+SV307.SetState_AO();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6500ceb-116e-45d5-85e5-f2a65c10cf67}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -335,7 +329,6 @@ END_VAR]]></Declaration>
       <LineId Id="97" Count="3" />
       <LineId Id="102" Count="0" />
       <LineId Id="9" Count="0" />
-      <LineId Id="174" Count="2" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.CheckError">
       <LineId Id="9" Count="0" />

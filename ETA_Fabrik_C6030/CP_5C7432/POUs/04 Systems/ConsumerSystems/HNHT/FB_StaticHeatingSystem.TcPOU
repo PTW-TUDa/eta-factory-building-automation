@@ -19,6 +19,9 @@ VAR
 	stRV350DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
 	RV350 : FB_MixingValve := (ST_DefaultParameters := stRV350DefaultParameters);
 	
+	//sensors
+	WMZ350 : FB_MollineC3HeatCounter;
+	
 	//internal variables
 	bSetStatusOn_PU350 		: BOOL;
 	bSetStatusOn_RV350 		: BOOL;
@@ -49,7 +52,9 @@ RV350(bSetStatusOnAutomatic := bSetStatusOn_RV350,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU350.fTemperatureInternal,
 	nControlModeAutomatic := 1);
-RV350.SetState_AO();]]></ST>
+RV350.SetState_AO();
+
+WMZ350(aHeatCounterTelegramm := aTelegramm_WMZ350);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e9d70e3b-4edd-41b2-aa43-bd07addbca60}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -180,6 +185,8 @@ END_VAR]]></Declaration>
       <LineId Id="50" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="58" Count="15" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="116" Count="0" />
     </LineIds>
     <LineIds Name="FB_StaticHeatingSystem.CheckError">
       <LineId Id="9" Count="0" />

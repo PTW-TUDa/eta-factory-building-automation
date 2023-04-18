@@ -366,6 +366,10 @@
 							<Name>.IN_WZaehler2</Name>
 							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
 						</Var>
+						<Var>
+							<Name>.IN_WZaehler_Basement</Name>
+							<Type GUID="{9C5D4328-9D49-5D84-32AA-448E1B17934D}" Namespace="Tc2_MBus">ST_KL6781inData22B</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>MBus_WZaehler_Task Outputs</Name>
@@ -375,6 +379,10 @@
 						</Var>
 						<Var>
 							<Name>.OUT_WZaehler2</Name>
+							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
+						</Var>
+						<Var>
+							<Name>.OUT_WZaehler_Basement</Name>
 							<Type GUID="{BA9C462F-CFF8-B791-878F-07FF3A729923}" Namespace="Tc2_MBus">ST_KL6781outData22B</Type>
 						</Var>
 					</Vars>
@@ -394,6 +402,262 @@
 					</Vars>
 					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>Standard Inputs</Name>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.PressureSensor.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bError_IN</Name>
+							<Comment><![CDATA[Error state linked to terminal]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bWarning_IN</Name>
+							<Comment><![CDATA[Warning state linked to terminal]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN</Name>
+							<Comment><![CDATA[Working state linked to terminal]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.SV138.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx06.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOn_IN</Name>
 							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
@@ -848,6 +1112,463 @@
 							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV600.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV640.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV660.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.TS640.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.TS660.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PS600.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.SVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.SVx06.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.RVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.RV251.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.SV245.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.SV245.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.StatusModule_IN</Name>
 							<Comment><![CDATA[I/O links]]></Comment>
 							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
@@ -975,6 +1696,49 @@
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nOperatingPoint_IN</Name>
 							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -1510,765 +2274,87 @@
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.PressureSensor.nPressure_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bError_IN</Name>
-							<Comment><![CDATA[Error state linked to terminal]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bWarning_IN</Name>
-							<Comment><![CDATA[Warning state linked to terminal]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN</Name>
-							<Comment><![CDATA[Working state linked to terminal]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.SV138.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx06.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV600.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV640.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV660.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.TS640.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.TS660.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PS600.nPressure_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.SVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.SVx06.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.RVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.RV251.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.SV245.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.SV245.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>Standard Outputs</Name>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
+							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[SetStatus linked to terminal]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.HeatPump.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
@@ -2422,6 +2508,119 @@
 							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU690.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV600.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV640.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV660.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.SVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.SVx06.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.HVFASystem.RVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.PU251.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.CompressorSystem.RV251.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNLT.DCSystem.SV245.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.ControlModule_OUT</Name>
 							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
 						</Var>
@@ -2446,6 +2645,14 @@
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_OUT</Name>
+							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CHP1System.CHP.nSetPoint_OUT</Name>
@@ -2590,205 +2797,6 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.SV_SupplyAir.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_OUT</Name>
-							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
-							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[SetStatus linked to terminal]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU690.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV235.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.SV605.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV600.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV640.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.OuterCapillaryTubeMats.RV660.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.SVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.SVx06.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.HVFASystem.RVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.PU251.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.CompressorSystem.RV251.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNLT.DCSystem.SV245.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -14700,7 +14708,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>632</BitOffs>
+								<BitOffs>840</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -14711,7 +14719,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>632</BitOffs>
+								<BitOffs>840</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -14724,277 +14732,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>State</Name>
 										<Type>UINT</Type>
-										<BitOffs>648</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>872</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>672</BitOffs>
+										<BitOffs>880</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>680</BitOffs>
+										<BitOffs>888</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>896</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>904</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>912</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>920</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>928</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>936</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>944</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>952</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>960</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>968</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>976</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>992</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>648</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>872</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>672</BitOffs>
+										<BitOffs>880</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>680</BitOffs>
+										<BitOffs>888</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>896</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>904</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>912</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>920</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>928</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>936</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>944</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>952</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>960</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>968</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>976</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>992</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -15804,7 +15812,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>24784</BitOffs>
+								<BitOffs>536</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -15815,7 +15823,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>24784</BitOffs>
+								<BitOffs>536</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15828,277 +15836,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>24800</BitOffs>
+										<BitOffs>552</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>24816</BitOffs>
+										<BitOffs>568</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>24824</BitOffs>
+										<BitOffs>576</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>24832</BitOffs>
+										<BitOffs>584</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>24840</BitOffs>
+										<BitOffs>592</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>24848</BitOffs>
+										<BitOffs>600</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>24856</BitOffs>
+										<BitOffs>608</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>24864</BitOffs>
+										<BitOffs>616</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>24872</BitOffs>
+										<BitOffs>624</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>24880</BitOffs>
+										<BitOffs>632</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>24888</BitOffs>
+										<BitOffs>640</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>24896</BitOffs>
+										<BitOffs>648</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>24904</BitOffs>
+										<BitOffs>656</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>24912</BitOffs>
+										<BitOffs>664</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>24920</BitOffs>
+										<BitOffs>672</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>24928</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>24936</BitOffs>
+										<BitOffs>688</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>24944</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>24952</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>24960</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>24968</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>24976</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>24984</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>24800</BitOffs>
+										<BitOffs>552</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>24816</BitOffs>
+										<BitOffs>568</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>24824</BitOffs>
+										<BitOffs>576</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>24832</BitOffs>
+										<BitOffs>584</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>24840</BitOffs>
+										<BitOffs>592</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>24848</BitOffs>
+										<BitOffs>600</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>24856</BitOffs>
+										<BitOffs>608</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>24864</BitOffs>
+										<BitOffs>616</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>24872</BitOffs>
+										<BitOffs>624</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>24880</BitOffs>
+										<BitOffs>632</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>24888</BitOffs>
+										<BitOffs>640</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>24896</BitOffs>
+										<BitOffs>648</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>24904</BitOffs>
+										<BitOffs>656</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>24912</BitOffs>
+										<BitOffs>664</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>24920</BitOffs>
+										<BitOffs>672</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>24928</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>24936</BitOffs>
+										<BitOffs>688</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>24944</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>24952</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>24960</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>24968</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>24976</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>24984</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -25036,6 +25044,54 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.RV425.nSetPoint_OUT" VarB="K570A1_AO-2/2^ao_RV425^ao_RV425"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV423.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV423^bo_SV423"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT_CN.UnderfloorHeatingSystem.SV424.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV424^bo_SV424"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Box 55 (BK1250)">
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 0"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 1" Size="8" OffsA="8"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 10" Size="8" OffsA="80"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 11" Size="8" OffsA="88"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 12" Size="8" OffsA="96"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 13" Size="8" OffsA="104"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 14" Size="8" OffsA="112"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 15" Size="8" OffsA="120"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 16" Size="8" OffsA="128"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 17" Size="8" OffsA="136"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 18" Size="8" OffsA="144"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 19" Size="8" OffsA="152"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 2" Size="8" OffsA="16"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 20" Size="8" OffsA="160"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 21" Size="8" OffsA="168"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 3" Size="8" OffsA="24"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 4" Size="8" OffsA="32"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 5" Size="8" OffsA="40"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 6" Size="8" OffsA="48"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 7" Size="8" OffsA="56"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 8" Size="8" OffsA="64"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data In 9" Size="8" OffsA="72"/>
+				<Link VarA="MBus_WZaehler_Task Inputs^.IN_WZaehler_Basement^Status" VarB="Term 255 (KL6781)^Channel 1^Status"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^Ctrl" VarB="Term 255 (KL6781)^Channel 1^Ctrl"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 0"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 1" Size="8" OffsA="8"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 10" Size="8" OffsA="80"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 11" Size="8" OffsA="88"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 12" Size="8" OffsA="96"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 13" Size="8" OffsA="104"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 14" Size="8" OffsA="112"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 15" Size="8" OffsA="120"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 16" Size="8" OffsA="128"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 17" Size="8" OffsA="136"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 18" Size="8" OffsA="144"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 19" Size="8" OffsA="152"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 2" Size="8" OffsA="16"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 20" Size="8" OffsA="160"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 21" Size="8" OffsA="168"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 3" Size="8" OffsA="24"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 4" Size="8" OffsA="32"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 5" Size="8" OffsA="40"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 6" Size="8" OffsA="48"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 7" Size="8" OffsA="56"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 8" Size="8" OffsA="64"/>
+				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 9" Size="8" OffsA="72"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 67 (EL3068)">
 				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV305.nOperatingPoint_IN" VarB="ai_SV305^Value"/>

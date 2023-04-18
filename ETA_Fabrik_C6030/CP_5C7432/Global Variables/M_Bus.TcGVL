@@ -9,6 +9,8 @@ VAR_GLOBAL
 	OUT_WZaehler AT %Q* : ST_KL6781outData22B;
 	IN_WZaehler2 AT %I* 	: ST_KL6781inData22B;
 	OUT_WZaehler2 AT %Q* : ST_KL6781outData22B;
+	IN_WZaehler_Basement AT %I* 	: ST_KL6781inData22B;
+	OUT_WZaehler_Basement AT %Q* : ST_KL6781outData22B;
 	
 	(*
 			[1] ETA_3111U1006XHE321XXXXXXZ01, ELT_Zaehler_BHKW_321_01
@@ -45,7 +47,10 @@ VAR_GLOBAL
 	Kommunikation_MBus	: ST_MBUS_Communication;
 	Komm_MBus_WZaehler	: ST_MBUS_Communication;
 	Komm_MBus_WZaehler2	: ST_MBUS_Communication;
+	Komm_MBus_WZaehler_Basement	: ST_MBUS_Communication;
 
+	aTelegramm_WMZ350 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	
 	aTelegramm_WMZ135						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ138						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ105						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
