@@ -25,9 +25,9 @@ VAR
 	PU7x0 : FB_Pump2Point; //CM pump (storage side)
 
 	//valves
-	stSVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	stSVx06DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	stRVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stSVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
+	stSVx06DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
+	stRVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
 	
 	SVx05 : FB_MixingValve := (ST_DefaultParameters := stSVx05DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SVx06 : FB_MixingValve := (ST_DefaultParameters := stSVx06DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions

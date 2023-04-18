@@ -659,6 +659,212 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV215.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV215.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV315.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPowerElectric_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.SV146.bStatusOn_IN</Name>
 							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
 							<Type>BOOL</Type>
@@ -1035,81 +1241,47 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -1567,178 +1739,6 @@
 							<Name>MAIN.HNLT.DCSystem.SV245.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV315.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV315.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -2356,6 +2356,50 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV215.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV315.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.HeatPump.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
@@ -2490,22 +2534,12 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV453.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.SV454.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+							<Name>.Dali_K522A1_DALI_OUT</Name>
+							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT</Name>
@@ -2619,40 +2653,6 @@
 							<Name>MAIN.HNLT.DCSystem.SV245.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.SV315.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_OUT</Name>
-							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CHP1System.CHP.nSetPoint_OUT</Name>
@@ -9506,9 +9506,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV215</Name>
+									<Name>bo_SV215_Frei</Name>
 									<Var>
-										<Name>bo_SV215</Name>
+										<Name>bo_SV215_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16939</BitOffs>
 										<InOut>1</InOut>
@@ -9533,9 +9533,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_SV315</Name>
+									<Name>bo_SV215</Name>
 									<Var>
-										<Name>bo_SV315</Name>
+										<Name>bo_SV215</Name>
 										<Type>BIT</Type>
 										<BitOffs>16942</BitOffs>
 										<InOut>1</InOut>
@@ -13086,7 +13086,7 @@ PU245
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="ai_RV215" Index="#x1a02" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_RV315" Index="#x1a02" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01" Flags="#x00000020">
 									<Type>BIT</Type>
 								</Entry>
@@ -13114,7 +13114,7 @@ PU245
 								<Entry Name="Status__TxPDO Toggle" Index="#x6010" Sub="#x10" Flags="#x00000020">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="ai_RV215" Index="#x6010" Sub="#x11">
+								<Entry Name="ai_RV315" Index="#x6010" Sub="#x11">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -13365,8 +13365,8 @@ PU245
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="ao_RV215" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="ao_RV215" Index="#x7010" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_RV315" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_RV315" Index="#x7010" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -14142,7 +14142,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201f903" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -24744,7 +24744,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.RV32x.nOperatingPoint_IN" VarB="ai_RV321^ai_RV321"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP2System.RV32x.nOperatingPoint_IN" VarB="ai_RV322^ai_RV322"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CondensingBoilerSystem.RV331.nOperatingPoint_IN" VarB="ai_RV331^ai_RV331"/>
-				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nOperatingPoint_IN" VarB="ai_RV215^ai_RV215"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.RV315.nOperatingPoint_IN" VarB="ai_RV315^ai_RV315"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nOperatingPoint_IN" VarB="ai_RV261^ai_RV261"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.CompressorSystem.RV251.nOperatingPoint_IN" VarB="ai_RV251^ai_RV251"/>
 			</OwnerB>
@@ -24753,7 +24753,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP1System.RV32x.nSetPoint_OUT" VarB="ao_RV321^ao_RV321"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP2System.RV32x.nSetPoint_OUT" VarB="ao_RV322^ao_RV322"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.RV331.nSetPoint_OUT" VarB="ao_RV331^ao_RV331"/>
-				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatExchanger1System.RV215.nSetPoint_OUT" VarB="ao_RV215^ao_RV215"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatExchanger1System.RV315.nSetPoint_OUT" VarB="ao_RV315^ao_RV315"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.AnnealingOvenSealingSystem.RV261.nSetPoint_OUT" VarB="ao_RV261^ao_RV261"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.CompressorSystem.RV251.nSetPoint_OUT" VarB="ao_RV251^ao_RV251"/>
 			</OwnerB>
@@ -25014,7 +25014,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT.StaticHeatingSystem.RV350.nSetPoint_OUT" VarB="K570A1_AO-1/2^ao_RV350^ao_RV350"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT_CN.VentilationSystem.SV453.bSetStatusOn_OUT" VarB="K544A1_BO^bo_SV453^bo_SV453"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT_CN.VentilationSystem.SV454.bSetStatusOn_OUT" VarB="K544A1_BO^bo_SV454^bo_SV454"/>
-				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatExchanger1System.SV315.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV315^bo_SV315"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatExchanger1System.SV215.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV215^bo_SV215"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.DCSystem.SV245.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV245^bo_SV245"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.PU690.bSetStatusOn_OUT" VarB="K542A1_BO^bo_PU690^bo_PU690"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.OuterCapillaryTubeMats.RV600.nSetPoint_OUT" VarB="K572A1_AO-2/2^ao_RV600^ao_RV600"/>

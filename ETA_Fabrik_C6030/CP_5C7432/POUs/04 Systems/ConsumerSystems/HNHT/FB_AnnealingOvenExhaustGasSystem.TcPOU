@@ -15,7 +15,7 @@ VAR
 	PU361 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU361DefaultParameters);
 
 	//valves
-	stRV361DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV361DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
 	RV361 : FB_MixingValve := (ST_DefaultParameters := stRV361DefaultParameters);
 	
 	//sensors	

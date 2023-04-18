@@ -15,7 +15,7 @@ VAR
 	PU251 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU251DefaultParameters);;
 
 	//valves
-	stRV251DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);		
+	stRV251DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);		
 	RV251 : FB_MixingValve := (ST_DefaultParameters := stRV251DefaultParameters);
 	WMZ251 : FB_MollineC3HeatCounter();
 		

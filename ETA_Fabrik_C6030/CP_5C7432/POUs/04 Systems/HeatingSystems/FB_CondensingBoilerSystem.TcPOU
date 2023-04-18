@@ -15,7 +15,7 @@ VAR
 	
 	//valves
 	ST_SV331DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);			
+	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);			
 	SV331 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV331DefaultParameters);
 	RV331 : FB_MixingValve := (ST_DefaultParameters := ST_RV331DefaultParameters);	
 	WMZ331 : FB_MollineC3HeatCounter;

@@ -25,9 +25,9 @@ VAR
 	PU306 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU305DefaultParameters);; //Magna 3 pump (unloading pump)
 
 	//valves
-	stSV305DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	stSV306DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stSV305DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
+	stSV306DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
+	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
 	
 	SV305 : FB_MixingValve := (ST_DefaultParameters := stSV305DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions

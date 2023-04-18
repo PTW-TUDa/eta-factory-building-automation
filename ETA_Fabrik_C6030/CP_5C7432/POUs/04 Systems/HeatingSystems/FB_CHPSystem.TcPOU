@@ -21,7 +21,7 @@ VAR
 	
 	//valves
 	stSV32xDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);	
 	SV32x : FB_DiscreteValve := (ST_DefaultParameters := stSV32xDefaultParameters);
 	RV32x : FB_MixingValve := (ST_DefaultParameters := stRV32xDefaultParameters);
 	

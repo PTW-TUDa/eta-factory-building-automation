@@ -17,11 +17,11 @@ VAR
 	PU215 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU215DefaultParameters);;
 
 	//valves
-	stSV315DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
-	stRV215DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stSV215DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stRV315DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
 	
-	SV315 : FB_DiscreteValve := (ST_DefaultParameters := stSV315DefaultParameters);
-	RV215 : FB_MixingValve := (ST_DefaultParameters := stRV215DefaultParameters);
+	SV215 : FB_DiscreteValve := (ST_DefaultParameters := stSV215DefaultParameters);
+	RV315 : FB_MixingValve := (ST_DefaultParameters := stRV315DefaultParameters);
 	
 	//sensors
 	WMZ215 : FB_MollineC3HeatCounter;
@@ -29,8 +29,8 @@ VAR
 	//internal variables
 	bSetStatusOn_PU315 : BOOL;
 	bSetStatusOn_PU215 : BOOL;
-	bSetStatusOn_SV315 : BOOL;
-	bSetStatusOn_RV215 : BOOL;
+	bSetStatusOn_RV315 : BOOL;
+	bSetStatusOn_SV215 : BOOL;
 	
 	bStartTimer : BOOL;
 	Timer : TON;
@@ -57,18 +57,18 @@ PU215(bSetStatusOnAutomatic := bSetStatusOn_PU215,
 PU215.SetState_Profibus();
 
 //valves
-SV315.GetState_BI();
-SV315(bSetStatusOnAutomatic := bSetStatusOn_SV315,
-	bAlgorithmPermission := bAlgorithmPermission);
-SV315.SetState_BO();
-
-RV215.GetState_AI();
-RV215(bSetStatusOnAutomatic := bSetStatusOn_RV215,
-	fSetPointAutomatic := fSetPoint,
+RV315.GetState_AI();
+RV315(bSetStatusOnAutomatic := bSetStatusOn_RV315,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
 	fTemperatureExternal := PU215.fTemperatureExternal,
-	nControlModeAutomatic := 2);
-RV215.SetState_AO();
+	nControlModeAutomatic := 1);
+RV315.SetState_AO();
+
+SV215.GetState_BI();
+SV215(bSetStatusOnAutomatic := bSetStatusOn_SV215,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV215.SetState_BO();
 
 WMZ215(aHeatCounterTelegramm := Telegramm_WZ_PWT_1);]]></ST>
     </Implementation>
@@ -112,8 +112,8 @@ END_VAR]]></Declaration>
 bSetStatusOn_PU315 := FALSE;
 
 IF NOT PU315.bStatusOn AND NOT PU215.bStatusOn THEN
-	bSetStatusOn_RV215 := FALSE;
-	bSetStatusOn_SV315 := FALSE;
+	bSetStatusOn_SV215 := FALSE;
+	bSetStatusOn_RV315 := FALSE;
 	bStartTimer := TRUE;
 	IF Timer.Q THEN
 		bRampDownFinished := TRUE;
@@ -131,8 +131,8 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bSetStatusOn_SV315 := TRUE;
-bSetStatusOn_RV215 := TRUE;
+        <ST><![CDATA[bSetStatusOn_RV315 := TRUE;
+bSetStatusOn_SV215 := TRUE;
 
 bStartTimer := TRUE;
 IF Timer.Q THEN
@@ -191,8 +191,13 @@ END_VAR]]></Declaration>
       <LineId Id="203" Count="0" />
       <LineId Id="175" Count="4" />
       <LineId Id="181" Count="0" />
+      <LineId Id="239" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="240" Count="0" />
       <LineId Id="183" Count="0" />
-      <LineId Id="191" Count="7" />
+      <LineId Id="191" Count="2" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="198" Count="0" />
       <LineId Id="200" Count="0" />
       <LineId Id="153" Count="0" />
     </LineIds>
