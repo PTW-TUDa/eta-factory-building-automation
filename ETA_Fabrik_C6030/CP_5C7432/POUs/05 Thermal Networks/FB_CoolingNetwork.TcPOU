@@ -64,7 +64,7 @@ FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStor
 //external storages
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 50,
+	fSetPointAutomatic := 40,
 	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
 	aTelegramm_WMZ7x0 := aTelegramm_WMZ710,
 	aTelegramm_WMZx05 := aTelegramm_WMZ105);
