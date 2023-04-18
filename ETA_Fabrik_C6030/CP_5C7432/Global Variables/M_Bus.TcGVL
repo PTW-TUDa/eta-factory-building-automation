@@ -50,6 +50,10 @@ VAR_GLOBAL
 	Komm_MBus_WZaehler_Basement	: ST_MBUS_Communication;
 
 	aTelegramm_WMZ350 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZ305 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZ100 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZ300 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+		
 	
 	aTelegramm_WMZ135						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ138						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
@@ -65,6 +69,7 @@ VAR_GLOBAL
 	Telegramm_WZ_PWT_1						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Ofenkuehlung				: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Abwaerme_Ofen_Abgasfackel	: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+
 
 	Telegramm_SZ_BHKW_321		: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_SZ_BHKW_322		: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;

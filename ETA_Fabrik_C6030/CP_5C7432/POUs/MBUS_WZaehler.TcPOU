@@ -5,6 +5,8 @@
 VAR
 	Komm_Klemme_WZaehler		: FB_MBUSKL6781;
 	Komm_Klemme_WZaehler2		: FB_MBUSKL6781;
+
+	
 	WMZ331_Brennwerttherme				: FB_MBUS_General_Ext;	(*1*)
 	WMZ321_BHKW_1						: FB_MBUS_General_Ext;	(*3*)
 	WMZ322_BHKW_2						: FB_MBUS_General_Ext;	(*4*)
@@ -20,10 +22,9 @@ VAR
 	adrOfenkuehlung_Dichtungen		: ST_MBus_SecAdr := (udiIdNumber:=16#00482160);
 	adrAbwaerme_Ofen_Abgasfackel	: ST_MBus_SecAdr := (udiIdNumber:=16#00482192);
 
-	//container
-	Communication_Terminal_HeatCounters_Container : FB_MBUSKL6781;
-	WMZ138_DryCooler : FB_MBUS_General_Ext;
-	adrWMZ138 : ST_MBus_SecAdr := (udiIdNumber:=16#13859504);
+	
+
+	
 END_VAR]]></Declaration>
     <Implementation>
       <CFC>

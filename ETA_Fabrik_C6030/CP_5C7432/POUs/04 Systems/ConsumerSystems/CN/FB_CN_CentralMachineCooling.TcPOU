@@ -18,6 +18,8 @@ VAR
 	stSV100DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
 	SV100 : FB_DiscreteValve := (ST_DefaultParameters := stSV100DefaultParameters);
 	
+	WMZ100: FB_MollineEHeatCounter;
+	
 	//internal variables
 	bSetStatusOn_PU100 : BOOL;
 	bSetStatusOn_SV100 : BOOL;
@@ -38,6 +40,8 @@ PU100(bSetStatusOnAutomatic := bSetStatusOn_PU100,
 	fSetPointAutomatic := fSetPoint,
 	nControlModeAutomatic := 1);
 PU100.SetState_Profibus();
+
+WMZ100(aHeatCounterTelegramm:=aTelegramm_WMZ100);
 ]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{4276cf4c-f380-44a1-8219-8445a723854b}">
@@ -153,6 +157,8 @@ END_VAR]]></Declaration>
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="49" Count="4" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
       <LineId Id="37" Count="0" />
     </LineIds>
     <LineIds Name="FB_CN_CentralMachineCooling.CheckError">

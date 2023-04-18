@@ -4,7 +4,6 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VSIStorageSystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
-	aTelegramm_WMZ305 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 END_VAR
 VAR_OUTPUT
 	localState : ST_VSIStorageState;
@@ -33,6 +32,8 @@ VAR
 	SV305 : FB_MixingValve := (ST_DefaultParameters := stSV305DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
 	SV307 : FB_MixingValve := (ST_DefaultParameters := stSV307DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
+	
+	WMZ305: FB_MollineEHeatCounter;
 	
 	//internal variables
 	bSetStatusOn_PU305 : BOOL;
@@ -104,7 +105,9 @@ SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
-SV307.SetState_AO();]]></ST>
+SV307.SetState_AO();
+
+WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6500ceb-116e-45d5-85e5-f2a65c10cf67}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -329,6 +332,8 @@ END_VAR]]></Declaration>
       <LineId Id="97" Count="3" />
       <LineId Id="102" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="600" Count="0" />
+      <LineId Id="599" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.CheckError">
       <LineId Id="9" Count="0" />

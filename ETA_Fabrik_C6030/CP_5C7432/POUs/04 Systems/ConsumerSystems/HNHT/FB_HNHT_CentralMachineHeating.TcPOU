@@ -18,6 +18,8 @@ VAR
 	stSV300DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV300 : FB_DiscreteValve := (ST_DefaultParameters := stSV300DefaultParameters);
 	
+	WMZ300: FB_MollineEHeatCounter;
+	
 	//internal variables
 	bSetStatusOn_PU300 : BOOL;
 	bSetStatusOn_SV300 : BOOL;
@@ -43,6 +45,8 @@ PU300(bSetStatusOnAutomatic := bSetStatusOn_PU300,
 	fSetPointAutomatic := fSetPoint,
 	nControlModeAutomatic := 0);
 PU300.SetState_Profibus();
+
+WMZ300(aHeatCounterTelegramm:=aTelegramm_WMZ300);
 ]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{c0d9f16c-aba7-43a2-978a-fcedde11b366}">
@@ -163,6 +167,8 @@ END_VAR]]></Declaration>
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="49" Count="4" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="135" Count="0" />
       <LineId Id="37" Count="0" />
     </LineIds>
     <LineIds Name="FB_HNHT_CentralMachineHeating.CheckError">
