@@ -361,6 +361,10 @@ Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.fHysteresisRange := 4;
 Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.fHysteresisRange := 4;
+Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
 Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.fHysteresisRange := 4;
 Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
@@ -394,7 +398,7 @@ Controller_HVFA_HNLT_HVFALoadingPermission(fSetpointValue := fTargetTemperature_
 	stParams := Controller_HVFA_HNLT_HVFALoadingPermission_Parameters);
 
 hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
-hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut;]]></ST>
+hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHnltCnLinkage" Id="{47fe50a8-fa6a-42c9-86f6-4129fa6636fe}">
@@ -649,7 +653,9 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="20" Count="1" />
       <LineId Id="68" Count="0" />
       <LineId Id="55" Count="0" />
-      <LineId Id="57" Count="10" />
+      <LineId Id="99" Count="3" />
+      <LineId Id="104" Count="2" />
+      <LineId Id="60" Count="7" />
       <LineId Id="22" Count="0" />
       <LineId Id="71" Count="4" />
       <LineId Id="91" Count="1" />
