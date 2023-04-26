@@ -61,7 +61,19 @@ VAR
 	Controller_OuterCapillaryTubeMats : FB_CTRL_2POINT;
 	Controller_OuterCapillaryTubeMats_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_OuterCapillaryTubeMats_Permission : FB_CTRL_2POINT;
-	Controller_OuterCapillaryTubeMats_Permission_Parameters : ST_CTRL_2POINT_PARAMS;	
+	Controller_OuterCapillaryTubeMats_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_OuterCapillaryTubeMats_Cooling : REAL := 2;	
+	
+	Controller_HVFA_HNLT_HVFALoadingPermission : FB_CTRL_2POINT;
+	Controller_HVFA_HNLT_HVFALoadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_HVFA_HNLT_HVFAUnloadingPermission : FB_CTRL_2POINT;
+	Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_Buffer_HVFA_HNLT_HVFAUnloading : FB_CTRL_2POINT;
+	Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_Buffer_HVFA_HNLT_HVFALoading : FB_CTRL_2POINT;
+	Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_HVFA_HNLT_Heating : REAL := 2;
+		
 	
 	//controllers and variables for cooling network
 	fOffset_TargetTemperature_eChiller : REAL := 2;	
@@ -79,6 +91,7 @@ VAR
 	//controllers and variables for hnht and hnlt linkage
 	Controller_HeatExchanger1 : FB_CTRL_2POINT;
 	Controller_HeatExchanger1_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_HeatExchanger1 : REAL := 4;
 	
 	//controllers and variables for hnlt and cn linkage
 	fOffset_TargetTemperature_HeatPump : REAL;
@@ -303,7 +316,7 @@ Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycl
 Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control heat exchanger 1
-Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating,
+Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatExchanger1,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
@@ -330,7 +343,7 @@ Controller_OuterCapillaryTubeMats_Permission_Parameters.tTaskCycleTime := Global
 
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
 Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fMidTemperature,
-	fActualValue := fTargetTemperature_HNLT_Cooling,
+	fActualValue := fTargetTemperature_HNLT_Cooling+fOffset_TargetTemperature_OuterCapillaryTubeMats_Cooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_OuterCapillaryTubeMats_Parameters);
 
@@ -342,9 +355,46 @@ Controller_OuterCapillaryTubeMats_Permission(fSetpointValue := hnltState.fMidTem
 hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
 
 //control hvfa storage
-//hvfa storage is currently not used
-hnltControl.bSetStatusOn_HVFASystem := FALSE;
-hnltControl.bLoading_HVFASystem := FALSE;]]></ST>
+//set hysteresis parameters for two-point controllers in low temperature heating network
+
+Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.fHysteresisRange := 4;
+Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.fHysteresisRange := 4;
+Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.fHysteresisRange := 4;
+Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+//buffer storage asks HVFA_HNLT for unloading when buffer storage temperature falls below limit
+Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HVFA_HNLT_Heating,
+	fActualValue := hnltState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters);
+	
+//buffer storage asks HVFA_HNLT for loading when buffer storage temperature rises above limit
+Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperature,
+	fActualValue := fTargetTemperature_HNLT_Cooling,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters);
+
+//hfva storage may only be unloaded when upper temperature is between limits for unloading
+Controller_HVFA_HNLT_HVFAUnloadingPermission(fSetpointValue := hnltState.fLowerTemperature_ActiveStorage,
+	fActualValue := fTargetTemperature_HNLT_Heating,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters);
+	
+//hvfa storage may only be loaded when lower temperature is between limits for loading
+Controller_HVFA_HNLT_HVFALoadingPermission(fSetpointValue := fTargetTemperature_HNLT_Cooling,
+	fActualValue := hnltState.fLowerTemperature_ActiveStorage,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HVFA_HNLT_HVFALoadingPermission_Parameters);
+
+hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
+hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHnltCnLinkage" Id="{47fe50a8-fa6a-42c9-86f6-4129fa6636fe}">
@@ -596,7 +646,18 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="44" Count="0" />
       <LineId Id="47" Count="2" />
       <LineId Id="45" Count="1" />
-      <LineId Id="20" Count="3" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="57" Count="10" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="71" Count="4" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="95" Count="2" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="76" Count="11" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="23" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnltCnLinkage">
