@@ -34,7 +34,14 @@ VAR
 	fTargetTemperature_CN : REAL;
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL;
 	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL;
-	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;	
+	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;
+	stHNHTCheckDefaultParameters : ST_RangeCheckDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fRestoreDifference := 5);
+	HNHT_Check : FB_RangeCheck := (ST_DefaultParameters := stHNHTCheckDefaultParameters);
+	stHNLTCheckDefaultParameters : ST_RangeCheckDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fRestoreDifference := 5);
+	HNLT_Check : FB_RangeCheck := (ST_DefaultParameters := stHNLTCheckDefaultParameters);
+	stCNCheckDefaultParameters : ST_RangeCheckDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fRestoreDifference := 2);
+	CN_Check : FB_RangeCheck := (ST_DefaultParameters := stCNCheckDefaultParameters);
+	
 	
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
@@ -453,16 +460,22 @@ hnltCnLinkageControl.fFeedTemperature_CN := cnControl.fFeedTemperature;
 hnltCnLinkageControl.fFeedTemperature_HNLT_Heating := hnltControl.fFeedTemperature_Heating;
 hnltCnLinkageControl.fFeedTemperature_HNLT_Cooling := hnltControl.fFeedTemperature_Cooling;
 
-//set algorithm permission depending on production mode to control structs 
-cnControl.bAlgorithmPermission := Limiter(fInput := cnState.fMidTemperature,
+//set algorithm permission depending on production mode to control structs
+CN_Check(fInput := cnState.fMidTemperature,
 	fLowerLimit := aTemperatureLimits_CN[1],
 	fUpperLimit := aTemperatureLimits_CN[2]);
-hnltControl.bAlgorithmPermission := Limiter(fInput := hnltState.fMidTemperature,
+cnControl.bAlgorithmPermission := CN_Check.bPermission;
+	
+HNLT_Check(fInput := hnltState.fMidTemperature,
 	fLowerLimit := aTemperatureLimits_HNLT[1],
-	fUpperLimit := aTemperatureLimits_HNLT[2]);	
-hnhtControl.bAlgorithmPermission := Limiter(fInput := hnhtState.fMidTemperature,
+	fUpperLimit := aTemperatureLimits_HNLT[2]);
+hnltControl.bAlgorithmPermission := HNLT_Check.bPermission;
+	
+HNHT_Check(fInput := hnhtState.fMidTemperature,
 	fLowerLimit := aTemperatureLimits_HNHT[1],
-	fUpperLimit := aTemperatureLimits_HNHT[2]);
+	fUpperLimit := aTemperatureLimits_HNHT[2]);	
+hnhtControl.bAlgorithmPermission := HNHT_Check.bPermission;
+	
 hnltCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
 hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
 hnhtCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
@@ -652,8 +665,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="72" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="38" Count="0" />
-      <LineId Id="40" Count="7" />
+      <LineId Id="82" Count="2" />
+      <LineId Id="92" Count="1" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="94" Count="1" />
+      <LineId Id="90" Count="1" />
       <LineId Id="39" Count="0" />
+      <LineId Id="96" Count="1" />
       <LineId Id="51" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="78" Count="0" />
