@@ -23,6 +23,8 @@ VAR
 	stPU455DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	PU455 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU455DefaultParameters);
 	
+	WMZ455 : FB_MollineC3HeatCounter;
+	
 	bHeatingMode 			: BOOL;
 	bSetStatusOn_SV453		: BOOL;
 	bSetStatusOn_SV454		: BOOL;
@@ -52,7 +54,9 @@ SV454.SetState_BO();
 
 //PU455 and RV455 is controlled by ventilation unit
 PU455.GetState_Profibus();
-PU455();]]></ST>
+PU455();
+
+WMZ455(aHeatCounterTelegramm := aTelegramm_WMZ455);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{830f30b6-3465-4e81-9ee6-986686f2740a}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -173,6 +177,8 @@ END_VAR]]></Declaration>
       <LineId Id="41" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="42" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="83" Count="0" />
     </LineIds>
     <LineIds Name="FB_VentilationSystem.CheckError">
       <LineId Id="8" Count="1" />

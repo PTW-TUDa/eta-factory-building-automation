@@ -118,7 +118,7 @@ RV660(bSetStatusOnAutomatic := bSetStatusOn_RV660,
 RV660.SetState_AO();
 
 //insert heat counter telegramm from other task
-WMZ235();
+WMZ235(aHeatCounterTelegramm := aTelegramm_WMZ235);
 
 PS600();
 PS600.GetState_AI();

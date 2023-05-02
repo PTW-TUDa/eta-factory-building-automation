@@ -61,6 +61,8 @@ VAR
 	TS572 : FB_TemperatureSensor; //ceiling west section 2
 	TS573 : FB_TemperatureSensor; //ceiling west section 3
 	
+	WMZ405 : FB_MollineC3HeatCounter;
+	
 	//internal variables
 	bHeatingMode 			: BOOL;
 	bSetStatusOn_PU405 		: BOOL;
@@ -270,7 +272,7 @@ TS572.GetState_AI();
 TS573();
 TS573.GetState_AI();
 
-
+WMZ405(aHeatCounterTelegramm := aTelegramm_WMZ405);
 
 
 

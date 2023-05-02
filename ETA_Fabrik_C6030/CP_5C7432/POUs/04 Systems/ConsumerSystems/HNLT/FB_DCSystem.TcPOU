@@ -18,6 +18,8 @@ VAR
 	stSV245DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV245 : FB_DiscreteValve := (ST_DefaultParameters := stSV245DefaultParameters);
 	
+	WMZ245 : FB_MollineC3HeatCounter;
+	
 	//internal variables
 	bSetStatusOn_PU245 : BOOL;
 	bSetStatusOn_SV245 : BOOL;
@@ -46,6 +48,8 @@ PU245(bSetStatusOnAutomatic := bSetStatusOn_PU245,
 	fSetPointAutomatic := fSetPoint,
 	nControlModeAutomatic := 1);
 PU245.SetState_Profibus();
+
+WMZ245(aHeatCounterTelegramm := aTelegramm_WMZ245);
 ]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{335c28ac-45c3-487e-8d10-7aaec001f52a}">
@@ -168,6 +172,8 @@ END_VAR]]></Declaration>
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="49" Count="4" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="132" Count="0" />
       <LineId Id="37" Count="0" />
     </LineIds>
     <LineIds Name="FB_DCSystem.CheckError">

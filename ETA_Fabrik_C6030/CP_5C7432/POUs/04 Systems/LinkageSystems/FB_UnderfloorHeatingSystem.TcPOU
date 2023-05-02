@@ -27,6 +27,7 @@ VAR
 	SV423 : FB_DiscreteValve := (ST_DefaultParameters := stSV423DefaultParameters); 
 	SV424 : FB_DiscreteValve := (ST_DefaultParameters := stSV424DefaultParameters);
 	RV425 : FB_MixingValve := (ST_DefaultParameters := stRV425DefaultParameters);
+	WMZ425 : FB_MollineC3HeatCounter;
 	
 	//internal variables
 	bHeatingMode 			: BOOL;
@@ -89,7 +90,9 @@ SV423.SetState_BO();
 SV424.GetState_BI();
 SV424(bSetStatusOnAutomatic := bSetStatusOn_SV423,
 	bAlgorithmPermission := bAlgorithmPermission);
-SV424.SetState_BO();]]></ST>
+SV424.SetState_BO();
+
+WMZ425(aHeatCounterTelegramm := aTelegramm_WMZ425);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{b9b5fe8e-e7ff-4396-9357-ddff10f773aa}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -313,6 +316,8 @@ END_VAR]]></Declaration>
       <LineId Id="198" Count="5" />
       <LineId Id="717" Count="2" />
       <LineId Id="207" Count="0" />
+      <LineId Id="813" Count="0" />
+      <LineId Id="812" Count="0" />
     </LineIds>
     <LineIds Name="FB_UnderfloorHeatingSystem.CheckError">
       <LineId Id="9" Count="0" />
