@@ -83,18 +83,20 @@ VAR
 		
 	
 	//controllers and variables for cooling network
-	fOffset_TargetTemperature_eChiller : REAL := 2;	
-	fOffset_TargetTemperature_HVFAStorage : REAL := 2;
+	fOffset_TargetTemperature_eChiller : REAL := 2;
 	fSetPoint_OutsideTemperature_Difference_HVFAStorage : REAL := 2;	
 	Controller_eChiller : FB_CTRL_2POINT;
 	Controller_eChiller_Parameters : ST_CTRL_2POINT_PARAMS;	
 	
 	Controller_HVFA_CN_HVFALoadingPermission : FB_CTRL_2POINT;
 	Controller_HVFA_CN_HVFALoadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_HVFA_CN_OutsideTemperature : FB_CTRL_2POINT;
-	Controller_HVFA_CN_OutsideTemperature_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_HVFA_CN_BufferStorage : FB_CTRL_2POINT;
-	Controller_HVFA_CN_BufferStorage_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_HVFA_CN_HVFAUnloadingPermission : FB_CTRL_2POINT;
+	Controller_HVFA_CN_HVFAUnloadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_Buffer_HVFA_CN_HVFAUnloading : FB_CTRL_2POINT;
+	Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_Buffer_HVFA_CN_HVFALoading : FB_CTRL_2POINT;
+	Controller_Buffer_HVFA_CN_HVFALoading_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_HVFA_CN : REAL := 2;
 	
 	//controllers and variables for hnht and hnlt linkage
 	Controller_HeatExchanger1 : FB_CTRL_2POINT;
@@ -157,7 +159,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for two-point controllers in cooling network
-Controller_eChiller_Parameters.fHysteresisRange := 4;
+Controller_eChiller_Parameters.fHysteresisRange := 6;
 Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_eChiller_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -166,44 +168,54 @@ Controller_HVFA_CN_HVFALoadingPermission_Parameters.fHysteresisRange := 2;
 Controller_HVFA_CN_HVFALoadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HVFA_CN_HVFALoadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//hysteresis for unloading hvfa storage depending on buffer storage temperature
-Controller_HVFA_CN_BufferStorage_Parameters.fHysteresisRange := 2;
-Controller_HVFA_CN_BufferStorage_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_CN_BufferStorage_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+//permission to unload storage depending on upper hvfa storage temperature
+Controller_HVFA_CN_HVFAUnloadingPermission_Parameters.fHysteresisRange := 2;
+Controller_HVFA_CN_HVFAUnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HVFA_CN_HVFAUnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//hysteresis for difference of outside temperature to mean outside temperature
-Controller_HVFA_CN_OutsideTemperature_Parameters.fHysteresisRange := 4;
-Controller_HVFA_CN_OutsideTemperature_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_CN_OutsideTemperature_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+//hysteresis for loading hvfa storage depending on buffer storage temperature
+Controller_Buffer_HVFA_CN_HVFALoading_Parameters.fHysteresisRange := 2;
+Controller_Buffer_HVFA_CN_HVFALoading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_Buffer_HVFA_CN_HVFALoading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+//hysteresis for unloading hvfa storage depending on buffer storage temperature
+Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters.fHysteresisRange := 2;
+Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control eChiller
 Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_eChiller,
+	fActualValue := fTargetTemperature_CN,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_eChiller_Parameters);
 cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
 
-//control hvfa storage
+//control hvfa storage loading permission 
 Controller_HVFA_CN_HVFALoadingPermission(fSetpointValue := cnState.fLowerTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFAStorage,
+	fActualValue := fTargetTemperature_CN,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HVFA_CN_HVFALoadingPermission_Parameters);
 	
-Controller_HVFA_CN_BufferStorage(fSetpointValue := cnState.fMidTemperature,
+//control hvfa storage unloading permission 
+Controller_HVFA_CN_HVFAUnloadingPermission(fSetpointValue := fTargetTemperature_CN,
+	fActualValue := cnState.fLowerTemperature_ActiveStorage,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HVFA_CN_HVFAUnloadingPermission_Parameters);
+
+//loading permission buffer HVFA
+Controller_Buffer_HVFA_CN_HVFALoading(fSetpointValue := fTargetTemperature_CN, 
+	fActualValue := cnState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_Buffer_HVFA_CN_HVFALoading_Parameters);	
+	
+//unloading permission buffer HVFA
+Controller_Buffer_HVFA_CN_HVFAUnloading(fSetpointValue := cnState.fMidTemperature,
 	fActualValue := fTargetTemperature_CN,
 	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_CN_BufferStorage_Parameters);
+	stParams := Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters);
 	
-//loading permission for hvfa storage depending on difference of mean outside temperature to actual outside temperature
-Controller_HVFA_CN_OutsideTemperature(fSetpointValue := fSetPoint_OutsideTemperature_Difference_HVFAStorage,
-	fActualValue := ambientState.fOutsideTemperature_Mean-ambientState.fOutsideTemperature,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_CN_OutsideTemperature_Parameters);
-	
-//cnControl.bSetStatusOn_HVFASystem := (Controller_HVFA_CN_OutsideTemperature.bOut AND Controller_HVFA_CN_HVFALoadingPermission.bOut) OR (Controller_HVFA_CN_BufferStorage.bOut AND NOT Controller_HVFA_CN_HVFALoadingPermission.bOut);
-//cnControl.bLoading_HVFASystem := Controller_HVFA_CN_HVFALoadingPermission.bOut;
-cnControl.bLoading_HVFASystem := FALSE;
-cnControl.bLoading_HVFASystem := FALSE;]]></ST>
+cnControl.bSetStatusOn_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut) OR (Controller_HVFA_CN_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFAUnloading.bOut);
+cnControl.bLoading_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut);]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNHT" Id="{d2511083-7af8-4297-86c0-c5bfbe31f79b}">
@@ -421,8 +433,8 @@ Controller_HeatPump_Parameters.fHysteresisRange := 5;
 Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-fOffset_TargetTemperature_HeatPump_Permission := 2;
-Controller_HeatPump_Permission_Parameters.fHysteresisRange := 5;
+fOffset_TargetTemperature_HeatPump_Permission := 3;
+Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -443,16 +455,7 @@ hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters
 //switch heating off during night
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
 hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
-
-(*
-IF Clock.stClockState.fHour > 7 AND Clock.stClockState.fHour < 17 THEN
-	hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
-	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
-ELSE
-	hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := FALSE;
-	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;
-END_IF
-*)]]></ST>
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetState" Id="{fed71060-1f4b-4777-bd5e-031580854e91}">
@@ -566,12 +569,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="60" Count="0" />
       <LineId Id="55" Count="2" />
       <LineId Id="54" Count="0" />
+      <LineId Id="100" Count="3" />
+      <LineId Id="99" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="41" Count="0" />
-      <LineId Id="58" Count="1" />
+      <LineId Id="104" Count="1" />
       <LineId Id="42" Count="0" />
-      <LineId Id="62" Count="3" />
-      <LineId Id="43" Count="0" />
+      <LineId Id="107" Count="3" />
+      <LineId Id="106" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="66" Count="3" />
@@ -579,15 +584,16 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="88" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="70" Count="4" />
-      <LineId Id="77" Count="2" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="82" Count="2" />
-      <LineId Id="81" Count="0" />
+      <LineId Id="114" Count="3" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="118" Count="3" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="125" Count="3" />
+      <LineId Id="124" Count="0" />
       <LineId Id="89" Count="1" />
       <LineId Id="76" Count="0" />
-      <LineId Id="94" Count="1" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNHT">
       <LineId Id="6" Count="0" />
@@ -699,11 +705,6 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="63" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="78" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="65" Count="1" />
-      <LineId Id="68" Count="3" />
-      <LineId Id="67" Count="0" />
       <LineId Id="76" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetState">
