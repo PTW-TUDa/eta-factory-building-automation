@@ -536,9 +536,10 @@ hnhtControl.bAlgorithmPermission := HNHT_Check.bPermission;
 	
 hnltCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
 hnltCnLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
+hnhtHnltLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermission;
+hnhtHnltLinkageControl.bAlgorithmPermission_HNLT := hnltControl.bAlgorithmPermission;
 hnhtCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
-hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermission;
-]]></ST>
+hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermission;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_BaseStrategyController">
@@ -744,9 +745,9 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="96" Count="1" />
       <LineId Id="51" Count="0" />
       <LineId Id="34" Count="0" />
-      <LineId Id="78" Count="0" />
+      <LineId Id="108" Count="0" />
       <LineId Id="77" Count="0" />
-      <LineId Id="22" Count="0" />
+      <LineId Id="109" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
