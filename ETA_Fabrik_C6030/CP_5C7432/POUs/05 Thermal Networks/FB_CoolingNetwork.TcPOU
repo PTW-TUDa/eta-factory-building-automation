@@ -54,7 +54,7 @@ eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 //PU100 in central machine cooling system controls return temperature of 20 degree
 CentralMachineCoolingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineCooling,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 20);
+	fSetPointAutomatic := 5);
 
 //PU191 in central machine cooling system controls return temperature of 20 degree
 FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStorage,

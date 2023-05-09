@@ -30,15 +30,16 @@ END_VAR
 PU251.GetState_Profibus();
 PU251(bSetStatusOnAutomatic := bSetStatusOn_PU251,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := 70,
 	nControlModeAutomatic := 0);
 PU251.SetState_Profibus();
 
+//external temperature should be measured with external sensor after putting sensor into supply pipe
 RV251.GetState_AI();
 RV251(bSetStatusOnAutomatic := bSetStatusOn_RV251,
-	fSetPointAutomatic := fSetPoint,
+	fSetPointAutomatic := fSetPoint-5,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 1,
+	nControlModeAutomatic := 2,
 	fTemperatureExternal := PU251.fTemperatureInternal);
 RV251.SetState_AO();
 
@@ -145,6 +146,7 @@ END_VAR]]></Declaration>
       <LineId Id="50" Count="0" />
       <LineId Id="52" Count="4" />
       <LineId Id="51" Count="0" />
+      <LineId Id="79" Count="0" />
       <LineId Id="41" Count="8" />
       <LineId Id="9" Count="0" />
     </LineIds>

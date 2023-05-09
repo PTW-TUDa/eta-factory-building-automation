@@ -82,7 +82,7 @@ BvL_CleaningSystem();
 bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn OR BvL_CleaningSystem.bStatusOn;
 CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 80);
+	fSetPointAutomatic := 5);
 	
 AnnealingOvenExhaustGas();
 bSetStatusOn_AnnealingOven := AnnealingOvenExhaustGas.bStatusOn_ExhaustGas;
