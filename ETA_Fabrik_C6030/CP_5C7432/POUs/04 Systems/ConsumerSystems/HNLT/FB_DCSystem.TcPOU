@@ -18,7 +18,7 @@ VAR
 	stSV245DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	SV245 : FB_DiscreteValve := (ST_DefaultParameters := stSV245DefaultParameters);
 	
-	WMZ245 : FB_MollineC3HeatCounter;
+	WMZ245 : FB_MollineEHeatCounter;
 	
 	//internal variables
 	bSetStatusOn_PU245 : BOOL;

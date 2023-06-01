@@ -23,7 +23,7 @@ VAR
 	stPU455DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	PU455 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU455DefaultParameters);
 	
-	WMZ455 : FB_MollineC3HeatCounter;
+	WMZ455 : FB_MollineEHeatCounter;
 	
 	bHeatingMode 			: BOOL;
 	bSetStatusOn_SV453		: BOOL;
