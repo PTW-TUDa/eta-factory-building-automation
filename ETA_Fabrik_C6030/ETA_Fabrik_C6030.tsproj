@@ -5883,7 +5883,7 @@ PU245
 					<Box Id="3" BoxType="9093">
 						<Name>Profibus_1 (EL6731)</Name>
 						<ImageId>1002</ImageId>
-						<EtherCAT SlaveType="5" AdsServerAddress="0000000007010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
+						<EtherCAT SlaveType="5" AdsServerAddress="000000000701eb03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" CoeMainProfile="203166601" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x0100001e">
 							<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 							<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 							<SyncMan>001354002400010003000000000000000000001324010000</SyncMan>
@@ -10102,7 +10102,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>ai_TF295_HNHT_MidTemperature_TEMPORARY</Name>
+									<Name>ai_TF295_HNLT_LowerTemperature</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -10110,7 +10110,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x5">
-										<Name>ai_TF295_HNLT_MidTemperature_Temporary</Name>
+										<Name>ai_TF295_HNLT_LowerTemperature</Name>
 										<Type>INT</Type>
 										<BitOffs>13712</BitOffs>
 										<InOut>0</InOut>
@@ -14486,7 +14486,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201fd03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -15384,7 +15384,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="RTD Inputs Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Pdo Name="ai_TF395_HNHT_UpperTemperature" Index="#x1a00" Flags="#x0011" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -15409,11 +15409,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x1800" Sub="#x09">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF395_HNHT_UpperTemperature" Index="#x6000" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="3">
+							<Pdo Name="ai_TF395_HNHT_MidTemperature" Index="#x1a01" Flags="#x0011" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -15438,7 +15438,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x1801" Sub="#x09">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF395_MidTemperature" Index="#x6010" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -15457,7 +15457,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="RTD Inputs Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="3">
+							<Pdo Name="ai_TF395_LowerTemperature" Index="#x1a00" Flags="#x0011" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -15482,7 +15482,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x1800" Sub="#x09">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF395_LowerTemperature" Index="#x6000" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -25268,7 +25268,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN" VarB="K531A1_BI^bi_SV100_Open^bi_SV100_Open"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K575A1_AI (KL3222)^TF796_HVFA_LowerTemperature^TF796_HVFA_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_UpperTemperature^TF795_HVFA_UpperTemperature"/>
-				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNHT_MidTemperature_TEMPORARY^ai_TF295_HNLT_MidTemperature_Temporary"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS300^ai_PS300"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.CHP.bError_IN" VarB="K531A1_BI^bi_CHP1_Error^bi_CHP1_Error"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOff_IN" VarB="K533A1_BI^bi_SV321_Closed^bi_SV321_Closed"/>
@@ -25285,6 +25284,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV453.bStatusOn_IN" VarB="K535A1_BI^bi_SV453_Open^bi_SV453_Open"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOff_IN" VarB="K535A1_BI^bi_SV454_Closed^bi_SV454_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_CN.VentilationSystem.SV454.bStatusOn_IN" VarB="K535A1_BI^bi_SV454_Open^bi_SV454_Open"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNLT_LowerTemperature^ai_TF295_HNLT_LowerTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K551A1_AI-1/2^ai_TF295_HNLT_MidTemperature^ai_TF295_HNLT_MidTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS200^ai_PS200"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF295_HNLT_UpperTemperature^ai_TF295_HNLT_UpperTemperature"/>
@@ -25436,6 +25436,13 @@ PU105]]></Comment>
 				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 7" Size="8" OffsA="56"/>
 				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 8" Size="8" OffsA="64"/>
 				<Link VarA="MBus_WZaehler_Task Outputs^.OUT_WZaehler_Basement^D" VarB="Term 255 (KL6781)^Channel 1^Data Out 9" Size="8" OffsA="72"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 65 (EL3202-0010)">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="ai_TF395_HNHT_MidTemperature^ai_TF395_MidTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="ai_TF395_HNHT_UpperTemperature^ai_TF395_HNHT_UpperTemperature"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 66 (EL3202-0010)">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="ai_TF395_LowerTemperature^ai_TF395_LowerTemperature"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 67 (EL3068)">
 				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV305.nOperatingPoint_IN" VarB="ai_SV305^Value"/>
