@@ -49,9 +49,11 @@ VAR
 	fOffset_TargetTemperature_CondensingBoiler : REAL := 1;	
 	Controller_CHP_Prioritization : FB_CTRL_2POINT;
 	Controller_CHP_Prioritization_Parameters : ST_CTRL_2POINT_PARAMS;	
-	Controller_CHP1 : FB_CTRL_2POINT;
+	Controller_CHP1_On : FB_CTRL_2POINT; //check upper temperature for turning on chp
+	Controller_CHP1_Off : FB_CTRL_2POINT; //check lower temperature for turning off chp
 	Controller_CHP1_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_CHP2 : FB_CTRL_2POINT;
+	Controller_CHP2_On : FB_CTRL_2POINT;
+	Controller_CHP2_Off : FB_CTRL_2POINT;
 	Controller_CHP2_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_CondensingBoiler : FB_CTRL_2POINT;
 	Controller_CondensingBoiler_Parameters : ST_CTRL_2POINT_PARAMS;
@@ -275,17 +277,27 @@ ELSE
 	fOffset_TargetTemperature_CHP2 := 1;	
 END_IF
 
-Controller_CHP1(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
-	fActualValue := hnhtState.fMidTemperature,
+Controller_CHP1_On(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
-hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1.bOut;
+Controller_CHP1_Off(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
+	fActualValue := hnhtState.fLowerTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_CHP1_Parameters);
+//start when upper temperature too cold and stop when lower temperature too hot
+hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1_Off.bOut OR (Controller_CHP1_Off.bOut AND Controller_CHP1_On.bOut);
 
-Controller_CHP2(fSetpointValue :=  fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
-	fActualValue := hnhtState.fMidTemperature,
+Controller_CHP2_On(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
-hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2.bOut;
+Controller_CHP2_Off(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
+	fActualValue := hnhtState.fLowerTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_CHP2_Parameters);
+//start when upper temperature too cold and stop when lower temperature too hot
+hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2_Off.bOut OR (Controller_CHP2_Off.bOut AND Controller_CHP2_On.bOut);
 
 Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT+fOffset_TargetTemperature_CondensingBoiler,
 	fActualValue := hnhtState.fMidTemperature,
@@ -634,8 +646,12 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="38" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="12" Count="3" />
+      <LineId Id="229" Count="2" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="232" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="21" Count="4" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="233" Count="8" />
       <LineId Id="20" Count="0" />
       <LineId Id="56" Count="4" />
       <LineId Id="54" Count="0" />
