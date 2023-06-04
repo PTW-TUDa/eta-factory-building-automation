@@ -190,7 +190,8 @@ Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
 	fActualValue := fTargetTemperature_CN,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_eChiller_Parameters);
-cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
+//cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
+cnControl.bSetStatusOn_eChiller := TRUE;
 
 //control hvfa storage loading permission 
 Controller_HVFA_CN_HVFALoadingPermission(fSetpointValue := cnState.fLowerTemperature_ActiveStorage,
@@ -216,8 +217,10 @@ Controller_Buffer_HVFA_CN_HVFAUnloading(fSetpointValue := cnState.fMidTemperatur
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_CN_HVFAUnloading_Parameters);
 	
-cnControl.bSetStatusOn_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut) OR (Controller_HVFA_CN_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFAUnloading.bOut);
-cnControl.bLoading_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut);]]></ST>
+//cnControl.bSetStatusOn_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut) OR (Controller_HVFA_CN_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFAUnloading.bOut);
+//cnControl.bLoading_HVFASystem := (Controller_HVFA_CN_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_CN_HVFALoading.bOut);
+cnControl.bSetStatusOn_HVFASystem := FALSE;
+cnControl.bLoading_HVFASystem := FALSE;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNHT" Id="{d2511083-7af8-4297-86c0-c5bfbe31f79b}">
@@ -594,6 +597,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="44" Count="0" />
       <LineId Id="66" Count="3" />
       <LineId Id="45" Count="0" />
+      <LineId Id="134" Count="0" />
       <LineId Id="88" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="70" Count="4" />
@@ -607,6 +611,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="124" Count="0" />
       <LineId Id="89" Count="1" />
       <LineId Id="76" Count="0" />
+      <LineId Id="132" Count="1" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNHT">
       <LineId Id="6" Count="0" />

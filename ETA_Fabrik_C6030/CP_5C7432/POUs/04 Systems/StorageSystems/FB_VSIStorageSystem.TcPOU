@@ -59,7 +59,7 @@ END_VAR
       <ST><![CDATA[//storage
 VSIStorage(localState => localStorageState);
 
-SelectLoadingMode();
+SelectLocalControlMode();
 SwitchToLoading(CLK := bLoading);
 SwitchToUnloading(CLK := bLoading);
 
@@ -201,8 +201,8 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SelectLoadingMode" Id="{874dd5e5-f3db-4d2a-986b-16df54211a39}">
-      <Declaration><![CDATA[METHOD PRIVATE SelectLoadingMode : BOOL
+    <Method Name="SelectLocalControlMode" Id="{874dd5e5-f3db-4d2a-986b-16df54211a39}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -322,26 +322,7 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_VSIStorageSystem">
-      <LineId Id="407" Count="0" />
-      <LineId Id="405" Count="1" />
-      <LineId Id="336" Count="0" />
-      <LineId Id="408" Count="0" />
-      <LineId Id="396" Count="8" />
-      <LineId Id="393" Count="0" />
-      <LineId Id="73" Count="1" />
-      <LineId Id="230" Count="0" />
-      <LineId Id="75" Count="5" />
-      <LineId Id="539" Count="4" />
-      <LineId Id="83" Count="2" />
-      <LineId Id="280" Count="0" />
-      <LineId Id="86" Count="4" />
-      <LineId Id="281" Count="0" />
-      <LineId Id="91" Count="5" />
-      <LineId Id="282" Count="0" />
-      <LineId Id="97" Count="3" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="600" Count="0" />
+      <LineId Id="654" Count="52" />
       <LineId Id="599" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.CheckError">
@@ -384,7 +365,7 @@ END_VAR]]></Declaration>
       <LineId Id="27" Count="2" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_VSIStorageSystem.SelectLoadingMode">
+    <LineIds Name="FB_VSIStorageSystem.SelectLocalControlMode">
       <LineId Id="6" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>

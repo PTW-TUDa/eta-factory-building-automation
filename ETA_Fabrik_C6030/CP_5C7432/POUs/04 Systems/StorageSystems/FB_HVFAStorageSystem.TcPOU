@@ -60,7 +60,7 @@ END_VAR
       <ST><![CDATA[//storage
 HVFAStorage(localState => localStorageState);
 
-SelectLoadingMode();
+SelectLocalControlMode();
 SwitchToLoading(CLK := bLoading);
 SwitchToUnloading(CLK := bLoading);
 
@@ -199,8 +199,8 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SelectLoadingMode" Id="{324f0df5-410b-4639-a772-5eb1aaf75a71}">
-      <Declaration><![CDATA[METHOD PRIVATE SelectLoadingMode : BOOL
+    <Method Name="SelectLocalControlMode" Id="{324f0df5-410b-4639-a772-5eb1aaf75a71}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -234,7 +234,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fOperatingPoint := PUx05.fOperatingPoint;
 
-IF NOT SVx05.bStatusOn AND NOT SVx06.bStatusOn THEN
+IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
 	localState.bLoading := TRUE;
 ELSE
 	localState.bLoading := FALSE;
@@ -315,25 +315,7 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_HVFAStorageSystem">
-      <LineId Id="407" Count="0" />
-      <LineId Id="405" Count="1" />
-      <LineId Id="336" Count="0" />
-      <LineId Id="408" Count="0" />
-      <LineId Id="396" Count="8" />
-      <LineId Id="393" Count="0" />
-      <LineId Id="73" Count="1" />
-      <LineId Id="230" Count="0" />
-      <LineId Id="75" Count="10" />
-      <LineId Id="280" Count="0" />
-      <LineId Id="86" Count="4" />
-      <LineId Id="281" Count="0" />
-      <LineId Id="91" Count="5" />
-      <LineId Id="282" Count="0" />
-      <LineId Id="97" Count="3" />
-      <LineId Id="481" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="174" Count="2" />
+      <LineId Id="540" Count="52" />
       <LineId Id="173" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.CheckError">
@@ -359,7 +341,7 @@ END_VAR]]></Declaration>
       <LineId Id="26" Count="3" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HVFAStorageSystem.SelectLoadingMode">
+    <LineIds Name="FB_HVFAStorageSystem.SelectLocalControlMode">
       <LineId Id="6" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>
