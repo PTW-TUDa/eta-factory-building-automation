@@ -14,6 +14,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Data types" />
+    <Folder Include="Data types\03 Storages\BufferStorage" />
+    <Folder Include="Data types\03 Storages\HVFAStorage" />
+    <Folder Include="Data types\03 Storages\VSIStorage" />
     <Folder Include="Data types\04 Systems" />
     <Folder Include="Data types\04 Systems\ConsumerSystems" />
     <Folder Include="Data types\04 Systems\ConsumerSystems\HNHT" />
@@ -32,9 +35,6 @@
     <Folder Include="Data types\04 Systems\LinkageSystems\Ventilation" />
     <Folder Include="Data types\04 Systems\LinkageSystems\UnderfloorHeating" />
     <Folder Include="Data types\04 Systems\StorageSystems" />
-    <Folder Include="Data types\04 Systems\StorageSystems\BufferStorage" />
-    <Folder Include="Data types\04 Systems\StorageSystems\HVFAStorage" />
-    <Folder Include="Data types\04 Systems\StorageSystems\VSIStorage" />
     <Folder Include="Data types\05 Thermal Networks" />
     <Folder Include="Data types\06 Strategy" />
     <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen" />
@@ -47,6 +47,7 @@
     <Folder Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29" />
     <Folder Include="Data types\07 Utilities" />
     <Folder Include="Data types\08 Lighting %28from old implementation%29" />
+    <Folder Include="Data types\03 Storages" />
     <Folder Include="Global Variables" />
     <Folder Include="Global Variables\Lighting %28from old implementation%29" />
     <Folder Include="POUs" />
@@ -82,6 +83,21 @@
     <Folder Include="Visualizations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data types\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Storages\HVFAStorage\ST_HVFAStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Storages\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Storages\VSIStorage\ST_VSIStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\03 Storages\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data types\04 Systems\ConsumerSystems\CN\ST_CN_CentralMachineCoolingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -154,25 +170,10 @@
     <Compile Include="Data types\04 Systems\LinkageSystems\Ventilation\ST_VentilationSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\BufferStorage\ST_BufferStorageState.TcDUT">
+    <Compile Include="Data types\04 Systems\StorageSystems\ST_ActiveStorageSystemSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageSetParameters.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageState.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageState.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageSetParameters.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
+    <Compile Include="Data types\04 Systems\StorageSystems\ST_ActiveStorageSystemState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\05 Thermal Networks\ST_AmbientState.TcDUT">

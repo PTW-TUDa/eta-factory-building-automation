@@ -6,11 +6,13 @@ VAR_INPUT
 	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
 END_VAR
 VAR_OUTPUT
-	localState : ST_VSIStorageState;
+	localStorageState : ST_VSIStorageState;
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
-	localSetParameters : ST_VSIStorageSetParameters;
+	localSetParameters : ST_ActiveStorageSystemSetParameters;
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ActiveStorageSystemState;
 	
 	//default parameters
 	localDefaultParameters : ST_VSIStorageSystemDefaultParameters;	
@@ -55,7 +57,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//storage
-VSIStorage(localState => localState);
+VSIStorage(localState => localStorageState);
 
 SelectLoadingMode();
 SwitchToLoading(CLK := bLoading);
@@ -237,6 +239,13 @@ END_VAR
 ELSE
 	fOperatingPoint := PU306.fOperatingPoint;
 END_IF
+
+IF PU305.bStatusOn THEN
+	localState.bLoading := TRUE;
+ELSE
+	localState.bLoading := FALSE;		
+END_IF
+
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.fSetPoint := fSetPoint;
@@ -387,6 +396,10 @@ END_VAR]]></Declaration>
       <LineId Id="20" Count="0" />
       <LineId Id="8" Count="1" />
       <LineId Id="21" Count="1" />
+      <LineId Id="29" Count="2" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="28" Count="0" />
       <LineId Id="10" Count="4" />
       <LineId Id="7" Count="0" />
     </LineIds>

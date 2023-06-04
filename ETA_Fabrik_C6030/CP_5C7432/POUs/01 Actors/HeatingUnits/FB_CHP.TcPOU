@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_CHP" Id="{b646d58b-e895-49ef-8279-111f006d4387}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHP EXTENDS FB_ActorContinous
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHP EXTENDS FB_ActuatorContinous
 VAR_INPUT
 	nControlModeAutomatic : E_CHPControlMode; //control mode: 0 = constant power, 1 = feed temperature
 	fExternalFeedTemperature : REAL; //external measurement of feed temperature
@@ -48,8 +48,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MAIN();
-SelectCHPControlMode();
-ControlCHP();
+SelectLocalControlMode();
+LocalControl();
 OutputConverter(fValue := fSetPoint_internal);
 Timer(IN := bStartTimer,
 	PT := T#2S);
@@ -74,39 +74,6 @@ bReadModbus := FALSE;
 fReturnTemperature := localState.fReturnTemperature;
 	]]></ST>
     </Implementation>
-    <Method Name="ControlCHP" Id="{d887795e-232f-42f3-8d28-8fa56d1a0fe4}">
-      <Declaration><![CDATA[METHOD ControlCHP : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//set control parameters
-PI_Controller_Parameters.fKp 				:= localDefaultParameters.fControllerAmplification;
-PI_Controller_Parameters.tTn 				:= localDefaultParameters.tControllerIntegralTime;
-PI_Controller_Parameters.fOutMaxLimit		:= 100.0;
-PI_Controller_Parameters.fOutMinLimit		:= 0;
-PI_Controller_Parameters.tTaskCycleTime		:= localDefaultParameters.tTaskCycleTime;
-PI_Controller_Parameters.tCtrlCycleTime		:= localDefaultParameters.tCtrlCycleTime;
-PI_Controller_Parameters.bARWOnIPartOnly	:= TRUE;
-
-CASE nControlMode OF
-	0: //constant power
-	fSetPoint_internal := fSetPoint;
-	
-	1: //feed temperature
-	PI_Controller (
-			fSetpointValue	:= fSetPoint,
-			fActualValue	:= fExternalFeedTemperature,
-			fManSyncValue	:= 0,
-			bSync			:= FALSE,
-			eMode			:= 2, (* mode active *)
-			bHold			:= FALSE,
-			stParams		:= PI_Controller_Parameters);
-	fSetPoint_internal := LREAL_TO_REAL(PI_Controller.fOut);
-END_CASE
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="GetState" Id="{9f15d8c9-37cf-41df-9875-0bdb52117adc}">
       <Declaration><![CDATA[METHOD GetState : BOOL
 VAR_INPUT
@@ -152,8 +119,41 @@ fOperatingPoint := setPointState.fOperatingPoint;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SelectCHPControlMode" Id="{9a78149c-94db-4c62-baf4-d3dda50ef0b4}">
-      <Declaration><![CDATA[METHOD SelectCHPControlMode : BOOL
+    <Method Name="LocalControl" Id="{d887795e-232f-42f3-8d28-8fa56d1a0fe4}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//set control parameters
+PI_Controller_Parameters.fKp 				:= localDefaultParameters.fControllerAmplification;
+PI_Controller_Parameters.tTn 				:= localDefaultParameters.tControllerIntegralTime;
+PI_Controller_Parameters.fOutMaxLimit		:= 100.0;
+PI_Controller_Parameters.fOutMinLimit		:= 0;
+PI_Controller_Parameters.tTaskCycleTime		:= localDefaultParameters.tTaskCycleTime;
+PI_Controller_Parameters.tCtrlCycleTime		:= localDefaultParameters.tCtrlCycleTime;
+PI_Controller_Parameters.bARWOnIPartOnly	:= TRUE;
+
+CASE nControlMode OF
+	0: //constant power
+	fSetPoint_internal := fSetPoint;
+	
+	1: //feed temperature
+	PI_Controller (
+			fSetpointValue	:= fSetPoint,
+			fActualValue	:= fExternalFeedTemperature,
+			fManSyncValue	:= 0,
+			bSync			:= FALSE,
+			eMode			:= 2, (* mode active *)
+			bHold			:= FALSE,
+			stParams		:= PI_Controller_Parameters);
+	fSetPoint_internal := LREAL_TO_REAL(PI_Controller.fOut);
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{9a78149c-94db-4c62-baf4-d3dda50ef0b4}">
+      <Declaration><![CDATA[METHOD SelectLocalControlMode : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -222,33 +222,8 @@ END_VAR
       </Set>
     </Property>
     <LineIds Name="FB_CHP">
-      <LineId Id="58" Count="0" />
-      <LineId Id="100" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="202" Count="0" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="198" Count="0" />
-      <LineId Id="189" Count="0" />
-      <LineId Id="200" Count="0" />
-      <LineId Id="203" Count="0" />
-      <LineId Id="201" Count="0" />
-      <LineId Id="191" Count="0" />
-      <LineId Id="137" Count="0" />
-      <LineId Id="139" Count="2" />
-      <LineId Id="143" Count="2" />
-      <LineId Id="148" Count="1" />
-      <LineId Id="199" Count="0" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="209" Count="0" />
+      <LineId Id="280" Count="24" />
       <LineId Id="142" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_CHP.ControlCHP">
-      <LineId Id="17" Count="7" />
-      <LineId Id="26" Count="14" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHP.GetState">
       <LineId Id="40" Count="0" />
@@ -270,7 +245,13 @@ END_VAR
       <LineId Id="20" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_CHP.SelectCHPControlMode">
+    <LineIds Name="FB_CHP.LocalControl">
+      <LineId Id="17" Count="7" />
+      <LineId Id="26" Count="14" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.SelectLocalControlMode">
       <LineId Id="6" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>

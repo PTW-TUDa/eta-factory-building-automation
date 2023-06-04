@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_Pump2Point" Id="{9e7f7a5e-42fe-4cc1-ac2a-50bb2a199a17}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Pump2Point EXTENDS FB_Actor2Point
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Pump2Point EXTENDS FB_Actuator2Point
 VAR
 	//I/O Links
 	bSetStatusOn_OUT 	AT %Q* : BOOL := FALSE;
@@ -21,25 +21,11 @@ END_VAR
 bSetStatusOn_OUT := bSetStatusOn;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetState_Inverted_BO" Id="{e0dd2a50-1f08-4a6f-b361-8e7d5875f380}">
-      <Declaration><![CDATA[METHOD SetState_Inverted_BO : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//output
-bSetStatusOn_OUT := NOT bSetStatusOn;]]></ST>
-      </Implementation>
-    </Method>
     <LineIds Name="FB_Pump2Point">
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_Pump2Point.SetState_BO">
       <LineId Id="8" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pump2Point.SetState_Inverted_BO">
-      <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

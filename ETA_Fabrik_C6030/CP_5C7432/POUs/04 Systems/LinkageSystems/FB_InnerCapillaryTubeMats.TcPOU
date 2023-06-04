@@ -90,8 +90,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//check if heating mode has switched
-SelectInnerCapillaryTubeMatsControlMode();
-ControlInnerCapillaryTubeMats();
+SelectLocalControlMode();
+LocalControl();
 SwitchToHeating(CLK := bHeatingMode);
 SwitchToCooling(CLK := bHeatingMode);
 
@@ -309,8 +309,8 @@ bError_PU500 := PU500.bError;
 bError := bError_PU405 OR bError_PU500;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlInnerCapillaryTubeMats" Id="{4d780eb0-c994-49a4-a3af-4cc20bccd6d0}">
-      <Declaration><![CDATA[METHOD PRIVATE ControlInnerCapillaryTubeMats : BOOL
+    <Method Name="LocalControl" Id="{4d780eb0-c994-49a4-a3af-4cc20bccd6d0}">
+      <Declaration><![CDATA[METHOD PRIVATE LocalControl : BOOL
 VAR_INPUT
 END_VAR
 VAR
@@ -400,8 +400,8 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SelectInnerCapillaryTubeMatsControlMode" Id="{c6246abd-6c96-45f1-8bcd-105c886c486e}">
-      <Declaration><![CDATA[METHOD PRIVATE SelectInnerCapillaryTubeMatsControlMode : BOOL
+    <Method Name="SelectLocalControlMode" Id="{c6246abd-6c96-45f1-8bcd-105c886c486e}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
@@ -505,64 +505,7 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_InnerCapillaryTubeMats">
-      <LineId Id="218" Count="0" />
-      <LineId Id="216" Count="0" />
-      <LineId Id="633" Count="0" />
-      <LineId Id="160" Count="1" />
-      <LineId Id="284" Count="0" />
-      <LineId Id="219" Count="0" />
-      <LineId Id="282" Count="1" />
-      <LineId Id="220" Count="0" />
-      <LineId Id="163" Count="1" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="165" Count="0" />
-      <LineId Id="223" Count="0" />
-      <LineId Id="221" Count="0" />
-      <LineId Id="170" Count="0" />
-      <LineId Id="172" Count="16" />
-      <LineId Id="345" Count="5" />
-      <LineId Id="344" Count="0" />
-      <LineId Id="198" Count="9" />
-      <LineId Id="631" Count="0" />
-      <LineId Id="621" Count="0" />
-      <LineId Id="627" Count="2" />
-      <LineId Id="625" Count="0" />
-      <LineId Id="208" Count="0" />
-      <LineId Id="215" Count="0" />
-      <LineId Id="376" Count="5" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="393" Count="6" />
-      <LineId Id="385" Count="0" />
-      <LineId Id="401" Count="6" />
-      <LineId Id="400" Count="0" />
-      <LineId Id="408" Count="22" />
-      <LineId Id="386" Count="1" />
-      <LineId Id="431" Count="21" />
-      <LineId Id="388" Count="1" />
-      <LineId Id="453" Count="21" />
-      <LineId Id="390" Count="0" />
-      <LineId Id="490" Count="0" />
-      <LineId Id="489" Count="0" />
-      <LineId Id="718" Count="1" />
-      <LineId Id="492" Count="0" />
-      <LineId Id="501" Count="0" />
-      <LineId Id="503" Count="0" />
-      <LineId Id="502" Count="0" />
-      <LineId Id="505" Count="0" />
-      <LineId Id="504" Count="0" />
-      <LineId Id="507" Count="0" />
-      <LineId Id="506" Count="0" />
-      <LineId Id="509" Count="0" />
-      <LineId Id="508" Count="0" />
-      <LineId Id="510" Count="0" />
-      <LineId Id="493" Count="0" />
-      <LineId Id="519" Count="4" />
-      <LineId Id="511" Count="0" />
-      <LineId Id="524" Count="4" />
-      <LineId Id="512" Count="6" />
-      <LineId Id="494" Count="6" />
-      <LineId Id="491" Count="0" />
-      <LineId Id="391" Count="1" />
+      <LineId Id="1004" Count="197" />
       <LineId Id="384" Count="0" />
     </LineIds>
     <LineIds Name="FB_InnerCapillaryTubeMats.CheckError">
@@ -570,7 +513,7 @@ END_VAR]]></Declaration>
       <LineId Id="17" Count="0" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_InnerCapillaryTubeMats.ControlInnerCapillaryTubeMats">
+    <LineIds Name="FB_InnerCapillaryTubeMats.LocalControl">
       <LineId Id="114" Count="0" />
       <LineId Id="120" Count="4" />
       <LineId Id="126" Count="0" />
@@ -611,7 +554,7 @@ END_VAR]]></Declaration>
       <LineId Id="31" Count="0" />
       <LineId Id="17" Count="0" />
     </LineIds>
-    <LineIds Name="FB_InnerCapillaryTubeMats.SelectInnerCapillaryTubeMatsControlMode">
+    <LineIds Name="FB_InnerCapillaryTubeMats.SelectLocalControlMode">
       <LineId Id="6" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>

@@ -42,8 +42,8 @@ BufferStorage();
 localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
 localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
 localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
-localState.fUpperTemperature_ActiveStorage := VSIStorageSystem.localState.fUpperTemperature;
-localState.fLowerTemperature_ActiveStorage := VSIStorageSystem.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := VSIStorageSystem.localStorageState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := VSIStorageSystem.localStorageState.fLowerTemperature;
 
 //producer
 CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,

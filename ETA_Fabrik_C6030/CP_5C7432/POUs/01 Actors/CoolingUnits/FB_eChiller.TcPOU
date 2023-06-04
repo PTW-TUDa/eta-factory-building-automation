@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
   <POU Name="FB_eChiller" Id="{7e215da2-dce2-4fe4-9d0d-730727e6f73a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_eChiller EXTENDS FB_ActorContinous
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_eChiller EXTENDS FB_ActuatorContinous
 VAR_INPUT
 	fExternalTemperature : REAL; //External temperature in °C
 	fReturnTemperature_Consumers : REAL;

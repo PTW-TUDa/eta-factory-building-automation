@@ -50,8 +50,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//check if heating mode has switched
-SelectUnderfloorHeatingControlMode();
-ControlUnderfloorHeating();
+SelectLocalControlMode();
+LocalControl();
 fSetPointAutomatic := fSetPoint_Internal;
 SwitchToHeating(CLK := bHeatingMode);
 SwitchToCooling(CLK := bHeatingMode);
@@ -109,8 +109,8 @@ END_VAR
 bError :=  PU425.bError;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlUnderfloorHeating" Id="{33d239a8-7df3-480e-902e-e6461385ded3}">
-      <Declaration><![CDATA[METHOD PRIVATE ControlUnderfloorHeating : BOOL
+    <Method Name="LocalControl" Id="{33d239a8-7df3-480e-902e-e6461385ded3}">
+      <Declaration><![CDATA[METHOD PRIVATE LocalControl : BOOL
 VAR_INPUT
 END_VAR
 VAR
@@ -196,8 +196,8 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SelectUnderfloorHeatingControlMode" Id="{7be6bcd7-4518-40f0-81a5-7bb610014654}">
-      <Declaration><![CDATA[METHOD PRIVATE SelectUnderfloorHeatingControlMode : BOOL
+    <Method Name="SelectLocalControlMode" Id="{7be6bcd7-4518-40f0-81a5-7bb610014654}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
 VAR_INPUT
 END_VAR]]></Declaration>
       <Implementation>
@@ -297,33 +297,14 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_UnderfloorHeatingSystem">
-      <LineId Id="218" Count="0" />
-      <LineId Id="216" Count="0" />
-      <LineId Id="633" Count="0" />
-      <LineId Id="765" Count="0" />
-      <LineId Id="160" Count="1" />
-      <LineId Id="284" Count="0" />
-      <LineId Id="219" Count="0" />
-      <LineId Id="282" Count="1" />
-      <LineId Id="220" Count="0" />
-      <LineId Id="163" Count="1" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="165" Count="0" />
-      <LineId Id="172" Count="7" />
-      <LineId Id="187" Count="1" />
-      <LineId Id="345" Count="5" />
-      <LineId Id="344" Count="0" />
-      <LineId Id="198" Count="5" />
-      <LineId Id="717" Count="2" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="813" Count="0" />
+      <LineId Id="903" Count="42" />
       <LineId Id="812" Count="0" />
     </LineIds>
     <LineIds Name="FB_UnderfloorHeatingSystem.CheckError">
       <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_UnderfloorHeatingSystem.ControlUnderfloorHeating">
+    <LineIds Name="FB_UnderfloorHeatingSystem.LocalControl">
       <LineId Id="114" Count="0" />
       <LineId Id="120" Count="4" />
       <LineId Id="126" Count="0" />
@@ -360,7 +341,7 @@ END_VAR]]></Declaration>
       <LineId Id="56" Count="4" />
       <LineId Id="17" Count="0" />
     </LineIds>
-    <LineIds Name="FB_UnderfloorHeatingSystem.SelectUnderfloorHeatingControlMode">
+    <LineIds Name="FB_UnderfloorHeatingSystem.SelectLocalControlMode">
       <LineId Id="6" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>

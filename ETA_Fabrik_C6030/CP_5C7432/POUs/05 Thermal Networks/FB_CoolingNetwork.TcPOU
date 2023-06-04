@@ -34,8 +34,8 @@ BufferStorage();
 localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
 localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
 localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
-localState.fUpperTemperature_ActiveStorage := HVFASystem.localState.fUpperTemperature;
-localState.fLowerTemperature_ActiveStorage := HVFASystem.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := HVFASystem.localStorageState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := HVFASystem.localStorageState.fLowerTemperature;
 
 //machines
 EMAG_GT();

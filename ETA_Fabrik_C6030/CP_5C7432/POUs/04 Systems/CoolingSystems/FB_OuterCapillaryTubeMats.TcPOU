@@ -128,31 +128,6 @@ TS640.GetState_AI();
 TS660();
 TS660.GetState_AI();]]></ST>
     </Implementation>
-    <Method Name="AmbientControl" Id="{88a15c5a-66ea-4cac-bc26-6cc439e986de}">
-      <Declaration><![CDATA[METHOD AmbientControl : BOOL
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[//check for rain
-IF NOT stAmbientState.bRain THEN
-	bSetStatusOn_PU690 := TRUE;
-ELSE
-	bSetStatusOn_PU690 := FALSE;
-END_IF
-
-//check for time
-IF Clock.stClockState.fHour < 12 THEN
-	//use west facade	
-	fSetPoint_RV640 := 100;
-	fSetPoint_RV660 := 0;
-ELSE
-	//use east facade
-	fSetPoint_RV640 := 0;
-	fSetPoint_RV660 := 100;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="CheckError" Id="{b5c5e5e8-42f6-4651-a2ed-f1d07717775f}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
 VAR_INPUT
@@ -179,6 +154,31 @@ END_IF
 bError := bError_PU235 OR bError_PU600 OR bError_SV235;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="LocalControl" Id="{88a15c5a-66ea-4cac-bc26-6cc439e986de}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check for rain
+IF NOT stAmbientState.bRain THEN
+	bSetStatusOn_PU690 := TRUE;
+ELSE
+	bSetStatusOn_PU690 := FALSE;
+END_IF
+
+//check for time
+IF Clock.stClockState.fHour < 12 THEN
+	//use west facade	
+	fSetPoint_RV640 := 100;
+	fSetPoint_RV660 := 0;
+ELSE
+	//use east facade
+	fSetPoint_RV640 := 0;
+	fSetPoint_RV660 := 100;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="Operational" Id="{c5d251a1-4b82-443d-8a1b-17b15e56f92c}">
       <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
 VAR_INPUT
@@ -189,7 +189,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_PU235 := TRUE;
 bSetStatusOn_PU600 := TRUE;
-AmbientControl();
+LocalControl();
 
 IF PU235.bStatusOn AND PU600.bStatusOn THEN
 	bSwitchToWorking := TRUE;
@@ -240,7 +240,7 @@ IF Timer.Q THEN
 END_IF
 
 //check for rain
-AmbientControl();]]></ST>
+LocalControl();]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSetPointLimits" Id="{7fcac2fe-640f-418c-9c40-05dd5101cb8c}">
@@ -279,7 +279,7 @@ VAR_OUTPUT
 	bSwitchToOperational : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AmbientControl();]]></ST>
+        <ST><![CDATA[LocalControl();]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_OuterCapillaryTubeMats">
@@ -327,17 +327,17 @@ END_VAR]]></Declaration>
       <LineId Id="502" Count="0" />
       <LineId Id="504" Count="2" />
     </LineIds>
-    <LineIds Name="FB_OuterCapillaryTubeMats.AmbientControl">
-      <LineId Id="6" Count="2" />
-      <LineId Id="23" Count="1" />
-      <LineId Id="9" Count="10" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
     <LineIds Name="FB_OuterCapillaryTubeMats.CheckError">
       <LineId Id="9" Count="1" />
       <LineId Id="28" Count="0" />
       <LineId Id="11" Count="5" />
       <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.LocalControl">
+      <LineId Id="6" Count="2" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="9" Count="10" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_OuterCapillaryTubeMats.Operational">
       <LineId Id="8" Count="1" />

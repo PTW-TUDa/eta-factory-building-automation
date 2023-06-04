@@ -7,12 +7,14 @@ VAR_INPUT
 	aTelegramm_WMZ7x0 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZx05 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 END_VAR
-VAR_OUTPUT
-	localState : ST_HVFAStorageState;
+VAR_OUTPUT	
+	localStorageState : ST_HVFAStorageState;
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
-	localSetParameters : ST_HVFAStorageSetParameters;
+	localSetParameters : ST_ActiveStorageSystemSetParameters;
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ActiveStorageSystemState;
 	
 	//default parameters
 	localDefaultParameters : ST_HVFAStorageSystemDefaultParameters;	
@@ -56,7 +58,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//storage
-HVFAStorage(localState => localState);
+HVFAStorage(localState => localStorageState);
 
 SelectLoadingMode();
 SwitchToLoading(CLK := bLoading);
@@ -232,6 +234,12 @@ END_VAR
       <Implementation>
         <ST><![CDATA[fOperatingPoint := PUx05.fOperatingPoint;
 
+IF NOT SVx05.bStatusOn AND NOT SVx06.bStatusOn THEN
+	localState.bLoading := TRUE;
+ELSE
+	localState.bLoading := FALSE;
+END_IF
+
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.fSetPoint := fSetPoint;
@@ -360,7 +368,12 @@ END_VAR]]></Declaration>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.SetState">
-      <LineId Id="8" Count="6" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="23" Count="2" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="9" Count="5" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.ST_DefaultParameters.Set">

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <DUT Name="ST_VSIStorageSetParameters" Id="{d7fbd4e5-e909-4752-a264-fe814119a1a3}">
+  <DUT Name="ST_ActiveStorageSystemSetParameters" Id="{c086b274-3cd2-4559-bd3e-7d410ecfc5b1}">
     <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
-TYPE ST_VSIStorageSetParameters :
+TYPE ST_ActiveStorageSystemSetParameters :
 STRUCT
 	bLoadingAlgorithm: BOOL;
 	bLoadingManual : BOOL;
