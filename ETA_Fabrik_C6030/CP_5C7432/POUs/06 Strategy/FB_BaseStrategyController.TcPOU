@@ -466,7 +466,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//set hysteresis parameters for hnlt cn linkage systems
 fOffset_TargetTemperature_HeatPump := 0;
-Controller_HeatPump_Parameters.fHysteresisRange := 5;
+Controller_HeatPump_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 

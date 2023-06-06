@@ -68,7 +68,7 @@ END_IF;
 //pumps
 PU425.GetState_Profibus();
 PU425(bSetStatusOnAutomatic := bSetStatusOn_PU425,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU425.SetState_Profibus();
