@@ -91,6 +91,7 @@ VAR
 	Controller_HVFA_HNLT_Recooling : FB_CTRL_2POINT;
 	Controller_HVFA_HNLT_Recooling_Parameters : ST_CTRL_2POINT_PARAMS;
 	fOffset_TargetTemperature_HVFA_HNLT_Heating : REAL := 1;
+	fOffset_HVFA_HNLT_Recooling : REAL := 2;
 		
 	
 	//controllers and variables for cooling network
@@ -462,14 +463,20 @@ Controller_HVFA_HNLT_HVFALoadingPermission(fSetpointValue := fTargetTemperature_
 
 //enable hvfa recooling during low temperature times in summer months	
 Controller_HVFA_HNLT_Recooling(fSetpointValue := hnltState.fLowerTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_HNLT_Cooling,
+	fActualValue := fTargetTemperature_HNLT_Cooling-fOffset_HVFA_HNLT_Recooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HVFA_HNLT_Recooling_Parameters);
 	
-
-hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
-hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
-hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
+IF hnltCnLinkageControl.bHeatingMode THEN
+	hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
+	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
+ELSE
+	hnltControl.bSetStatusOn_HVFASystem := ((Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut)) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
+	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
+END_IF
+	
 ]]></ST>
       </Implementation>
     </Method>
@@ -490,6 +497,16 @@ Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+//EiB test - heat pump for cooling
+(*
+Controller_HeatPump(fSetpointValue := cn.fMidTemperature,
+	fActualValue := fTargetTemperature_CN-3,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_Parameters);
+
+comment permission (no permission in hnlt)
+*)
+	
 //control heat pump depending on heating demand in hnlt
 Controller_HeatPump(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump,
 	fActualValue := hnltState.fMidTemperature,
@@ -760,6 +777,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="111" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="128" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="136" Count="1" />
+      <LineId Id="134" Count="1" />
+      <LineId Id="133" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnltCnLinkage">
@@ -769,6 +790,12 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="5" Count="0" />
       <LineId Id="39" Count="3" />
       <LineId Id="32" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="86" Count="4" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="95" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="13" Count="4" />
       <LineId Id="43" Count="0" />
