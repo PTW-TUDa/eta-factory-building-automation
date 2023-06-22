@@ -474,7 +474,7 @@ IF hnltCnLinkageControl.bHeatingMode THEN
 ELSE
 	hnltControl.bSetStatusOn_HVFASystem := ((Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut)) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
 	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
-	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
 END_IF
 	
 ]]></ST>
@@ -496,18 +496,9 @@ fOffset_TargetTemperature_HeatPump_Permission := 3;
 Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//EiB test - heat pump for cooling
-(*
-Controller_HeatPump(fSetpointValue := cn.fMidTemperature,
-	fActualValue := fTargetTemperature_CN-3,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HeatPump_Parameters);
-
-comment permission (no permission in hnlt)
-*)
 	
 //control heat pump depending on heating demand in hnlt
+
 Controller_HeatPump(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
@@ -518,7 +509,6 @@ Controller_HeatPump_Permission(fSetpointValue := cnState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
-
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
 //switch heating off during night
@@ -790,19 +780,14 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="5" Count="0" />
       <LineId Id="39" Count="3" />
       <LineId Id="32" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="86" Count="4" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="95" Count="0" />
       <LineId Id="21" Count="0" />
-      <LineId Id="13" Count="4" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="14" Count="3" />
       <LineId Id="43" Count="0" />
       <LineId Id="45" Count="2" />
       <LineId Id="22" Count="0" />
       <LineId Id="12" Count="0" />
-      <LineId Id="59" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="63" Count="0" />

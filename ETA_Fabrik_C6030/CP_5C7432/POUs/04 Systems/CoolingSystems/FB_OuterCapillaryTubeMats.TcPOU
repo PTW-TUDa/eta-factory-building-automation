@@ -170,12 +170,12 @@ END_IF
 //check for time
 IF Clock.stClockState.fHour < 12 THEN
 	//use west facade	
-	fSetPoint_RV640 := 100;
-	fSetPoint_RV660 := 0;
+	fSetPoint_RV660 := 100;
+	fSetPoint_RV640 := 0;
 ELSE
 	//use east facade
-	fSetPoint_RV640 := 0;
-	fSetPoint_RV660 := 100;
+	fSetPoint_RV660 := 0;
+	fSetPoint_RV640 := 100;
 END_IF]]></ST>
       </Implementation>
     </Method>
