@@ -21,7 +21,7 @@ STRUCT
 	fTargetTemperature_CN_ProductionMode : REAL := 15;
 		
 	//temperature for thermal networks in production mode
-	aTemperatureLimits_HNHT_ProductionMode : ARRAY[1..2] OF REAL := [55,85];
+	aTemperatureLimits_HNHT_ProductionMode : ARRAY[1..2] OF REAL := [45,85];
 	aTemperatureLimits_HNLT_ProductionMode : ARRAY[1..2] OF REAL := [10,45];
 	aTemperatureLimits_CN_ProductionMode : ARRAY[1..2] OF REAL := [10,25];
 	
