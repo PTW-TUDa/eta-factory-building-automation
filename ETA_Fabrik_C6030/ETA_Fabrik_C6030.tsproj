@@ -14486,7 +14486,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201fd03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -15013,6 +15013,118 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											</Var>
 										</Vars>
 									</Term>
+									<Term Id="100" TermType="#xc8e" Fieldbus="7">
+										<Name>Klemme 100 (KL3214)</Name>
+										<ImageId>33</ImageId>
+										<Vars VarGrpType="3">
+											<Name>Kanal 1</Name>
+											<Var>
+												<Name>Status</Name>
+												<Type>USINT</Type>
+												<BitOffs>536</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Ein</Name>
+												<Type>INT</Type>
+												<BitOffs>552</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Kontrolle</Name>
+												<Type>USINT</Type>
+												<BitOffs>536</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Aus</Name>
+												<Type>INT</Type>
+												<BitOffs>552</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+										</Vars>
+										<Vars VarGrpType="3">
+											<Name>Kanal 2</Name>
+											<Var>
+												<Name>Status</Name>
+												<Type>USINT</Type>
+												<BitOffs>568</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Ein</Name>
+												<Type>INT</Type>
+												<BitOffs>584</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Kontrolle</Name>
+												<Type>USINT</Type>
+												<BitOffs>568</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Aus</Name>
+												<Type>INT</Type>
+												<BitOffs>584</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+										</Vars>
+										<Vars VarGrpType="3">
+											<Name>Kanal 3</Name>
+											<Var>
+												<Name>Status</Name>
+												<Type>USINT</Type>
+												<BitOffs>600</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Ein</Name>
+												<Type>INT</Type>
+												<BitOffs>616</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Kontrolle</Name>
+												<Type>USINT</Type>
+												<BitOffs>600</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Aus</Name>
+												<Type>INT</Type>
+												<BitOffs>616</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+										</Vars>
+										<Vars VarGrpType="3">
+											<Name>Kanal 4</Name>
+											<Var>
+												<Name>Status</Name>
+												<Type>USINT</Type>
+												<BitOffs>632</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Ein</Name>
+												<Type>INT</Type>
+												<BitOffs>648</BitOffs>
+												<InOut>0</InOut>
+											</Var>
+											<Var>
+												<Name>Kontrolle</Name>
+												<Type>USINT</Type>
+												<BitOffs>632</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+											<Var>
+												<Name>Daten Aus</Name>
+												<Type>INT</Type>
+												<BitOffs>648</BitOffs>
+												<InOut>1</InOut>
+											</Var>
+										</Vars>
+									</Term>
 									<Term Id="50" TermType="#x2332" Fieldbus="7">
 										<Name>End-Klemme (KL9010)</Name>
 										<ImageId>32</ImageId>
@@ -15021,8 +15133,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<EtherCAT SlaveType="3" AdsServerAddress="000000000b39fe03" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x0100002c">
 									<SyncMan>001c88002600010001000000400000028800001c26010000</SyncMan>
 									<SyncMan>001e88002200010002000000400000028800001e22010000</SyncMan>
-									<SyncMan>00101a006400010003000000000000000000001064010000</SyncMan>
-									<SyncMan>00161a000000010004000000000000000000001600010000</SyncMan>
+									<SyncMan>00102a006400010003000000000000000000001064010000</SyncMan>
+									<SyncMan>00162a000000010004000000000000000000001600010000</SyncMan>
 									<Fmmu>0000000000000000001000020100000001000000000000000000000000000000</Fmmu>
 									<Fmmu>0000000000000000001600010100000002000000000000000000000000000000</Fmmu>
 									<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
@@ -15052,7 +15164,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>840</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -15063,7 +15175,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>840</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15076,277 +15188,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>State</Name>
 										<Type>UINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>880</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>888</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>896</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>904</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>912</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>920</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>928</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>936</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>944</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>952</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>960</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>968</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>976</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>984</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1000</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>880</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>888</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>896</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>904</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>912</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>920</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>928</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>936</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>944</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>952</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>960</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>968</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>976</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>984</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1000</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -16156,7 +16268,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>536</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -16167,7 +16279,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>536</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -16180,277 +16292,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>552</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>568</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>576</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>584</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>592</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>600</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>608</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>616</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>624</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>632</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>640</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>648</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>656</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>672</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>680</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>552</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>568</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>576</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>584</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>592</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>600</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>608</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>616</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>624</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>632</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>640</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>648</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>656</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>664</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>672</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>680</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>696</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
