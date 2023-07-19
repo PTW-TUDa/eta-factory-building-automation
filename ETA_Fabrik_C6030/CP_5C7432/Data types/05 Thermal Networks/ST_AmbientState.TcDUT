@@ -5,6 +5,7 @@
 TYPE ST_AmbientState :
 STRUCT
 	fOutsideTemperature : REAL;
+	fOutsideTemperature_Container : REAL;
 	fOutsideTemperature_Mean : REAL;
 	fHallTemperature : REAL;
 	fWindSpeed : REAL;

@@ -10,6 +10,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	WeatherStation : FB_WeatherStation;
+	AmbientTemperatureSensor_Container : FB_TemperatureSensor_KL3214;
 	HallTemperatureSensor_Section1 : FB_TemperatureSensor;
 	HallTemperatureSensor_Section2 : FB_TemperatureSensor;
 	HallTemperatureSensor_Section3 : FB_TemperatureSensor;
@@ -23,8 +24,11 @@ HallTemperatureSensor_Section2();
 HallTemperatureSensor_Section2.GetState_AI();
 HallTemperatureSensor_Section3();
 HallTemperatureSensor_Section3.GetState_AI();
+AmbientTemperatureSensor_Container();
+AmbientTemperatureSensor_Container.GetState_AI();
 
 //add ambient temperature rain etc. from weather station
+localState.fOutsideTemperature_Container := AmbientTemperatureSensor_Container.fTemperature;
 localState.fOutsideTemperature := WeatherStation.fTemperature;
 localState.fOutsideTemperature_Mean := WeatherStation.fMeanTemperature;
 localState.bRain := WeatherStation.bRain;
@@ -40,8 +44,11 @@ localState.fHallTemperature := HallTemperatureSensor_Section3.fTemperature;]]></
       <LineId Id="66" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="68" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="101" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="13" Count="0" />
