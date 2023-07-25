@@ -59,6 +59,9 @@ VAR_GLOBAL
 	aTelegramm_WMZ425 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ455 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	
+	aTelegramm_WMZ_PCM 						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZ_Chiller 					: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	
 	aTelegramm_WMZ135						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ138						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZ105						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
