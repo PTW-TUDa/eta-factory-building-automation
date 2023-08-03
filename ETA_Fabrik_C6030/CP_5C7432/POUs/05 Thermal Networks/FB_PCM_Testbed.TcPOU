@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_PCM_Testbed" Id="{341025c6-61f6-42b1-9c8c-58df0f661ef4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PCM_Testbed
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	WMZ900 : FB_MollineUltramess403HeatCounter; //PCM storage
+	WMZ935 : FB_MollineUltramess403HeatCounter; //Chiller
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[WMZ900(aHeatCounterTelegramm := aTelegramm_WMZ900);
+WMZ935(aHeatCounterTelegramm := aTelegramm_WMZ935);
+	
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PCM_Testbed">
+      <LineId Id="19" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="34" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

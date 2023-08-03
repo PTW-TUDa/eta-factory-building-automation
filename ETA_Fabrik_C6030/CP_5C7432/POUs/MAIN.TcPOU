@@ -20,6 +20,7 @@ VAR
 	HNLT : FB_HeatingNetworkLowTemperature;
 	HNHT_HNLT : FB_HnhtHnltLinkage;
 	HNHT : FB_HeatingNetworkHighTemperature;
+	PCM_Testbed : FB_PCM_Testbed;
 	
 	//ambient state
 	Ambient : FB_Ambient;
@@ -51,6 +52,8 @@ HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
 	
 HNHT(controlAutomatic := Strategy.hnhtControl,
 	stAmbientState := Ambient.localState);
+	
+PCM_Testbed();
 
 //Current implementation
 
@@ -92,6 +95,7 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
       <LineId Id="221" Count="1" />
       <LineId Id="189" Count="0" />
       <LineId Id="245" Count="0" />
+      <LineId Id="295" Count="1" />
       <LineId Id="77" Count="1" />
       <LineId Id="4" Count="20" />
       <LineId Id="37" Count="2" />

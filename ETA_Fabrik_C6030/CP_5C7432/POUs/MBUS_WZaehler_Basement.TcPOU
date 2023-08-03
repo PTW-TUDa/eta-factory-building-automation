@@ -13,8 +13,8 @@ VAR
 	WMZ245								: FB_MBUS_General_Ext;
 	WMZ235								: FB_MBUS_General_Ext;
 	WMZ425								: FB_MBUS_General_Ext;
-	WMZ_PCM								: FB_MBUS_General_Ext;
-	WMZ_Chiller								: FB_MBUS_General_Ext;
+	WMZ900								: FB_MBUS_General_Ext;
+	WMZ935								: FB_MBUS_General_Ext;
 		
 	//basement
 	adrWMZ350					: ST_MBus_SecAdr := (udiIdNumber:=16#75372672);
@@ -26,8 +26,8 @@ VAR
 	adrWMZ245					: ST_MBus_SecAdr := (udiIdNumber:=16#75563317);
 	adrWMZ235					: ST_MBus_SecAdr := (udiIdNumber:=16#13859503);
 	adrWMZ425					: ST_MBus_SecAdr := (udiIdNumber:=16#75878305);
-	adrWMZ_PCM					: ST_MBus_SecAdr := (udiIdNumber:=16#72925041);
-	adrWMZ_Chiller				: ST_MBus_SecAdr := (udiIdNumber:=16#72925042);
+	adrWMZ900					: ST_MBus_SecAdr := (udiIdNumber:=16#72925041);
+	adrWMZ935					: ST_MBus_SecAdr := (udiIdNumber:=16#72925042);
 	
 END_VAR]]></Declaration>
     <Implementation>
@@ -5109,7 +5109,7 @@ END_VAR]]></Declaration>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"WMZ_PCM"</v>
+                          <v n="Text">"WMZ900"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">1889L</v>
                         </o>
@@ -5165,7 +5165,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"adrWMZ_PCM"</v>
+                      <v n="Text">"adrWMZ900"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">1895L</v>
                     </o>
@@ -5213,7 +5213,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"aTelegramm_WMZ_PCM"</v>
+                      <v n="Text">"aTelegramm_WMZ900"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">1901L</v>
                     </o>
@@ -5654,7 +5654,7 @@ END_VAR]]></Declaration>
                         <o>
                           <v n="Bounds">"0, 0, 0, 0"</v>
                           <n n="ElementGroupId" />
-                          <v n="Text">"WMZ_Chiller"</v>
+                          <v n="Text">"WMZ935"</v>
                           <v n="Modifiable">true</v>
                           <v n="Id">1956L</v>
                         </o>
@@ -5710,7 +5710,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"adrWMZ_Chiller"</v>
+                      <v n="Text">"adrWMZ935"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">1962L</v>
                     </o>
@@ -5758,7 +5758,7 @@ END_VAR]]></Declaration>
                     <o n="Text" t="CFCText">
                       <v n="Bounds">"0, 0, 0, 0"</v>
                       <n n="ElementGroupId" />
-                      <v n="Text">"aTelegramm_WMZ_Chiller"</v>
+                      <v n="Text">"aTelegramm_WMZ935"</v>
                       <v n="Modifiable">true</v>
                       <v n="Id">1968L</v>
                     </o>
@@ -6976,7 +6976,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">1969L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">35</v>
+                      <v n="X">34</v>
                       <v n="Y">157</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6988,19 +6988,19 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">35</v>
+                        <v n="X">34</v>
                         <v n="Y">157</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
                       </o>
                       <o>
-                        <v n="X">38</v>
+                        <v n="X">37</v>
                         <v n="Y">157</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">3</v>
                       </o>
                       <o>
-                        <v n="X">38</v>
+                        <v n="X">37</v>
                         <v n="Y">153</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">12</v>
@@ -7104,7 +7104,7 @@ END_VAR]]></Declaration>
                 </d2>
               </o>
               <v n="AutoSizeCanvas">true</v>
-              <v n="CanvasWidth">75</v>
+              <v n="CanvasWidth">74</v>
               <v n="CanvasHeight">166</v>
             </o>
           </Data>
