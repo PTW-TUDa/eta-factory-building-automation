@@ -29,6 +29,7 @@
     <Folder Include="Data types\04 Systems\HeatingSystems" />
     <Folder Include="Data types\04 Systems\HeatingSystems\CHP" />
     <Folder Include="Data types\04 Systems\HeatingSystems\CondensingBoiler" />
+    <Folder Include="Data types\04 Systems\HeatingSystems\HeatPump" />
     <Folder Include="Data types\04 Systems\LinkageSystems" />
     <Folder Include="Data types\04 Systems\LinkageSystems\HeatExchanger1" />
     <Folder Include="Data types\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
@@ -147,6 +148,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data types\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\04 Systems\LinkageSystems\HeatExchanger1\ST_HeatExchanger1DefaultParameters.TcDUT">
@@ -325,10 +332,10 @@
     <Compile Include="POUs\01 Actors\HeatingUnits\FB_CHP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CondensingBoiler.TcPOU">
+    <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
+    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CondensingBoiler.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\01 Actors\Pumps\FB_Pump2Point.TcPOU">
@@ -391,7 +398,10 @@
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1System.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem.TcPOU">
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_CN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_HNHT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_InnerCapillaryTubeMats.TcPOU">

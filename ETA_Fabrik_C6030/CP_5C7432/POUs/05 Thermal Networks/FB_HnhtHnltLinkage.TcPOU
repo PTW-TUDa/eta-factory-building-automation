@@ -10,6 +10,8 @@ VAR_OUTPUT
 END_VAR
 VAR
 	HeatExchanger1System : FB_HeatExchanger1System;
+	HeatPumpSystem : FB_HeatPumpSystem_HNHT;
+	
 	
 	//internal variables
 	bAlgorithmPermission : BOOL;
@@ -22,12 +24,15 @@ HeatExchanger1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Heat
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNLT_Heating);
 	
-]]></ST>
+HeatPumpSystem(bSetStatusOnAutomatic := FALSE,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNHT);]]></ST>
     </Implementation>
     <LineIds Name="FB_HnhtHnltLinkage">
       <LineId Id="50" Count="3" />
       <LineId Id="19" Count="0" />
       <LineId Id="34" Count="1" />
+      <LineId Id="69" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

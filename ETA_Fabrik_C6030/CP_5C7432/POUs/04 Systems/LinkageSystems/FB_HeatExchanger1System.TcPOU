@@ -13,8 +13,8 @@ VAR
 	//pumps
 	stPU315DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	stPU215DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	PU315 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU315DefaultParameters);; 
-	PU215 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU215DefaultParameters);;
+	PU315 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU315DefaultParameters);
+	PU215 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU215DefaultParameters);
 
 	//valves
 	stSV215DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);

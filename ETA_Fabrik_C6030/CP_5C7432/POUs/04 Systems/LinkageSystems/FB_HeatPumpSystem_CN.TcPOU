@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <POU Name="FB_HeatPumpSystem" Id="{7e7b5d95-fc91-49dd-b95e-a9f45915aabb}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem EXTENDS FB_SystemContinous
+  <POU Name="FB_HeatPumpSystem_CN" Id="{7e7b5d95-fc91-49dd-b95e-a9f45915aabb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem_CN EXTENDS FB_SystemContinous
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
@@ -37,9 +37,11 @@ Timer(IN := bStartTimer,
 	PT := T#75S);
 
 //heat pump
+HeatPump.GetState();
 HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
-	bAlgorithmPermission := bAlgorithmPermission);
-HeatPump.SetState_BO();
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint);
+HeatPump.SetState();
 
 //valves
 SV146.GetState_BI();
@@ -158,8 +160,12 @@ END_VAR]]></Declaration>
         <ST><![CDATA[//empty method because setpoint does not change during operation]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_HeatPumpSystem">
-      <LineId Id="33" Count="10" />
+    <LineIds Name="FB_HeatPumpSystem_CN">
+      <LineId Id="33" Count="5" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="41" Count="2" />
       <LineId Id="76" Count="0" />
       <LineId Id="44" Count="2" />
       <LineId Id="78" Count="0" />
@@ -169,30 +175,30 @@ END_VAR]]></Declaration>
       <LineId Id="107" Count="0" />
       <LineId Id="109" Count="1" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.CheckError">
+    <LineIds Name="FB_HeatPumpSystem_CN.CheckError">
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.Operational">
+    <LineIds Name="FB_HeatPumpSystem_CN.Operational">
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.RampDown">
+    <LineIds Name="FB_HeatPumpSystem_CN.RampDown">
       <LineId Id="8" Count="7" />
       <LineId Id="7" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.RampUp">
+    <LineIds Name="FB_HeatPumpSystem_CN.RampUp">
       <LineId Id="9" Count="6" />
       <LineId Id="8" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.SetSetPointLimits">
+    <LineIds Name="FB_HeatPumpSystem_CN.SetSetPointLimits">
       <LineId Id="6" Count="1" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.SetState">
+    <LineIds Name="FB_HeatPumpSystem_CN.SetState">
       <LineId Id="8" Count="6" />
       <LineId Id="7" Count="0" />
     </LineIds>
-    <LineIds Name="FB_HeatPumpSystem.Working">
+    <LineIds Name="FB_HeatPumpSystem_CN.Working">
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>

@@ -12,7 +12,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	//systems
-	HeatPumpSystem : FB_HeatPumpSystem;
+	HeatPumpSystem : FB_HeatPumpSystem_CN;
 	InnerCapillaryTubeMats : FB_InnerCapillaryTubeMats;
 	UnderfloorHeatingSystem : FB_UnderfloorHeatingSystem;
 	
@@ -23,11 +23,10 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//check for algorithm permission
 bAlgorithmPermission := controlAutomatic.bAlgorithmPermission_CN AND controlAutomatic.bAlgorithmPermission_HNLT;
-
-//NOTE: heat pump systems contains only two-point actors -> fSetPointAutomatic = 0	
+	
 HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := 0);
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNLT_Heating);
 	
 //NOTE: inner capillary tube mats are always on and recieve desired hall temperature as setpoint
 InnerCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_InnerCapillaryTubeMats,
@@ -46,7 +45,6 @@ UnderfloorHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_U
     <LineIds Name="FB_HnltCnLinkage">
       <LineId Id="21" Count="0" />
       <LineId Id="23" Count="0" />
-      <LineId Id="22" Count="0" />
       <LineId Id="12" Count="2" />
       <LineId Id="9" Count="0" />
       <LineId Id="38" Count="0" />
