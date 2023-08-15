@@ -2381,6 +2381,51 @@
 							<Name>.Dali_K522A1_DALI_IN</Name>
 							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS900.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS901.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS902.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS903.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS910.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS911.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS950.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS951.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>Standard Outputs</Name>
@@ -2939,6 +2984,11 @@
 						<Var>
 							<Name>.Dali_K522A1_DALI_OUT</Name>
 							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2022-03-23T15:03:59">
@@ -16403,7 +16453,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
 							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="RTD Inputs Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF901" Index="#x1a00" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16425,11 +16475,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6000" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF901" Index="#x6000" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 2" Index="#x1a01" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF902" Index="#x1a01" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16451,11 +16501,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6010" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF902" Index="#x6010" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 3" Index="#x1a02" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF903" Index="#x1a02" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16477,11 +16527,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6020" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF903" Index="#x6020" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 4" Index="#x1a03" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF900" Index="#x1a03" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16503,11 +16553,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6030" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF900" Index="#x6030" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 5" Index="#x1a04" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF910" Index="#x1a04" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16529,11 +16579,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6040" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6040" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF910" Index="#x6040" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 6" Index="#x1a05" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF951" Index="#x1a05" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6050" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16555,11 +16605,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6050" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6050" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF951" Index="#x6050" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 7" Index="#x1a06" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF911" Index="#x1a06" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6060" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16581,11 +16631,11 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6060" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6060" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF911" Index="#x6060" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 8" Index="#x1a07" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_TF950" Index="#x1a07" Flags="#x0010" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6070" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -16607,7 +16657,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x6070" Sub="#x10">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6070" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF950" Index="#x6070" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -16634,8 +16684,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<BootStrapData>0010f400f410f400</BootStrapData>
 							<DcMode>53796e6368726f6e0000000000000000534d2d53796e6368726f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
 							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="AO Outputs Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7000" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_RV950" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_RV950" Index="#x7000" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -26075,6 +26125,19 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV305.nSetPoint_OUT" VarB="ao_SV305^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV306.nSetPoint_OUT" VarB="ao_SV306^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV307.nSetPoint_OUT" VarB="ao_SV307^Analog output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 87 (EL3218)">
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS900.temperature_IN" VarB="ai_TF900^ai_TF900"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS901.temperature_IN" VarB="ai_TF901^ai_TF901"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS902.temperature_IN" VarB="ai_TF902^ai_TF902"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS903.temperature_IN" VarB="ai_TF903^ai_TF903"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS910.temperature_IN" VarB="ai_TF910^ai_TF910"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS911.temperature_IN" VarB="ai_TF911^ai_TF911"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS950.temperature_IN" VarB="ai_TF950^ai_TF950"/>
+				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS951.temperature_IN" VarB="ai_TF951^ai_TF951"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 88 (EL4002)">
+				<Link VarA="Standard Outputs^MAIN.PCM_Testbed.RV950.nSetPoint_OUT" VarB="ao_RV950^ao_RV950"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 1 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PU235.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
