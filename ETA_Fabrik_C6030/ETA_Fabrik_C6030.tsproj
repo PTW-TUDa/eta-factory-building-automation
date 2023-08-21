@@ -7645,7 +7645,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 17 (CIM/CIU 150 pump)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
+							<Pdo Name="Box 20 (CIM/CIU 150 pump)_IN" Index="#x1a0c" Flags="#x0011" SyncMan="3">
 								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6030" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
 								</Entry>
@@ -7719,7 +7719,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 17 (CIM/CIU 150 pump)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="Box 20 (CIM/CIU 150 pump)_OUT" Index="#x160c" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7030" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
 								</Entry>
@@ -7727,7 +7727,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 20 (CIM/CIU 150 pump)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
+							<Pdo Name="Box 21 (CIM/CIU 150 pump)_IN" Index="#x1a0d" Flags="#x0011" SyncMan="3">
 								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6034" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
 								</Entry>
@@ -7801,7 +7801,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 20 (CIM/CIU 150 pump)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="Box 21 (CIM/CIU 150 pump)_OUT" Index="#x160d" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7034" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
 								</Entry>
@@ -7809,7 +7809,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 21 (CIM/CIU 150 pump)_IN" Index="#x1a0e" Flags="#x0011" SyncMan="3">
+							<Pdo Name="Box 22 (CIM/CIU 150 pump)_IN" Index="#x1a0e" Flags="#x0011" SyncMan="3">
 								<Entry Name="Eingänge.StatusModule_0_0" Index="#x6038" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
 								</Entry>
@@ -7883,7 +7883,7 @@ PU245
 									<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Box 21 (CIM/CIU 150 pump)_OUT" Index="#x160e" InOut="1" Flags="#x0011" SyncMan="2">
+							<Pdo Name="Box 22 (CIM/CIU 150 pump)_OUT" Index="#x160e" InOut="1" Flags="#x0011" SyncMan="2">
 								<Entry Name="Ausgänge.ControlModule_1_0" Index="#x7038" Sub="#x01" Flags="#x00000100">
 									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
 								</Entry>
@@ -7940,15 +7940,15 @@ PU245
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 17 (CIM/CIU 150 pump)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
+								<Entry Name="Box 20 (CIM/CIU 150 pump)_DpState" Index="#xa0c0" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 20 (CIM/CIU 150 pump)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
+								<Entry Name="Box 21 (CIM/CIU 150 pump)_DpState" Index="#xa0d0" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Box 21 (CIM/CIU 150 pump)_DpState" Index="#xa0e0" Sub="#x01" Flags="#x00000100">
+								<Entry Name="Box 22 (CIM/CIU 150 pump)_DpState" Index="#xa0e0" Sub="#x01" Flags="#x00000100">
 									<DefaultDataMask>1f1f</DefaultDataMask>
 									<Type>USINT</Type>
 								</Entry>
@@ -7998,13 +7998,13 @@ PU245
 								<Entry Name="Box 16 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0b0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 17 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Box 20 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0c0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 20 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Box 21 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0d0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Box 21 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0e0" Sub="#x02" Flags="#x00000100">
+								<Entry Name="Box 22 (CIM/CIU 150 pump)_DiagFlag" Index="#xa0e0" Sub="#x02" Flags="#x00000100">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
@@ -14676,7 +14676,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201fd03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -23028,7 +23028,7 @@ PU350]]></Comment>
 						</GsdModule>
 					</Profibus>
 				</Box>
-				<Box Id="20" BoxType="1003">
+				<Box Id="20" Disabled="true" BoxType="1003">
 					<Name>Box 17 (CIM/CIU 150 pump)</Name>
 					<Comment><![CDATA[Vendor:   GRUNDFOS
 Revision: R1
@@ -23064,14 +23064,14 @@ PU191]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
-							<BitOffs>11376</BitOffs>
+							<BitOffs>12128</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
 							<Name>ExtDiagFlag</Name>
 							<Comment><![CDATA[0 = Diagnosis Data unchanged
 1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
 							<Type>BIT</Type>
-							<BitOffs>11429</BitOffs>
+							<BitOffs>12189</BitOffs>
 						</Var>
 					</Vars>
 					<Profibus Model="CIM/CIU 150 pump" StationNo="46" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
@@ -23716,6 +23716,495 @@ PU305]]></Comment>
 131	= slave, waiting for baudrate
 ]]></Comment>
 							<Type>USINT</Type>
+							<BitOffs>11376</BitOffs>
+						</Var>
+						<Var BoxStateVariable="true">
+							<Name>ExtDiagFlag</Name>
+							<Comment><![CDATA[0 = Diagnosis Data unchanged
+1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
+							<Type>BIT</Type>
+							<BitOffs>11429</BitOffs>
+						</Var>
+					</Vars>
+					<Profibus Model="CIM/CIU 150 pump" StationNo="4" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
+						<GsdModuleDesc Name="StatusModule" CfgData="15" PrmData="01" Flags="65536"/>
+						<GsdModuleDesc Name="ControlModule" CfgData="24" PrmData="02" Flags="131072"/>
+						<GsdModuleDesc Name="RelayControl" CfgData="20" PrmData="03" Flags="196608"/>
+						<GsdModuleDesc Name="WarningCode" CfgData="90" PrmData="04" Flags="262144"/>
+						<GsdModuleDesc Name="FaultCode" CfgData="90" PrmData="05" Flags="327680"/>
+						<GsdModuleDesc Name="VolumeFlow" CfgData="93" PrmData="06" Flags="393216"/>
+						<GsdModuleDesc Name="RemoteFlow" CfgData="93" PrmData="07" Flags="458752"/>
+						<GsdModuleDesc Name="RelativePerformance" CfgData="93" PrmData="08" Flags="524288"/>
+						<GsdModuleDesc Name="Head" CfgData="93" PrmData="09" Flags="589824"/>
+						<GsdModuleDesc Name="InletPressure" CfgData="93" PrmData="0a" Flags="655360"/>
+						<GsdModuleDesc Name="RemotePressure1" CfgData="93" PrmData="0b" Flags="720896"/>
+						<GsdModuleDesc Name="FeedTankLevel" CfgData="93" PrmData="0c" Flags="786432"/>
+						<GsdModuleDesc Name="DCLinkVoltage" CfgData="93" PrmData="0d" Flags="851968"/>
+						<GsdModuleDesc Name="MotorCurrent" CfgData="93" PrmData="0e" Flags="917504"/>
+						<GsdModuleDesc Name="MotorVoltage" CfgData="93" PrmData="0f" Flags="983040"/>
+						<GsdModuleDesc Name="Power" CfgData="93" PrmData="10" Flags="1048576"/>
+						<GsdModuleDesc Name="Energy" CfgData="93" PrmData="11" Flags="1114112"/>
+						<GsdModuleDesc Name="SpecificEnergyConsumption" CfgData="93" PrmData="12" Flags="1179648"/>
+						<GsdModuleDesc Name="PowerElectronicsTemp" CfgData="93" PrmData="13" Flags="1245184"/>
+						<GsdModuleDesc Name="MotorTemp" CfgData="93" PrmData="14" Flags="1310720"/>
+						<GsdModuleDesc Name="RemoteTemp1" CfgData="93" PrmData="15" Flags="1376256"/>
+						<GsdModuleDesc Name="ElectronicsTemp" CfgData="93" PrmData="16" Flags="1441792"/>
+						<GsdModuleDesc Name="PumpLiquidTemp" CfgData="93" PrmData="17" Flags="1507328"/>
+						<GsdModuleDesc Name="BearingTempDE" CfgData="93" PrmData="18" Flags="1572864"/>
+						<GsdModuleDesc Name="BearingTempNDE" CfgData="93" PrmData="19" Flags="1638400"/>
+						<GsdModuleDesc Name="OperationTime" CfgData="93" PrmData="1a" Flags="1703936"/>
+						<GsdModuleDesc Name="TotalPoweredTime" CfgData="93" PrmData="1b" Flags="1769472"/>
+						<GsdModuleDesc Name="AuxSensorInput" CfgData="93" PrmData="1c" Flags="1835008"/>
+						<GsdModuleDesc Name="ActualSetpoint" CfgData="93" PrmData="1d" Flags="1900544"/>
+						<GsdModuleDesc Name="Frequency" CfgData="93" PrmData="1e" Flags="1966080"/>
+						<GsdModuleDesc Name="Torque" CfgData="93" PrmData="1f" Flags="2031616"/>
+						<GsdModuleDesc Name="Speed" CfgData="93" PrmData="20" Flags="2097152"/>
+						<GsdModuleDesc Name="NumberOfStarts" CfgData="93" PrmData="21" Flags="2162688"/>
+						<GsdModuleDesc Name="Volume" CfgData="93" PrmData="22" Flags="2228224"/>
+						<GsdModuleDesc Name="DigitalInput" CfgData="90" PrmData="23" Flags="2293760"/>
+						<GsdModuleDesc Name="DigitalOutput" CfgData="90" PrmData="24" Flags="2359296"/>
+						<GsdModuleDesc Name="UserSetpoint" CfgData="93" PrmData="25" Flags="2424832"/>
+						<GsdModuleDesc Name="FeedbackSensorUnit" CfgData="90" PrmData="26" Flags="2490368"/>
+						<GsdModuleDesc Name="FeedbackSensorMin" CfgData="91" PrmData="27" Flags="2555904"/>
+						<GsdModuleDesc Name="FeedbackSensorMax" CfgData="91" PrmData="28" Flags="2621440"/>
+						<GsdModuleDesc Name="DeviceIdentification" CfgData="95" PrmData="29" Flags="2686976"/>
+						<GsdModuleDesc Name="DirectDataRequest" CfgData="a8" PrmData="2a" Flags="2752512"/>
+						<GsdModuleDesc Name="DirectDataReply" CfgData="98" PrmData="2b" Flags="2818048"/>
+						<GsdModuleDesc Name="SetMaxFlowLimit" CfgData="a3" PrmData="2c" Flags="2883584"/>
+						<GsdModuleDesc Name="SetRealTimeClock" CfgData="a3" PrmData="2d" Flags="2949120"/>
+						<GsdModuleDesc Name="ActualMaxFlowLimit" CfgData="93" PrmData="2e" Flags="3014656"/>
+						<GsdModuleDesc Name="DiffPressure" CfgData="93" PrmData="2f" Flags="3080192"/>
+						<GsdModuleDesc Name="OutletPressure" CfgData="93" PrmData="30" Flags="3145728"/>
+						<GsdModuleDesc Name="RemotePressure2" CfgData="93" PrmData="31" Flags="3211264"/>
+						<GsdModuleDesc Name="LoadPct" CfgData="93" PrmData="32" Flags="3276800"/>
+						<GsdModuleDesc Name="RemoteDiffTemp" CfgData="93" PrmData="33" Flags="3342336"/>
+						<GsdModuleDesc Name="InletDiffPressure" CfgData="93" PrmData="34" Flags="3407872"/>
+						<GsdModuleDesc Name="OutletDiffPressure" CfgData="93" PrmData="35" Flags="3473408"/>
+						<GsdModuleDesc Name="RemoteDiffPressure" CfgData="93" PrmData="36" Flags="3538944"/>
+						<GsdModuleDesc Name="StorageTankLevel" CfgData="93" PrmData="37" Flags="3604480"/>
+						<GsdModuleDesc Name="RemoteTemp2" CfgData="93" PrmData="38" Flags="3670016"/>
+						<GsdModuleDesc Name="AmbientTemp" CfgData="93" PrmData="39" Flags="3735552"/>
+						<GsdModuleDesc Name="HeatEnergyCounter" CfgData="93" PrmData="3a" Flags="3801088"/>
+						<GsdModuleDesc Name="HeatPower" CfgData="93" PrmData="3b" Flags="3866624"/>
+						<GsdModuleDesc Name="HeatDiffTemp" CfgData="93" PrmData="3c" Flags="3932160"/>
+						<GsdModuleDesc Name="NomFrequency" CfgData="91" PrmData="3d" Flags="3997696"/>
+						<GsdModuleDesc Name="MinFrequency" CfgData="91" PrmData="3e" Flags="4063232"/>
+						<GsdModuleDesc Name="MaxFrequency" CfgData="91" PrmData="3f" Flags="4128768"/>
+						<GsdModuleDesc Name="SetpointRangeMin" CfgData="91" PrmData="40" Flags="4194304"/>
+						<GsdModuleDesc Name="SetpointRangeMax" CfgData="91" PrmData="41" Flags="4259840"/>
+						<GsdModule Id="1" In="6" CfgData="15" PrmData="01">
+							<Name>StatusModule</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>StatusModule_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000006}">ARRAY [0..5] OF BYTE</Type>
+									<BitOffs>9024</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="2" Out="5" ModIdx="1" CfgData="24" PrmData="02">
+							<Name>ControlModule</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+								<Var>
+									<Name>ControlModule_1_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-000300000005}">ARRAY [0..4] OF BYTE</Type>
+									<BitOffs>1344</BitOffs>
+								</Var>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="3" In="4" ModIdx="5" CfgData="93" PrmData="06">
+							<Name>VolumeFlow</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>VolumeFlow_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9072</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="5" In="4" ModIdx="22" CfgData="93" PrmData="17">
+							<Name>PumpLiquidTemp</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>PumpLiquidTemp_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9104</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="6" In="4" ModIdx="25" CfgData="93" PrmData="1a">
+							<Name>OperationTime</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>OperationTime_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9136</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="7" In="4" ModIdx="28" CfgData="93" PrmData="1d">
+							<Name>ActualSetpoint</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>ActualSetpoint_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9168</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="8" In="4" ModIdx="29" CfgData="93" PrmData="1e">
+							<Name>Frequency</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>Frequency_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9200</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="14" In="4" ModIdx="36" CfgData="93" PrmData="25">
+							<Name>UserSetpoint</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>UserSetpoint_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9232</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="9" In="4" ModIdx="46" CfgData="93" PrmData="2f">
+							<Name>DiffPressure</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>DiffPressure_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9264</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="10" In="4" ModIdx="55" CfgData="93" PrmData="38">
+							<Name>RemoteTemp2</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>RemoteTemp2_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9296</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="11" In="4" ModIdx="57" CfgData="93" PrmData="3a">
+							<Name>HeatEnergyCounter</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>HeatEnergyCounter_0_0</Name>
+									<Type>REAL</Type>
+									<BitOffs>9328</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="13" In="4" ModIdx="58" CfgData="93" PrmData="3b">
+							<Name>HeatPower</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>HeatPower_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9360</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="4" In="4" ModIdx="59" CfgData="93" PrmData="3c">
+							<Name>HeatDiffTemp</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>HeatDiffTemp_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9392</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="12" Out="9" ModIdx="41" CfgData="a8" PrmData="2a">
+							<Name>DirectDataRequest</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+								<Var>
+									<Name>DirectDataRequest_1_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+									<BitOffs>1384</BitOffs>
+								</Var>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="15" In="9" ModIdx="42" CfgData="98" PrmData="2b">
+							<Name>DirectDataReply</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>DirectDataReply_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000009}">ARRAY [0..8] OF BYTE</Type>
+									<BitOffs>9424</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="16" In="4" ModIdx="32" CfgData="93" PrmData="21">
+							<Name>NumberOfStarts</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>NumberOfStarts_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9496</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="17" In="4" ModIdx="28" CfgData="93" PrmData="1d">
+							<Name>ActualSetpoint_1</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>ActualSetpoint_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9528</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="18" In="4" ModIdx="25" CfgData="93" PrmData="1a">
+							<Name>OperationTime_1</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>OperationTime_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9560</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="19" In="4" ModIdx="31" CfgData="93" PrmData="20">
+							<Name>Speed</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>Speed_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9592</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="20" In="4" ModIdx="16" CfgData="93" PrmData="11">
+							<Name>Energy</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>Energy_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9624</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="21" In="4" ModIdx="15" CfgData="93" PrmData="10">
+							<Name>Power</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>Power_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9656</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="22" In="4" ModIdx="18" CfgData="93" PrmData="13">
+							<Name>PowerElectronicsTemp</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>PowerElectronicsTemp_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9688</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="23" In="1" ModIdx="4" CfgData="90" PrmData="05">
+							<Name>FaultCode</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>FaultCode_0_0</Name>
+									<Type>USINT</Type>
+									<BitOffs>9720</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="24" In="1" ModIdx="3" CfgData="90" PrmData="04">
+							<Name>WarningCode</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>WarningCode_0_0</Name>
+									<Type>USINT</Type>
+									<BitOffs>9728</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+						<GsdModule Id="25" In="4" ModIdx="33" CfgData="93" PrmData="22">
+							<Name>Volume</Name>
+							<ImageId>24</ImageId>
+							<Vars VarGrpType="1">
+								<Name>Eingänge</Name>
+								<Var>
+									<Name>Volume_0_0</Name>
+									<Type GUID="{18071995-0000-0000-0000-001300000004}">ARRAY [0..3] OF BYTE</Type>
+									<BitOffs>9736</BitOffs>
+								</Var>
+							</Vars>
+							<Vars VarGrpType="2">
+								<Name>Ausgänge</Name>
+							</Vars>
+						</GsdModule>
+					</Profibus>
+				</Box>
+				<Box Id="34" BoxType="1003">
+					<Name>Box 21 (CIM/CIU 150 pump)</Name>
+					<Comment><![CDATA[Vendor:   GRUNDFOS
+Revision: R1
+PU306]]></Comment>
+					<ImageId>25</ImageId>
+					<Vars VarGrpType="1">
+						<Name>Eingänge</Name>
+						<Var BoxStateVariable="true">
+							<Name>DpState</Name>
+							<Comment><![CDATA[0 = No error
+1 = Station deactivated
+2 = Station not exists
+3 = Master lock
+4 = Invalid slave response
+5 = Parameter fault
+6 = Not supported
+7 = Config fault
+8 = Station not ready
+9 = Static diagnosis
+10 = Diagnosis overflow
+11 = Physical fault
+12 = Data-Exchange left
+13 = Severe bus fault
+14 = Telegram fault
+15 = Station has no ressources
+16 = Service not activated
+17 = Unexpected telegram
+18 = Station ready
+31 = only for EtherCAT gateways: WC-State of cyclic EtherCAT frame is 1
+128 = slave, waiting for data transfer (or DP-Master in CLEAR-Mode)
+129	= slave, waiting for configuration
+130	= slave, waiting for parameter
+131	= slave, waiting for baudrate
+]]></Comment>
+							<Type>USINT</Type>
 							<BitOffs>11384</BitOffs>
 						</Var>
 						<Var BoxStateVariable="true">
@@ -23726,7 +24215,7 @@ PU305]]></Comment>
 							<BitOffs>11430</BitOffs>
 						</Var>
 					</Vars>
-					<Profibus Model="CIM/CIU 150 pump" StationNo="4" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
+					<Profibus Model="CIM/CIU 150 pump" StationNo="5" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
 						<GsdModuleDesc Name="StatusModule" CfgData="15" PrmData="01" Flags="65536"/>
 						<GsdModuleDesc Name="ControlModule" CfgData="24" PrmData="02" Flags="131072"/>
 						<GsdModuleDesc Name="RelayControl" CfgData="20" PrmData="03" Flags="196608"/>
@@ -24169,11 +24658,11 @@ PU305]]></Comment>
 						</GsdModule>
 					</Profibus>
 				</Box>
-				<Box Id="34" BoxType="1003">
-					<Name>Box 21 (CIM/CIU 150 pump)</Name>
+				<Box Id="35" BoxType="1003">
+					<Name>Box 22 (CIM/CIU 150 pump)</Name>
 					<Comment><![CDATA[Vendor:   GRUNDFOS
 Revision: R1
-PU306]]></Comment>
+PU246]]></Comment>
 					<ImageId>25</ImageId>
 					<Vars VarGrpType="1">
 						<Name>Eingänge</Name>
@@ -24215,7 +24704,7 @@ PU306]]></Comment>
 							<BitOffs>11431</BitOffs>
 						</Var>
 					</Vars>
-					<Profibus Model="CIM/CIU 150 pump" StationNo="5" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
+					<Profibus Model="CIM/CIU 150 pump" StationNo="6" MinSlaveInterval="1" Ident="2906" Modular="1" MaxModule="62" MaxInputLen="220" MaxUserPrmData="237" MaxOutputLen="23" MaxDataLen="243" WatchDogTime="500" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="8000450004000001" C2Settings="e803000000000000000000000000" PrmData="00000000010206171a1d1e252f383a3b3c2a2b211d1a20111013050422" CfgData="15249393939393939393939393a89893939393939393909093" OwnPrmData="4" FixPresetModules="true">
 						<GsdModuleDesc Name="StatusModule" CfgData="15" PrmData="01" Flags="65536"/>
 						<GsdModuleDesc Name="ControlModule" CfgData="24" PrmData="02" Flags="131072"/>
 						<GsdModuleDesc Name="RelayControl" CfgData="20" PrmData="03" Flags="196608"/>
