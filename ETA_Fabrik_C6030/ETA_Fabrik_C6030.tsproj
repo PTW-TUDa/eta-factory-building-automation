@@ -15788,7 +15788,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="RTD Inputs Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="3">
+							<Pdo Name="ai_TF242_InletTemperature_HeatPump" Index="#x1a01" Flags="#x0011" SyncMan="3">
 								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
@@ -15813,7 +15813,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<Entry Name="Status__TxPDO Toggle" Index="#x1801" Sub="#x09">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00050000">
+								<Entry Name="ai_TF242_InletTemperature_HeatPump" Index="#x6010" Sub="#x11" Flags="#x00050000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -15967,7 +15967,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AI Standard Channel 4" Index="#x1a06" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_RV342" Index="#x1a06" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a07</ExcludePdo>
 								<Entry Name="Underrange" Index="#x6030" Sub="#x01">
 									<Type>BIT</Type>
@@ -16012,7 +16012,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AI Standard Channel 5" Index="#x1a08" Flags="#x0010" SyncMan="3">
+							<Pdo Name="ai_RV242" Index="#x1a08" Flags="#x0010" SyncMan="3">
 								<ExcludePdo>#x1a09</ExcludePdo>
 								<Entry Name="Underrange" Index="#x6040" Sub="#x01">
 									<Type>BIT</Type>
@@ -16230,18 +16230,18 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7030" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_HeatPump_HNHT" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_HeatPump_HNHT" Index="#x7030" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7040" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_RV342" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_RV342" Index="#x7040" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 6" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7050" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_RV242" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_RV242" Index="#x7050" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -16271,8 +16271,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07113052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1809 16K. Dig. Eingang 24V, 3ms" Desc="EL1809" PortABoxInfo="#x01000044">
 							<SyncMan>001002000000010004000000000000000200001000010000</SyncMan>
 							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
+							<Pdo Name="bi_Error_HeatPump_HNHT" Index="#x1a00" Flags="#x0011" SyncMan="0">
+								<Entry Name="bi_Error_HeatPump_HNHT" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -16360,8 +16360,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 							<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
 							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
+							<Pdo Name="bo_HeatPump_HNHT" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="bo_HeatPump_HNHT" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -24662,7 +24662,7 @@ PU306]]></Comment>
 					<Name>Box 22 (CIM/CIU 150 pump)</Name>
 					<Comment><![CDATA[Vendor:   GRUNDFOS
 Revision: R1
-PU246]]></Comment>
+PU242]]></Comment>
 					<ImageId>25</ImageId>
 					<Vars VarGrpType="1">
 						<Name>Eingänge</Name>
@@ -26604,16 +26604,28 @@ PU105]]></Comment>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 66 (EL3202-0010)">
 				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.LowerTemperatureSensor.temperature_IN" VarB="ai_TF395_LowerTemperature^ai_TF395_LowerTemperature"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.TS242.temperature_IN" VarB="ai_TF242_InletTemperature_HeatPump^ai_TF242_InletTemperature_HeatPump"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 67 (EL3068)">
 				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV305.nOperatingPoint_IN" VarB="ai_SV305^Value"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV306.nOperatingPoint_IN" VarB="ai_SV306^Value"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.VSIStorageSystem.SV307.nOperatingPoint_IN" VarB="ai_SV307^Value"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV242.nOperatingPoint_IN" VarB="ai_RV242^Value"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV342.nOperatingPoint_IN" VarB="ai_RV342^Value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 68 (EL4008)">
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV305.nSetPoint_OUT" VarB="ao_SV305^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV306.nSetPoint_OUT" VarB="ao_SV306^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV307.nSetPoint_OUT" VarB="ao_SV307^Analog output"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.nSetPoint_OUT" VarB="ao_HeatPump_HNHT^ao_HeatPump_HNHT"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV242.nSetPoint_OUT" VarB="ao_RV242^ao_RV242"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV342.nSetPoint_OUT" VarB="ao_RV342^ao_RV342"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 69 (EL1809)">
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.bError_IN" VarB="bi_Error_HeatPump_HNHT^bi_Error_HeatPump_HNHT"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 70 (EL2809)">
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.bSetStatusOn_OUT" VarB="bo_HeatPump_HNHT^bo_HeatPump_HNHT"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 87 (EL3218)">
 				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS900.temperature_IN" VarB="ai_TF900^ai_TF900"/>
@@ -26787,6 +26799,22 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.PU306.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.PU306.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 2 (EL6731)^Box 22 (CIM/CIU 150 pump)">
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.PU242.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 2 (EL6731)^Box 3 (CIM/CIU 150 pump)">
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.PU215.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
@@ -26922,6 +26950,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureExternal_IN" VarB="RemoteTemp2^Inputs^RemoteTemp2_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.fVolumeFlowRate_IN" VarB="VolumeFlow^Inputs^VolumeFlow_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.PU100.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
