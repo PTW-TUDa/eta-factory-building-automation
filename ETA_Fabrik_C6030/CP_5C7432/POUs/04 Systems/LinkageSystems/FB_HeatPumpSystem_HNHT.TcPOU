@@ -104,7 +104,9 @@ END_VAR]]></Declaration>
 
 IF PU242.bStatusOn THEN
 	bSetStatusOn_HeatPump := TRUE;	
-	bSwitchToWorking := TRUE;
+	IF HeatPump.bStatusOn THEN	
+		bSwitchToWorking := TRUE;
+	END_IF;
 END_IF;]]></ST>
       </Implementation>
     </Method>
@@ -140,7 +142,8 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_RV242 := TRUE;
 bSetStatusOn_RV342 := TRUE;
-
+bStartTimer := TRUE;
+	
 IF Timer.Q THEN
 	bRampUpFinished := TRUE;
 	bStartTimer := FALSE; //resets timer
@@ -222,6 +225,7 @@ END_VAR]]></Declaration>
       <LineId Id="8" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="23" Count="1" />
       <LineId Id="16" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampDown">
@@ -236,7 +240,9 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
       <LineId Id="9" Count="1" />
-      <LineId Id="12" Count="3" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="13" Count="2" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.SetSetPointLimits">
