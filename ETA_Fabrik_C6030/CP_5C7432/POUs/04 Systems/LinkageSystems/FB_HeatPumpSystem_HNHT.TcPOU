@@ -17,7 +17,7 @@ VAR
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
 	
 	//pump
-	stPU242DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stPU242DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, bExternalTemperatureSensor := TRUE);
 	PU242 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU242DefaultParameters);
 	
 	//internal variables
@@ -52,9 +52,9 @@ HeatPump.SetState();
 //pump
 PU242.GetState_Profibus();
 PU242(bSetStatusOnAutomatic := bSetStatusOn_PU242,
-	fSetPointAutomatic := 5,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 3);
+	nControlModeAutomatic := 0);
 PU242.SetState_Profibus();
 
 //valves
@@ -89,7 +89,8 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//empty method because system has no feedback signals
-bError := HeatPump.bError OR PU242.bError;]]></ST>
+bError := HeatPump.bError;// OR PU242.bError;
+//due to error in profibus-system]]></ST>
       </Implementation>
     </Method>
     <Method Name="Operational" Id="{23ee8fd7-999e-4774-94e8-1d99d6bd9b1b}">
@@ -125,8 +126,12 @@ IF NOT HeatPump.bStatusOn AND NOT PU242.bStatusOn  THEN
 	bSetStatusOn_RV242 := FALSE;
 	bSetStatusOn_RV342 := FALSE;
 	
-	IF NOT RV242.bStatusOn AND NOT RV342.bStatusOn THEN
+	bStartTimer := TRUE;
+	IF Timer.Q THEN
+	//IF NOT RV242.bStatusOn AND NOT RV342.bStatusOn THEN
+	//due to error in feedback-signal
 		bRampDownFinished := TRUE;
+		bStartTimer := FALSE; //resets timer
 	END_IF
 END_IF]]></ST>
       </Implementation>
@@ -219,6 +224,7 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HeatPumpSystem_HNHT.CheckError">
       <LineId Id="8" Count="0" />
       <LineId Id="15" Count="0" />
+      <LineId Id="22" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.Operational">
       <LineId Id="14" Count="1" />
@@ -233,8 +239,14 @@ END_VAR]]></Declaration>
       <LineId Id="21" Count="0" />
       <LineId Id="12" Count="1" />
       <LineId Id="15" Count="0" />
-      <LineId Id="22" Count="1" />
-      <LineId Id="26" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="38" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
