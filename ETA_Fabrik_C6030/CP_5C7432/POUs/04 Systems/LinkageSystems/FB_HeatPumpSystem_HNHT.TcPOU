@@ -12,7 +12,7 @@ VAR
 	
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters;
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
 	
