@@ -22,7 +22,7 @@ END_VAR]]></Declaration>
 sNamespaceName 		:= 'urn:BeckhoffAutomation:Ua:PLC1';
 
 (*Define Nodes to Read*)
-aNodes[1].NodeID.sIdentifier			:= 'MAIN.VarPOU_LoTuS.state.bAnforderung_PU300';
+aNodes[1].NodeID.sIdentifier			:= 'MAIN.VarPOU_LoTuS.localState.bAnforderung_PU300';
 aNodes[1].NodeID.eIdentifierType		:= eUAIdentifierType_String;
 aNodes[1].SizeOfDataType				:= SIZEOF(eUAType_Boolean);
 aNodes[1].NodeAddInfo.nIndexRangeCount 	:= 0;
