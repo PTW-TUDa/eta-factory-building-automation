@@ -11,8 +11,8 @@ VAR
 	HeatPump : FB_HeatPump;
 	
 	//valves
-	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
 	
@@ -29,18 +29,11 @@ VAR
 	//sensors
 	TS242 : FB_TemperatureSensor; //inlet temperature evaporator
 	WMZ342 : FB_MollineEHeatCounter;
-	
-	//timer
-	bStartTimer : BOOL;
-	Timer : TON;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MAIN();
-
-Timer(IN := bStartTimer,
-	PT := T#90S);
 
 //heat pump
 HeatPump.GetState();
@@ -88,9 +81,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//empty method because system has no feedback signals
-bError := HeatPump.bError;// OR PU242.bError;
-//due to error in profibus-system]]></ST>
+        <ST><![CDATA[bError := HeatPump.bError OR PU242.bError;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Operational" Id="{23ee8fd7-999e-4774-94e8-1d99d6bd9b1b}">
@@ -126,12 +117,8 @@ IF NOT HeatPump.bStatusOn AND NOT PU242.bStatusOn  THEN
 	bSetStatusOn_RV242 := FALSE;
 	bSetStatusOn_RV342 := FALSE;
 	
-	bStartTimer := TRUE;
-	IF Timer.Q THEN
-	//IF NOT RV242.bStatusOn AND NOT RV342.bStatusOn THEN
-	//due to error in feedback-signal
+	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
 		bRampDownFinished := TRUE;
-		bStartTimer := FALSE; //resets timer
 	END_IF
 END_IF]]></ST>
       </Implementation>
@@ -147,11 +134,9 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_RV242 := TRUE;
 bSetStatusOn_RV342 := TRUE;
-bStartTimer := TRUE;
 	
-IF Timer.Q THEN
+IF RV342.fOperatingPoint>80 THEN
 	bRampUpFinished := TRUE;
-	bStartTimer := FALSE; //resets timer
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -197,9 +182,6 @@ END_VAR]]></Declaration>
     </Method>
     <LineIds Name="FB_HeatPumpSystem_HNHT">
       <LineId Id="33" Count="0" />
-      <LineId Id="239" Count="0" />
-      <LineId Id="241" Count="0" />
-      <LineId Id="240" Count="0" />
       <LineId Id="37" Count="1" />
       <LineId Id="167" Count="0" />
       <LineId Id="39" Count="1" />
@@ -222,9 +204,7 @@ END_VAR]]></Declaration>
       <LineId Id="110" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.CheckError">
-      <LineId Id="8" Count="0" />
       <LineId Id="15" Count="0" />
-      <LineId Id="22" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.Operational">
       <LineId Id="14" Count="1" />
@@ -241,20 +221,15 @@ END_VAR]]></Declaration>
       <LineId Id="15" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="34" Count="0" />
-      <LineId Id="36" Count="0" />
       <LineId Id="33" Count="0" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="37" Count="0" />
       <LineId Id="27" Count="0" />
-      <LineId Id="38" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
       <LineId Id="9" Count="1" />
-      <LineId Id="12" Count="0" />
       <LineId Id="22" Count="0" />
-      <LineId Id="13" Count="2" />
+      <LineId Id="13" Count="1" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.SetSetPointLimits">

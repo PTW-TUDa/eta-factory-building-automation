@@ -46,7 +46,6 @@ VAR
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
 	fOffset_TargetTemperature_CHP2 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
-	fOffset_TargetTemperature_CondensingBoiler : REAL := 1;	
 	Controller_CHP_Prioritization : FB_CTRL_2POINT;
 	Controller_CHP_Prioritization_Parameters : ST_CTRL_2POINT_PARAMS;	
 	Controller_CHP1_UpperTemperature : FB_CTRL_2POINT; //check upper temperature for turning on chp
@@ -114,6 +113,12 @@ VAR
 	Controller_HeatExchanger1 : FB_CTRL_2POINT;
 	Controller_HeatExchanger1_Parameters : ST_CTRL_2POINT_PARAMS;
 	fOffset_TargetTemperature_HeatExchanger1 : REAL := 2;
+	Controller_HeatPump_HNHT : FB_CTRL_2POINT;
+	Controller_HeatPump_HNHT_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_HeatPump_HNHT : REAL := 1;
+	Controller_HeatPump_HNHT_Permission : FB_CTRL_2POINT;
+	Controller_HeatPump_HNHT_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	fOffset_TargetTemperature_HeatPump_HNHT_Permission : REAL := 1;
 	
 	//controllers and variables for hnlt and cn linkage
 	fOffset_TargetTemperature_HeatPump : REAL;
@@ -251,7 +256,7 @@ Controller_CHP1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN
 Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_CondensingBoiler_Parameters.fHysteresisRange := 10;
+Controller_CondensingBoiler_Parameters.fHysteresisRange := 12;
 Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -328,15 +333,15 @@ IF Trigger_CHP2_LowerTemperature.Q THEN
 END_IF
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2_UpperTemperature.bOut OR (Controller_CHP2_LowerTemperature.bOut AND bTrigger_CHP2);
 
-Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT+fOffset_TargetTemperature_CondensingBoiler,
-	fActualValue := hnhtState.fMidTemperature,
+Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
 
 //buffer storage asks VSI for unloading when buffer storage temperature falls below limit
 Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT,
-	fActualValue := hnhtState.fMidTemperature,
+	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_VSI_Unloading_Parameters);
 
@@ -376,16 +381,33 @@ END_VAR
 Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
+Controller_HeatPump_HNHT_Parameters.fHysteresisRange := 10;
+Controller_HeatPump_HNHT_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HeatPump_HNHT_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_HeatPump_HNHT_Permission_Parameters.fHysteresisRange := 10;
+Controller_HeatPump_HNHT_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HeatPump_HNHT_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
 //control heat exchanger 1
 Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HeatExchanger1,
 	fActualValue := hnltState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HeatPump_Parameters);
+	stParams := Controller_HeatExchanger1_Parameters);
 hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
 
-//hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := FALSE;
-
-//control heat pump
+//control heat pump hnht
+Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT+fOffset_TargetTemperature_HeatPump_HNHT,
+	fActualValue := hnhtState.fUpperTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_HNHT_Parameters);
+	
+Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fUpperTemperature,
+	fActualValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_HeatPump_HNHT,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
+	
+//hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
 hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;]]></ST>
       </Implementation>
     </Method>
@@ -730,13 +752,24 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHnhtHnltLinkage">
       <LineId Id="13" Count="1" />
-      <LineId Id="10" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="35" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="11" Count="0" />
       <LineId Id="6" Count="3" />
       <LineId Id="5" Count="0" />
-      <LineId Id="22" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="37" Count="3" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="53" Count="2" />
+      <LineId Id="49" Count="1" />
       <LineId Id="18" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="27" Count="0" />
       <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNLT">
