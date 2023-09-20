@@ -7,7 +7,8 @@ STRUCT
 	fTargetTemperature_HNHT : REAL := 55;
 	fTargetTemperature_HNLT_Cooling : REAL := 46;
 	fTargetTemperature_HNLT_Heating : REAL := 40;
-	fTargetTemperature_CN : REAL := 15;
+	fTargetTemperature_CN_Summer : REAL := 15;
+	fTargetTemperature_CN_Winter : REAL := 20;
 	
 	//temperature limits for thermal networks in building mode
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL := [40,70];
@@ -18,7 +19,8 @@ STRUCT
 	fTargetTemperature_HNHT_ProductionMode : REAL := 70;
 	fTargetTemperature_HNLT_Cooling_ProductionMode : REAL := 40;
 	fTargetTemperature_HNLT_Heating_ProductionMode : REAL := 34;
-	fTargetTemperature_CN_ProductionMode : REAL := 15;
+	fTargetTemperature_CN_ProductionMode_Summer : REAL := 15;
+	fTargetTemperature_CN_ProductionMode_Winter : REAL := 20;
 		
 	//temperature for thermal networks in production mode
 	aTemperatureLimits_HNHT_ProductionMode : ARRAY[1..2] OF REAL := [45,85];
