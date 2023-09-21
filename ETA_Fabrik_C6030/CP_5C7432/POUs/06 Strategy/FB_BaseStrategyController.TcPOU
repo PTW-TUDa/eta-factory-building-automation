@@ -212,14 +212,14 @@ Controller_HVFA_CN_UnloadingPermission(fSetpointValue := fTargetTemperature_CN-f
 	stParams := Controller_HVFA_CN_UnloadingPermission_Parameters);
 
 //loading permission buffer HVFA
-Controller_Buffer_HVFA_CN_Loading(fSetpointValue := fTargetTemperature_CN+fOffset_TargetTemperature_HVFA_CN, 
+Controller_Buffer_HVFA_CN_Loading(fSetpointValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN, 
 	fActualValue := cnState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_CN_Loading_Parameters);	
 	
 //unloading permission buffer HVFA
 Controller_Buffer_HVFA_CN_Unloading(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN,
+	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_HVFA_CN,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_CN_Unloading_Parameters);
 	
