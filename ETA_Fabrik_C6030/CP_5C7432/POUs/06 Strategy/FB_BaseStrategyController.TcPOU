@@ -383,7 +383,7 @@ Controller_HeatPump_HNHT_Parameters.fHysteresisRange := 10;
 Controller_HeatPump_HNHT_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_HNHT_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_HeatPump_HNHT_Permission_Parameters.fHysteresisRange := 10;
+Controller_HeatPump_HNHT_Permission_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_HNHT_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_HNHT_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -401,7 +401,7 @@ Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT+fOffset_Targe
 	stParams := Controller_HeatPump_HNHT_Parameters);
 	
 Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fUpperTemperature,
-	fActualValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_HeatPump_HNHT,
+	fActualValue := fTargetTemperature_HNLT_Cooling+fOffset_TargetTemperature_HeatPump_HNHT_Permission,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
 	
