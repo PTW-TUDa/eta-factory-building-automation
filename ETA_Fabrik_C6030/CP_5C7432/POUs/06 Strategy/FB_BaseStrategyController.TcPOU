@@ -389,7 +389,7 @@ Controller_HeatPump_HNHT_Permission_Parameters.tTaskCycleTime := GlobalVariables
 
 //control heat exchanger 1
 Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HeatExchanger1,
-	fActualValue := hnltState.fUpperTemperature,
+	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatExchanger1_Parameters);
 hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
@@ -400,7 +400,7 @@ Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT+fOffset_Targe
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Parameters);
 	
-Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fUpperTemperature,
+Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fMidTemperature,
 	fActualValue := fTargetTemperature_HNLT_Cooling+fOffset_TargetTemperature_HeatPump_HNHT_Permission,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
@@ -426,7 +426,7 @@ Controller_OuterCapillaryTubeMats_Permission_Parameters.tTaskCycleTime := Global
 
 
 //control strategy for cooling network - fSetpointValue and fActualValue are changed for cooling applications
-Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fUpperTemperature,
+Controller_OuterCapillaryTubeMats(fSetpointValue := hnltState.fMidTemperature,
 	fActualValue := fTargetTemperature_HNLT_Cooling+fOffset_TargetTemperature_OuterCapillaryTubeMats_Cooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_OuterCapillaryTubeMats_Parameters);
@@ -462,12 +462,12 @@ Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tTaskCycleTime := GlobalVa
 
 //buffer storage asks HVFA_HNLT for unloading when buffer storage temperature falls below limit
 Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HVFA_HNLT_Heating,
-	fActualValue := hnltState.fUpperTemperature,
+	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters);
 	
 //buffer storage asks HVFA_HNLT for loading when buffer storage temperature rises above limit
-Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fUpperTemperature,
+Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperature,
 	fActualValue := fTargetTemperature_HNLT_Cooling,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters);
@@ -523,7 +523,7 @@ Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTas
 //control heat pump depending on heating demand in hnlt
 
 Controller_HeatPump(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump,
-	fActualValue := hnltState.fUpperTemperature,
+	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
 
