@@ -62,6 +62,7 @@ RV315(bSetStatusOnAutomatic := bSetStatusOn_RV315,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
 	fTemperatureExternal := PU215.fTemperatureExternal,
+	fThermalPowerExternal := WMZ215.fHeatFlowRate,
 	nControlModeAutomatic := 1);
 RV315.SetState_AO();
 
@@ -193,6 +194,7 @@ END_VAR]]></Declaration>
       <LineId Id="181" Count="0" />
       <LineId Id="239" Count="0" />
       <LineId Id="241" Count="0" />
+      <LineId Id="276" Count="0" />
       <LineId Id="240" Count="0" />
       <LineId Id="183" Count="0" />
       <LineId Id="191" Count="2" />
