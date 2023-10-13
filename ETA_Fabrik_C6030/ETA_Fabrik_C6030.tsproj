@@ -9895,9 +9895,9 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>bo_CondensingBoiler</Name>
+									<Name>bo_Frei</Name>
 									<Var>
-										<Name>bo_CondensingBoiler</Name>
+										<Name>bo_Frei</Name>
 										<Type>BIT</Type>
 										<BitOffs>16959</BitOffs>
 										<InOut>1</InOut>
@@ -14691,7 +14691,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							<Box Id="44" BoxType="9093" BoxFlags="#x00000020">
 								<Name>Klemme 23 (EL6731)</Name>
 								<ImageId>1002</ImageId>
-								<EtherCAT SlaveType="5" AdsServerAddress="000000000201fd03" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
+								<EtherCAT SlaveType="5" AdsServerAddress="0000000002010000" FixedAdsServerNetId="true" PdiType="#x0408" ExecIo="true" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="39" FoeType="1" VendorId="#x00000002" ProductCode="#x1a4b3052" RevisionNo="#x00190000" InfoDataAddr="true" InfoDataNetId="true" OwnAddrExtern="true" RepeatSupport="true" SetFrameRepeatTime="true" TimeoutMailbox2="2000" GenerateOwnNetId="true" InitializeOwnNetId="true" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="125" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL6731 PROFIBUS DP Master" Desc="EL6731" PortABoxInfo="#x01000035">
 									<SyncMan>0010800126000100010000005000da058001001026010000</SyncMan>
 									<SyncMan>8011800122000100020000005000da058001801122010000</SyncMan>
 									<SyncMan>00131c002400010003000000000000000000001324010000</SyncMan>
@@ -16265,8 +16265,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="AO Outputs Channel 8" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7070" Sub="#x11" Flags="#x00020000">
+							<Pdo Name="ao_CondensingBoiler" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="2">
+								<Entry Name="ao_CondensingBoiler" Index="#x7070" Sub="#x11" Flags="#x00020000">
 									<Type>INT</Type>
 								</Entry>
 							</Pdo>
@@ -16296,8 +16296,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
+							<Pdo Name="bi_Error_CondensingBoiler" Index="#x1a02" Flags="#x0011" SyncMan="0">
+								<Entry Name="bi_Error_CondensingBoiler" Index="#x6020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -16385,8 +16385,8 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
+							<Pdo Name="bo_CondensingBoiler" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="bo_CondensingBoiler" Index="#x7020" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -26528,7 +26528,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP2System.CHP.nSetPoint_OUT" VarB="K570A1_AO-2/2^ao_CHP2_fSetPoint^ao_CHP2_fSetPoint"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CHP2System.SV32x.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV322^bo_SV322"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CentralMachineHeatingSystem.SV300.bSetStatusOn_OUT" VarB="K540A1_BO^bo_SV300^bo_SV300"/>
-				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.CondensingBoiler.bSetStatusOn_OUT" VarB="K542A1_BO^bo_CondensingBoiler^bo_CondensingBoiler"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.SV331.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV331^bo_SV331"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.SV_SupplyAir.bSetStatusOn_OUT" VarB="K542A1_BO^bo_SV_SupplyAir_CHP^bo_SV_SupplyAir_CHP"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.StaticHeatingSystem.RV350.nSetPoint_OUT" VarB="K570A1_AO-1/2^ao_RV350^ao_RV350"/>
@@ -26629,6 +26628,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV342.nOperatingPoint_IN" VarB="ai_RV342^Value"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 68 (EL4008)">
+				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.CondensingBoiler.nSetPoint_OUT" VarB="ao_CondensingBoiler^ao_CondensingBoiler"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV305.nSetPoint_OUT" VarB="ao_SV305^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV306.nSetPoint_OUT" VarB="ao_SV306^Analog output"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT.VSIStorageSystem.SV307.nSetPoint_OUT" VarB="ao_SV307^Analog output"/>
@@ -26637,9 +26637,11 @@ PU105]]></Comment>
 				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.RV342.nSetPoint_OUT" VarB="ao_RV342^ao_RV342"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 69 (EL1809)">
+				<Link VarA="Standard Inputs^MAIN.HNHT.CondensingBoilerSystem.CondensingBoiler.bError_IN" VarB="bi_Error_CondensingBoiler^bi_Error_CondensingBoiler"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.bError_IN" VarB="bi_Error_HeatPump_HNHT^bi_Error_HeatPump_HNHT"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 70 (EL2809)">
+				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.CondensingBoiler.bSetStatusOn_OUT" VarB="bo_CondensingBoiler^bo_CondensingBoiler"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.bSetStatusOn_OUT" VarB="bo_HeatPump_HNHT^bo_HeatPump_HNHT"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 87 (EL3218)">
