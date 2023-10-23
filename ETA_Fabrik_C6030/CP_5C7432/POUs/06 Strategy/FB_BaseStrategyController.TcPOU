@@ -225,13 +225,16 @@ Controller_Buffer_HVFA_CN_Unloading(fSetpointValue := cnState.fMidTemperature,
 	
 IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
 	cnControl.bSetStatusOn_eChiller := TRUE;
-	cnControl.bSetStatusOn_HVFASystem := FALSE;
-	cnControl.bLoading_HVFASystem := FALSE;
+	//cnControl.bSetStatusOn_HVFASystem := FALSE;
+	//cnControl.bLoading_HVFASystem := FALSE;
 ELSE
 	cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
-	cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR ((cnControl.bSetStatusOn_eChiller) AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut); 
-	hnhtControl.bLoading_VSISystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
+	//cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR ((cnControl.bSetStatusOn_eChiller) AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut); 
+	//cnControl.bLoading_HVFASystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
 END_IF
+
+cnControl.bSetStatusOn_HVFASystem := FALSE;
+cnControl.bLoading_HVFASystem := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -491,15 +494,17 @@ Controller_HVFA_HNLT_Recooling(fSetpointValue := hnltState.fLowerTemperature_Act
 	stParams := Controller_HVFA_HNLT_Recooling_Parameters);
 	
 IF hnltCnLinkageControl.bHeatingMode THEN
-	hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
-	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
+	//hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
+	//hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
 	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
 ELSE
-	hnltControl.bSetStatusOn_HVFASystem := ((Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut)) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
-	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
+	//hnltControl.bSetStatusOn_HVFASystem := ((Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut)) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
+	//hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
 	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
 END_IF
-	
+
+hnltControl.bSetStatusOn_HVFASystem := FALSE;
+hnltControl.bLoading_HVFASystem := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -683,7 +688,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="144" Count="1" />
       <LineId Id="148" Count="0" />
       <LineId Id="150" Count="1" />
-      <LineId Id="139" Count="1" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="156" Count="1" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="140" Count="0" />
       <LineId Id="133" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNHT">
@@ -813,6 +821,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="132" Count="0" />
       <LineId Id="136" Count="1" />
       <LineId Id="134" Count="1" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="141" Count="0" />
       <LineId Id="133" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
