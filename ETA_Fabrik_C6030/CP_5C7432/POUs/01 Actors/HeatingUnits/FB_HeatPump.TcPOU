@@ -15,7 +15,7 @@ VAR
 	localDefaultParameters : ST_HeatPumpDefaultParameters;
 	
 	//analog converters
-	OutputConverter : FB_AnalogOutput(fUpperLimit := 100, fLowerLimit := 0);
+	OutputConverter : FB_AnalogOutput(fUpperLimit := 80, fLowerLimit := 0);
 	
 	//I/O Links
 	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
