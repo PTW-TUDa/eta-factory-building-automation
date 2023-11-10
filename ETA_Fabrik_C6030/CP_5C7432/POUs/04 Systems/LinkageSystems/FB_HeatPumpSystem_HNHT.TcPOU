@@ -13,8 +13,12 @@ VAR
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
 	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_SV441DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	ST_SV442DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
+	SV441 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV441DefaultParameters);
+	SV442 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV442DefaultParameters);	
 	
 	//pump
 	stPU242DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, bExternalTemperatureSensor := TRUE);
@@ -25,6 +29,12 @@ VAR
 	bSetStatusOn_PU242 : BOOL;
 	bSetStatusOn_RV342 : BOOL;
 	bSetStatusOn_RV242 : BOOL;
+	bSetStatusOn_SV441 : BOOL;
+	bSetStatusOn_SV442 : BOOL;
+	
+	// timer for SV441, SV442
+	bStartTimer : BOOL;
+	Timer : TON;
 	
 	//sensors
 	TS242 : FB_TemperatureSensor; //inlet temperature evaporator
@@ -34,6 +44,20 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MAIN();
+//use timer for cool down during ramp up
+Timer(IN := bStartTimer,
+	PT := T#150S);
+
+//valves
+SV441.GetState_BI();
+SV441(bSetStatusOnAutomatic := bSetStatusOn_SV441,
+		bAlgorithmPermission := bAlgorithmPermission);
+SV441.SetState_BO();
+
+SV442.GetState_BI();
+SV442(bSetStatusOnAutomatic := bSetStatusOn_SV442,
+		bAlgorithmPermission := bAlgorithmPermission);
+SV442.SetState_BO();
 
 //heat pump
 HeatPump.GetState();
@@ -116,6 +140,8 @@ bSetStatusOn_PU242 := FALSE;
 IF NOT HeatPump.bStatusOn AND NOT PU242.bStatusOn  THEN
 	bSetStatusOn_RV242 := FALSE;
 	bSetStatusOn_RV342 := FALSE;
+	bSetStatusOn_SV441 := FALSE;
+	bSetStatusOn_SV442 := FALSE;
 	
 	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
 		bRampDownFinished := TRUE;
@@ -134,10 +160,18 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_RV242 := TRUE;
 bSetStatusOn_RV342 := TRUE;
-	
-IF RV342.fOperatingPoint>80 THEN
-	bRampUpFinished := TRUE;
-END_IF]]></ST>
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bSetStatusOn_SV441 := TRUE; //SV441 connects hnlt to heat pump
+	bSetStatusOn_SV442 := TRUE; //SV442 connects hnlt to heat pump
+	bStartTimer := FALSE; //resets timer
+	IF RV342.fOperatingPoint>80 THEN
+		bRampUpFinished := TRUE;
+	END_IF
+END_IF
+
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetSetPointLimits" Id="{afedc7e1-d1ba-48f7-b310-e0f65f399073}">
@@ -182,6 +216,9 @@ END_VAR]]></Declaration>
     </Method>
     <LineIds Name="FB_HeatPumpSystem_HNHT">
       <LineId Id="33" Count="0" />
+      <LineId Id="277" Count="2" />
+      <LineId Id="287" Count="9" />
+      <LineId Id="275" Count="0" />
       <LineId Id="37" Count="1" />
       <LineId Id="167" Count="0" />
       <LineId Id="39" Count="1" />
@@ -220,6 +257,7 @@ END_VAR]]></Declaration>
       <LineId Id="12" Count="1" />
       <LineId Id="15" Count="0" />
       <LineId Id="22" Count="0" />
+      <LineId Id="40" Count="1" />
       <LineId Id="34" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="27" Count="0" />
@@ -229,7 +267,13 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
       <LineId Id="9" Count="1" />
       <LineId Id="22" Count="0" />
-      <LineId Id="13" Count="1" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="36" Count="0" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.SetSetPointLimits">
