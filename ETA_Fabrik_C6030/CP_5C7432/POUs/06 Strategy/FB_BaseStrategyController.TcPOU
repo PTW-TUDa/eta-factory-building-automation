@@ -366,7 +366,13 @@ Controller_StaticHeating(fSetpointValue := 15,
 	fActualValue := ambientState.fOutsideTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_StaticHeating_Parameters);
-hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
+	
+IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 THEN
+	hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
+ELSE
+	hnhtControl.bSetStatusOn_StaticHeating := FALSE;	
+END_IF;
+
 
 
 ]]></ST>
@@ -539,9 +545,14 @@ Controller_HeatPump_Permission(fSetpointValue := cnState.fMidTemperature,
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
-//switch heating off during night
+
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
-hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+//switch heating off during night
+IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 THEN
+	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+ELSE
+	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;	
+END_IF;
 ]]></ST>
       </Implementation>
     </Method>
@@ -757,7 +768,11 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="144" Count="1" />
       <LineId Id="157" Count="0" />
       <LineId Id="127" Count="0" />
-      <LineId Id="82" Count="5" />
+      <LineId Id="82" Count="4" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="271" Count="3" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="87" Count="0" />
       <LineId Id="133" Count="0" />
       <LineId Id="94" Count="0" />
       <LineId Id="61" Count="0" />
@@ -845,7 +860,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="64" Count="0" />
       <LineId Id="63" Count="0" />
       <LineId Id="79" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="103" Count="0" />
       <LineId Id="78" Count="0" />
+      <LineId Id="104" Count="2" />
       <LineId Id="76" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetState">
