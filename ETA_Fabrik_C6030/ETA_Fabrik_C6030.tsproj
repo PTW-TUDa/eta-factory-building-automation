@@ -2375,22 +2375,12 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV441.bStatusOn_IN</Name>
+							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV_CN.bStatusOn_IN</Name>
 							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV441.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV442.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV442.bStatusOff_IN</Name>
+							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV_CN.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 0% open (= closed)]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -3018,12 +3008,7 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV441.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV442.bSetStatusOn_OUT</Name>
+							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.SV_CN.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -16420,13 +16405,13 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="bo_SV441" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="bo_SV441" Index="#x7030" Sub="#x01">
+							<Pdo Name="bo_HeatPump_HNHT_SV_CN_Open" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="bo_HeatPump_HNHT_SV_CN_Open" Index="#x7030" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="bo_SV442" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="bo_SV442" Index="#x7040" Sub="#x01">
+							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
+								<Entry Name="Output 5" Index="#x7040" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 							</Pdo>
@@ -26673,8 +26658,7 @@ PU105]]></Comment>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 70 (EL2809)">
 				<Link VarA="Standard Outputs^MAIN.HNHT.CondensingBoilerSystem.CondensingBoiler.bSetStatusOn_OUT" VarB="bo_CondensingBoiler^bo_CondensingBoiler"/>
 				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.HeatPump.bSetStatusOn_OUT" VarB="bo_HeatPump_HNHT^bo_HeatPump_HNHT"/>
-				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.SV441.bSetStatusOn_OUT" VarB="bo_SV441^bo_SV441"/>
-				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.SV442.bSetStatusOn_OUT" VarB="bo_SV442^bo_SV442"/>
+				<Link VarA="Standard Outputs^MAIN.HNHT_HNLT.HeatPumpSystem.SV_CN.bSetStatusOn_OUT" VarB="bo_HeatPump_HNHT_SV_CN_Open^bo_HeatPump_HNHT_SV_CN_Open"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 10 (EtherCAT)^Term 64 (EK1100)^Term 87 (EL3218)">
 				<Link VarA="Standard Inputs^MAIN.PCM_Testbed.TS900.temperature_IN" VarB="ai_TF900^ai_TF900"/>
