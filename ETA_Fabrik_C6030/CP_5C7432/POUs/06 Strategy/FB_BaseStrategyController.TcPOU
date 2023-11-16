@@ -545,10 +545,9 @@ Controller_HeatPump_Permission(fSetpointValue := cnState.fMidTemperature,
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
-
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
 //switch heating off during night
-IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 THEN
+IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 AND Clock.stClockState.sintWeekday < 6 THEN
 	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
 ELSE
 	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;	
@@ -857,8 +856,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="22" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="58" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="63" Count="0" />
+      <LineId Id="110" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="107" Count="0" />
       <LineId Id="103" Count="0" />
