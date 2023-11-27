@@ -13,10 +13,10 @@ VAR
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
 	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
-	ST_SV_CN_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
+	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
-	SV_CN : FB_DiscreteValve := (ST_DefaultParameters := ST_SV_CN_DefaultParameters);	
+	SV_HNLT : FB_DiscreteValve := (ST_DefaultParameters := ST_SV_HNLT_DefaultParameters);	
 	
 	//pump
 	stPU242DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, bExternalTemperatureSensor := TRUE);
@@ -27,7 +27,8 @@ VAR
 	bSetStatusOn_PU242 : BOOL;
 	bSetStatusOn_RV342 : BOOL;
 	bSetStatusOn_RV242 : BOOL;
-	bSetStatusOn_SV_CN : BOOL;
+	bSetStatusOn_SV_HNLT : BOOL;
+	fTemperatureSetPoint_RV242 : REAL;
 
 	
 	// timer for SV441, SV442
@@ -47,10 +48,10 @@ Timer(IN := bStartTimer,
 	PT := T#150S);
 
 //valves
-SV_CN.GetState_BI();
-SV_CN(bSetStatusOnAutomatic := bSetStatusOn_SV_CN,
+SV_HNLT.GetState_BI();
+SV_HNLT(bSetStatusOnAutomatic := bSetStatusOn_SV_HNLT,
 		bAlgorithmPermission := bAlgorithmPermission);
-SV_CN.SetState_BO();
+SV_HNLT.SetState_BO();
 
 //heat pump
 HeatPump.GetState();
@@ -71,7 +72,7 @@ PU242.SetState_Profibus();
 RV242.GetState_AI();
 RV242(bSetStatusOnAutomatic := bSetStatusOn_RV242,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := 20,
+	fSetPointAutomatic := fTemperatureSetPoint_RV242,
 	fTemperatureExternal := TS242.fTemperature,
 	nControlModeAutomatic := 1);
 RV242.SetState_AO();
@@ -113,11 +114,13 @@ END_VAR]]></Declaration>
 
 IF PU242.bStatusOn THEN
 	bStartTimer := TRUE;
+	fTemperatureSetPoint_RV242 := 100;// open RV242 for cooling
 	IF Timer.Q THEN
-		bSetStatusOn_SV_CN := TRUE; //connects hnlt to heat pump
 		bStartTimer := FALSE; //resets timer	
 		bSetStatusOn_HeatPump := TRUE;	
 		IF HeatPump.bStatusOn THEN	
+			bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
+			fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating
 			bSwitchToWorking := TRUE;
 		END_IF;
 	END_IF;
@@ -138,7 +141,7 @@ bSetStatusOn_PU242 := FALSE;
 IF NOT HeatPump.bStatusOn AND NOT PU242.bStatusOn  THEN
 	bSetStatusOn_RV242 := FALSE;
 	bSetStatusOn_RV342 := FALSE;
-	bSetStatusOn_SV_CN := FALSE;
+	bSetStatusOn_SV_HNLT := FALSE;
 	
 	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
 		bRampDownFinished := TRUE;
@@ -157,10 +160,12 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_RV242 := TRUE;
 bSetStatusOn_RV342 := TRUE;
-
+fTemperatureSetPoint_RV242 := 100;
+bSetStatusOn_SV_HNLT := FALSE; //connects CN to heat pump
 IF RV342.fOperatingPoint>80 THEN
 	bRampUpFinished := TRUE;
 END_IF
+
 
 
 ]]></ST>
@@ -238,10 +243,13 @@ END_VAR]]></Declaration>
       <LineId Id="14" Count="1" />
       <LineId Id="8" Count="0" />
       <LineId Id="32" Count="0" />
-      <LineId Id="34" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="34" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="46" Count="0" />
       <LineId Id="23" Count="1" />
       <LineId Id="36" Count="0" />
       <LineId Id="16" Count="0" />
@@ -261,8 +269,11 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
       <LineId Id="9" Count="1" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="40" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="53" Count="0" />
       <LineId Id="39" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="36" Count="0" />
