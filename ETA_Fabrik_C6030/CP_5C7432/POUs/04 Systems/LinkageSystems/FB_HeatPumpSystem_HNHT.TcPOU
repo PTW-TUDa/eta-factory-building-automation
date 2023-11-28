@@ -117,12 +117,10 @@ IF PU242.bStatusOn THEN
 	fTemperatureSetPoint_RV242 := 100;// open RV242 for cooling
 	IF Timer.Q THEN
 		bStartTimer := FALSE; //resets timer	
-		bSetStatusOn_HeatPump := TRUE;	
-		IF HeatPump.bStatusOn THEN	
-			bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
-			fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating
-			bSwitchToWorking := TRUE;
-		END_IF;
+		bSetStatusOn_HeatPump := TRUE;		
+		bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
+		fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating
+		bSwitchToWorking := TRUE;
 	END_IF;
 END_IF;]]></ST>
       </Implementation>
@@ -247,10 +245,9 @@ END_VAR]]></Declaration>
       <LineId Id="34" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="30" Count="0" />
-      <LineId Id="17" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="46" Count="0" />
-      <LineId Id="23" Count="1" />
+      <LineId Id="23" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="16" Count="0" />
     </LineIds>
