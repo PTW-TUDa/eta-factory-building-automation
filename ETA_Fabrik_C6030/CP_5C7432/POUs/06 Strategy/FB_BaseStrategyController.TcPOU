@@ -547,11 +547,11 @@ hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters
 
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
 //switch heating off during night
-IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 AND Clock.stClockState.sintWeekday < 6 AND Clock.stClockState.sintWeekday > 0 THEN
-	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
-ELSE
-	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;	
-END_IF;
+//IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 AND Clock.stClockState.sintWeekday < 6 AND Clock.stClockState.sintWeekday > 0 THEN
+hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+//ELSE
+//	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;	
+//END_IF;
 ]]></ST>
       </Implementation>
     </Method>

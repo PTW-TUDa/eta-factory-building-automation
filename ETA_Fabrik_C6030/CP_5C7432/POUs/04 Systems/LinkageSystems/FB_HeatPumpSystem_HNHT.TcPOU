@@ -55,7 +55,7 @@ SV_HNLT.SetState_BO();
 
 //heat pump
 HeatPump.GetState();
-HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
+HeatPump(bSetStatusOnAutomatic := NOT bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint);
 HeatPump.SetState();
