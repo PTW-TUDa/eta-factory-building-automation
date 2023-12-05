@@ -12,7 +12,7 @@ VAR
 	
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 20, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
 	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
@@ -29,12 +29,19 @@ VAR
 	bSetStatusOn_RV242 : BOOL;
 	bSetStatusOn_SV_HNLT : BOOL;
 	fTemperatureSetPoint_RV242 : REAL;
-
 	
 	// timer for SV441, SV442
-	bStartTimer : BOOL;
-	Timer : TON;
+	bStartTimer_SV : BOOL;
+	Timer_SV : TON;
 	
+	// timer for heat pump
+	bStartTimer_HeatPump : BOOL;
+	Timer_HeatPump : TON;
+	
+	//error variable for temperature TS242
+	Controller_TS242_Error : FB_CTRL_2POINT;
+	Controller_TS242_Error_Parameters : ST_CTRL_2POINT_PARAMS;
+
 	//sensors
 	TS242 : FB_TemperatureSensor; //inlet temperature evaporator
 	WMZ342 : FB_MollineEHeatCounter;
@@ -44,8 +51,10 @@ END_VAR
     <Implementation>
       <ST><![CDATA[MAIN();
 //use timer for cool down during ramp up
-Timer(IN := bStartTimer,
-	PT := T#150S);
+Timer_SV(IN := bStartTimer_SV,
+	PT := T#30S);
+Timer_HeatPump(IN := bStartTimer_HeatPump,
+	PT := T#180S);
 
 //valves
 SV_HNLT.GetState_BI();
@@ -55,7 +64,7 @@ SV_HNLT.SetState_BO();
 
 //heat pump
 HeatPump.GetState();
-HeatPump(bSetStatusOnAutomatic := NOT bSetStatusOn_HeatPump,
+HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint);
 HeatPump.SetState();
@@ -99,7 +108,16 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[bError := HeatPump.bError OR PU242.bError;]]></ST>
+        <ST><![CDATA[Controller_TS242_Error_Parameters.fHysteresisRange := 2;
+Controller_TS242_Error_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_TS242_Error_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_TS242_Error(fSetpointValue := 10,
+	fActualValue := TS242.fTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_TS242_Error_Parameters);
+
+bError := HeatPump.bError OR PU242.bError OR Controller_TS242_Error.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Operational" Id="{23ee8fd7-999e-4774-94e8-1d99d6bd9b1b}">
@@ -113,14 +131,16 @@ END_VAR]]></Declaration>
         <ST><![CDATA[bSetStatusOn_PU242 := TRUE;
 
 IF PU242.bStatusOn THEN
-	bStartTimer := TRUE;
+	bStartTimer_SV := TRUE;
 	fTemperatureSetPoint_RV242 := 100;// open RV242 for cooling
-	IF Timer.Q THEN
-		bStartTimer := FALSE; //resets timer	
-		bSetStatusOn_HeatPump := TRUE;		
-		bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
-		fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating
-		bSwitchToWorking := TRUE;
+	IF Timer_SV.Q THEN
+		bStartTimer_SV := FALSE; //resets timer	
+		bSetStatusOn_HeatPump := TRUE;
+		bStartTimer_HeatPump := TRUE;
+		IF Timer_HeatPump.Q THEN		
+			bStartTimer_HeatPump := FALSE;
+			bSwitchToWorking := TRUE;
+		END_IF
 	END_IF;
 END_IF;]]></ST>
       </Implementation>
@@ -134,16 +154,18 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
-bSetStatusOn_PU242 := FALSE;
 
-IF NOT HeatPump.bStatusOn AND NOT PU242.bStatusOn  THEN
-	bSetStatusOn_RV242 := FALSE;
-	bSetStatusOn_RV342 := FALSE;
-	bSetStatusOn_SV_HNLT := FALSE;
+IF NOT HeatPump.bStatusOn  THEN
+	bSetStatusOn_PU242 := FALSE;
+	IF NOT PU242.bStatusOn  THEN
+		bSetStatusOn_RV242 := FALSE;
+		bSetStatusOn_RV342 := FALSE;
+		bSetStatusOn_SV_HNLT := FALSE;
 	
-	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
-		bRampDownFinished := TRUE;
-	END_IF
+		IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
+			bRampDownFinished := TRUE;
+		END_IF
+	END_IF;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -206,12 +228,15 @@ VAR_OUTPUT
 	bSwitchToOperational : BOOL := FALSE;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//empty method because setpoint does not change during operation]]></ST>
+        <ST><![CDATA[bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
+fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_HeatPumpSystem_HNHT">
       <LineId Id="33" Count="0" />
       <LineId Id="277" Count="2" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="339" Count="0" />
       <LineId Id="287" Count="5" />
       <LineId Id="37" Count="1" />
       <LineId Id="167" Count="0" />
@@ -235,7 +260,11 @@ END_VAR]]></Declaration>
       <LineId Id="110" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.CheckError">
-      <LineId Id="15" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="32" Count="3" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="26" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.Operational">
       <LineId Id="14" Count="1" />
@@ -245,16 +274,18 @@ END_VAR]]></Declaration>
       <LineId Id="34" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="30" Count="0" />
+      <LineId Id="47" Count="1" />
       <LineId Id="43" Count="0" />
-      <LineId Id="46" Count="0" />
       <LineId Id="23" Count="0" />
+      <LineId Id="49" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="16" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampDown">
       <LineId Id="8" Count="0" />
-      <LineId Id="21" Count="0" />
       <LineId Id="12" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="41" Count="0" />
@@ -262,6 +293,7 @@ END_VAR]]></Declaration>
       <LineId Id="33" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="25" Count="0" />
+      <LineId Id="50" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
@@ -285,6 +317,7 @@ END_VAR]]></Declaration>
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.Working">
+      <LineId Id="13" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
   </POU>
