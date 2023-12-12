@@ -12759,7 +12759,7 @@ PU245
 								<Name>K574A1_AI (KL3222)</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>TF795_HVFA_UpperTemperature</Name>
+									<Name>ai_Frei_01</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12767,7 +12767,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF795_HVFA_UpperTemperature</Name>
+										<Name>ai_Frei_01</Name>
 										<Type>INT</Type>
 										<BitOffs>16496</BitOffs>
 										<InOut>0</InOut>
@@ -12786,7 +12786,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>TF795_HVFA_LowerTemperature</Name>
+									<Name>ai_Frei_02</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12794,7 +12794,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF795_HVFA_LowerTemperature</Name>
+										<Name>ai_Frei_02</Name>
 										<Type>INT</Type>
 										<BitOffs>16528</BitOffs>
 										<InOut>0</InOut>
@@ -12817,7 +12817,7 @@ PU245
 								<Name>K575A1_AI (KL3222)</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>TF796_HVFA_UpperTemperature</Name>
+									<Name>ai_Frei_01</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12825,7 +12825,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF796_HVFA_UpperTemperature</Name>
+										<Name>ai_Frei_01</Name>
 										<Type>INT</Type>
 										<BitOffs>16560</BitOffs>
 										<InOut>0</InOut>
@@ -12844,7 +12844,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>TF796_HVFA_LowerTemperature</Name>
+									<Name>ai_Frei_02</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12852,7 +12852,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF796_HVFA_LowerTemperature</Name>
+										<Name>ai_Frei_02</Name>
 										<Type>INT</Type>
 										<BitOffs>16592</BitOffs>
 										<InOut>0</InOut>
@@ -12875,7 +12875,7 @@ PU245
 								<Name>K576A1_AI (KL3222)</Name>
 								<ImageId>33</ImageId>
 								<Vars VarGrpType="3">
-									<Name>TF797_HVFA_UpperTemperature</Name>
+									<Name>ai_Frei_01</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12883,7 +12883,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF797_HVFA_UpperTemperature</Name>
+										<Name>ai_Frei_01</Name>
 										<Type>INT</Type>
 										<BitOffs>16624</BitOffs>
 										<InOut>0</InOut>
@@ -12902,7 +12902,7 @@ PU245
 									</Var>
 								</Vars>
 								<Vars VarGrpType="3">
-									<Name>TF797_HVFA_LowerTemperature</Name>
+									<Name>ai_Frei_02</Name>
 									<Var>
 										<Name>Status</Name>
 										<Type>USINT</Type>
@@ -12910,7 +12910,7 @@ PU245
 										<InOut>0</InOut>
 									</Var>
 									<Var DisplayScale="#x12">
-										<Name>TF797_HVFA_LowerTemperature</Name>
+										<Name>ai_Frei_02</Name>
 										<Type>INT</Type>
 										<BitOffs>16656</BitOffs>
 										<InOut>0</InOut>
@@ -26749,8 +26749,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF195_CN_UpperTemperature^ai_TF195_CN_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN" VarB="K531A1_BI^bi_SV100_Closed^bi_SV100_Closed"/>
 				<Link VarA="Standard Inputs^MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN" VarB="K531A1_BI^bi_SV100_Open^bi_SV100_Open"/>
-				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K575A1_AI (KL3222)^TF796_HVFA_LowerTemperature^TF796_HVFA_LowerTemperature"/>
-				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K574A1_AI (KL3222)^TF795_HVFA_UpperTemperature^TF795_HVFA_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS300^ai_PS300"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.CHP.bError_IN" VarB="K531A1_BI^bi_CHP1_Error^bi_CHP1_Error"/>
 				<Link VarA="Standard Inputs^MAIN.HNHT.CHP1System.SV32x.bStatusOff_IN" VarB="K533A1_BI^bi_SV321_Closed^bi_SV321_Closed"/>
@@ -26771,8 +26769,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.MidTemperatureSensor.temperature_IN" VarB="K550A1_AI-1/2^ai_TF295_HNLT_MidTemperature^ai_TF295_MidTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.PressureSensor.nPressure_IN" VarB="K560A1_AI-1/2^ai_PS200^ai_PS200"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN" VarB="K550A1_AI-2/2^ai_TF295_HNLT_UpperTemperature^ai_TF295_HNLT_UpperTemperature"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_LowerTemperature^TF797_HVFA_LowerTemperature"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN" VarB="K576A1_AI (KL3222)^TF797_HVFA_UpperTemperature^TF797_HVFA_UpperTemperature"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.PS600.nPressure_IN" VarB="K560A1_AI-2/2^ai_PS600^ai_PS600"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOff_IN" VarB="K535A1_BI^bi_SV605_Closed^bi_SV605_closed"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.OuterCapillaryTubeMats.SV605.bStatusOn_IN" VarB="K535A1_BI^bi_SV605_Open^bi_SV605_open"/>
