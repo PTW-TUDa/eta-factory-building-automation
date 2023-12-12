@@ -155,18 +155,19 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
 
-IF NOT HeatPump.bStatusOn  THEN
+bStartTimer_HeatPump := TRUE;
+
+bSetStatusOn_RV342 := FALSE; //close RV342 so heatpump stops
+IF Timer_HeatPump.Q THEN		
+	bStartTimer_HeatPump := FALSE;
+	bSetStatusOn_RV242 := FALSE;
 	bSetStatusOn_PU242 := FALSE;
-	IF NOT PU242.bStatusOn  THEN
-		bSetStatusOn_RV242 := FALSE;
-		bSetStatusOn_RV342 := FALSE;
-		bSetStatusOn_SV_HNLT := FALSE;
-	
-		IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
+	bSetStatusOn_SV_HNLT := FALSE;
+	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
 			bRampDownFinished := TRUE;
-		END_IF
 	END_IF;
-END_IF]]></ST>
+END_IF;
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="RampUp" Id="{d6507405-d735-45e3-a15b-80e07b56ab86}">
@@ -283,17 +284,14 @@ fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampDown">
       <LineId Id="8" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="50" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="63" Count="3" />
+      <LineId Id="52" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
