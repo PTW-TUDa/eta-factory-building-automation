@@ -414,8 +414,13 @@ Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
 	
-//hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
-hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;]]></ST>
+// HP currently only able to reach 65°C flow temperature (hard-coded HP-internal)
+IF localSetParameters.bProductionModeActivated THEN
+	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;
+ELSE
+	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
@@ -795,7 +800,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="48" Count="0" />
       <LineId Id="53" Count="2" />
       <LineId Id="49" Count="1" />
-      <LineId Id="18" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="60" Count="1" />
       <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.ControlHNLT">
