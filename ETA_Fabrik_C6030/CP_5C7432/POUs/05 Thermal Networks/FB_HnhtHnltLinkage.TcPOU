@@ -24,7 +24,7 @@ HeatExchanger1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Heat
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNLT_Heating);
 	
-HeatPumpSystem(bSetStatusOnAutomatic := FALSE,
+HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNHT);]]></ST>
     </Implementation>

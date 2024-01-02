@@ -79,7 +79,7 @@ StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Stati
 	
 MAFAC_Java();
 BvL_CleaningSystem();
-bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn OR BvL_CleaningSystem.bStatusOn;
+bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn;// OR BvL_CleaningSystem.bStatusOn;
 CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 5);
