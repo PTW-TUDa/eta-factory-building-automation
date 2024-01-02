@@ -12,7 +12,7 @@ VAR
 	
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 80, fOutMinLimit := 20, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 75, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
 	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
@@ -72,7 +72,7 @@ HeatPump.SetState();
 //pump
 PU242.GetState_Profibus();
 PU242(bSetStatusOnAutomatic := bSetStatusOn_PU242,
-	fSetPointAutomatic := 30,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU242.SetState_Profibus();
@@ -136,7 +136,7 @@ IF PU242.bStatusOn THEN
 	IF Timer_SV.Q THEN
 		bStartTimer_SV := FALSE; //resets timer	
 		bSetStatusOn_HeatPump := TRUE;
-		IF TS242.fTemperature < 13 THEN
+		IF TS242.fTemperature < 15 THEN
 			bSwitchToWorking := TRUE;
 		END_IF
 	END_IF;
