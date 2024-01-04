@@ -12,7 +12,7 @@ VAR
 	
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 75, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 100, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
 	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
@@ -54,7 +54,7 @@ END_VAR
 Timer_SV(IN := bStartTimer_SV,
 	PT := T#30S);
 Timer_HeatPump(IN := bStartTimer_HeatPump,
-	PT := T#180S);
+	PT := T#120S);
 
 //valves
 SV_HNLT.GetState_BI();
@@ -72,7 +72,7 @@ HeatPump.SetState();
 //pump
 PU242.GetState_Profibus();
 PU242(bSetStatusOnAutomatic := bSetStatusOn_PU242,
-	fSetPointAutomatic := 50,
+	fSetPointAutomatic := 70,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU242.SetState_Profibus();
@@ -108,11 +108,11 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Controller_TS242_Error_Parameters.fHysteresisRange := 2;
+        <ST><![CDATA[Controller_TS242_Error_Parameters.fHysteresisRange := 1;
 Controller_TS242_Error_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_TS242_Error_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_TS242_Error(fSetpointValue := 10,
+Controller_TS242_Error(fSetpointValue := 8,
 	fActualValue := TS242.fTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_TS242_Error_Parameters);
@@ -156,15 +156,20 @@ END_VAR]]></Declaration>
 bStartTimer_HeatPump := TRUE;
 
 bSetStatusOn_RV342 := FALSE; //close RV342 so heatpump stops
-IF Timer_HeatPump.Q THEN		
-	bStartTimer_HeatPump := FALSE;
-	bSetStatusOn_RV242 := FALSE;
-	bSetStatusOn_PU242 := FALSE;
-	bSetStatusOn_SV_HNLT := FALSE;
-	IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
+IF Timer_HeatPump.Q THEN	
+	bSetStatusOn_RV242 := FALSE; //close RV242
+	bStartTimer_SV := TRUE; //wait until RV242 closed
+	IF Timer_SV.Q THEN
+		bStartTimer_SV := FALSE; //reset sv timer
+		bSetStatusOn_PU242 := FALSE; //stop pump
+		bSetStatusOn_SV_HNLT := FALSE; //close SV
+		IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
 			bRampDownFinished := TRUE;
+		END_IF;
+		bStartTimer_HeatPump := FALSE; //reset heatpump timer
 	END_IF;
 END_IF;
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -285,9 +290,13 @@ fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
       <LineId Id="51" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="57" Count="0" />
-      <LineId Id="53" Count="1" />
-      <LineId Id="60" Count="1" />
-      <LineId Id="63" Count="3" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="79" Count="3" />
+      <LineId Id="85" Count="3" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="70" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
