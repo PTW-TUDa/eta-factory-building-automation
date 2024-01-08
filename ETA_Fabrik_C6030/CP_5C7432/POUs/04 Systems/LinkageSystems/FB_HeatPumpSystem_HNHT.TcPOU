@@ -72,7 +72,7 @@ HeatPump.SetState();
 //pump
 PU242.GetState_Profibus();
 PU242(bSetStatusOnAutomatic := bSetStatusOn_PU242,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU242.SetState_Profibus();
@@ -112,7 +112,7 @@ END_VAR
 Controller_TS242_Error_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_TS242_Error_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_TS242_Error(fSetpointValue := 8,
+Controller_TS242_Error(fSetpointValue := 5,
 	fActualValue := TS242.fTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_TS242_Error_Parameters);
