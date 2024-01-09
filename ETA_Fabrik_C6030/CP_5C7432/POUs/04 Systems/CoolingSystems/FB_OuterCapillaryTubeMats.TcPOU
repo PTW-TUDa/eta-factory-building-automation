@@ -22,7 +22,7 @@ VAR
 	//valves
 	stSV235DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	stSV605DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	stRV600DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	stRV600DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fControllerAmplification := 0.12, tControllerIntegralTime := T#1S, fOutMinLimit := 40, fOutMaxLimit := 80);	
 	stRV640DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	stRV660DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	
@@ -74,7 +74,7 @@ PU235.SetState_Profibus();
 //use AUTO-Adapt control mode
 PU600.GetState_Profibus();
 PU600(bSetStatusOnAutomatic := bSetStatusOn_PU600,
-	fSetPointAutomatic := 70,
+	fSetPointAutomatic := 50,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 0);
 PU600.SetState_Profibus();
