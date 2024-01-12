@@ -37,7 +37,8 @@ VAR
 	
 	WMZ305: FB_MollineEHeatCounter;
 	
-	stVWMZ305DefaultParameters : ST_VirtualHeatCounterDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, aInterpolationData := [-10,0,0,0,7,1.7,20,2.6,30,4.7,45,6,55,7.3,65,7.4,80,7.6,90,8,100,8]);
+	aInterpolationData_VWMZ305 : ARRAY[1..11, 1..2] OF FLOAT := [-10,0,0,0,7,1.7,20,2.6,30,4.7,45,6,55,7.3,65,7.4,80,7.6,90,8,100,8];
+	stVWMZ305DefaultParameters : ST_VirtualHeatCounterDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	VWMZ305 : FB_VirtualHeatCounter := (ST_DefaultParameters := stVWMZ305DefaultParameters);
 	
 	//internal variables
@@ -113,9 +114,11 @@ SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 SV307.SetState_AO();
 
 WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);
-VWMZ305(fFeedTemperature := WMZ305.fFeedTemperature,
+VWMZ305(aInterpolationData := aInterpolationData_VWMZ305,
+	fFeedTemperature := WMZ305.fFeedTemperature,
 	fReturnTemperature := WMZ305.fReturnTemperature,
 	fOperatingPoint := SV307.fOperatingPoint);
+	
 	]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6500ceb-116e-45d5-85e5-f2a65c10cf67}">
@@ -331,8 +334,10 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_VSIStorageSystem">
       <LineId Id="654" Count="52" />
       <LineId Id="599" Count="0" />
-      <LineId Id="763" Count="0" />
-      <LineId Id="765" Count="1" />
+      <LineId Id="766" Count="0" />
+      <LineId Id="769" Count="0" />
+      <LineId Id="772" Count="1" />
+      <LineId Id="770" Count="0" />
       <LineId Id="764" Count="0" />
     </LineIds>
     <LineIds Name="FB_VSIStorageSystem.CheckError">

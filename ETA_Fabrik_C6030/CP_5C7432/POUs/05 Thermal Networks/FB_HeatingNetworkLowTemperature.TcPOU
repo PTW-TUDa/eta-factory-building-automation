@@ -28,6 +28,7 @@ VAR
 	//internal variables
 	bSetStatusOn_AnnealingOven : BOOL;
 	bSetStatusOn_DC : BOOL;
+	aInterpolationData_VWMZ205 : ARRAY[1..11, 1..2] OF FLOAT := [0,0,9,0.1,20,0.2,31,0.3,42,0.6,54,1.2,65,1.9,77,2.5,88,3.0,91,3.2,100,3.2];
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -68,7 +69,8 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	fSetPointAutomatic := 70,
 	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
 	aTelegramm_WMZ7x0 := aTelegramm_WMZ720,
-	aTelegramm_WMZx05 := aTelegramm_WMZ205);]]></ST>
+	aTelegramm_WMZx05 := aTelegramm_WMZ205,
+	aInterpolationData_VWMZx05 := aInterpolationData_VWMZ205);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkLowTemperature">
       <LineId Id="32" Count="1" />
@@ -88,6 +90,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="114" Count="2" />
       <LineId Id="113" Count="0" />
       <LineId Id="275" Count="1" />
+      <LineId Id="339" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
