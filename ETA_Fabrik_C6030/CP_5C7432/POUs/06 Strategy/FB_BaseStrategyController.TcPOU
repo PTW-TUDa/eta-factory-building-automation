@@ -366,12 +366,8 @@ Controller_StaticHeating(fSetpointValue := 15,
 	fActualValue := ambientState.fOutsideTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_StaticHeating_Parameters);
-	
-IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 THEN
-	hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
-ELSE
-	hnhtControl.bSetStatusOn_StaticHeating := FALSE;	
-END_IF;
+hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
+
 
 
 
@@ -551,12 +547,8 @@ hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Contr
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
-//switch heating off during night
-//IF Clock.stClockState.fHour > 5 AND Clock.stClockState.fHour < 16 AND Clock.stClockState.sintWeekday < 6 AND Clock.stClockState.sintWeekday > 0 THEN
 hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
-//ELSE
-//	hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;	
-//END_IF;
+
 ]]></ST>
       </Implementation>
     </Method>
@@ -773,8 +765,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="157" Count="0" />
       <LineId Id="127" Count="0" />
       <LineId Id="82" Count="4" />
-      <LineId Id="275" Count="0" />
-      <LineId Id="271" Count="3" />
+      <LineId Id="272" Count="0" />
       <LineId Id="270" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="133" Count="0" />
@@ -866,10 +857,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="58" Count="0" />
       <LineId Id="110" Count="0" />
       <LineId Id="79" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="103" Count="0" />
       <LineId Id="78" Count="0" />
-      <LineId Id="104" Count="2" />
+      <LineId Id="106" Count="0" />
       <LineId Id="76" Count="0" />
     </LineIds>
     <LineIds Name="FB_BaseStrategyController.SetState">
