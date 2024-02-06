@@ -13,6 +13,10 @@ VAR
 	//condensing boiler
 	CondensingBoiler : FB_CondensingBoiler;
 	
+	// timer for condensing boiler
+	bStartTimer_CondensingBoiler : BOOL;
+	Timer_CondensingBoiler : TON;
+	
 	//valves
 	ST_SV331DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
 	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);			
@@ -30,6 +34,9 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MAIN();
+
+Timer_CondensingBoiler(IN := bStartTimer_CondensingBoiler,
+	PT := T#120S);
 
 CondensingBoiler.GetState();
 CondensingBoiler(bSetStatusOnAutomatic := bSetStatusOn_CondensingBoiler,
@@ -85,12 +92,15 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_CondensingBoiler := FALSE;
-bSetStatusOn_SV331 := FALSE;
-bSetStatusOn_RV331 := FALSE;
+bStartTimer_CondensingBoiler := TRUE;
 
-IF NOT SV331.bStatusOn THEN
+IF Timer_CondensingBoiler.Q THEN
+	bSetStatusOn_SV331 := FALSE;
+	bSetStatusOn_RV331 := FALSE;
+	bStartTimer_CondensingBoiler := FALSE;
 	bRampDownFinished := TRUE;
-END_IF]]></ST>
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="RampUp" Id="{07b676af-72cc-493f-bd50-f12fd9247171}">
@@ -104,8 +114,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_SV331 := TRUE;
 bSetStatusOn_RV331 := TRUE;
+bStartTimer_CondensingBoiler := TRUE;
 
-IF SV331.bStatusOn THEN
+IF Timer_CondensingBoiler.Q THEN
+	bStartTimer_CondensingBoiler := TRUE;
+	bStartTimer_CondensingBoiler := FALSE;
 	bRampUpFinished := TRUE;
 END_IF]]></ST>
       </Implementation>
@@ -150,6 +163,8 @@ END_VAR]]></Declaration>
     </Method>
     <LineIds Name="FB_CondensingBoilerSystem">
       <LineId Id="9" Count="0" />
+      <LineId Id="107" Count="1" />
+      <LineId Id="106" Count="0" />
       <LineId Id="78" Count="0" />
       <LineId Id="27" Count="0" />
       <LineId Id="26" Count="0" />
@@ -176,16 +191,22 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.RampDown">
       <LineId Id="7" Count="0" />
-      <LineId Id="13" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="31" Count="0" />
       <LineId Id="16" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="17" Count="1" />
+      <LineId Id="18" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.RampUp">
       <LineId Id="8" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="27" Count="0" />
       <LineId Id="11" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="12" Count="1" />
+      <LineId Id="24" Count="2" />
+      <LineId Id="21" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.SetSetPointLimits">
       <LineId Id="11" Count="0" />
