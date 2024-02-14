@@ -38,7 +38,7 @@ PU100.GetState_Profibus();
 PU100(bSetStatusOnAutomatic := bSetStatusOn_PU100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
-	nControlModeAutomatic := 3);
+	nControlModeAutomatic := 0);
 PU100.SetState_Profibus();
 
 WMZ100(aHeatCounterTelegramm:=aTelegramm_WMZ100);

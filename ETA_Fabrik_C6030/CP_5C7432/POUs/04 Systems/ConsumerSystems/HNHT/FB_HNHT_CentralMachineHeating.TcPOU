@@ -43,7 +43,7 @@ PU300.GetState_Profibus();
 PU300(bSetStatusOnAutomatic := bSetStatusOn_PU300,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
-	nControlModeAutomatic := 3);
+	nControlModeAutomatic := 0);
 PU300.SetState_Profibus();
 
 WMZ300(aHeatCounterTelegramm:=aTelegramm_WMZ300);

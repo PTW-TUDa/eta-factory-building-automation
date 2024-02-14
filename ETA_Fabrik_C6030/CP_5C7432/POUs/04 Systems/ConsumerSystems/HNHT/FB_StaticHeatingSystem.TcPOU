@@ -40,9 +40,9 @@ MAIN();
 //pumps
 PU350.GetState_Profibus();
 PU350(bSetStatusOnAutomatic := bSetStatusOn_PU350,
-	fSetPointAutomatic := 90000,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 5);
+	nControlModeAutomatic := 0);
 PU350.SetState_Profibus();
 
 //valves in thermal networks
