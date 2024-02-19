@@ -17,7 +17,8 @@ VAR
 	SV138 : FB_MixingValve := (ST_DefaultParameters := stSV138DefaultParameters); //valve motor needs continous signal but operates only between extreme positions	
 	
 	//heat counters
-	WMZ135 : FB_MollineC3HeatCounter;
+	stWMZ135DefaultParameters : ST_MollineC3HeatCounterDefaultParameters := (fSpecificHeatCapacity := 4.7);
+	WMZ135 : FB_MollineC3HeatCounter := (ST_DefaultParameters := stWMZ135DefaultParameters);
 	WMZ138 : FB_MollineC3HeatCounter;
 	
 	//internal variables
