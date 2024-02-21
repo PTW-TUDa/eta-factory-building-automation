@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <DUT Name="ST_BaseStrategyDefaultParameters" Id="{630dbe9b-22aa-47bc-b8cf-4f1da4ac5818}">
-    <Declaration><![CDATA[TYPE ST_BaseStrategyDefaultParameters :
+  <DUT Name="ST_StrategyDefaultParameters" Id="{630dbe9b-22aa-47bc-b8cf-4f1da4ac5818}">
+    <Declaration><![CDATA[TYPE ST_StrategyDefaultParameters :
 STRUCT
 	//target temperatures for building mode
-	fTargetTemperature_HNHT : REAL := 50;
+	fTargetTemperature_HNHT_Heating : REAL := 50;
+	fTargetTemperature_HNHT_Cooling : REAL := 65;
 	fTargetTemperature_HNLT_Cooling : REAL := 46;
 	fTargetTemperature_HNLT_Heating : REAL := 40;
 	fTargetTemperature_CN_Summer : REAL := 15;
@@ -12,11 +13,12 @@ STRUCT
 	
 	//temperature limits for thermal networks in building mode
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL := [40,70];
-	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL := [30,50];
+	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL := [30,55];
 	aTemperatureLimits_CN : ARRAY[1..2] OF REAL := [10,25];	
 
 	//target temperatures for production mode
-	fTargetTemperature_HNHT_ProductionMode : REAL := 60;
+	fTargetTemperature_HNHT_Heating_ProductionMode : REAL := 60;
+	fTargetTemperature_HNHT_Cooling_ProductionMode : REAL := 80;
 	fTargetTemperature_HNLT_Cooling_ProductionMode : REAL := 40;
 	fTargetTemperature_HNLT_Heating_ProductionMode : REAL := 34;
 	fTargetTemperature_CN_ProductionMode_Summer : REAL := 15;
@@ -24,7 +26,7 @@ STRUCT
 		
 	//temperature for thermal networks in production mode
 	aTemperatureLimits_HNHT_ProductionMode : ARRAY[1..2] OF REAL := [45,85];
-	aTemperatureLimits_HNLT_ProductionMode : ARRAY[1..2] OF REAL := [10,45];
+	aTemperatureLimits_HNLT_ProductionMode : ARRAY[1..2] OF REAL := [10,50];
 	aTemperatureLimits_CN_ProductionMode : ARRAY[1..2] OF REAL := [10,25];
 	
 	//offset between target and feed temperatures

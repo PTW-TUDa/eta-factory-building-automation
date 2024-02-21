@@ -6,12 +6,9 @@ VAR
 	init_done		: BOOL := FALSE;
 	
 	//strategy controller
-	Strategy : FB_BaseStrategyController; 
-
-	//states thermal networks
-	cnState : ST_BufferStorageState;
-	hnltState : ST_BufferStorageState;
-	hnhtState : ST_BufferStorageState;
+	Strategy : FB_StrategyController;
+	//Strategy : FB_Strategycontroller_Conventional;
+	//Strategy : FB_Strategycontroller_NoStorages;
 	
 	//thermal networks
 	CN : FB_CoolingNetwork;

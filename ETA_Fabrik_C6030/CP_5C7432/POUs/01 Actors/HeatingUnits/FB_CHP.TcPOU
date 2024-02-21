@@ -87,6 +87,9 @@ CASE WORD_TO_UINT(aModbus[2]) OF
 	
 	4:
 	localState.bError := TRUE;
+ELSE
+	controlState.bStatusOn := FALSE;
+	localState.bError := FALSE;
 END_CASE
 bStatusOn := controlState.bStatusOn;
 bError := localState.bError;
@@ -230,6 +233,7 @@ END_VAR
       <LineId Id="51" Count="1" />
       <LineId Id="54" Count="0" />
       <LineId Id="56" Count="2" />
+      <LineId Id="77" Count="2" />
       <LineId Id="53" Count="0" />
       <LineId Id="59" Count="0" />
       <LineId Id="44" Count="0" />

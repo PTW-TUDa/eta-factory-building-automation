@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
-  <POU Name="FB_BaseStrategyController" Id="{2cc24fef-e41e-40c1-8491-4b4c0461b6c2}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_BaseStrategyController
+  <POU Name="FB_StrategyController_NoStorages" Id="{89c4c416-0e94-457c-bdd8-87a09d63f302}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StrategyController_NoStorages
 VAR_INPUT
 	ambientState : ST_AmbientState;
 	
@@ -20,15 +20,16 @@ VAR_OUTPUT
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
-	localSetParameters : ST_BaseStrategySetParameters;	
+	localSetParameters : ST_StrategySetParameters;	
 	{attribute 'OPC.UA.DA' := '1'}
-	localState : ST_BaseStrategyState;	
+	localState : ST_StrategyState;	
 
 	//default parameters
-	localDefaultParameters : ST_BaseStrategyDefaultParameters;
+	localDefaultParameters : ST_StrategyDefaultParameters;
 
 	//internal variables
-	fTargetTemperature_HNHT : REAL;
+	fTargetTemperature_HNHT_Heating : REAL;
+	fTargetTemperature_HNHT_Cooling : REAL;
 	fTargetTemperature_HNLT_Cooling : REAL;
 	fTargetTemperature_HNLT_Heating : REAL;
 	fTargetTemperature_CN : REAL;
@@ -62,12 +63,6 @@ VAR
 	bTrigger_CHP2 : BOOL;
 	Controller_CondensingBoiler : FB_CTRL_2POINT;
 	Controller_CondensingBoiler_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_VSI_Loading_Permission : FB_CTRL_2POINT;
-	Controller_VSI_Loading_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_VSI_Unloading_Permission : FB_CTRL_2POINT;
-	Controller_VSI_Unloading_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_VSI_Unloading : FB_CTRL_2POINT;
-	Controller_Buffer_VSI_Unloading_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_StaticHeating : FB_CTRL_2POINT;
 	Controller_StaticHeating_Parameters : ST_CTRL_2POINT_PARAMS;
 	
@@ -77,21 +72,7 @@ VAR
 	Controller_OuterCapillaryTubeMats_Permission : FB_CTRL_2POINT;
 	Controller_OuterCapillaryTubeMats_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
 	fOffset_TargetTemperature_OuterCapillaryTubeMats_Cooling : REAL := 1;	
-	fOffset_OuterCapillaryTubeMats_Permission : REAL := 10;
-	
-	Controller_HVFA_HNLT_HVFALoadingPermission : FB_CTRL_2POINT;
-	Controller_HVFA_HNLT_HVFALoadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_HVFA_HNLT_HVFAUnloadingPermission : FB_CTRL_2POINT;
-	Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_HVFA_HNLT_HVFAUnloading : FB_CTRL_2POINT;
-	Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_HVFA_HNLT_HVFALoading : FB_CTRL_2POINT;
-	Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_HVFA_HNLT_Recooling : FB_CTRL_2POINT;
-	Controller_HVFA_HNLT_Recooling_Parameters : ST_CTRL_2POINT_PARAMS;
-	fOffset_TargetTemperature_HVFA_HNLT_Heating : REAL := 1;
-	fOffset_HVFA_HNLT_Recooling : REAL := 2;
-		
+	fOffset_OuterCapillaryTubeMats_Permission : REAL := 10;	
 	
 	//controllers and variables for cooling network
 	fOffset_TargetTemperature_eChiller : REAL := 0.5;	
@@ -99,14 +80,6 @@ VAR
 	fOffset_TargetTemperature_HVFA_CN_Permission : REAL := 2.5;
 	Controller_eChiller : FB_CTRL_2POINT;
 	Controller_eChiller_Parameters : ST_CTRL_2POINT_PARAMS;	
-	Controller_HVFA_CN_LoadingPermission : FB_CTRL_2POINT;
-	Controller_HVFA_CN_LoadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_HVFA_CN_UnloadingPermission : FB_CTRL_2POINT;
-	Controller_HVFA_CN_UnloadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_HVFA_CN_Unloading : FB_CTRL_2POINT;
-	Controller_Buffer_HVFA_CN_Unloading_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_HVFA_CN_Loading : FB_CTRL_2POINT;
-	Controller_Buffer_HVFA_CN_Loading_Parameters : ST_CTRL_2POINT_PARAMS;
 
 	//controllers and variables for hnht and hnlt linkage
 	Controller_HeatExchanger1 : FB_CTRL_2POINT;
@@ -144,7 +117,7 @@ ControlHnltCnLinkage();
 ControlHnhtHnltLinkage();
 SetState();]]></ST>
     </Implementation>
-    <Method Name="AmbientControl" Id="{8ddd9501-e77a-4ac1-860b-ffb4d0e17ea0}">
+    <Method Name="AmbientControl" Id="{1feace9f-b396-4412-af6f-5466fe546064}">
       <Declaration><![CDATA[METHOD AmbientControl : BOOL
 VAR_INPUT
 END_VAR
@@ -162,7 +135,7 @@ ELSE
 END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlCN" Id="{c114617d-ff2b-491a-a80e-d1c974ffb859}">
+    <Method Name="ControlCN" Id="{7672535d-d531-4f68-811f-febb8843ed8c}">
       <Declaration><![CDATA[METHOD ControlCN : BOOL
 VAR_INPUT
 END_VAR
@@ -173,25 +146,6 @@ Controller_eChiller_Parameters.fHysteresisRange := 7;
 Controller_eChiller_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_eChiller_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//permission to load storage depending on upper hvfa storage temperature
-Controller_HVFA_CN_LoadingPermission_Parameters.fHysteresisRange := 1;
-Controller_HVFA_CN_LoadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_CN_LoadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//permission to unload storage depending on upper hvfa storage temperature
-Controller_HVFA_CN_UnloadingPermission_Parameters.fHysteresisRange := 1;
-Controller_HVFA_CN_UnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_CN_UnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//hysteresis for loading hvfa storage depending on buffer storage temperature
-Controller_Buffer_HVFA_CN_Loading_Parameters.fHysteresisRange := 2;
-Controller_Buffer_HVFA_CN_Loading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_HVFA_CN_Loading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//hysteresis for unloading hvfa storage depending on buffer storage temperature
-Controller_Buffer_HVFA_CN_Unloading_Parameters.fHysteresisRange := 2;
-Controller_Buffer_HVFA_CN_Unloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_HVFA_CN_Unloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control eChiller
 Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
@@ -199,48 +153,7 @@ Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_eChiller_Parameters);
 
-//control hvfa storage loading permission 
-Controller_HVFA_CN_LoadingPermission(fSetpointValue := cnState.fLowerTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN_Permission,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_CN_LoadingPermission_Parameters);
-	
-//control hvfa storage unloading permission 
-Controller_HVFA_CN_UnloadingPermission(fSetpointValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN_Permission,
-	fActualValue := cnState.fLowerTemperature_ActiveStorage,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_CN_UnloadingPermission_Parameters);
-
-//loading permission buffer HVFA
-Controller_Buffer_HVFA_CN_Loading(fSetpointValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN, 
-	fActualValue := cnState.fMidTemperature,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_HVFA_CN_Loading_Parameters);	
-	
-//unloading permission buffer HVFA
-Controller_Buffer_HVFA_CN_Unloading(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := fTargetTemperature_CN+fOffset_TargetTemperature_HVFA_CN,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_HVFA_CN_Unloading_Parameters);
-	
-IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
-	cnControl.bSetStatusOn_eChiller := TRUE;
-	//cnControl.bSetStatusOn_HVFASystem := FALSE;
-	//cnControl.bLoading_HVFASystem := FALSE;
-ELSE
-	cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
-	//IF ambientState.fOutsideTemperature < ambientState.fOutsideTemperature_Mean THEN
-	//	cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Loading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut);
-	//	cnControl.bLoading_HVFASystem := TRUE;
-	//ELSE
-	//	cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut);
-	//	cnControl.bLoading_HVFASystem := FALSE;
-	//END_IF
-
-	// unten obsolet?
-	//cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR ((cnControl.bSetStatusOn_eChiller) AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut); 
-	//cnControl.bLoading_HVFASystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
-END_IF
+cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;	
 
 cnControl.bSetStatusOn_HVFASystem := FALSE;
 cnControl.bLoading_HVFASystem := FALSE;
@@ -248,7 +161,7 @@ cnControl.bLoading_HVFASystem := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlHNHT" Id="{d2511083-7af8-4297-86c0-c5bfbe31f79b}">
+    <Method Name="ControlHNHT" Id="{7a17bd36-6dfc-4b66-a1a8-f1d6ee95302e}">
       <Declaration><![CDATA[METHOD ControlHNHT : BOOL
 VAR_INPUT
 END_VAR
@@ -269,18 +182,6 @@ Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN
 Controller_CondensingBoiler_Parameters.fHysteresisRange := 12;
 Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_Buffer_VSI_Unloading_Parameters.fHysteresisRange := 4;
-Controller_Buffer_VSI_Unloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_VSI_Unloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_VSI_Unloading_Permission_Parameters.fHysteresisRange := 4;
-Controller_VSI_Unloading_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_VSI_Unloading_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_VSI_Loading_Permission_Parameters.fHysteresisRange := 4;
-Controller_VSI_Loading_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_VSI_Loading_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 Controller_StaticHeating_Parameters.fHysteresisRange := 4;
 Controller_StaticHeating_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
@@ -306,11 +207,11 @@ ELSE
 END_IF
 
 //start when upper temperature too cold and stop when lower temperature too hot
-Controller_CHP1_UpperTemperature(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
+Controller_CHP1_UpperTemperature(fSetpointValue := fTargetTemperature_HNHT_Heating-fOffset_TargetTemperature_CHP1,
 	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
-Controller_CHP1_LowerTemperature(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP1,
+Controller_CHP1_LowerTemperature(fSetpointValue := fTargetTemperature_HNHT_Heating-fOffset_TargetTemperature_CHP1,
 	fActualValue := hnhtState.fLowerTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP1_Parameters);
@@ -325,11 +226,11 @@ END_IF
 hnhtControl.bSetStatusOn_CHP1 := Controller_CHP1_UpperTemperature.bOut OR (Controller_CHP1_LowerTemperature.bOut AND bTrigger_CHP1);
 
 //start when upper temperature too cold and stop when lower temperature too hot
-Controller_CHP2_UpperTemperature(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
+Controller_CHP2_UpperTemperature(fSetpointValue := fTargetTemperature_HNHT_Heating-fOffset_TargetTemperature_CHP2,
 	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
-Controller_CHP2_LowerTemperature(fSetpointValue := fTargetTemperature_HNHT-fOffset_TargetTemperature_CHP2,
+Controller_CHP2_LowerTemperature(fSetpointValue := fTargetTemperature_HNHT_Heating-fOffset_TargetTemperature_CHP2,
 	fActualValue := hnhtState.fLowerTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CHP2_Parameters);
@@ -343,32 +244,15 @@ IF Trigger_CHP2_LowerTemperature.Q THEN
 END_IF
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2_UpperTemperature.bOut OR (Controller_CHP2_LowerTemperature.bOut AND bTrigger_CHP2);
 
-Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT,
+Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT_Heating,
 	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
 
-//buffer storage asks VSI for unloading when buffer storage temperature falls below limit
-Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT,
-	fActualValue := hnhtState.fUpperTemperature,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_VSI_Unloading_Parameters);
-
-//VSI storage may only be unloaded when upper temperature is between limits for unloading
-Controller_VSI_Unloading_Permission(fSetpointValue := hnhtState.fUpperTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_HNHT,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_VSI_Unloading_Permission_Parameters);
-	
-//VSI storage may only be loaded when lower temperature is between limits for loading
-Controller_VSI_Loading_Permission(fSetpointValue := fTargetTemperature_HNHT,
-	fActualValue := hnhtState.fLowerTemperature_ActiveStorage,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_VSI_Loading_Permission_Parameters);
-	
-hnhtControl.bSetStatusOn_VSIStorage := (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut) OR ((hnhtControl.bSetStatusOn_CHP1 OR hnhtControl.bSetStatusOn_CHP2) AND NOT Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Loading_Permission.bOut); 
-hnhtControl.bLoading_VSISystem := NOT (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut);
+// turn VSI off
+hnhtControl.bSetStatusOn_VSIStorage := FALSE;
+hnhtControl.bLoading_VSISystem := FALSE;
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_StaticHeating(fSetpointValue := 15,
@@ -383,7 +267,7 @@ hnhtControl.bSetStatusOn_StaticHeating := Controller_StaticHeating.bOut;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlHnhtHnltLinkage" Id="{21b63b90-0f57-44e5-a2c8-ed6108ef7cfa}">
+    <Method Name="ControlHnhtHnltLinkage" Id="{5ea8783f-d8b1-43d7-80d1-5be058527c64}">
       <Declaration><![CDATA[METHOD ControlHnhtHnltLinkage : BOOL
 VAR_INPUT
 END_VAR
@@ -409,7 +293,7 @@ Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating-fOff
 hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
 
 //control heat pump hnht
-Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT+fOffset_TargetTemperature_HeatPump_HNHT,
+Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT_Heating+fOffset_TargetTemperature_HeatPump_HNHT,
 	fActualValue := hnhtState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Parameters);
@@ -428,7 +312,7 @@ END_IF
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
+    <Method Name="ControlHNLT" Id="{23ec283d-69cc-4c17-8c47-3eb289ca7daa}">
       <Declaration><![CDATA[METHOD ControlHNLT : BOOL
 VAR_INPUT
 END_VAR
@@ -456,75 +340,15 @@ Controller_OuterCapillaryTubeMats_Permission(fSetpointValue := fTargetTemperatur
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_OuterCapillaryTubeMats_Permission_Parameters);
 
-//control hvfa storage
-//set hysteresis parameters for two-point controllers in low temperature heating network
+hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;	
 
-Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.fHysteresisRange := 6;
-Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.fHysteresisRange := 4;
-Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_HVFA_HNLT_Recooling_Parameters.fHysteresisRange := 4;
-Controller_HVFA_HNLT_Recooling_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_HNLT_Recooling_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.fHysteresisRange := 4;
-Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.fHysteresisRange := 4;
-Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
-//buffer storage asks HVFA_HNLT for unloading when buffer storage temperature falls below limit
-Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HVFA_HNLT_Heating,
-	fActualValue := hnltState.fMidTemperature,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters);
-	
-//buffer storage asks HVFA_HNLT for loading when buffer storage temperature rises above limit
-Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperature,
-	fActualValue := fTargetTemperature_HNLT_Cooling,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters);
-
-//hfva storage may only be unloaded when upper temperature is between limits for unloading
-Controller_HVFA_HNLT_HVFAUnloadingPermission(fSetpointValue := hnltState.fLowerTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_HNLT_Heating,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_HNLT_HVFAUnloadingPermission_Parameters);
-	
-//hvfa storage may only be loaded when lower temperature is between limits for loading
-Controller_HVFA_HNLT_HVFALoadingPermission(fSetpointValue := fTargetTemperature_HNLT_Cooling,
-	fActualValue := hnltState.fLowerTemperature_ActiveStorage,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_HNLT_HVFALoadingPermission_Parameters);
-
-//enable hvfa recooling during low temperature times in summer months	
-Controller_HVFA_HNLT_Recooling(fSetpointValue := hnltState.fLowerTemperature_ActiveStorage,
-	fActualValue := fTargetTemperature_HNLT_Cooling-fOffset_HVFA_HNLT_Recooling,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HVFA_HNLT_Recooling_Parameters);
-	
-IF hnltCnLinkageControl.bHeatingMode THEN
-	//hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut);
-	//hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
-	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut;
-ELSE
-	//hnltControl.bSetStatusOn_HVFASystem := ((Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut) OR (Controller_HVFA_HNLT_HVFAUnloadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFAUnloading.bOut)) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
-	//hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
-	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
-END_IF
-
+// turn storages off
 hnltControl.bSetStatusOn_HVFASystem := FALSE;
 hnltControl.bLoading_HVFASystem := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="ControlHnltCnLinkage" Id="{47fe50a8-fa6a-42c9-86f6-4129fa6636fe}">
+    <Method Name="ControlHnltCnLinkage" Id="{f4f62a3b-e49f-437e-b6ff-b51dfe789c5f}">
       <Declaration><![CDATA[METHOD ControlHnltCnLinkage : BOOL
 VAR_INPUT
 END_VAR
@@ -561,13 +385,14 @@ hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetState" Id="{fed71060-1f4b-4777-bd5e-031580854e91}">
+    <Method Name="SetState" Id="{518ee364-cff4-4d89-86eb-9ed83a9ddbd8}">
       <Declaration><![CDATA[METHOD SetState : BOOL
 VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[localState.fTargetTemperature_HNHT := fTargetTemperature_HNHT;
+        <ST><![CDATA[localState.fTargetTemperature_HNHT_Heating := fTargetTemperature_HNHT_Heating;
+localState.fTargetTemperature_HNHT_Cooling := fTargetTemperature_HNHT_Cooling;
 localState.fTargetTemperature_HNLT_Heating := fTargetTemperature_HNLT_Heating;
 localState.fTargetTemperature_HNLT_Cooling := fTargetTemperature_HNLT_Cooling;
 localState.fTargetTemperature_CN := fTargetTemperature_CN;
@@ -577,13 +402,13 @@ localState.aTemperatureLimits_HNHT := aTemperatureLimits_HNHT;
 localState.aTemperatureLimits_HNLT := aTemperatureLimits_HNLT;
 localState.aTemperatureLimits_CN := aTemperatureLimits_CN;	
 
-localState.fFeedTemperature_HNHT := fTargetTemperature_HNHT+localDefaultParameters.fOffset_FeedTemperature_HNHT;
+localState.fFeedTemperature_HNHT := fTargetTemperature_HNHT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNHT;
 localState.fFeedTemperature_HNLT_Heating := fTargetTemperature_HNLT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNLT_Heating;
 localState.fFeedTemperature_HNLT_Cooling := fTargetTemperature_HNLT_Cooling-localDefaultParameters.fOffset_FeedTemperature_HNLT_Cooling;
 localState.fFeedTemperature_CN := fTargetTemperature_CN-localDefaultParameters.fOffset_FeedTemperature_CN;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="SetTemperatures" Id="{1cbdec00-9365-4ae8-8bd7-9d18f1e0b65e}">
+    <Method Name="SetTemperatures" Id="{1cac632c-b476-4b5b-8f9b-ad45e8a87ef6}">
       <Declaration><![CDATA[METHOD SetTemperatures : BOOL
 VAR_INPUT
 END_VAR
@@ -591,34 +416,28 @@ END_VAR
       <Implementation>
         <ST><![CDATA[//set internal variables depending on prodution mode
 IF localSetParameters.bProductionModeActivated THEN
-	IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN	
-		fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_ProductionMode_Summer;
-	ELSE
-		fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_ProductionMode_Winter;
-	END_IF
+	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_ProductionMode_Summer;
 	fTargetTemperature_HNLT_Heating := localDefaultParameters.fTargetTemperature_HNLT_Heating_ProductionMode;
 	fTargetTemperature_HNLT_Cooling := localDefaultParameters.fTargetTemperature_HNLT_Cooling_ProductionMode;
-	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT_ProductionMode;
+	fTargetTemperature_HNHT_Heating := localDefaultParameters.fTargetTemperature_HNHT_Heating_ProductionMode;
+	fTargetTemperature_HNHT_Cooling := localDefaultParameters.fTargetTemperature_HNHT_Cooling_ProductionMode;
 	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN_ProductionMode;
 	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT_ProductionMode;
 	aTemperatureLimits_HNHT := localDefaultParameters.aTemperatureLimits_HNHT_ProductionMode;
 
 ELSE
-	IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN	
-		fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_Summer;
-	ELSE
-		fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_Winter;
-	END_IF
+	fTargetTemperature_CN := localDefaultParameters.fTargetTemperature_CN_Summer;
 	fTargetTemperature_HNLT_Heating := localDefaultParameters.fTargetTemperature_HNLT_Heating;
 	fTargetTemperature_HNLT_Cooling := localDefaultParameters.fTargetTemperature_HNLT_Cooling;
-	fTargetTemperature_HNHT := localDefaultParameters.fTargetTemperature_HNHT;
+	fTargetTemperature_HNHT_Heating := localDefaultParameters.fTargetTemperature_HNHT_Heating;
+	fTargetTemperature_HNHT_Cooling := localDefaultParameters.fTargetTemperature_HNHT_Cooling;
 	aTemperatureLimits_CN := localDefaultParameters.aTemperatureLimits_CN;
 	aTemperatureLimits_HNLT := localDefaultParameters.aTemperatureLimits_HNLT;
 	aTemperatureLimits_HNHT := localDefaultParameters.aTemperatureLimits_HNHT;
 END_IF
 
 //set feed temperatures
-hnhtControl.fFeedTemperature := fTargetTemperature_HNHT+localDefaultParameters.fOffset_FeedTemperature_HNHT;
+hnhtControl.fFeedTemperature := fTargetTemperature_HNHT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNHT;
 hnltControl.fFeedTemperature_Heating := fTargetTemperature_HNLT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNLT_Heating;
 hnltControl.fFeedTemperature_Cooling := fTargetTemperature_HNLT_Cooling-localDefaultParameters.fOffset_FeedTemperature_HNLT_Cooling;
 cnControl.fFeedTemperature := fTargetTemperature_CN-localDefaultParameters.fOffset_FeedTemperature_CN;
@@ -653,7 +472,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_CN := cnControl.bAlgorithmPermission;
 hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermission;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_BaseStrategyController">
+    <LineIds Name="FB_StrategyController_NoStorages">
       <LineId Id="387" Count="0" />
       <LineId Id="389" Count="0" />
       <LineId Id="112" Count="0" />
@@ -663,59 +482,28 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="313" Count="0" />
       <LineId Id="57" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.AmbientControl">
+    <LineIds Name="FB_StrategyController_NoStorages.AmbientControl">
       <LineId Id="6" Count="3" />
       <LineId Id="16" Count="0" />
       <LineId Id="10" Count="2" />
       <LineId Id="17" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.ControlCN">
+    <LineIds Name="FB_StrategyController_NoStorages.ControlCN">
       <LineId Id="51" Count="2" />
       <LineId Id="40" Count="0" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="55" Count="2" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="100" Count="3" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="104" Count="1" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="107" Count="3" />
       <LineId Id="106" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="66" Count="3" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="70" Count="4" />
-      <LineId Id="114" Count="3" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="118" Count="3" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="123" Count="0" />
-      <LineId Id="125" Count="3" />
       <LineId Id="124" Count="0" />
       <LineId Id="89" Count="0" />
-      <LineId Id="141" Count="1" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="144" Count="1" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="161" Count="1" />
-      <LineId Id="164" Count="3" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="170" Count="0" />
-      <LineId Id="168" Count="1" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="139" Count="0" />
       <LineId Id="156" Count="1" />
       <LineId Id="155" Count="0" />
       <LineId Id="140" Count="0" />
       <LineId Id="133" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.ControlHNHT">
+    <LineIds Name="FB_StrategyController_NoStorages.ControlHNHT">
       <LineId Id="6" Count="0" />
       <LineId Id="107" Count="1" />
       <LineId Id="105" Count="0" />
@@ -725,14 +513,6 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="50" Count="0" />
       <LineId Id="52" Count="1" />
       <LineId Id="51" Count="0" />
-      <LineId Id="167" Count="0" />
-      <LineId Id="169" Count="1" />
-      <LineId Id="168" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="181" Count="1" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="124" Count="2" />
-      <LineId Id="123" Count="0" />
       <LineId Id="78" Count="2" />
       <LineId Id="77" Count="0" />
       <LineId Id="104" Count="0" />
@@ -769,14 +549,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="20" Count="0" />
       <LineId Id="56" Count="4" />
       <LineId Id="54" Count="0" />
-      <LineId Id="172" Count="0" />
-      <LineId Id="183" Count="9" />
-      <LineId Id="175" Count="0" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="207" Count="3" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="144" Count="1" />
-      <LineId Id="157" Count="0" />
+      <LineId Id="284" Count="0" />
+      <LineId Id="281" Count="2" />
       <LineId Id="127" Count="0" />
       <LineId Id="82" Count="4" />
       <LineId Id="272" Count="0" />
@@ -786,7 +560,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="94" Count="0" />
       <LineId Id="61" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.ControlHnhtHnltLinkage">
+    <LineIds Name="FB_StrategyController_NoStorages.ControlHnhtHnltLinkage">
       <LineId Id="13" Count="1" />
       <LineId Id="10" Count="0" />
       <LineId Id="33" Count="0" />
@@ -811,7 +585,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="60" Count="1" />
       <LineId Id="29" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.ControlHNLT">
+    <LineIds Name="FB_StrategyController_NoStorages.ControlHNLT">
       <LineId Id="6" Count="3" />
       <LineId Id="41" Count="2" />
       <LineId Id="39" Count="0" />
@@ -821,39 +595,15 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="44" Count="0" />
       <LineId Id="47" Count="2" />
       <LineId Id="45" Count="0" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="99" Count="3" />
-      <LineId Id="104" Count="2" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="121" Count="1" />
-      <LineId Id="120" Count="0" />
-      <LineId Id="60" Count="7" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="71" Count="4" />
-      <LineId Id="91" Count="1" />
-      <LineId Id="95" Count="2" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="76" Count="11" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="124" Count="2" />
       <LineId Id="118" Count="0" />
       <LineId Id="127" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="115" Count="0" />
-      <LineId Id="128" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="136" Count="1" />
-      <LineId Id="134" Count="1" />
+      <LineId Id="146" Count="0" />
       <LineId Id="142" Count="0" />
       <LineId Id="141" Count="0" />
       <LineId Id="133" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.ControlHnltCnLinkage">
+    <LineIds Name="FB_StrategyController_NoStorages.ControlHnltCnLinkage">
       <LineId Id="11" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="9" Count="1" />
@@ -875,26 +625,29 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="106" Count="0" />
       <LineId Id="76" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.SetState">
-      <LineId Id="6" Count="12" />
+    <LineIds Name="FB_StrategyController_NoStorages.SetState">
+      <LineId Id="6" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="7" Count="11" />
       <LineId Id="5" Count="0" />
     </LineIds>
-    <LineIds Name="FB_BaseStrategyController.SetTemperatures">
+    <LineIds Name="FB_StrategyController_NoStorages.SetTemperatures">
       <LineId Id="18" Count="0" />
-      <LineId Id="6" Count="1" />
-      <LineId Id="114" Count="3" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="128" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="55" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="126" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="16" Count="1" />
       <LineId Id="15" Count="0" />
       <LineId Id="10" Count="0" />
-      <LineId Id="119" Count="3" />
-      <LineId Id="118" Count="0" />
+      <LineId Id="129" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="13" Count="0" />
+      <LineId Id="127" Count="0" />
       <LineId Id="20" Count="1" />
       <LineId Id="19" Count="0" />
       <LineId Id="5" Count="0" />

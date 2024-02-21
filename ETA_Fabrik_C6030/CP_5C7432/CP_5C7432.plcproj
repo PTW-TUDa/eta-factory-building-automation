@@ -210,13 +210,13 @@
     <Compile Include="Data types\05 Thermal Networks\ST_ThermalNetworkState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_BaseStrategyDefaultParameters.TcDUT">
+    <Compile Include="Data types\06 Strategy\ST_StrategyDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_BaseStrategySetParameters.TcDUT">
+    <Compile Include="Data types\06 Strategy\ST_StrategySetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_BaseStrategyState.TcDUT">
+    <Compile Include="Data types\06 Strategy\ST_StrategyState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data types\07 Utilities\ST_OPC_UANode.TcDUT">
@@ -446,7 +446,13 @@
     <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkLowTemperature.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\06 Strategy\FB_BaseStrategyController.TcPOU">
+    <Compile Include="POUs\06 Strategy\FB_StrategyController.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_StrategyController_NoStorages.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_StrategyController_Conventional.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\07 Utilities\FB_OPC_UA_Read.TcPOU">
