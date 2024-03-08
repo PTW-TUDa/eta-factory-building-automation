@@ -13,44 +13,44 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Data types" />
-    <Folder Include="Data types\03 Storages\BufferStorage" />
-    <Folder Include="Data types\03 Storages\HVFAStorage" />
-    <Folder Include="Data types\03 Storages\VSIStorage" />
-    <Folder Include="Data types\04 Systems" />
-    <Folder Include="Data types\04 Systems\ConsumerSystems" />
-    <Folder Include="Data types\04 Systems\ConsumerSystems\HNHT" />
-    <Folder Include="Data types\04 Systems\ConsumerSystems\HNLT" />
-    <Folder Include="Data types\04 Systems\ConsumerSystems\CN" />
-    <Folder Include="Data types\04 Systems\CoolingSystems" />
-    <Folder Include="Data types\04 Systems\CoolingSystems\eChiller" />
-    <Folder Include="Data types\04 Systems\CoolingSystems\AbsorptionChillerSystem" />
-    <Folder Include="Data types\04 Systems\CoolingSystems\OuterCapillaryTubeMats" />
-    <Folder Include="Data types\04 Systems\HeatingSystems" />
-    <Folder Include="Data types\04 Systems\HeatingSystems\CHP" />
-    <Folder Include="Data types\04 Systems\HeatingSystems\CondensingBoiler" />
-    <Folder Include="Data types\04 Systems\HeatingSystems\HeatPump" />
-    <Folder Include="Data types\04 Systems\LinkageSystems" />
-    <Folder Include="Data types\04 Systems\LinkageSystems\HeatExchanger1" />
-    <Folder Include="Data types\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
-    <Folder Include="Data types\04 Systems\LinkageSystems\Ventilation" />
-    <Folder Include="Data types\04 Systems\LinkageSystems\UnderfloorHeating" />
-    <Folder Include="Data types\04 Systems\StorageSystems" />
-    <Folder Include="Data types\05 Thermal Networks" />
-    <Folder Include="Data types\06 Strategy" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Library" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Sonstige" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Systeme" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29" />
-    <Folder Include="Data types\07 Utilities" />
-    <Folder Include="Data types\08 Lighting %28from old implementation%29" />
-    <Folder Include="Data types\03 Storages" />
-    <Folder Include="Global Variables" />
-    <Folder Include="Global Variables\Lighting %28from old implementation%29" />
+    <Folder Include="DUTs" />
+    <Folder Include="DUTs\03 Storages\BufferStorage" />
+    <Folder Include="DUTs\03 Storages\HVFAStorage" />
+    <Folder Include="DUTs\03 Storages\VSIStorage" />
+    <Folder Include="DUTs\04 Systems" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\HNHT" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\HNLT" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\CN" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\eChiller" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\AbsorptionChillerSystem" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\OuterCapillaryTubeMats" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\CHP" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\HeatPump" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\Ventilation" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating" />
+    <Folder Include="DUTs\04 Systems\StorageSystems" />
+    <Folder Include="DUTs\05 Thermal Networks" />
+    <Folder Include="DUTs\06 Strategy" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Library" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Sonstige" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Systeme" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29" />
+    <Folder Include="DUTs\07 Utilities" />
+    <Folder Include="DUTs\08 Lighting %28from old implementation%29" />
+    <Folder Include="DUTs\03 Storages" />
+    <Folder Include="GVLs" />
+    <Folder Include="GVLs\Lighting %28from old implementation%29" />
     <Folder Include="POUs" />
     <Folder Include="POUs\01 Actors" />
     <Folder Include="POUs\01 Actors\ConsumerUnits" />
@@ -84,227 +84,227 @@
     <Folder Include="Visualizations" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data types\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
+    <Compile Include="DUTs\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\03 Storages\HVFAStorage\ST_HVFAStorageState.TcDUT">
+    <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\03 Storages\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+    <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\03 Storages\VSIStorage\ST_VSIStorageState.TcDUT">
+    <Compile Include="DUTs\03 Storages\VSIStorage\ST_VSIStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\03 Storages\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
+    <Compile Include="DUTs\03 Storages\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\CN\ST_CN_CentralMachineCoolingDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\CN\ST_CN_CentralMachineCoolingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\CN\ST_FlywheelMassStorageDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\CN\ST_FlywheelMassStorageDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNHT\ST_AnnealingOvenExhaustGasDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_AnnealingOvenExhaustGasDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNHT\ST_HNHT_CentralMachineHeatingDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_HNHT_CentralMachineHeatingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNHT\ST_StaticHeatingDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_StaticHeatingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNLT\ST_AnnealingOvenSealingDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_AnnealingOvenSealingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNLT\ST_DCSystemDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_DCSystemDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\ConsumerSystems\HNLT\ST_CompressorDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_CompressorDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\CoolingSystems\AbsorptionChillerSystem\ST_AbsorptionChillerDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\CoolingSystems\AbsorptionChillerSystem\ST_AbsorptionChillerDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\CoolingSystems\eChiller\ST_eChillerDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\CoolingSystems\eChiller\ST_eChillerDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\CoolingSystems\eChiller\ST_eChillerState.TcDUT">
+    <Compile Include="DUTs\04 Systems\CoolingSystems\eChiller\ST_eChillerState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\CoolingSystems\OuterCapillaryTubeMats\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\CoolingSystems\OuterCapillaryTubeMats\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CHP\E_CHPControlMode.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\E_CHPControlMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CHP\ST_CHPDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CHP\ST_CHPSetParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CHP\ST_CHPState.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerState.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpState.TcDUT">
+    <Compile Include="DUTs\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\HeatExchanger1\ST_HeatExchanger1DefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1\ST_HeatExchanger1DefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingSetParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\Ventilation\ST_VentilationDefaultParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\LinkageSystems\Ventilation\ST_VentilationSetParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\ST_ActiveStorageSystemSetParameters.TcDUT">
+    <Compile Include="DUTs\04 Systems\StorageSystems\ST_ActiveStorageSystemSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\04 Systems\StorageSystems\ST_ActiveStorageSystemState.TcDUT">
+    <Compile Include="DUTs\04 Systems\StorageSystems\ST_ActiveStorageSystemState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_AmbientState.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_AmbientState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_CoolingNetworkControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_CoolingNetworkControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_HeatingNetworkHighTemperatureControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_HeatingNetworkHighTemperatureControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_HnhtHnltLinkageControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnhtHnltLinkageControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_HnltCnLinkageControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnltCnLinkageControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_HnhtCnLinkageControl.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnhtCnLinkageControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\05 Thermal Networks\ST_ThermalNetworkState.TcDUT">
+    <Compile Include="DUTs\05 Thermal Networks\ST_ThermalNetworkState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_StrategyDefaultParameters.TcDUT">
+    <Compile Include="DUTs\06 Strategy\ST_StrategyDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_StrategySetParameters.TcDUT">
+    <Compile Include="DUTs\06 Strategy\ST_StrategySetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\06 Strategy\ST_StrategyState.TcDUT">
+    <Compile Include="DUTs\06 Strategy\ST_StrategyState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\07 Utilities\ST_OPC_UANode.TcDUT">
+    <Compile Include="DUTs\07 Utilities\ST_OPC_UANode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\07 Utilities\ST_OPC_UA_Server.TcDUT">
+    <Compile Include="DUTs\07 Utilities\ST_OPC_UA_Server.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Lampen_Monitoring.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Lampen_Monitoring.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Parameter.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Parameter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Steuerung.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Steuerung.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Zustand.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Zustand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Stellwert.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Stellwert.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Steuerung.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Steuerung.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Zustand.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Zustand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Steuerung.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Steuerung.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Zustand.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Einzelanlagen\RGBW-Kanal\ST_RGBW_Zustand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_BOOL.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_BOOL.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_BOOL.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_BOOL.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_REAL.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_REAL.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_SINT.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_opti_SINT.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_String.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Steuerung_auto_manu_String.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netze_Anford.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netze_Anford.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netz_Anford.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Library\Allgemein\ST_Zustand_Netz_Anford.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Sonstige\ST_GA_global.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Sonstige\ST_GA_global.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Sonstige\ST_Initialisierungsroutine.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Sonstige\ST_Initialisierungsroutine.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Parameter.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Parameter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Stellwert.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Stellwert.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Steuerung.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Steuerung.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data types\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Zustand.TcDUT">
+    <Compile Include="DUTs\08 Lighting %28from old implementation%29\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Zustand.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Global Variables\GlobalVariables.TcGVL">
+    <Compile Include="GVLs\GlobalVariables.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="Global Variables\Lighting %28from old implementation%29\Con_Bel.TcGVL">
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Con_Bel.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Global Variables\Lighting %28from old implementation%29\Global_Variables.TcGVL">
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Global_Variables.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Global Variables\Lighting %28from old implementation%29\Variablen_Konfiguration.TcGVL">
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Variablen_Konfiguration.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Global Variables\M_Bus.TcGVL">
+    <Compile Include="GVLs\M_Bus.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBus_WZaehler_Task.TcTTO">
