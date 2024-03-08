@@ -421,12 +421,14 @@ Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fMidTemperature,
 	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
 	
 // HP currently only able to reach 65°C flow temperature (hard-coded HP-internal)
-IF localSetParameters.bProductionModeActivated THEN
-	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;
-ELSE
-	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
-END_IF
-]]></ST>
+// IF localSetParameters.bProductionModeActivated THEN
+// 	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;
+// ELSE
+// 	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
+// END_IF
+
+// When using a heating target temp of 60 °C in production mode the heat pump can be used in both operating modes
+hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
@@ -813,6 +815,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="59" Count="0" />
       <LineId Id="62" Count="1" />
       <LineId Id="60" Count="1" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="68" Count="0" />
       <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="FB_StrategyController.ControlHNLT">
