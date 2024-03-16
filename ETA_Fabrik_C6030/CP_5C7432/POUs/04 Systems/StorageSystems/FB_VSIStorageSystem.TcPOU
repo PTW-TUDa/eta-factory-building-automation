@@ -190,10 +190,11 @@ END_VAR
 bSetStatusOn_SV306 := TRUE;
 bSetStatusOn_SV307 := TRUE;
 
+//SV307 should not be checked in ramp up to prevent chattering when sv control thermal power
 IF bLoading THEN
 	fSetPoint_SV305 := 100;
 	fSetPoint_SV306 := 0;
-	IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint<20 AND SV307.fOperatingPoint>80 THEN
+	IF SV305.fOperatingPoint>80 AND SV306.fOperatingPoint<20 THEN
 		bSetStatusOn_PU305 := TRUE;	
 		bSetStatusOn_PU306 := FALSE;	
 		bRampUpFinished := TRUE;	
@@ -201,7 +202,7 @@ IF bLoading THEN
 ELSE
 	fSetPoint_SV305 := 0;
 	fSetPoint_SV306 := 100;
-	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint>80 AND SV307.fOperatingPoint>80 THEN
+	IF SV305.fOperatingPoint<20 AND SV306.fOperatingPoint>80 THEN
 		bSetStatusOn_PU305 := FALSE;	
 		bSetStatusOn_PU306 := TRUE;		
 		bRampUpFinished := TRUE;
@@ -365,6 +366,7 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_VSIStorageSystem.RampUp">
       <LineId Id="85" Count="1" />
       <LineId Id="94" Count="0" />
+      <LineId Id="112" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="83" Count="1" />
       <LineId Id="74" Count="0" />
