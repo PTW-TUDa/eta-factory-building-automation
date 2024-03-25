@@ -7,8 +7,8 @@ STRUCT
 	tControllerIntegralTime : TIME := T#100S;
 	tTaskCycleTime	: TIME;
 	tCtrlCycleTime	: TIME;
-	aSetPointLimitsConstantPower : ARRAY[1..2] OF REAL := [0,100]; //setpoint limits for position mode
-	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [50,90]; //setpoint limits for temperature mode	
+	aSetPointLimitsConstantPower : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [50,90];
 END_STRUCT
 END_TYPE
 ]]></Declaration>

@@ -38,7 +38,6 @@ eChiller(
 	fReturnTemperature_Consumers := fReturnTemperature_Consumers);
 eChiller.SetState();
 
-//valve may only control position, not temperatures
 SV138.GetState_AI();
 SV138(
 	bSetStatusOnAutomatic := bSetStatusOn_SV138,
@@ -70,7 +69,7 @@ END_VAR
 bError_eChiller := eChiller.bError;
 
 //check valve SV138 for error
-IF SV138.fOperatingPoint <= 95 AND eChiller.bStatusOn THEN
+IF SV138.fOperatingPoint < 95 AND eChiller.bStatusOn THEN
 	bError_SV138 := TRUE;
 END_IF
 
@@ -174,7 +173,8 @@ END_VAR]]></Declaration>
       <LineId Id="113" Count="0" />
       <LineId Id="31" Count="4" />
       <LineId Id="139" Count="0" />
-      <LineId Id="36" Count="2" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="0" />
       <LineId Id="114" Count="0" />
       <LineId Id="39" Count="3" />
       <LineId Id="165" Count="0" />

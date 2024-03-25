@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
 TYPE ST_CHPSetParameters :
 STRUCT
-	nControlModeAlgorithm : E_CHPControlMode; //select controlmode: constantPower, feedTemperature
+	nControlModeAlgorithm : E_CHPControlMode;
 	nControlModeManual : E_CHPControlMode;
 END_STRUCT
 END_TYPE

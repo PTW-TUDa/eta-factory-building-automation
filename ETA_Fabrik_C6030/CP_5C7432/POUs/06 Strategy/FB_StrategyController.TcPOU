@@ -238,7 +238,6 @@ ELSE
 	//	cnControl.bLoading_HVFASystem := FALSE;
 	//END_IF
 
-	// unten obsolet?
 	//cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR ((cnControl.bSetStatusOn_eChiller) AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut); 
 	//cnControl.bLoading_HVFASystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
 END_IF
@@ -287,7 +286,6 @@ Controller_StaticHeating_Parameters.fHysteresisRange := 4;
 Controller_StaticHeating_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_StaticHeating_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//operating hours of chp1 should be included
 Controller_CHP_Prioritization(fSetpointValue := 15,
 	fActualValue := ambientState.fOutsideTemperature_Mean,
 	eMode := eCTRL_MODE_ACTIVE,
@@ -494,7 +492,7 @@ Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperat
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters);
 
-//hfva storage may only be unloaded when upper temperature is between limits for unloading
+//hvfa storage may only be unloaded when upper temperature is between limits for unloading
 Controller_HVFA_HNLT_HVFAUnloadingPermission(fSetpointValue := hnltState.fLowerTemperature_ActiveStorage,
 	fActualValue := fTargetTemperature_HNLT_Heating,
 	eMode := eCTRL_MODE_ACTIVE,
@@ -709,7 +707,6 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="161" Count="1" />
       <LineId Id="164" Count="3" />
       <LineId Id="163" Count="0" />
-      <LineId Id="170" Count="0" />
       <LineId Id="168" Count="1" />
       <LineId Id="151" Count="0" />
       <LineId Id="139" Count="0" />
@@ -738,7 +735,6 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="123" Count="0" />
       <LineId Id="78" Count="2" />
       <LineId Id="77" Count="0" />
-      <LineId Id="104" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="110" Count="2" />
       <LineId Id="109" Count="0" />
@@ -808,10 +804,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="48" Count="0" />
       <LineId Id="53" Count="2" />
       <LineId Id="49" Count="1" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="62" Count="1" />
-      <LineId Id="60" Count="1" />
+      <LineId Id="73" Count="4" />
+      <LineId Id="61" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="68" Count="0" />
       <LineId Id="29" Count="0" />

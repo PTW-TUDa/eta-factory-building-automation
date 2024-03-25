@@ -18,10 +18,10 @@ VAR
 	OutputConverter : FB_AnalogOutput(fUpperLimit := 100, fLowerLimit := 0);
 	
 	//I/O Links
-	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
-	bSetStatusOn_OUT 		AT %Q* : BOOL; //SetStatus linked to terminal
-	bStatusOn_IN			AT %I* : BOOL; //Error state linked to terminal
-	bError_IN 				AT %I* : BOOL; //Error state linked to terminal
+	nSetPoint_OUT			AT %Q* : INT;
+	bSetStatusOn_OUT 		AT %Q* : BOOL;
+	bStatusOn_IN			AT %I* : BOOL;
+	bError_IN 				AT %I* : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -63,7 +63,7 @@ END_VAR
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.sSetPointUnit := 'degreeC';
 
-nSetPoint_OUT := OutputConverter.nValue;  //converts real setpoint for terminal
+nSetPoint_OUT := OutputConverter.nValue;
 bSetStatusOn_OUT := bSetStatusOn;]]></ST>
       </Implementation>
     </Method>

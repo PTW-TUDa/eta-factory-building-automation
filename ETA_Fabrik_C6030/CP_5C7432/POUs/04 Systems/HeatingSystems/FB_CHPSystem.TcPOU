@@ -139,7 +139,6 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_CHP := FALSE;
 
-//IF NOT CHP.bStatusOn THEN
 bStartTimer := TRUE;
 IF Timer.Q THEN
 	bSetStatusOn_PU32x := FALSE;
@@ -237,9 +236,10 @@ END_VAR]]></Declaration>
       <LineId Id="308" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHPSystem.CheckError">
-      <LineId Id="15" Count="2" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="8" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="46" Count="1" />
       <LineId Id="34" Count="0" />
     </LineIds>
     <LineIds Name="FB_CHPSystem.Operational">
@@ -256,7 +256,6 @@ END_VAR]]></Declaration>
     </LineIds>
     <LineIds Name="FB_CHPSystem.RampDown">
       <LineId Id="7" Count="0" />
-      <LineId Id="14" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="41" Count="1" />
       <LineId Id="15" Count="0" />

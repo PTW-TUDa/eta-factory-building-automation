@@ -67,8 +67,7 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//check pumps for errors
-bError :=  PU350.bError;]]></ST>
+        <ST><![CDATA[bError :=  PU350.bError;]]></ST>
       </Implementation>
     </Method>
     <Method Name="LocalControl" Id="{3ba7e21b-fc4f-4232-93ee-856c586a43e1}">
@@ -184,7 +183,6 @@ END_VAR]]></Declaration>
       <LineId Id="116" Count="0" />
     </LineIds>
     <LineIds Name="FB_StaticHeatingSystem.CheckError">
-      <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
     </LineIds>
     <LineIds Name="FB_StaticHeatingSystem.LocalControl">

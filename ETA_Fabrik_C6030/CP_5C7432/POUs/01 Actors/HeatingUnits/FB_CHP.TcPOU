@@ -9,7 +9,7 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 	fReturnTemperature : REAL;
-	bError : BOOL; // Returns CHP error
+	bError : BOOL;
 END_VAR
 VAR
 	{attribute 'OPC.UA.DA' := '1'}
@@ -39,7 +39,7 @@ VAR
 	
 	//internal variables
 	nControlMode : E_CHPControlMode;
-	fSetPoint_internal 		: REAL; //internal, control mode depending setpoint between 0.0 and 100.0
+	fSetPoint_internal 		: REAL;
 	
 	//controllers
 	PI_Controller				: FB_CTRL_PI; 
