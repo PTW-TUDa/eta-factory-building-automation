@@ -25,7 +25,6 @@ VAR
 	//internal variables
 	bSetStatusOn_CentralMachineCooling : BOOL;
 	bSetStatusOn_FlywheelMassStorage : BOOL;
-	aInterpolationData_VWMZ105 : ARRAY[1..11, 1..2] OF FLOAT := [0,0,9,0.5,20,1.1,31,2.2,43,2.8,55,3.4,65,5,76,5.6,88,7.3,91,7.3,100,7.3];
 END_VAR
 
 ]]></Declaration>
@@ -68,8 +67,7 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
 	fSetPointAutomatic := 40,
 	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
 	aTelegramm_WMZ7x0 := aTelegramm_WMZ710,
-	aTelegramm_WMZx05 := aTelegramm_WMZ105,
-	aInterpolationData_VWMZx05 := aInterpolationData_VWMZ105);
+	aTelegramm_WMZx05 := aTelegramm_WMZ105);
 
 				]]></ST>
     </Implementation>
@@ -93,7 +91,6 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="79" Count="0" />
       <LineId Id="83" Count="2" />
       <LineId Id="236" Count="1" />
-      <LineId Id="324" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>

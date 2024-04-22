@@ -13,8 +13,6 @@ VAR
 	MidTemperatureSensor : FB_TemperatureSensor; //mid temperature sensor
 	LowerTemperatureSensor : FB_TemperatureSensor; //lower temperature sensor
 	PressureSensor : FB_PressureSensor; //pressure sensor
-	stVWMZx01DefaultParameters : ST_VirtualHeatCounterDefaultParameters_Storage := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	VWMZx01 : FB_VirtualHeatCounter_Storage := (ST_DefaultParameters := stVWMZx01DefaultParameters);
 END_VAR
 
 ]]></Declaration>
@@ -35,11 +33,6 @@ PressureSensor.GetState_AI();
 localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;
 localState.fMidTemperature := MidTemperatureSensor.fTemperature;
 localState.fLowerTemperature := LowerTemperatureSensor.fTemperature;
-
-//virtual heat counter
-VWMZx01(fStorageTemperature := localState.fMidTemperature,
-	fFeedTemperature := localState.fUpperTemperature,
-	fReturnTemperature := localState.fLowerTemperature);
 	]]></ST>
     </Implementation>
     <LineIds Name="FB_BufferStorage">
@@ -52,10 +45,6 @@ VWMZx01(fStorageTemperature := localState.fMidTemperature,
       <LineId Id="80" Count="0" />
       <LineId Id="27" Count="3" />
       <LineId Id="46" Count="0" />
-      <LineId Id="98" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="99" Count="1" />
-      <LineId Id="102" Count="0" />
       <LineId Id="101" Count="0" />
     </LineIds>
   </POU>

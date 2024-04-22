@@ -78,6 +78,7 @@ VAR_GLOBAL
 	Telegramm_WZ_PWT_1						: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Ofenkuehlung				: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	Telegramm_WZ_Abwaerme_Ofen_Abgasfackel	: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	Telegramm_GZ331_BWT	: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 
 
 	Telegramm_SZ_BHKW_321		: ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;

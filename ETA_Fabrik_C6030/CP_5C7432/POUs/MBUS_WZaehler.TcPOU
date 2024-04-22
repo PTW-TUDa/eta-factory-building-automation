@@ -14,6 +14,7 @@ VAR
 	WMZ215_PWT_1						: FB_MBUS_General_Ext;	(*6*)
 	WMZ261_Ofenkuehlung_Dichtungen		: FB_MBUS_General_Ext;	(*7*)
 	WMZ361_Abwaerme_Ofen_Abgasfackel	: FB_MBUS_General_Ext;	(*8*)
+
 	adrBrennwerttherme				: ST_MBus_SecAdr := (udiIdNumber:=16#00474907);
 	adrBHKW_1						: ST_MBus_SecAdr := (udiIdNumber:=16#00470996);
 	adrBHKW_2						: ST_MBus_SecAdr := (udiIdNumber:=16#00474904);

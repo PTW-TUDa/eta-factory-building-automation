@@ -6,7 +6,6 @@ VAR_INPUT
 	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
 	aTelegramm_WMZ7x0 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
 	aTelegramm_WMZx05 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
-	aInterpolationData_VWMZx05 : ARRAY[1..11, 1..2] OF FLOAT;
 END_VAR
 VAR_OUTPUT	
 	localStorageState : ST_HVFAStorageState;
@@ -39,9 +38,6 @@ VAR
 	//sensors
 	WMZ7x0 : FB_MollineC3HeatCounter;
 	WMZx05 : FB_MollineC3HeatCounter;
-	
-	stVWMZx05DefaultParameters : ST_VirtualHeatCounterDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
-	VWMZx05 : FB_VirtualHeatCounter := (ST_DefaultParameters := stVWMZx05DefaultParameters);
 	
 	//internal variables
 	bSetStatusOn_PUx05 : BOOL;
@@ -114,12 +110,7 @@ RVx05.SetState_AO();
 
 //insert heat counter telegramm from other task
 WMZ7x0(aHeatCounterTelegramm := aTelegramm_WMZ7x0);
-WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);
-
-VWMZx05(aInterpolationData := aInterpolationData_VWMZx05,
-	fFeedTemperature := WMZx05.fFeedTemperature,
-	fReturnTemperature := WMZx05.fReturnTemperature,
-	fOperatingPoint := RVx05.fOperatingPoint);]]></ST>
+WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{0a750c43-7566-4b1a-a185-b01eaf088ced}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -326,8 +317,6 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_HVFAStorageSystem">
       <LineId Id="540" Count="52" />
       <LineId Id="173" Count="0" />
-      <LineId Id="651" Count="3" />
-      <LineId Id="650" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.CheckError">
       <LineId Id="9" Count="0" />
