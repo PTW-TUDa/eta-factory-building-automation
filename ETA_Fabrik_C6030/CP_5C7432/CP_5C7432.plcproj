@@ -52,11 +52,11 @@
     <Folder Include="GVLs" />
     <Folder Include="GVLs\Lighting %28from old implementation%29" />
     <Folder Include="POUs" />
-    <Folder Include="POUs\01 Actors" />
-    <Folder Include="POUs\01 Actors\ConsumerUnits" />
-    <Folder Include="POUs\01 Actors\CoolingUnits" />
-    <Folder Include="POUs\01 Actors\HeatingUnits" />
-    <Folder Include="POUs\01 Actors\Pumps" />
+    <Folder Include="POUs\01 Actuators" />
+    <Folder Include="POUs\01 Actuators\ConsumerUnits" />
+    <Folder Include="POUs\01 Actuators\CoolingUnits" />
+    <Folder Include="POUs\01 Actuators\HeatingUnits" />
+    <Folder Include="POUs\01 Actuators\Pumps" />
     <Folder Include="POUs\02 Sensors" />
     <Folder Include="POUs\03 Storages" />
     <Folder Include="POUs\04 Systems" />
@@ -311,37 +311,37 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MBus_Zaehler_Task.TcTTO" />
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_AnnealingOven.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_AnnealingOven.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_EMAG_GT.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_EMAG_GT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_DC.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_DC.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_MAFAC_Java.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_MAFAC_Java.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_FlywheelMassStorage.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_FlywheelMassStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\ConsumerUnits\FB_BvL_CleaningSystem.TcPOU">
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_BvL_CleaningSystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\CoolingUnits\FB_eChiller.TcPOU">
+    <Compile Include="POUs\01 Actuators\CoolingUnits\FB_eChiller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CHP.TcPOU">
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CHP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\HeatingUnits\FB_HeatPump.TcPOU">
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_HeatPump.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\HeatingUnits\FB_CondensingBoiler.TcPOU">
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CondensingBoiler.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actors\Pumps\FB_Pump2Point.TcPOU">
+    <Compile Include="POUs\01 Actuators\Pumps\FB_Pump2Point.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\02 Sensors\FB_LowVoltageMainDistribution.TcPOU">
