@@ -106,8 +106,6 @@ VAR
 	Controller_HVFA_CN_UnloadingPermission_Parameters : ST_CTRL_2POINT_PARAMS;
 	Controller_Buffer_HVFA_CN_Unloading : FB_CTRL_2POINT;
 	Controller_Buffer_HVFA_CN_Unloading_Parameters : ST_CTRL_2POINT_PARAMS;
-	Controller_Buffer_HVFA_CN_Loading : FB_CTRL_2POINT;
-	Controller_Buffer_HVFA_CN_Loading_Parameters : ST_CTRL_2POINT_PARAMS;
 
 	//controllers and variables for hnht and hnlt linkage
 	Controller_HeatExchanger1 : FB_CTRL_2POINT;
@@ -184,11 +182,6 @@ Controller_HVFA_CN_UnloadingPermission_Parameters.fHysteresisRange := 1;
 Controller_HVFA_CN_UnloadingPermission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HVFA_CN_UnloadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-//hysteresis for loading hvfa storage depending on buffer storage temperature
-Controller_Buffer_HVFA_CN_Loading_Parameters.fHysteresisRange := 2;
-Controller_Buffer_HVFA_CN_Loading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_Buffer_HVFA_CN_Loading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
-
 //hysteresis for unloading hvfa storage depending on buffer storage temperature
 Controller_Buffer_HVFA_CN_Unloading_Parameters.fHysteresisRange := 2;
 Controller_Buffer_HVFA_CN_Unloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
@@ -201,7 +194,7 @@ Controller_eChiller(fSetpointValue := cnState.fMidTemperature,
 	stParams := Controller_eChiller_Parameters);
 
 //control hvfa storage loading permission 
-Controller_HVFA_CN_LoadingPermission(fSetpointValue := cnState.fLowerTemperature_ActiveStorage,
+Controller_HVFA_CN_LoadingPermission(fSetpointValue := cnState.fUpperTemperature_ActiveStorage,
 	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN_Permission,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HVFA_CN_LoadingPermission_Parameters);
@@ -211,12 +204,6 @@ Controller_HVFA_CN_UnloadingPermission(fSetpointValue := fTargetTemperature_CN-f
 	fActualValue := cnState.fLowerTemperature_ActiveStorage,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HVFA_CN_UnloadingPermission_Parameters);
-
-//loading permission buffer HVFA
-Controller_Buffer_HVFA_CN_Loading(fSetpointValue := fTargetTemperature_CN-fOffset_TargetTemperature_HVFA_CN, 
-	fActualValue := cnState.fMidTemperature,
-	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_Buffer_HVFA_CN_Loading_Parameters);	
 	
 //unloading permission buffer HVFA
 Controller_Buffer_HVFA_CN_Unloading(fSetpointValue := cnState.fMidTemperature,
@@ -230,14 +217,6 @@ IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
 	cnControl.bLoading_HVFASystem := FALSE;
 ELSE
 	cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
-	IF ambientState.fOutsideTemperature < ambientState.fOutsideTemperature_Mean THEN
-		cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Loading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut);
-		cnControl.bLoading_HVFASystem := TRUE;
-	ELSE
-		cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut);
-		cnControl.bLoading_HVFASystem := FALSE;
-	END_IF
-
 	cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR ((cnControl.bSetStatusOn_eChiller) AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_LoadingPermission.bOut); 
 	cnControl.bLoading_HVFASystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
 END_IF
@@ -679,10 +658,6 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="54" Count="0" />
       <LineId Id="100" Count="3" />
       <LineId Id="99" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="104" Count="1" />
-      <LineId Id="42" Count="0" />
       <LineId Id="107" Count="3" />
       <LineId Id="106" Count="0" />
       <LineId Id="87" Count="0" />
@@ -692,10 +667,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="46" Count="0" />
       <LineId Id="70" Count="4" />
       <LineId Id="114" Count="3" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="118" Count="3" />
-      <LineId Id="111" Count="0" />
+      <LineId Id="173" Count="0" />
       <LineId Id="123" Count="0" />
       <LineId Id="125" Count="3" />
       <LineId Id="124" Count="0" />
@@ -703,11 +675,8 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="141" Count="1" />
       <LineId Id="149" Count="0" />
       <LineId Id="144" Count="1" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="161" Count="1" />
-      <LineId Id="164" Count="3" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="168" Count="1" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="169" Count="0" />
       <LineId Id="151" Count="0" />
       <LineId Id="139" Count="0" />
       <LineId Id="156" Count="1" />
