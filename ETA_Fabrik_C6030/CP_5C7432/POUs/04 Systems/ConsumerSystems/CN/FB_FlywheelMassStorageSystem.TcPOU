@@ -42,8 +42,8 @@ SV191.SetState_BO();
 PU191.GetState_Profibus();
 PU191(bSetStatusOnAutomatic := bSetStatusOn_PU191,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := 70,
-	nControlModeAutomatic := 0);
+	fSetPointAutomatic := fSetPoint,
+	nControlModeAutomatic := 3);
 PU191.SetState_Profibus();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{78f9e2f0-0900-4107-96ee-83c45787b471}">
@@ -117,8 +117,13 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
-aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+        <ST><![CDATA[IF  PU191.nControlModeAutomatic = 3 THEN
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperatureDifference[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperatureDifference[2];
+ELSE
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetState" Id="{d3b6743e-eab0-437e-a6a0-7ffe5a901d58}">
@@ -129,14 +134,14 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := PU191.fTemperatureExternal;
+        <ST><![CDATA[fOperatingPoint := PU191.localState.fTemperatureDifference;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.fSetPoint := fSetPoint;
 setPointState.fOperatingPoint := fOperatingPoint;
-setPointState.sSetPointUnit := 'degreeC';
-setPointState.sOperatingPointUnit := 'degreeC';
+setPointState.sSetPointUnit := 'K';
+setPointState.sOperatingPointUnit := 'K';
 ]]></ST>
       </Implementation>
     </Method>
@@ -187,7 +192,7 @@ END_VAR]]></Declaration>
       <LineId Id="11" Count="1" />
     </LineIds>
     <LineIds Name="FB_FlywheelMassStorageSystem.SetSetPointLimits">
-      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="5" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_FlywheelMassStorageSystem.SetState">

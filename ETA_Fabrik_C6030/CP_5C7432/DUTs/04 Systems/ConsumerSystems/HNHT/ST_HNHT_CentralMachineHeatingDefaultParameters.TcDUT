@@ -4,6 +4,7 @@
     <Declaration><![CDATA[TYPE ST_HNHT_CentralMachineHeatingDefaultParameters :
 STRUCT
 	aSetPointLimitsRelativeSpeed : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsTemperatureDifference : ARRAY[1..2] OF REAL := [5,10];
 END_STRUCT
 END_TYPE
 ]]></Declaration>

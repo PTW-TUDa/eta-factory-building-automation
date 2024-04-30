@@ -44,7 +44,7 @@ PU300.GetState_Profibus();
 PU300(bSetStatusOnAutomatic := bSetStatusOn_PU300,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 3);
 PU300.SetState_Profibus();
 
 WMZ300(aHeatCounterTelegramm:=aTelegramm_WMZ300);
@@ -123,8 +123,14 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
-aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];]]></ST>
+        <ST><![CDATA[IF  PU300.nControlModeAutomatic = 3 THEN
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperatureDifference[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperatureDifference[2];
+ELSE
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SetState" Id="{4e2ea92d-ea0a-4d3f-bc29-d3387dc8f5c1}">
@@ -135,14 +141,14 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := PU300.fOperatingPoint;
+        <ST><![CDATA[fOperatingPoint := PU300.localState.fTemperatureDifference;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
 setPointState.fSetPoint := fSetPoint;
 setPointState.fOperatingPoint := fOperatingPoint;
-setPointState.sSetPointUnit := 'percent';
-setPointState.sOperatingPointUnit := 'percent';
+setPointState.sSetPointUnit := 'K';
+setPointState.sOperatingPointUnit := 'K';
 ]]></ST>
       </Implementation>
     </Method>
@@ -202,8 +208,13 @@ END_VAR]]></Declaration>
       <LineId Id="12" Count="0" />
     </LineIds>
     <LineIds Name="FB_HNHT_CentralMachineHeating.SetSetPointLimits">
+      <LineId Id="11" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="10" Count="0" />
     </LineIds>
     <LineIds Name="FB_HNHT_CentralMachineHeating.SetState">
       <LineId Id="11" Count="1" />

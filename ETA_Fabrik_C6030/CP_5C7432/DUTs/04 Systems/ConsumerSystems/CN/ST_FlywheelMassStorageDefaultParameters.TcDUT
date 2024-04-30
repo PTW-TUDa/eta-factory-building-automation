@@ -3,8 +3,8 @@
   <DUT Name="ST_FlywheelMassStorageDefaultParameters" Id="{26e15710-68bf-4b6a-8182-be8444294207}">
     <Declaration><![CDATA[TYPE ST_FlywheelMassStorageDefaultParameters :
 STRUCT
-	//return temperature because feed temperature cannot be controlled
-	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [15,23];
+	aSetPointLimitsRelativeSpeed : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsTemperatureDifference : ARRAY[1..2] OF REAL := [3,5];
 END_STRUCT
 END_TYPE
 ]]></Declaration>

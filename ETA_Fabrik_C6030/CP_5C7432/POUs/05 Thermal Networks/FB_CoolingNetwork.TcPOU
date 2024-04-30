@@ -51,15 +51,15 @@ eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
 	fReturnTemperature_Consumers := BufferStorage.localState.fUpperTemperature);
 
 //consumer
-//PU100 in central machine cooling system controls return temperature of 20 degree
+//PU100 in central machine cooling system controls temperature difference of 3 K
 CentralMachineCoolingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineCooling,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 75);
+	fSetPointAutomatic := 3); //temperature difference control
 
 //PU191 in central machine cooling system controls return temperature of 20 degree
 FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStorage,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 20);
+	fSetPointAutomatic := 3); //temperature difference control
 	
 //external storages
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,

@@ -160,7 +160,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := PU215.fTemperatureInternal;
+        <ST><![CDATA[fOperatingPoint := PU215.fTemperatureExternal;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;

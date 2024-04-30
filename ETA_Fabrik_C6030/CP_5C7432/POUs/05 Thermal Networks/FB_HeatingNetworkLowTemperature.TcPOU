@@ -60,7 +60,7 @@ DC();
 bSetStatusOn_DC := DC.bStatusOn;
 DCSystem(bSetStatusOnAutomatic := bSetStatusOn_DC,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 35);
+	fSetPointAutomatic := 3); //temperature difference control
 
 //external storages
 HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
