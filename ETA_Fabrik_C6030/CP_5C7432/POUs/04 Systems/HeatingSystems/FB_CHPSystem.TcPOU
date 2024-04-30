@@ -27,8 +27,8 @@ VAR
 	
 	//sensors
 	WMZ32x : FB_MollineC3HeatCounter();
-	EM32x : FB_ElectricityMeter();
-	GM32x : FB_GasMeter();
+	EM32x : FB_ElectricityMeter_BergDCMI461WP();
+	GM32x : FB_GasMeter_Aerius_G4();
 	
 	PI_Controller				: FB_CTRL_PI;
 	PI_Controller_Parameters 	: ST_CTRL_PI_PARAMS;
