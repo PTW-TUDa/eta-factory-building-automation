@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CondensingBoiler" Id="{532a516d-9cc8-4820-b59b-bc9ad3e263f3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CondensingBoiler EXTENDS FB_ActuatorContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_CondensingBoilerState;
+	
+	//default parameters
+	localDefaultParameters : ST_CondensingBoilerDefaultParameters;
+	
+	//analog converters
+	OutputConverter : FB_AnalogOutput(fUpperLimit := 100, fLowerLimit := 0);
+	
+	//I/O Links
+	nSetPoint_OUT			AT %Q* : INT;
+	bSetStatusOn_OUT 		AT %Q* : BOOL;
+	bStatusOn_IN			AT %I* : BOOL;
+	bError_IN 				AT %I* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+OutputConverter(fValue := fSetPoint);]]></ST>
+    </Implementation>
+    <Method Name="GetState" Id="{a0e81b08-f1df-4174-9a0b-7e03b77586a6}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//local state
+controlState.bStatusOn := bStatusOn_IN;
+localState.bError := bError_IN;
+bStatusOn := controlState.bStatusOn;
+bError := localState.bError;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{ae6e5319-fa8e-4a57-953e-0d088040aef7}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{3868a82c-54c5-4a4b-a783-f9cc61cf38bb}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[setPointState.fSetPoint := fSetPoint;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.sSetPointUnit := 'degreeC';
+
+nSetPoint_OUT := OutputConverter.nValue;  //converts real setpoint for terminal
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{4e5c1c85-1fd7-4ebd-bb6e-1f11f763d57a}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_CondensingBoilerDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{3713ad30-46db-4a2e-87f1-58aab8856e42}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{19f4adf1-6b65-4425-87a1-833a085f1d8b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_CondensingBoiler">
+      <LineId Id="36" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.GetState">
+      <LineId Id="40" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.SetSetPointLimits">
+      <LineId Id="15" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.SetState">
+      <LineId Id="6" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.ST_DefaultParameters.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoiler.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

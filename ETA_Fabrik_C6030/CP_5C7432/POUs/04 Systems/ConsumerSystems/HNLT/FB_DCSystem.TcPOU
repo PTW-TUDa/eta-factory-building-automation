@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_DCSystem" Id="{9dbe8672-d93a-4703-8594-a33cc1d0c6c6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DCSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_DCSystemDefaultParameters;
+	
+	//pumps
+	stPU245DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU245 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU245DefaultParameters);;
+
+	//valves
+	stSV245DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	SV245 : FB_DiscreteValve := (ST_DefaultParameters := stSV245DefaultParameters);
+	
+	WMZ245 : FB_MollineEHeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PU245 : BOOL;
+	bSetStatusOn_SV245 : BOOL;
+	
+	//timer
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+//use timer because valve has no feedback signal (75 sec)
+Timer(IN := bStartTimer,
+	PT := T#75S);
+
+SV245.GetState_BI();
+SV245(bSetStatusOnAutomatic := bSetStatusOn_SV245,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV245.SetState_BO();
+
+//pump controls return temperature
+PU245.GetState_Profibus();
+PU245(bSetStatusOnAutomatic := bSetStatusOn_PU245,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
+	nControlModeAutomatic := 3);
+PU245.SetState_Profibus();
+
+WMZ245(aHeatCounterTelegramm := aTelegramm_WMZ245);
+]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{335c28ac-45c3-487e-8d10-7aaec001f52a}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF PU245.bError THEN
+	bError := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{804b0cb9-bb45-40d5-8185-14247aa58afb}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU245 := TRUE;
+
+IF PU245.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{02e065ee-2516-444f-bbf9-1fa5c4e69c5c}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU245 := FALSE;
+
+IF NOT PU245.bStatusOn THEN
+	bSetStatusOn_SV245 := FALSE;
+	bStartTimer := TRUE;
+	IF Timer.Q THEN
+		bStartTimer := FALSE;
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{d124129b-1537-4d55-bd40-13f9ebefeb89}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV245 := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bStartTimer := FALSE;
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{ace4869b-5552-4ded-8639-24c5baab0e11}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF  PU245.nControlModeAutomatic = 3 THEN
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperatureDifference[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperatureDifference[2];
+ELSE
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{649d5ace-5c25-4698-a64e-e4990d28bd12}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU245.localState.fTemperatureDifference;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'K';
+setPointState.sOperatingPointUnit := 'K';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{f5cd3651-4a32-4fda-a3f3-7690d2939edf}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_DCSystem">
+      <LineId Id="9" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="103" Count="1" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="4" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.CheckError">
+      <LineId Id="8" Count="2" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.SetSetPointLimits">
+      <LineId Id="10" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.SetState">
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DCSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

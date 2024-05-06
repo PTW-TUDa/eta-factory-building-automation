@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_HnhtHnltLinkageControl" Id="{885711f9-5e9c-420d-93f7-37d68a3b8222}">
+    <Declaration><![CDATA[TYPE ST_HnhtHnltLinkageControl :
+STRUCT
+	fFeedTemperature_HNLT_Heating : REAL;
+	fFeedTemperature_HNLT_Cooling : REAL;	
+	fFeedTemperature_HNHT : REAL;
+	bAlgorithmPermission_HNHT : BOOL;
+	bAlgorithmPermission_HNLT : BOOL;
+	bSetStatusOn_HeatExchanger1 : BOOL;
+	bSetStatusOn_HeatPump : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

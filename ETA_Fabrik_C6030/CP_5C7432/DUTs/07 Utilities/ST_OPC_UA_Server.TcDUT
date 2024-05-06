@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_OPC_UA_Server" Id="{1cb362fa-2864-4fca-a069-bf68ea120baa}">
+    <Declaration><![CDATA[TYPE ST_OPC_UA_Server :
+STRUCT
+	sServerURL			: STRING;
+	SessionConnectInfo	: ST_UASessionConnectInfo := (tConnectTimeout			:= T#5S,
+														tSessionTimeout 		:= T#1M,
+														sApplicationName		:= '',
+														eSecurityMode 			:= eUASecurityMsgMode_None,
+														eSecurityPolicyUri	 	:= eUASecurityPolicy_None,
+														eTransportProfileUri 	:= eUATransportProfileUri_UATcp);
+	tTimeout            : TIME := T#5M;
+	nConnectionHdl		: DWORD;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

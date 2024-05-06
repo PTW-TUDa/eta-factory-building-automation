@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Ambient" Id="{e5737b3d-b420-44a4-9ae1-301270e5edfa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Ambient
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_AmbientState;
+END_VAR
+VAR
+	WeatherStation : FB_WeatherStation;
+	AmbientTemperatureSensor_Container : FB_TemperatureSensor_KL3214;
+	HallTemperatureSensor_Section1 : FB_TemperatureSensor;
+	HallTemperatureSensor_Section2 : FB_TemperatureSensor;
+	HallTemperatureSensor_Section3 : FB_TemperatureSensor;
+	RoomTemperatureSensor_Container : FB_TemperatureSensor;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[WeatherStation();
+HallTemperatureSensor_Section1();
+HallTemperatureSensor_Section1.GetState_AI();
+HallTemperatureSensor_Section2();
+HallTemperatureSensor_Section2.GetState_AI();
+HallTemperatureSensor_Section3();
+HallTemperatureSensor_Section3.GetState_AI();
+AmbientTemperatureSensor_Container();
+AmbientTemperatureSensor_Container.GetState_AI();
+RoomTemperatureSensor_Container();
+RoomTemperatureSensor_Container.GetState_AI();
+
+
+//add ambient temperature rain etc. from weather station
+localState.fOutsideTemperature_Container := AmbientTemperatureSensor_Container.fTemperature;
+localState.fOutsideTemperature := WeatherStation.fTemperature;
+localState.fOutsideTemperature_Mean := WeatherStation.fMeanTemperature;
+localState.bRain := WeatherStation.bRain;
+localState.fDawn := WeatherStation.fDawn;
+localState.fWindSpeed := WeatherStation.fWindSpeed;
+localState.fHallTemperature := HallTemperatureSensor_Section3.fTemperature;
+localState.fRoomTemperature_Container := RoomTemperatureSensor_Container.fTemperature;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Ambient">
+      <LineId Id="28" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="121" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

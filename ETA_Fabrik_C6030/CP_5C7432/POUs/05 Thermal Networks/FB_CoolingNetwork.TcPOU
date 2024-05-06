@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CoolingNetwork" Id="{3e3c7edc-aa3e-40d5-adb7-105c87a52325}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CoolingNetwork
+VAR_INPUT
+	//control struct for cn
+	controlAutomatic : ST_CoolingNetworkControl;	
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ThermalNetworkState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	eChillerSystem : FB_eChillerSystem;
+	HVFASystem : FB_HVFAStorageSystem;
+	CentralMachineCoolingSystem : FB_CN_CentralMachineCooling;
+	FlywheelMassStorageSystem : FB_FlywheelMassStorageSystem;
+	
+	//machines
+	EMAG_GT : FB_EMAG_GT;
+	FlyhweelMassStorage : FB_FlywheelMassStorage;
+	
+	//internal variables
+	bSetStatusOn_CentralMachineCooling : BOOL;
+	bSetStatusOn_FlywheelMassStorage : BOOL;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
+localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
+localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := HVFASystem.localStorageState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := HVFASystem.localStorageState.fLowerTemperature;
+
+//machines
+EMAG_GT();
+bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn;
+FlyhweelMassStorage();
+bSetStatusOn_FlywheelMassStorage := FlyhweelMassStorage.bStatusOn;
+
+//producer
+eChillerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_eChiller,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
+	fExternalTemperature := BufferStorage.localState.fMidTemperature,
+	fReturnTemperature_Consumers := BufferStorage.localState.fUpperTemperature);
+
+//consumer
+//PU100 in central machine cooling system controls temperature difference of 3 K
+CentralMachineCoolingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineCooling,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 3); //temperature difference control
+
+//PU191 in central machine cooling system controls return temperature of 20 degree
+FlywheelMassStorageSystem(bSetStatusOnAutomatic := bSetStatusOn_FlywheelMassStorage,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 3); //temperature difference control
+	
+//external storages
+HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 40,
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
+	aTelegramm_WMZ7x0 := aTelegramm_WMZ710,
+	aTelegramm_WMZx05 := aTelegramm_WMZ105);
+
+				]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CoolingNetwork">
+      <LineId Id="40" Count="2" />
+      <LineId Id="293" Count="3" />
+      <LineId Id="167" Count="2" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="201" Count="0" />
+      <LineId Id="171" Count="0" />
+      <LineId Id="43" Count="5" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="163" Count="1" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="204" Count="3" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="83" Count="2" />
+      <LineId Id="236" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

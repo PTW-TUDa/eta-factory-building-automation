@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatPumpSystem_CN" Id="{7e7b5d95-fc91-49dd-b95e-a9f45915aabb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem_CN EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//Vitocal 350-G heat pump
+	HeatPump : FB_HeatPump;
+	
+	//valve 146 and valve 246
+	ST_SV146DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	ST_SV246DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);	
+	SV146 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV146DefaultParameters);
+	SV246 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV246DefaultParameters);	
+	
+	//internal variables
+	bSetStatusOn_HeatPump : BOOL;
+	bSetStatusOn_SV146 : BOOL;
+	bSetStatusOn_SV246 : BOOL;
+	
+	//sensors
+	WMZ146 : FB_StarkMultical302HeatCounter;
+	WMZ246 : FB_StarkMultical302HeatCounter;
+	
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+//use timer because valve has no feedback signal (75 sec)
+Timer(IN := bStartTimer,
+	PT := T#75S);
+
+//heat pump
+HeatPump.GetState();
+HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint);
+HeatPump.SetState();
+
+//valves
+SV146.GetState_BI();
+SV146(bSetStatusOnAutomatic := bSetStatusOn_SV146,
+		bAlgorithmPermission := bAlgorithmPermission);
+SV146.SetState_BO();
+
+SV246.GetState_BI();
+SV246(bSetStatusOnAutomatic := bSetStatusOn_SV246,
+		bAlgorithmPermission := bAlgorithmPermission);
+SV246.SetState_BO();
+
+//sensors
+WMZ146(aHeatCounterTelegramm := Telegramm_WZ_4372_WP_946);
+WMZ246(aHeatCounterTelegramm := Telegramm_WZ_4371_WP_946);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{e6a4ede8-dc18-488e-9b82-544068cf9d4e}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method because system has no feedback signals]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{5647c897-a33a-44f7-bde1-edb8a50b8012}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_HeatPump := TRUE;
+bSwitchToWorking := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{1da118c0-c5a3-4c43-b5c2-92112ab088e3}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
+bSetStatusOn_SV146 := FALSE;
+bSetStatusOn_SV246 := FALSE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bRampDownFinished := TRUE;
+	bStartTimer := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{18497967-281e-48be-9d5b-3e53109a49a9}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV146 := TRUE;
+bSetStatusOn_SV246 := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bRampUpFinished := TRUE;
+	bStartTimer := FALSE; //resets timer
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{76f57d3d-d47f-4242-8b02-e8c62a723fc1}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//heat pump has no continous setpoint (limits are not used) but must be implemented because of abstract method
+aSetPointLimits[1] := 0;
+aSetPointLimits[2] := 100;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{a58ab0d6-0d51-48dc-bc27-2228d10311d9}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := 0;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := 0;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := '-';
+setPointState.sOperatingPointUnit := '-';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{80b089c4-4cdc-43e9-85f7-5ded4d853262}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method because setpoint does not change during operation]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_HeatPumpSystem_CN">
+      <LineId Id="33" Count="5" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="41" Count="2" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="44" Count="2" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="48" Count="2" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.Operational">
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.RampDown">
+      <LineId Id="8" Count="7" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.RampUp">
+      <LineId Id="9" Count="6" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.SetSetPointLimits">
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_CN.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

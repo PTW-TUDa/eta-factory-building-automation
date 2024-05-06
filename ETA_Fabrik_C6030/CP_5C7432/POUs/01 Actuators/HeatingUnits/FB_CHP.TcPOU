@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CHP" Id="{b646d58b-e895-49ef-8279-111f006d4387}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHP EXTENDS FB_ActuatorContinous
+VAR_INPUT
+	nControlModeAutomatic : E_CHPControlMode; //control mode: 0 = constant power, 1 = feed temperature
+	fExternalFeedTemperature : REAL; //external measurement of feed temperature
+	sIPAddress : STRING(15);
+END_VAR
+VAR_OUTPUT
+	fReturnTemperature : REAL;
+	bError : BOOL;
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_CHPState;
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_CHPSetParameters;
+	
+	//default parameters
+	localDefaultParameters : ST_CHPDefaultParameters:= (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	
+	//modbus tcp communication
+	ModbusReader : FB_MBReadRegs;
+	aModbus : ARRAY  [0..61] OF WORD;
+	
+	//analog converters
+	OutputConverter : FB_AnalogOutput(fUpperLimit := 100, fLowerLimit := 0);
+	
+	//I/O Links
+	nSetPoint_OUT			AT %Q* : INT; //Set position linked to terminal
+	bSetStatusOn_OUT 		AT %Q* : BOOL; //SetStatus linked to terminal
+	bError_IN 				AT %I* : BOOL; //Error state linked to terminal
+	
+	//modbus
+	bReadModbus	: BOOL := FALSE;
+	bStartTimer : BOOL;
+	Timer : TON;
+	
+	//internal variables
+	nControlMode : E_CHPControlMode;
+	fSetPoint_internal 		: REAL;
+	
+	//controllers
+	PI_Controller				: FB_CTRL_PI; 
+	PI_Controller_Parameters 	: ST_CTRL_PI_PARAMS;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+SelectLocalControlMode();
+LocalControl();
+OutputConverter(fValue := fSetPoint_internal);
+Timer(IN := bStartTimer,
+	PT := T#2S);
+	
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bReadModbus := TRUE;
+	bStartTimer := FALSE;	
+END_IF
+
+ModbusReader(sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 255,
+	nQuantity := 60,
+	nMBAddr := 16384,
+	cbLength := 122,
+	pDestAddr := ADR(aModbus),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);
+bReadModbus := FALSE;
+
+fReturnTemperature := localState.fReturnTemperature;
+	]]></ST>
+    </Implementation>
+    <Method Name="GetState" Id="{9f15d8c9-37cf-41df-9875-0bdb52117adc}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//local state
+CASE WORD_TO_UINT(aModbus[2]) OF
+	3:
+	controlState.bStatusOn := TRUE;
+	
+	4:
+	localState.bError := TRUE;
+ELSE
+	controlState.bStatusOn := FALSE;
+	localState.bError := FALSE;
+END_CASE
+bStatusOn := controlState.bStatusOn;
+bError := localState.bError;
+localState.fCosPhi := WORD_TO_INT(aModbus[59])/1000;
+localState.fElectricalPower := WORD_TO_INT(aModbus[52])/10;
+localState.fFeedTemperature := WORD_TO_INT(aModbus[26])/10;
+localState.fGeneratorCurrent := WORD_TO_INT(aModbus[51])/10;
+localState.fGeneratorVoltage := WORD_TO_INT(aModbus[50]);
+localState.fGridVoltage := WORD_TO_INT(aModbus[49]);
+localState.fOperatingTime := WORD_TO_UINT(aModbus[13]);
+localState.fReturnTemperature := WORD_TO_INT(aModbus[25])/10;
+localState.fRotationalSpeed := WORD_TO_UINT(aModbus[37]);
+localState.fTemperatureCoolingWater := WORD_TO_INT(aModbus[24])/10;
+localState.fTemperatureExhaustGas := WORD_TO_INT(aModbus[20]);
+localState.nNumberOfStarts := WORD_TO_UINT(aModbus[15]);
+localState.nOperationStatus := WORD_TO_UINT(aModbus[2]);
+
+//setpoint state
+CASE nControlMode OF
+	0: //constant power
+	setPointState.fOperatingPoint := WORD_TO_INT(aModbus[4]);
+	setPointState.sOperatingPointUnit := 'percent';
+	
+	1: //feed temperature
+	setPointState.fOperatingPoint := localState.fFeedTemperature;
+	setPointState.sOperatingPointUnit := 'degreeC';
+END_CASE
+fOperatingPoint := setPointState.fOperatingPoint;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{d887795e-232f-42f3-8d28-8fa56d1a0fe4}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//set control parameters
+PI_Controller_Parameters.fKp 				:= localDefaultParameters.fControllerAmplification;
+PI_Controller_Parameters.tTn 				:= localDefaultParameters.tControllerIntegralTime;
+PI_Controller_Parameters.fOutMaxLimit		:= 100.0;
+PI_Controller_Parameters.fOutMinLimit		:= 0;
+PI_Controller_Parameters.tTaskCycleTime		:= localDefaultParameters.tTaskCycleTime;
+PI_Controller_Parameters.tCtrlCycleTime		:= localDefaultParameters.tCtrlCycleTime;
+PI_Controller_Parameters.bARWOnIPartOnly	:= TRUE;
+
+CASE nControlMode OF
+	0: //constant power
+	fSetPoint_internal := fSetPoint;
+	
+	1: //feed temperature
+	PI_Controller (
+			fSetpointValue	:= fSetPoint,
+			fActualValue	:= fExternalFeedTemperature,
+			fManSyncValue	:= 0,
+			bSync			:= FALSE,
+			eMode			:= 2, (* mode active *)
+			bHold			:= FALSE,
+			stParams		:= PI_Controller_Parameters);
+	fSetPoint_internal := LREAL_TO_REAL(PI_Controller.fOut);
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{9a78149c-94db-4c62-baf4-d3dda50ef0b4}">
+      <Declaration><![CDATA[METHOD SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	nControlMode := localSetParameters.nControlModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	nControlMode := localSetParameters.nControlModeAlgorithm;
+ELSE
+	nControlMode := nControlModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{472f61ca-9f9a-4ea0-aa95-f603f5bb66d2}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE nControlMode OF
+	0: //constant power
+	aSetPointLimits := localDefaultParameters.aSetPointLimitsConstantPower;
+
+	1: //feed temperature
+	aSetPointLimits := localDefaultParameters.aSetPointLimitsTemperature;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{a939da34-edbe-4005-89e5-13736e771cf6}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[setPointState.fSetPoint := fSetPoint;
+setPointState.aSetPointLimits := aSetPointLimits;
+CASE nControlMode OF
+	0: //constant power
+	setPointState.sSetPointUnit := 'percent';
+	
+	1: //feed temperature
+	setPointState.sSetPointUnit := 'degreeC';
+END_CASE
+
+nSetPoint_OUT := OutputConverter.nValue;  //converts real setpoint for terminal
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{14de3d02-28c6-4c0b-af7d-fdf97a720864}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_CHPDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{15ea1fe4-8072-458a-8f8b-e4cd5bb8fe78}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{e6630cdb-5832-4c3e-b268-93771a243a06}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_CHP">
+      <LineId Id="280" Count="24" />
+      <LineId Id="142" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.GetState">
+      <LineId Id="40" Count="0" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="56" Count="2" />
+      <LineId Id="77" Count="2" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="66" Count="7" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="34" Count="5" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.LocalControl">
+      <LineId Id="17" Count="7" />
+      <LineId Id="26" Count="14" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.SelectLocalControlMode">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.SetSetPointLimits">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.SetState">
+      <LineId Id="6" Count="7" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.ST_DefaultParameters.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHP.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

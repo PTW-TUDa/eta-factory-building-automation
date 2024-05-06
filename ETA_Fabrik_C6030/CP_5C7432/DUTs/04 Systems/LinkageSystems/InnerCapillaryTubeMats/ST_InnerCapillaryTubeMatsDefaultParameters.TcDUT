@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_InnerCapillaryTubeMatsDefaultParameters" Id="{5ab2b36c-c4e5-4f1a-b59d-360cb889a090}">
+    <Declaration><![CDATA[TYPE ST_InnerCapillaryTubeMatsDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [16,45];
+	
+	//parameters for characteristic heating and cooling curve
+	aLimitsAmbientTemperature: ARRAY[1..2] OF REAL := [-5,20];
+	aLimitsFeedTemperature: ARRAY[1..2] OF REAL := [40,15];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

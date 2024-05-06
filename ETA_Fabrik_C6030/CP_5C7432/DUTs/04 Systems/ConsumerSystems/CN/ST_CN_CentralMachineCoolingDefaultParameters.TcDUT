@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CN_CentralMachineCoolingDefaultParameters" Id="{17c81d14-e483-4b0e-9f64-7c549251bf40}">
+    <Declaration><![CDATA[TYPE ST_CN_CentralMachineCoolingDefaultParameters :
+STRUCT
+	aSetPointLimitsRelativeSpeed : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsTemperatureDifference : ARRAY[1..2] OF REAL := [3,5];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

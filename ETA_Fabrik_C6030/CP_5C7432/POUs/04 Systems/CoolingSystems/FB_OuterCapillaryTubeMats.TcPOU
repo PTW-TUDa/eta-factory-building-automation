@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_OuterCapillaryTubeMats" Id="{f8d40369-147e-4cbe-aff1-5204bfee2138}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_OuterCapillaryTubeMats EXTENDS FB_SystemContinous
+VAR_INPUT
+	stAmbientState : ST_AmbientState;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_OuterCapillaryTubeMatsDefaultParameters;	
+	
+	//pumps
+	stPU235DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	stPU600DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	
+	PU235 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU235DefaultParameters);
+	PU600 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU600DefaultParameters);	
+	PU690 : FB_Pump2Point; //CM pump (storage side)
+	
+	//valves
+	stSV235DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSV605DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stRV600DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fControllerAmplification := 0.012, tControllerIntegralTime := T#36S, fOutMinLimit := 40, fOutMaxLimit := 70);	
+	stRV640DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV660DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	
+	SV235 : FB_DiscreteValve := (ST_DefaultParameters := stSV235DefaultParameters);
+	SV605 : FB_DiscreteValve := (ST_DefaultParameters := stSV605DefaultParameters);
+	RV600 : FB_MixingValve := (ST_DefaultParameters := stRV600DefaultParameters);
+	RV640 : FB_MixingValve := (ST_DefaultParameters := stRV640DefaultParameters); //east
+	RV660 : FB_MixingValve := (ST_DefaultParameters := stRV660DefaultParameters); //west
+	
+	//sensors
+	WMZ235	: FB_MollineC3HeatCounter;
+	TS640	: FB_TemperatureSensor; //return temperature east
+	TS660 	: FB_TemperatureSensor; //return temperature west
+	PS600	: FB_PressureSensor;
+	
+	//internal variables
+	bSetStatusOn_PU235 	: BOOL;
+	bSetStatusOn_PU600 	: BOOL;
+	bSetStatusOn_PU690 	: BOOL;
+	bSetStatusOn_SV235 	: BOOL;	
+	bSetStatusOn_RV600 	: BOOL;
+	bSetStatusOn_RV640 	: BOOL;
+	fSetPoint_RV640 	: REAL;
+	bSetStatusOn_RV660 	: BOOL;
+	fSetPoint_RV660 	: REAL;
+	
+	//clock and timer
+	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
+	Clock : FB_Clock := (ST_DefaultParameters := stDefaultParameters_Clock);
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+//use timer because valve has no feedback signal (75 sec)
+Timer(IN := bStartTimer,
+	PT := T#75S);
+Clock();
+
+//pumps
+PU235.GetState_Profibus();
+PU235(bSetStatusOnAutomatic := bSetStatusOn_PU235,
+	fSetPointAutomatic := 70,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU235.SetState_Profibus();
+
+//use AUTO-Adapt control mode
+PU600.GetState_Profibus();
+PU600(bSetStatusOnAutomatic := bSetStatusOn_PU600,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU600.SetState_Profibus();
+
+PU690(bSetStatusOnAutomatic := bSetStatusOn_PU690,
+	bAlgorithmPermission := bAlgorithmPermission);
+PU690.SetState_BO();
+
+//valves
+SV235.GetState_BI();
+SV235(bSetStatusOnAutomatic := bSetStatusOn_SV235,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV235.SetState_BO();
+
+SV605.GetState_BI();
+SV605(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV605.SetState_BO();
+
+//RV600 uses heating mode to control inlet temperature into PWT6 (with temperature difference of 7 K of primary and secondary side)
+RV600.GetState_AI();
+RV600(bSetStatusOnAutomatic := bSetStatusOn_RV600,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU235.fTemperatureExternal,
+	nControlModeAutomatic := 2);
+RV600.SetState_AO();
+
+RV640.GetState_AI();
+RV640(bSetStatusOnAutomatic := bSetStatusOn_RV640,
+	fSetPointAutomatic := fSetPoint_RV640,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+RV640.SetState_AO();
+
+RV660.GetState_AI();
+RV660(bSetStatusOnAutomatic := bSetStatusOn_RV660,
+	fSetPointAutomatic := fSetPoint_RV660,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+RV660.SetState_AO();
+
+//insert heat counter telegramm from other task
+WMZ235(aHeatCounterTelegramm := aTelegramm_WMZ235);
+
+PS600();
+PS600.GetState_AI();
+
+TS640();
+TS640.GetState_AI();
+TS660();
+TS660.GetState_AI();]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{b5c5e5e8-42f6-4651-a2ed-f1d07717775f}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+	bError_PU235 : BOOL;
+	bError_PU600 : BOOL;
+	bError_SV235 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check pumps for errors
+bError_PU235 := PU235.bError;
+bError_PU600 := PU600.bError;
+
+//check valve SV235 for an error
+IF SV235.bStatusOn AND PU235.bStatusOn THEN
+	bError_SV235 := TRUE;
+END_IF
+
+bError := bError_PU235 OR bError_PU600 OR bError_SV235;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{88a15c5a-66ea-4cac-bc26-6cc439e986de}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check for rain
+IF NOT stAmbientState.bRain THEN
+	bSetStatusOn_PU690 := TRUE;
+ELSE
+	bSetStatusOn_PU690 := FALSE;
+END_IF
+
+//check for time
+IF Clock.stClockState.fHour < 12 THEN
+	//use west facade	
+	fSetPoint_RV660 := 100;
+	fSetPoint_RV640 := 0;
+ELSE
+	//use east facade
+	fSetPoint_RV660 := 0;
+	fSetPoint_RV640 := 100;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{c5d251a1-4b82-443d-8a1b-17b15e56f92c}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU235 := TRUE;
+bSetStatusOn_PU600 := TRUE;
+LocalControl();
+
+IF PU235.bStatusOn AND PU600.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{a23ccce8-0424-4b4c-82c7-de0b91fea1cb}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU600 := FALSE;
+bSetStatusOn_PU235 := FALSE;
+bSetStatusOn_PU690 := FALSE;
+bSetStatusOn_SV235 := FALSE;
+bSetStatusOn_RV600 := FALSE;
+bSetStatusOn_RV640 := FALSE;
+bSetStatusOn_RV660 := FALSE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bRampDownFinished := TRUE;
+	bStartTimer := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{a529c9d9-81e0-4127-865c-b1ad3753334d}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV235 := TRUE;
+bSetStatusOn_RV600 := TRUE;
+bSetStatusOn_RV640 := TRUE;
+bSetStatusOn_RV660 := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bRampUpFinished := TRUE;
+	bStartTimer := FALSE; //resets timer
+END_IF
+
+//check for rain
+LocalControl();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{7fcac2fe-640f-418c-9c40-05dd5101cb8c}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{df86e938-b253-436e-9bc7-04238664c673}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU235.fTemperatureExternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{38cc873a-2ab0-456c-a4f7-7981cf3fbe46}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[LocalControl();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_OuterCapillaryTubeMats">
+      <LineId Id="61" Count="0" />
+      <LineId Id="169" Count="1" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="65" Count="1" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="67" Count="4" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="388" Count="0" />
+      <LineId Id="619" Count="2" />
+      <LineId Id="618" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="227" Count="1" />
+      <LineId Id="76" Count="1" />
+      <LineId Id="389" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="445" Count="3" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="390" Count="0" />
+      <LineId Id="90" Count="4" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="391" Count="0" />
+      <LineId Id="144" Count="3" />
+      <LineId Id="149" Count="1" />
+      <LineId Id="392" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="163" Count="3" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="336" Count="1" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="561" Count="2" />
+      <LineId Id="503" Count="0" />
+      <LineId Id="502" Count="0" />
+      <LineId Id="504" Count="2" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.CheckError">
+      <LineId Id="9" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="11" Count="5" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.LocalControl">
+      <LineId Id="6" Count="2" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="9" Count="10" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.Operational">
+      <LineId Id="8" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.RampDown">
+      <LineId Id="8" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.RampUp">
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="40" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OuterCapillaryTubeMats.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_eChillerSystem" Id="{761e262d-2727-4279-88a1-3ac73010bbca}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_eChillerSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	fExternalTemperature : REAL; //External temperature of buffer storage
+	fReturnTemperature_Consumers : REAL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//Efficient Energy eChiller 45-II
+	eChiller : FB_eChiller;
+	
+	//discrete valve 138
+	stSV138DefaultParameters : ST_MixingValveDefaultParameters := (fOffsetTerminal := 3950);
+	SV138 : FB_MixingValve := (ST_DefaultParameters := stSV138DefaultParameters); //valve motor needs continous signal but operates only between extreme positions	
+	
+	//heat counters
+	stWMZ135DefaultParameters : ST_MollineC3HeatCounterDefaultParameters := (fSpecificHeatCapacity := 4.7);
+	WMZ135 : FB_MollineC3HeatCounter := (ST_DefaultParameters := stWMZ135DefaultParameters);
+	WMZ138 : FB_MollineC3HeatCounter;
+	
+	//internal variables
+	bSetStatusOn_eChiller : BOOL;
+	bSetStatusOn_SV138 : BOOL;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+eChiller.GetState();
+eChiller(
+	bSetStatusOnAutomatic := bSetStatusOn_eChiller,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fExternalTemperature := fExternalTemperature,
+	fReturnTemperature_Consumers := fReturnTemperature_Consumers);
+eChiller.SetState();
+
+SV138.GetState_AI();
+SV138(
+	bSetStatusOnAutomatic := bSetStatusOn_SV138,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZ135.fHeatFlowRate,
+	nControlModeAutomatic := 0);
+SV138.SetState_AO();
+
+//insert heat counter telegramm from other task
+WMZ135(aHeatCounterTelegramm := aTelegramm_WMZ135);
+WMZ138(aHeatCounterTelegramm := aTelegramm_WMZ138);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{87b68d69-7506-4fd5-920f-31c8ac6bc4f2}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	bError_eChiller : BOOL := FALSE;
+	bError_SV138 : BOOL := FALSE;
+END_VAR
+VAR_OUTPUT
+	bError : BOOL := FALSE;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check chiller for error
+bError_eChiller := eChiller.bError;
+
+//check valve SV138 for error
+IF SV138.fOperatingPoint < 95 AND eChiller.bStatusOn THEN
+	bError_SV138 := TRUE;
+END_IF
+
+bError := bError_eChiller OR bError_SV138;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{830bd434-77f6-4d32-9616-294163c3dc90}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_eChiller := TRUE;
+
+IF eChiller.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{e920d523-a5e9-4cce-a828-b16d80d8611f}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_eChiller := FALSE;
+
+//wait until eChiller is switched off before closing valve
+IF NOT eChiller.bStatusOn THEN
+	bSetStatusOn_SV138 := FALSE;
+	IF SV138.fOperatingPoint < 20  THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{a35d72c4-c137-4825-b9db-822abc1571be}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV138 := TRUE;
+
+//wait until valve is opened
+IF SV138.fOperatingPoint > 85 THEN
+	bRampUpFinished := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{a4e2465f-3e29-44c1-a39b-c5d763bbb0bc}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := eChiller.ST_DefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := eChiller.ST_DefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{dc79df30-22db-4a38-94da-2cf6081118d6}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := fExternalTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{40c6e2d0-ac93-45e6-921b-d845a8bf1ef9}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_eChillerSystem">
+      <LineId Id="30" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="31" Count="4" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="39" Count="3" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="82" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.CheckError">
+      <LineId Id="9" Count="7" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.Operational">
+      <LineId Id="8" Count="3" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.RampDown">
+      <LineId Id="8" Count="4" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.RampUp">
+      <LineId Id="9" Count="4" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_eChillerSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_AnnealingOvenSealingSystem" Id="{c79fb180-c52a-479d-9180-03a928329c11}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AnnealingOvenSealingSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_AnnealingOvenExhaustGasDefaultParameters;
+
+	//pumps
+	stPU261DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU261 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU261DefaultParameters);
+
+	//valves
+	stRV261DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
+	RV261 : FB_MixingValve := (ST_DefaultParameters := stRV261DefaultParameters);
+	
+	//sensors	
+	WMZ261 : FB_MollineC3HeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PU261 : BOOL;
+	bSetStatusOn_RV261 : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+//pumps
+PU261.GetState_Profibus();
+PU261(bSetStatusOnAutomatic := bSetStatusOn_PU261,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 2);
+PU261.SetState_Profibus();
+
+//valves
+RV261.GetState_AI();
+RV261(bSetStatusOnAutomatic := bSetStatusOn_RV261,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+RV261.SetState_AO();
+
+WMZ261(aHeatCounterTelegramm := Telegramm_WZ_Ofenkuehlung);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{0884511a-7c08-4815-9766-3acf5bdad9b7}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := PU261.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{3b8fc09c-a3eb-4e29-a806-30ced16dbd57}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU261 := TRUE;
+
+IF PU261.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{19a3e988-adfd-4643-8b51-813eea489db5}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU261 := FALSE;
+
+IF NOT PU261.bStatusOn THEN
+	bSetStatusOn_RV261 := FALSE;
+	IF RV261.fOperatingPoint<10 THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{7093dcc9-6881-4082-97ed-41554badcf83}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV261 := TRUE;
+bRampUpFinished := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{06ca703d-33d0-4427-9c5b-35d2baa1d962}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{094fc672-9f27-4d6a-bd6e-224fcaf867d0}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU261.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{50b4e403-2e2a-4fdc-86ac-77113ce6f10b}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_AnnealingOvenSealingSystem">
+      <LineId Id="160" Count="0" />
+      <LineId Id="164" Count="7" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="191" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="277" Count="2" />
+      <LineId Id="281" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="153" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.RampDown">
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="13" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.SetSetPointLimits">
+      <LineId Id="14" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AnnealingOvenSealingSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HVFAStorageSystem" Id="{5fa1e97c-987f-49c1-82cf-2ddae1379d7b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HVFAStorageSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
+	aTelegramm_WMZ7x0 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aTelegramm_WMZx05 : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+END_VAR
+VAR_OUTPUT	
+	localStorageState : ST_HVFAStorageState;
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_ActiveStorageSystemSetParameters;
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ActiveStorageSystemState;
+	
+	//default parameters
+	localDefaultParameters : ST_HVFAStorageSystemDefaultParameters;	
+
+	//storage
+	HVFAStorage : FB_HVFAStorage;
+	
+	//pumps
+	PUx05 : FB_PumpGrundfosMagna3; //Magna 3 pump (network side)
+	PU7x0 : FB_Pump2Point; //CM pump (storage side)
+
+	//valves
+	stSVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
+	stSVx06DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
+	stRVx05DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3950);
+	
+	SVx05 : FB_MixingValve := (ST_DefaultParameters := stSVx05DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
+	SVx06 : FB_MixingValve := (ST_DefaultParameters := stSVx06DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
+	RVx05 : FB_MixingValve := (ST_DefaultParameters := stRVx05DefaultParameters); //continous mixing valve
+	
+	//sensors
+	WMZ7x0 : FB_MollineC3HeatCounter;
+	WMZx05 : FB_MollineC3HeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PUx05 : BOOL;
+	bSetStatusOn_PU7x0 : BOOL;
+	bSetStatusOn_SVx05 : BOOL;
+	fSetPoint_SVx05 : REAL;
+	bSetStatusOn_SVx06 : BOOL;
+	fSetPoint_SVx06 : REAL;	
+	bSetStatusOn_RVx05 : BOOL;
+	bLoading : BOOL;
+	
+	//triggers
+	SwitchToLoading : R_TRIG;
+	SwitchToUnloading : F_TRIG;
+	bFinishedSwitchMode : BOOL := TRUE;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//storage
+HVFAStorage(localState => localStorageState);
+
+SelectLocalControlMode();
+SwitchToLoading(CLK := bLoading);
+SwitchToUnloading(CLK := bLoading);
+
+//MAIN must be called before SwitchMode to prevent pump signal chattering (signal is written after SwitchMode function), SwitchMode may only be called if system is on
+MAIN();
+
+//disrupt calling SystemFlowControl via MAIN() when mode is switched and call SwitchMode()
+IF ((SwitchToLoading.Q OR SwitchToUnloading.Q) OR NOT bFinishedSwitchMode) AND bSetStatusOn THEN
+	SwitchMode(bSwitchToLoading := bLoading,
+		bFinishedSwitchMode => bFinishedSwitchMode);
+END_IF;
+
+//pumps
+PUx05.GetState_Profibus();
+PUx05(bSetStatusOnAutomatic := bSetStatusOn_PUx05,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PUx05.SetState_Profibus();
+
+PU7x0(bSetStatusOnAutomatic := bSetStatusOn_PU7x0,
+	bAlgorithmPermission := bAlgorithmPermission);
+PU7x0.SetState_BO();
+
+//valves
+SVx05.GetState_AI();
+SVx05(bSetStatusOnAutomatic := bSetStatusOn_SVx05,
+	fSetPointAutomatic := fSetPoint_SVx05,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+SVx05.SetState_AO();
+
+SVx06.GetState_AI();
+SVx06(bSetStatusOnAutomatic := bSetStatusOn_SVx06,
+	fSetPointAutomatic := fSetPoint_SVx06,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+SVx06.SetState_AO();
+
+RVx05.GetState_AI();
+RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZx05.fHeatFlowRate,
+	nControlModeAutomatic := 0);
+RVx05.SetState_AO();
+
+//insert heat counter telegramm from other task
+WMZ7x0(aHeatCounterTelegramm := aTelegramm_WMZ7x0);
+WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{0a750c43-7566-4b1a-a185-b01eaf088ced}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+	bError_PUx05 : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check for pump error
+bError_PUx05 := PUx05.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{38ce29c5-a9cb-42f6-b2da-f6e767b8efb9}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//storage pump
+bSetStatusOn_PU7x0 := TRUE;
+
+//network pump
+bSetStatusOn_PUx05 := TRUE;
+
+//temperature controlling valve
+bSetStatusOn_RVx05 := TRUE;
+
+IF PUx05.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{035f2f79-06b9-4677-b822-1118600ad0da}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU7x0 := FALSE;
+bSetStatusOn_PUx05 := FALSE;
+bSetStatusOn_RVx05 := FALSE;
+
+IF RVx05.fOperatingPoint<20 AND NOT PUx05.bStatusOn THEN
+	bRampDownFinished := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{0ce76782-d529-4b5d-8974-d96ba13ac874}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SVx05 := TRUE;
+bSetStatusOn_SVx06 := TRUE;
+
+IF bLoading = TRUE THEN
+	fSetPoint_SVx05 := 0;
+	fSetPoint_SVx06 := 0;
+	IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
+		bRampUpFinished := TRUE;
+	END_IF
+ELSE
+	fSetPoint_SVx05 := 100;
+	fSetPoint_SVx06 := 100;
+	IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
+		bRampUpFinished := TRUE;
+	END_IF
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{324f0df5-410b-4639-a772-5eb1aaf75a71}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	bLoading := localSetParameters.bLoadingManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	bLoading := localSetParameters.bLoadingAlgorithm;
+ELSE
+	bLoading := bLoadingAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{f04c6bfe-2c3e-49d6-a8c4-445113c91ff8}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{e91ff025-34ce-4425-84b2-ec422191accc}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PUx05.fOperatingPoint;
+
+IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
+	localState.bLoading := TRUE;
+ELSE
+	localState.bLoading := FALSE;
+END_IF
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'percent';
+setPointState.sOperatingPointUnit := 'percent';]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{f1db4656-edfb-47d5-af6a-23dbe9289a24}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_HVFAStorageSystemDefaultParameters]]></Declaration>
+      <Set Name="Set" Id="{293bdd0c-657e-4a38-8183-ebcb37193829}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="SwitchMode" Id="{0eae4dfd-6df1-4d63-a8a7-6bb8ae2d2c72}">
+      <Declaration><![CDATA[METHOD PRIVATE SwitchMode : BOOL
+VAR_INPUT
+	bSwitchToLoading : BOOL; //if false switch to cooling
+END_VAR
+VAR_OUTPUT
+	bFinishedSwitchMode : BOOL := FALSE;
+END_VAR
+VAR_INST
+	bRampDownFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check system state
+IF bRampDownFinished THEN
+	IF bSwitchToLoading THEN
+		fSetPoint_SVx05 := 0;
+		fSetPoint_SVx06 := 0;
+		IF SVx05.fOperatingPoint<20 AND SVx06.fOperatingPoint<20 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PUx05 := TRUE;
+		END_IF
+		
+	ELSE
+		fSetPoint_SVx05 := 100;
+		fSetPoint_SVx06 := 100;
+		IF SVx05.fOperatingPoint>80 AND SVx06.fOperatingPoint>80 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PUx05 := TRUE;
+		END_IF
+	END_IF
+ELSE
+	bSetStatusOn_PUx05 := FALSE;
+	IF NOT PUx05.bStatusOn THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{c2454935-99da-4157-b03c-3bb74f66fa87}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_HVFAStorageSystem">
+      <LineId Id="540" Count="52" />
+      <LineId Id="173" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.CheckError">
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.Operational">
+      <LineId Id="8" Count="11" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.RampDown">
+      <LineId Id="8" Count="5" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.RampUp">
+      <LineId Id="85" Count="2" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="18" Count="4" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="26" Count="3" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SelectLocalControlMode">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SetState">
+      <LineId Id="8" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="23" Count="2" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="9" Count="5" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.SwitchMode">
+      <LineId Id="5" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="144" Count="1" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="149" Count="4" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="91" Count="2" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HVFAStorageSystem.Working">
+      <LineId Id="19" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

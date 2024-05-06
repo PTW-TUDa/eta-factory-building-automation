@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HVFAStorage" Id="{69a5244b-11d5-4395-8b8a-683c8f830970}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HVFAStorage
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_HVFAStorageState;
+END_VAR
+VAR
+	UpperTemperatureSensor : FB_TemperatureSensor; //upper temperature sensor
+	LowerTemperatureSensor : FB_TemperatureSensor; //lower temperature sensor
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//get sensor inputs
+UpperTemperatureSensor.GetState_AI();
+LowerTemperatureSensor.GetState_AI();
+
+//set outputs
+localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;
+localState.fLowerTemperature := LowerTemperatureSensor.fTemperature;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HVFAStorage">
+      <LineId Id="21" Count="5" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

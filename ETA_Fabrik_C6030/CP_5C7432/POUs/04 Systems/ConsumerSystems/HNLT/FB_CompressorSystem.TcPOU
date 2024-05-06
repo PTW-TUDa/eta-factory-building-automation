@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CompressorSystem" Id="{f1ebdf52-4f03-411c-891c-78a828956cdb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CompressorSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_CompressorDefaultParameters;	
+
+	//pumps
+	stPU251DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU251 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU251DefaultParameters);;
+
+	//valves
+	stRV251DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);		
+	RV251 : FB_MixingValve := (ST_DefaultParameters := stRV251DefaultParameters);
+	WMZ251 : FB_MollineC3HeatCounter();
+		
+	//internal variables
+	bSetStatusOn_PU251 : BOOL;
+	bSetStatusOn_RV251 : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+PU251.GetState_Profibus();
+PU251(bSetStatusOnAutomatic := bSetStatusOn_PU251,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 70,
+	nControlModeAutomatic := 0);
+PU251.SetState_Profibus();
+
+//external temperature should be measured with external sensor after putting sensor into supply pipe
+RV251.GetState_AI();
+RV251(bSetStatusOnAutomatic := bSetStatusOn_RV251,
+	fSetPointAutomatic := fSetPoint-5,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 2,
+	fTemperatureExternal := PU251.fTemperatureInternal);
+RV251.SetState_AO();
+
+WMZ251(aHeatCounterTelegramm := Telegramm_WZ_Druckluftkompressor);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{a50d96bf-b53c-410c-87ec-21ce553724aa}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := PU251.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{95b8175c-5301-41c1-a171-418f9517d262}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU251 := TRUE;
+
+IF PU251.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{1c464285-ee40-45d5-a501-217e65b5dfe4}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU251 := FALSE;
+
+IF NOT PU251.bStatusOn THEN
+	bSetStatusOn_RV251 := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{4fad2cc8-7e83-4f5b-b8ff-1f31a747421b}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV251 := TRUE;
+bRampUpFinished := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{bcfed1d8-5bc9-4091-8c64-01376c2fe2e2}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{d085a239-6d40-43a4-b7c0-974005529a48}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU251.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{83ed2a3d-e742-4d4a-be9e-367c734d4463}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_CompressorSystem">
+      <LineId Id="31" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="4" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="41" Count="8" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.CheckError">
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.SetState">
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CompressorSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

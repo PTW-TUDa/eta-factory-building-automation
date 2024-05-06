@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CondensingBoilerSystem" Id="{4ea81eb2-294a-4a5e-96a7-bc4244c6fcae}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CondensingBoilerSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_CondensingBoilerDefaultParameters;
+
+	//condensing boiler
+	CondensingBoiler : FB_CondensingBoiler;
+	
+	// timer for condensing boiler
+	bStartTimer_CondensingBoiler : BOOL;
+	Timer_CondensingBoiler : TON;
+	
+	//valves
+	ST_SV331DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);			
+	SV331 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV331DefaultParameters);
+	RV331 : FB_MixingValve := (ST_DefaultParameters := ST_RV331DefaultParameters);	
+	
+	//heat counters
+	WMZ331 : FB_MollineC3HeatCounter;
+	
+	//internal variables
+	bSetStatusOn_CondensingBoiler : BOOL;
+	bSetStatusOn_SV331 : BOOL;
+	bStatusOn_SV331 : BOOL;
+	bSetStatusOn_RV331 : BOOL;
+	bStatusOn_RV331 : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+Timer_CondensingBoiler(IN := bStartTimer_CondensingBoiler,
+	PT := T#120S);
+
+CondensingBoiler.GetState();
+CondensingBoiler(bSetStatusOnAutomatic := bSetStatusOn_CondensingBoiler,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint);
+CondensingBoiler.SetState();
+
+SV331.GetState_BI();
+SV331(bSetStatusOnAutomatic := bSetStatusOn_SV331,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV331.SetState_BO();
+
+RV331.GetState_AI();
+RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+RV331.SetState_AO();
+
+WMZ331(aHeatCounterTelegramm := Telegramm_WZ_Brennwerttherme);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{aa46f833-0868-4c08-bf1e-1e375947cd52}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method because condensing boiler has no feedback signal]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{89c73f92-8b51-41f6-8362-a0e75414aef8}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_CondensingBoiler := TRUE;
+bSwitchToWorking := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{f4498be3-ce38-4ec5-8af6-38d778115c09}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_CondensingBoiler := FALSE;
+bStartTimer_CondensingBoiler := TRUE;
+
+IF Timer_CondensingBoiler.Q THEN
+	bSetStatusOn_SV331 := FALSE;
+	bSetStatusOn_RV331 := FALSE;
+	bStartTimer_CondensingBoiler := FALSE;
+	bRampDownFinished := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{07b676af-72cc-493f-bd50-f12fd9247171}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV331 := TRUE;
+bSetStatusOn_RV331 := TRUE;
+bStartTimer_CondensingBoiler := TRUE;
+
+IF Timer_CondensingBoiler.Q THEN
+	bStartTimer_CondensingBoiler := TRUE;
+	bStartTimer_CondensingBoiler := FALSE;
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{f965b277-8513-4b0c-b7ab-3300e3195be6}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{89d56525-651c-4f36-9363-7c8b8df2e26d}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := WMZ331.fFeedTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{e08c068f-6841-4dc4-9eef-48381b4cb913}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_CondensingBoilerSystem">
+      <LineId Id="9" Count="0" />
+      <LineId Id="107" Count="1" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="40" Count="2" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="50" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.RampUp">
+      <LineId Id="8" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="24" Count="2" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.SetSetPointLimits">
+      <LineId Id="11" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CondensingBoilerSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

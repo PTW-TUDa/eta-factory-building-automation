@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_HeatingNetworkHighTemperatureControl" Id="{62265abc-da42-46bc-b58c-32abc31e7390}">
+    <Declaration><![CDATA[TYPE ST_HeatingNetworkHighTemperatureControl :
+STRUCT
+	fFeedTemperature : REAL;
+	bAlgorithmPermission : BOOL;
+	bSetStatusOn_CHP1 : BOOL;
+	bSetStatusOn_CHP2 : BOOL;
+	bSetStatusOn_CondensingBoiler : BOOL;
+	bSetStatusOn_StaticHeating : BOOL;
+	bSetStatusOn_VSIStorage : BOOL;
+	bLoading_VSISystem : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

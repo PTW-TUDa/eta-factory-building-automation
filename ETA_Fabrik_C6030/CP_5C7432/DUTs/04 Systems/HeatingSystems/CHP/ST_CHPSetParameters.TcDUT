@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CHPSetParameters" Id="{f3c73aab-71c9-4430-ab27-b195e479a560}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_CHPSetParameters :
+STRUCT
+	nControlModeAlgorithm : E_CHPControlMode;
+	nControlModeManual : E_CHPControlMode;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

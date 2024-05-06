@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CoolingNetworkControl" Id="{2ebe9d47-d36e-4403-85b0-0b683a1ea972}">
+    <Declaration><![CDATA[TYPE ST_CoolingNetworkControl :
+STRUCT
+	fFeedTemperature : REAL;
+	bAlgorithmPermission : BOOL;
+	bSetStatusOn_eChiller : BOOL;
+	bSetStatusOn_HVFASystem : BOOL;
+	bLoading_HVFASystem : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

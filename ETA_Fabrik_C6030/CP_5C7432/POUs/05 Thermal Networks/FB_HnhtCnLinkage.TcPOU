@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HnhtCnLinkage" Id="{dda8ef66-5894-40a8-a8ba-58cd641df7f0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HnhtCnLinkage
+VAR_INPUT	
+	//control struct for hnht cn linkage
+	controlAutomatic : ST_HnhtCnLinkageControl;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//systems
+	VentilationSystem : FB_VentilationSystem;
+	
+	//internal variables
+	bAlgorithmPermission : BOOL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bAlgorithmPermission := controlAutomatic.bAlgorithmPermission_HNHT AND controlAutomatic.bAlgorithmPermission_CN;
+
+//ventilation system has its own controller, only valves are controlled
+VentilationSystem(bSetStatusOnAutomatic := TRUE,
+	fSetPointAutomatic := 0,
+	bAlgorithmPermission := bAlgorithmPermission,
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HnhtCnLinkage">
+      <LineId Id="9" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="MAIN" Id="{f4373c39-f5a7-4799-b8f8-e268e2a0cb7c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	init_done		: BOOL := FALSE;
+	
+	//strategy controller
+	Strategy : FB_StrategyController;
+	//Strategy : FB_Strategycontroller_Conventional;
+	//Strategy : FB_Strategycontroller_NoStorages;
+	
+	//thermal networks
+	CN : FB_CoolingNetwork;
+	HNLT_CN : FB_HnltCnLinkage;
+	HNHT_CN : FB_HnhtCnLinkage;
+	HNLT : FB_HeatingNetworkLowTemperature;
+	HNHT_HNLT : FB_HnhtHnltLinkage;
+	HNHT : FB_HeatingNetworkHighTemperature;
+	PCM_Testbed : FB_PCM_Testbed;
+	
+	//ambient state
+	Ambient : FB_Ambient;
+	LowVoltageMainDistribution : FB_LowVoltageMainDistribution;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//strategy controller
+Strategy(ambientState := Ambient.localState,
+	cnState := CN.localState,
+	hnltState := HNLT.localState,
+	hnhtState := HNHT.localState);
+
+//ambient state
+Ambient();
+LowVoltageMainDistribution();
+	
+//thermal networks
+CN(controlAutomatic := Strategy.cnControl);
+
+HNLT_CN(controlAutomatic := Strategy.hnltCnLinkageControl,
+	stAmbientState := Ambient.localState);
+	
+HNHT_CN(controlAutomatic := Strategy.hnhtCnLinkageControl);
+	
+HNLT(ambientState := Ambient.localState,
+	controlAutomatic := Strategy.hnltControl);
+	
+HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
+	
+HNHT(controlAutomatic := Strategy.hnhtControl,
+	stAmbientState := Ambient.localState);
+	
+PCM_Testbed();
+
+//Current implementation
+
+(* --------------------------------------------------------------------------------------------------------------------------- *)
+
+(* Analog- & Binaer Eingaenge - LESEN *)
+(* P_Lesen; *)
+
+	(* BUS Kommunikation - LESEN *)
+
+(* --------------------------------------------------------------------------------------------------------------------------- *)
+(* Starte Sub-Applikationen *)
+
+
+	(*Initialisierung des Systems*)
+	(*Einmalige Initialisierung der Parameter bei Hochlauf*)
+	IF(NOT init_done) THEN
+		Initialisierungsroutine();
+		init_done := TRUE;
+	END_IF;
+
+	(* Allgemeine Parameter (Systemszeit, usw.) *)
+	GA_Allgemein();
+
+	(* Beleuchtung *)
+	Beleuchtung();]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="116" Count="3" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="120" Count="2" />
+      <LineId Id="270" Count="0" />
+      <LineId Id="123" Count="4" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="217" Count="1" />
+      <LineId Id="128" Count="1" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="221" Count="1" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="295" Count="1" />
+      <LineId Id="77" Count="1" />
+      <LineId Id="4" Count="20" />
+      <LineId Id="37" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

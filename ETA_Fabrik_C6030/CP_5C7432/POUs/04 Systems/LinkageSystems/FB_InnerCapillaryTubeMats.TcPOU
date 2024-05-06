@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_InnerCapillaryTubeMats" Id="{46ec983e-b705-43aa-aa03-31694ea1c351}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_InnerCapillaryTubeMats EXTENDS FB_SystemContinous
+VAR_INPUT
+	bHeatingModeAutomatic : BOOL; //control mode: 0 = heating mode, 1 = cooling mode
+	stAmbientState : ST_AmbientState;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_InnerCapillaryTubeMatsSetParameters;
+
+	//default parameters
+	localDefaultParameters : ST_InnerCapillaryTubeMatsDefaultParameters;	
+	
+	//pumps
+	stPU405DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	stPU500DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (fMaximumVolumeFlowRate := 0.0083, fNominalVolumeFlowRate := 0.0019, fMaximumPressureDifference := 145000);
+	
+	PU405 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU405DefaultParameters);
+	PU500 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU500DefaultParameters);	
+	
+	//valves
+	stSV_CN_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stSV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stSV505DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stRV500DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	stRV5xxDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	
+	SV_CN : FB_DiscreteValve := (ST_DefaultParameters := stSV_CN_DefaultParameters); //heating network supply
+	SV_HNLT : FB_DiscreteValve := (ST_DefaultParameters := stSV_HNLT_DefaultParameters); //heating entwork return
+	SV505 : FB_DiscreteValve := (ST_DefaultParameters := stSV505DefaultParameters); //PWT2
+	RV500 : FB_MixingValve := (ST_DefaultParameters := stRV500DefaultParameters);
+	RV541 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall east 1
+	RV542 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall east 2
+	RV543 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall east 3
+	RV551 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling east 1
+	RV552 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling east 2
+	RV553 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling east 3
+	RV561 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall west 1
+	RV562 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall west 2
+	RV563 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //wall west 3
+	RV571 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling west 1
+	RV572 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling west 2
+	RV573 : FB_MixingValve := (ST_DefaultParameters := stRV5xxDefaultParameters); //ceiling west 3
+	
+	//sensors
+	PS500 : FB_PressureSensor;
+	TS541 : FB_TemperatureSensor; //wall east section 1
+	TS542 : FB_TemperatureSensor; //wall east section 2
+	TS543 : FB_TemperatureSensor; //wall east section 3
+	TS551 : FB_TemperatureSensor; //ceiling east section 1
+	TS552 : FB_TemperatureSensor; //ceiling east section 2
+	TS553 : FB_TemperatureSensor; //ceiling east section 3
+	TS561 : FB_TemperatureSensor; //wall west section 1
+	TS562 : FB_TemperatureSensor; //wall west section 2
+	TS563 : FB_TemperatureSensor; //wall west section 3
+	TS571 : FB_TemperatureSensor; //ceiling west section 1
+	TS572 : FB_TemperatureSensor; //ceiling west section 2
+	TS573 : FB_TemperatureSensor; //ceiling west section 3
+	
+	WMZ405 : FB_MollineEHeatCounter;
+	
+	//internal variables
+	bHeatingMode 			: BOOL;
+	bSetStatusOn_PU405 		: BOOL;
+	bSetStatusOn_PU500 		: BOOL;
+	bSetStatusOn_SV_HNLT	: BOOL;
+	bSetStatusOn_SV_CN		: BOOL;
+	bSetStatusOn_RV500 		: BOOL;
+	fSetPoint_RV500 		: REAL;
+	nControlMode_RV500 		: E_MixingValveControlMode; 	
+	
+	
+	//characteristic curves and controllers
+	CharacteristicCurve 			: FB_CTRL_FLOW_TEMP_SETPOINT_GEN;
+	CharacteristicCurve_Parameters	: ST_CTRL_FLOW_TEMP_SETPOINT_GEN_PARAMS;
+	
+	//triggers
+	SwitchToHeating : R_TRIG;
+	SwitchToCooling : F_TRIG;
+	bFinishedSwitchMode : BOOL := TRUE;
+	
+	//clock
+	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
+	Clock : FB_Clock := (ST_DefaultParameters := stDefaultParameters_Clock);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//check if heating mode has switched
+SelectLocalControlMode();
+LocalControl();
+SwitchToHeating(CLK := bHeatingMode);
+SwitchToCooling(CLK := bHeatingMode);
+
+//MAIN must be called before SwitchMode to prevent pump signal chattering (signal is written after SwitchMode function), SwitchMode may only be called if system is on
+MAIN();
+
+//disrupt calling SystemFlowControl via MAIN() when mode is switched and call SwitchMode()
+IF ((SwitchToHeating.Q OR SwitchToCooling.Q) OR NOT bFinishedSwitchMode) AND bSetStatusOn THEN
+	SwitchMode(bSwitchToHeating := bHeatingMode,
+		bFinishedSwitchMode => bFinishedSwitchMode);
+END_IF;
+
+//clock for night setback
+Clock();
+
+//pumps
+PU405.GetState_Profibus();
+PU405(bSetStatusOnAutomatic := bSetStatusOn_PU405,
+	fSetPointAutomatic := 50,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU405.SetState_Profibus();
+
+PU500.GetState_Profibus();
+PU500(bSetStatusOnAutomatic := bSetStatusOn_PU500,
+	fSetPointAutomatic := 50,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU500.SetState_Profibus();
+
+//valves in thermal networks
+RV500.GetState_AI();
+RV500(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint_RV500,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU500.fTemperatureInternal,
+	nControlModeAutomatic := nControlMode_RV500);
+RV500.SetState_AO();
+
+SV_CN.GetState_BI();
+SV_CN(bSetStatusOnAutomatic := bSetStatusOn_SV_CN,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV_CN.SetState_BO();
+
+SV_HNLT.GetState_BI();
+SV_HNLT(bSetStatusOnAutomatic := bSetStatusOn_SV_HNLT,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV_HNLT.SetState_BO();
+
+//PWT2 is always closed
+SV505.GetState_BI();
+SV505(bSetStatusOnAutomatic := FALSE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV505.SetState_BO();
+
+//control valves in capillary tube mats
+RV541.GetState_AI();
+RV541(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV541.SetState_AO();
+
+RV542.GetState_AI();
+RV542(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV542.SetState_AO();
+
+RV543.GetState_AI();
+RV543(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV543.SetState_AO();
+
+RV551.GetState_AI();
+RV551(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV551.SetState_AO();
+
+RV552.GetState_AI();
+RV552(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV552.SetState_AO();
+
+RV553.GetState_AI();
+RV553(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV553.SetState_AO();
+
+RV561.GetState_AI();
+RV561(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV561.SetState_AO();
+
+RV562.GetState_AI();
+RV562(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV562.SetState_AO();
+
+RV563.GetState_AI();
+RV563(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV563.SetState_AO();
+
+RV571.GetState_AI();
+RV571(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV571.SetState_AO();
+
+RV572.GetState_AI();
+RV572(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV572.SetState_AO();
+
+RV573.GetState_AI();
+RV573(bSetStatusOnAutomatic := bSetStatusOn_RV500,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := stAmbientState.fHallTemperature,
+	nControlModeAutomatic := nControlMode_RV500);
+RV573.SetState_AO();
+
+//sensors
+PS500();
+PS500.GetState_AI();
+TS541();
+TS541.GetState_AI();
+TS542();
+TS542.GetState_AI();
+TS543();
+TS543.GetState_AI();
+TS551();
+TS551.GetState_AI();
+TS552();
+TS552.GetState_AI();
+TS553();
+TS553.GetState_AI();
+TS561();
+TS561.GetState_AI();
+TS562();
+TS562.GetState_AI();
+TS563();
+TS563.GetState_AI();
+TS571();
+TS571.GetState_AI();
+TS572();
+TS572.GetState_AI();
+TS573();
+TS573.GetState_AI();
+
+WMZ405(aHeatCounterTelegramm := aTelegramm_WMZ405);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{d850ff84-47a8-4def-9446-1326d64d9fdc}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+	bError_PU405 : BOOL;
+	bError_PU500 : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check pumps for errors
+bError_PU405 := PU405.bError;
+bError_PU500 := PU500.bError;
+
+bError := bError_PU405 OR bError_PU500;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{4d780eb0-c994-49a4-a3af-4cc20bccd6d0}">
+      <Declaration><![CDATA[METHOD PRIVATE LocalControl : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CharacteristicCurve_Parameters.fAmbientTempMax := localDefaultParameters.aLimitsAmbientTemperature[2];
+CharacteristicCurve_Parameters.fAmbientTempMin := localDefaultParameters.aLimitsAmbientTemperature[1];
+CharacteristicCurve_Parameters.fForeRunTempMax := localDefaultParameters.aLimitsFeedTemperature[1];
+CharacteristicCurve_Parameters.fForeRunTempMin := localDefaultParameters.aLimitsFeedTemperature[2];
+CharacteristicCurve_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+CharacteristicCurve_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+CharacteristicCurve(fAmbientTemperature := stAmbientState.fOutsideTemperature,
+	fOffsetTemperature := 0,
+	bLimitFlowTemp := TRUE,
+	stParams := CharacteristicCurve_Parameters);
+fSetPoint_RV500 := LREAL_TO_REAL(CharacteristicCurve.fOut);
+	
+IF bHeatingMode THEN
+	nControlMode_RV500 := 1;
+ELSE
+	nControlMode_RV500 := 2;	
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{e9dd841f-7be7-4729-ab2a-e0444d4793cf}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV500 := TRUE;
+bSetStatusOn_PU405 := TRUE;
+bSetStatusOn_PU500 := TRUE;
+
+IF PU405.bStatusOn AND PU500.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{a3bbb3df-240d-4274-b5c7-44e29ede78a1}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU405 := FALSE;
+bSetStatusOn_PU500 := FALSE;
+bSetStatusOn_RV500 := FALSE;
+bSetStatusOn_SV_HNLT := FALSE;
+bSetStatusOn_SV_CN := FALSE;
+	
+IF SV_HNLT.localState.nPosition=2 AND SV_HNLT.localState.nPosition=2 AND SV_CN.localState.nPosition=2 AND SV_CN.localState.nPosition=2 THEN
+	bRampDownFinished := TRUE;		
+END_IF	
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{9c85ac6b-2d18-4fd9-84e6-e871c2d86ae0}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bHeatingMode THEN
+	bSetStatusOn_SV_HNLT := TRUE;
+	bSetStatusOn_SV_CN := FALSE;
+	IF SV_HNLT.localState.nPosition=3 AND SV_HNLT.localState.nPosition=3 AND SV_CN.localState.nPosition=2 AND SV_CN.localState.nPosition=2 THEN
+		bRampUpFinished := TRUE;		
+	END_IF	
+ELSE
+	bSetStatusOn_SV_HNLT := FALSE;
+	bSetStatusOn_SV_CN := TRUE;
+	IF SV_HNLT.localState.nPosition=2 AND SV_HNLT.localState.nPosition=2 AND SV_CN.localState.nPosition=3 AND SV_CN.localState.nPosition=3 THEN
+		bRampUpFinished := TRUE;		
+	END_IF	
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{c6246abd-6c96-45f1-8bcd-105c886c486e}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	bHeatingMode := localSetParameters.bHeatingModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	bHeatingMode := localSetParameters.bHeatingModeAlgorithm;
+ELSE
+	bHeatingMode := bHeatingModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{5882d36d-816a-4b38-92ac-1cb406913894}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{e5c5b4f3-b66a-4d74-b541-d34937c041d4}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := stAmbientState.fHallTemperature;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchMode" Id="{454a6e9c-2859-4a72-a2fb-db3e1e6f3e67}">
+      <Declaration><![CDATA[METHOD PRIVATE SwitchMode : BOOL
+VAR_INPUT
+	bSwitchToHeating : BOOL; //if false switch to cooling
+END_VAR
+VAR_OUTPUT
+	bFinishedSwitchMode : BOOL := FALSE;
+END_VAR
+VAR_INST
+	bRampDownFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check system state
+IF bRampDownFinished THEN
+	IF bSwitchToHeating THEN
+		//close valve in cooling network
+		bSetStatusOn_SV_CN := FALSE;	
+		IF SV_CN.localState.nPosition=2 AND SV_CN.localState.nPosition=2 THEN
+			bSetStatusOn_SV_HNLT := TRUE;	
+		END_IF
+
+		IF SV_HNLT.localState.nPosition=3 AND SV_HNLT.localState.nPosition=3 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PU405 := TRUE;
+		END_IF
+		
+	ELSE
+		//close valve in heating network
+		bSetStatusOn_SV_HNLT := FALSE;
+		//wait until valves in heating network are closed before opening valves in cooling network
+		IF SV_HNLT.localState.nPosition=2 AND SV_HNLT.localState.nPosition=2 THEN
+			bSetStatusOn_SV_CN := TRUE;
+		END_IF
+		IF SV_CN.localState.nPosition=3 AND SV_CN.localState.nPosition=3 THEN
+			//reset instant variable and switch on pump
+			bRampDownFinished := FALSE;			
+			bFinishedSwitchMode := TRUE;
+			bSetStatusOn_PU405 := TRUE;	
+		END_IF
+	END_IF
+ELSE
+	bSetStatusOn_PU405 := FALSE;
+	IF NOT PU405.bStatusOn THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{a6a11e5f-819e-494c-8b28-af1733451e25}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_InnerCapillaryTubeMats">
+      <LineId Id="1004" Count="197" />
+      <LineId Id="384" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.CheckError">
+      <LineId Id="9" Count="2" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.LocalControl">
+      <LineId Id="114" Count="0" />
+      <LineId Id="120" Count="4" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="139" Count="3" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="150" Count="1" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.Operational">
+      <LineId Id="14" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.RampDown">
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="19" Count="3" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.RampUp">
+      <LineId Id="15" Count="1" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="32" Count="2" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="17" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.SelectLocalControlMode">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.SetSetPointLimits">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.SwitchMode">
+      <LineId Id="5" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="113" Count="1" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="104" Count="2" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="91" Count="2" />
+      <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

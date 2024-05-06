@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{c418c312-df88-4afd-ab48-3e2ddb9d5d29}</ProjectGuid>
+    <Name>CP_5C7432</Name>
+    <Application>{82ad157e-6b8c-4bdd-b622-4902a18cb4c4}</Application>
+    <TypeSystem>{4904645f-3bc6-446d-bbe2-a86a8f245703}</TypeSystem>
+    <Implicit_Task_Info>{192fc6c2-7207-43e5-b679-2031f2b9b632}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{a47a1c32-21a6-41dc-84e3-e7953171e45d}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{15a4e7ce-97e8-4daf-845d-650b0befe7e9}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{c16575fc-6e5e-4ba6-99ed-5226ea66acce}</LibraryReferences>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="DUTs" />
+    <Folder Include="DUTs\03 Storages\BufferStorage" />
+    <Folder Include="DUTs\03 Storages\HVFAStorage" />
+    <Folder Include="DUTs\03 Storages\VSIStorage" />
+    <Folder Include="DUTs\04 Systems" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\HNHT" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\HNLT" />
+    <Folder Include="DUTs\04 Systems\ConsumerSystems\CN" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\eChiller" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\AbsorptionChillerSystem" />
+    <Folder Include="DUTs\04 Systems\CoolingSystems\OuterCapillaryTubeMats" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\CHP" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler" />
+    <Folder Include="DUTs\04 Systems\HeatingSystems\HeatPump" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\Ventilation" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating" />
+    <Folder Include="DUTs\04 Systems\StorageSystems" />
+    <Folder Include="DUTs\05 Thermal Networks" />
+    <Folder Include="DUTs\06 Strategy" />
+    <Folder Include="DUTs\08 Lighting\Einzelanlagen" />
+    <Folder Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29" />
+    <Folder Include="DUTs\08 Lighting\Einzelanlagen\RGBW-Kanal" />
+    <Folder Include="DUTs\08 Lighting\Library" />
+    <Folder Include="DUTs\08 Lighting\Library\Allgemein" />
+    <Folder Include="DUTs\08 Lighting\Sonstige" />
+    <Folder Include="DUTs\08 Lighting\Systeme" />
+    <Folder Include="DUTs\08 Lighting\Systeme\Beleuchtung %28Bel%29" />
+    <Folder Include="DUTs\07 Utilities" />
+    <Folder Include="DUTs\08 Lighting" />
+    <Folder Include="DUTs\03 Storages" />
+    <Folder Include="GVLs" />
+    <Folder Include="GVLs\Lighting %28from old implementation%29" />
+    <Folder Include="POUs" />
+    <Folder Include="POUs\01 Actuators" />
+    <Folder Include="POUs\01 Actuators\ConsumerUnits" />
+    <Folder Include="POUs\01 Actuators\CoolingUnits" />
+    <Folder Include="POUs\01 Actuators\HeatingUnits" />
+    <Folder Include="POUs\01 Actuators\Pumps" />
+    <Folder Include="POUs\02 Sensors" />
+    <Folder Include="POUs\03 Storages" />
+    <Folder Include="POUs\04 Systems" />
+    <Folder Include="POUs\04 Systems\ConsumerSystems" />
+    <Folder Include="POUs\04 Systems\ConsumerSystems\HNHT" />
+    <Folder Include="POUs\04 Systems\ConsumerSystems\HNLT" />
+    <Folder Include="POUs\04 Systems\ConsumerSystems\CN" />
+    <Folder Include="POUs\04 Systems\CoolingSystems" />
+    <Folder Include="POUs\04 Systems\HeatingSystems" />
+    <Folder Include="POUs\04 Systems\LinkageSystems" />
+    <Folder Include="POUs\04 Systems\StorageSystems" />
+    <Folder Include="POUs\05 Thermal Networks" />
+    <Folder Include="POUs\06 Strategy" />
+    <Folder Include="POUs\08 Lighting\Einzelanlagen" />
+    <Folder Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29" />
+    <Folder Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW" />
+    <Folder Include="POUs\08 Lighting\Library %28allgemein%29" />
+    <Folder Include="POUs\08 Lighting\Systeme" />
+    <Folder Include="POUs\08 Lighting\Systeme\Sonstiges" />
+    <Folder Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung" />
+    <Folder Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen" />
+    <Folder Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle" />
+    <Folder Include="POUs\07 Utilities" />
+    <Folder Include="POUs\08 Lighting" />
+    <Folder Include="Visualizations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DUTs\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\VSIStorage\ST_VSIStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\VSIStorage\ST_VSIStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\CN\ST_CN_CentralMachineCoolingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\CN\ST_FlywheelMassStorageDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_AnnealingOvenExhaustGasDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_HNHT_CentralMachineHeatingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNHT\ST_StaticHeatingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_AnnealingOvenSealingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_DCSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\ConsumerSystems\HNLT\ST_CompressorDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\CoolingSystems\AbsorptionChillerSystem\ST_AbsorptionChillerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\CoolingSystems\eChiller\ST_eChillerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\CoolingSystems\eChiller\ST_eChillerState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\CoolingSystems\OuterCapillaryTubeMats\ST_OuterCapillaryTubeMatsDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\E_CHPControlMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CHP\ST_CHPState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler\ST_CondensingBoilerState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1\ST_HeatExchanger1DefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\StorageSystems\ST_ActiveStorageSystemSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\StorageSystems\ST_ActiveStorageSystemState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_AmbientState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_CoolingNetworkControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_HeatingNetworkHighTemperatureControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnhtHnltLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnltCnLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_HeatingNetworkLowTemperatureControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_HnhtCnLinkageControl.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\05 Thermal Networks\ST_ThermalNetworkState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\06 Strategy\ST_StrategyDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\06 Strategy\ST_StrategySetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\06 Strategy\ST_StrategyState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\07 Utilities\ST_OPC_UANode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\07 Utilities\ST_OPC_UA_Server.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Lampen_Monitoring.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Parameter.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_RGBW_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Stellwert.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\ST_Bel_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\RGBW-Kanal\ST_RGBW_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Einzelanlagen\RGBW-Kanal\ST_RGBW_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Steuerung_auto_manu_BOOL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Steuerung_auto_manu_opti_BOOL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Steuerung_auto_manu_opti_REAL.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Steuerung_auto_manu_opti_SINT.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Steuerung_auto_manu_String.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Zustand_Netze_Anford.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Library\Allgemein\ST_Zustand_Netz_Anford.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Sonstige\ST_GA_global.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Sonstige\ST_Initialisierungsroutine.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Parameter.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Stellwert.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Steuerung.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\08 Lighting\Systeme\Beleuchtung %28Bel%29\ST_System_Bel_Zustand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\GlobalVariables.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Con_Bel.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Global_Variables.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\Lighting %28from old implementation%29\Variablen_Konfiguration.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\M_Bus.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MBus_WZaehler_Task.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MBus_Zaehler_Task.TcTTO" />
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_AnnealingOven.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_EMAG_GT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_DC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_MAFAC_Java.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_FlywheelMassStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\ConsumerUnits\FB_BvL_CleaningSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\CoolingUnits\FB_eChiller.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CHP.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_HeatPump.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CondensingBoiler.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\01 Actuators\Pumps\FB_Pump2Point.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02 Sensors\FB_LowVoltageMainDistribution.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\02 Sensors\FB_WeatherStation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Storages\FB_BufferStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Storages\FB_VSIStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Storages\FB_HVFAStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\CN\FB_CN_CentralMachineCooling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\CN\FB_FlywheelMassStorageSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNHT\FB_AnnealingOvenExhaustGasSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNHT\FB_HNHT_CentralMachineHeating.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNHT\FB_StaticHeatingSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNLT\FB_AnnealingOvenSealingSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNLT\FB_DCSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\ConsumerSystems\HNLT\FB_CompressorSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_AbsorptionChillerSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_eChillerSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_OuterCapillaryTubeMats.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\HeatingSystems\FB_CHPSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\HeatingSystems\FB_CondensingBoilerSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1System.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_CN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_HNHT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_InnerCapillaryTubeMats.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_UnderfloorHeatingSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_VentilationSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\StorageSystems\FB_HVFAStorageSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\StorageSystems\FB_VSIStorageSystem.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_Ambient.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_CoolingNetwork.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkHighTemperature.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtCnLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnhtHnltLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_PCM_Testbed.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\05 Thermal Networks\FB_HeatingNetworkLowTemperature.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_StrategyController.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_StrategyController_NoStorages.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\06 Strategy\FB_StrategyController_Conventional.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\FB_OPC_UA_Read.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_Einzel_farbe_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW\FB_Bel_RGBW_Sued.TcPOU">
+      <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Filter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Input.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Lichtsensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Monitoring.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Output.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Steuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Taster_Steuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\FB_Bel_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Lesen.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\F_Bel_Daten_Schreiben.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\FB_GA_Allgemein.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\FB_Initialisierungsroutine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Library %28allgemein%29\FB_SetResetFallTrigger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sensorik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Außen\FB_System_BelAu_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Ablaufsteuerung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Logik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Regelung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sensorik.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Sollwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Stellwertscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\Beleuchtung Halle\FB_System_BelHa_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\FB_Beleuchtung.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\08 Lighting\Systeme\Sonstiges\Beleuchtung\FB_System_Bel_Zustandscheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU" />
+    <Compile Include="POUs\MBUS_WZaehler.TcPOU" />
+    <Compile Include="POUs\MBUS_WZaehler2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MBUS_WZaehler_Basement.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MBUS_Zaehler.TcPOU" />
+    <Compile Include="Standard.TcTTO" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="AutomationBaseClasses">
+      <DefaultResolution>AutomationBaseClasses, * (PTW TU Darmstadt)</DefaultResolution>
+      <Namespace>AutomationBaseClasses</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_ControllerToolbox">
+      <DefaultResolution>Tc2_ControllerToolbox, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_ControllerToolbox</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Coupler">
+      <DefaultResolution>Tc2_Coupler, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Coupler</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_DALI">
+      <DefaultResolution>Tc2_DALI, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_DALI</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_EIB">
+      <DefaultResolution>Tc2_EIB, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_EIB</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_EtherCAT">
+      <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_EtherCAT</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_IoFunctions">
+      <DefaultResolution>Tc2_IoFunctions, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_IoFunctions</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_LON">
+      <DefaultResolution>Tc2_LON, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_LON</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_MBus">
+      <DefaultResolution>Tc2_MBus, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MBus</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_ModbusRTU">
+      <DefaultResolution>Tc2_ModbusRTU, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_ModbusRTU</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_ModbusSrv">
+      <DefaultResolution>Tc2_ModbusSrv, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_ModbusSrv</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_SystemCX">
+      <DefaultResolution>Tc2_SystemCX, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_SystemCX</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_PLCopen_OpcUa">
+      <DefaultResolution>Tc3_PLCopen_OpcUa, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_PLCopen_OpcUa</Namespace>
+      <Parameters>
+        <Parameter ListName="PARAM" xmlns="">
+          <Key>NMAXNODEIDSINLIST</Key>
+          <Value>20</Value>
+        </Parameter>
+      </Parameters>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CP_5C7432.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+        <v>{A3BBA713-63D7-4de6-BEC2-E3BAAD8789F8}</v>
+        <o>
+          <v n="Name">"{A3BBA713-63D7-4de6-BEC2-E3BAAD8789F8}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{C70B7845-2722-4a9b-A0EA-88C877A4B36F}</v>
+        <o>
+          <v n="Name">"{C70B7845-2722-4a9b-A0EA-88C877A4B36F}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String">
+            <v>EnableMaxAuthenticationTrials</v>
+            <v>true</v>
+            <v>EnableMaxTimeOfInactivity</v>
+            <v>true</v>
+            <v>UserList</v>
+            <o t="UserList">
+              <a n="Users" cet="User">
+                <o>
+                  <v n="Id">{ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8}</v>
+                  <v n="Name">"Owner"</v>
+                  <v n="FullName">""</v>
+                  <v n="Description">""</v>
+                  <v n="Active">true</v>
+                </o>
+              </a>
+            </o>
+            <v>MaxTimeOfInactivity</v>
+            <v>10</v>
+            <v>MaxAuthenticationTrials</v>
+            <v>3</v>
+            <v>EnableNewHashFormat</v>
+            <v>false</v>
+            <v>GroupList</v>
+            <o t="GroupList">
+              <a n="Groups" cet="Group">
+                <o>
+                  <v n="Id">{c9731eba-2cc4-4b44-a249-de3ff18f03ba}</v>
+                  <v n="Name">"Everyone"</v>
+                  <v n="Description">""</v>
+                  <v n="IsEveryoneGroup">true</v>
+                  <v n="IsOwnerGroup">false</v>
+                  <l n="UserMembers" t="ArrayList" cet="Guid">
+                    <v>ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8</v>
+                  </l>
+                  <l n="GroupMembers" t="ArrayList" />
+                </o>
+                <o>
+                  <v n="Id">{f2311ba0-826c-47c8-b51a-a887dbd49e0d}</v>
+                  <v n="Name">"Owner"</v>
+                  <v n="Description">""</v>
+                  <v n="IsEveryoneGroup">false</v>
+                  <v n="IsOwnerGroup">true</v>
+                  <l n="UserMembers" t="ArrayList" cet="Guid">
+                    <v>ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8</v>
+                  </l>
+                  <l n="GroupMembers" t="ArrayList" />
+                </o>
+              </a>
+            </o>
+            <v>UserAuthentication</v>
+            <o t="UserAuthentication">
+              <d n="UserToPasswordHash" t="Hashtable" ckt="Guid" cvt="String">
+                <v>ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8</v>
+                <v>d41d8cd98f00b204e9800998ecf8427e</v>
+              </d>
+            </o>
+          </d>
+        </o>
+        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <o>
+          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="String">
+            <v>ActiveVisuProfile</v>
+            <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
+          </d>
+        </o>
+      </d>
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="ArrayList">System.Collections.ArrayList</Type>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Group">{daecd4be-1e2b-4335-a125-4a1ac83ea49f}</Type>
+          <Type n="GroupList">{bf4dffda-f055-446d-9d7a-5f126720896b}</Type>
+          <Type n="Guid">System.Guid</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="Int32">System.Int32</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+          <Type n="User">{cd83029e-13b0-491e-9e4b-921adda0d86b}</Type>
+          <Type n="UserAuthentication">{3635a671-97f5-41bb-9e29-0ebb9795975c}</Type>
+          <Type n="UserList">{9fe6b547-6bc8-4f11-b589-b517860c5891}</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_ThermalNetworkState" Id="{15252b33-8ce9-480c-912f-dd8875ac3141}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_ThermalNetworkState :
+STRUCT
+	fUpperTemperature : REAL;
+	fMidTemperature : REAL;
+	fLowerTemperature : REAL;
+	fUpperTemperature_ActiveStorage : REAL;
+	fLowerTemperature_ActiveStorage : REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

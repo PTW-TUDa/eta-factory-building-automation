@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <Task Name="MBus_WZaehler_Task" Id="{912c2718-af0e-4a4f-b942-ba48fc6bc5fc}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>6000</CycleTime>
+    <Priority>6</Priority>
+    <PouCall>
+      <Name>MBUS_WZaehler</Name>
+    </PouCall>
+    <PouCall>
+      <Name>MBUS_WZaehler2</Name>
+    </PouCall>
+    <PouCall>
+      <Name>MBUS_WZaehler_Basement</Name>
+    </PouCall>
+    <TaskFBGuid>{eee50afc-ffac-4450-a1ff-08ba49b3359c}</TaskFBGuid>
+    <Fb_init>{192e43c2-a8f4-4ab6-a73b-f62dcd05da73}</Fb_init>
+    <Fb_exit>{53c3005a-8123-4a0e-88c1-fcb9dd01bd8a}</Fb_exit>
+    <CycleUpdate>{8dd1d9c3-e2ae-4c90-8bd7-40085e81e41c}</CycleUpdate>
+    <PostCycleUpdate>{68080479-1dd0-484e-be6b-1caff15436a7}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

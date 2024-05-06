@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_AnnealingOvenExhaustGasDefaultParameters" Id="{3d349f3c-05fd-4709-a346-7409d675482d}">
+    <Declaration><![CDATA[TYPE ST_AnnealingOvenExhaustGasDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [0,85];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

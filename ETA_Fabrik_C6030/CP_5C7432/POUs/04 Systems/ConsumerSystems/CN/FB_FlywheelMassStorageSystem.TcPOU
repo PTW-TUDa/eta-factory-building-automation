@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_FlywheelMassStorageSystem" Id="{1f480121-6fb9-4e01-b9b4-cf25995cf5f0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_FlywheelMassStorageSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_FlywheelMassStorageDefaultParameters;	
+
+	//pumps
+	stPU191DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU191 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU191DefaultParameters);;
+
+	//valves
+	stSV191DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	SV191 : FB_DiscreteValve := (ST_DefaultParameters := stSV191DefaultParameters);
+	
+	//internal variables
+	bSetStatusOn_PU191 : BOOL;
+	bSetStatusOn_SV191 : BOOL;
+	
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+//use timer because valve has no feedback signal
+Timer(IN := bStartTimer,
+	PT := T#75S);
+
+SV191.GetState_BI();
+SV191(bSetStatusOnAutomatic := bSetStatusOn_SV191,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV191.SetState_BO();
+
+//pump controls return temperature
+PU191.GetState_Profibus();
+PU191(bSetStatusOnAutomatic := bSetStatusOn_PU191,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
+	nControlModeAutomatic := 3);
+PU191.SetState_Profibus();]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{78f9e2f0-0900-4107-96ee-83c45787b471}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := PU191.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{faa262e9-eff4-4762-9e95-8afa53ca8f0b}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU191 := TRUE;
+
+IF PU191.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{053d2b52-e122-4bc9-b468-206bf93d4d9a}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU191 := FALSE;
+
+IF NOT PU191.bStatusOn THEN
+	bSetStatusOn_SV191 := FALSE;
+	bStartTimer := TRUE;
+	IF Timer.Q THEN
+		bStartTimer := FALSE;
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{2a3903ad-bea7-46c8-a676-f0ae3f75aa8f}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV191 := TRUE;
+bStartTimer := TRUE;
+
+IF Timer.Q THEN
+	bStartTimer := FALSE;
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{cde5230d-3564-4f8f-a4cf-bb2ea6d99942}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF  PU191.nControlModeAutomatic = 3 THEN
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperatureDifference[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperatureDifference[2];
+ELSE
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{d3b6743e-eab0-437e-a6a0-7ffe5a901d58}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU191.localState.fTemperatureDifference;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'K';
+setPointState.sOperatingPointUnit := 'K';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{b6c9e5a2-9cff-41a2-bede-69a663b42e69}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_FlywheelMassStorageSystem">
+      <LineId Id="17" Count="0" />
+      <LineId Id="59" Count="2" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="18" Count="11" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.CheckError">
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.SetSetPointLimits">
+      <LineId Id="10" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.SetState">
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlywheelMassStorageSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

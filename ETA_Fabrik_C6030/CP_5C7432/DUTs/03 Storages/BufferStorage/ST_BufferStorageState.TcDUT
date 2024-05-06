@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_BufferStorageState" Id="{f1cfeddc-16fe-4dea-9294-ce50413afc83}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_BufferStorageState :
+STRUCT
+	fUpperTemperature 	: REAL;
+	fMidTemperature 	: REAL;
+	fLowerTemperature 	: REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

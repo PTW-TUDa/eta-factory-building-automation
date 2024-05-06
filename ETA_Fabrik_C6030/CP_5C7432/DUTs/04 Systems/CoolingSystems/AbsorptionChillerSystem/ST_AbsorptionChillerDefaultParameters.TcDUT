@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_AbsorptionChillerDefaultParameters" Id="{d6734cbc-2bed-4785-93a6-f9f7f511b043}">
+    <Declaration><![CDATA[TYPE ST_AbsorptionChillerDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [10,30];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

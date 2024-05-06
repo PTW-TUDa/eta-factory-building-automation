@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_StaticHeatingSystem" Id="{69e16bcb-42dd-4372-bea7-99920409561f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StaticHeatingSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	stAmbientState : ST_AmbientState;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_StaticHeatingDefaultParameters;	
+	
+	//pumps
+	stPU350DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters;
+	PU350 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU350DefaultParameters);	
+	
+	//valves
+	stRV350DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
+	RV350 : FB_MixingValve := (ST_DefaultParameters := stRV350DefaultParameters);
+	
+	//sensors
+	WMZ350 : FB_MollineEHeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PU350 		: BOOL;
+	bSetStatusOn_RV350 		: BOOL;
+	fSetPoint_Internal 		: REAL;	
+	
+	//characteristic curve
+	CharacteristicCurve 			: FB_CTRL_FLOW_TEMP_SETPOINT_GEN;
+	CharacteristicCurve_Parameters	: ST_CTRL_FLOW_TEMP_SETPOINT_GEN_PARAMS;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[LocalControl();
+fSetPointAutomatic := fSetPoint_Internal;
+MAIN();
+
+//pumps
+PU350.GetState_Profibus();
+PU350(bSetStatusOnAutomatic := bSetStatusOn_PU350,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU350.SetState_Profibus();
+
+//valves in thermal networks
+RV350.GetState_AI();
+RV350(bSetStatusOnAutomatic := bSetStatusOn_RV350,
+	fSetPointAutomatic := fSetPoint,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := PU350.fTemperatureInternal,
+	nControlModeAutomatic := 1);
+RV350.SetState_AO();
+
+WMZ350(aHeatCounterTelegramm := aTelegramm_WMZ350);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{e9d70e3b-4edd-41b2-aa43-bd07addbca60}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError :=  PU350.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{3ba7e21b-fc4f-4232-93ee-856c586a43e1}">
+      <Declaration><![CDATA[METHOD PRIVATE LocalControl : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CharacteristicCurve_Parameters.fAmbientTempMax := localDefaultParameters.aLimitsAmbientTemperature[2];
+CharacteristicCurve_Parameters.fAmbientTempMin := localDefaultParameters.aLimitsAmbientTemperature[1];
+CharacteristicCurve_Parameters.fForeRunTempMax := localDefaultParameters.aLimitsFeedTemperature[1];
+CharacteristicCurve_Parameters.fForeRunTempMin := localDefaultParameters.aLimitsFeedTemperature[2];
+CharacteristicCurve_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+CharacteristicCurve_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+CharacteristicCurve(fAmbientTemperature := stAmbientState.fOutsideTemperature,
+	fOffsetTemperature := 0,
+	bLimitFlowTemp := TRUE,
+	stParams := CharacteristicCurve_Parameters);
+fSetPoint_Internal := LREAL_TO_REAL(CharacteristicCurve.fOut);
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{bcb4860c-fad9-4619-9302-e78a05b5d893}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU350 := TRUE;
+
+IF PU350.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{d4acb394-01c3-4bfc-b6d5-1e89cd9e53b7}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU350 := FALSE;
+bSetStatusOn_RV350 := FALSE;
+	
+IF NOT PU350.bStatusOn THEN
+	bRampDownFinished := TRUE;		
+END_IF	
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{42a19606-b7db-4ea2-86cc-62c83b57a927}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV350 := TRUE;
+bRampUpFinished := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{6f0a7050-58f4-4949-a7e5-a1679eba90c8}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{4b27b698-d0b7-441f-97aa-4b8bee842ba9}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU350.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{8bc61d11-4531-40c4-9506-aaeb47b6e23a}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_StaticHeatingSystem">
+      <LineId Id="148" Count="20" />
+      <LineId Id="116" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.LocalControl">
+      <LineId Id="114" Count="0" />
+      <LineId Id="120" Count="4" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="139" Count="3" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.Operational">
+      <LineId Id="13" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.RampDown">
+      <LineId Id="13" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="19" Count="3" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.RampUp">
+      <LineId Id="48" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.SetSetPointLimits">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StaticHeatingSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

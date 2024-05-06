@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_LowVoltageMainDistribution" Id="{65b26091-d75a-4596-946d-a290447522cb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LowVoltageMainDistribution
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	EM_Offices : FB_ElectricityMeter_ABBA44113100;
+	EM_ProductionHall_HVAC : FB_ElectricityMeter_ABBA44113100;
+	EM_ProductionHall_Lighting : FB_ElectricityMeter_ABBA44113100;
+	EM_TotalBuilding : FB_ElectricityMeter_ABBA44213100;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[EM_Offices(aElectricityMeterTelegramm := Telegramm_SZ_Buerotrakt);
+EM_ProductionHall_HVAC(aElectricityMeterTelegramm := Telegramm_SZ_Halle_TGA);
+EM_ProductionHall_Lighting(aElectricityMeterTelegramm := Telegramm_SZ_Halle_Licht);
+EM_TotalBuilding(aElectricityMeterTelegramm := Telegramm_SZ_Halle_Licht);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_LowVoltageMainDistribution">
+      <LineId Id="9" Count="0" />
+      <LineId Id="15" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

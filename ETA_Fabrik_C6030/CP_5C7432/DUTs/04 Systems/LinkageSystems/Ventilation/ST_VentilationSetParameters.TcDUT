@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_VentilationSetParameters" Id="{f3273f59-a97d-44a0-86dc-b437d26ea116}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_VentilationSetParameters :
+STRUCT
+	bHeatingModeAlgorithm : BOOL;
+	bHeatingModeManual : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CHPDefaultParameters" Id="{c6e10a81-b4a3-40b0-a4a6-e1b8857ffcd7}">
+    <Declaration><![CDATA[TYPE ST_CHPDefaultParameters :
+STRUCT
+	fControllerAmplification : LREAL := 5;
+	tControllerIntegralTime : TIME := T#100S;
+	tTaskCycleTime	: TIME;
+	tCtrlCycleTime	: TIME;
+	aSetPointLimitsConstantPower : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [50,90];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

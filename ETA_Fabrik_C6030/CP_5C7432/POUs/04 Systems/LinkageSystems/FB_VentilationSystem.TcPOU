@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_VentilationSystem" Id="{9dbd92b9-ea19-4648-b23d-84f7cf93352c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_VentilationSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	bHeatingModeAutomatic : BOOL; //control mode: 0 = heating mode, 1 = cooling mode
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_VentilationSetParameters;
+	
+	localDefaultParameters : ST_VentilationDefaultParameters;
+	
+	//valves
+	stSV453DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stSV454DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	SV453 : FB_DiscreteValve := (ST_DefaultParameters := stSV453DefaultParameters);
+	SV454 : FB_DiscreteValve := (ST_DefaultParameters := stSV454DefaultParameters);
+	
+	//pump (pump is just read)
+	stPU455DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU455 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU455DefaultParameters);
+	
+	WMZ455 : FB_MollineEHeatCounter;
+	
+	bHeatingMode 			: BOOL;
+	bSetStatusOn_SV453		: BOOL;
+	bSetStatusOn_SV454		: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SelectLocalControlMode();
+MAIN();
+
+IF bHeatingMode THEN
+	bSetStatusOn_SV453 := TRUE;
+	bSetStatusOn_SV454 := TRUE;
+ELSE
+	bSetStatusOn_SV453 := FALSE;
+	bSetStatusOn_SV454 := FALSE;
+END_IF
+
+SV453.GetState_BI();
+SV453(bSetStatusOnAutomatic := bSetStatusOn_SV453,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV453.SetState_BO();
+
+SV454.GetState_BI();
+SV454(bSetStatusOnAutomatic := bSetStatusOn_SV454,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV454.SetState_BO();
+
+//PU455 and RV455 is controlled by ventilation unit
+PU455.GetState_Profibus();
+PU455();
+
+WMZ455(aHeatCounterTelegramm := aTelegramm_WMZ455);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{830f30b6-3465-4e81-9ee6-986686f2740a}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (SV453.localState.nPosition = 2 AND SV454.localState.nPosition = 3) OR (SV453.localState.nPosition = 3 AND SV454.localState.nPosition = 2) THEN
+	bError := TRUE;
+ELSE
+	bError := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{fc5d5636-d5ab-4a00-a14b-fa67f7fd25d1}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{b7728e5d-6fdb-4475-8c60-1823d8741344}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{9924954d-d5f7-4e55-a0e3-ccbdc7e9bb43}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{49326180-6754-48ad-8832-02d34e4e0f88}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	bHeatingMode := localSetParameters.bHeatingModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	bHeatingMode := localSetParameters.bHeatingModeAlgorithm;
+ELSE
+	bHeatingMode := bHeatingModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{0b561c52-5ff8-4a49-83b0-248d5edb75c0}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{dda5a029-9e14-4d0f-a14d-27cdb04791c0}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := 0;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := 0;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := '-';
+setPointState.sOperatingPointUnit := '-';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{dce39cd8-64d1-4fc4-bf60-28fb44a7f369}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_VentilationSystem">
+      <LineId Id="113" Count="24" />
+      <LineId Id="83" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.CheckError">
+      <LineId Id="8" Count="1" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.Operational">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.RampDown">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.RampUp">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.SelectLocalControlMode">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_VentilationSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

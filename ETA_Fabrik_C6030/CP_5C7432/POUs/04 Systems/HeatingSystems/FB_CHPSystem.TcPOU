@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CHPSystem" Id="{03be9f87-4e59-4877-a478-dceefb67f1c9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CHPSystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	aHeatCounterTelegramm : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aElectricityMeterTelegramm : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	aGasMeterTelegramm : ARRAY[1..cMBUS_MaxTelegrams] OF ST_MBus_Data2;
+	sIPAddressCHP : STRING(15);
+END_VAR
+VAR_OUTPUT
+	bSetStatusOnFeedback : BOOL; //Feedback if CHP unit should be switched on to be sent to supply air valve
+END_VAR
+VAR	
+	//chp
+	CHP : FB_CHP;
+
+	//pump
+	stPU32xDefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU32x : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU32xDefaultParameters);
+	
+	//valves
+	stSV32xDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);	
+	SV32x : FB_DiscreteValve := (ST_DefaultParameters := stSV32xDefaultParameters);
+	RV32x : FB_MixingValve := (ST_DefaultParameters := stRV32xDefaultParameters);
+	
+	//sensors
+	WMZ32x : FB_MollineC3HeatCounter();
+	EM32x : FB_ElectricityMeter_BergDCMI461WP();
+	GM32x : FB_GasMeter_Aerius_G4();
+	
+	PI_Controller				: FB_CTRL_PI;
+	PI_Controller_Parameters 	: ST_CTRL_PI_PARAMS;
+	
+	//internal variables
+	bSetStatusOn_CHP   : BOOL;
+	bSetStatusOn_PU32x : BOOL;
+	bSetStatusOn_SV32x : BOOL;
+	bSetStatusOn_RV32x : BOOL;
+	
+	//timer
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bSetStatusOnFeedback := bSetStatusOn;
+
+//use timer because valve has no feedback signal (120 sec)
+Timer(IN := bStartTimer,
+	PT := T#120S);
+
+MAIN();
+CHP.GetState();
+CHP(fSetPointAutomatic :=  fSetPoint,
+	bSetStatusOnAutomatic := bSetStatusOn_CHP,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 1,
+	fExternalFeedTemperature := PU32x.fTemperatureInternal,
+	sIPAddress := sIPAddressCHP);
+CHP.SetState();
+
+SV32x.GetState_BI();
+SV32x(bSetStatusOnAutomatic := bSetStatusOn_SV32x,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV32x.SetState_BO();
+
+RV32x.GetState_AI();
+RV32x(fSetPointAutomatic := fSetPoint-20,
+	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := CHP.fReturnTemperature,
+	nControlModeAutomatic := 2);
+RV32x.SetState_AO();
+
+PU32x.GetState_Profibus();
+PU32x(fSetPointAutomatic := 100,
+	bSetStatusOnAutomatic := bSetStatusOn_PU32x,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU32x.SetState_Profibus();
+
+WMZ32x(aHeatCounterTelegramm := aHeatCounterTelegramm);
+EM32x(aElectricityMeterTelegramm := aElectricityMeterTelegramm);
+GM32x(aGasmeterTelegramm := aGasMeterTelegramm);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{684c4c5f-5b63-4ac1-a5ee-1759d03ff526}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR
+	bError_PU32x : BOOL;
+	//bError_CHP : BOOL;
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//check pumps for errors
+bError_PU32x := PU32x.bError;
+//bError_CHP := CHP.bError;
+
+//bError := bError_PU32x OR bError_CHP;
+bError := bError_PU32x;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{1a1d7ebc-5ebc-49ca-9755-166e1ea8616e}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU32x := TRUE;
+
+IF PU32x.bStatusOn THEN
+	bSetStatusOn_CHP := TRUE;
+	bStartTimer := TRUE;
+	IF TIMER.Q THEN
+		bSwitchToWorking := TRUE;
+		bStartTimer := FALSE;
+	END_IF
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{0de23c98-c56a-469e-955b-2ff61016c0ab}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_CHP := FALSE;
+
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bSetStatusOn_PU32x := FALSE;
+	bStartTimer := FALSE;
+END_IF
+
+IF NOT PU32x.bStatusOn THEN
+	bSetStatusOn_RV32x := FALSE;
+	bSetStatusOn_SV32x := FALSE;
+
+	IF SV32x.localState.nPosition = 2 THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{3071767d-8111-44da-af02-b65d0afaa40d}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV32x := TRUE;
+bSetStatusOn_RV32x := TRUE;
+
+IF SV32x.localState.nPosition = 3 THEN
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{8cfe0602-4afb-47e7-b900-5c78610daffb}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := CHP.ST_DefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := CHP.ST_DefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{84253894-5b42-4f1f-afad-61355f0e19f7}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU32x.fTemperatureInternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{6321a476-f7aa-4875-ae31-cebd1b5c7895}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_CHPSystem">
+      <LineId Id="265" Count="3" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="59" Count="5" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="74" Count="5" />
+      <LineId Id="83" Count="6" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="308" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.CheckError">
+      <LineId Id="48" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="46" Count="1" />
+      <LineId Id="34" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.Operational">
+      <LineId Id="36" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="48" Count="3" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="46" Count="2" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="44" Count="1" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="18" Count="2" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.SetSetPointLimits">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CHPSystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_OPC_UANode" Id="{a0718f54-869e-4ed8-876f-8f6e2e827301}">
+    <Declaration><![CDATA[TYPE ST_OPC_UANode :
+STRUCT
+	NodeID				: ST_UANodeID;
+	NodeHdl				: DWORD;
+	SizeOfDataType		: UDINT;
+	NodeAddInfo			: ST_UANodeAdditionalInfo;
+	TargetVar			: POINTER TO BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

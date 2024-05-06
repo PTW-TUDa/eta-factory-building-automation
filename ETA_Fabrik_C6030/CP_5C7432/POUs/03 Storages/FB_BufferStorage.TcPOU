@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_BufferStorage" Id="{2610907a-84da-47a6-a6a4-a2efbb133c01}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BufferStorage
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}	
+	localState : ST_BufferStorageState;
+END_VAR
+VAR
+	UpperTemperatureSensor : FB_TemperatureSensor; //upper temperature sensor
+	MidTemperatureSensor : FB_TemperatureSensor; //mid temperature sensor
+	LowerTemperatureSensor : FB_TemperatureSensor; //lower temperature sensor
+	PressureSensor : FB_PressureSensor; //pressure sensor
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//sensors
+UpperTemperatureSensor();
+MidTemperatureSensor();
+LowerTemperatureSensor();
+PressureSensor();
+
+//get sensor inputs
+UpperTemperatureSensor.GetState_AI();
+MidTemperatureSensor.GetState_AI();
+LowerTemperatureSensor.GetState_AI();
+PressureSensor.GetState_AI();
+
+//set outputs
+localState.fUpperTemperature := UpperTemperatureSensor.fTemperature;
+localState.fMidTemperature := MidTemperatureSensor.fTemperature;
+localState.fLowerTemperature := LowerTemperatureSensor.fTemperature;
+	]]></ST>
+    </Implementation>
+    <LineIds Name="FB_BufferStorage">
+      <LineId Id="64" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="23" Count="3" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="27" Count="3" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="101" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

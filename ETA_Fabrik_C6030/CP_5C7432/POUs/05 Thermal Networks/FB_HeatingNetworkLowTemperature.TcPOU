@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatingNetworkLowTemperature" Id="{41e3edb3-66e7-411c-a35e-b44e9a5d66f1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatingNetworkLowTemperature
+VAR_INPUT
+	ambientState : ST_AmbientState;
+	
+	//control struct for hnlt
+	controlAutomatic : ST_HeatingNetworkLowTemperatureControl;	
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ThermalNetworkState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	OuterCapillaryTubeMats : FB_OuterCapillaryTubeMats;
+	HVFASystem : FB_HVFAStorageSystem;
+	CompressorSystem : FB_CompressorSystem;
+	AnnealingOvenSealingSystem : FB_AnnealingOvenSealingSystem;
+	DCSystem : FB_DCSystem;
+	
+	//machines
+	AnnealingOvenSealing : FB_AnnealingOven;
+	DC : FB_DC;
+
+	//internal variables
+	bSetStatusOn_AnnealingOven : BOOL;
+	bSetStatusOn_DC : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
+localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
+localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := HVFASystem.localStorageState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := HVFASystem.localStorageState.fLowerTemperature;
+
+//producer
+CompressorSystem(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Heating);
+
+//consumer
+OuterCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_OuterCapillaryTubeMats,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Cooling,
+	stAmbientState := ambientState);
+	
+AnnealingOvenSealing();
+bSetStatusOn_AnnealingOven := AnnealingOvenSealing.bStatusOn_Sealing;
+AnnealingOvenSealingSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 35);
+	
+DC();
+bSetStatusOn_DC := DC.bStatusOn;
+DCSystem(bSetStatusOnAutomatic := bSetStatusOn_DC,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 3); //temperature difference control
+
+//external storages
+HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 70,
+	bLoadingAutomatic := controlAutomatic.bLoading_HVFASystem,
+	aTelegramm_WMZ7x0 := aTelegramm_WMZ720,
+	aTelegramm_WMZx05 := aTelegramm_WMZ205);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HeatingNetworkLowTemperature">
+      <LineId Id="32" Count="1" />
+      <LineId Id="306" Count="3" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="196" Count="2" />
+      <LineId Id="35" Count="4" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="234" Count="2" />
+      <LineId Id="240" Count="5" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="114" Count="2" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="275" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

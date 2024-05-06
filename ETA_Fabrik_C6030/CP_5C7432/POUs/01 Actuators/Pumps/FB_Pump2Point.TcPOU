@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Pump2Point" Id="{9e7f7a5e-42fe-4cc1-ac2a-50bb2a199a17}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Pump2Point EXTENDS FB_Actuator2Point
+VAR
+	//I/O Links
+	bSetStatusOn_OUT 	AT %Q* : BOOL := FALSE;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SelectControlMode();]]></ST>
+    </Implementation>
+    <Method Name="SetState_BO" Id="{0a9f2f79-143f-430a-a6d8-599f4481d4cf}">
+      <Declaration><![CDATA[METHOD SetState_BO : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//output
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Pump2Point">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Pump2Point.SetState_BO">
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_PCM_Testbed" Id="{341025c6-61f6-42b1-9c8c-58df0f661ef4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PCM_Testbed
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//heat meters
+	WMZ900 : FB_MollineUltramess403HeatCounter; //pcm storage
+	WMZ935 : FB_MollineUltramess403HeatCounter; //chiller
+	
+	//temperature sensors
+	TS900 : FB_TemperatureSensor_KL3214;
+	TS901 : FB_TemperatureSensor_KL3214;
+	TS902 : FB_TemperatureSensor_KL3214;
+	TS903 : FB_TemperatureSensor_KL3214;
+	TS910 : FB_TemperatureSensor_KL3214;
+	TS911 : FB_TemperatureSensor_KL3214;
+	TS950 : FB_TemperatureSensor_KL3214;
+	TS951 : FB_TemperatureSensor_KL3214;
+	
+	//valves
+	ST_RV950DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	RV950 : FB_MixingValve := (ST_DefaultParameters := ST_RV950DefaultParameters);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[WMZ900(aHeatCounterTelegramm := aTelegramm_WMZ900);
+WMZ935(aHeatCounterTelegramm := aTelegramm_WMZ935);
+	
+//temperature sensots
+TS900();
+TS900.GetState_AI();
+TS901();
+TS901.GetState_AI();
+TS902();
+TS902.GetState_AI();
+TS903();
+TS903.GetState_AI();
+TS910();
+TS910.GetState_AI();
+TS911();
+TS911.GetState_AI();
+TS950();
+TS950.GetState_AI();
+TS951();
+TS951.GetState_AI();
+
+RV950.GetState_AI();
+RV950(bSetStatusOnAutomatic := FALSE,
+	fSetPointAutomatic := 0,
+	bAlgorithmPermission := TRUE,
+	fTemperatureExternal := TS950.fTemperature,
+	nControlModeAutomatic := 1);
+RV950.SetState_AO();]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PCM_Testbed">
+      <LineId Id="19" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="106" Count="6" />
+      <LineId Id="105" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

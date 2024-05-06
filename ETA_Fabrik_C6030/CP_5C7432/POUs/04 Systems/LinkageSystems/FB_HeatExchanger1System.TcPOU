@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatExchanger1System" Id="{bca56c6b-1b09-4f57-a186-5b7562770c5b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatExchanger1System EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_HeatExchanger1DefaultParameters;
+
+	//pumps
+	stPU315DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stPU215DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (bPumpBeforeApplication := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU315 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU315DefaultParameters);
+	PU215 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU215DefaultParameters);
+
+	//valves
+	stSV215DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stRV315DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
+	
+	SV215 : FB_DiscreteValve := (ST_DefaultParameters := stSV215DefaultParameters);
+	RV315 : FB_MixingValve := (ST_DefaultParameters := stRV315DefaultParameters);
+	
+	//sensors
+	WMZ215 : FB_MollineC3HeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PU315 : BOOL;
+	bSetStatusOn_PU215 : BOOL;
+	bSetStatusOn_RV315 : BOOL;
+	bSetStatusOn_SV215 : BOOL;
+	
+	bStartTimer : BOOL;
+	Timer : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Timer(IN := bStartTimer,
+	PT := T#75S);
+MAIN();
+
+//pumps
+PU315.GetState_Profibus();
+PU315(bSetStatusOnAutomatic := bSetStatusOn_PU315,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU315.SetState_Profibus();
+
+PU215.GetState_Profibus();
+PU215(bSetStatusOnAutomatic := bSetStatusOn_PU215,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU215.SetState_Profibus();
+
+//valves
+RV315.GetState_AI();
+RV315(bSetStatusOnAutomatic := bSetStatusOn_RV315,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
+	fTemperatureExternal := PU215.fTemperatureExternal,
+	fThermalPowerExternal := WMZ215.fHeatFlowRate,
+	nControlModeAutomatic := 1);
+RV315.SetState_AO();
+
+SV215.GetState_BI();
+SV215(bSetStatusOnAutomatic := bSetStatusOn_SV215,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV215.SetState_BO();
+
+WMZ215(aHeatCounterTelegramm := Telegramm_WZ_PWT_1);]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{b54ba0ca-5b25-4c17-92f0-eb09cfdea800}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := PU315.bError;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{7ac6e3b2-880f-4ae7-8766-d8b22693c3d9}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU315 := TRUE;
+bSetStatusOn_PU215 := TRUE;
+
+IF PU315.bStatusOn AND PU215.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{38be2d03-34bf-4165-98f1-2ff7a50120b6}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU215 := FALSE;
+bSetStatusOn_PU315 := FALSE;
+
+IF NOT PU315.bStatusOn AND NOT PU215.bStatusOn THEN
+	bSetStatusOn_SV215 := FALSE;
+	bSetStatusOn_RV315 := FALSE;
+	bStartTimer := TRUE;
+	IF Timer.Q THEN
+		bRampDownFinished := TRUE;
+		bStartTimer := FALSE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{79fc56b0-c2f3-4502-acb0-473bf863e404}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV315 := TRUE;
+bSetStatusOn_SV215 := TRUE;
+
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bStartTimer := FALSE;
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{08b841e3-f57f-4525-b475-9463ff8dff61}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{9b468ecf-33a9-49ee-a2cd-1270fe631d8f}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU215.fTemperatureExternal;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{2d7be513-42f4-4f0a-9e3f-306a74f1d37d}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_HeatExchanger1System">
+      <LineId Id="157" Count="1" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="164" Count="7" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="202" Count="0" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="175" Count="4" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="239" Count="0" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="276" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="191" Count="2" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="198" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="153" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.Operational">
+      <LineId Id="7" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.RampDown">
+      <LineId Id="7" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="3" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.RampUp">
+      <LineId Id="8" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="13" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatExchanger1System.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

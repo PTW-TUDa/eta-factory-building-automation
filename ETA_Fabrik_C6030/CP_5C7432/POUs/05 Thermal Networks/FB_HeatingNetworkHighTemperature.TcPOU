@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatingNetworkHighTemperature" Id="{2ced51e0-a3cc-4f43-8e53-7f6a9427e782}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatingNetworkHighTemperature
+VAR_INPUT
+	//control struct for hnht
+	controlAutomatic : ST_HeatingNetworkHighTemperatureControl;	
+	stAmbientState : ST_AmbientState;
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_ThermalNetworkState;
+END_VAR
+VAR
+	//systems
+	BufferStorage : FB_BufferStorage;
+	CHP1System : FB_CHPSystem;
+	CHP2System : FB_CHPSystem;
+	CondensingBoilerSystem : FB_CondensingBoilerSystem;
+	StaticHeatingSystem : FB_StaticHeatingSystem;
+	CentralMachineHeatingSystem : FB_HNHT_CentralMachineHeating;
+	AnnealingOvenExhaustGasSystem : FB_AnnealingOvenExhaustGasSystem;
+	VSIStorageSystem : FB_VSIStorageSystem;
+	
+	stSV_SupplyAirDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	SV_SupplyAir : FB_DiscreteValve := (ST_DefaultParameters := stSV_SupplyAirDefaultParameters);
+		
+	//machines
+	MAFAC_Java : FB_MAFAC_Java;
+	BvL_CleaningSystem : FB_BvL_CleaningSystem;
+	AnnealingOvenExhaustGas : FB_AnnealingOven;
+	
+	//internal variables
+	bSetStatusOn_CentralMachineHeating : BOOL;
+	bSetStatusOn_AnnealingOven : BOOL;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//buffer storage system
+BufferStorage();
+localState.fUpperTemperature := BufferStorage.localState.fUpperTemperature;
+localState.fMidTemperature := BufferStorage.localState.fMidTemperature;
+localState.fLowerTemperature := BufferStorage.localState.fLowerTemperature;
+localState.fUpperTemperature_ActiveStorage := VSIStorageSystem.localStorageState.fUpperTemperature;
+localState.fLowerTemperature_ActiveStorage := VSIStorageSystem.localStorageState.fLowerTemperature;
+
+//producer
+CHP1System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP1,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
+	aHeatCounterTelegramm := Telegramm_WZ_BHKW_1,
+	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_321,
+	aGasMeterTelegramm := Telegramm_GZ_BHKW_321,
+	sIPAddressCHP := GlobalVariables.sIP_CHP1);
+
+CHP2System(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CHP2,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature,
+	aHeatCounterTelegramm := Telegramm_WZ_BHKW_2,
+	aElectricityMeterTelegramm := Telegramm_SZ_BHKW_322,
+	aGasMeterTelegramm := Telegramm_GZ_BHKW_322,
+	sIPAddressCHP := GlobalVariables.sIP_CHP2);
+
+SV_SupplyAir.GetState_BI();
+SV_SupplyAir(bSetStatusOnAutomatic := CHP1System.bSetStatusOnFeedback OR CHP2System.bSetStatusOnFeedback,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission);
+SV_SupplyAir.SetState_BO();
+
+CondensingBoilerSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_CondensingBoiler,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature);
+				
+//consumer
+StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_StaticHeating,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 0,
+	stAmbientState := stAmbientState);
+	
+MAFAC_Java();
+BvL_CleaningSystem();
+bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn;// OR BvL_CleaningSystem.bStatusOn;
+CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 5); // temperature difference control
+	
+AnnealingOvenExhaustGas();
+bSetStatusOn_AnnealingOven := AnnealingOvenExhaustGas.bStatusOn_ExhaustGas;
+AnnealingOvenExhaustGasSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature);
+	
+VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStorage,
+	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
+	fSetPointAutomatic := 30,
+	bLoadingAutomatic := controlAutomatic.bLoading_VSISystem);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HeatingNetworkHighTemperature">
+      <LineId Id="40" Count="1" />
+      <LineId Id="372" Count="2" />
+      <LineId Id="520" Count="1" />
+      <LineId Id="43" Count="4" />
+      <LineId Id="206" Count="0" />
+      <LineId Id="447" Count="0" />
+      <LineId Id="449" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="159" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="207" Count="0" />
+      <LineId Id="448" Count="0" />
+      <LineId Id="450" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="183" Count="3" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="209" Count="2" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="256" Count="4" />
+      <LineId Id="286" Count="0" />
+      <LineId Id="294" Count="0" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="296" Count="1" />
+      <LineId Id="331" Count="2" />
+      <LineId Id="335" Count="0" />
+      <LineId Id="337" Count="1" />
+      <LineId Id="409" Count="4" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_HnltCnLinkageControl" Id="{f7c1de2f-a4d7-42fd-89b5-954c364eebb1}">
+    <Declaration><![CDATA[TYPE ST_HnltCnLinkageControl :
+STRUCT	
+	bHeatingMode : BOOL;
+	fFeedTemperature_CN : REAL;
+	fFeedTemperature_HNLT_Heating : REAL;
+	fFeedTemperature_HNLT_Cooling : REAL;
+	fTargetTemperature_ProductionHall : REAL;
+	bAlgorithmPermission_HNLT : BOOL;
+	bAlgorithmPermission_CN : BOOL;
+	bSetStatusOn_HeatPump : BOOL;
+	bSetStatusOn_InnerCapillaryTubeMats : BOOL;
+	bSetStatusOn_UnderfloorHeating : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

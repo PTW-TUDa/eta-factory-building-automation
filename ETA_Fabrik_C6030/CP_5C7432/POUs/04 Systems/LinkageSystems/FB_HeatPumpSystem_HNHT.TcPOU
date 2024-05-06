@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatPumpSystem_HNHT" Id="{6a406844-89d7-4db6-814d-0ca6a50f7081}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem_HNHT EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//Vitocal 350-G heat pump
+	HeatPump : FB_HeatPump;
+	
+	//valves
+	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 100, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
+	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
+	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
+	SV_HNLT : FB_DiscreteValve := (ST_DefaultParameters := ST_SV_HNLT_DefaultParameters);	
+	
+	//pump
+	stPU242DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, bExternalTemperatureSensor := TRUE);
+	PU242 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU242DefaultParameters);
+	
+	//internal variables
+	bSetStatusOn_HeatPump : BOOL;
+	bSetStatusOn_PU242 : BOOL;
+	bSetStatusOn_RV342 : BOOL;
+	bSetStatusOn_RV242 : BOOL;
+	bSetStatusOn_SV_HNLT : BOOL;
+	fTemperatureSetPoint_RV242 : REAL;
+	
+	// timer for SV441, SV442
+	bStartTimer_SV : BOOL;
+	Timer_SV : TON;
+	
+	// timer for heat pump
+	bStartTimer_HeatPump : BOOL;
+	Timer_HeatPump : TON;
+	
+	//error variable for temperature TS242
+	Controller_TS242_Error : FB_CTRL_2POINT;
+	Controller_TS242_Error_Parameters : ST_CTRL_2POINT_PARAMS;
+
+	//sensors
+	TS242 : FB_TemperatureSensor; //inlet temperature evaporator
+	WMZ342 : FB_MollineEHeatCounter;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+//use timer for cool down during ramp up
+Timer_SV(IN := bStartTimer_SV,
+	PT := T#30S);
+Timer_HeatPump(IN := bStartTimer_HeatPump,
+	PT := T#120S);
+
+//valves
+SV_HNLT.GetState_BI();
+SV_HNLT(bSetStatusOnAutomatic := bSetStatusOn_SV_HNLT,
+		bAlgorithmPermission := bAlgorithmPermission);
+SV_HNLT.SetState_BO();
+
+//heat pump
+HeatPump.GetState();
+HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint);
+HeatPump.SetState();
+
+//pump
+PU242.GetState_Profibus();
+PU242(bSetStatusOnAutomatic := bSetStatusOn_PU242,
+	fSetPointAutomatic := 50,
+	bAlgorithmPermission := bAlgorithmPermission,
+	nControlModeAutomatic := 0);
+PU242.SetState_Profibus();
+
+//valves
+RV242.GetState_AI();
+RV242(bSetStatusOnAutomatic := bSetStatusOn_RV242,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fTemperatureSetPoint_RV242,
+	fTemperatureExternal := TS242.fTemperature,
+	nControlModeAutomatic := 1);
+RV242.SetState_AO();
+
+RV342.GetState_AI();
+RV342(bSetStatusOnAutomatic := bSetStatusOn_RV342,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 100,
+	nControlModeAutomatic := 0);
+RV342.SetState_AO();
+
+//sensors
+WMZ342(aHeatCounterTelegramm := aTelegramm_WMZ342);
+TS242();
+TS242.GetState_AI();
+]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{c81c127c-2dfa-453f-9842-92a23e6502aa}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Controller_TS242_Error_Parameters.fHysteresisRange := 1;
+Controller_TS242_Error_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_TS242_Error_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+Controller_TS242_Error(fSetpointValue := 5,
+	fActualValue := TS242.fTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_TS242_Error_Parameters);
+
+bError := HeatPump.bError OR PU242.bError OR Controller_TS242_Error.bOut;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{23ee8fd7-999e-4774-94e8-1d99d6bd9b1b}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU242 := TRUE;
+
+IF PU242.bStatusOn THEN
+	bStartTimer_SV := TRUE;
+	fTemperatureSetPoint_RV242 := 100;// open RV242 for cooling
+	IF Timer_SV.Q THEN
+		bStartTimer_SV := FALSE; //resets timer	
+		bSetStatusOn_HeatPump := TRUE;
+		IF TS242.fTemperature < 15 THEN
+			bSwitchToWorking := TRUE;
+		END_IF
+	END_IF;
+END_IF;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{3d77f4ba-35c2-425d-b53f-83f5a3e83c2b}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
+
+bStartTimer_HeatPump := TRUE;
+
+bSetStatusOn_RV342 := FALSE; //close RV342 so heatpump stops
+IF Timer_HeatPump.Q THEN	
+	bSetStatusOn_RV242 := FALSE; //close RV242
+	bStartTimer_SV := TRUE; //wait until RV242 closed
+	IF Timer_SV.Q THEN
+		bStartTimer_SV := FALSE; //reset sv timer
+		bSetStatusOn_PU242 := FALSE; //stop pump
+		bSetStatusOn_SV_HNLT := FALSE; //close SV
+		IF RV242.fOperatingPoint<10 AND RV342.fOperatingPoint<10 THEN
+			bRampDownFinished := TRUE;
+		END_IF;
+		bStartTimer_HeatPump := FALSE; //reset heatpump timer
+	END_IF;
+END_IF;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{d6507405-d735-45e3-a15b-80e07b56ab86}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_RV242 := TRUE;
+bSetStatusOn_RV342 := TRUE;
+fTemperatureSetPoint_RV242 := 100;
+bSetStatusOn_SV_HNLT := FALSE; //connects CN to heat pump
+IF RV342.fOperatingPoint>80 THEN
+	bRampUpFinished := TRUE;
+END_IF
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{afedc7e1-d1ba-48f7-b310-e0f65f399073}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//heat pump has no continous setpoint (limits are not used) but must be implemented because of abstract method
+aSetPointLimits[1] := 10;
+aSetPointLimits[2] := 100;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{12063f21-1e93-47c1-bde8-a30ea5d90a5b}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := WMZ342.fFeedTemperature;
+
+controlState.bStatusOn := HeatPump.bStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{87f552f2-0115-4afb-a2e6-1e42102018d3}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV_HNLT := TRUE; //connects HNLT to heat pump
+fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_HeatPumpSystem_HNHT">
+      <LineId Id="33" Count="0" />
+      <LineId Id="277" Count="2" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="339" Count="0" />
+      <LineId Id="287" Count="5" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="229" Count="5" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="207" Count="6" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="221" Count="3" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="215" Count="1" />
+      <LineId Id="110" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.CheckError">
+      <LineId Id="30" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="32" Count="3" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.Operational">
+      <LineId Id="14" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="16" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.RampDown">
+      <LineId Id="8" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="79" Count="3" />
+      <LineId Id="85" Count="3" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.RampUp">
+      <LineId Id="9" Count="1" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.SetSetPointLimits">
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.SetState">
+      <LineId Id="8" Count="6" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPumpSystem_HNHT.Working">
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

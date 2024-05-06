@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_WeatherStation" Id="{6472cbb8-4336-4924-8d8b-ffd8849bd0ec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_WeatherStation
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	fWindSpeed 		: REAL;
+	fTemperature	: REAL;
+	fMeanTemperature : REAL;
+	fDawn 			: REAL;
+	bRain 			: BOOL;
+END_VAR
+VAR
+	bInit_done : BOOL := FALSE;
+	
+	// communication with KL6301 terminal
+	KL6301_Terminal			: KL6301;
+	KL6301_Error_Trigger	: r_Trig;
+	KL6301_group_0_0_1		: EIB_GROUP_ADDR := (MAIN:=0, SUB_MAIN:=0, NUMBER:=1);
+	KL6301_IN 				AT %I* : ARRAY[1..24]OF BYTE;
+	KL6301_OUT 				AT %Q* : ARRAY[1..24]OF BYTE;
+	
+	Group_0_0_1		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=1);
+	Group_0_0_2		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=2);
+	Group_0_0_3		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=3);
+	Group_0_0_4		: EIB_GROUP_ADDR := (MAIN:=0,SUB_MAIN:=0,NUMBER:=4);
+
+	recWindSpeed	: EIB_2OCTET_FLOAT_REC;
+	recTemperature	: EIB_2OCTET_FLOAT_REC;
+	recDawn			: EIB_2OCTET_FLOAT_REC;
+	recRain			: EIB_BIT_REC;
+	
+	//clock
+	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
+	Clock : FB_Clock := (ST_DefaultParameters := stDefaultParameters_Clock);
+	Moving_Average_Temperature : FB_CTRL_MOVING_AVERAGE;
+	bInit_Average_Temperature : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//read and write to terminal
+KL6301_Terminal(KL6301_IN:=KL6301_IN, KL6301_OUT:=KL6301_OUT);
+KL6301_Error_Trigger(CLK := KL6301_Terminal.bError);
+
+//initialize terminal
+IF (NOT bInit_done) THEN
+	bInit_done := InitializeTerminal();
+END_IF
+
+IF(KL6301_Terminal.bReady) THEN
+	recWindSpeed(
+		Group_Address := Group_0_0_1,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recTemperature(
+		Group_Address := Group_0_0_2,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recDawn(
+		Group_Address := Group_0_0_3,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	recRain(
+		Group_Address := Group_0_0_4,
+		strData_Rec := KL6301_Terminal.str_Data_Rec
+	);
+
+	fWindSpeed := recWindSpeed.rData;
+	fTemperature := recTemperature.rData;
+	fDawn := recDawn.rData;
+	bRain := recRain.bData;
+END_IF
+
+//calculate moving average temperatrue
+CalculateAverageTemperature(fActualTemperature := fTemperature, fMeanTemperature => fMeanTemperature);
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="CalculateAverageTemperature" Id="{757ec109-6090-4aae-9bc6-d859758d7620}">
+      <Declaration><![CDATA[METHOD CalculateAverageTemperature : REAL
+VAR_INPUT
+	fActualTemperature : REAL;
+END_VAR
+VAR_OUTPUT
+	fMeanTemperature : REAL;
+END_VAR
+VAR_INST
+	fTemperature_init : REAL;
+	fHours_Moving_Average : UINT := 6;
+	fMeanTemperature_Summer_init : REAL := 22;
+	fMeanTemperature_Winter_init : REAL := 5;
+	
+	stParameters_Average_Temperature : ST_CTRL_MOVING_AVERAGE_PARAMS;
+	aTemperatureBuffer 				: ARRAY [1..360] OF FLOAT := [360(15)];
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//calculate initialization temperature
+IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
+	//summer
+	fTemperature_init := fMeanTemperature_Summer_init;
+ELSE
+	//winter	
+	fTemperature_init := fMeanTemperature_Winter_init;
+END_IF
+
+stParameters_Average_Temperature.tCtrlCycleTime := T#60S;
+stParameters_Average_Temperature.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+stParameters_Average_Temperature.nSamplesToFilter := fHours_Moving_Average*60; (* 1min= 60 sec*)
+stParameters_Average_Temperature.pWorkArray_ADR := ADR(aTemperatureBuffer);
+stParameters_Average_Temperature.nWorkArray_SIZEOF := SIZEOF(aTemperatureBuffer);
+
+Moving_Average_Temperature(
+	fIn := fActualTemperature,
+	fManSyncValue := 15,
+	bSync := FALSE,
+	eMode := 2,
+	bHold := FALSE,
+	stParams := stParameters_Average_Temperature);
+fMeanTemperature := LREAL_TO_REAL(Moving_Average_Temperature.fOut);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="InitializeTerminal" Id="{45dc9229-146c-4d2a-b134-156e4a7bbcc1}">
+      <Declaration><![CDATA[METHOD InitializeTerminal : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bInit_done : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[KL6301_Terminal.EIB_PHYS_ADDR.Area:=1;
+KL6301_Terminal.EIB_PHYS_ADDR.Line:=1;
+KL6301_Terminal.EIB_PHYS_ADDR.Device:=5;
+KL6301_Terminal.EIB_GROUP_FILTER[1].GROUP_ADDR:=KL6301_group_0_0_1;
+KL6301_Terminal.EIB_GROUP_FILTER[1].GROUP_LEN:=12;
+KL6301_Terminal.idx:=1;
+KL6301_Terminal.iMode:=1;
+
+IF(KL6301_Terminal.bReady) THEN
+	bInit_done := TRUE;
+END_IF
+
+IF KL6301_Error_Trigger.Q THEN
+	KL6301_Terminal.bActivate:=FALSE;
+ELSE
+	KL6301_Terminal.bActivate:=TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ReadValues" Id="{e812d54b-f80d-43fc-8c79-a5a88a5aed49}">
+      <Declaration><![CDATA[METHOD ReadValues : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	fWindSpeed 		: REAL;
+	fTemperature	: REAL;
+	fDawn 			: REAL;
+	bRain 			: BOOL;
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_WeatherStation">
+      <LineId Id="141" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="180" Count="24" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="30" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_WeatherStation.CalculateAverageTemperature">
+      <LineId Id="62" Count="5" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="72" Count="13" />
+      <LineId Id="142" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_WeatherStation.InitializeTerminal">
+      <LineId Id="14" Count="16" />
+    </LineIds>
+    <LineIds Name="FB_WeatherStation.ReadValues">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

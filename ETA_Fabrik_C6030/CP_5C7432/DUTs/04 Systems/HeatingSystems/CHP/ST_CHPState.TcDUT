@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_CHPState" Id="{b9e15077-e170-47a5-b066-0bb5047daee0}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_CHPState :
+STRUCT
+	bError					: BOOL;
+	fOperatingTime			: UINT;	//hours
+	fTemperatureExhaustGas	: INT; //degreeC
+	fTemperatureCoolingWater: INT; //degreeC
+	fFeedTemperature		: INT; //degreeC
+	fReturnTemperature		: INT; //degreeC
+	nNumberOfStarts			: UINT;
+	fElectricalPower		: INT; //W
+	fRotationalSpeed		: UINT;	//rotations per minute
+	fGeneratorVoltage		: INT; //V
+	fGridVoltage			: INT; //V
+	fGeneratorCurrent		: INT; //A
+	fCosPhi					: INT;
+	nOperationStatus		: UINT;	// 0: Off // 1: Ready // 2: Start // 3: Operating // 4: Error
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

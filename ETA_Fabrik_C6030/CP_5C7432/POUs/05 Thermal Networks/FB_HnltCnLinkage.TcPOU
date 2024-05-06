@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HnltCnLinkage" Id="{49b9fb4a-ee7f-4dd8-8511-b340abe8c57d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HnltCnLinkage
+VAR_INPUT
+	stAmbientState : ST_AmbientState;
+	
+	//control struct for hnlt cn linkage
+	controlAutomatic : ST_HnltCnLinkageControl;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//systems
+	HeatPumpSystem : FB_HeatPumpSystem_CN;
+	InnerCapillaryTubeMats : FB_InnerCapillaryTubeMats;
+	UnderfloorHeatingSystem : FB_UnderfloorHeatingSystem;
+	
+	//internal variables
+	bAlgorithmPermission : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//check for algorithm permission
+bAlgorithmPermission := controlAutomatic.bAlgorithmPermission_CN AND controlAutomatic.bAlgorithmPermission_HNLT;
+	
+HeatPumpSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HeatPump,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_HNLT_Heating);
+	
+//NOTE: inner capillary tube mats are always on and recieve desired hall temperature as setpoint
+InnerCapillaryTubeMats(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_InnerCapillaryTubeMats,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := controlAutomatic.fTargetTemperature_ProductionHall,
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
+	stAmbientState := stAmbientState);
+
+//NOTE: underfloor heating is always on and recieves no setpoint because ambient temperature depending feed temperature is calculated inside FB
+UnderfloorHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_UnderfloorHeating,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 0,
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode,
+	stAmbientState := stAmbientState);]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HnltCnLinkage">
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="4" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="63" Count="5" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

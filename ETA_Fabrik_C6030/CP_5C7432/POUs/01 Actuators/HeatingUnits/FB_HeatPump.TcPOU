@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_HeatPump" Id="{0dd9755f-94cf-444c-81a9-fd0cdb4903c5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPump EXTENDS FB_ActuatorContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_HeatPumpState;
+	
+	//default parameters
+	localDefaultParameters : ST_HeatPumpDefaultParameters;
+	
+	//analog converters
+	OutputConverter : FB_AnalogOutput(fUpperLimit := 100, fLowerLimit := 0);
+	
+	//I/O Links
+	nSetPoint_OUT			AT %Q* : INT;
+	bSetStatusOn_OUT 		AT %Q* : BOOL;
+	bStatusOn_IN			AT %I* : BOOL;
+	bError_IN 				AT %I* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+OutputConverter(fValue := fSetPoint);]]></ST>
+    </Implementation>
+    <Method Name="GetState" Id="{60ebd37c-571c-4562-87b5-edba5ef517b1}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//local state
+controlState.bStatusOn := bStatusOn_IN;
+localState.bError := bError_IN;
+bStatusOn := controlState.bStatusOn;
+bError := localState.bError;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{82c7001b-502f-4eed-ad12-bc20db3b7e0a}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{bde501ed-c924-424b-8141-2c77fd6f9860}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[setPointState.fSetPoint := fSetPoint;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.sSetPointUnit := 'degreeC';
+
+nSetPoint_OUT := OutputConverter.nValue;
+bSetStatusOn_OUT := bSetStatusOn;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{39d79361-27f7-4837-ba9c-e45ae9ffbf52}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_HeatPumpDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{9f6645e9-f40a-4e31-bf3b-642c7cf82de4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{a9cbb37c-f381-4cc5-942a-0cfa78cb8d38}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_HeatPump">
+      <LineId Id="280" Count="0" />
+      <LineId Id="394" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPump.GetState">
+      <LineId Id="40" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPump.SetSetPointLimits">
+      <LineId Id="15" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPump.SetState">
+      <LineId Id="6" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPump.ST_DefaultParameters.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HeatPump.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

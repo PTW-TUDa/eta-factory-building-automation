@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_AmbientState" Id="{18024053-1db6-499b-af8a-99fd20169e28}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_AmbientState :
+STRUCT
+	fOutsideTemperature : REAL;
+	fOutsideTemperature_Container : REAL;
+	fOutsideTemperature_Mean : REAL;
+	fHallTemperature : REAL;
+	fRoomTemperature_Container : REAL;
+	fWindSpeed : REAL;
+	fDawn : REAL;
+	bRain : BOOL;
+	sTemperatureUnit : STRING := 'degreeC';
+	sDawnUnit : STRING := 'lux';
+	sWindSpeedUnit : STRING := 'm/s';
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

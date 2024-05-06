@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_CN_CentralMachineCooling" Id="{0a11f1d0-fdb2-4a95-b568-34fd403f1a7b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CN_CentralMachineCooling EXTENDS FB_SystemContinous
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//default parameters
+	localDefaultParameters : ST_CN_CentralMachineCoolingDefaultParameters;
+	
+	//pumps
+	stPU100DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU100 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU100DefaultParameters);;
+
+	//valves
+	stSV100DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
+	SV100 : FB_DiscreteValve := (ST_DefaultParameters := stSV100DefaultParameters);
+	
+	//heat counters
+	WMZ100: FB_MollineEHeatCounter;
+	
+	//internal variables
+	bSetStatusOn_PU100 : BOOL;
+	bSetStatusOn_SV100 : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN();
+
+SV100.GetState_BI();
+SV100(bSetStatusOnAutomatic := bSetStatusOn_SV100,
+	bAlgorithmPermission := bAlgorithmPermission);
+SV100.SetState_BO();
+
+PU100.GetState_Profibus();
+PU100(bSetStatusOnAutomatic := bSetStatusOn_PU100,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
+	nControlModeAutomatic := 3);
+PU100.SetState_Profibus();
+
+WMZ100(aHeatCounterTelegramm:=aTelegramm_WMZ100);
+]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{4276cf4c-f380-44a1-8219-8445a723854b}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (PU100.bStatusOn AND SV100.localState.nPosition = 2) OR PU100.bError THEN
+	bError := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{d90af776-5306-44f7-8360-e5330d395bda}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU100 := TRUE;
+
+IF PU100.bStatusOn THEN
+	bSwitchToWorking := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{7afd6cbf-89bd-40f8-b6d2-a42b5171e63e}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_PU100 := FALSE;
+
+IF NOT PU100.bStatusOn THEN
+	bSetStatusOn_SV100 := FALSE;
+	IF SV100.localState.nPosition = 2 THEN
+		bRampDownFinished := TRUE;
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{7d5405b2-d5ca-46b6-81e3-1ffe28574586}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_SV100 := TRUE;
+
+IF SV100.localState.nPosition = 3 THEN
+	bRampUpFinished := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{6ce66674-d039-4ebc-9baf-9c2d93b0cf06}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF  PU100.nControlModeAutomatic = 3 THEN
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperatureDifference[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperatureDifference[2];
+ELSE
+	aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsRelativeSpeed[1];
+	aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsRelativeSpeed[2];
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{070992e0-f9f9-47d5-b026-51312d817469}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[fOperatingPoint := PU100.localState.fTemperatureDifference;
+
+controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'K';
+setPointState.sOperatingPointUnit := 'K';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{841d2a3c-59fc-4555-9ce9-0f784f18eb2c}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_CN_CentralMachineCooling">
+      <LineId Id="9" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="43" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="4" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.CheckError">
+      <LineId Id="8" Count="2" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.Operational">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.RampDown">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="2" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.RampUp">
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.SetSetPointLimits">
+      <LineId Id="11" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.SetState">
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="15" Count="2" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_CN_CentralMachineCooling.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

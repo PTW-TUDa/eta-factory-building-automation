@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_HeatingNetworkLowTemperatureControl" Id="{47ce5a98-6242-4b0a-9d26-e811a4848d89}">
+    <Declaration><![CDATA[TYPE ST_HeatingNetworkLowTemperatureControl :
+STRUCT
+	fFeedTemperature_Heating : REAL;
+	fFeedTemperature_Cooling : REAL;
+	bAlgorithmPermission : BOOL;
+	bSetStatusOn_HVFASystem : BOOL;
+	bLoading_HVFASystem : BOOL;
+	bSetStatusOn_OuterCapillaryTubeMats : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
