@@ -106,6 +106,7 @@ SV307.GetState_AI();
 SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZ305.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 SV307.SetState_AO();
 
@@ -325,7 +326,9 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_VSIStorageSystem">
-      <LineId Id="654" Count="52" />
+      <LineId Id="654" Count="49" />
+      <LineId Id="824" Count="0" />
+      <LineId Id="704" Count="2" />
       <LineId Id="599" Count="0" />
       <LineId Id="770" Count="0" />
       <LineId Id="764" Count="0" />

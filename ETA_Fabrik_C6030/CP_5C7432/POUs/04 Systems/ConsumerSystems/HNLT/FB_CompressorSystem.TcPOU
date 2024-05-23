@@ -40,6 +40,7 @@ RV251(bSetStatusOnAutomatic := bSetStatusOn_RV251,
 	fSetPointAutomatic := fSetPoint-5,
 	bAlgorithmPermission := bAlgorithmPermission,
 	nControlModeAutomatic := 2,
+	fThermalPowerExternal := WMZ251.fHeatFlowRate,
 	fTemperatureExternal := PU251.fTemperatureInternal);
 RV251.SetState_AO();
 
@@ -147,7 +148,9 @@ END_VAR]]></Declaration>
       <LineId Id="52" Count="4" />
       <LineId Id="51" Count="0" />
       <LineId Id="79" Count="0" />
-      <LineId Id="41" Count="8" />
+      <LineId Id="41" Count="5" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="47" Count="2" />
       <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="FB_CompressorSystem.CheckError">

@@ -46,6 +46,7 @@ PU245.GetState_Profibus();
 PU245(bSetStatusOnAutomatic := bSetStatusOn_PU245,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
+	fThermalPowerExternal := WMZ245.fHeatFlowRate,
 	nControlModeAutomatic := 3);
 PU245.SetState_Profibus();
 
@@ -176,7 +177,9 @@ END_VAR]]></Declaration>
       <LineId Id="54" Count="0" />
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="4" />
+      <LineId Id="49" Count="2" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="52" Count="1" />
       <LineId Id="133" Count="0" />
       <LineId Id="132" Count="0" />
       <LineId Id="37" Count="0" />

@@ -43,6 +43,7 @@ SV300.SetState_BO();
 PU300.GetState_Profibus();
 PU300(bSetStatusOnAutomatic := bSetStatusOn_PU300,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZ300.fHeatFlowRate,
 	fSetPointAutomatic := fSetPoint,
 	nControlModeAutomatic := 3);
 PU300.SetState_Profibus();
@@ -173,7 +174,9 @@ END_VAR]]></Declaration>
       <LineId Id="46" Count="0" />
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="4" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="51" Count="2" />
       <LineId Id="136" Count="0" />
       <LineId Id="135" Count="0" />
       <LineId Id="37" Count="0" />

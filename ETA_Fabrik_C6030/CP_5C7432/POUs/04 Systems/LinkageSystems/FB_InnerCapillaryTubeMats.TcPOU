@@ -128,6 +128,7 @@ RV500(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint_RV500,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU500.fTemperatureInternal,
+	fThermalPowerExternal := WMZ405.fHeatFlowRate,
 	nControlModeAutomatic := nControlMode_RV500);
 RV500.SetState_AO();
 
@@ -505,7 +506,9 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_InnerCapillaryTubeMats">
-      <LineId Id="1004" Count="197" />
+      <LineId Id="1004" Count="38" />
+      <LineId Id="1288" Count="0" />
+      <LineId Id="1043" Count="158" />
       <LineId Id="384" Count="0" />
     </LineIds>
     <LineIds Name="FB_InnerCapillaryTubeMats.CheckError">

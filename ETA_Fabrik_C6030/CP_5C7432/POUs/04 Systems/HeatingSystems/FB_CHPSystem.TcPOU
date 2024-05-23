@@ -21,7 +21,7 @@ VAR
 	
 	//valves
 	stSV32xDefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);	
+	stRV32xDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 1, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);	
 	SV32x : FB_DiscreteValve := (ST_DefaultParameters := stSV32xDefaultParameters);
 	RV32x : FB_MixingValve := (ST_DefaultParameters := stRV32xDefaultParameters);
 	
@@ -71,6 +71,7 @@ RV32x(fSetPointAutomatic := fSetPoint-20,
 	bSetStatusOnAutomatic := bSetStatusOn_RV32x,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := CHP.fReturnTemperature,
+	fThermalPowerExternal := WMZ32x.fHeatFlowRate,
 	nControlModeAutomatic := 2);
 RV32x.SetState_AO();
 
@@ -228,7 +229,9 @@ END_VAR]]></Declaration>
       <LineId Id="68" Count="0" />
       <LineId Id="73" Count="0" />
       <LineId Id="72" Count="0" />
-      <LineId Id="74" Count="5" />
+      <LineId Id="74" Count="3" />
+      <LineId Id="351" Count="0" />
+      <LineId Id="78" Count="1" />
       <LineId Id="83" Count="6" />
       <LineId Id="82" Count="0" />
       <LineId Id="94" Count="0" />
