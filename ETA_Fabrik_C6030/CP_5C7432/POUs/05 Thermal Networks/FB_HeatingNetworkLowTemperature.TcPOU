@@ -28,6 +28,7 @@ VAR
 	//internal variables
 	bSetStatusOn_AnnealingOven : BOOL;
 	bSetStatusOn_DC : BOOL;
+	bError_DC : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -57,7 +58,8 @@ AnnealingOvenSealingSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
 	fSetPointAutomatic := 35);
 	
 DC();
-bSetStatusOn_DC := DC.bStatusOn;
+bSetStatusOn_DC := (DC.bStatusOn AND NOT DC.bError_Connection);
+
 DCSystem(bSetStatusOnAutomatic := bSetStatusOn_DC,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 3); //temperature difference control
@@ -82,7 +84,10 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
       <LineId Id="230" Count="0" />
       <LineId Id="232" Count="0" />
       <LineId Id="234" Count="2" />
-      <LineId Id="240" Count="5" />
+      <LineId Id="240" Count="1" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="243" Count="2" />
       <LineId Id="231" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="114" Count="2" />

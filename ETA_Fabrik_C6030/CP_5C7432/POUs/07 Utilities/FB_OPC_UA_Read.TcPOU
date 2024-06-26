@@ -8,13 +8,13 @@ VAR_INPUT
 	sNamespaceName		: STRING;
 END_VAR
 VAR_OUTPUT
+	bError_Connection : BOOL := FALSE;
 END_VAR
 VAR
 	Node : ST_OPC_UANode;
-
+	bError		: BOOL;
 	iState		: INT 	:= 0;
 	bBusy		: BOOL;
-	bError		: BOOL;
 	nErrorID	: DWORD;
 
 	SessionConnectInfo		: ST_UASessionConnectInfo;
@@ -33,8 +33,7 @@ VAR
 	nIndexRangeCount		: UINT := 0;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-CASE iState OF
+      <ST><![CDATA[CASE iState OF
 	0: (* Start *)
 		bError		:= FALSE;
 		nErrorID	:= 0;
@@ -69,7 +68,9 @@ CASE iState OF
 			IF NOT fbUA_Connect.Error THEN
 				(* session open *)
 				iState := iState + 1;
+				bError_Connection := FALSE;
 			ELSE
+				bError_Connection := TRUE;
 				bError			:= TRUE;
 				nErrorID		:= fbUA_Connect.ErrorID;
 				nConnectionHdl	:= 0;
@@ -185,10 +186,15 @@ CASE iState OF
 END_CASE]]></ST>
     </Implementation>
     <LineIds Name="FB_OPC_UA_Read">
-      <LineId Id="210" Count="0" />
-      <LineId Id="31" Count="26" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="34" Count="23" />
       <LineId Id="217" Count="1" />
-      <LineId Id="60" Count="12" />
+      <LineId Id="60" Count="5" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="68" Count="4" />
       <LineId Id="214" Count="0" />
       <LineId Id="73" Count="8" />
       <LineId Id="216" Count="0" />
