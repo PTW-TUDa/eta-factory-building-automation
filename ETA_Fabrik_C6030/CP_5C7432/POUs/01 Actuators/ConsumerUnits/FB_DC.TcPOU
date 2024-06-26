@@ -27,7 +27,7 @@ END_VAR]]></Declaration>
 sNamespaceName 		:= 'http://www.boschrexroth.com/IndraLogic';
 
 (*Define Nodes to Read*)
-aNodes[1].NodeID.sIdentifier			:= '.bCMD_Kuehlung_Ein';
+aNodes[1].NodeID.sIdentifier			:= '.bHMU_DCBusCharged';
 aNodes[1].NodeID.eIdentifierType		:= eUAIdentifierType_String;
 aNodes[1].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);
 aNodes[1].NodeAddInfo.nIndexRangeCount 	:= 0;
