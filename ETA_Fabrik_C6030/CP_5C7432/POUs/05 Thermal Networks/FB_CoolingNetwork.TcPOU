@@ -39,7 +39,7 @@ localState.fLowerTemperature_ActiveStorage := HVFASystem.localStorageState.fLowe
 
 //machines
 EMAG_GT();
-bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn;
+bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn AND NOT EMAG_GT.bError_Connection;
 FlyhweelMassStorage();
 bSetStatusOn_FlywheelMassStorage := FlyhweelMassStorage.bStatusOn;
 
