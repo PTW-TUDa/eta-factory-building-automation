@@ -13,8 +13,8 @@ VAR
 	stOPC_UA_Server		: ST_OPC_UA_Server;
 	sOPC_UA_Server_URL 	: STRING;
 	sNamespaceName		: STRING;
-	aNodes				: ARRAY[1..2] OF ST_OPC_UANode;
-	nNodeCount			: UDINT := 2;
+	aNodes				: ARRAY[1..1] OF ST_OPC_UANode;
+	nNodeCount			: UDINT := 1;
 	stIndexRange		: ARRAY [1..nMaxIndexRange] OF ST_UAIndexRange;
 	currentNode			: UDINT := 1;
 	

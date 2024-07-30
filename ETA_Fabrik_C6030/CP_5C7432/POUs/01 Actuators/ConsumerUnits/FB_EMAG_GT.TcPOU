@@ -13,8 +13,8 @@ VAR
 	stOPC_UA_Server		: ST_OPC_UA_Server;
 	sOPC_UA_Server_URL 	: STRING;
 	sNamespaceName		: STRING;
-	aNodes				: ARRAY[1..4] OF ST_OPC_UANode;
-	nNodeCount			: UDINT := 4;
+	aNodes				: ARRAY[1..2] OF ST_OPC_UANode;
+	nNodeCount			: UDINT := 2;
 	stIndexRange		: ARRAY [1..nMaxIndexRange] OF ST_UAIndexRange;
 	currentNode			: UDINT := 1;
 	
@@ -43,6 +43,9 @@ aNodes[2].SizeOfDataType				:= DINT_TO_UDINT(eUAType_Boolean);
 aNodes[2].NodeAddInfo.nIndexRangeCount 	:= 0;
 aNodes[2].NodeAddInfo.stIndexRange		:= stIndexRange;
 aNodes[2].TargetVar						:= ADR(bStatusOn_Machine);
+bError_Connection := OPC_UA.bError_Connection;
+Timer(IN := bStartTimer,
+	PT := T#5S);
 
 bStartTimer := TRUE;
 IF Timer.Q THEN
@@ -61,6 +64,8 @@ bStatusOn := bStatusOn_CoolingLubricant OR bStatusOn_Machine;]]></ST>
     </Implementation>
     <LineIds Name="FB_EMAG_GT">
       <LineId Id="25" Count="16" />
+      <LineId Id="170" Count="1" />
+      <LineId Id="169" Count="0" />
       <LineId Id="56" Count="0" />
       <LineId Id="135" Count="10" />
       <LineId Id="65" Count="0" />
