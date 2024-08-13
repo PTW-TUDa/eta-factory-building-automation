@@ -25,7 +25,7 @@ VAR
 	
 	//heat counters
 	WMZ331 : FB_MollineC3HeatCounter;
-	GM331 : FB_GasMeter_Aerius_G4(); //must be implemeted correctly
+	GM331 : FB_GasMeter_Aerius_G4(); //must be implemeted correctly, maybe use FB_MBUS_HYD_PortPulse ?
 	
 	//internal variables
 	bSetStatusOn_CondensingBoiler : BOOL;
