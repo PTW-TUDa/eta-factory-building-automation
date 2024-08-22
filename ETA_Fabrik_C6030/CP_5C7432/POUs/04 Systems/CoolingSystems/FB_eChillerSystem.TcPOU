@@ -13,7 +13,7 @@ VAR
 	eChiller : FB_eChiller;
 	
 	//discrete valve 138
-	stSV138DefaultParameters : ST_MixingValveDefaultParameters := (fOffsetTerminal := 3950);
+	stSV138DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 1, tControllerIntegralTime := T#100S, fOutMinLimit := 30,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN,fOffsetTerminal := 3950);
 	SV138 : FB_MixingValve := (ST_DefaultParameters := stSV138DefaultParameters); //valve motor needs continous signal but operates only between extreme positions	
 	
 	//heat counters
