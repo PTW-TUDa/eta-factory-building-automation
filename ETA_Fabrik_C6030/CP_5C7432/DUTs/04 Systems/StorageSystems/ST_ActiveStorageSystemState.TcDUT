@@ -5,6 +5,7 @@
 TYPE ST_ActiveStorageSystemState :
 STRUCT
 	bLoading : BOOL;
+	fHeatFlowRate : REAL; //heat flow rate calculated by pump volume flow rate because heat coutner does not work when flow direction changes
 END_STRUCT
 END_TYPE
 ]]></Declaration>

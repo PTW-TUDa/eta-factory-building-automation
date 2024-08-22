@@ -100,17 +100,17 @@ SVx06(bSetStatusOnAutomatic := bSetStatusOn_SVx06,
 	nControlModeAutomatic := 0);
 SVx06.SetState_AO();
 
+//insert heat counter telegramm from other task
+WMZ7x0(aHeatCounterTelegramm := aTelegramm_WMZ7x0);
+WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);
+
 RVx05.GetState_AI();
 RVx05(bSetStatusOnAutomatic := bSetStatusOn_RVx05,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fThermalPowerExternal := WMZx05.fHeatFlowRate,
 	nControlModeAutomatic := 0);
-RVx05.SetState_AO();
-
-//insert heat counter telegramm from other task
-WMZ7x0(aHeatCounterTelegramm := aTelegramm_WMZ7x0);
-WMZx05(aHeatCounterTelegramm := aTelegramm_WMZx05);]]></ST>
+RVx05.SetState_AO();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{0a750c43-7566-4b1a-a185-b01eaf088ced}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -315,8 +315,11 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_HVFAStorageSystem">
-      <LineId Id="540" Count="52" />
+      <LineId Id="540" Count="41" />
+      <LineId Id="590" Count="2" />
       <LineId Id="173" Count="0" />
+      <LineId Id="654" Count="6" />
+      <LineId Id="653" Count="0" />
     </LineIds>
     <LineIds Name="FB_HVFAStorageSystem.CheckError">
       <LineId Id="9" Count="0" />

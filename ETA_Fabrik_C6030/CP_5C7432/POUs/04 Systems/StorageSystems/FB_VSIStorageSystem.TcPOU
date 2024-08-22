@@ -46,6 +46,7 @@ VAR
 	fSetPoint_SV306 : REAL;
 	bSetStatusOn_SV307 : BOOL;
 	fSetPoint_SV307 : REAL;
+	fHeatFlowRate : REAL;
 	bLoading : BOOL;
 	
 	//triggers
@@ -102,15 +103,23 @@ SV306(bSetStatusOnAutomatic := bSetStatusOn_SV306,
 	nControlModeAutomatic := 0);
 SV306.SetState_AO();
 
+WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);
+
+IF bLoading THEN
+	localState.fHeatFlowRate := -PU305.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
+ELSE
+	localState.fHeatFlowRate := PU306.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
+END_IF
+
 SV307.GetState_AI();
 SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fThermalPowerExternal := WMZ305.fHeatFlowRate,
+	fThermalPowerExternal := localState.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 SV307.SetState_AO();
 
-WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);
+
 	
 	]]></ST>
     </Implementation>
@@ -326,7 +335,13 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_VSIStorageSystem">
-      <LineId Id="654" Count="49" />
+      <LineId Id="654" Count="44" />
+      <LineId Id="880" Count="3" />
+      <LineId Id="888" Count="0" />
+      <LineId Id="886" Count="0" />
+      <LineId Id="889" Count="0" />
+      <LineId Id="885" Count="0" />
+      <LineId Id="699" Count="4" />
       <LineId Id="824" Count="0" />
       <LineId Id="704" Count="2" />
       <LineId Id="599" Count="0" />
