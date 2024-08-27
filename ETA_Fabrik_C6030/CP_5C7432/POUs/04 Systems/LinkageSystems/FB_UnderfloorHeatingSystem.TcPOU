@@ -79,6 +79,7 @@ RV425(bSetStatusOnAutomatic := bSetStatusOn_RV425,
 	fSetPointAutomatic := fSetPoint_Internal,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU425.fTemperatureInternal,
+	fThermalPowerExternal := WMZ425.fHeatFlowRate,
 	nControlModeAutomatic := nControlMode_RV425);
 RV425.SetState_AO();
 
@@ -297,7 +298,9 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_UnderfloorHeatingSystem">
-      <LineId Id="903" Count="42" />
+      <LineId Id="903" Count="29" />
+      <LineId Id="992" Count="0" />
+      <LineId Id="933" Count="12" />
       <LineId Id="812" Count="0" />
     </LineIds>
     <LineIds Name="FB_UnderfloorHeatingSystem.CheckError">

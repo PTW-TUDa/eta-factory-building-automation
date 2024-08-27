@@ -43,6 +43,7 @@ RV361(bSetStatusOnAutomatic := bSetStatusOn_RV361,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU361.fTemperatureInternal,
+	fThermalPowerExternal := WMZ361.fHeatFlowRate,
 	nControlModeAutomatic := 2);
 RV361.SetState_AO();
 
@@ -152,7 +153,9 @@ END_VAR]]></Declaration>
       <LineId Id="183" Count="0" />
       <LineId Id="191" Count="0" />
       <LineId Id="322" Count="0" />
-      <LineId Id="277" Count="4" />
+      <LineId Id="277" Count="3" />
+      <LineId Id="347" Count="0" />
+      <LineId Id="281" Count="0" />
       <LineId Id="274" Count="0" />
       <LineId Id="200" Count="0" />
       <LineId Id="153" Count="0" />

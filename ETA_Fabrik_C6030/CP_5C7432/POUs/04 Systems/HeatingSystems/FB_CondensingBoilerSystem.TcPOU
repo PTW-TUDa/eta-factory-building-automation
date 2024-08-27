@@ -19,12 +19,13 @@ VAR
 	
 	//valves
 	ST_SV331DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);			
+	ST_RV331DefaultParameters :  ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 1, tControllerIntegralTime := T#100S, fOutMinLimit := 50,  tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);			
 	SV331 : FB_DiscreteValve := (ST_DefaultParameters := ST_SV331DefaultParameters);
 	RV331 : FB_MixingValve := (ST_DefaultParameters := ST_RV331DefaultParameters);	
 	
 	//heat counters
 	WMZ331 : FB_MollineC3HeatCounter;
+	GM331 : FB_GasMeter_Aerius_G4(); //must be implemeted correctly, maybe use FB_MBUS_HYD_PortPulse ?
 	
 	//internal variables
 	bSetStatusOn_CondensingBoiler : BOOL;
@@ -55,10 +56,12 @@ RV331.GetState_AI();
 RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 0,
+	fThermalPowerExternal := WMZ331.fHeatFlowRate);
 RV331.SetState_AO();
 
-WMZ331(aHeatCounterTelegramm := Telegramm_WZ_Brennwerttherme);]]></ST>
+WMZ331(aHeatCounterTelegramm := Telegramm_WZ_Brennwerttherme);
+GM331();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{aa46f833-0868-4c08-bf1e-1e375947cd52}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -180,9 +183,11 @@ END_VAR]]></Declaration>
       <LineId Id="47" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="48" Count="0" />
+      <LineId Id="141" Count="0" />
       <LineId Id="39" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="50" Count="0" />
+      <LineId Id="175" Count="0" />
     </LineIds>
     <LineIds Name="FB_CondensingBoilerSystem.CheckError">
       <LineId Id="8" Count="0" />

@@ -42,6 +42,7 @@ RV261.GetState_AI();
 RV261(bSetStatusOnAutomatic := bSetStatusOn_RV261,
 	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fThermalPowerExternal := WMZ261.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 RV261.SetState_AO();
 
@@ -152,6 +153,7 @@ END_VAR]]></Declaration>
       <LineId Id="191" Count="0" />
       <LineId Id="322" Count="0" />
       <LineId Id="277" Count="2" />
+      <LineId Id="347" Count="0" />
       <LineId Id="281" Count="0" />
       <LineId Id="274" Count="0" />
       <LineId Id="200" Count="0" />

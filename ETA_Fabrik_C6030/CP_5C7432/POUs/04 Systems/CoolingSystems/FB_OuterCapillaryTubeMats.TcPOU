@@ -100,6 +100,7 @@ RV600(bSetStatusOnAutomatic := bSetStatusOn_RV600,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := PU235.fTemperatureExternal,
+	fThermalPowerExternal := WMZ235.fHeatFlowRate,
 	nControlModeAutomatic := 2);
 RV600.SetState_AO();
 
@@ -309,7 +310,9 @@ END_VAR]]></Declaration>
       <LineId Id="99" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="390" Count="0" />
-      <LineId Id="90" Count="4" />
+      <LineId Id="90" Count="3" />
+      <LineId Id="676" Count="0" />
+      <LineId Id="94" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="391" Count="0" />
       <LineId Id="144" Count="3" />

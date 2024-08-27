@@ -38,7 +38,8 @@ PU100.GetState_Profibus();
 PU100(bSetStatusOnAutomatic := bSetStatusOn_PU100,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := fSetPoint,
-	nControlModeAutomatic := 3);
+	nControlModeAutomatic := 3,
+	fThermalPowerExternal := WMZ100.fHeatFlowRate);
 PU100.SetState_Profibus();
 
 WMZ100(aHeatCounterTelegramm:=aTelegramm_WMZ100);
@@ -160,7 +161,9 @@ END_VAR]]></Declaration>
       <LineId Id="46" Count="0" />
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="4" />
+      <LineId Id="49" Count="3" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="53" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="78" Count="0" />
       <LineId Id="37" Count="0" />

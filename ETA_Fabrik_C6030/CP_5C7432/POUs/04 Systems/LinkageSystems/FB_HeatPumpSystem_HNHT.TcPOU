@@ -90,6 +90,7 @@ RV342.GetState_AI();
 RV342(bSetStatusOnAutomatic := bSetStatusOn_RV342,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fSetPointAutomatic := 100,
+	fThermalPowerExternal := WMZ342.fHeatFlowRate,
 	nControlModeAutomatic := 0);
 RV342.SetState_AO();
 
@@ -255,6 +256,7 @@ fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
       <LineId Id="46" Count="0" />
       <LineId Id="78" Count="0" />
       <LineId Id="221" Count="3" />
+      <LineId Id="388" Count="0" />
       <LineId Id="226" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="108" Count="0" />
