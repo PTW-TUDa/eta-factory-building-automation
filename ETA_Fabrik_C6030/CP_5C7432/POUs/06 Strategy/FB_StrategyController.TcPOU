@@ -421,7 +421,7 @@ Controller_OuterCapillaryTubeMats_Permission(fSetpointValue := fTargetTemperatur
 //control hvfa storage
 //set hysteresis parameters for two-point controllers in low temperature heating network
 
-Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.fHysteresisRange := 6;
+Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.fHysteresisRange := 2;
 Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -442,7 +442,7 @@ Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tCtrlCycleTime := GlobalVa
 Controller_HVFA_HNLT_HVFALoadingPermission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //buffer storage asks HVFA_HNLT for unloading when buffer storage temperature falls below limit
-Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HVFA_HNLT_Heating,
+Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HVFA_HNLT_Heating,
 	fActualValue := hnltState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters);
