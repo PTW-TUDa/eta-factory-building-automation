@@ -23,6 +23,6 @@ Please cite this project using our publication:
 
 .. code-block::
 
-    Frank, Michael; Borst, Fabian; Theisinger, Lukas; Lademann, Tobias; Weigold, Matthias (2023): 
-    Framework for Rapid Implementation of Building Automation Control Programs of Industrial Heating and Cooling Systems. 
+    Frank, Michael; Borst, Fabian; Theisinger, Lukas; Lademann, Tobias; Fuhrländer-Völker, Daniel; Weigold, Matthias (2024): 
+    Framework for Implementation of Building Automation Control Programs for Industrial Heating and Cooling Systems. 
     In: Unpublished, Vol: Unpublished, pp. Unpublished, Unpublished, DOI: Unpublished
