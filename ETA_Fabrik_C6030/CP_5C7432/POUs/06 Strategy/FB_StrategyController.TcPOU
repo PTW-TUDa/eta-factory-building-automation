@@ -148,7 +148,7 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[//check for heating or cooling mode
-IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<10 THEN
+IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<9 THEN
 	//heating mode
 	hnltCnLinkageControl.bHeatingMode := FALSE;
 	hnhtCnLinkageControl.bHeatingMode := FALSE;
