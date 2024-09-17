@@ -480,6 +480,7 @@ ELSE
 	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
 	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := (Controller_OuterCapillaryTubeMats.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut) OR (Controller_HVFA_HNLT_Recooling.bOut AND Controller_OuterCapillaryTubeMats_Permission.bOut);
 END_IF
+hnltControl.bSetStatusOn_HVFASystem := FALSE;
 ]]></ST>
       </Implementation>
     </Method>
@@ -783,6 +784,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="132" Count="0" />
       <LineId Id="136" Count="1" />
       <LineId Id="134" Count="1" />
+      <LineId Id="141" Count="0" />
       <LineId Id="19" Count="0" />
     </LineIds>
     <LineIds Name="FB_StrategyController.ControlHnltCnLinkage">
