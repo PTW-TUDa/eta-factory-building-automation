@@ -52,44 +52,6 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
-			<BitSize>192</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>1</LBound>
-				<Elements>24</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2InData</Name>
-			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
-			<BitSize>32</BitSize>
-			<SubItem>
-				<Name>nStatus</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>nDummy</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>nData</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>obsolete</Name>
-					<Value>Use the structure ST_KL6811InData instead!</Value>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
 			<Name GUID="{12E80FF5-6251-C867-A464-3036E21E986D}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -161,6 +123,53 @@
 			</SubItem>
 		</DataType>
 		<DataType>
+			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
+			<BitSize>192</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>24</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2InData</Name>
+			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
+			<BitSize>32</BitSize>
+			<SubItem>
+				<Name>nStatus</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nDummy</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nData</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>obsolete</Name>
+					<Value>Use the structure ST_KL6811InData instead!</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
+			<BitSize>40</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>5</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2OutData</Name>
 			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
 			<BitSize>32</BitSize>
@@ -188,15 +197,6 @@
 					<Value>Use the structure ST_KL6811OutData instead!</Value>
 				</Property>
 			</Properties>
-		</DataType>
-		<DataType>
-			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
-			<BitSize>40</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>5</Elements>
-			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000300000006}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
@@ -332,12 +332,11 @@
 		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c00000c00000c00000c00000c00000c0ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c600ffffc6c6c60000c0c6c6c600ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6ff0000c6c6c60000c0c6c6c6ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c60000ffc6c6c60000c0c6c6c60000ff808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6008400c6c6c60000c0c6c6c6008400808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1005">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
-		<ImageData Id="1008">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c000000000000000bfff000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
-		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000c0c0c0c0c0c0000000808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1011">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c000000000000000bfff000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
+		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000c0c0c0c0c0c0000000808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1008">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
 	<Project ProjectGUID="{00CACF35-1DB4-4749-82B1-534521295F64}" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" AutoPrioManagement="true" ShowHideConfigurations="#x106">
 		<System>
@@ -412,104 +411,6 @@
 					</Vars>
 					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>Standard Inputs</Name>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS900.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS901.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS902.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS903.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS910.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS911.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS950.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS951.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.RV950.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
@@ -2442,22 +2343,107 @@
 							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
-					</Vars>
-					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
-						<Name>Standard Outputs</Name>
 						<Var>
-							<Name>MAIN.PCM_Testbed.RV950.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Name>MAIN.PCM_Testbed.TS900.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Name>MAIN.PCM_Testbed.TS901.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS902.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS903.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS910.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS911.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS950.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS951.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
 							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
 						</Var>
 						<Var>
-							<Name>.Dali_K522A1_DALI_OUT</Name>
-							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
+							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
+						<Name>Standard Outputs</Name>
 						<Var>
 							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
@@ -3011,6 +2997,19 @@
 							<Name>MAIN.HNHT.SV_SupplyAir.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_OUT</Name>
+							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2022-03-23T15:03:59">
@@ -13622,362 +13621,13 @@ PU245
 							<CoeProfile ProfileNo="26219401"/>
 						</EtherCAT>
 					</Box>
-					<Box Id="52" BoxType="9099">
-						<Name>Klemme 52 (EL1008)</Name>
-						<ImageId>7</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8K. Dig. Eingang 24V, 3ms" Desc="EL1008" PortABoxInfo="#x0100001c">
-							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
-							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6050" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6060" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6070" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-						</EtherCAT>
-					</Box>
-					<Box Id="54" BoxType="9099">
-						<Name>Klemme 54 (EL2008)</Name>
-						<ImageId>1006</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00110000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8K. Dig. Ausgang 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000034">
-							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
-							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7030" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7040" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 6" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7050" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 7" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7060" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 8" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7070" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-						</EtherCAT>
-					</Box>
-					<Box Id="55" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Klemme 55 (EL3004)</Name>
-						<ImageId>1004</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bbc3052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3004 4K.Ana. Eingang  +/-10V" Desc="EL3004" PortABoxInfo="#x01000036">
-							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
-							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
-							<SyncMan>001100000400000003000000000000000000001104000000</SyncMan>
-							<SyncMan>801110002000010004000000000000001000801120010000</SyncMan>
-							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
-							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a01</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6000" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6000" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6000" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6000" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6000" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6000" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 1" Index="#x1a01" Flags="#x0010">
-								<ExcludePdo>#x1a00</ExcludePdo>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 2" Index="#x1a02" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a03</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6010" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6010" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6010" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6010" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6010" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6010" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 2" Index="#x1a03" Flags="#x0010">
-								<ExcludePdo>#x1a02</ExcludePdo>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 3" Index="#x1a04" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a05</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6020" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6020" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6020" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6020" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6020" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6020" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6020" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 3" Index="#x1a05" Flags="#x0010">
-								<ExcludePdo>#x1a04</ExcludePdo>
-								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 4" Index="#x1a06" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a07</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6030" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6030" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6030" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6030" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6030" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6030" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6030" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 4" Index="#x1a07" Flags="#x0010">
-								<ExcludePdo>#x1a06</ExcludePdo>
-								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-						</EtherCAT>
-					</Box>
-					<Box Id="57" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Klemme 57 (EL4124)</Name>
-						<ImageId>1005</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x101c3052" RevisionNo="#x03f90000" InfoDataAddr="true" TimeoutMailbox2="2000" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL4124 4Ch. Ana. Output 4-20mA, 16bit" Desc="EL4124" PortABoxInfo="#x01000037">
-							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
-							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
-							<SyncMan>001108002400010003000000000000000800001124010000</SyncMan>
-							<SyncMan>801100000000000004000000000000000000801100000000</SyncMan>
-							<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
-							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-							<BootStrapData>0010f400f410f400</BootStrapData>
-							<DcMode>53796e6368726f6e00000000000000004672656552756e2f534d2d53796e6368726f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="AO Output Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7000" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7010" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7020" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7030" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-						</EtherCAT>
-					</Box>
-					<Box Id="50" BoxType="9099">
-						<Name>Klemme 50 (EK1122)</Name>
-						<ImageId>1007</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04622c52" RevisionNo="#x00120000" PortPhys="4883" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1122 2-Port EtherCAT-Abzweig" Desc="EK1122" PortABoxInfo="#x01000039"/>
-					</Box>
 					<Box Id="39" BoxType="9099">
 						<Name>Klemme 39 (EK1521-0010)</Name>
-						<ImageId>1008</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05f12c52" RevisionNo="#x0013000a" PortPhys="4867" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1521-0010 1-Port EtherCAT-Abzweig (FX-SingleMode)" Desc="EK1521-0010" PortABoxInfo="#x02000032"/>
+						<ImageId>1006</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05f12c52" RevisionNo="#x0013000a" PortPhys="4867" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1521-0010 1-Port EtherCAT-Abzweig (FX-SingleMode)" Desc="EK1521-0010" PortABoxInfo="#x0100001c"/>
 						<Box Id="40" BoxType="9099">
 							<Name>Klemme 40 (EK1501-0010)</Name>
-							<ImageId>1009</ImageId>
+							<ImageId>1007</ImageId>
 							<EtherCAT SlaveType="1" PdiType="#x0d04" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05dd2c52" RevisionNo="#x0012000a" PortPhys="305" IdentificationAdo="4096" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1501-0010 EtherCAT-Koppler (2A E-Bus, FX-SingleMode, ID-Switch)" Desc="EK1501-0010" PortABoxInfo="#x03000027">
 								<SyncMan>001002000000010004000000000000000000001000000000</SyncMan>
 								<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
@@ -13989,7 +13639,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							</EtherCAT>
 							<Box Id="41" BoxType="9099">
 								<Name>Klemme 41 (EL2809)</Name>
-								<ImageId>1006</ImageId>
+								<ImageId>1008</ImageId>
 								<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0af93052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2809 16K. Dig. Ausgang 24V, 0.5A" Desc="EL2809" PortABoxInfo="#x01000028">
 									<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 									<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
@@ -15218,7 +14868,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>328</BitOffs>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="2">
@@ -15229,7 +14879,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>328</BitOffs>
 									</Var>
 								</Vars>
 								<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15242,277 +14892,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>UINT</Type>
-												<BitOffs>352</BitOffs>
+												<BitOffs>344</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>368</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>376</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>384</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>392</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>400</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>408</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>416</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>424</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>432</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>440</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>448</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>456</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>464</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>472</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>480</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>488</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>496</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>504</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>512</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>520</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>528</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>536</BitOffs>
+												<BitOffs>528</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Ctrl</Name>
 												<Type>UINT</Type>
-												<BitOffs>352</BitOffs>
+												<BitOffs>344</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>368</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>376</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>384</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>392</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>400</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>408</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>416</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>424</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>432</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>440</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>448</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>456</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>464</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>472</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>480</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>488</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>496</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>504</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>512</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>520</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>528</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>536</BitOffs>
+												<BitOffs>528</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15525,25 +15175,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>544</BitOffs>
+												<BitOffs>536</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>560</BitOffs>
+												<BitOffs>552</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>544</BitOffs>
+												<BitOffs>536</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>560</BitOffs>
+												<BitOffs>552</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15552,25 +15202,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>576</BitOffs>
+												<BitOffs>568</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>592</BitOffs>
+												<BitOffs>584</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>576</BitOffs>
+												<BitOffs>568</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>592</BitOffs>
+												<BitOffs>584</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15579,25 +15229,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>608</BitOffs>
+												<BitOffs>600</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>624</BitOffs>
+												<BitOffs>616</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>608</BitOffs>
+												<BitOffs>600</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>624</BitOffs>
+												<BitOffs>616</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15606,25 +15256,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>640</BitOffs>
+												<BitOffs>632</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>656</BitOffs>
+												<BitOffs>648</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>640</BitOffs>
+												<BitOffs>632</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>656</BitOffs>
+												<BitOffs>648</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15634,7 +15284,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 										<ImageId>32</ImageId>
 									</Term>
 								</BusCoupler>
-								<EtherCAT SlaveType="3" AdsServerAddress="000000000b390204" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x0100002c">
+								<EtherCAT SlaveType="3" AdsServerAddress="000000000b39fd03" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x0100002c">
 									<SyncMan>001c88002600010001000000400000028800001c26010000</SyncMan>
 									<SyncMan>001e88002200010002000000400000028800001e22010000</SyncMan>
 									<SyncMan>00102a006400010003000000000000000000001064010000</SyncMan>
@@ -15649,7 +15299,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="46" BoxType="9099">
 						<Name>Klemme 25 (EL9011)</Name>
-						<ImageId>1010</ImageId>
+						<ImageId>1009</ImageId>
 						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 Endklemme" Desc="EL9011" PortABoxInfo="#x02000027"/>
 					</Box>
 					<Box Id="29" BoxType="9081" AmsPort="28928">
@@ -15668,7 +15318,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>976</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -15679,7 +15329,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>976</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15692,277 +15342,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>State</Name>
 										<Type>UINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -15972,7 +15622,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<ImageId>32</ImageId>
 							</Term>
 						</BusCoupler>
-						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1e0304" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x00ffffff">
+						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1efe03" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x02000027">
 							<SyncMan>001e00012600010001000000400000010001001e26010000</SyncMan>
 							<SyncMan>001f00012200010002000000400000010001001f22010000</SyncMan>
 							<SyncMan>00101a002400010003000000000000000000001024010000</SyncMan>
@@ -16669,7 +16319,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="70" BoxType="9099">
 						<Name>Klemme 70 (EL2809)</Name>
-						<ImageId>1006</ImageId>
+						<ImageId>1008</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0af93052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2809 16K. Dig. Ausgang 24V, 0.5A" Desc="EL2809" PortABoxInfo="#x01000045">
 							<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 							<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
@@ -16758,7 +16408,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="87" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Klemme 87 (EL3218)</Name>
-						<ImageId>1011</ImageId>
+						<ImageId>1010</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c923052" RevisionNo="#x00110000" InfoDataAddr="true" RepeatSupport="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3218-0000 8K. Ana. Eingang PT100 (RTD)" Desc="EL3218" PortABoxInfo="#x01000046">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
@@ -17139,7 +16789,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>672</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -17150,7 +16800,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>672</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -17163,277 +16813,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>848</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>848</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -17443,7 +17093,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<ImageId>32</ImageId>
 							</Term>
 						</BusCoupler>
-						<EtherCAT SlaveType="3" AdsServerAddress="000000000ba20e04" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00110000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x01000059">
+						<EtherCAT SlaveType="3" AdsServerAddress="000000000ba20904" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00110000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x01000059">
 							<SyncMan>001c88002600010001000000400000028800001c26010000</SyncMan>
 							<SyncMan>001e88002200010002000000400000028800001e22010000</SyncMan>
 							<SyncMan>00101a006400010003000000000000000000001064010000</SyncMan>
