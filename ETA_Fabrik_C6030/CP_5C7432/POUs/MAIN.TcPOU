@@ -22,6 +22,8 @@ VAR
 	
 	//ambient state
 	Ambient : FB_Ambient;
+	
+	//sensors
 	LowVoltageMainDistribution : FB_LowVoltageMainDistribution;
 END_VAR]]></Declaration>
     <Implementation>
@@ -33,6 +35,8 @@ Strategy(ambientState := Ambient.localState,
 
 //ambient state
 Ambient();
+
+//sensors
 LowVoltageMainDistribution();
 	
 //thermal networks
@@ -83,7 +87,9 @@ PCM_Testbed();
       <LineId Id="116" Count="3" />
       <LineId Id="193" Count="0" />
       <LineId Id="120" Count="2" />
-      <LineId Id="270" Count="0" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="325" Count="0" />
       <LineId Id="123" Count="4" />
       <LineId Id="169" Count="0" />
       <LineId Id="217" Count="1" />

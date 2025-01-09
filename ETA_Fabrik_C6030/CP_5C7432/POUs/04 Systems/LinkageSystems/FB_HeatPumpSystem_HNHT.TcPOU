@@ -45,6 +45,7 @@ VAR
 	//sensors
 	TS242 : FB_TemperatureSensor; //inlet temperature evaporator
 	WMZ342 : FB_MollineEHeatCounter;
+	EM342 : FB_EmonioP3;
 END_VAR
 
 ]]></Declaration>
@@ -98,6 +99,7 @@ RV342.SetState_AO();
 WMZ342(aHeatCounterTelegramm := aTelegramm_WMZ342);
 TS242();
 TS242.GetState_AI();
+EM342(sIPAddr := GlobalVariables.sIP_Emonio_HNHT_HeatPump);
 ]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{c81c127c-2dfa-453f-9842-92a23e6502aa}">
@@ -263,6 +265,7 @@ fTemperatureSetPoint_RV242 := 20;// temperature setpoint for heating]]></ST>
       <LineId Id="107" Count="0" />
       <LineId Id="109" Count="0" />
       <LineId Id="215" Count="1" />
+      <LineId Id="436" Count="0" />
       <LineId Id="110" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_HNHT.CheckError">

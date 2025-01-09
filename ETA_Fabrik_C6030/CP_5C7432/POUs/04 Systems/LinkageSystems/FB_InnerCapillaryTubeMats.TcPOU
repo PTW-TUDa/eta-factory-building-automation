@@ -27,7 +27,7 @@ VAR
 	stSV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
 	stSV505DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
 	stRV500DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);	
-	stRV5xxDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV5xxDefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, fControllerAmplification := 500, tControllerIntegralTime := T#240M, bARWOnIPartOnly := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	
 	SV_CN : FB_DiscreteValve := (ST_DefaultParameters := stSV_CN_DefaultParameters); //heating network supply
 	SV_HNLT : FB_DiscreteValve := (ST_DefaultParameters := stSV_HNLT_DefaultParameters); //heating entwork return
@@ -77,6 +77,10 @@ VAR
 	//characteristic curves and controllers
 	CharacteristicCurve 			: FB_CTRL_FLOW_TEMP_SETPOINT_GEN;
 	CharacteristicCurve_Parameters	: ST_CTRL_FLOW_TEMP_SETPOINT_GEN_PARAMS;
+	
+	//Moving Average
+	Moving_Average_Hall_Temperature : FB_CTRL_MOVING_AVERAGE;
+	fMeanHallTemperature : REAL;
 	
 	//triggers
 	SwitchToHeating : R_TRIG;
@@ -148,12 +152,15 @@ SV505(bSetStatusOnAutomatic := FALSE,
 	bAlgorithmPermission := bAlgorithmPermission);
 SV505.SetState_BO();
 
+//Calculate Average Hall Temperature
+CalculateAverageTemperature(fActualTemperature := stAmbientState.fHallTemperature, fMeanTemperature => fMeanHallTemperature);
+
 //control valves in capillary tube mats
 RV541.GetState_AI();
 RV541(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV541.SetState_AO();
 
@@ -161,7 +168,7 @@ RV542.GetState_AI();
 RV542(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV542.SetState_AO();
 
@@ -169,7 +176,7 @@ RV543.GetState_AI();
 RV543(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV543.SetState_AO();
 
@@ -177,7 +184,7 @@ RV551.GetState_AI();
 RV551(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV551.SetState_AO();
 
@@ -185,7 +192,7 @@ RV552.GetState_AI();
 RV552(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV552.SetState_AO();
 
@@ -193,7 +200,7 @@ RV553.GetState_AI();
 RV553(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV553.SetState_AO();
 
@@ -201,7 +208,7 @@ RV561.GetState_AI();
 RV561(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV561.SetState_AO();
 
@@ -209,7 +216,7 @@ RV562.GetState_AI();
 RV562(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV562.SetState_AO();
 
@@ -217,7 +224,7 @@ RV563.GetState_AI();
 RV563(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV563.SetState_AO();
 
@@ -225,7 +232,7 @@ RV571.GetState_AI();
 RV571(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV571.SetState_AO();
 
@@ -233,7 +240,7 @@ RV572.GetState_AI();
 RV572(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV572.SetState_AO();
 
@@ -241,7 +248,7 @@ RV573.GetState_AI();
 RV573(bSetStatusOnAutomatic := bSetStatusOn_RV500,
 	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fTemperatureExternal := stAmbientState.fHallTemperature,
+	fTemperatureExternal := fMeanHallTemperature,
 	nControlModeAutomatic := nControlMode_RV500);
 RV573.SetState_AO();
 
@@ -290,6 +297,42 @@ WMZ405(aHeatCounterTelegramm := aTelegramm_WMZ405);
 
 ]]></ST>
     </Implementation>
+    <Method Name="CalculateAverageTemperature" Id="{f69940ce-cdd0-4e30-9318-e42c1c0858f4}">
+      <Declaration><![CDATA[METHOD CalculateAverageTemperature : REAL
+VAR_INPUT
+	fActualTemperature : REAL;
+END_VAR
+VAR_OUTPUT
+	fMeanTemperature : REAL;
+END_VAR
+VAR_INST
+	fTemperature_init : REAL;
+	fMinutes_Moving_Average : UINT := 2;
+	
+	stParameters_Average_Temperature : ST_CTRL_MOVING_AVERAGE_PARAMS;
+	aHallTemperatureBuffer 				: ARRAY [1..360] OF FLOAT := [360(15)];
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//fTemperature_init := 
+
+stParameters_Average_Temperature.tCtrlCycleTime := T#1S;
+stParameters_Average_Temperature.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+stParameters_Average_Temperature.nSamplesToFilter := fMinutes_Moving_Average*60; (* 1min= 60 sec*)
+stParameters_Average_Temperature.pWorkArray_ADR := ADR(aHallTemperatureBuffer);
+stParameters_Average_Temperature.nWorkArray_SIZEOF := SIZEOF(aHallTemperatureBuffer);
+
+Moving_Average_Hall_Temperature(
+	fIn := fActualTemperature,
+	fManSyncValue := 15,
+	bSync := FALSE,
+	eMode := 2,
+	bHold := FALSE,
+	stParams := stParameters_Average_Temperature);
+fMeanTemperature := LREAL_TO_REAL(Moving_Average_Hall_Temperature.fOut);]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="CheckError" Id="{d850ff84-47a8-4def-9446-1326d64d9fdc}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
 VAR_INPUT
@@ -508,8 +551,15 @@ END_VAR]]></Declaration>
     <LineIds Name="FB_InnerCapillaryTubeMats">
       <LineId Id="1004" Count="38" />
       <LineId Id="1288" Count="0" />
-      <LineId Id="1043" Count="158" />
+      <LineId Id="1043" Count="17" />
+      <LineId Id="1378" Count="2" />
+      <LineId Id="1061" Count="140" />
       <LineId Id="384" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_InnerCapillaryTubeMats.CalculateAverageTemperature">
+      <LineId Id="5" Count="0" />
+      <LineId Id="21" Count="13" />
+      <LineId Id="20" Count="0" />
     </LineIds>
     <LineIds Name="FB_InnerCapillaryTubeMats.CheckError">
       <LineId Id="9" Count="2" />

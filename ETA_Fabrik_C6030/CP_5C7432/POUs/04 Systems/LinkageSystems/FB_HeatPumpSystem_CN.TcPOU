@@ -24,6 +24,7 @@ VAR
 	//sensors
 	WMZ146 : FB_StarkMultical302HeatCounter;
 	WMZ246 : FB_StarkMultical302HeatCounter;
+	EM146 : FB_EmonioP3;
 	
 	bStartTimer : BOOL;
 	Timer : TON;
@@ -56,7 +57,8 @@ SV246.SetState_BO();
 
 //sensors
 WMZ146(aHeatCounterTelegramm := Telegramm_WZ_4372_WP_946);
-WMZ246(aHeatCounterTelegramm := Telegramm_WZ_4371_WP_946);]]></ST>
+WMZ246(aHeatCounterTelegramm := Telegramm_WZ_4371_WP_946);
+EM146(sIPAddr := GlobalVariables.sIP_Emonio_CN_HeatPump);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{e6a4ede8-dc18-488e-9b82-544068cf9d4e}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -174,6 +176,7 @@ END_VAR]]></Declaration>
       <LineId Id="108" Count="0" />
       <LineId Id="107" Count="0" />
       <LineId Id="109" Count="1" />
+      <LineId Id="199" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_CN.CheckError">
       <LineId Id="8" Count="0" />
