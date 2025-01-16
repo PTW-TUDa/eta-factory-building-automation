@@ -1093,59 +1093,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
@@ -1397,6 +1344,59 @@
 							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
 							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -2660,14 +2660,6 @@
 							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_OUT</Name>
-							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
-						</Var>
-						<Var>
 							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>INT</Type>
@@ -2743,6 +2735,14 @@
 							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_OUT</Name>
+							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.ControlModule_OUT</Name>
