@@ -118,11 +118,14 @@ VAR
 	
 	//controllers and variables for hnlt and cn linkage
 	fOffset_TargetTemperature_HeatPump : REAL;
-	fOffset_TargetTemperature_HeatPump_Permission : REAL;
+	fOffset_TargetTemperature_HeatPump_Lower_CN_Permission : REAL;
+	fOffset_TargetTemperature_HeatPump_Upper_CN_Permission : REAL;
 	Controller_HeatPump : FB_CTRL_2POINT;
-	Controller_HeatPump_Parameters : ST_CTRL_2POINT_PARAMS;	
-	Controller_HeatPump_Permission : FB_CTRL_2POINT;
-	Controller_HeatPump_Permission_Parameters : ST_CTRL_2POINT_PARAMS;	
+	Controller_HeatPump_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_HeatPump_Permission_Upper_CN : FB_CTRL_2POINT;
+	Controller_HeatPump_Permission_Upper_CN_Parameters : ST_CTRL_2POINT_PARAMS;		
+	Controller_HeatPump_Permission_Lower_CN : FB_CTRL_2POINT;
+	Controller_HeatPump_Permission_Lower_CN_Parameters : ST_CTRL_2POINT_PARAMS;	
 
 	//clock
 	stDefaultParameters_Clock : ST_ClockDefaultParameters := (tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := T#1M);
@@ -496,23 +499,34 @@ Controller_HeatPump_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-fOffset_TargetTemperature_HeatPump_Permission := 3;
-Controller_HeatPump_Permission_Parameters.fHysteresisRange := 4;
-Controller_HeatPump_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HeatPump_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+fOffset_TargetTemperature_HeatPump_Upper_CN_Permission := 4;
+Controller_HeatPump_Permission_Upper_CN_Parameters.fHysteresisRange := 2;
+Controller_HeatPump_Permission_Upper_CN_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HeatPump_Permission_Upper_CN_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+fOffset_TargetTemperature_HeatPump_Lower_CN_Permission := 3;
+Controller_HeatPump_Permission_Lower_CN_Parameters.fHysteresisRange := 4;
+Controller_HeatPump_Permission_Lower_CN_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HeatPump_Permission_Lower_CN_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 	
 //control heat pump depending on heating demand in hnlt
 
 Controller_HeatPump(fSetpointValue := fTargetTemperature_HNLT_Heating+fOffset_TargetTemperature_HeatPump,
-	fActualValue := hnltState.fMidTemperature,
+	fActualValue := hnltState.fUpperTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_Parameters);
+	
+Controller_HeatPump_Permission_Upper_CN(fSetpointValue := fTargetTemperature_CN+fOffset_TargetTemperature_HeatPump_Upper_CN_Permission,
+	fActualValue := cnState.fUpperTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := Controller_HeatPump_Permission_Lower_CN_Parameters);
 
-Controller_HeatPump_Permission(fSetpointValue := cnState.fMidTemperature,
-	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HeatPump_Permission,
+Controller_HeatPump_Permission_Lower_CN(fSetpointValue := cnState.fMidTemperature,
+	fActualValue := fTargetTemperature_CN-fOffset_TargetTemperature_HeatPump_Lower_CN_Permission,
 	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HeatPump_Parameters);
-hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission.bOut;
+	stParams := Controller_HeatPump_Permission_Lower_CN_Parameters);
+	
+hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission_Lower_CN.bOut AND Controller_HeatPump_Permission_Upper_CN.bOut;
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
 hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
@@ -792,15 +806,24 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="38" Count="0" />
       <LineId Id="9" Count="1" />
       <LineId Id="5" Count="0" />
-      <LineId Id="39" Count="3" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="123" Count="1" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="40" Count="2" />
       <LineId Id="32" Count="0" />
       <LineId Id="21" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="99" Count="0" />
       <LineId Id="14" Count="3" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="116" Count="2" />
+      <LineId Id="115" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="45" Count="2" />
       <LineId Id="22" Count="0" />
+      <LineId Id="125" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="110" Count="0" />
