@@ -55,7 +55,7 @@ AnnealingOvenSealing();
 bSetStatusOn_AnnealingOven := AnnealingOvenSealing.bStatusOn_Sealing;
 AnnealingOvenSealingSystem(bSetStatusOnAutomatic := bSetStatusOn_AnnealingOven,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
-	fSetPointAutomatic := 35);
+	fSetPointAutomatic := controlAutomatic.fFeedTemperature_Heating);
 	
 DC();
 bSetStatusOn_DC := (DC.bStatusOn AND NOT DC.bError_Connection);
