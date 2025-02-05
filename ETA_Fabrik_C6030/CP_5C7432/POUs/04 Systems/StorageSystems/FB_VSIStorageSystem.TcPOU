@@ -31,7 +31,7 @@ VAR
 	//valves
 	stSV305DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
 	stSV306DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
-	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 25, fOffsetTerminal := 4400);
+	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 20, tControllerIntegralTime := T#100S, bARWOnIPartOnly := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 25, fOffsetTerminal := 4400);
 	
 	SV305 : FB_MixingValve := (ST_DefaultParameters := stSV305DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
@@ -50,6 +50,7 @@ VAR
 	fSetPoint_SV307 : REAL;
 	fHeatFlowRate : REAL;
 	bLoading : BOOL;
+	nControlMode_SV307 : E_MixingValveControlMode; 
 	
 	//triggers
 	SwitchToLoading : R_TRIG;
@@ -109,8 +110,10 @@ WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);
 
 IF bLoading THEN
 	localState.fHeatFlowRate := -PU305.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
+	nControlMode_SV307 := 2;
 ELSE
 	localState.fHeatFlowRate := PU306.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
+	nControlMode_SV307 := 1;
 END_IF
 
 SV307.GetState_AI();
@@ -119,7 +122,7 @@ SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
 	bAlgorithmPermission := bAlgorithmPermission,
 	fTemperatureExternal := fTemperatureBufferStorage,
 	fThermalPowerExternal := localState.fHeatFlowRate,
-	nControlModeAutomatic := 2);
+	nControlModeAutomatic := nControlMode_SV307);
 SV307.SetState_AO();
 
 
@@ -341,8 +344,10 @@ END_VAR]]></Declaration>
       <LineId Id="654" Count="44" />
       <LineId Id="880" Count="3" />
       <LineId Id="888" Count="0" />
+      <LineId Id="950" Count="0" />
       <LineId Id="886" Count="0" />
       <LineId Id="889" Count="0" />
+      <LineId Id="951" Count="0" />
       <LineId Id="885" Count="0" />
       <LineId Id="699" Count="4" />
       <LineId Id="947" Count="0" />
