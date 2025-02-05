@@ -588,6 +588,7 @@ END_IF
 
 //set feed temperatures
 hnhtControl.fFeedTemperature := fTargetTemperature_HNHT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNHT;
+hnhtControl.fTargetTemperature := fTargetTemperature_HNHT_Heating;
 hnltControl.fFeedTemperature_Heating := fTargetTemperature_HNLT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNLT_Heating;
 hnltControl.fFeedTemperature_Cooling := fTargetTemperature_HNLT_Cooling-localDefaultParameters.fOffset_FeedTemperature_HNLT_Cooling;
 cnControl.fFeedTemperature := fTargetTemperature_CN-localDefaultParameters.fOffset_FeedTemperature_CN;
@@ -859,6 +860,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="19" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="60" Count="2" />
+      <LineId Id="131" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="67" Count="1" />
       <LineId Id="63" Count="0" />

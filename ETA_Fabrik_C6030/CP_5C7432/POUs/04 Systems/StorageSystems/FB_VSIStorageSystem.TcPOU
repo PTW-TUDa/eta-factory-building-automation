@@ -4,6 +4,8 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_VSIStorageSystem EXTENDS FB_SystemContinous
 VAR_INPUT
 	bLoadingAutomatic : BOOL; //variable to determine if storage is in loading mode
+	fTemperatureBufferStorageSetPoint : REAL;
+	fTemperatureBufferStorage : REAL;
 END_VAR
 VAR_OUTPUT
 	localStorageState : ST_VSIStorageState;
@@ -29,7 +31,7 @@ VAR
 	//valves
 	stSV305DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
 	stSV306DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
-	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 15, fOffsetTerminal := 4400);
+	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 25, fOffsetTerminal := 4400);
 	
 	SV305 : FB_MixingValve := (ST_DefaultParameters := stSV305DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions
@@ -113,10 +115,11 @@ END_IF
 
 SV307.GetState_AI();
 SV307(bSetStatusOnAutomatic := bSetStatusOn_SV307,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := fTemperatureBufferStorageSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := fTemperatureBufferStorage,
 	fThermalPowerExternal := localState.fHeatFlowRate,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 2);
 SV307.SetState_AO();
 
 
@@ -342,6 +345,7 @@ END_VAR]]></Declaration>
       <LineId Id="889" Count="0" />
       <LineId Id="885" Count="0" />
       <LineId Id="699" Count="4" />
+      <LineId Id="947" Count="0" />
       <LineId Id="824" Count="0" />
       <LineId Id="704" Count="2" />
       <LineId Id="599" Count="0" />

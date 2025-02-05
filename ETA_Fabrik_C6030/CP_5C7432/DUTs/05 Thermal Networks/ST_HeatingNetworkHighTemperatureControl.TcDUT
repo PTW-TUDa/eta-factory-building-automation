@@ -4,6 +4,7 @@
     <Declaration><![CDATA[TYPE ST_HeatingNetworkHighTemperatureControl :
 STRUCT
 	fFeedTemperature : REAL;
+	fTargetTemperature : REAL;
 	bAlgorithmPermission : BOOL;
 	bSetStatusOn_CHP1 : BOOL;
 	bSetStatusOn_CHP2 : BOOL;
