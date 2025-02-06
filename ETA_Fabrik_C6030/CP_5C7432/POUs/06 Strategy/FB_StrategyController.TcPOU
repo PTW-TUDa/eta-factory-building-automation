@@ -47,6 +47,7 @@ VAR
 	//controller and variables for high temperature heating network
 	fOffset_TargetTemperature_CHP1 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
 	fOffset_TargetTemperature_CHP2 : REAL; //not fixed, switches depending on ambient temperature -> see method: ControlHNHT
+	fOffset_TargetTemperature_CondensingBoiler : REAL := 2;
 	Controller_CHP_Prioritization : FB_CTRL_2POINT;
 	Controller_CHP_Prioritization_Parameters : ST_CTRL_2POINT_PARAMS;	
 	Controller_CHP1_UpperTemperature : FB_CTRL_2POINT; //check upper temperature for turning on chp
@@ -230,7 +231,7 @@ Controller_CHP1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN
 Controller_CHP2_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CHP2_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_CondensingBoiler_Parameters.fHysteresisRange := 12;
+Controller_CondensingBoiler_Parameters.fHysteresisRange := 8;
 Controller_CondensingBoiler_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_CondensingBoiler_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
@@ -306,15 +307,15 @@ IF Trigger_CHP2_LowerTemperature.Q THEN
 END_IF
 hnhtControl.bSetStatusOn_CHP2 := Controller_CHP2_UpperTemperature.bOut OR (Controller_CHP2_LowerTemperature.bOut AND bTrigger_CHP2);
 
-Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT_Heating,
-	fActualValue := hnhtState.fUpperTemperature,
+Controller_CondensingBoiler(fSetpointValue := fTargetTemperature_HNHT_Heating-fOffset_TargetTemperature_CondensingBoiler,
+	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_CondensingBoiler_Parameters);
 hnhtControl.bSetStatusOn_CondensingBoiler := Controller_CondensingBoiler.bOut;
 
 //buffer storage asks VSI for unloading when buffer storage temperature falls below limit
 Controller_Buffer_VSI_Unloading(fSetpointValue := fTargetTemperature_HNHT_Heating,
-	fActualValue := hnhtState.fUpperTemperature,
+	fActualValue := hnhtState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_VSI_Unloading_Parameters);
 
@@ -330,8 +331,8 @@ Controller_VSI_Loading_Permission(fSetpointValue := fTargetTemperature_HNHT_Heat
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_VSI_Loading_Permission_Parameters);
 	
-hnhtControl.bSetStatusOn_VSIStorage := (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut) OR ((hnhtControl.bSetStatusOn_CHP1 OR hnhtControl.bSetStatusOn_CHP2) AND NOT Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Loading_Permission.bOut); 
-hnhtControl.bLoading_VSISystem := NOT (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut);
+hnhtControl.bSetStatusOn_VSIStorage := (Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Unloading_Permission.bOut AND NOT (hnhtControl.bSetStatusOn_CHP1 OR hnhtControl.bSetStatusOn_CHP2)) OR ((hnhtControl.bSetStatusOn_CHP1 OR hnhtControl.bSetStatusOn_CHP2) AND NOT Controller_Buffer_VSI_Unloading.bOut AND Controller_VSI_Loading_Permission.bOut); 
+hnhtControl.bLoading_VSISystem := NOT Controller_Buffer_VSI_Unloading.bOut;
 
 //condensing boiler is switched if network temperature falls below critical temperature limit
 Controller_StaticHeating(fSetpointValue := 15,

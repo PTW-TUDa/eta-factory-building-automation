@@ -31,7 +31,7 @@ VAR
 	//valves
 	stSV305DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
 	stSV306DefaultParameters : ST_MixingValveDefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 4400);
-	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 20, tControllerIntegralTime := T#100S, bARWOnIPartOnly := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 25, fOffsetTerminal := 4400);
+	stSV307DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#500S, bARWOnIPartOnly := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOutMinLimit := 25, fOffsetTerminal := 4400);
 	
 	SV305 : FB_MixingValve := (ST_DefaultParameters := stSV305DefaultParameters); //discrete inlet valve, valve motor needs continous signal but operates only between extreme positions
 	SV306 : FB_MixingValve := (ST_DefaultParameters := stSV306DefaultParameters); //discrete outlet valve	, valve motor needs continous signal but operates only between extreme positions

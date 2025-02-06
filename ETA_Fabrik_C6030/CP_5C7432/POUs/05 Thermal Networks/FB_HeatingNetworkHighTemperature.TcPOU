@@ -96,7 +96,7 @@ VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStora
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
 	fSetPointAutomatic := 30,
 	fTemperatureBufferStorageSetPoint := controlAutomatic.fTargetTemperature,
-	fTemperatureBufferStorage := localState.fUpperTemperature,
+	fTemperatureBufferStorage := localState.fMidTemperature,
 	bLoadingAutomatic := controlAutomatic.bLoading_VSISystem);]]></ST>
     </Implementation>
     <LineIds Name="FB_HeatingNetworkHighTemperature">
