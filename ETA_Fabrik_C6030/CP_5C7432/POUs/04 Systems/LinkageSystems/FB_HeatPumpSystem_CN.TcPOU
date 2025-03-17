@@ -26,16 +26,23 @@ VAR
 	WMZ246 : FB_StarkMultical302HeatCounter;
 	EM146 : FB_EmonioP3;
 	
-	bStartTimer : BOOL;
-	Timer : TON;
+	bStartRampUpTimer : BOOL;
+	bStartRampDownTimer : BOOL;
+	RampUpTimer : TON;
+	RampDownTimer : TON;
+	
 END_VAR
 
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[MAIN();
 //use timer because valve has no feedback signal (75 sec)
-Timer(IN := bStartTimer,
+RampUpTimer(IN := bStartRampUpTimer,
 	PT := T#75S);
+
+//use longer ramp down timer, because heat pump should be off before closing valves	
+RampDownTimer(IN := bStartRampDownTimer,
+	PT := T#240S);
 
 //heat pump
 HeatPump.GetState();
@@ -93,13 +100,13 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
-bSetStatusOn_SV146 := FALSE;
-bSetStatusOn_SV246 := FALSE;
-bStartTimer := TRUE;
+bStartRampDownTimer := TRUE;
 
-IF Timer.Q THEN
+IF RampDownTimer.Q THEN
+	bSetStatusOn_SV146 := FALSE;
+	bSetStatusOn_SV246 := FALSE;
 	bRampDownFinished := TRUE;
-	bStartTimer := FALSE;
+	bStartRampDownTimer := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -114,11 +121,11 @@ END_VAR
       <Implementation>
         <ST><![CDATA[bSetStatusOn_SV146 := TRUE;
 bSetStatusOn_SV246 := TRUE;
-bStartTimer := TRUE;
+bStartRampUpTimer := TRUE;
 
-IF Timer.Q THEN
+IF RampUpTimer.Q THEN
 	bRampUpFinished := TRUE;
-	bStartTimer := FALSE; //resets timer
+	bStartRampUpTimer := FALSE; //resets timer
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -163,7 +170,12 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_HeatPumpSystem_CN">
-      <LineId Id="33" Count="5" />
+      <LineId Id="33" Count="3" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="37" Count="1" />
       <LineId Id="167" Count="0" />
       <LineId Id="39" Count="1" />
       <LineId Id="170" Count="0" />
@@ -186,7 +198,11 @@ END_VAR]]></Declaration>
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_CN.RampDown">
-      <LineId Id="8" Count="7" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="15" Count="0" />
       <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="FB_HeatPumpSystem_CN.RampUp">
