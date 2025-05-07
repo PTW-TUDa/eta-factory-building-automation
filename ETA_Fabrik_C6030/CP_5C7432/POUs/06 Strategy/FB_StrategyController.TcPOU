@@ -202,11 +202,11 @@ Controller_Buffer_HVFA_CN_Unloading(fSetpointValue := cnState.fMidTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_CN_Unloading_Parameters);
 	
-cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
+//cnControl.bSetStatusOn_eChiller := Controller_eChiller.bOut;
 //cnControl.bSetStatusOn_HVFASystem := (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut) OR (hnltCnLinkageControl.bSetStatusOn_HeatPump AND NOT Controller_Buffer_HVFA_CN_Unloading.bOut AND NOT Controller_HVFA_CN_UnloadingPermission.bOut); 
 //cnControl.bLoading_HVFASystem := NOT (Controller_Buffer_HVFA_CN_Unloading.bOut AND Controller_HVFA_CN_UnloadingPermission.bOut);
 
-//cnControl.bSetStatusOn_eChiller := TRUE;
+cnControl.bSetStatusOn_eChiller := TRUE;
 cnControl.bSetStatusOn_HVFASystem := FALSE;
 cnControl.bLoading_HVFASystem := FALSE;
 
