@@ -530,8 +530,11 @@ Controller_HeatPump_Permission_Lower_CN(fSetpointValue := cnState.fMidTemperatur
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission_Lower_CN.bOut AND Controller_HeatPump_Permission_Upper_CN.bOut;
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
-hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
-hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+//hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
+//hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+
+hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := FALSE;
+hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -831,6 +834,9 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="110" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="78" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="131" Count="0" />
       <LineId Id="106" Count="0" />
       <LineId Id="76" Count="0" />
     </LineIds>

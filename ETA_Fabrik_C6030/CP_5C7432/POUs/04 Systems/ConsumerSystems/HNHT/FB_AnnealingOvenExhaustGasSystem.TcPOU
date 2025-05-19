@@ -20,6 +20,7 @@ VAR
 	
 	//heat counter	
 	WMZ361 : FB_MollineC3HeatCounter;
+	GM361 : FB_EmonioP3;
 	
 	//internal variables
 	bSetStatusOn_PU361 : BOOL;
@@ -47,7 +48,8 @@ RV361(bSetStatusOnAutomatic := bSetStatusOn_RV361,
 	nControlModeAutomatic := 2);
 RV361.SetState_AO();
 
-WMZ361(aHeatCounterTelegramm := Telegramm_WZ_Abwaerme_Ofen_Abgasfackel);]]></ST>
+WMZ361(aHeatCounterTelegramm := Telegramm_WZ_Abwaerme_Ofen_Abgasfackel);
+GM361(sIPAddr := GlobalVariables.sIP_Emonio_AnnealingOven);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{1666b9e3-588c-45cc-a2f5-0a09ab9ba390}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -159,6 +161,7 @@ END_VAR]]></Declaration>
       <LineId Id="274" Count="0" />
       <LineId Id="200" Count="0" />
       <LineId Id="153" Count="0" />
+      <LineId Id="373" Count="0" />
     </LineIds>
     <LineIds Name="FB_AnnealingOvenExhaustGasSystem.CheckError">
       <LineId Id="8" Count="0" />
