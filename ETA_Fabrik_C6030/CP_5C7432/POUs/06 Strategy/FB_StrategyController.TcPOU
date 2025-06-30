@@ -491,11 +491,14 @@ END_IF
 IF Clock.stClockState.fHour > 6 AND Clock.stClockState.fHour < 22 THEN
 	hnltControl.bSetStatusOn_HVFASystem := (Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut);
 	hnltControl.bLoading_HVFASystem := Controller_HVFA_HNLT_HVFALoadingPermission.bOut AND Controller_Buffer_HVFA_HNLT_HVFALoading.bOut;
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut;
 ELSE
-	hnltControl.bSetStatusOn_HVFASystem := Controller_HVFA_HNLT_Recooling.bOut;
+	hnltControl.bSetStatusOn_HVFASystem := Controller_HVFA_HNLT_Recooling.bOut ;
+	hnltControl.bLoading_HVFASystem := FALSE;
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_HVFA_HNLT_Recooling.bOut;
 END_IF
 
-hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut; //AND Controller_OuterCapillaryTubeMats_Permission.bOut;]]></ST>
+// hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut; AND Controller_OuterCapillaryTubeMats_Permission.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHnltCnLinkage" Id="{47fe50a8-fa6a-42c9-86f6-4129fa6636fe}">
@@ -818,7 +821,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="145" Count="0" />
       <LineId Id="147" Count="0" />
       <LineId Id="149" Count="0" />
+      <LineId Id="159" Count="0" />
       <LineId Id="151" Count="1" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="160" Count="0" />
       <LineId Id="148" Count="0" />
       <LineId Id="150" Count="0" />
       <LineId Id="19" Count="0" />
