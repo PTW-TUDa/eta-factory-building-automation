@@ -495,7 +495,7 @@ IF Clock.stClockState.fHour > 6 AND Clock.stClockState.fHour < 22 THEN
 ELSE
 	hnltControl.bSetStatusOn_HVFASystem := Controller_HVFA_HNLT_Recooling.bOut ;
 	hnltControl.bLoading_HVFASystem := FALSE;
-	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_HVFA_HNLT_Recooling.bOut;
+	hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_HVFA_HNLT_Recooling.bOut OR Controller_OuterCapillaryTubeMats.bOut;
 END_IF
 
 // hnltControl.bSetStatusOn_OuterCapillaryTubeMats := Controller_OuterCapillaryTubeMats.bOut; AND Controller_OuterCapillaryTubeMats_Permission.bOut;]]></ST>
