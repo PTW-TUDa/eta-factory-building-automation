@@ -454,8 +454,8 @@ Controller_Buffer_HVFA_HNLT_HVFAUnloading(fSetpointValue := fTargetTemperature_H
 	stParams := Controller_Buffer_HVFA_HNLT_HVFAUnloading_Parameters);
 	
 //buffer storage asks HVFA_HNLT for loading when buffer storage temperature rises above limit
-Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperature - fOffset_Buffer_HVFA_HNLT_HVFALoading,
-	fActualValue := fTargetTemperature_HNLT_Cooling,
+Controller_Buffer_HVFA_HNLT_HVFALoading(fSetpointValue := hnltState.fMidTemperature,
+	fActualValue := fTargetTemperature_HNLT_Cooling - fOffset_Buffer_HVFA_HNLT_HVFALoading,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_Buffer_HVFA_HNLT_HVFALoading_Parameters);
 
