@@ -530,11 +530,11 @@ Controller_HeatPump_Permission_Lower_CN(fSetpointValue := cnState.fMidTemperatur
 hnltCnLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump.bOut AND Controller_HeatPump_Permission_Lower_CN.bOut AND Controller_HeatPump_Permission_Upper_CN.bOut;
 hnltCnLinkageControl.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTemperature_ProductionHall;
 
-hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
-hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
+//hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := TRUE;
+//hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := TRUE;
 
-//hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := FALSE;
-//hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;
+hnltCnLinkageControl.bSetStatusOn_InnerCapillaryTubeMats := FALSE;
+hnltCnLinkageControl.bSetStatusOn_UnderfloorHeating := FALSE;
 
 ]]></ST>
       </Implementation>
