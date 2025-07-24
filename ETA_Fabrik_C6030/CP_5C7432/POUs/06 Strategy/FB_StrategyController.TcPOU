@@ -115,8 +115,8 @@ VAR
 	Controller_HeatPump_HNHT : FB_CTRL_2POINT;
 	Controller_HeatPump_HNHT_Parameters : ST_CTRL_2POINT_PARAMS;
 	fOffset_TargetTemperature_HeatPump_HNHT : REAL := 3;
-	Controller_HeatPump_HNHT_Permission : FB_CTRL_2POINT;
-	Controller_HeatPump_HNHT_Permission_Parameters : ST_CTRL_2POINT_PARAMS;
+	Controller_HeatPump_HNLT : FB_CTRL_2POINT;
+	Controller_HeatPump_HNLT_Parameters : ST_CTRL_2POINT_PARAMS;
 	fOffset_TargetTemperature_HeatPump_HNHT_Permission : REAL := 4;
 	
 	//controllers and variables for hnlt and cn linkage
@@ -359,13 +359,13 @@ END_VAR
 Controller_HeatExchanger1_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatExchanger1_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_HeatPump_HNHT_Parameters.fHysteresisRange := 6;
+Controller_HeatPump_HNHT_Parameters.fHysteresisRange := 4;
 Controller_HeatPump_HNHT_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
 Controller_HeatPump_HNHT_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
-Controller_HeatPump_HNHT_Permission_Parameters.fHysteresisRange := 4;
-Controller_HeatPump_HNHT_Permission_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
-Controller_HeatPump_HNHT_Permission_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+Controller_HeatPump_HNLT_Parameters.fHysteresisRange := 4;
+Controller_HeatPump_HNLT_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+Controller_HeatPump_HNLT_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
 
 //control heat exchanger 1
 Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating-fOffset_TargetTemperature_HeatExchanger1,
@@ -374,26 +374,19 @@ Controller_HeatExchanger1(fSetpointValue := fTargetTemperature_HNLT_Heating-fOff
 	stParams := Controller_HeatExchanger1_Parameters);
 hnhtHnltLinkageControl.bSetStatusOn_HeatExchanger1 := Controller_HeatExchanger1.bOut;
 
-//control heat pump hnht
+//control heat pump hnht, return temperature HNHT should not exceed 60 °C
 Controller_HeatPump_HNHT(fSetpointValue := fTargetTemperature_HNHT_Heating+fOffset_TargetTemperature_HeatPump_HNHT,
-	fActualValue := hnhtState.fUpperTemperature,
+	fActualValue := hnhtState.fLowerTemperature,
 	eMode := eCTRL_MODE_ACTIVE,
 	stParams := Controller_HeatPump_HNHT_Parameters);
 	
-Controller_HeatPump_HNHT_Permission(fSetpointValue := hnltState.fMidTemperature,
+Controller_HeatPump_HNLT(fSetpointValue := hnltState.fMidTemperature,
 	fActualValue := fTargetTemperature_HNLT_Cooling-fOffset_TargetTemperature_HeatPump_HNHT_Permission,
 	eMode := eCTRL_MODE_ACTIVE,
-	stParams := Controller_HeatPump_HNHT_Permission_Parameters);	
+	stParams := Controller_HeatPump_HNLT_Parameters);	
 	
-// HP currently only able to reach 65°C flow temperature (hard-coded HP-internal)
-// IF localSetParameters.bProductionModeActivated THEN
-// 	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := FALSE;
-// ELSE
-// 	hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;
-// END_IF
-
-// When using a heating target temp of 60 °C in production mode the heat pump can be used in both operating modes
-hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNHT_Permission.bOut;]]></ST>
+// If requested to cool HNLT and HNHT is not too hot, activate heat pump
+hnhtHnltLinkageControl.bSetStatusOn_HeatPump := Controller_HeatPump_HNHT.bOut AND Controller_HeatPump_HNLT.bOut;]]></ST>
       </Implementation>
     </Method>
     <Method Name="ControlHNLT" Id="{57bcb54f-1f56-4d59-8bc6-dbfcc2a5773d}">
@@ -770,10 +763,7 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
       <LineId Id="48" Count="0" />
       <LineId Id="53" Count="2" />
       <LineId Id="49" Count="1" />
-      <LineId Id="73" Count="4" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="68" Count="0" />
+      <LineId Id="73" Count="0" />
       <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="FB_StrategyController.ControlHNLT">
