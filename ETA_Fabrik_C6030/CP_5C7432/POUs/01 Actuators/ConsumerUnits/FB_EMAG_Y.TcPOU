@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_EMAG_Y" Id="{a864166e-4288-4090-96e6-3b67cc736d1a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EMAG_Y
+VAR_INPUT
+	bCN_Demand : BOOL;
+	bError_Connection : BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	//I/O-Links
+	Mode_IN AT %I* : BOOL;
+	CoolingUnitOperational_IN AT %I* : BOOL;
+	ConnectionStatus_IN AT %I* : BOOL;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[bCN_Demand := CoolingUnitOperational_IN AND ConnectionStatus_IN;
+bError_Connection := NOT ConnectionStatus_IN;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_EMAG_Y">
+      <LineId Id="18" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

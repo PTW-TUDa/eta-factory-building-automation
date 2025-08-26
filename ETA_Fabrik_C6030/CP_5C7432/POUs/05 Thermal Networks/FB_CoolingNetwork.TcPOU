@@ -20,6 +20,7 @@ VAR
 	
 	//machines
 	EMAG_GT : FB_EMAG_GT;
+	EMAG_Y : FB_EMAG_Y;
 	FlyhweelMassStorage : FB_FlywheelMassStorage;
 	
 	//internal variables
@@ -38,8 +39,9 @@ localState.fUpperTemperature_ActiveStorage := HVFASystem.localStorageState.fUppe
 localState.fLowerTemperature_ActiveStorage := HVFASystem.localStorageState.fLowerTemperature;
 
 //machines
-EMAG_GT();
-bSetStatusOn_CentralMachineCooling := EMAG_GT.bStatusOn AND NOT EMAG_GT.bError_Connection;
+EMAG_Y();
+bSetStatusOn_CentralMachineCooling := EMAG_Y.bCN_Demand;
+
 FlyhweelMassStorage();
 bSetStatusOn_FlywheelMassStorage := FlyhweelMassStorage.bStatusOn;
 
@@ -74,8 +76,10 @@ HVFASystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_HVFASystem,
     <LineIds Name="FB_CoolingNetwork">
       <LineId Id="40" Count="2" />
       <LineId Id="293" Count="3" />
-      <LineId Id="167" Count="2" />
+      <LineId Id="167" Count="1" />
+      <LineId Id="324" Count="0" />
       <LineId Id="203" Count="0" />
+      <LineId Id="325" Count="0" />
       <LineId Id="201" Count="0" />
       <LineId Id="171" Count="0" />
       <LineId Id="43" Count="5" />

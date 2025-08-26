@@ -110,10 +110,10 @@ WMZ305(aHeatCounterTelegramm := aTelegramm_WMZ305);
 
 IF bLoading THEN
 	localState.fHeatFlowRate := -PU305.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
-	nControlMode_SV307 := 2;
+	nControlMode_SV307 := 2; //cooling
 ELSE
 	localState.fHeatFlowRate := PU306.fVolumeFlowRate/3.6*4.2*(WMZ305.fFeedTemperature-WMZ305.fReturnTemperature);
-	nControlMode_SV307 := 1;
+	nControlMode_SV307 := 1; //heating
 END_IF
 
 SV307.GetState_AI();
