@@ -7,12 +7,12 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	//Vitocal 350-G heat pump
+	//Vitocal 200-G heat pump
 	HeatPump : FB_HeatPump;
 	
 	//valves
 	ST_RV342DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 5, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 2900);;
-	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 100, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
+	ST_RV242DefaultParameters : ST_MixingValveDefaultParameters := (fControllerAmplification := 10, tControllerIntegralTime := T#100S, fOutMaxLimit := 100, fOutMinLimit := 35, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 3500);
 	ST_SV_HNLT_DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);		
 	RV342 : FB_MixingValve := (ST_DefaultParameters := ST_RV342DefaultParameters);
 	RV242 : FB_MixingValve := (ST_DefaultParameters := ST_RV242DefaultParameters);	
@@ -63,11 +63,11 @@ SV_HNLT(bSetStatusOnAutomatic := bSetStatusOn_SV_HNLT,
 		bAlgorithmPermission := bAlgorithmPermission);
 SV_HNLT.SetState_BO();
 
-//heat pump
+//heat pump, use static feed temperature of 64 °C (convertes to max feed temp 65°C in heat pump)
 HeatPump.GetState();
 HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
 	bAlgorithmPermission := bAlgorithmPermission,
-	fSetPointAutomatic := fSetPoint);
+	fSetPointAutomatic := 64);
 HeatPump.SetState();
 
 //pump

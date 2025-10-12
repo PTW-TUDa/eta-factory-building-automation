@@ -79,8 +79,7 @@ StaticHeatingSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_Stati
 	
 MAFAC_Java();
 BvL_CleaningSystem();
-//bSetStatusOn_CentralMachineHeating := MAFAC_Java.bStatusOn OR BvL_CleaningSystem.bStatusOn;
-bSetStatusOn_CentralMachineHeating := (MAFAC_Java.bStatusOn AND NOT MAFAC_Java.bError_Connection) OR (BvL_CleaningSystem.bStatusOn AND NOT BvL_CleaningSystem.bError_Connection);
+bSetStatusOn_CentralMachineHeating := BvL_CleaningSystem.bHNHT_Demand;
 
 CentralMachineHeatingSystem(bSetStatusOnAutomatic := bSetStatusOn_CentralMachineHeating,
 	bAlgorithmPermission := controlAutomatic.bAlgorithmPermission,
@@ -124,7 +123,6 @@ VSIStorageSystem(bSetStatusOnAutomatic := controlAutomatic.bSetStatusOn_VSIStora
       <LineId Id="286" Count="0" />
       <LineId Id="294" Count="0" />
       <LineId Id="485" Count="0" />
-      <LineId Id="295" Count="0" />
       <LineId Id="556" Count="0" />
       <LineId Id="592" Count="0" />
       <LineId Id="287" Count="0" />
