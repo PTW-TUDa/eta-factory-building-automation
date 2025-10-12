@@ -23,4 +23,6 @@ Please cite this project using our publication:
 
 .. code-block::
 
-    Frank , M.; Borst , F.; Theisinger , L.; Lademann , T.; Fuhrländer-Völker , D.; Weigold , M. Framework for Implementation of Building Automation Control Programs for Industrial Heating and Cooling Systems. Energies 2024, 17, 5361. https://doi.org/10.3390/en17215361
+    Frank , M.; Borst , F.; Theisinger , L.; Lademann , T.; Fuhrländer-Völker , D.; Weigold , M. 
+    Framework for Implementation of Building Automation Control Programs for Industrial Heating and Cooling Systems. 
+    Energies 2024, 17, 5361. https://doi.org/10.3390/en17215361
