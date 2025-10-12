@@ -25,7 +25,7 @@ VAR
 	
 	//heat counters
 	WMZ331 : FB_MollineC3HeatCounter;
-	GM331 : FB_GasMeter_Aerius_G4(); //must be implemeted correctly, maybe use FB_MBUS_HYD_PortPulse ?
+	GM331 : FB_EmonioP3;
 	
 	//internal variables
 	bSetStatusOn_CondensingBoiler : BOOL;
@@ -60,8 +60,9 @@ RV331(bSetStatusOnAutomatic := bSetStatusOn_RV331,
 	fThermalPowerExternal := WMZ331.fHeatFlowRate);
 RV331.SetState_AO();
 
+//sensors
 WMZ331(aHeatCounterTelegramm := Telegramm_WZ_Brennwerttherme);
-GM331();]]></ST>
+GM331(sIPAddr := GlobalVariables.sIP_Emonio_CondensingBoiler);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{aa46f833-0868-4c08-bf1e-1e375947cd52}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -185,6 +186,7 @@ END_VAR]]></Declaration>
       <LineId Id="48" Count="0" />
       <LineId Id="141" Count="0" />
       <LineId Id="39" Count="0" />
+      <LineId Id="209" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="50" Count="0" />
       <LineId Id="175" Count="0" />

@@ -5,62 +5,27 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
-	bStatusOn : BOOL;
 	bError_Connection : BOOL;
+	bHNHT_Demand : BOOL; 
 END_VAR
 VAR
-	OPC_UA				: FB_OPC_UA_READ;
-	stOPC_UA_Server		: ST_OPC_UA_Server;
-	sOPC_UA_Server_URL 	: STRING;
-	sNamespaceName		: STRING;
-	aNodes				: ARRAY[1..1] OF ST_OPC_UANode;
-	nNodeCount			: UDINT := 1;
-	stIndexRange		: ARRAY [1..nMaxIndexRange] OF ST_UAIndexRange;
-	currentNode			: UDINT := 1;
-	
-	// timer
-	bStartTimer : BOOL;
-	Timer : TON;
+	//I/O-Links
+	Technical_Heat_RZ_SV AT %I* : BOOL;
+	Technical_Heat_RZ_PWW AT %I* : BOOL;
+	Technical_Heat_RZ_UWP AT %I* : BOOL;
+	Technical_Heat_SZ_SV AT %I* : BOOL;
+	Technical_Heat_SZ_PWW AT %I* : BOOL;
+	Technical_Heat_SZ_UWP AT %I* : BOOL; 
+	ConnectionStatus_OPC_BvL AT %I* : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[sOPC_UA_Server_URL 	:= GlobalVariables.sIP_BvL_CleaningSystem;
-sNamespaceName 		:= 'urn:BeckhoffAutomation:Ua:PLC1';
-
-(*Define Nodes to Read*)
-aNodes[1].NodeID.sIdentifier			:= 'MAIN.VarPOU_LoTuS.localState.bAnforderung_PU300';
-aNodes[1].NodeID.eIdentifierType		:= eUAIdentifierType_String;
-aNodes[1].SizeOfDataType				:= SIZEOF(eUAType_Boolean);
-aNodes[1].NodeAddInfo.nIndexRangeCount 	:= 0;
-aNodes[1].NodeAddInfo.stIndexRange		:= stIndexRange;
-aNodes[1].TargetVar						:= ADR(bStatusOn);
-bError_Connection := OPC_UA.bError_Connection;
-Timer(IN := bStartTimer,
-	PT := T#5S);
-
-bStartTimer := TRUE;
-IF Timer.Q THEN
-	OPC_UA(
-		stNode				:= aNodes[currentNode],
-		sOPC_UA_Server_Url 	:= sOPC_UA_Server_URL,
-		sNamespaceName		:= sNamespaceName);
-	currentNode := currentNode + 1;
-	IF currentNode > nNodeCount THEN
-		currentNode := 1;
-	END_IF
-	bStartTimer := FALSE;
-END_IF]]></ST>
+      <ST><![CDATA[bHNHT_Demand := (Technical_Heat_RZ_PWW OR Technical_Heat_RZ_SV OR Technical_Heat_RZ_UWP OR Technical_Heat_SZ_PWW OR Technical_Heat_SZ_SV OR Technical_Heat_SZ_UWP) AND ConnectionStatus_OPC_BvL;
+bError_Connection := NOT ConnectionStatus_OPC_BvL;
+]]></ST>
     </Implementation>
     <LineIds Name="FB_BvL_CleaningSystem">
-      <LineId Id="25" Count="3" />
-      <LineId Id="149" Count="5" />
-      <LineId Id="172" Count="1" />
-      <LineId Id="171" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="56" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="57" Count="3" />
-      <LineId Id="62" Count="3" />
-      <LineId Id="180" Count="1" />
+      <LineId Id="212" Count="1" />
+      <LineId Id="181" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

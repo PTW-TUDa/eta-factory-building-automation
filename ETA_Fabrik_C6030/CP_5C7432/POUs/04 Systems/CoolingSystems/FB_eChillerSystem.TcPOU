@@ -20,6 +20,7 @@ VAR
 	stWMZ135DefaultParameters : ST_MollineC3HeatCounterDefaultParameters := (fSpecificHeatCapacity := 4.7);
 	WMZ135 : FB_MollineC3HeatCounter := (ST_DefaultParameters := stWMZ135DefaultParameters);
 	WMZ138 : FB_MollineC3HeatCounter;
+	EM138 : FB_EmonioP3;
 	
 	//internal variables
 	bSetStatusOn_eChiller : BOOL;
@@ -49,7 +50,8 @@ SV138.SetState_AO();
 
 //insert heat counter telegramm from other task
 WMZ135(aHeatCounterTelegramm := aTelegramm_WMZ135);
-WMZ138(aHeatCounterTelegramm := aTelegramm_WMZ138);]]></ST>
+WMZ138(aHeatCounterTelegramm := aTelegramm_WMZ138);
+EM138(sIPAddr := GlobalVariables.sIP_Emonio_eChiller);]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{87b68d69-7506-4fd5-920f-31c8ac6bc4f2}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -184,6 +186,7 @@ END_VAR]]></Declaration>
       <LineId Id="80" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="82" Count="0" />
+      <LineId Id="192" Count="0" />
     </LineIds>
     <LineIds Name="FB_eChillerSystem.CheckError">
       <LineId Id="9" Count="7" />

@@ -52,44 +52,6 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
-			<BitSize>192</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>1</LBound>
-				<Elements>24</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2InData</Name>
-			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
-			<BitSize>32</BitSize>
-			<SubItem>
-				<Name>nStatus</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>nDummy</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
-				<BitSize>8</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>nData</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
-				<BitSize>16</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<Properties>
-				<Property>
-					<Name>obsolete</Name>
-					<Value>Use the structure ST_KL6811InData instead!</Value>
-				</Property>
-			</Properties>
-		</DataType>
-		<DataType>
 			<Name GUID="{12E80FF5-6251-C867-A464-3036E21E986D}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -161,6 +123,53 @@
 			</SubItem>
 		</DataType>
 		<DataType>
+			<Name GUID="{09028F86-A747-EA43-57E9-969912315B28}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..24] OF BYTE</Name>
+			<BitSize>192</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>24</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2InData</Name>
+			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
+			<BitSize>32</BitSize>
+			<SubItem>
+				<Name>nStatus</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nDummy</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>nData</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<Properties>
+				<Property>
+					<Name>obsolete</Name>
+					<Value>Use the structure ST_KL6811InData instead!</Value>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
+			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
+			<BitSize>40</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>5</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI" AutoDeleteType="true">ST_DALIV2OutData</Name>
 			<Comment><![CDATA[ Communication interface for the KL6811]]></Comment>
 			<BitSize>32</BitSize>
@@ -188,15 +197,6 @@
 					<Value>Use the structure ST_KL6811OutData instead!</Value>
 				</Property>
 			</Properties>
-		</DataType>
-		<DataType>
-			<Name GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..4] OF BYTE</Name>
-			<BitSize>40</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>5</Elements>
-			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000300000006}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..5] OF BYTE</Name>
@@ -324,6 +324,91 @@
 				<Elements>32</Elements>
 			</ArrayInfo>
 		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{F2E23DFE-0EF0-465E-B7E5-80E81FA4AB06}" TcBaseType="true">OpcUaDeviceStatus</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>Connected</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[connection status
+1 = TRUE | 0 = FALSE]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ReadBusy</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[only active in triggered mode
+1 = TRUE | 0 = FALSE]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>KeepAlives</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000013}">BIT4</Type>
+				<Comment><![CDATA[number of counted keepalive messages
+only active in subscription mode]]></Comment>
+				<BitSize>4</BitSize>
+				<BitOffs>4</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StmState</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000001}">BYTE</Type>
+				<Comment><![CDATA[client statemachine state
+0 = init  |  1 = connect
+2 = resolve namespace
+3 = get node handles
+4 = polling mode
+5 = triggered mode
+6 = awaiting data change notifications (subscriptions)
+7 = disconnect  |  8 = reset]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{7CD7A8B9-2459-4D9A-A7D6-EA64744B3C97}" TcBaseType="true">OpcUaDeviceControl</Name>
+			<BitSize>16</BitSize>
+			<SubItem>
+				<Name>ResetStm</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[resetting client by setting bit true]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Execute</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[in triggered mode set bit true to execute a read/write operation]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>1</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Write Enable</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000010}">BIT</Type>
+				<Comment><![CDATA[enable client wide write operations by setting bit to true]]></Comment>
+				<BitSize>1</BitSize>
+				<BitOffs>2</BitOffs>
+			</SubItem>
+		</DataType>
 	</DataTypes>
 	<ImageDatas>
 		<ImageData Id="1000">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
@@ -332,12 +417,14 @@
 		<ImageData Id="1003">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff0000c00000c00000c00000c00000c00000c00000c0ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c600ffffc6c6c60000c0c6c6c600ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6ff0000c6c6c60000c0c6c6c6ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c60000ffc6c6c60000c0c6c6c60000ff808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6000000c6c6c60000c0c6c6c6000000808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6008400c6c6c60000c0c6c6c6008400808080ff00ffff00ffff00ff007bff007bff007bff007bff007bff007bffc6c6c6c6c6c6c6c6c60000c0c6c6c6c6c6c6808080ff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1004">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
 		<ImageData Id="1005">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff0000ff0000ff0000ff0000ff0000ff0000c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c080808080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
-		<ImageData Id="1008">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c000000000000000bfff000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
-		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000c0c0c0c0c0c0000000808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
-		<ImageData Id="1011">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1006">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0808080808080c0c0c000000000000000bfff000000ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c080808080808000bfff00bfff00bfff00bfff00bfff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0808080808080c0c0c0c0c0c080808000bfffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0bbc2bbc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0bac2ba0bfc0bc0c0c0c0c0c0c0c0c0808080ff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ff</ImageData>
+		<ImageData Id="1007">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000bfff00bfffc0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ff000000c0c0c0c0c0c0000000808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000000000c0c0c0808080c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1008">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000120b0000120b00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff0000ff0000ff0000ff0000ff0000ff0000ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1009">424dd6020000000000003600000028000000100000000e0000000100180000000000a0020000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff007fff007fff007fff007fff007fff007fffc0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1010">424dd6020000000000003600000028000000100000000e0000000100180000000000a002000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ff808080808080808080808080808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c000ffffc0c0c000ffff808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0ff0000c0c0c0ff0000808080ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffc0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c00000ffc0c0c00000ff808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0000000c0c0c0000000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0008000c0c0c0008000808080ff00ffff00ffff00ffff00ffff00ff00ff0000ff0000ff0000ff0000ff0000ff00c0c0c0c0c0c0c0c0c0c0c0c0808080ff00ffff00ffff00ffff00ffff00ff</ImageData>
+		<ImageData Id="1011">424de6000000000000007600000028000000100000000e000000010004000000000070000000000000000000000000000000000000000000000000008000008000000080800080000000800080008080000080808000c0c0c0000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00dddddddddddddddddd777777777777dddddddddd797ddddddddddddd777ddddddddddddddddddddddddddddddddddddddd00dd0ddddd00dd8088080888808808d0dd0d0dddd0dddd8088080008808888d0dd0d0dd0d0dddd8088080880808808dd00dd000ddd00dddddddddddddddddd</ImageData>
+		<ImageData Id="1012">424de6000000000000007600000028000000100000000e000000010004000000000070000000000000000000000000000000000000000000000000008000008000000080800080000000800080008080000080808000c0c0c0000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00dddddddddddddddddd999dddddd999ddd99799999999799ddd999dddddd999dddddddddddddddddddd00dd0ddddd00dd8088080888808808d0dd0d0dddd0dddd8088080008808888d0dd0d0dd0d0dddd8088080880808808dd00dd000ddd00dddddddddddddddddddddddddddddddddd</ImageData>
+		<ImageData Id="1013">424d360300000000000036000000280000001000000010000000010018000000000000030000c40e0000c40e00000000000000000000ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff868686000000000000000000000000000000000000000000000000000000ff00ffff00ffff00ffff00ffff00ff868686c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00000000ff00ffff00ffff00ff868686c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c0000000ff00ffff00ff868686c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00000000ff00ffff00ff86868600ff00868686868686c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c0000000ff00ffff00ff86868600ff0086868686868600ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00000000ff00ffff00ff86868600ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c0000000ff00ffff00ffff00ff86868600ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00000000ff00ffff00ffff00ffff00ff86868600ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c000ff00c0c0c0000000ff00ffff00ffff00ffff00ffff00ff868686868686868686868686868686868686868686868686868686868686ff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ffff00ff</ImageData>
 	</ImageDatas>
 	<Project ProjectGUID="{00CACF35-1DB4-4749-82B1-534521295F64}" Target64Bit="true" RelativeTargetNetId="true" RelativeIpAddresses="true" AutoPrioManagement="true" ShowHideConfigurations="#x106">
 		<System>
@@ -346,7 +433,8 @@
 			</Settings>
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
-					<LicenseDevice DongleHardwareId="2" DongleDevice="#x0302001e" DongleLevel="70" DongleSystemId="{2C64A9DA-9521-D07C-E97D-40148B0A3376}" DongleSerialNumber="0100106826"/>
+					<ManualSelect>{6952449D-F68C-49A2-ADE4-8639D85B33A4}</ManualSelect>
+					<LicenseDevice DongleHardwareId="2" DongleDevice="#x0302001e" DongleSystemId="{2C64A9DA-9521-D07C-E97D-40148B0A3376}"/>
 				</Target>
 			</Licenses>
 			<Tasks>
@@ -359,10 +447,13 @@
 				<Task Id="3" Priority="6" CycleTime="60000" AmsPort="353" AdtTasks="true">
 					<Name>MBus_WZaehler_Task</Name>
 				</Task>
+				<Task Id="4" Priority="12" CycleTime="400000" AmsPort="350" AdtTasks="true">
+					<Name>Gerät 7 (OPC UA Virtual)_Task_58</Name>
+				</Task>
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{C418C312-DF88-4AFD-AB48-3E2DDB9D5D29}" Name="CP_5C7432" PrjFilePath="CP_5C7432\CP_5C7432.plcproj" TmcFilePath="CP_5C7432\CP_5C7432.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
+			<Project GUID="{C418C312-DF88-4AFD-AB48-3E2DDB9D5D29}" Name="CP_5C7432" PrjFilePath="CP_5C7432\CP_5C7432.plcproj" TmcFilePath="CP_5C7432\CP_5C7432.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false">
 				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="CP_5C7432\CP_5C7432.tmc">
 					<Name>CP_5C7432 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
@@ -412,357 +503,6 @@
 					</Vars>
 					<Vars VarGrpType="1" ContextId="2" AreaNo="32">
 						<Name>Standard Inputs</Name>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS900.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS901.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS902.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS903.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS910.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS911.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS950.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.TS951.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.PCM_Testbed.RV950.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_IN</Name>
-							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.BufferStorage.PressureSensor.nPressure_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bError_IN</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bWarning_IN</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.SV138.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
-							<Comment><![CDATA[I/O-Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx06.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN</Name>
-							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN</Name>
-							<Comment><![CDATA[I/O links]]></Comment>
-							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN</Name>
-							<Type>USINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN</Name>
-							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN</Name>
-							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN</Name>
-							<Comment><![CDATA[%]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN</Name>
-							<Comment><![CDATA[rpm]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN</Name>
-							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN</Name>
-							<Comment><![CDATA[°C]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOn_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
-							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.HeatPump.bStatusOn_IN</Name>
 							<Type>BOOL</Type>
@@ -816,7 +556,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU405.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -873,7 +613,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.InnerCapillaryTubeMats.PU500.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1090,7 +830,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.UnderfloorHeatingSystem.PU425.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1192,7 +932,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT_CN.VentilationSystem.PU455.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1269,7 +1009,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU235.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1326,7 +1066,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.OuterCapillaryTubeMats.PU600.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1443,7 +1183,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.HVFASystem.PUx05.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1515,7 +1255,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.CompressorSystem.PU251.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1577,7 +1317,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.AnnealingOvenSealingSystem.PU261.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1639,7 +1379,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNLT.DCSystem.PU245.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1706,7 +1446,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU315.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1763,7 +1503,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT_HNLT.HeatExchanger1System.PU215.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1863,7 +1603,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.PU242.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -1899,6 +1639,370 @@
 							<Name>MAIN.HNHT_HNLT.HeatPumpSystem.TS242.temperature_IN</Name>
 							<Comment><![CDATA[I/O-Links]]></Comment>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS900.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS901.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS902.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS903.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS910.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS911.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS950.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.TS951.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_IN</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.AmbientTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section1.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section2.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.HallTemperatureSensor_Section3.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.RoomTemperatureSensor_Container.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_IN</Name>
+							<Type GUID="{6671C4AA-9267-109D-F3E9-CC37EA5B464C}" Namespace="Tc2_DALI">ST_DALIV2InData</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.TasterGruppe1.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Steuer_Taster.IN_Bin</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor1.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.Sensor2.IN_Helligkeit</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>.Beleuchtung.Hallenbeleuchtung.EIN_AUS_Schalter</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.MidTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.BufferStorage.PressureSensor.nPressure_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bError_IN</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bWarning_IN</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bStatusOn_IN</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.SV138.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.HVFAStorage.UpperTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.HVFAStorage.LowerTemperatureSensor.temperature_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPowerElectric_IN</Name>
+							<Comment><![CDATA[kW]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx06.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.RVx05.nOperatingPoint_IN</Name>
+							<Comment><![CDATA[Actual valve position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerElectric_IN</Name>
+							<Comment><![CDATA[kW]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.StatusModule_IN</Name>
+							<Comment><![CDATA[I/O links]]></Comment>
+							<Type GUID="{12E80FF5-6251-C867-A464-3036E21E986D}">ARRAY [0..5] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nAlarmCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.nWarningCode_IN</Name>
+							<Type>USINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fVolumeFlowRate_IN</Name>
+							<Comment><![CDATA[m^3/h volume flow rate from pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPressureDifference_IN</Name>
+							<Comment><![CDATA[pa = 10^-5 bar]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerElectric_IN</Name>
+							<Comment><![CDATA[kW]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fActualSetpoint_IN</Name>
+							<Comment><![CDATA[%]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fRotationalSpeed_IN</Name>
+							<Comment><![CDATA[rpm]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureExternal_IN</Name>
+							<Comment><![CDATA[°C external temperature from sensor connected to pump]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fTemperatureDifference_IN</Name>
+							<Comment><![CDATA[°C]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.fPowerThermal_IN</Name>
+							<Comment><![CDATA[W]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Reply</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOn_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % open]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bStatusOff_IN</Name>
+							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.EMAG_Y.Mode_IN</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.EMAG_Y.CoolingUnitOperational_IN</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.EMAG_Y.ConnectionStatus_IN</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.BufferStorage.UpperTemperatureSensor.temperature_IN</Name>
@@ -1950,7 +2054,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CHP1System.PU32x.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2027,7 +2131,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CHP2System.PU32x.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2122,7 +2226,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.StaticHeatingSystem.PU350.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2184,7 +2288,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.CentralMachineHeatingSystem.PU300.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2251,7 +2355,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.AnnealingOvenExhaustGasSystem.PU361.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2328,7 +2432,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.VSIStorageSystem.PU305.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2385,7 +2489,7 @@
 						</Var>
 						<Var>
 							<Name>MAIN.HNHT.VSIStorageSystem.PU306.fPowerElectric_IN</Name>
-							<Comment><![CDATA[W]]></Comment>
+							<Comment><![CDATA[kW]]></Comment>
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
@@ -2442,99 +2546,38 @@
 							<Comment><![CDATA[True if valve is 100 % closed]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_SV</Name>
+							<Comment><![CDATA[I/O-Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_PWW</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_UWP</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_SV</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_PWW</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_UWP</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.HNHT.BvL_CleaningSystem.ConnectionStatus_OPC_BvL</Name>
+							<Type>BOOL</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" ContextId="2" AreaNo="33">
 						<Name>Standard Outputs</Name>
-						<Var>
-							<Name>MAIN.PCM_Testbed.RV950.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
-							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>.Dali_K522A1_DALI_OUT</Name>
-							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
-							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
-							<Comment><![CDATA[Set position linked to terminal]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
-							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
-							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
-							<Comment><![CDATA[I/O Links]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
 						<Var>
 							<Name>MAIN.HNLT_CN.HeatPumpSystem.HeatPump.nSetPoint_OUT</Name>
 							<Comment><![CDATA[I/O Links]]></Comment>
@@ -2863,6 +2906,96 @@
 							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
 						</Var>
 						<Var>
+							<Name>MAIN.PCM_Testbed.RV950.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.Ambient.WeatherStation.KL6301_OUT</Name>
+							<Type GUID="{09028F86-A747-EA43-57E9-969912315B28}">ARRAY [1..24] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>.Dali_K522A1_DALI_OUT</Name>
+							<Type GUID="{84CEA4AE-1641-2AC9-8925-6DCF130289D5}" Namespace="Tc2_DALI">ST_DALIV2OutData</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nSetPoint_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nActualTemperature_OUT</Name>
+							<Comment><![CDATA[Actual temperature in buffer storage linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.nReturnTemperature_Consumers_OUT</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.eChiller.bSetStatusOn_OUT</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.eChillerSystem.SV138.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.PU7x0.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.SVx06.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.HVFASystem.RVx05.nSetPoint_OUT</Name>
+							<Comment><![CDATA[Set position linked to terminal]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.PU100.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.CentralMachineCoolingSystem.SV100.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.ControlModule_OUT</Name>
+							<Type GUID="{14CEA088-1F4A-00F5-F531-CD5B99CC8C4C}">ARRAY [0..4] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.PU191.stTemperatureInternal_Genibus_Request</Name>
+							<Type GUID="{E4432D28-542A-5311-4E3A-2D3F5390BD45}" Namespace="AutomationBaseClasses">ST_PumpGrundfosMagna3Genibus</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.CN.FlywheelMassStorageSystem.SV191.bSetStatusOn_OUT</Name>
+							<Comment><![CDATA[I/O Links]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.HNHT.CHP1System.CHP.nSetPoint_OUT</Name>
 							<Comment><![CDATA[Set position linked to terminal]]></Comment>
 							<Type>INT</Type>
@@ -3081,8 +3214,8 @@
 					</Contexts>
 					<TaskPouOids>
 						<TaskPouOid Prio="6" OTCID="#x08502001"/>
-						<TaskPouOid Prio="8" OTCID="#x08502002"/>
-						<TaskPouOid Prio="10" OTCID="#x08502004"/>
+						<TaskPouOid Prio="8" OTCID="#x08502004"/>
+						<TaskPouOid Prio="10" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>
@@ -13622,362 +13755,13 @@ PU245
 							<CoeProfile ProfileNo="26219401"/>
 						</EtherCAT>
 					</Box>
-					<Box Id="52" BoxType="9099">
-						<Name>Klemme 52 (EL1008)</Name>
-						<ImageId>7</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x03f03052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL1008 8K. Dig. Eingang 24V, 3ms" Desc="EL1008" PortABoxInfo="#x0100001c">
-							<SyncMan>001001000000010004000000000000000100001000010000</SyncMan>
-							<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1a00" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6000" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 2" Index="#x1a01" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6010" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1a02" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6020" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 4" Index="#x1a03" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6030" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 5" Index="#x1a04" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6040" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 6" Index="#x1a05" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6050" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 7" Index="#x1a06" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6060" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 8" Index="#x1a07" Flags="#x0011" SyncMan="0">
-								<Entry Name="Input" Index="#x6070" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-						</EtherCAT>
-					</Box>
-					<Box Id="54" BoxType="9099">
-						<Name>Klemme 54 (EL2008)</Name>
-						<ImageId>1006</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x07d83052" RevisionNo="#x00110000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2008 8K. Dig. Ausgang 24V, 0.5A" Desc="EL2008" PortABoxInfo="#x01000034">
-							<SyncMan>000f01004400010003000000000000000000000f44090000</SyncMan>
-							<Fmmu>0000000000000000000f00020100000001000000000000000000000000000000</Fmmu>
-							<Pdo Name="Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7000" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7010" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7020" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7030" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 5" Index="#x1604" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7040" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 6" Index="#x1605" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7050" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 7" Index="#x1606" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7060" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Channel 8" Index="#x1607" InOut="1" Flags="#x0011" SyncMan="0">
-								<Entry Name="Output" Index="#x7070" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-							</Pdo>
-						</EtherCAT>
-					</Box>
-					<Box Id="55" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Klemme 55 (EL3004)</Name>
-						<ImageId>1004</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0bbc3052" RevisionNo="#x00150000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3004 4K.Ana. Eingang  +/-10V" Desc="EL3004" PortABoxInfo="#x01000036">
-							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
-							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
-							<SyncMan>001100000400000003000000000000000000001104000000</SyncMan>
-							<SyncMan>801110002000010004000000000000001000801120010000</SyncMan>
-							<Fmmu>0000000000000000801100010100000002000000000000000000000000000000</Fmmu>
-							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-							<BootStrapData>0010f400f410f400</BootStrapData>
-							<Pdo Name="AI Standard Channel 1" Index="#x1a00" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a01</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6000" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6000" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6000" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6000" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6000" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6000" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6000" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 1" Index="#x1a01" Flags="#x0010">
-								<ExcludePdo>#x1a00</ExcludePdo>
-								<Entry Name="Value" Index="#x6000" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 2" Index="#x1a02" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a03</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6010" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6010" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6010" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6010" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6010" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6010" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6010" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 2" Index="#x1a03" Flags="#x0010">
-								<ExcludePdo>#x1a02</ExcludePdo>
-								<Entry Name="Value" Index="#x6010" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 3" Index="#x1a04" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a05</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6020" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6020" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6020" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6020" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6020" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6020" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6020" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 3" Index="#x1a05" Flags="#x0010">
-								<ExcludePdo>#x1a04</ExcludePdo>
-								<Entry Name="Value" Index="#x6020" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Standard Channel 4" Index="#x1a06" Flags="#x0010" SyncMan="3">
-								<ExcludePdo>#x1a07</ExcludePdo>
-								<Entry Name="Status__Underrange" Index="#x6030" Sub="#x01">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Underrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Overrange" Index="#x6030" Sub="#x02">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Overrange event active]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 1" Index="#x6030" Sub="#x03">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit1
-Bit1: Value bigger/equal Limit1]]></Comment>
-								</Entry>
-								<Entry Name="Status__Limit 2" Index="#x6030" Sub="#x05">
-									<Type>BIT2</Type>
-									<Comment><![CDATA[Bit0: Value smaller/equal Limit2
-Bit1: Value bigger/equal Limit2]]></Comment>
-								</Entry>
-								<Entry Name="Status__Error" Index="#x6030" Sub="#x07">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit set when Over- or Underrange]]></Comment>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__">
-									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
-								</Entry>
-								<Entry Name="Status__TxPDO State" Index="#x6030" Sub="#x0f">
-									<Type>BIT</Type>
-									<Comment><![CDATA[TRUE when this TxPDO is not valid]]></Comment>
-								</Entry>
-								<Entry Name="Status__TxPDO Toggle" Index="#x6030" Sub="#x10">
-									<Type>BIT</Type>
-									<Comment><![CDATA[Bit toggles everytime when new value available]]></Comment>
-								</Entry>
-								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AI Compact Channel 4" Index="#x1a07" Flags="#x0010">
-								<ExcludePdo>#x1a06</ExcludePdo>
-								<Entry Name="Value" Index="#x6030" Sub="#x11" Flags="#x00010000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-							<CoeProfile ProfileNo="19665801"/>
-						</EtherCAT>
-					</Box>
-					<Box Id="57" BoxType="9099" BoxFlags="#x00000020">
-						<Name>Klemme 57 (EL4124)</Name>
-						<ImageId>1005</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x101c3052" RevisionNo="#x03f90000" InfoDataAddr="true" TimeoutMailbox2="2000" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL4124 4Ch. Ana. Output 4-20mA, 16bit" Desc="EL4124" PortABoxInfo="#x01000037">
-							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
-							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
-							<SyncMan>001108002400010003000000000000000800001124010000</SyncMan>
-							<SyncMan>801100000000000004000000000000000000801100000000</SyncMan>
-							<Fmmu>0000000000000000001100020100000001000000000000000000000000000000</Fmmu>
-							<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
-							<BootStrapData>0010f400f410f400</BootStrapData>
-							<DcMode>53796e6368726f6e00000000000000004672656552756e2f534d2d53796e6368726f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<DcMode>4443000000000000000000000000000044432d53796e6368726f6e0000000000000000000000000000000000000000000000000000000000a0860100000000070100000000000000000000000000000000000000000000000000000000000000</DcMode>
-							<Pdo Name="AO Output Channel 1" Index="#x1600" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7000" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 2" Index="#x1601" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7010" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 3" Index="#x1602" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7020" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="AO Output Channel 4" Index="#x1603" InOut="1" Flags="#x0011" SyncMan="2">
-								<Entry Name="Analog output" Index="#x7030" Sub="#x11" Flags="#x00040000">
-									<Type>INT</Type>
-								</Entry>
-							</Pdo>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-							<CoeProfile ProfileNo="26219401"/>
-						</EtherCAT>
-					</Box>
-					<Box Id="50" BoxType="9099">
-						<Name>Klemme 50 (EK1122)</Name>
-						<ImageId>1007</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04622c52" RevisionNo="#x00120000" PortPhys="4883" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1122 2-Port EtherCAT-Abzweig" Desc="EK1122" PortABoxInfo="#x01000039"/>
-					</Box>
 					<Box Id="39" BoxType="9099">
 						<Name>Klemme 39 (EK1521-0010)</Name>
-						<ImageId>1008</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05f12c52" RevisionNo="#x0013000a" PortPhys="4867" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1521-0010 1-Port EtherCAT-Abzweig (FX-SingleMode)" Desc="EK1521-0010" PortABoxInfo="#x02000032"/>
+						<ImageId>1006</ImageId>
+						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05f12c52" RevisionNo="#x0013000a" PortPhys="4867" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1521-0010 1-Port EtherCAT-Abzweig (FX-SingleMode)" Desc="EK1521-0010" PortABoxInfo="#x0100001c"/>
 						<Box Id="40" BoxType="9099">
 							<Name>Klemme 40 (EK1501-0010)</Name>
-							<ImageId>1009</ImageId>
+							<ImageId>1007</ImageId>
 							<EtherCAT SlaveType="1" PdiType="#x0d04" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x05dd2c52" RevisionNo="#x0012000a" PortPhys="305" IdentificationAdo="4096" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1501-0010 EtherCAT-Koppler (2A E-Bus, FX-SingleMode, ID-Switch)" Desc="EK1501-0010" PortABoxInfo="#x03000027">
 								<SyncMan>001002000000010004000000000000000000001000000000</SyncMan>
 								<Fmmu>0000000000000000001000010100000002000000000000000000000000000000</Fmmu>
@@ -13989,7 +13773,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 							</EtherCAT>
 							<Box Id="41" BoxType="9099">
 								<Name>Klemme 41 (EL2809)</Name>
-								<ImageId>1006</ImageId>
+								<ImageId>1008</ImageId>
 								<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0af93052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2809 16K. Dig. Ausgang 24V, 0.5A" Desc="EL2809" PortABoxInfo="#x01000028">
 									<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 									<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
@@ -15218,7 +15002,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>328</BitOffs>
 									</Var>
 								</Vars>
 								<Vars VarGrpType="2">
@@ -15229,7 +15013,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 										<Type>UINT</Type>
-										<BitOffs>336</BitOffs>
+										<BitOffs>328</BitOffs>
 									</Var>
 								</Vars>
 								<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15242,277 +15026,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>UINT</Type>
-												<BitOffs>352</BitOffs>
+												<BitOffs>344</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>368</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>376</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>384</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>392</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>400</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>408</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>416</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>424</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>432</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>440</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>448</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>456</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>464</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>472</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>480</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>488</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>496</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>504</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>512</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>520</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>528</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Data In 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>536</BitOffs>
+												<BitOffs>528</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Ctrl</Name>
 												<Type>UINT</Type>
-												<BitOffs>352</BitOffs>
+												<BitOffs>344</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 0</Name>
 												<Type>USINT</Type>
-												<BitOffs>368</BitOffs>
+												<BitOffs>360</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 1</Name>
 												<Type>USINT</Type>
-												<BitOffs>376</BitOffs>
+												<BitOffs>368</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 2</Name>
 												<Type>USINT</Type>
-												<BitOffs>384</BitOffs>
+												<BitOffs>376</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 3</Name>
 												<Type>USINT</Type>
-												<BitOffs>392</BitOffs>
+												<BitOffs>384</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 4</Name>
 												<Type>USINT</Type>
-												<BitOffs>400</BitOffs>
+												<BitOffs>392</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 5</Name>
 												<Type>USINT</Type>
-												<BitOffs>408</BitOffs>
+												<BitOffs>400</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 6</Name>
 												<Type>USINT</Type>
-												<BitOffs>416</BitOffs>
+												<BitOffs>408</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 7</Name>
 												<Type>USINT</Type>
-												<BitOffs>424</BitOffs>
+												<BitOffs>416</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 8</Name>
 												<Type>USINT</Type>
-												<BitOffs>432</BitOffs>
+												<BitOffs>424</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 9</Name>
 												<Type>USINT</Type>
-												<BitOffs>440</BitOffs>
+												<BitOffs>432</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 10</Name>
 												<Type>USINT</Type>
-												<BitOffs>448</BitOffs>
+												<BitOffs>440</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 11</Name>
 												<Type>USINT</Type>
-												<BitOffs>456</BitOffs>
+												<BitOffs>448</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 12</Name>
 												<Type>USINT</Type>
-												<BitOffs>464</BitOffs>
+												<BitOffs>456</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 13</Name>
 												<Type>USINT</Type>
-												<BitOffs>472</BitOffs>
+												<BitOffs>464</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 14</Name>
 												<Type>USINT</Type>
-												<BitOffs>480</BitOffs>
+												<BitOffs>472</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 15</Name>
 												<Type>USINT</Type>
-												<BitOffs>488</BitOffs>
+												<BitOffs>480</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 16</Name>
 												<Type>USINT</Type>
-												<BitOffs>496</BitOffs>
+												<BitOffs>488</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 17</Name>
 												<Type>USINT</Type>
-												<BitOffs>504</BitOffs>
+												<BitOffs>496</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 18</Name>
 												<Type>USINT</Type>
-												<BitOffs>512</BitOffs>
+												<BitOffs>504</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 19</Name>
 												<Type>USINT</Type>
-												<BitOffs>520</BitOffs>
+												<BitOffs>512</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 20</Name>
 												<Type>USINT</Type>
-												<BitOffs>528</BitOffs>
+												<BitOffs>520</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Data Out 21</Name>
 												<Type>USINT</Type>
-												<BitOffs>536</BitOffs>
+												<BitOffs>528</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15525,25 +15309,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>544</BitOffs>
+												<BitOffs>536</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>560</BitOffs>
+												<BitOffs>552</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>544</BitOffs>
+												<BitOffs>536</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>560</BitOffs>
+												<BitOffs>552</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15552,25 +15336,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>576</BitOffs>
+												<BitOffs>568</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>592</BitOffs>
+												<BitOffs>584</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>576</BitOffs>
+												<BitOffs>568</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>592</BitOffs>
+												<BitOffs>584</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15579,25 +15363,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>608</BitOffs>
+												<BitOffs>600</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>624</BitOffs>
+												<BitOffs>616</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>608</BitOffs>
+												<BitOffs>600</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>624</BitOffs>
+												<BitOffs>616</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15606,25 +15390,25 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 											<Var>
 												<Name>Status</Name>
 												<Type>USINT</Type>
-												<BitOffs>640</BitOffs>
+												<BitOffs>632</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Ein</Name>
 												<Type>INT</Type>
-												<BitOffs>656</BitOffs>
+												<BitOffs>648</BitOffs>
 												<InOut>0</InOut>
 											</Var>
 											<Var>
 												<Name>Kontrolle</Name>
 												<Type>USINT</Type>
-												<BitOffs>640</BitOffs>
+												<BitOffs>632</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 											<Var>
 												<Name>Daten Aus</Name>
 												<Type>INT</Type>
-												<BitOffs>656</BitOffs>
+												<BitOffs>648</BitOffs>
 												<InOut>1</InOut>
 											</Var>
 										</Vars>
@@ -15634,7 +15418,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 										<ImageId>32</ImageId>
 									</Term>
 								</BusCoupler>
-								<EtherCAT SlaveType="3" AdsServerAddress="000000000b390204" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x0100002c">
+								<EtherCAT SlaveType="3" AdsServerAddress="000000000b39fd03" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00120000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x0100002c">
 									<SyncMan>001c88002600010001000000400000028800001c26010000</SyncMan>
 									<SyncMan>001e88002200010002000000400000028800001e22010000</SyncMan>
 									<SyncMan>00102a006400010003000000000000000000001064010000</SyncMan>
@@ -15649,7 +15433,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="46" BoxType="9099">
 						<Name>Klemme 25 (EL9011)</Name>
-						<ImageId>1010</ImageId>
+						<ImageId>1009</ImageId>
 						<EtherCAT CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x23333050" InfoDataState="false" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL9011 Endklemme" Desc="EL9011" PortABoxInfo="#x02000027"/>
 					</Box>
 					<Box Id="29" BoxType="9081" AmsPort="28928">
@@ -15668,7 +15452,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>976</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -15679,7 +15463,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>976</BitOffs>
+								<BitOffs>968</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -15692,277 +15476,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>State</Name>
 										<Type>UINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>992</BitOffs>
+										<BitOffs>984</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>1008</BitOffs>
+										<BitOffs>1000</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>1016</BitOffs>
+										<BitOffs>1008</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>1024</BitOffs>
+										<BitOffs>1016</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>1032</BitOffs>
+										<BitOffs>1024</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>1040</BitOffs>
+										<BitOffs>1032</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>1048</BitOffs>
+										<BitOffs>1040</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>1056</BitOffs>
+										<BitOffs>1048</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>1064</BitOffs>
+										<BitOffs>1056</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>1072</BitOffs>
+										<BitOffs>1064</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>1080</BitOffs>
+										<BitOffs>1072</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>1088</BitOffs>
+										<BitOffs>1080</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>1096</BitOffs>
+										<BitOffs>1088</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>1104</BitOffs>
+										<BitOffs>1096</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>1112</BitOffs>
+										<BitOffs>1104</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>1120</BitOffs>
+										<BitOffs>1112</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>1128</BitOffs>
+										<BitOffs>1120</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>1136</BitOffs>
+										<BitOffs>1128</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>1144</BitOffs>
+										<BitOffs>1136</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>1152</BitOffs>
+										<BitOffs>1144</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>1160</BitOffs>
+										<BitOffs>1152</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>1168</BitOffs>
+										<BitOffs>1160</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>1176</BitOffs>
+										<BitOffs>1168</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -15972,7 +15756,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<ImageId>32</ImageId>
 							</Term>
 						</BusCoupler>
-						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1e0304" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x00ffffff">
+						<EtherCAT SlaveType="3" AdsServerAddress="c0a8730a0b1efe03" FixedAdsServerNetId="true" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00130000" InfoDataAddr="true" InfoDataNetId="true" TimeoutStateChange1="5000" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x02000027">
 							<SyncMan>001e00012600010001000000400000010001001e26010000</SyncMan>
 							<SyncMan>001f00012200010002000000400000010001001f22010000</SyncMan>
 							<SyncMan>00101a002400010003000000000000000000001024010000</SyncMan>
@@ -16669,7 +16453,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="70" BoxType="9099">
 						<Name>Klemme 70 (EL2809)</Name>
-						<ImageId>1006</ImageId>
+						<ImageId>1008</ImageId>
 						<EtherCAT SlaveType="1" PdiType="#x0104" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x0af93052" RevisionNo="#x00120000" RepeatSupport="true" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL2809 16K. Dig. Ausgang 24V, 0.5A" Desc="EL2809" PortABoxInfo="#x01000045">
 							<SyncMan>000f01004400010003000000000000000100000f44090000</SyncMan>
 							<SyncMan>010f01004400010003000000000000000100010f44090000</SyncMan>
@@ -16758,7 +16542,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 					</Box>
 					<Box Id="87" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Klemme 87 (EL3218)</Name>
-						<ImageId>1011</ImageId>
+						<ImageId>1010</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x0c923052" RevisionNo="#x00110000" InfoDataAddr="true" RepeatSupport="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EL3218-0000 8K. Ana. Eingang PT100 (RTD)" Desc="EL3218" PortABoxInfo="#x01000046">
 							<SyncMan>001080002600010001000000800080008000001026010000</SyncMan>
 							<SyncMan>801080002200010002000000800080008000801022010000</SyncMan>
@@ -17139,7 +16923,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0080 = Communication error (Outputs)
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>672</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<Vars VarGrpType="2">
@@ -17150,7 +16934,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 0x0020 = Show K-Bus overrun
 ]]></Comment>
 								<Type>UINT</Type>
-								<BitOffs>672</BitOffs>
+								<BitOffs>664</BitOffs>
 							</Var>
 						</Vars>
 						<BusCoupler ComplexTermSupport="true" NewHardware="true">
@@ -17163,277 +16947,277 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 									<Var>
 										<Name>Status</Name>
 										<Type>UINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>848</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Data In 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>0</InOut>
 									</Var>
 									<Var>
 										<Name>Ctrl</Name>
 										<Type>UINT</Type>
-										<BitOffs>688</BitOffs>
+										<BitOffs>680</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 0</Name>
 										<Type>USINT</Type>
-										<BitOffs>704</BitOffs>
+										<BitOffs>696</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 1</Name>
 										<Type>USINT</Type>
-										<BitOffs>712</BitOffs>
+										<BitOffs>704</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 2</Name>
 										<Type>USINT</Type>
-										<BitOffs>720</BitOffs>
+										<BitOffs>712</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 3</Name>
 										<Type>USINT</Type>
-										<BitOffs>728</BitOffs>
+										<BitOffs>720</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 4</Name>
 										<Type>USINT</Type>
-										<BitOffs>736</BitOffs>
+										<BitOffs>728</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 5</Name>
 										<Type>USINT</Type>
-										<BitOffs>744</BitOffs>
+										<BitOffs>736</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 6</Name>
 										<Type>USINT</Type>
-										<BitOffs>752</BitOffs>
+										<BitOffs>744</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 7</Name>
 										<Type>USINT</Type>
-										<BitOffs>760</BitOffs>
+										<BitOffs>752</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 8</Name>
 										<Type>USINT</Type>
-										<BitOffs>768</BitOffs>
+										<BitOffs>760</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 9</Name>
 										<Type>USINT</Type>
-										<BitOffs>776</BitOffs>
+										<BitOffs>768</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 10</Name>
 										<Type>USINT</Type>
-										<BitOffs>784</BitOffs>
+										<BitOffs>776</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 11</Name>
 										<Type>USINT</Type>
-										<BitOffs>792</BitOffs>
+										<BitOffs>784</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 12</Name>
 										<Type>USINT</Type>
-										<BitOffs>800</BitOffs>
+										<BitOffs>792</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 13</Name>
 										<Type>USINT</Type>
-										<BitOffs>808</BitOffs>
+										<BitOffs>800</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 14</Name>
 										<Type>USINT</Type>
-										<BitOffs>816</BitOffs>
+										<BitOffs>808</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 15</Name>
 										<Type>USINT</Type>
-										<BitOffs>824</BitOffs>
+										<BitOffs>816</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 16</Name>
 										<Type>USINT</Type>
-										<BitOffs>832</BitOffs>
+										<BitOffs>824</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 17</Name>
 										<Type>USINT</Type>
-										<BitOffs>840</BitOffs>
+										<BitOffs>832</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 18</Name>
 										<Type>USINT</Type>
-										<BitOffs>848</BitOffs>
+										<BitOffs>840</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 19</Name>
 										<Type>USINT</Type>
-										<BitOffs>856</BitOffs>
+										<BitOffs>848</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 20</Name>
 										<Type>USINT</Type>
-										<BitOffs>864</BitOffs>
+										<BitOffs>856</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 									<Var>
 										<Name>Data Out 21</Name>
 										<Type>USINT</Type>
-										<BitOffs>872</BitOffs>
+										<BitOffs>864</BitOffs>
 										<InOut>1</InOut>
 									</Var>
 								</Vars>
@@ -17443,7 +17227,7 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 								<ImageId>32</ImageId>
 							</Term>
 						</BusCoupler>
-						<EtherCAT SlaveType="3" AdsServerAddress="000000000ba20e04" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00110000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x01000059">
+						<EtherCAT SlaveType="3" AdsServerAddress="000000000ba20904" PdiType="#x0008" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="51" FoeType="1" VendorId="#x00000002" ProductCode="#x04e22c22" RevisionNo="#x00110000" InfoDataAddr="true" InfoDataNetId="true" TimeoutMailbox2="6000" GenerateOwnNetId="true" PortPhys="3" PortABoxInfo="#x01000059">
 							<SyncMan>001c88002600010001000000400000028800001c26010000</SyncMan>
 							<SyncMan>001e88002200010002000000400000028800001e22010000</SyncMan>
 							<SyncMan>00101a006400010003000000000000000000001064010000</SyncMan>
@@ -26464,22 +26248,1630 @@ PU105]]></Comment>
 					<BusParameter Baudrate="6" TSlot="300" MaxTsdr="150" TQui="0" TSetup="1" Ttr="15282" MaxRetryLimit="1" MinSlaveInterval="200" PollTimeout="8" DataControlTime="13"/>
 				</Profibus>
 			</Device>
+			<Device Id="7" DevType="160" AmsNetId="0.0.0.0.8.1">
+				<Name>Gerät 7 (OPC UA Virtual)</Name>
+				<ImageId>1011</ImageId>
+				<DevData>0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
+				<Vars VarGrpType="1">
+					<Name>Inputs</Name>
+					<Var>
+						<Name>Device Status</Name>
+						<Type>WORD</Type>
+					</Var>
+					<Var>
+						<Name>AmsNetId</Name>
+						<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+						<BitOffs>16</BitOffs>
+						<ExternalAddress>16</ExternalAddress>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="2">
+					<Name>Outputs</Name>
+				</Vars>
+				<Image Id="8" AddrType="1" ImageType="1" SizeIn="4" SizeOut="18">
+					<Name>Prozessabbild</Name>
+				</Image>
+				<Module Id="#x01010010" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+					<Name>Client #1</Name>
+					<ImageId>1012</ImageId>
+					<Xml>
+						<TcSmExtensions>
+							<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+								<DataTypePrefix>OpcUa_</DataTypePrefix>
+							</TcSmExtension>
+						</TcSmExtensions>
+					</Xml>
+					<TmcDesc GUID="{407ED3D9-9116-402D-B312-6151DC527AC7}" TcSmClass="CTComOpcUaObjDef">
+						<Name>OPC UA Client</Name>
+						<CLSID ClassFactory="TcIoOpcUa">{03130080-0000-0000-F000-000000000064}</CLSID>
+						<Info>
+							<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679965}"/>
+						</Info>
+						<InitSequence>SO</InitSequence>
+						<Contexts>
+							<Context>
+								<Id>1</Id>
+							</Context>
+						</Contexts>
+						<Interfaces>
+							<Interface>
+								<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+							</Interface>
+							<Interface>
+								<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+							</Interface>
+						</Interfaces>
+						<Parameters>
+							<Parameter>
+								<Name>AdsPort</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>0</Value>
+								</Default>
+								<PTCID>#x03131001</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ServerUrl</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130002</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ReadCycleTime</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1000</Value>
+								</Default>
+								<PTCID>#x03130003</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>WriteCycleTime</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1000</Value>
+								</Default>
+								<PTCID>#x03130004</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">ReadLists</Name>
+								<BitSize>64</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>8</Elements>
+								</ArrayInfo>
+								<Default>
+									<Data>00000000</Data>
+								</Default>
+								<PTCID>#x03130005</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>NodesPerRequest</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>100</Value>
+								</Default>
+								<PTCID>#x03130006</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">NamespaceInfo</Name>
+								<BitSize>64</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>8</Elements>
+								</ArrayInfo>
+								<Default>
+									<Value>0</Value>
+								</Default>
+								<PTCID>#x03130007</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ArraySingleWriteMode</Name>
+								<BitSize>8</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+								<PTCID>#x03130008</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SecurityMode</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000b</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SecurityPolicy</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000c</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>TransportType</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000d</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SessionTimeout</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>5000</Value>
+								</Default>
+								<PTCID>#x0313000e</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ConnectTimeout</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>5000</Value>
+								</Default>
+								<PTCID>#x0313000f</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>Username</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130010</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>Password</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130011</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>StringSize</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>80</Value>
+								</Default>
+								<PTCID>#x03130012</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>NodeIdByteStringSize</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>256</Value>
+								</Default>
+								<PTCID>#x03130013</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">DataCollectionSettings</Name>
+								<BitSize>136</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>17</Elements>
+								</ArrayInfo>
+								<Default>
+									<Data>00E8030000B00400000500000000000000</Data>
+								</Default>
+								<PTCID>#x03138014</PTCID>
+							</Parameter>
+						</Parameters>
+						<DataAreas>
+							<DataArea>
+								<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+								<Name>Inputs</Name>
+								<ContextId>1</ContextId>
+								<ByteSize>2</ByteSize>
+								<Symbol>
+									<Name>Status</Name>
+									<BitSize>16</BitSize>
+									<BaseType GUID="{F2E23DFE-0EF0-465E-B7E5-80E81FA4AB06}">OpcUaDeviceStatus</BaseType>
+									<BitOffs>0</BitOffs>
+								</Symbol>
+							</DataArea>
+							<DataArea>
+								<AreaNo AreaType="OutputDst" ChildArea="true">1</AreaNo>
+								<Name>Outputs</Name>
+								<ContextId>1</ContextId>
+								<ByteSize>2</ByteSize>
+								<Symbol>
+									<Name>Control</Name>
+									<BitSize>16</BitSize>
+									<BaseType GUID="{7CD7A8B9-2459-4D9A-A7D6-EA64744B3C97}">OpcUaDeviceControl</BaseType>
+									<BitOffs>0</BitOffs>
+								</Symbol>
+							</DataArea>
+						</DataAreas>
+						<Properties>
+							<Property>
+								<Name>Category</Name>
+								<Value>NeedIoIdleTask</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>OpcUaAdsBox</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComContextPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComInterfacePP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComParaPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComDataAreaPP</Value>
+							</Property>
+							<Property>
+								<Name>ChildCategory</Name>
+								<Value>OpcUaNode</Value>
+							</Property>
+						</Properties>
+						<ParentOTCID>#x03010070</ParentOTCID>
+						<ParameterValues>
+							<Value>
+								<Name>AdsPort</Name>
+								<Value>1000</Value>
+							</Value>
+							<Value>
+								<Name>ServerUrl</Name>
+								<String>opc.tcp://192.168.116.33:4840</String>
+							</Value>
+							<Value>
+								<Name>ReadCycleTime</Name>
+								<Value>1000</Value>
+							</Value>
+							<Value>
+								<Name>WriteCycleTime</Name>
+								<Value>1000</Value>
+							</Value>
+							<Value>
+								<Name>ReadLists</Name>
+								<Value>0</Value>
+							</Value>
+							<Value>
+								<Name>NodesPerRequest</Name>
+								<Value>100</Value>
+							</Value>
+							<Value>
+								<Name>NamespaceInfo</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>ArraySingleWriteMode</Name>
+								<EnumText>FALSE</EnumText>
+							</Value>
+							<Value>
+								<Name>SecurityMode</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>SecurityPolicy</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>TransportType</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>SessionTimeout</Name>
+								<Value>5000</Value>
+							</Value>
+							<Value>
+								<Name>ConnectTimeout</Name>
+								<Value>5000</Value>
+							</Value>
+							<Value>
+								<Name>Username</Name>
+								<String></String>
+							</Value>
+							<Value>
+								<Name>Password</Name>
+								<String></String>
+							</Value>
+							<Value>
+								<Name>StringSize</Name>
+								<Value>80</Value>
+							</Value>
+							<Value>
+								<Name>NodeIdByteStringSize</Name>
+								<Value>256</Value>
+							</Value>
+							<Value>
+								<Name>DataCollectionSettings</Name>
+								<Data>00e8030000b00400000500000000000000</Data>
+							</Value>
+						</ParameterValues>
+					</TmcDesc>
+				</Module>
+				<Module Id="#x01010020" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+					<Name>Client #2</Name>
+					<ImageId>1012</ImageId>
+					<Xml>
+						<TcSmExtensions>
+							<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+								<DataTypePrefix>OpcUa_</DataTypePrefix>
+							</TcSmExtension>
+						</TcSmExtensions>
+					</Xml>
+					<TmcDesc GUID="{407ED3D9-9116-402D-B312-6151DC527AC7}" TcSmClass="CTComOpcUaObjDef">
+						<Name>OPC UA Client</Name>
+						<CLSID ClassFactory="TcIoOpcUa">{03130080-0000-0000-F000-000000000064}</CLSID>
+						<Info>
+							<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679965}"/>
+						</Info>
+						<InitSequence>SO</InitSequence>
+						<Contexts>
+							<Context>
+								<Id>1</Id>
+							</Context>
+						</Contexts>
+						<Interfaces>
+							<Interface>
+								<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+							</Interface>
+							<Interface>
+								<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+							</Interface>
+						</Interfaces>
+						<Parameters>
+							<Parameter>
+								<Name>AdsPort</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>0</Value>
+								</Default>
+								<PTCID>#x03131001</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ServerUrl</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130002</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ReadCycleTime</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1000</Value>
+								</Default>
+								<PTCID>#x03130003</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>WriteCycleTime</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1000</Value>
+								</Default>
+								<PTCID>#x03130004</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">ReadLists</Name>
+								<BitSize>7584</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>948</Elements>
+								</ArrayInfo>
+								<Default>
+									<Data>00000000</Data>
+								</Default>
+								<PTCID>#x03130005</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>NodesPerRequest</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>100</Value>
+								</Default>
+								<PTCID>#x03130006</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">NamespaceInfo</Name>
+								<BitSize>432</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>54</Elements>
+								</ArrayInfo>
+								<Default>
+									<Value>0</Value>
+								</Default>
+								<PTCID>#x03130007</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ArraySingleWriteMode</Name>
+								<BitSize>8</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+								<PTCID>#x03130008</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SecurityMode</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000b</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SecurityPolicy</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000c</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>TransportType</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>1</Value>
+								</Default>
+								<PTCID>#x0313000d</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>SessionTimeout</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>5000</Value>
+								</Default>
+								<PTCID>#x0313000e</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>ConnectTimeout</Name>
+								<BitSize>32</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+								<Default>
+									<Value>5000</Value>
+								</Default>
+								<PTCID>#x0313000f</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>Username</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130010</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>Password</Name>
+								<BitSize>2048</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+								<PTCID>#x03130011</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>StringSize</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>80</Value>
+								</Default>
+								<PTCID>#x03130012</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name>NodeIdByteStringSize</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<Default>
+									<Value>256</Value>
+								</Default>
+								<PTCID>#x03130013</PTCID>
+							</Parameter>
+							<Parameter>
+								<Name HideSubItems="true">DataCollectionSettings</Name>
+								<BitSize>136</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+								<ArrayInfo>
+									<LBound>0</LBound>
+									<Elements>17</Elements>
+								</ArrayInfo>
+								<Default>
+									<Data>00E8030000B00400000500000000000000</Data>
+								</Default>
+								<PTCID>#x03138014</PTCID>
+							</Parameter>
+						</Parameters>
+						<DataAreas>
+							<DataArea>
+								<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+								<Name>Inputs</Name>
+								<ContextId>1</ContextId>
+								<ByteSize>2</ByteSize>
+								<Symbol>
+									<Name>Status</Name>
+									<BitSize>16</BitSize>
+									<BaseType GUID="{F2E23DFE-0EF0-465E-B7E5-80E81FA4AB06}">OpcUaDeviceStatus</BaseType>
+									<BitOffs>0</BitOffs>
+								</Symbol>
+							</DataArea>
+							<DataArea>
+								<AreaNo AreaType="OutputDst" ChildArea="true">1</AreaNo>
+								<Name>Outputs</Name>
+								<ContextId>1</ContextId>
+								<ByteSize>2</ByteSize>
+								<Symbol>
+									<Name>Control</Name>
+									<BitSize>16</BitSize>
+									<BaseType GUID="{7CD7A8B9-2459-4D9A-A7D6-EA64744B3C97}">OpcUaDeviceControl</BaseType>
+									<BitOffs>0</BitOffs>
+								</Symbol>
+							</DataArea>
+						</DataAreas>
+						<Properties>
+							<Property>
+								<Name>Category</Name>
+								<Value>NeedIoIdleTask</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>OpcUaAdsBox</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComContextPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComInterfacePP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComParaPP</Value>
+							</Property>
+							<Property>
+								<Name>Category</Name>
+								<Value>HideTcComDataAreaPP</Value>
+							</Property>
+							<Property>
+								<Name>ChildCategory</Name>
+								<Value>OpcUaNode</Value>
+							</Property>
+						</Properties>
+						<ParentOTCID>#x03010070</ParentOTCID>
+						<ParameterValues>
+							<Value>
+								<Name>AdsPort</Name>
+								<Value>1001</Value>
+							</Value>
+							<Value>
+								<Name>ServerUrl</Name>
+								<String>opc.tcp://192.168.116.129:4840</String>
+							</Value>
+							<Value>
+								<Name>ReadCycleTime</Name>
+								<Value>1000</Value>
+							</Value>
+							<Value>
+								<Name>WriteCycleTime</Name>
+								<Value>1000</Value>
+							</Value>
+							<Value>
+								<Name>ReadLists</Name>
+								<Data>01000000300000001c0300000000000006007600000004000000010000007600000004000000010000006f00000004000000010000007400000004000000010000007600000004000000010000006f0000000400000001000000740000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f5057545f5557505f53656b2e636f6e74726f6c53746174652e625374617475734f6e004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f53565f572e636f6e74726f6c53746174652e625374617475734f6e00000000000000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e4865697a5f536f6c6c5f5077772e636f6e74726f6c53746174652e625374617475734f6e0000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f5057545f5557505f53656b2e636f6e74726f6c53746174652e625374617475734f6e004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f53565f572e636f6e74726f6c53746174652e625374617475734f6e00000000000000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e4865697a5f536f6c6c5f5077772e636f6e74726f6c53746174652e625374617475734f6e000000660000006800000000000000000006000000000000000000000000000000000000000000000000000100000001000000010000000100000001000000010000000d000000000000000d000000000000000d000000000000000d000000000000000d000000000000000d0000000000000030000101400001015000010160000101700001018000010100000000</Data>
+							</Value>
+							<Value>
+								<Name>NodesPerRequest</Name>
+								<Value>100</Value>
+							</Value>
+							<Value>
+								<Name>NamespaceInfo</Name>
+								<Data>05000000000000000000000000000000000000001e00000075726e3a4265636b686f66664175746f6d6174696f6e3a55613a504c4331</Data>
+							</Value>
+							<Value>
+								<Name>ArraySingleWriteMode</Name>
+								<EnumText>FALSE</EnumText>
+							</Value>
+							<Value>
+								<Name>SecurityMode</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>SecurityPolicy</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>TransportType</Name>
+								<Value>1</Value>
+							</Value>
+							<Value>
+								<Name>SessionTimeout</Name>
+								<Value>5000</Value>
+							</Value>
+							<Value>
+								<Name>ConnectTimeout</Name>
+								<Value>5000</Value>
+							</Value>
+							<Value>
+								<Name>Username</Name>
+								<String></String>
+							</Value>
+							<Value>
+								<Name>Password</Name>
+								<String></String>
+							</Value>
+							<Value>
+								<Name>StringSize</Name>
+								<Value>80</Value>
+							</Value>
+							<Value>
+								<Name>NodeIdByteStringSize</Name>
+								<Value>256</Value>
+							</Value>
+							<Value>
+								<Name>DataCollectionSettings</Name>
+								<Data>00e8030000b00400000500000000000000</Data>
+							</Value>
+						</ParameterValues>
+					</TmcDesc>
+					<Module Id="#x01010030" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.BvL_PWT_UWP_Sek.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>1040</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>130</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>0400000001000000760000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f5057545f5557505f53656b2e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+					<Module Id="#x01010040" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.BvL_SV_W.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>984</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>123</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>04000000010000006f0000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f53565f572e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+					<Module Id="#x01010050" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.Heiz_Soll_Pww.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>1024</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>128</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>0400000001000000740000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f525a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e4865697a5f536f6c6c5f5077772e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+					<Module Id="#x01010060" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.BvL_PWT_UWP_Sek.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>1040</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>130</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>0400000001000000760000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f5057545f5557505f53656b2e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+					<Module Id="#x01010070" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.BvL_SV_W.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>984</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>123</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>04000000010000006f0000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e42764c5f53565f572e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+					<Module Id="#x01010080" KeepUnrestoredLinks="2" TcSmClass="CTComOpcUaObjDef">
+						<Name>PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.Heiz_Soll_Pww.controlState.bStatusOn</Name>
+						<ImageId>1013</ImageId>
+						<Xml>
+							<TcSmExtensions>
+								<TcSmExtension Guid="{781CD753-E8EB-4086-9C43-151D85679965}">
+									<StringSize>80</StringSize>
+									<NodeIdByteStringSize>256</NodeIdByteStringSize>
+									<EnableWrite/>
+								</TcSmExtension>
+							</TcSmExtensions>
+						</Xml>
+						<TmcDesc GUID="{5FC47F2A-BCE4-4970-884C-C7A1B9EEB467}" TcSmClass="CTComOpcUaObjDef">
+							<Name>OPC UA Variable</Name>
+							<CLSID ClassFactory="TcIoOpcUa">{03130081-0000-0000-F000-000000000064}</CLSID>
+							<Info>
+								<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679966}"/>
+							</Info>
+							<InitSequence>SO</InitSequence>
+							<Contexts>
+								<Context>
+									<Id>1</Id>
+								</Context>
+							</Contexts>
+							<Interfaces>
+								<Interface>
+									<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+								</Interface>
+								<Interface>
+									<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+								</Interface>
+							</Interfaces>
+							<Parameters>
+								<Parameter>
+									<Name HideSubItems="true">NodeId</Name>
+									<BitSize>1024</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>128</Elements>
+									</ArrayInfo>
+									<Default>
+										<Data>00000100</Data>
+									</Default>
+									<PTCID>#x03130000</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeClass</Name>
+									<BitSize>32</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000008}">UDINT</BaseType>
+									<Default>
+										<Value>2</Value>
+									</Default>
+									<PTCID>#x03130001</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name HideSubItems="true">ArrayDimensions</Name>
+									<BitSize>0</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+									<ArrayInfo>
+										<LBound>0</LBound>
+										<Elements>0</Elements>
+									</ArrayInfo>
+									<PTCID>#x03130002</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<BitSize>2048</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-0001000000FF}">STRING(255)</BaseType>
+									<PTCID>#x03130004</PTCID>
+								</Parameter>
+								<Parameter>
+									<Name>NodeTsStatusProcessData</Name>
+									<BitSize>8</BitSize>
+									<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+									<PTCID>#x03130005</PTCID>
+								</Parameter>
+							</Parameters>
+							<DataAreas>
+								<DataArea>
+									<AreaNo AreaType="InputSrc" ChildArea="true">0</AreaNo>
+									<Name>Inputs</Name>
+									<ContextId>1</ContextId>
+									<ByteSize>1</ByteSize>
+									<Symbol>
+										<Name>Value</Name>
+										<Comment><![CDATA[
+status on / off]]></Comment>
+										<BitSize>8</BitSize>
+										<BaseType GUID="{18071995-0000-0000-0000-000000000030}">BOOL</BaseType>
+										<BitOffs>0</BitOffs>
+									</Symbol>
+								</DataArea>
+							</DataAreas>
+							<Properties>
+								<Property>
+									<Name>Category</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+								<Property>
+									<Name>ChildCategory</Name>
+									<Value>OpcUaNode</Value>
+								</Property>
+							</Properties>
+							<ParentOTCID>#x01010020</ParentOTCID>
+							<ParameterValues>
+								<Value>
+									<Name>NodeId</Name>
+									<Data>0400000001000000740000004d41494e2e566172504f555f4c6f5475532e4c6f5475532e44414b2e42764c5f54616e6b732e42764c5f54616e6b5f535a2e54616e6b6865697a756e672e546563686e69736368655f576165726d652e4865697a5f536f6c6c5f5077772e636f6e74726f6c53746174652e625374617475734f6e</Data>
+								</Value>
+								<Value>
+									<Name>NodeClass</Name>
+									<Value>2</Value>
+								</Value>
+								<Value>
+									<Name>OpcUaNodeNamespaceName</Name>
+									<String>urn:BeckhoffAutomation:Ua:PLC1</String>
+								</Value>
+								<Value>
+									<Name>NodeTsStatusProcessData</Name>
+									<EnumText>FALSE</EnumText>
+								</Value>
+							</ParameterValues>
+						</TmcDesc>
+					</Module>
+				</Module>
+				<Ethernet/>
+				<ModuleDev GUID="{407ED3D9-9116-402D-B302-6151DC527BC7}">
+					<Name>Virtual OPC UA Device</Name>
+					<CLSID ClassFactory="TcIoOpcUa">{0313007E-0000-0000-F000-000000000064}</CLSID>
+					<Info>
+						<TabExtension GUID="{781CD753-E8EB-4086-9C43-151D85679964}"/>
+					</Info>
+					<Licenses>
+						<License>
+							<LicenseId>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</LicenseId>
+						</License>
+					</Licenses>
+					<InitSequence>PSO</InitSequence>
+					<Contexts>
+						<Context>
+							<Id>1</Id>
+							<ManualConfig>
+								<OTCID>#x02010040</OTCID>
+							</ManualConfig>
+							<Priority>12</Priority>
+							<CycleTime>40000000</CycleTime>
+						</Context>
+					</Contexts>
+					<Interfaces>
+						<Interface>
+							<Type GUID="{00000012-0000-0000-E000-000000000064}">ITComObject</Type>
+						</Interface>
+						<Interface>
+							<Type GUID="{03000010-0000-0000-E000-000000000064}">ITcCyclic</Type>
+						</Interface>
+						<Interface>
+							<Type GUID="{03000011-0000-0000-E000-000000000064}">ITcIoCyclic</Type>
+						</Interface>
+						<Interface>
+							<Type GUID="{03000012-0000-0000-E000-000000000064}">ITcADI</Type>
+						</Interface>
+						<Interface>
+							<Type GUID="{00000022-0000-0000-E000-000000000064}">ITComObjectParent</Type>
+						</Interface>
+					</Interfaces>
+					<Parameters>
+						<Parameter>
+							<Name>IoCaller</Name>
+							<BitSize>32</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+							<PTCID>#x03002010</PTCID>
+						</Parameter>
+						<Parameter>
+							<Name>DefaultMapping</Name>
+							<BitSize>32</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+							<Default>
+								<Value>2</Value>
+							</Default>
+							<PTCID>#x03002110</PTCID>
+						</Parameter>
+						<Parameter>
+							<Name>AsyncTaskPrio</Name>
+							<BitSize>16</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+							<Default>
+								<Value>58</Value>
+							</Default>
+							<PTCID>#x03002111</PTCID>
+						</Parameter>
+						<Parameter>
+							<Name>AsyncTaskId</Name>
+							<BitSize>32</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-000000000007}">DWORD</BaseType>
+							<PTCID>#x03002112</PTCID>
+						</Parameter>
+						<Parameter>
+							<Name>Image</Name>
+							<BitSize>32</BitSize>
+							<BaseType GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</BaseType>
+							<PTCID>#x03002030</PTCID>
+						</Parameter>
+						<Parameter>
+							<Name>TcIoOwnAmsNetId</Name>
+							<BitSize>48</BitSize>
+							<SubItem>
+								<Name>netId</Name>
+								<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+								<BitSize>48</BitSize>
+								<BitOffs>0</BitOffs>
+							</SubItem>
+							<PTCID>#x03000028</PTCID>
+						</Parameter>
+					</Parameters>
+					<DataAreas>
+						<DataArea>
+							<AreaNo AreaType="InputSrc" AllowChildAreas="true">0</AreaNo>
+							<Name>Inputs</Name>
+							<ContextId>1</ContextId>
+							<ByteSize>18</ByteSize>
+							<Symbol>
+								<Name>Device Status</Name>
+								<BitSize>16</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000004}">WORD</BaseType>
+								<BitOffs>0</BitOffs>
+							</Symbol>
+							<Symbol>
+								<Name>AmsNetId</Name>
+								<BitSize>48</BitSize>
+								<BaseType GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</BaseType>
+								<BitOffs>16</BitOffs>
+							</Symbol>
+						</DataArea>
+						<DataArea>
+							<AreaNo AreaType="OutputDst" AllowChildAreas="true">1</AreaNo>
+							<Name>Outputs</Name>
+							<ContextId>1</ContextId>
+							<ByteSize>4</ByteSize>
+						</DataArea>
+					</DataAreas>
+					<Properties>
+						<Property>
+							<Name>Category</Name>
+							<Value>NeedIoIdleTask</Value>
+						</Property>
+						<Property>
+							<Name>Category</Name>
+							<Value>HideTcComContextPP</Value>
+						</Property>
+						<Property>
+							<Name>Category</Name>
+							<Value>HideTcComInterfacePP</Value>
+						</Property>
+						<Property>
+							<Name>Category</Name>
+							<Value>HideTcComPP</Value>
+						</Property>
+						<Property>
+							<Name>Category</Name>
+							<Value>HideTcComParaPP</Value>
+						</Property>
+						<Property>
+							<Name>Category</Name>
+							<Value>HideTcComDataAreaPP</Value>
+						</Property>
+						<Property>
+							<Name>ChildCategory</Name>
+							<Value>OpcUaAdsBox</Value>
+						</Property>
+					</Properties>
+					<ParameterValues>
+						<Value>
+							<Name>IoCaller</Name>
+							<Value>33620032</Value>
+						</Value>
+						<Value>
+							<Name>DefaultMapping</Name>
+							<Value>2</Value>
+						</Value>
+						<Value>
+							<Name>AsyncTaskPrio</Name>
+							<Value>12</Value>
+						</Value>
+						<Value>
+							<Name>AsyncTaskId</Name>
+							<Value>4</Value>
+						</Value>
+						<Value>
+							<Name>Image</Name>
+							<Value>50593920</Value>
+						</Value>
+						<Value>
+							<Name>TcIoOwnAmsNetId.netId</Name>
+							<Data>000000000801</Data>
+						</Value>
+					</ParameterValues>
+				</ModuleDev>
+			</Device>
 		</Io>
 	</Project>
 	<Mappings>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-5008C0000403}" Id="#x02030010"/>
-		<MappingInfo Identifier="{00000000-2002-0850-0120-500821000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0220-500810000403}" Id="#x02030060"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0220-500832000403}" Id="#x02030040"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0220-500850000403}" Id="#x02030070"/>
-		<MappingInfo Identifier="{00000000-2004-0850-0220-500890000403}" Id="#x02030050"/>
-		<MappingInfo Identifier="{08502004-0020-0304-0020-500820000403}" Id="#x02030030" Watchdog="00000000000000000000000000000000"/>
-		<MappingInfo Identifier="{08502004-00C0-0304-0020-5008C0000403}" Id="#x02030080" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500810000403}" Id="#x02030070"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500832000403}" Id="#x02030050"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500850000403}" Id="#x02030080"/>
+		<MappingInfo Identifier="{00000000-2002-0850-0220-500890000403}" Id="#x02030060"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0120-500821000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{08502002-0020-0304-0020-500820000403}" Id="#x02030040" Watchdog="00000000000000000000000000000000"/>
+		<MappingInfo Identifier="{08502002-00C0-0304-0020-5008C0000403}" Id="#x02030020" Watchdog="00000000000000000000000000000000"/>
 		<OwnerA Name="TIPC^CP_5C7432^CP_5C7432 Instance">
 			<OwnerB Name="TIID^Device 1 (EL6731)^Box 1 (CIM/CIU 150 pump)">
-				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN" VarB="Power^Inputs^Power_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
@@ -26496,6 +27888,7 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.StatusModule_IN" VarB="StatusModule^Inputs^StatusModule_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fActualSetpoint_IN" VarB="ActualSetpoint^Inputs^ActualSetpoint_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fPowerElectric_IN" VarB="Power^Inputs^Power_0_0"/>
+				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fPowerThermal_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fPressureDifference_IN" VarB="DiffPressure^Inputs^DiffPressure_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fRotationalSpeed_IN" VarB="Speed^Inputs^Speed_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.fTemperatureDifference_IN" VarB="HeatDiffTemp^Inputs^HeatDiffTemp_0_0"/>
@@ -26504,7 +27897,6 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.nAlarmCode_IN" VarB="FaultCode^Inputs^FaultCode_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.nWarningCode_IN" VarB="WarningCode^Inputs^WarningCode_0_0"/>
 				<Link VarA="Standard Inputs^MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
-				<Link VarA="Standard Inputs^MAIN.HNLT.HVFASystem.PUx05.fPowerElectric_IN" VarB="HeatPower^Inputs^HeatPower_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.PUx05.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
 				<Link VarA="Standard Outputs^MAIN.CN.HVFASystem.PUx05.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
 			</OwnerB>
@@ -27300,6 +28692,30 @@ PU105]]></Comment>
 				<Link VarA="Standard Inputs^MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Reply" VarB="DirectDataReply^Inputs^DirectDataReply_0_0"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.DCSystem.PU245.ControlModule_OUT" VarB="ControlModule^Outputs^ControlModule_1_0"/>
 				<Link VarA="Standard Outputs^MAIN.HNLT.DCSystem.PU245.stTemperatureInternal_Genibus_Request" VarB="DirectDataRequest^Outputs^DirectDataRequest_1_0"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #1">
+				<Link VarA="Standard Inputs^MAIN.CN.EMAG_Y.ConnectionStatus_IN" VarB="Inputs^Status^Connected"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.ConnectionStatus_OPC_BvL" VarB="Inputs^Status^Connected"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.BvL_PWT_UWP_Sek.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_UWP" VarB="Inputs^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.BvL_SV_W.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_SV" VarB="Inputs^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_RZ.Tankheizung.Technische_Waerme.Heiz_Soll_Pww.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_RZ_PWW" VarB="Inputs^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.BvL_PWT_UWP_Sek.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_UWP" VarB="Inputs^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.BvL_SV_W.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_SV" VarB="Inputs^Value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 7 (OPC UA Virtual)^Client #2^PLC1.MAIN.VarPOU_LoTuS.LoTuS.DAK.BvL_Tanks.BvL_Tank_SZ.Tankheizung.Technische_Waerme.Heiz_Soll_Pww.controlState.bStatusOn">
+				<Link VarA="Standard Inputs^MAIN.HNHT.BvL_CleaningSystem.Technical_Heat_SZ_PWW" VarB="Inputs^Value"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

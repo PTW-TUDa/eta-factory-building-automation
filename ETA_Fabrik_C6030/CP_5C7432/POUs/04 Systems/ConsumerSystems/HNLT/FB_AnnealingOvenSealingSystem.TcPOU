@@ -15,7 +15,7 @@ VAR
 	PU261 : FB_PumpGrundfosMagna3 := (ST_DefaultParameters := stPU261DefaultParameters);
 
 	//valves
-	stRV261DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
+	stRV261DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
 	RV261 : FB_MixingValve := (ST_DefaultParameters := stRV261DefaultParameters);
 	
 	//sensors	
@@ -32,18 +32,19 @@ END_VAR
 //pumps
 PU261.GetState_Profibus();
 PU261(bSetStatusOnAutomatic := bSetStatusOn_PU261,
-	fSetPointAutomatic := fSetPoint,
+	fSetPointAutomatic := 100,
 	bAlgorithmPermission := bAlgorithmPermission,
-	nControlModeAutomatic := 2);
+	nControlModeAutomatic := 0);
 PU261.SetState_Profibus();
 
 //valves
 RV261.GetState_AI();
 RV261(bSetStatusOnAutomatic := bSetStatusOn_RV261,
-	fSetPointAutomatic := 100,
+	fSetPointAutomatic := fSetPoint,
 	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := WMZ261.fReturnTemperature,
 	fThermalPowerExternal := WMZ261.fHeatFlowRate,
-	nControlModeAutomatic := 0);
+	nControlModeAutomatic := 2);
 RV261.SetState_AO();
 
 WMZ261(aHeatCounterTelegramm := Telegramm_WZ_Ofenkuehlung);]]></ST>
@@ -125,7 +126,7 @@ VAR_OUTPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[fOperatingPoint := PU261.fTemperatureInternal;
+        <ST><![CDATA[fOperatingPoint := WMZ261.fReturnTemperature;
 
 controlState.bStatusOn := bSetStatusOn;
 setPointState.aSetPointLimits := aSetPointLimits;
@@ -153,6 +154,7 @@ END_VAR]]></Declaration>
       <LineId Id="191" Count="0" />
       <LineId Id="322" Count="0" />
       <LineId Id="277" Count="2" />
+      <LineId Id="372" Count="0" />
       <LineId Id="347" Count="0" />
       <LineId Id="281" Count="0" />
       <LineId Id="274" Count="0" />
