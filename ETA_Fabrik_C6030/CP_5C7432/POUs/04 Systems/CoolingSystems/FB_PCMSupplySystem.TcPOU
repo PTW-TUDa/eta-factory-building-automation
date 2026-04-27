@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_PCMSupplySystem" Id="{341025c6-61f6-42b1-9c8c-58df0f661ef4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PCMSupplySystem EXTENDS FB_SystemContinous
+VAR_INPUT
+	nControlModeAutomatic : E_PCMSystemControlMode;
+	
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_PCMSystemSetParameters;
+	
+	//heat meters
+	WMZ900 : FB_MollineUltramess403HeatCounter; //pcm storage
+	WMZ935 : FB_MollineUltramess403HeatCounter; //chiller
+	
+	//temperature sensors
+	
+	TS901 : FB_TemperatureSensor_KL3214;
+	TS902 : FB_TemperatureSensor_KL3214;
+	TS903 : FB_TemperatureSensor_KL3214;
+	TS910 : FB_TemperatureSensor_KL3214;
+	TS911 : FB_TemperatureSensor_KL3214;
+	TS950 : FB_TemperatureSensor_KL3214;
+	TS951 : FB_TemperatureSensor_KL3214;
+	
+	//valves
+	ST_RV950DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	RV950 : FB_MixingValve := (ST_DefaultParameters := ST_RV950DefaultParameters);
+	
+	// pcm chiller
+	PCMChiller : FB_PCMChiller;
+	
+	// PCMStorage
+	PCMStorage : FB_PCMStorage;
+	
+	//internal variables
+	nControlMode : E_PCMSystemControlMode;
+	
+	bSetStatusOn_RV950 : BOOL; 
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SelectLocalControlMode();
+
+
+WMZ900(aHeatCounterTelegramm := aTelegramm_WMZ900);
+WMZ935(aHeatCounterTelegramm := aTelegramm_WMZ935);
+	
+TS901();
+TS901.GetState_AI();
+TS902();
+TS902.GetState_AI();
+TS903();
+TS903.GetState_AI();
+TS910();
+TS910.GetState_AI();
+TS911();
+TS911.GetState_AI();
+TS950();
+TS950.GetState_AI();
+TS951();
+TS951.GetState_AI();
+
+RV950.GetState_AI();
+RV950(bSetStatusOnAutomatic := bSetStatusOn_RV950,
+	fSetPointAutomatic := 100,
+	bAlgorithmPermission := TRUE,
+	fTemperatureExternal := TS950.fTemperature,
+	nControlModeAutomatic := 0);
+RV950.SetState_AO();
+
+PCMChiller.GetState(); 
+PCMChiller(bSetStatusOnAutomatic := FALSE, 
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint);
+PCMChiller.SetState(); ]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{8839b696-1d9b-4a95-9794-1c9ab39cf8a3}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{97954005-d85c-4ab5-8282-6a3311969e99}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE nControlMode OF
+	0: //stand-by
+	PCMChiller.bStatusOn := FALSE; 
+	 	
+	1: //direct cooling 
+	PCMChiller.nControlModeAutomatic := 0; 
+	PCMChiller.fSetPointAutomatic := fSetPoint; 
+	bSetStatusOn_RV950 := FALSE; 
+	
+	2: //charge pcm
+	PCMChiller.nControlModeAutomatic := 0; 
+	PCMChiller.fSetPointAutomatic := fSetPoint;
+	bSetStatusOn_RV950 := TRUE; 
+	
+	3: //discharge pcm
+	PCMChiller.nControlModeAutomatic := 1; 
+	bSetStatusOn_RV950 := TRUE; 
+		
+END_CASE
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{aa3415d6-b9e3-41e4-8cd7-e25495beab13}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{57928382-ae9d-4c1d-8eb0-92bff3c44af7}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{91f83af4-cae3-4c39-8ad3-f335a1458b58}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := TRUE;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{9e12ff0b-91fd-4673-8be9-ddb0be52ac97}">
+      <Declaration><![CDATA[METHOD SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	nControlMode := localSetParameters.nControlModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	nControlMode := localSetParameters.nControlModeAlgorithm;
+ELSE
+	nControlMode := nControlModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{f3c99afb-2328-4e69-8097-2f00253230f8}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{a8999fa2-3070-4e35-8eaa-105279b0b728}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{27f0d096-76fc-4f63-bb50-defbb605afdf}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Implementing different control modes (next time)]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_PCMSupplySystem">
+      <LineId Id="189" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="106" Count="6" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="141" Count="4" />
+      <LineId Id="140" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.CheckError">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.LocalControl">
+      <LineId Id="6" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="26" Count="3" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="36" Count="2" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.Operational">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.RampDown">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.RampUp">
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.SelectLocalControlMode">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.SetSetPointLimits">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.SetState">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMSupplySystem.Working">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

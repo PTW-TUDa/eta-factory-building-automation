@@ -7,7 +7,7 @@ STRUCT
 	tControllerIntegralTime : TIME := T#100S;
 	tTaskCycleTime	: TIME;
 	tCtrlCycleTime	: TIME;
-	aSetPointLimitsConstantPower : ARRAY[1..2] OF REAL := [0,100];
+	aSetPointLimitsConstantPower : ARRAY[1..2] OF REAL := [50,100];
 	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [50,90];
 END_STRUCT
 END_TYPE

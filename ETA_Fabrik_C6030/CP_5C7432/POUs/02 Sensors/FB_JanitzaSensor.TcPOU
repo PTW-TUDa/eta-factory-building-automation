@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_JanitzaSensor" Id="{8fa913e5-ea73-49cb-856e-4271c00e3919}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_JanitzaSensor
+VAR_INPUT
+	sIPAddress : STRING(15);
+END_VAR
+VAR_OUTPUT
+	fPower : REAL; //measured power in watt
+	bError : BOOL; 
+	nErrID : UDINT; 
+END_VAR
+VAR
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	sensorState : ST_JanitzaState;
+	//modbus tcp communication
+	ModbusReader_19026 : FB_MBReadInputRegs; //read reg 19026 (power (W) ventilation)
+	
+	//define array to store data from every ModbusReader
+	aModbus_19026 : ARRAY [0..1] OF WORD;
+	
+	//modbus timer
+	bReadModbus	: BOOL := FALSE;
+	bStartTimer : BOOL;
+	Timer : TON;
+	
+	bAwaitData : BOOL; //mark: Results of this still pending
+	aTmp : ARRAY[0..1] OF WORD; //temp. buffer for byte-swap (won't overwrite the original)
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Start and check timer for 2s interval
+Timer(IN := bStartTimer,
+	PT := T#2S);
+	
+bStartTimer := TRUE;
+IF Timer.Q THEN
+	bReadModbus := TRUE;
+	bStartTimer := FALSE;	
+	bAwaitData := TRUE; // we expecting a answer
+END_IF
+
+ModbusReader_19026(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 32,
+	nQuantity := 2,
+	nMBAddr := 19026 + 32768,
+	cbLength := 4,
+	pDestAddr := ADR(aModbus_19026),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);
+	
+bReadModbus := FALSE;
+	
+bError := ModbusReader_19026.bError;
+nErrID := ModbusReader_19026.nErrId; 
+
+IF bAwaitData AND NOT ModbusReader_19026.bBusy AND NOT ModbusReader_19026.bError THEN
+	bAwaitData := FALSE; 
+    // Byte-Swap for every WORD (51794 = 19026+32768: Word sequence is LE, But the Bytes in the Word are BE)
+    aModbus_19026[0] := SHL(aModbus_19026[0] AND 16#00FF, 8) OR SHR(aModbus_19026[0] AND 16#FF00, 8);
+    aModbus_19026[1] := SHL(aModbus_19026[1] AND 16#00FF, 8) OR SHR(aModbus_19026[1] AND 16#FF00, 8);
+	MEMCPY(ADR(fPower), ADR(aModbus_19026), SIZEOF(fPower));
+	bStartTimer := TRUE; 
+END_IF
+
+//sensor state
+sensorState.fPower := fPower/1000;
+sensorState.sPowerUnit := 'kW';
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_JanitzaSensor">
+      <LineId Id="124" Count="7" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="41" Count="8" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="148" Count="1" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="163" Count="2" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="132" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

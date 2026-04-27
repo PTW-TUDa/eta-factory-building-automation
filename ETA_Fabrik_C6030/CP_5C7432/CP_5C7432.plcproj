@@ -15,8 +15,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\01 Actuators\pcmChiller" />
     <Folder Include="DUTs\03 Storages\BufferStorage" />
     <Folder Include="DUTs\03 Storages\HVFAStorage" />
+    <Folder Include="DUTs\03 Storages\PCMStorage" />
     <Folder Include="DUTs\03 Storages\VSIStorage" />
     <Folder Include="DUTs\04 Systems" />
     <Folder Include="DUTs\04 Systems\ConsumerSystems" />
@@ -34,6 +36,7 @@
     <Folder Include="DUTs\04 Systems\LinkageSystems" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\PCMSystem" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\Ventilation" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating" />
     <Folder Include="DUTs\04 Systems\StorageSystems" />
@@ -50,6 +53,8 @@
     <Folder Include="DUTs\07 Utilities" />
     <Folder Include="DUTs\08 Lighting" />
     <Folder Include="DUTs\03 Storages" />
+    <Folder Include="DUTs\02 Sensors" />
+    <Folder Include="DUTs\01 Actuators" />
     <Folder Include="GVLs" />
     <Folder Include="GVLs\Lighting %28from old implementation%29" />
     <Folder Include="POUs" />
@@ -85,6 +90,18 @@
     <Folder Include="Visualizations" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DUTs\01 Actuators\pcmChiller\E_PCMControlMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\01 Actuators\pcmChiller\ST_pcmChillerDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\01 Actuators\pcmChiller\ST_pcmChillerState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\02 Sensors\ST_JanitzaState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +109,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageSystemDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\PCMStorage\ST_PCMStorageState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\03 Storages\VSIStorage\ST_VSIStorageState.TcDUT">
@@ -169,6 +189,12 @@
     <Compile Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats\ST_InnerCapillaryTubeMatsSetParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\PCMSystem\E_PCMSystemControlMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\PCMSystem\ST_PCMSystemSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\04 Systems\LinkageSystems\UnderfloorHeating\ST_UnderfloorHeatingDefaultParameters.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -179,6 +205,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\Ventilation\ST_VentilationState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\04 Systems\StorageSystems\ST_ActiveStorageSystemSetParameters.TcDUT">
@@ -339,6 +368,9 @@
     <Compile Include="POUs\01 Actuators\CoolingUnits\FB_eChiller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\01 Actuators\CoolingUnits\FB_PCMChiller.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CHP.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -351,6 +383,9 @@
     <Compile Include="POUs\01 Actuators\Pumps\FB_Pump2Point.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\02 Sensors\FB_JanitzaSensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\02 Sensors\FB_LowVoltageMainDistribution.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -358,6 +393,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\03 Storages\FB_BufferStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Storages\FB_PCMStorage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\03 Storages\FB_VSIStorage.TcPOU">
@@ -397,6 +435,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\CoolingSystems\FB_OuterCapillaryTubeMats.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\04 Systems\CoolingSystems\FB_PCMSupplySystem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\04 Systems\HeatingSystems\FB_CHPSystem.TcPOU">
@@ -442,9 +483,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnhtHnltLinkage.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\05 Thermal Networks\FB_PCM_Testbed.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\05 Thermal Networks\FB_HnltCnLinkage.TcPOU">

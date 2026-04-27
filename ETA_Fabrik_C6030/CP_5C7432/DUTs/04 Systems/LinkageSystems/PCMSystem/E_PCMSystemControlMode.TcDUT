@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="E_PCMSystemControlMode" Id="{320b063f-a62e-4180-bc18-6f8b8f475419}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_PCMSystemControlMode :
+(
+	standby := 0,
+	directCooling := 1,
+	chargePCMChiller := 2,
+	dischargePCMchiller := 3	
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

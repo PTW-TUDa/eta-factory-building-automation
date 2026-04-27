@@ -3,17 +3,473 @@
   <POU Name="FB_Ventilation" Id="{b3736a55-8dec-49ad-8b80-0e1e5782a762}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Ventilation EXTENDS FB_ActuatorContinous
 VAR_INPUT
+	sIPAddress : STRING(15);
+	 //default value 
+	bSetStatusOn_SeminarRoom : BOOL:= FALSE;
+	bSetStatusOn_Hall : BOOL := FALSE; 
+	bSetStatusOn_HiwiRoom : BOOL := FALSE; 
+	bSetStatusOn_ClimateRoom : BOOL := FALSE;
+	risingEdge_Trigger : R_TRIG; 
+	fallingEdge_Trigger : F_TRIG; 
+	bExecute_ClimateRoom : BOOL := FALSE; 
+	
 END_VAR
 VAR_OUTPUT
+	fReturnTemperature : REAL;
+	bError : BOOL;
 END_VAR
 VAR
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_VentilationState;
+	
+	//default parameters
+	localDefaultParameters : ST_VentilationDefaultParameters;	
+	
+
+	//modbus tcp communication
+	ModbusReader_100 : FB_MBReadRegs; //read regs from 100 on
+	ModbusReader_135 : FB_MBReadInputs; 
+	ModbusReader_112 : FB_MBReadInputs; 
+	ModbusReader_166 : FB_MBReadInputs; 
+	ModbusReader_167 : FB_MBReadInputs; 
+	ModbusReader_168 : FB_MBReadInputs;
+	ModbusReader_169 : FB_MBReadInputs;  
+	ModbusReader_200 : FB_MBReadRegs; 
+	
+	
+	ModbusWrite_100 : FB_MBWriteSingleCoil; // write reg 100
+	ModbusWrite_101 : FB_MBWriteSingleCoil; // write reg 101
+	ModbusWrite_102 : FB_MBWriteSingleCoil; // Write reg 102
+	ModbusWrite_103 : FB_MBWriteSingleCoil; // Write reg 103
+	ModbusWrite_203 : FB_MBWriteSingleCoil; // Write reg 203
+	ModbusWrite_213 : FB_MBWriteSingleCoil; // Write reg 213
+	
+	
+	
+	//define array to store data from every ModbusReader
+	aModbus_100 : ARRAY [0..14] OF WORD;
+	aModbus_112 : ARRAY [0..0] OF BYTE;
+	aModbus_135 : ARRAY [0..3] OF BYTE;
+	aModbus_166 : ARRAY [0..0] OF BYTE;
+	aModbus_167 : ARRAY [0..0] OF BYTE;
+	aModbus_168 : ARRAY [0..0] OF BYTE;
+	aModbus_169 : ARRAY [0..0] OF BYTE;
+	aModbus_200 : ARRAY [0..50] OF WORD;
+
+	
+	//modbus timer
+	bReadModbus	: BOOL := FALSE;
+	
+	//write SeminarRoom
+	bWriteModbus_SeminarRoom : BOOL := FALSE; 
+	bSendValue_SeminarRoom : BOOL := FALSE; 
+	iStep_SeminarRoom : INT := 0;
+	
+	//write Productionhall
+	bWriteModbus_Hall : BOOL := FALSE;
+	bSendValue_Hall :BOOL := FALSE;
+	iStep_Hall : INT := 0; // 0 = IDLE, 1 = Write FALSE vlaue to modbus, 2 = Wait after sending FALSE
+	
+	//write Studentroom
+	bWriteModbus_StudentRoom : BOOL := FALSE; 
+	bSendValue_StudentRoom : BOOL := FALSE;
+	iStep_StudentRoom : INT := 0; 
+	
+	//write ClimateRoom
+	bWriteModbus_ClimateRoom : BOOL := FALSE;
+	bSendValue_ClimateRoom :BOOL := FALSE;
+	iStep_ClimateRoom : INT := 0; // 0 = IDLE, 1 = Write FALSE vlaue to modbus, 2 = Wait after sending FALSE
+	
+	
+
+	bStartTimer : BOOL;
+	TimerReader : TON;
+	TimerSeminarRoom : TON; 
+	TimerHall : TON;
+	TimerStudentRoom : TON; 
+	TimerClimateRoom : TON;  
+	bStartTimerSeminarRoom : BOOL; 
+	bStartTimerHall : BOOL; 
+	bStartTimerStudentRoom : BOOL; 
+	bStartTimerClimateRoom : BOOL; 
+	
+	//read single status 
+	bStatusSeminarRoom : BOOL; 
+	bStatusProductionHall : BOOL; 
+	bStatusHiwiRoom : BOOL; 
+	bStatusClimateRoom : BOOL; 
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[
+//Start and check timer for 2s interval
+TimerReader(IN := bStartTimer, PT := T#1S);
+
+bStartTimer := TRUE;
+IF TimerReader.Q THEN
+    bReadModbus := TRUE;      
+    bStartTimer := FALSE;  
+END_IF
+
+(*ModbusReader_100(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 255,
+	nQuantity := 8,
+	nMBAddr := 100,
+	cbLength := 16,
+	pDestAddr := ADR(aModbus_100),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);*)
+
+// read status experiment mode
+ModbusReader_112(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 1,
+	nQuantity := 1,
+	nMBAddr := 112,
+	cbLength := 1,
+	pDestAddr := ADR(aModbus_112),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);
+
+bReadModbus := bReadModbus AND NOT ModbusReader_135.bBusy;
+	
+ModbusReader_135(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 16#FF,
+	nQuantity := 4,
+	nMBAddr := 166,
+	cbLength := SIZEOF(aModbus_135),
+	pDestAddr := ADR(aModbus_135),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);
+
+//unpack the four bits in 166 in bool values
+bStatusSeminarRoom := (aModbus_135[0] AND 16#01) <> 0; // Input 166
+bStatusProductionHall := (aModbus_135[0] AND 16#02) <> 0; // Input 167
+bStatusHiwiRoom := (aModbus_135[0] AND 16#04) <> 0; // Input 168
+bStatusClimateRoom := (aModbus_135[0] AND 16#08) <> 0; // Input 169
+
+localState.bStatusOnSeminarRoom := bStatusSeminarRoom;
+localState.bStatusOnProductionHall := bStatusProductionHall; 
+localState.bStatusOnStudentRoom := bStatusHiwiRoom; 
+localState.bStatusOnClimateRoom := bStatusClimateRoom; 
+
+(*ModbusReader_200(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 255,
+	nQuantity := 49,
+	nMBAddr := 135,
+	cbLength := 98,
+	pDestAddr := ADR(aModbus_200),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);*)
+
+	
+bReadModbus := FALSE;]]></ST>
     </Implementation>
+    <Method Name="GetState" Id="{36d2cc4c-c664-4ac2-85bc-fc734b2ca56f}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method (abstract method)]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectSetPoint" Id="{f6c9d0f2-44ee-419c-8697-48cb7ff23fef}">
+      <Declaration><![CDATA[METHOD PROTECTED SelectSetPoint : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	fsetPoint := setSetPoint.fSetPointManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	fsetPoint := setSetPoint.fSetPointAlgorithm;
+ELSE
+	fsetPoint := fSetPointAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{831331dc-017c-4490-9796-9191548b30b1}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{7eff7939-9166-4a53-b9d3-90f5cc714523}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+
+
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TimerSeminarRoom(IN := bStartTimerSeminarRoom,
+	PT := T#500MS);
+	
+TimerHall(IN := bStartTimerHall,
+	PT := T#500MS);
+	
+TimerStudentRoom(IN := bStartTimerStudentRoom,
+	PT := T#500MS);
+
+TimerClimateRoom(IN := bStartTimerClimateRoom,
+	PT := T#500MS);
+	
+
+	
+CASE iStep_SeminarRoom OF
+	0: // check for change in status
+		IF (bSetStatusOn_SeminarRoom = TRUE AND localstate.bStatusOnSeminarRoom= FALSE) OR (bSetStatusOn_SeminarRoom = FALSE AND localState.bStatusOnSeminarRoom = TRUE) THEN
+			bWriteModbus_SeminarRoom := TRUE;
+			bSendValue_SeminarRoom := TRUE;
+			bStartTimerSeminarRoom := TRUE;
+			iStep_SeminarRoom := 1; 
+			// go to next step
+		END_IF 
+	1: // wait for timer to end then write FALSE
+		IF TimerSeminarRoom.Q THEN
+			bWriteModbus_SeminarRoom := TRUE;
+			bSendValue_SeminarRoom := FALSE;
+			bStartTimerSeminarRoom := FALSE;
+			iStep_SeminarRoom := 2;	
+		END_IF
+	2: // time for waiting before check starts again
+		bStartTimerSeminarRoom := TRUE;
+		IF TimerSeminarRoom.Q THEN
+			iStep_SeminarRoom := 0;
+		END_IF
+		
+END_CASE
+
+ModbusWrite_100(
+	sIPAddr := sIPAddress, 
+	nTCPPort := 502, 
+	nUnitID := 16#FF, 
+	nMBAddr := 100, 
+	nValue := SEL(bSendValue_SeminarRoom, WORD#16#0000, WORD#16#FF00),
+	bExecute := bWriteModbus_SeminarRoom, 
+	tTimeout := T#20S);
+
+bWriteModbus_SeminarRoom := FALSE; 
+
+
+
+CASE iStep_Hall OF
+	0: // check for change in status
+		IF (bSetStatusOn_Hall = TRUE AND localstate.bStatusOnProductionHall= FALSE) OR (bSetStatusOn_Hall = FALSE AND localState.bStatusOnProductionHall = TRUE) THEN
+			bWriteModbus_Hall := TRUE;
+			bSendValue_Hall := TRUE;
+			bStartTimerHall := TRUE;
+			iStep_Hall := 1; 
+			// go to next step
+		END_IF 
+	1: // wait for timer to end then write FALSE
+		IF TimerHall.Q THEN
+			bWriteModbus_Hall := TRUE;
+			bSendValue_Hall := FALSE;
+			bStartTimerHall := FALSE;
+			iStep_Hall := 2;	
+		END_IF
+	2: // time for waiting before check starts again
+		bStartTimerHall := TRUE;
+		IF TimerHall.Q THEN
+			iStep_Hall := 0;
+		END_IF
+		
+END_CASE
+
+ModbusWrite_101(
+	sIPAddr := sIPAddress, 
+	nTCPPort := 502, 
+	nUnitID := 16#FF, 
+	nMBAddr := 101, 
+	nValue := SEL(bSendValue_Hall, WORD#16#0000, WORD#16#FF00),
+	bExecute := bWriteModbus_Hall, 
+	tTimeout := T#20S); 
+	
+bWriteModbus_Hall := FALSE; 
+
+	
+CASE iStep_StudentRoom OF
+	0: // check for change in status
+		IF (bSetStatusOn_HiwiRoom = TRUE AND localstate.bStatusOnStudentRoom= FALSE) OR (bSetStatusOn_HiwiRoom = FALSE AND localState.bStatusOnStudentRoom = TRUE) THEN
+			bWriteModbus_StudentRoom := TRUE;
+			bSendValue_StudentRoom := TRUE;
+			bStartTimerStudentRoom := TRUE;
+			iStep_StudentRoom := 1; 
+			// go to next step
+		END_IF 
+	1: // wait for timer to end then write FALSE
+		IF TimerStudentRoom.Q THEN
+			bWriteModbus_StudentRoom := TRUE;
+			bSendValue_StudentRoom := FALSE;
+			bStartTimerStudentRoom := FALSE;
+			iStep_StudentRoom := 2;	
+		END_IF
+	2: // time for waiting before check starts again
+		bStartTimerStudentRoom := TRUE;
+		IF TimerStudentRoom.Q THEN
+			iStep_StudentRoom := 0;
+		END_IF
+		
+END_CASE
+
+ModbusWrite_102(
+	sIPAddr := sIPAddress, 
+	nTCPPort := 502, 
+	nUnitID := 16#FF, 
+	nMBAddr := 107, 
+	nValue := SEL(bSendValue_StudentRoom, WORD#16#0000, WORD#16#FF00),
+	bExecute := bWriteModbus_StudentRoom, 
+	tTimeout := T#20S); 
+	
+bWriteModbus_StudentRoom := FALSE;  
+	
+	
+CASE iStep_ClimateRoom OF
+	0: // check for change in status
+		IF (bSetStatusOn_ClimateRoom = TRUE AND localstate.bStatusOnClimateRoom = FALSE) OR (bSetStatusOn_ClimateRoom = FALSE AND localState.bStatusOnClimateRoom = TRUE) THEN
+			bWriteModbus_ClimateRoom := TRUE;
+			bSendValue_ClimateRoom := TRUE;
+			bStartTimerClimateRoom := TRUE;
+			iStep_ClimateRoom := 1; 
+			// go to next step
+		END_IF 
+	1: // wait for timer to end then write FALSE
+		IF TimerClimateRoom.Q THEN
+			bWriteModbus_ClimateRoom := TRUE;
+			bSendValue_ClimateRoom := FALSE;
+			bStartTimerClimateRoom := FALSE;
+			iStep_ClimateRoom := 2;	
+		END_IF
+	2: // time for waiting before check starts again
+		bStartTimerClimateRoom := TRUE;
+		IF TimerClimateRoom.Q THEN
+			iStep_ClimateRoom := 0;
+		END_IF
+		
+END_CASE
+
+ModbusWrite_103(
+	sIPAddr := sIPAddress, 
+	nTCPPort := 502, 
+	nUnitID := 16#FF, 
+	nMBAddr := 108, 
+	nValue := SEL(bSendValue_ClimateRoom, WORD#16#0000, WORD#16#FF00),
+	bExecute := bWriteModbus_ClimateRoom,
+	tTimeout := T#20S);
+
+bWriteModbus_ClimateRoom := FALSE;
+
+	
+]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Ventilation">
+      <LineId Id="60" Count="1" />
+      <LineId Id="412" Count="6" />
+      <LineId Id="81" Count="9" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="432" Count="0" />
+      <LineId Id="249" Count="9" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="420" Count="0" />
+      <LineId Id="419" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="8" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="433" Count="0" />
+      <LineId Id="427" Count="0" />
+      <LineId Id="203" Count="0" />
+      <LineId Id="429" Count="2" />
+      <LineId Id="435" Count="0" />
+      <LineId Id="434" Count="0" />
+      <LineId Id="436" Count="2" />
+      <LineId Id="330" Count="10" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="49" Count="0" />
       <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Ventilation.GetState">
+      <LineId Id="60" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Ventilation.SelectSetPoint">
+      <LineId Id="6" Count="5" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Ventilation.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Ventilation.SetState">
+      <LineId Id="45" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="97" Count="1" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="232" Count="1" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="267" Count="21" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="6" Count="7" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="239" Count="3" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="249" Count="0" />
+      <LineId Id="252" Count="4" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="260" Count="3" />
+      <LineId Id="259" Count="0" />
+      <LineId Id="237" Count="0" />
+      <LineId Id="14" Count="8" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="291" Count="21" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="23" Count="8" />
+      <LineId Id="337" Count="0" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="313" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="315" Count="21" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="34" Count="6" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="136" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

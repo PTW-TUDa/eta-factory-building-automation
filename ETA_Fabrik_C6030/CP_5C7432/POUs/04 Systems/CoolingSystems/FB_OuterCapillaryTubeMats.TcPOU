@@ -22,7 +22,7 @@ VAR
 	//valves
 	stSV235DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
 	stSV605DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 3);
-	stRV600DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fControllerAmplification := 0.012, tControllerIntegralTime := T#36S, fOutMinLimit := 40, fOutMaxLimit := 70);	
+	stRV600DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fControllerAmplification := 0.012, tControllerIntegralTime := T#36S, fOutMinLimit := 0, fOutMaxLimit := 70);	
 	stRV640DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	stRV660DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, tTaskCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
 	

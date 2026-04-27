@@ -13,7 +13,12 @@ STRUCT
 	
 	aTemperatureLimits_HNHT : ARRAY[1..2] OF REAL;
 	aTemperatureLimits_HNLT : ARRAY[1..2] OF REAL;
-	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;	
+	aTemperatureLimits_CN : ARRAY[1..2] OF REAL;
+	bAlgorithmPermission_HNHT : BOOL;
+	bAlgorithmPermission_HNLT : BOOL;
+	bAlgorithmPermission_CN : BOOL;
+
+	bHeatingMode : BOOL;	
 	
 	fFeedTemperature_HNHT : REAL;
 	fFeedTemperature_HNLT_Heating : REAL;

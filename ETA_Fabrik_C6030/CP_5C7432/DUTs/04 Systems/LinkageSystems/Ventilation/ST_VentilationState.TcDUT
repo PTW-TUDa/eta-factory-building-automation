@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_VentilationState" Id="{14ff9b8d-c5bc-4732-8322-a3e13041fba6}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_VentilationState :
+STRUCT
+	bError					: BOOL;
+	bStatusOnSeminarRoom	: BOOL; //true, if seminar room is active
+	bStatusOnStudentRoom	: BOOL; //true, if student room is active
+	bStatusOnProductionHall	: BOOL; //true, if hall is active
+	bStatusOnClimateRoom 	: BOOL; //true, if climate room is active
+	bStatusOnExperimentalMode : BOOL; // true, if experimental mode is on
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
