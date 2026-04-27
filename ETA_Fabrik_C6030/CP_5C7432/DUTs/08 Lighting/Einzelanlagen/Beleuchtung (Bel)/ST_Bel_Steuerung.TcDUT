@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_Bel_Steuerung" Id="{370f10da-6b81-4ad0-b5be-c55f9edfec93}">
+    <Declaration><![CDATA[TYPE ST_Bel_Steuerung :
+STRUCT
+	Freigabe				: ST_Steuerung_auto_manu_BOOL;
+	Freigabe_Deakt			: ST_Steuerung_auto_manu_BOOL;
+	Betrieb_Anford			: ST_Steuerung_auto_manu_opti_BOOL;
+
+	Steuerung_Sollw			: ST_Steuerung_auto_manu_opti_REAL;
+
+
+	Farbcode			: STRING;
+	Quittierung				: BOOL;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -14,6 +14,9 @@ VAR
 	
 	//internal variables
 	bAlgorithmPermission : BOOL;
+	
+	//PCM Supply System
+	PCMSupplySystem : FB_PCMSupplySystem;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[bAlgorithmPermission := controlAutomatic.bAlgorithmPermission_HNHT AND controlAutomatic.bAlgorithmPermission_CN;
@@ -22,7 +25,13 @@ END_VAR]]></Declaration>
 VentilationSystem(bSetStatusOnAutomatic := TRUE,
 	fSetPointAutomatic := 0,
 	bAlgorithmPermission := bAlgorithmPermission,
-	bHeatingModeAutomatic := controlAutomatic.bHeatingMode);]]></ST>
+	bHeatingModeAutomatic := controlAutomatic.bHeatingMode);
+
+PCMSupplySystem(bSetStatusOnAutomatic := TRUE, 
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 9);
+	
+	]]></ST>
     </Implementation>
     <LineIds Name="FB_HnhtCnLinkage">
       <LineId Id="9" Count="0" />
@@ -30,6 +39,10 @@ VentilationSystem(bSetStatusOnAutomatic := TRUE,
       <LineId Id="26" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="28" Count="2" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="69" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

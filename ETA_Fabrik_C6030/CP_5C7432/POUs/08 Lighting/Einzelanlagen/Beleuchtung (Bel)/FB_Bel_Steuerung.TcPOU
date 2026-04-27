@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Bel_Steuerung" Id="{87eab764-3210-4283-985e-996647ccc7e5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Bel_Steuerung
+VAR_IN_OUT
+	Stellwert		: ST_Bel_Stellwert;
+	Zustand		: ST_Bel_Zustand;
+END_VAR
+VAR_INPUT
+	Steuerung	: ST_Bel_Steuerung;
+	Parameter	: ST_Bel_Parameter;
+END_VAR
+VAR
+	Regler_PI			: FB_CTRL_PI;
+	Regler_PI_Parameter	: ST_CTRL_PI_PARAMS;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* IST-Wert berechnen*)
+Zustand.Steuerung_Istw := Zustand.Leistung;
+
+Stellwert.Betrieb := Steuerung.Betrieb_Anford.auto;
+
+(* 	Beleuchtungs-Anlagen können nicht geregelt werden, da kein Sensor vorliegt.
+	Nur das System "Beleuchtung" kann Regeln.  *)
+IF( Stellwert.Betrieb ) THEN
+
+	Stellwert.Leistung := REAL_TO_USINT(Zustand.Steuerung_Sollw);
+
+ELSE
+	Stellwert.Leistung := 0;
+END_IF;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Bel_Steuerung">
+      <LineId Id="13" Count="13" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

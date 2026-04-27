@@ -18,7 +18,6 @@ VAR
 	HNLT : FB_HeatingNetworkLowTemperature;
 	HNHT_HNLT : FB_HnhtHnltLinkage;
 	HNHT : FB_HeatingNetworkHighTemperature;
-	PCM_Testbed : FB_PCM_Testbed;
 	
 	//ambient state
 	Ambient : FB_Ambient;
@@ -34,7 +33,7 @@ Strategy(ambientState := Ambient.localState,
 	hnhtState := HNHT.localState);
 
 //ambient state
-Ambient();
+Ambient(sIPAddress := GlobalVariables.sIP_Ventilation);
 
 //sensors
 LowVoltageMainDistribution();
@@ -55,7 +54,6 @@ HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
 HNHT(controlAutomatic := Strategy.hnhtControl,
 	stAmbientState := Ambient.localState);
 	
-PCM_Testbed();
 
 //Current implementation
 

@@ -158,10 +158,12 @@ IF Clock.stClockState.sintMonth>4 AND Clock.stClockState.sintMonth<9 THEN
 	//heating mode
 	hnltCnLinkageControl.bHeatingMode := FALSE;
 	hnhtCnLinkageControl.bHeatingMode := FALSE;
+	localState.bHeatingMode := FALSE;
 ELSE
 	//cooling mode	
 	hnltCnLinkageControl.bHeatingMode := TRUE;
 	hnhtCnLinkageControl.bHeatingMode := TRUE;
+	localState.bHeatingMode := TRUE;
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -557,7 +559,12 @@ localState.fTargetTemperature_ProductionHall := localDefaultParameters.fTargetTe
 
 localState.aTemperatureLimits_HNHT := aTemperatureLimits_HNHT;
 localState.aTemperatureLimits_HNLT := aTemperatureLimits_HNLT;
-localState.aTemperatureLimits_CN := aTemperatureLimits_CN;	
+localState.aTemperatureLimits_CN := aTemperatureLimits_CN;
+localState.bAlgorithmPermission_HNHT := HNHT_Check.bPermission;
+localState.bAlgorithmPermission_HNLT := HNLT_Check.bPermission;
+localState.bAlgorithmPermission_CN := CN_Check.bPermission;	
+
+// localState.bHeatingMode state is set in AmbientControl
 
 localState.fFeedTemperature_HNHT := fTargetTemperature_HNHT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNHT;
 localState.fFeedTemperature_HNLT_Heating := fTargetTemperature_HNLT_Heating+localDefaultParameters.fOffset_FeedTemperature_HNLT_Heating;
@@ -643,8 +650,10 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
     <LineIds Name="FB_StrategyController.AmbientControl">
       <LineId Id="6" Count="3" />
       <LineId Id="16" Count="0" />
+      <LineId Id="21" Count="0" />
       <LineId Id="10" Count="2" />
       <LineId Id="17" Count="0" />
+      <LineId Id="22" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_StrategyController.ControlCN">
@@ -850,7 +859,11 @@ hnhtCnLinkageControl.bAlgorithmPermission_HNHT := hnhtControl.bAlgorithmPermissi
     <LineIds Name="FB_StrategyController.SetState">
       <LineId Id="6" Count="0" />
       <LineId Id="22" Count="0" />
-      <LineId Id="7" Count="11" />
+      <LineId Id="7" Count="7" />
+      <LineId Id="26" Count="2" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="15" Count="3" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_StrategyController.SetTemperatures">

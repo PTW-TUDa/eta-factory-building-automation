@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_GA_Allgemein" Id="{5131c4bd-0e93-44dc-b834-ca00606cafe8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GA_Allgemein (*Setzt globale Parameter*)
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	Uhrzeitgeber				: FB_CTRL_GET_SYSTEM_TIME;
+	Uhrzeitgeber_Parameter	: ST_CTRL_GET_SYSTEM_TIME_PARAMS;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Uhrzeitgeber_Parameter.tTaskCycleTime	:= GA_Global.Zeit_TaskCycle;
+Uhrzeitgeber_Parameter.tCtrlCycleTime	:= T#1m;
+
+Uhrzeitgeber( stParams	:= Uhrzeitgeber_Parameter );
+
+GA_Global.Systemzeit_Monat		:= WORD_TO_SINT(Uhrzeitgeber.stSystemTime.wMonth);
+GA_Global.Systemzeit_Tag		:= WORD_TO_SINT(Uhrzeitgeber.stSystemTime.wDay);
+GA_Global.Systemzeit_Wochentag	:= WORD_TO_SINT(Uhrzeitgeber.stSystemTime.wDayOfWeek);
+GA_Global.Systemzeit_Stunde		:= WORD_TO_REAL(Uhrzeitgeber.stSystemTime.wHour) + WORD_TO_REAL(Uhrzeitgeber.stSystemTime.wMinute) / 60;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_GA_Allgemein">
+      <LineId Id="9" Count="8" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

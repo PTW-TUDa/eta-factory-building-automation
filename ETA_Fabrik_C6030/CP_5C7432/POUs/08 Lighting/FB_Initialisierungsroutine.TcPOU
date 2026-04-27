@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_Initialisierungsroutine" Id="{e01287f0-f797-46a0-91e0-77f8d5512078}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Initialisierungsroutine
+VAR_OUTPUT
+END_VAR
+VAR
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*Parameter System Beleuchtung *)
+	Initialisierung.System_Bel_Parameter.AutoQuittierung := 0;
+	Initialisierung.System_Bel_Parameter.Zeit_Vorl := 1000; (* Millisekunden *)
+	Initialisierung.System_Bel_Parameter.Zeit_Nachl := 1000; (* Millisekunden *)
+	Initialisierung.System_Bel_Parameter.Nachtabsenkung_Uhrzeit_Stunde_Start := 23; (*Uhr*)
+	Initialisierung.System_Bel_Parameter.Nachtabsenkung_Uhrzeit_Stunde_Ende := 6; (*Uhr*)]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Initialisierungsroutine">
+      <LineId Id="993" Count="4" />
+      <LineId Id="987" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

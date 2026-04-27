@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_Initialisierungsroutine" Id="{1b5c8048-5f7c-4e25-8c12-7c0a2a44180b}">
+    <Declaration><![CDATA[TYPE ST_Initialisierungsroutine :
+STRUCT
+	Anlage_Bel_Parameter	: ST_Bel_Parameter;
+	System_Bel_Parameter	: ST_System_Bel_Parameter;
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

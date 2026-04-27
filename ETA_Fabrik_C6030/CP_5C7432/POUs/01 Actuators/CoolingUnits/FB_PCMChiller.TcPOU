@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_PCMChiller" Id="{6d6159d2-75d3-4fc2-803c-5a2854a50767}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PCMChiller EXTENDS FB_ActuatorContinous
+VAR_INPUT
+	fExternalTemperature : REAL; 
+	nControlModeAutomatic : E_PCMControlMode;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_pcmChillerState;
+	//default parameters
+	localDefaultParameters : ST_pcmChillerDefaultParameters;
+	//I/O Links
+	nRemoteControl_OUT AT %Q* : DINT;
+	nSetPointMediumTemperature_OUT AT %Q* : LREAL;
+	fAmbientTemperature_IN AT %I* : LREAL;
+	fMediumOutletTemperature_IN AT %I* : LREAL; 
+	fCoolingCapacity_IN AT %I* : DINT; 
+	fCoolingEER_IN AT %I* : LREAL; 
+	fFlowValue_IN AT %I* : LREAL; 
+	fFanValue_IN AT %I* : DINT; 
+	fCompressorSpeed_IN AT %I* : DINT; 
+	fEEVValue_IN AT %I* : LREAL; 
+	fEEVPosition_IN AT %I* : DINT; 
+	fInputPower_IN AT %I* : DINT; 
+	fEnvironmentTemperature_IN AT %I* : LREAL;
+	
+	//internal variables
+	nControlMode : E_PCMControlMode;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[MAIN(); 
+]]></ST>
+    </Implementation>
+    <Method Name="GetState" Id="{d66ab647-cb72-495a-adc6-69e68b5651cf}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//control state
+
+
+//setpoint state
+setPointState.fOperatingPoint := fExternalTemperature; //adjust fExternalTemperature to the right variable
+setPointState.sOperatingPointUnit := 'degreeC'; 
+fOperatingPoint := fExternalTemperature; 
+
+//local state
+localState.fAmbientTemperature := fAmbientTemperature_IN;
+localState.fCompressorSpeed := fCompressorSpeed_IN;
+localState.fCoolingCapacity := fCoolingCapacity_IN; 
+localState.fCoolingEER := fCoolingEER_IN; 
+localState.fEEVPosition := fEEVPosition_IN; 
+localState.fEEVValue := fEEVValue_IN; 
+localState.fEnvironmentTemperature := fEnvironmentTemperature_IN; 
+localState.fFanValue := fFanValue_IN; 
+localState.fFlowValue := fFlowValue_IN; 
+localState.fInputPower := fInputPower_IN;
+localState.fMediumOutletTemperature := fMediumOutletTemperature_IN; ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{bfb24d2f-5849-48b8-bbf8-f6f04ee35cf3}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{ec1b9726-e7f0-4f1e-85e0-77391a5577b6}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[setPointState.fSetPoint := fSetPoint;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.sSetPointUnit := 'degreeC';
+
+
+nSetPointMediumTemperature_OUT := fSetPoint;
+
+IF bSetStatusOn THEN
+	CASE nControlMode OF
+		0: //cooling mode
+		nRemoteControl_OUT := 0;
+		
+		1: //pump mode
+		nRemoteControl_OUT := 2;
+	END_CASE
+ELSE
+	nRemoteControl_OUT := 1; //Stand-By
+END_IF; ]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{89822b66-c4d4-4758-8808-1dc9a87e88d5}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_pcmChillerDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{1462475c-944f-4d4a-9089-ef70c837b5b6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{281901a6-caa9-4b5a-bd1e-70ddd648e277}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_PCMChiller">
+      <LineId Id="9" Count="0" />
+      <LineId Id="23" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMChiller.GetState">
+      <LineId Id="18" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="22" Count="2" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="8" />
+    </LineIds>
+    <LineIds Name="FB_PCMChiller.SetSetPointLimits">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMChiller.SetState">
+      <LineId Id="6" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="35" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMChiller.ST_DefaultParameters.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PCMChiller.ST_DefaultParameters.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

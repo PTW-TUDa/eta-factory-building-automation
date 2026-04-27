@@ -18,7 +18,7 @@ VAR
 
 	//valves
 	stSV215DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
-	stRV315DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 5, tControllerIntegralTime := T#100S, fOutMinLimit := 50, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
+	stRV315DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := TRUE, fControllerAmplification := 1.5, tControllerIntegralTime := T#400S, fOutMinLimit := 25, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN, fOffsetTerminal := 7970);
 	
 	SV215 : FB_DiscreteValve := (ST_DefaultParameters := stSV215DefaultParameters);
 	RV315 : FB_MixingValve := (ST_DefaultParameters := stRV315DefaultParameters);

@@ -25,6 +25,14 @@ VAR
 	
 	WMZ455 : FB_MollineEHeatCounter;
 	
+	//ventilation 
+	//Ventilation : FB_Ventilation; //commented out for merge in dev, as modbus write needs to be deactivated before bugs are fixed
+	
+	//electricity meter
+	EM45x : FB_JanitzaSensor;
+	
+	
+	
 	bHeatingMode 			: BOOL;
 	bSetStatusOn_SV453		: BOOL;
 	bSetStatusOn_SV454		: BOOL;
@@ -33,6 +41,17 @@ END_VAR
     <Implementation>
       <ST><![CDATA[SelectLocalControlMode();
 MAIN();
+(* Ventilation.GetState();
+Ventilation(
+	fSetPointAutomatic := fSetPoint,
+	bSetStatusOnAutomatic := FALSE,
+	bAlgorithmPermission := bAlgorithmPermission,
+	sIPAddress := GlobalVariables.sIP_Ventilation);
+Ventilation.SetState();
+EM45x(
+	sIPAddress := GlobalVariables.sIP_Janitza_Ventilation);  
+
+*)
 
 IF bHeatingMode THEN
 	bSetStatusOn_SV453 := TRUE;
@@ -51,6 +70,12 @@ SV454.GetState_BI();
 SV454(bSetStatusOnAutomatic := bSetStatusOn_SV454,
 	bAlgorithmPermission := bAlgorithmPermission);
 SV454.SetState_BO();
+
+
+	
+	
+	
+	
 
 //PU455 and RV455 is controlled by ventilation unit
 PU455.GetState_Profibus();
@@ -162,7 +187,23 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <LineIds Name="FB_VentilationSystem">
-      <LineId Id="113" Count="24" />
+      <LineId Id="113" Count="1" />
+      <LineId Id="184" Count="4" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="264" Count="0" />
+      <LineId Id="190" Count="0" />
+      <LineId Id="116" Count="16" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="175" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="133" Count="4" />
       <LineId Id="83" Count="0" />
     </LineIds>
     <LineIds Name="FB_VentilationSystem.CheckError">
