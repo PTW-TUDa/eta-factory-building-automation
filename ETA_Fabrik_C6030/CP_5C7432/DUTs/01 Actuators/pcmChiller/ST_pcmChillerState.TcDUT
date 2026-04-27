@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <DUT Name="ST_pcmChillerState" Id="{8a07357f-6bc9-4882-a004-962a4a11773e}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_pcmChillerState :
+STRUCT
+	bError	: BOOL;
+	fAmbientTemperature : LREAL;
+	fMediumOutletTemperature : LREAL; 
+	fCoolingCapacity : DINT; 
+	fCoolingEER : LREAL; 
+	fFlowValue : LREAL; 
+	fFanValue : DINT; 
+	fCompressorSpeed : DINT; 
+	fEEVValue : LREAL; 
+	fEEVPosition : DINT; 
+	fInputPower : DINT; 
+	fEnvironmentTemperature : LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

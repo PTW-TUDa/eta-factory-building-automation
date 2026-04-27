@@ -39,7 +39,10 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//read and write to terminal
+      <ST><![CDATA[//initialize clock
+Clock();
+
+//read and write to terminal
 KL6301_Terminal(KL6301_IN:=KL6301_IN, KL6301_OUT:=KL6301_OUT);
 KL6301_Error_Trigger(CLK := KL6301_Terminal.bError);
 
@@ -172,6 +175,9 @@ END_VAR
       </Implementation>
     </Method>
     <LineIds Name="FB_WeatherStation">
+      <LineId Id="241" Count="0" />
+      <LineId Id="243" Count="0" />
+      <LineId Id="242" Count="0" />
       <LineId Id="141" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="23" Count="0" />

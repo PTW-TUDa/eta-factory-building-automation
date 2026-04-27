@@ -139,7 +139,7 @@ PI_Controller_Parameters.bARWOnIPartOnly	:= TRUE;
 
 CASE nControlMode OF
 	0: //constant power
-	fSetPoint_internal := fSetPoint;
+	fSetPoint_internal := (fSetPoint - 50.0) * (100.0 / 50.0); //mapping from allowed setpointrange 50-100 to chp range 0-100
 	
 	1: //feed temperature
 	PI_Controller (

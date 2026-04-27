@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="FB_PCMStorage" Id="{069b991a-1373-4b42-afea-bf8744e0dec1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PCMStorage
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_PCMStorageState;
+END_VAR
+VAR
+	//temperature sensors
+	TemperatureSensor : FB_TemperatureSensor_KL3214;
+	
+	//Temperature
+	Temperature: REAL;
+	
+	// SOC-Value
+	SOC_per : REAL; 
+	SOC_abs : REAL; 
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//temperature sensors
+TemperatureSensor();
+TemperatureSensor.GetState_AI();
+
+Temperature := TemperatureSensor.fTemperature;
+
+CalcSOC(
+    Temperature := Temperature, 
+    SOC_per => localState.SOCValuePercentage, 
+    SOC_abs => localState.SOCValueAbsolute
+);
+
+localState.SOCValuePercentage := SOC_per; 
+localState.SOCValueAbsolute := SOC_abs; 
+localState.TemperatureSensor := Temperature; ]]></ST>
+    </Implementation>
+    <Method Name="CalcSOC" Id="{1ae693ec-0905-444f-a924-e5322946a7f4}">
+      <Declaration><![CDATA[METHOD CalcSOC : REAL
+VAR_INPUT
+	Temperature: REAL;
+END_VAR
+VAR_OUTPUT
+	SOC_per : REAL;
+	SOC_abs : REAL;
+END_VAR
+
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//derivation and parameter from jonas wendts dissertation
+SOC_per := (0.11822542*EXPT(Temperature, 4)-7.4519133*EXPT(Temperature, 3)+174.94045*EXPT(Temperature, 2)-1822.0902*Temperature+7168.3066);
+
+IF SOC_per > 100 THEN
+	SOC_per := 100;
+ELSIF SOC_per > 100 THEN
+	SOC_per := 0; 
+END_IF
+
+SOC_abs := (SOC_per/100)*20.43; 
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_PCMStorage">
+      <LineId Id="10" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="52" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="54" Count="3" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_PCMStorage.CalcSOC">
+      <LineId Id="11" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

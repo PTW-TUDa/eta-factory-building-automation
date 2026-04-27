@@ -22,6 +22,21 @@ VAR
 	//internal variables
 	bSetStatusOn_PU251 : BOOL;
 	bSetStatusOn_RV251 : BOOL;
+	
+	//compressed air valves
+	stSVAir1DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSVAir2DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSVAir3DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSVAir4DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSVAir5DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	stSVAir6DefaultParameters : ST_DiscreteValveDefaultParameters := (nFeedback := 0);
+	SVAir1 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir1DefaultParameters);
+	SVAir2 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir2DefaultParameters);
+	SVAir3 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir3DefaultParameters);
+	SVAir4 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir4DefaultParameters);
+	SVAir5 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir5DefaultParameters);
+	SVAir6 : FB_DiscreteValve := (ST_DefaultParameters := stSVAir6DefaultParameters);
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -44,7 +59,37 @@ RV251(bSetStatusOnAutomatic := bSetStatusOn_RV251,
 	fTemperatureExternal := PU251.fTemperatureInternal);
 RV251.SetState_AO();
 
-WMZ251(aHeatCounterTelegramm := Telegramm_WZ_Druckluftkompressor);]]></ST>
+WMZ251(aHeatCounterTelegramm := Telegramm_WZ_Druckluftkompressor);
+
+SVAir1.GetState_BI();
+SVAir1(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir1.SetState_BO();
+
+SVAir2.GetState_BI();
+SVAir2(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir2.SetState_BO();
+
+SVAir3.GetState_BI();
+SVAir3(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir3.SetState_BO();
+
+SVAir4.GetState_BI();
+SVAir4(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir4.SetState_BO();
+
+SVAir5.GetState_BI();
+SVAir5(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir5.SetState_BO();
+
+SVAir6.GetState_BI();
+SVAir6(bSetStatusOnAutomatic := TRUE,
+	bAlgorithmPermission := bAlgorithmPermission);
+SVAir6.SetState_BO();]]></ST>
     </Implementation>
     <Method Name="CheckError" Id="{a50d96bf-b53c-410c-87ec-21ce553724aa}">
       <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
@@ -152,6 +197,19 @@ END_VAR]]></Declaration>
       <LineId Id="102" Count="0" />
       <LineId Id="47" Count="2" />
       <LineId Id="9" Count="0" />
+      <LineId Id="130" Count="3" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="155" Count="2" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="159" Count="3" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="164" Count="3" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="169" Count="3" />
+      <LineId Id="168" Count="0" />
+      <LineId Id="174" Count="3" />
+      <LineId Id="173" Count="0" />
     </LineIds>
     <LineIds Name="FB_CompressorSystem.CheckError">
       <LineId Id="10" Count="0" />

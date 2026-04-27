@@ -3,6 +3,7 @@
   <POU Name="FB_Ambient" Id="{e5737b3d-b420-44a4-9ae1-301270e5edfa}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Ambient
 VAR_INPUT
+	sIPAddress : STRING(15);
 END_VAR
 VAR_OUTPUT
 	{attribute 'OPC.UA.DA' := '1'}
@@ -15,6 +16,18 @@ VAR
 	HallTemperatureSensor_Section2 : FB_TemperatureSensor;
 	HallTemperatureSensor_Section3 : FB_TemperatureSensor;
 	RoomTemperatureSensor_Container : FB_TemperatureSensor;
+	
+	//modbus tcp communication
+	ModbusReader_250 : FB_MBReadRegs; //read regs from 250 on
+	
+	//define array to store data from every ModbusReader
+	aModbus_250 : ARRAY [0..31] OF WORD;
+	
+	//modbus timer
+	bReadModbus	: BOOL := FALSE;
+	bWriteModbus_SeminarRoom : BOOL := FALSE; 
+	bStartTimer : BOOL;
+	TimerReader : TON; 
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -39,8 +52,58 @@ localState.bRain := WeatherStation.bRain;
 localState.fDawn := WeatherStation.fDawn;
 localState.fWindSpeed := WeatherStation.fWindSpeed;
 localState.fHallTemperature := HallTemperatureSensor_Section2.fTemperature;
-localState.fRoomTemperature_Container := RoomTemperatureSensor_Container.fTemperature;]]></ST>
+localState.fRoomTemperature_Container := RoomTemperatureSensor_Container.fTemperature;
+
+
+//Start and check timer for 2s interval
+TimerReader(IN := bStartTimer,
+	PT := T#2S);
+	
+bStartTimer := TRUE;
+IF TimerReader.Q THEN
+	bReadModbus := TRUE;
+	bStartTimer := FALSE;	
+END_IF
+	
+
+ModbusReader_250(
+	sIPAddr := sIPAddress,
+	nTCPPort := 502,
+	nUnitID := 255,
+	nQuantity := 30,
+	nMBAddr := 250,
+	cbLength := 60,
+	pDestAddr := ADR(aModbus_250),
+	bExecute := bReadModbus,
+	tTimeout  := T#20S);
+	
+bReadModbus := FALSE;
+
+//seminar room
+localState.fTemperatureSeminarRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[19]))/10; 
+localState.fCO2SeminarRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[17])); 
+//student room
+localState.fTemperatureStudentRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[28])); 
+localState.fCO2StudentRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[27])); 
+
+]]></ST>
     </Implementation>
+    <Method Name="GetState" Id="{b882bc1b-21cf-4d3c-b49a-6312d0e28971}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//seminar room
+localState.fTemperatureSeminarRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[19]))/10; 
+localState.fCO2SeminarRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[17])); 
+
+//student room
+localState.fTemperatureStudentRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[28])); 
+localState.fCO2StudentRoom := INT_TO_REAL(WORD_TO_INT(aModbus_250[27])); 
+]]></ST>
+      </Implementation>
+    </Method>
     <LineIds Name="FB_Ambient">
       <LineId Id="28" Count="0" />
       <LineId Id="42" Count="0" />
@@ -63,6 +126,19 @@ localState.fRoomTemperature_Container := RoomTemperatureSensor_Container.fTemper
       <LineId Id="83" Count="1" />
       <LineId Id="17" Count="0" />
       <LineId Id="121" Count="0" />
+      <LineId Id="138" Count="10" />
+      <LineId Id="236" Count="12" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="280" Count="2" />
+      <LineId Id="284" Count="2" />
+      <LineId Id="288" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Ambient.GetState">
+      <LineId Id="29" Count="5" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="5" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
