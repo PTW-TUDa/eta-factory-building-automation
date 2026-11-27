@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DetectValueChange" Id="{d07d0b0c-d683-4d40-8a19-a8e132e92e51}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DetectValueChange
+VAR_INPUT
+	bEnable				: BOOL;
+	sTerminalName		: STRING;
+	sChannel			: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+	fValue				: REAL;
+	fValueChangeDelta 	: REAL;
+	tChangeDeltaTime	: TIME;
+END_VAR
+VAR_OUTPUT
+	bActiveError		: BOOL;
+END_VAR
+VAR
+	fValueOld		: REAL;
+	fbTON			: TON;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+IF ((fValueOld < fValue-fValueChangeDelta) OR (fValueOld > fValue+fValueChangeDelta)) THEN
+	fbTON.IN := FALSE;
+	fValueOld := fValue;
+ELSE
+	fbTON.IN := TRUE;
+END_IF
+fbTON( PT:= tChangeDeltaTime, Q=> , ET=> );
+bActiveError := fbTON.Q;
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.App_DetectValueChange, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sChannel); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

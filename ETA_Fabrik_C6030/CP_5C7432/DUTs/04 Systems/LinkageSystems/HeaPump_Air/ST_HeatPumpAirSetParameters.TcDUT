@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_HeatPumpAirSetParameters" Id="{e02f2599-8ae9-4878-aa71-8392a0cd9203}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_HeatPumpAirSetParameters :
+STRUCT
+	nControlModeAlgorithm : E_HeatPumpAirControlMode;
+	nControlModeManual : E_HeatPumpAirControlMode;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

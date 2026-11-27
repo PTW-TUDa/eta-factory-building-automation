@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DiagManager" Id="{27ad0c65-87d2-48af-a79b-763cd493da3f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DiagManager
+VAR_INPUT
+	bConfirm	: BOOL; //Confirms the active Messages by setting bAnyNewMessage = FALSE
+END_VAR
+VAR_OUTPUT
+	bAnyActiveMessage	: BOOL;		//If TRUE, there is Message Condition active
+	bAnyNewMessage		: BOOL;		//If TRUE, there is a new Message Condition active since last bConfirm = TRUE
+	bError				: BOOL;		//TRUE, if DB has any internal Error
+END_VAR
+VAR
+	fbK1250_Diag		:FB_BK1250_Diag;
+	fbEL_AODIDO_Diag	:FB_EL_AODIDO_Diag;
+	
+	
+	fbProfibus_1 		:FB_EL6731;
+	fbProfibus_1_Slaves	: ARRAY [1..6] OF FB_PB_Slave;
+	
+	fbK550A1_2				:FB_KL_AI_Diag;
+	arK550A1_2_DataPoint_APP: ARRAY [1..8] OF stAI_DataPoint_APP;
+	
+	fbKlemme_67					:FB_EL_AI_Diag;
+	arKlemme_67_DataPoint_APP	: ARRAY [1..8] OF stAI_DataPoint_APP;
+	
+	bAnyActiveMessageTmp	: BOOL;		//If TRUE, there is Message Condition active
+	bAnyNewMessageTmp		: BOOL;		//If TRUE, there is a new Message Condition active since last bConfirm = TRUE
+	fbTcMessage 		: FB_TcMessage;
+	hr					: Tc3_Module.HRESULT;
+	hrLastError			: Tc3_Module.HRESULT;
+	fb_rtrig			: R_TRIG;
+	i : INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+bAnyActiveMessage := FALSE;
+bAnyNewMessage := FALSE;
+//*****************************
+
+fbK1250_Diag(
+	bMute:= , 
+	bConfirm:= bConfirm , 
+	sTerminalName:='BK1250_Test' , 
+	bAnyActiveMessage=> bAnyActiveMessageTmp, 
+	bAnyNewMessage=> bAnyNewMessageTmp, 
+	bError=> );
+bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;
+
+
+fbEL_AODIDO_Diag(
+	bMute:= , 
+	bConfirm:= bConfirm, 
+	sTerminalName:= 'AODIDO_Test', 
+	bAnyActiveMessage=> bAnyActiveMessageTmp, 
+	bAnyNewMessage=> bAnyNewMessageTmp, 
+	bError=> );
+bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;
+
+Profibus_1();
+K550_A1();
+Klemme_67();
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+bError := FALSE;
+fb_rtrig(CLK:= NOT bAnyActiveMessage AND bConfirm);
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.NoActiveMessages, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+		bError := TRUE;
+	ELSE
+		fbTcMessage.ipArguments.Clear(); 
+		fbTcMessage.Send();
+	END_IF
+END_IF
+
+//*****************************]]></ST>
+    </Implementation>
+    <Action Name="K550_A1" Id="{278a127d-0382-4481-90aa-de36c3cd990e}">
+      <Implementation>
+        <ST><![CDATA[
+IF _TaskInfo[1].FirstCycle THEN
+	arK550A1_2_DataPoint_APP[1].bActivateLimitCheck := TRUE;
+	arK550A1_2_DataPoint_APP[1].fAppMinValue := REAL#10.0;
+	arK550A1_2_DataPoint_APP[1].fAppMaxValue := REAL#30.0;
+	
+	arK550A1_2_DataPoint_APP[2].bActivateLimitCheck := TRUE;
+	arK550A1_2_DataPoint_APP[2].fAppMinValue := REAL#15.0;
+	arK550A1_2_DataPoint_APP[2].fAppMaxValue := REAL#30.0;
+	
+	arK550A1_2_DataPoint_APP[3].bActivateLimitCheck := TRUE;
+	arK550A1_2_DataPoint_APP[3].fAppMinValue := REAL#15.0;
+	arK550A1_2_DataPoint_APP[3].fAppMaxValue := REAL#30.0;
+	
+	arK550A1_2_DataPoint_APP[4].bActivateLimitCheck := TRUE;
+	arK550A1_2_DataPoint_APP[4].fAppMinValue := REAL#10.0;
+	arK550A1_2_DataPoint_APP[4].fAppMaxValue := REAL#38.0;
+END_IF
+
+arK550A1_2_DataPoint_APP[1].fAppValue := MAIN.CN.BufferStorage.localState.fUpperTemperature;   
+arK550A1_2_DataPoint_APP[2].fAppValue := MAIN.CN.BufferStorage.localState.fMidTemperature ; 
+arK550A1_2_DataPoint_APP[3].fAppValue := MAIN.CN.BufferStorage.localState.fLowerTemperature;
+arK550A1_2_DataPoint_APP[4].fAppValue := MAIN.HNLT.BufferStorage.localState.fUpperTemperature; 
+
+fbK550A1_2(
+	arAI_DataPoint_APP := arK550A1_2_DataPoint_APP,
+	bMute:= , 
+	bConfirm:= bConfirm, 
+	sTerminalName:= 'K550A1_2', 
+	bAnyActiveMessage=> bAnyActiveMessageTmp, 
+	bAnyNewMessage=> bAnyNewMessageTmp, 
+	bError=> );
+bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;	]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="Klemme_67" Id="{e6e75dd7-c5b9-47d8-b49a-84eb6ef42d9c}">
+      <Implementation>
+        <ST><![CDATA[
+IF _TaskInfo[1].FirstCycle THEN
+	arKlemme_67_DataPoint_APP[1].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[1].fAppMinValue := REAL#10.0;
+	arKlemme_67_DataPoint_APP[1].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[2].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[2].fAppMinValue := REAL#15.0;
+	arKlemme_67_DataPoint_APP[2].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[3].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[3].fAppMinValue := REAL#15.0;
+	arKlemme_67_DataPoint_APP[3].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[4].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[4].fAppMinValue := REAL#10.0;
+	arKlemme_67_DataPoint_APP[4].fAppMaxValue := REAL#38.0;
+	arKlemme_67_DataPoint_APP[5].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[5].fAppMinValue := REAL#10.0;
+	arKlemme_67_DataPoint_APP[5].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[6].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[6].fAppMinValue := REAL#15.0;
+	arKlemme_67_DataPoint_APP[6].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[7].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[7].fAppMinValue := REAL#15.0;
+	arKlemme_67_DataPoint_APP[7].fAppMaxValue := REAL#30.0;
+	arKlemme_67_DataPoint_APP[8].bActivateLimitCheck := TRUE;
+	arKlemme_67_DataPoint_APP[8].fAppMinValue := REAL#10.0;
+	arKlemme_67_DataPoint_APP[8].fAppMaxValue := REAL#38.0;
+END_IF
+
+arKlemme_67_DataPoint_APP[1].fAppValue := MAIN.CN.BufferStorage.localState.fUpperTemperature;   
+arKlemme_67_DataPoint_APP[2].fAppValue := MAIN.CN.BufferStorage.localState.fMidTemperature ; 
+arKlemme_67_DataPoint_APP[3].fAppValue := MAIN.CN.BufferStorage.localState.fLowerTemperature;
+arKlemme_67_DataPoint_APP[4].fAppValue := MAIN.HNLT.BufferStorage.localState.fUpperTemperature; 
+arKlemme_67_DataPoint_APP[5].fAppValue := MAIN.CN.BufferStorage.localState.fUpperTemperature;   
+arKlemme_67_DataPoint_APP[6].fAppValue := MAIN.CN.BufferStorage.localState.fMidTemperature ; 
+arKlemme_67_DataPoint_APP[7].fAppValue := MAIN.CN.BufferStorage.localState.fLowerTemperature;
+arKlemme_67_DataPoint_APP[8].fAppValue := MAIN.HNLT.BufferStorage.localState.fUpperTemperature; 
+
+fbKlemme_67(
+	arAI_DataPoint_APP := arKlemme_67_DataPoint_APP,
+	bMute:= , 
+	bConfirm:= bConfirm, 
+	sTerminalName:= 'Klemme_67', 
+	bAnyActiveMessage=> bAnyActiveMessageTmp, 
+	bAnyNewMessage=> bAnyNewMessageTmp , 
+	bError=>  );
+bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="Profibus_1" Id="{ff13d678-e1b7-472c-bfdd-a112a0e25278}">
+      <Implementation>
+        <ST><![CDATA[fbProfibus_1(
+	bMute:= , 
+	bConfirm:= bConfirm, 
+	sTerminalName:= 'Profibus_1', 
+	bAnyActiveMessage=> bAnyActiveMessageTmp, 
+	bAnyNewMessage=> bAnyNewMessageTmp, 
+	bError=>  );
+bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;
+
+FOR i:= 1 TO 6 DO
+	fbProfibus_1_Slaves[i](
+		bMute:= , 
+		bConfirm:= bConfirm, 
+		sTerminalName:= CONCAT('Profibus_1_Box_', INT_TO_STRING(i)), 
+		bAnyActiveMessage=> bAnyActiveMessageTmp, 
+		bAnyNewMessage=> bAnyNewMessageTmp, 
+		bError=>  );
+	bAnyActiveMessage := bAnyActiveMessage OR bAnyActiveMessageTmp;
+	bAnyNewMessage := bAnyNewMessage OR bAnyNewMessageTmp;
+END_FOR]]></ST>
+      </Implementation>
+    </Action>
+  </POU>
+</TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="FB_HNHT_CentralMachineHeating" Id="{fb1b3375-2b59-4861-bcd1-1213b5b09ae0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HNHT_CentralMachineHeating EXTENDS FB_SystemContinous
 VAR_INPUT
@@ -19,7 +19,7 @@ VAR
 	SV300 : FB_DiscreteValve := (ST_DefaultParameters := stSV300DefaultParameters);
 	
 	//heat counter
-	WMZ300: FB_MollineEHeatCounter;
+	WMZ300: FB_MollineC3HeatCounter;
 	
 	//internal variables
 	bSetStatusOn_PU300 : BOOL;
@@ -164,69 +164,5 @@ END_VAR]]></Declaration>
         <ST><![CDATA[//empty method]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_HNHT_CentralMachineHeating">
-      <LineId Id="9" Count="0" />
-      <LineId Id="107" Count="1" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="43" Count="1" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="1" />
-      <LineId Id="164" Count="0" />
-      <LineId Id="51" Count="2" />
-      <LineId Id="136" Count="0" />
-      <LineId Id="135" Count="0" />
-      <LineId Id="37" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.CheckError">
-      <LineId Id="8" Count="2" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.Operational">
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="1" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.RampDown">
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="11" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.RampUp">
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="12" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.SetSetPointLimits">
-      <LineId Id="11" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.SetState">
-      <LineId Id="11" Count="1" />
-      <LineId Id="8" Count="2" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="14" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HNHT_CentralMachineHeating.Working">
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

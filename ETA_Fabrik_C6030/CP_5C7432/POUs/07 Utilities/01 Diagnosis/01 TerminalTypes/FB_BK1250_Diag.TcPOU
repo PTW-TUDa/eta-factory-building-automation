@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_BK1250_Diag" Id="{8f5768e2-eb36-4855-ad6b-982623830b9d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BK1250_Diag EXTENDS FB_DiagBase
+VAR_OUTPUT
+END_VAR
+VAR
+	fbECDiag 		: FB_ECDiag;
+	ECDiagfbrtrig	: R_TRIG;
+	fbBK1250Diag 	: FB_BK1250Diag;
+	BK150Diagfbrtrig: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+IF bMute THEN
+	SUPER^.bAnyActiveMessage := FALSE;
+	RETURN;
+END_IF
+SUPER^.mMessage();
+SUPER^.bAnyActiveMessage:= FALSE;
+//*****************************
+
+
+fbECDiag(
+	bEnable:= TRUE , 
+	sTerminalName:=sTerminalName , 
+	fbTcMessage:=SUPER^.fbTcMessage , 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbECDiag.bActiveError;
+ECDiagfbrtrig(CLK:= fbECDiag.bActiveError);
+fb_RS(SET := ECDiagfbrtrig.Q);
+
+fbBK1250Diag(
+	bEnable := TRUE,
+	sTerminalName:=sTerminalName , 
+	fbTcMessage:= SUPER^.fbTcMessage,
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbBK1250Diag.bActiveError;
+BK150Diagfbrtrig(CLK:= fbBK1250Diag.bActiveError);
+fb_RS(SET := BK150Diagfbrtrig.Q);
+
+
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+fb_RS(RESET1 := bConfirm OR NOT SUPER^.bAnyActiveMessage); 
+SUPER^.bAnyNewMessage := fb_RS.Q1;
+//*****************************]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

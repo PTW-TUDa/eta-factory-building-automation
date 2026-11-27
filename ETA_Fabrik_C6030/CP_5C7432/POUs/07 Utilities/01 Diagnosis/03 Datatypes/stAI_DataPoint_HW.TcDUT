@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="stAI_DataPoint_HW" Id="{76d891dd-0464-43ea-a53e-db4a8bbf5e7f}">
+    <Declaration><![CDATA[TYPE stAI_DataPoint_HW :
+STRUCT
+	bUnderrange	AT %I* 	: BIT;		//Bei KL Bit0
+	bOverrange	AT %I* 	: BIT;		//Bei KL Bit1
+	bError		AT %I* 	: BIT;		//Bei KL Bit6
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

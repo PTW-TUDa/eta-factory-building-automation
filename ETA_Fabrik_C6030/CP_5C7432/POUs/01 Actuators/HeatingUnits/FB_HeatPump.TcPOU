@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="FB_HeatPump" Id="{0dd9755f-94cf-444c-81a9-fd0cdb4903c5}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPump EXTENDS FB_ActuatorContinous
 VAR_INPUT
@@ -86,35 +86,5 @@ END_VAR
         </Implementation>
       </Set>
     </Property>
-    <LineIds Name="FB_HeatPump">
-      <LineId Id="280" Count="0" />
-      <LineId Id="394" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HeatPump.GetState">
-      <LineId Id="40" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HeatPump.SetSetPointLimits">
-      <LineId Id="15" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HeatPump.SetState">
-      <LineId Id="6" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="22" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HeatPump.ST_DefaultParameters.Get">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_HeatPump.ST_DefaultParameters.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

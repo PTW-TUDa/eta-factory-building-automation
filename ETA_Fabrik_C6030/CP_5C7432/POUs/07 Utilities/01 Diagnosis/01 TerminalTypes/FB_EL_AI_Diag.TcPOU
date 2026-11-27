@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_EL_AI_Diag" Id="{d52b79f1-090c-41a7-b4da-be526ecadc50}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EL_AI_Diag EXTENDS FB_DiagBase
+VAR_IN_OUT
+	arAI_DataPoint_APP: ARRAY [1..8] OF stAI_DataPoint_APP;
+END_VAR
+VAR
+	arELAI_DataPoint 	: ARRAY [1..8] OF stAI_DataPoint_HW;
+	fbECDiag 			: FB_ECDiag;
+	ECDiagfbrtrig		: R_TRIG;
+	fbDetectValueChange : ARRAY[1..8] OF FB_DetectValueChange ;
+	fbLimitCheck 		: ARRAY[1..8] OF FB_LimitCheck;
+	fbAnalogInputChDiag : ARRAY[1..8] OF FB_AnalogInputChDiag;
+	i					: INT;
+	arfbrtrig			: ARRAY[1..8] OF  R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+IF bMute THEN
+	SUPER^.bAnyActiveMessage := FALSE;
+	RETURN;
+END_IF
+SUPER^.mMessage();
+SUPER^.bAnyActiveMessage := FALSE;
+//*****************************
+
+fbECDiag(
+	bEnable := TRUE,
+	sTerminalName:=sTerminalName ,
+	fbTcMessage:=SUPER^.fbTcMessage , 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbECDiag.bActiveError;
+ECDiagfbrtrig(CLK:= fbECDiag.bActiveError);
+fb_RS(SET := ECDiagfbrtrig.Q);
+
+FOR i:= 1 TO 8 DO
+	fbAnalogInputChDiag[i](
+		bEnable := TRUE,
+		sTerminalName:= sTerminalName, 
+		sChannel:= INT_TO_STRING(i), 
+		fbTcMessage:= SUPER^.fbTcMessage, 
+		bUnderrange:= arELAI_DataPoint[i].bUnderrange, 
+		bOverrange:= arELAI_DataPoint[i].bOverrange, 
+		bError:= arELAI_DataPoint[i].bError, 
+		bActiveError=> );
+		
+	fbDetectValueChange[i](
+		bEnable := arAI_DataPoint_APP[i].bActivateValueChangeCheck,
+		sTerminalName:= sTerminalName, 
+		sChannel:= INT_TO_STRING(i), 
+		fbTcMessage:= SUPER^.fbTcMessage, 
+		fValue:= arAI_DataPoint_APP[i].fAppValue , 
+		fValueChangeDelta:= arAI_DataPoint_APP[i].fAppValueChangeDelta, 
+		tChangeDeltaTime:= arAI_DataPoint_APP[i].tChangeDeltaTime,
+		bActiveError=> );
+		
+	fbLimitCheck[i](
+		bEnable := arAI_DataPoint_APP[i].bActivateLimitCheck,
+		sTerminalName:= sTerminalName, 
+		sChannel:= INT_TO_STRING(i), 
+		fbTcMessage:= SUPER^.fbTcMessage, 
+		fValue:= arAI_DataPoint_APP[i].fAppValue, 
+		fMax:= arAI_DataPoint_APP[i].fAppMaxValue, 
+		fMin:= arAI_DataPoint_APP[i].fAppMinValue,
+		bActiveError=> );
+		
+	SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbAnalogInputChDiag[i].bActiveError OR fbDetectValueChange[i].bActiveError OR fbLimitCheck[i].bActiveError;
+	arfbrtrig[i](CLK:= fbAnalogInputChDiag[i].bActiveError OR fbDetectValueChange[i].bActiveError OR fbLimitCheck[i].bActiveError);
+	fb_RS(SET := arfbrtrig[i].Q);
+END_FOR
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+fb_RS(RESET1 := bConfirm ); 
+SUPER^.bAnyNewMessage := fb_RS.Q1;
+//*****************************
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

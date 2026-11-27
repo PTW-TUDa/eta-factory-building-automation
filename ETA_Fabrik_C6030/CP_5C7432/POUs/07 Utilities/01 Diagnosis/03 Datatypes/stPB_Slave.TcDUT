@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="stPB_Slave" Id="{e040cb54-eb54-48c7-ac0b-08a95d9a1f0a}">
+    <Declaration><![CDATA[TYPE stPB_Slave :
+STRUCT
+	nFaultCode 		AT %I*	: USINT;
+	nWarningCode 	AT %I*	: USINT;
+	nDPState 		AT %I* 	: USINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

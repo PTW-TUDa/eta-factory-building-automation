@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ProfibusCommDiag" Id="{789db9a6-28c9-49e2-abc0-cb6b7c89e06c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ProfibusCommDiag
+VAR_INPUT
+	sTerminalName		: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+	bEnable: BOOL;
+END_VAR
+VAR_OUTPUT
+	bActiveError		: BOOL;
+END_VAR
+VAR
+	sErrorString		: STRING;
+	nError		AT%I*	: USINT;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+
+IF nError = 0 THEN
+	bActiveError := FALSE;
+	sErrorString := '';
+ELSE
+	bActiveError := TRUE;
+	sErrorString := CONCAT('NO of Slave with no COM:', USINT_TO_STRING(nError));
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.HW_ProfibusCommDiag, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

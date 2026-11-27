@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_BK1250Diag" Id="{c5e29f09-12bd-46cf-be34-6cb2208bd06a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BK1250Diag 
+VAR_INPUT
+	sTerminalName		: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+	bEnable: BOOL;
+END_VAR
+VAR_OUTPUT
+	bActiveError	: BOOL;
+END_VAR
+VAR
+	sErrorString 	: STRING;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+	nCouplerState AT %I* 	: UINT;
+END_VAR
+//0x0000 = No error
+//0x0001 = K-Bus error
+//0x0002 = Configuration error
+//0x0010 = Outputs disabled
+//0x0020 = K-Bus overrun
+//0x0040 = Communication error (Inputs)
+//0x0080 = Communication error (Outputs)
+//]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+
+IF nCouplerState = 0 THEN
+	bActiveError := FALSE;
+	sErrorString := '';
+ELSE 
+	bActiveError := TRUE;
+	sErrorString := 'specific BK1250 error';
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.HW_BK1250, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

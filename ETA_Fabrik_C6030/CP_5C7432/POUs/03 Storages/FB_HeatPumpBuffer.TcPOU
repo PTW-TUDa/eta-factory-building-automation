@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_HeatPumpBuffer" Id="{973783de-1af7-4dfe-b493-a43b76954c23}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpBuffer
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	{attribute 'OPC.UA.DA' := '1'}	
+	localState : ST_HeatPumpBufferState;
+END_VAR
+VAR
+	MidTemperatureSensor : FB_TemperatureSensor_KL3214; //mid temperature sensor
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//sensors
+MidTemperatureSensor();
+
+//get sensor inputs
+MidTemperatureSensor.GetState_AI();
+
+//set outputs
+localState.fMidTemperature := MidTemperatureSensor.fTemperature;
+	]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

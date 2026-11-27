@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="MBUS_Zaehler" Id="{f415fce9-15f4-4c44-8ff2-ffc38c87d5d3}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MBUS_Zaehler (* hier wird die Klemme, an welche der M-Bus mit den Zählern angeschlossen ist, alle 10ms aufgerufen *)
 VAR
@@ -246,6 +246,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">41L</v>
                   </o>
@@ -782,6 +783,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">103L</v>
                   </o>
@@ -1297,6 +1299,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">210L</v>
                   </o>
@@ -1812,6 +1815,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">269L</v>
                   </o>
@@ -2295,6 +2299,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">324L</v>
                   </o>
@@ -2778,6 +2783,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">379L</v>
                   </o>
@@ -3261,6 +3267,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">434L</v>
                   </o>
@@ -3776,6 +3783,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">493L</v>
                   </o>
@@ -4291,6 +4299,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">552L</v>
                   </o>
@@ -4902,6 +4911,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">623L</v>
                   </o>
@@ -5417,6 +5427,7 @@ END_VAR]]></Declaration>
                     <v n="KindOfCall" t="KindOfCall">FunctionBlock</v>
                     <v n="ContainsExtensibleInputs">false</v>
                     <v n="Forced">false</v>
+                    <v n="IsFeedbackStart">false</v>
                     <v n="OwningPageId">-1L</v>
                     <v n="Id">682L</v>
                   </o>
@@ -5495,58 +5506,24 @@ END_VAR]]></Declaration>
               <o n="RoutingPathTable" t="CFCRoutingPathTable">
                 <d2 n="InnerDictionary" ckt="CFCRoutingConnection" cvt="CFCPointList">
                   <o>
-                    <v n="ConnectionId">42L</v>
+                    <v n="ConnectionId">553L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">32</v>
-                      <v n="Y">9</v>
+                      <v n="X">43</v>
+                      <v n="Y">133</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
-                    <v n="Unroutable">false</v>
+                    <v n="Unroutable">true</v>
                     <n n="CorrespondingPageId" />
                     <v n="Locked">false</v>
                   </o>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">32</v>
-                        <v n="Y">9</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
                         <v n="X">43</v>
-                        <v n="Y">9</v>
+                        <v n="Y">133</v>
                         <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">44L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">31</v>
-                      <v n="Y">10</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">31</v>
-                        <v n="Y">10</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">10</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
+                        <v n="Flags">0</v>
                       </o>
                     </l2>
                   </o>
@@ -5609,7 +5586,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">118L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">29</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5621,7 +5598,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">29</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5665,7 +5642,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">219L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">46</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5677,7 +5654,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">46</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5805,7 +5782,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">443L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">111</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5817,7 +5794,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">111</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5861,7 +5838,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">502L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">128</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5873,7 +5850,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">128</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5917,7 +5894,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">561L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">63</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5929,7 +5906,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">63</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5943,9 +5920,37 @@ END_VAR]]></Declaration>
                     </l2>
                   </o>
                   <o>
+                    <v n="ConnectionId">44L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">31</v>
+                      <v n="Y">10</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">31</v>
+                        <v n="Y">10</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">10</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
                     <v n="ConnectionId">565L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">79</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -5957,7 +5962,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">79</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -5965,34 +5970,6 @@ END_VAR]]></Declaration>
                       <o>
                         <v n="X">75</v>
                         <v n="Y">79</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">97</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">569L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
-                      <v n="Y">95</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">false</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">57</v>
-                        <v n="Y">95</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">68</v>
-                      </o>
-                      <o>
-                        <v n="X">75</v>
-                        <v n="Y">95</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">97</v>
                       </o>
@@ -6001,7 +5978,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">573L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">144</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6013,7 +5990,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">144</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -6085,7 +6062,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">632L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">161</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6097,7 +6074,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">161</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -6169,7 +6146,7 @@ END_VAR]]></Declaration>
                   <o>
                     <v n="ConnectionId">691L</v>
                     <o n="StartPoint" t="CFCPoint">
-                      <v n="X">57</v>
+                      <v n="X">55</v>
                       <v n="Y">178</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
@@ -6181,7 +6158,7 @@ END_VAR]]></Declaration>
                   <o>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
-                        <v n="X">57</v>
+                        <v n="X">55</v>
                         <v n="Y">178</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">68</v>
@@ -6195,10 +6172,10 @@ END_VAR]]></Declaration>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">553L</v>
+                    <v n="ConnectionId">104L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">43</v>
-                      <v n="Y">133</v>
+                      <v n="Y">18</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -6210,117 +6187,7 @@ END_VAR]]></Declaration>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">43</v>
-                        <v n="Y">133</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">494L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">43</v>
-                      <v n="Y">117</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">117</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">435L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">43</v>
-                      <v n="Y">100</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">100</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">380L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">43</v>
-                      <v n="Y">84</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">84</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">325L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">43</v>
-                      <v n="Y">68</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">68</v>
-                        <v n="IsJoint">false</v>
-                        <v n="Flags">0</v>
-                      </o>
-                    </l2>
-                  </o>
-                  <o>
-                    <v n="ConnectionId">270L</v>
-                    <o n="StartPoint" t="CFCPoint">
-                      <v n="X">43</v>
-                      <v n="Y">52</v>
-                      <v n="IsJoint">false</v>
-                      <v n="Flags">0</v>
-                    </o>
-                    <v n="Unroutable">true</v>
-                    <n n="CorrespondingPageId" />
-                    <v n="Locked">false</v>
-                  </o>
-                  <o>
-                    <l2 n="InnerList" cet="CFCPoint">
-                      <o>
-                        <v n="X">43</v>
-                        <v n="Y">52</v>
+                        <v n="Y">18</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">0</v>
                       </o>
@@ -6349,10 +6216,10 @@ END_VAR]]></Declaration>
                     </l2>
                   </o>
                   <o>
-                    <v n="ConnectionId">104L</v>
+                    <v n="ConnectionId">270L</v>
                     <o n="StartPoint" t="CFCPoint">
                       <v n="X">43</v>
-                      <v n="Y">18</v>
+                      <v n="Y">52</v>
                       <v n="IsJoint">false</v>
                       <v n="Flags">0</v>
                     </o>
@@ -6364,9 +6231,153 @@ END_VAR]]></Declaration>
                     <l2 n="InnerList" cet="CFCPoint">
                       <o>
                         <v n="X">43</v>
-                        <v n="Y">18</v>
+                        <v n="Y">52</v>
                         <v n="IsJoint">false</v>
                         <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">325L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">43</v>
+                      <v n="Y">68</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">68</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">380L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">43</v>
+                      <v n="Y">84</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">84</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">435L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">43</v>
+                      <v n="Y">100</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">100</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">494L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">43</v>
+                      <v n="Y">117</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">true</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">117</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">0</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">569L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">55</v>
+                      <v n="Y">95</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">55</v>
+                        <v n="Y">95</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">75</v>
+                        <v n="Y">95</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
+                      </o>
+                    </l2>
+                  </o>
+                  <o>
+                    <v n="ConnectionId">42L</v>
+                    <o n="StartPoint" t="CFCPoint">
+                      <v n="X">32</v>
+                      <v n="Y">9</v>
+                      <v n="IsJoint">false</v>
+                      <v n="Flags">0</v>
+                    </o>
+                    <v n="Unroutable">false</v>
+                    <n n="CorrespondingPageId" />
+                    <v n="Locked">false</v>
+                  </o>
+                  <o>
+                    <l2 n="InnerList" cet="CFCPoint">
+                      <o>
+                        <v n="X">32</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">68</v>
+                      </o>
+                      <o>
+                        <v n="X">43</v>
+                        <v n="Y">9</v>
+                        <v n="IsJoint">false</v>
+                        <v n="Flags">97</v>
                       </o>
                     </l2>
                   </o>
@@ -6375,6 +6386,8 @@ END_VAR]]></Declaration>
               <v n="AutoSizeCanvas">true</v>
               <v n="CanvasWidth">91</v>
               <v n="CanvasHeight">181</v>
+              <n n="EditorConfiguration" />
+              <v n="AreElementsSpaceOptimized">true</v>
             </o>
           </Data>
           <TypeList>

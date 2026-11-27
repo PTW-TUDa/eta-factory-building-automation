@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_EL6731" Id="{9fc012b0-2982-4029-ab8c-9b758abaad3c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EL6731 EXTENDS FB_DiagBase
+VAR_OUTPUT
+END_VAR
+VAR
+	fbECDiag 			: FB_ECDiag;
+	ECDiagfbrtrig		: R_TRIG;
+	fbECDiagHistory 	: FB_ECDiagHistory;
+	ECDiagHistoryfbrtrig: R_TRIG;
+	fbProfibusCommDiag 		: FB_ProfibusCommDiag;
+	ProfibusCommDiagfbrtrig	: R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+IF bMute THEN
+	SUPER^.bAnyActiveMessage := FALSE;
+	RETURN;
+END_IF
+SUPER^.mMessage();
+SUPER^.bAnyActiveMessage := FALSE;
+//*****************************
+
+fbECDiag(
+	bEnable:= TRUE, 
+	sTerminalName:=sTerminalName ,
+	fbTcMessage:=SUPER^.fbTcMessage , 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbECDiag.bActiveError;
+ECDiagfbrtrig(CLK:= fbECDiag.bActiveError);
+fb_RS(SET := ECDiagfbrtrig.Q);
+	
+fbProfibusCommDiag(
+	bEnable := TRUE,
+	sTerminalName:= sTerminalName, 
+	fbTcMessage:=SUPER^.fbTcMessage,
+	nError:= , 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbProfibusCommDiag.bActiveError;
+ProfibusCommDiagfbrtrig(CLK:= fbProfibusCommDiag.bActiveError);
+fb_RS(SET := ProfibusCommDiagfbrtrig.Q);
+
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+fb_RS(RESET1 := bConfirm OR NOT SUPER^.bAnyActiveMessage); 
+SUPER^.bAnyNewMessage := fb_RS.Q1;
+//*****************************]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

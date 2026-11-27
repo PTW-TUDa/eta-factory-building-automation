@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="MAIN" Id="{f4373c39-f5a7-4799-b8f8-e268e2a0cb7c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -18,12 +18,17 @@ VAR
 	HNLT : FB_HeatingNetworkLowTemperature;
 	HNHT_HNLT : FB_HnhtHnltLinkage;
 	HNHT : FB_HeatingNetworkHighTemperature;
+
 	
 	//ambient state
 	Ambient : FB_Ambient;
 	
 	//sensors
 	LowVoltageMainDistribution : FB_LowVoltageMainDistribution;
+	
+	fbDiagManager :FB_DiagManager;
+	
+	
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//strategy controller
@@ -54,6 +59,7 @@ HNHT_HNLT(controlAutomatic := Strategy.hnhtHnltLinkageControl);
 HNHT(controlAutomatic := Strategy.hnhtControl,
 	stAmbientState := Ambient.localState);
 	
+fbDiagManager(bConfirm:= , bAnyActiveMessage=> , bAnyNewMessage=> , bError=> );
 
 //Current implementation
 
@@ -79,28 +85,10 @@ HNHT(controlAutomatic := Strategy.hnhtControl,
 	GA_Allgemein();
 
 	(* Beleuchtung *)
-	Beleuchtung();]]></ST>
+	Beleuchtung();
+
+
+]]></ST>
     </Implementation>
-    <LineIds Name="MAIN">
-      <LineId Id="116" Count="3" />
-      <LineId Id="193" Count="0" />
-      <LineId Id="120" Count="2" />
-      <LineId Id="323" Count="0" />
-      <LineId Id="322" Count="0" />
-      <LineId Id="325" Count="0" />
-      <LineId Id="123" Count="4" />
-      <LineId Id="169" Count="0" />
-      <LineId Id="217" Count="1" />
-      <LineId Id="128" Count="1" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="188" Count="0" />
-      <LineId Id="221" Count="1" />
-      <LineId Id="189" Count="0" />
-      <LineId Id="245" Count="0" />
-      <LineId Id="295" Count="1" />
-      <LineId Id="77" Count="1" />
-      <LineId Id="4" Count="20" />
-      <LineId Id="37" Count="2" />
-    </LineIds>
   </POU>
 </TcPlcObject>

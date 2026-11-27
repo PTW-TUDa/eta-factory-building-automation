@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_DiagBase" Id="{55c05388-df86-40ee-9b8a-f3223de8b61d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DiagBase
+VAR_INPUT
+	bMute 		: BOOL;	//Mutes any Diag Messages as long as Bit is TRUE
+	bConfirm	: BOOL; //Confirms the active Messages by setting bAnyNewMessage = FALSE
+	sTerminalName	: STRING;
+END_VAR
+VAR_OUTPUT
+	bAnyActiveMessage	: BOOL;		//If TRUE, there is Message Condition active
+	bAnyNewMessage		: BOOL;		//If TRUE, there is a new Message Condition active since last bConfirm = TRUE
+	bError				: BOOL;		//TRUE, if DB has any internal Error
+END_VAR
+VAR
+	fb_rtrig		: R_TRIG;
+	fb_RS			: RS;
+	fbTcMessage 	: FB_TcMessage;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="mMessage" Id="{02b6825e-db80-4760-b8a3-36b5b2174000}">
+      <Declaration><![CDATA[METHOD mMessage : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bError := FALSE;
+fb_rtrig(CLK:= bAnyActiveMessage AND bConfirm);
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.StillActiveMessages_Terminal, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+		bError := TRUE;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

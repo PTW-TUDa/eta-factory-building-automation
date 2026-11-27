@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_AnalogInputChDiag" Id="{fcbfe04e-abb9-4721-909e-ca8246a925a0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_AnalogInputChDiag
+VAR_INPUT
+	bEnable				: BOOL;
+	sTerminalName		: STRING;
+	sChannel			: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+	bUnderrange			: BOOL;
+	bOverrange			: BOOL;
+	bError				: BOOL;
+END_VAR
+VAR_OUTPUT
+	bActiveError 	: BOOL;
+END_VAR
+VAR
+	sErrorString	: STRING;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+
+bActiveError := FALSE;
+sErrorString := '';
+IF bUnderrange THEN
+	bActiveError := TRUE;
+	sErrorString := 'underrange';
+ELSIF bOverrange THEN
+	bActiveError := TRUE;
+	sErrorString := 'overrange';
+ELSIF bError THEN
+	bActiveError := TRUE;
+	sErrorString := 'general';
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.HW_AnalogInputCh, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sChannel).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

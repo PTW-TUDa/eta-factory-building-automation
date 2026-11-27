@@ -1,0 +1,100 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "development"'
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+    - when: never
+
+stages:
+  - validate
+  - release
+  - github
+
+default:
+  image: python:3.12-alpine
+  before_script:
+    - apk add --no-cache git
+
+variables:
+  GIT_DEPTH: "0"
+  GITHUB_REPOSITORY: "PTW-TUDa/eta-factory-building-automation"
+  GITHUB_BRANCH: "mirroring_to_github"
+
+feature_metadata:
+  stage: validate
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development"'
+  script:
+    - python .gitlab/release.py validate-mr
+    - python -m unittest discover -s .gitlab/tests -v
+
+release_notes:
+  stage: validate
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "development"'
+  script:
+    - git fetch origin master development --tags
+    - |
+      set -eu
+      START_SHA="$(python .gitlab/release.py previous-start --main origin/master)"
+      END_SHA="${CI_MERGE_REQUEST_SOURCE_BRANCH_SHA:-$CI_COMMIT_SHA}"
+      RELEASE_VERSION="$(cat VERSION)"
+      python .gitlab/release.py draft --start "$START_SHA" --end "$END_SHA" --project-url "$CI_PROJECT_URL" --version "$RELEASE_VERSION" --output release-notes-draft.md
+      python .gitlab/release.py validate-release --start "$START_SHA" --end "$END_SHA" --project-url "$CI_PROJECT_URL" --version "$RELEASE_VERSION"
+      python .gitlab/release.py public-check --revision "$END_SHA"
+  artifacts:
+    when: always
+    paths:
+      - release-notes-draft.md
+    expire_in: 30 days
+
+verify_tag:
+  stage: validate
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+  script:
+    - git fetch origin master --tags
+    - python .gitlab/release.py tag-check --tag "$CI_COMMIT_TAG" --main origin/master --project-url "$CI_PROJECT_URL"
+    - python -m unittest discover -s .gitlab/tests -v
+
+publish_release:
+  stage: release
+  needs:
+    - verify_tag
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+  script:
+    - git fetch origin master --tags
+    - python .gitlab/release.py publish --tag "$CI_COMMIT_TAG" --main origin/master --project-url "$CI_PROJECT_URL"
+
+# Builds the public GitHub commit (release without GVLs) for review. Pushes nothing.
+github_snapshot:
+  stage: github
+  needs:
+    - publish_release
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+  script:
+    - git fetch origin master --tags
+    - python .gitlab/release.py github-snapshot --tag "$CI_COMMIT_TAG" --main origin/master --project-url "$CI_PROJECT_URL" --repo "$GITHUB_REPOSITORY" --branch "$GITHUB_BRANCH" --output public-snapshot
+  artifacts:
+    paths:
+      - public-snapshot/
+    expire_in: 30 days
+
+# Started manually after reviewing the github_snapshot artifacts. Pushes exactly
+# the reviewed commit and creates a draft GitHub release.
+github_publish:
+  stage: github
+  needs:
+    - github_snapshot
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+      when: manual
+  allow_failure: false
+  environment:
+    name: github
+    url: https://github.com/$GITHUB_REPOSITORY/releases
+  script:
+    - git fetch origin master --tags
+    - python .gitlab/release.py github-publish --tag "$CI_COMMIT_TAG" --main origin/master --project-url "$CI_PROJECT_URL" --repo "$GITHUB_REPOSITORY" --branch "$GITHUB_BRANCH" --reviewed public-snapshot/public-commit.txt

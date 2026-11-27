@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ProfibusSlaveDiag" Id="{f266cbcd-612f-468a-8dc6-b55f92fa3202}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ProfibusSlaveDiag
+VAR_INPUT
+	sTerminalName			: STRING;
+	fbTcMessage 			: REFERENCE TO FB_TcMessage;
+	nFaultCode 				: USINT;
+	nWarningCode 			: USINT;
+	nDPState 			 	: USINT;
+	bEnable: BOOL;
+END_VAR
+VAR_OUTPUT
+	bActiveError 	: BOOL;
+END_VAR
+VAR
+	sErrorString	: STRING;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+
+IF NOT(nDPState = 0) THEN
+	bActiveError := TRUE;
+	sErrorString := 'Error in DPstate';
+ELSIF NOT(nFaultCode = 0) THEN
+	bActiveError := TRUE;
+	sErrorString := 'Active Fault';
+ELSIF NOT(nWarningCode = 0) THEN
+	bActiveError := TRUE;
+	sErrorString := 'Active Warning';
+ELSE
+	bActiveError := FALSE;
+	sErrorString := '';
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.HW_ProfibusCommDiag, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

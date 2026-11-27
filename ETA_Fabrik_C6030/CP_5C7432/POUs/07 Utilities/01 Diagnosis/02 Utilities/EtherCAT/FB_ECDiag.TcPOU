@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ECDiag" Id="{8659fc04-c495-4893-82d4-127bd2876728}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ECDiag
+VAR_INPUT
+	bEnable				: BOOL;
+	sTerminalName		: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+END_VAR
+VAR_OUTPUT
+	bActiveError	: BOOL;
+END_VAR
+VAR
+	sErrorString	: STRING;
+	WcState AT %I* : BIT;
+	State	AT %I* : UINT;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+
+bActiveError := FALSE;
+sErrorString := '';
+
+IF State = 8 AND WcState = TRUE THEN
+	sErrorString := 'EC data is invalid';
+	bActiveError := TRUE;
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.EC_Diag, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

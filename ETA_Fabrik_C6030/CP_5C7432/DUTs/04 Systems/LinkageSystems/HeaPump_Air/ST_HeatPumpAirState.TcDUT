@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_HeatPumpAirState" Id="{3a548344-f1e9-4850-bf9e-c5c25b0c4b0f}">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA.StructuredType' := '1'}
+TYPE ST_HeatPumpAirState :
+STRUCT
+	bError	: BOOL;
+	bCommunicationError : BOOL;
+	bPlantMode : UDINT;
+	bSystemMode : UDINT;
+	fAmbientTemperature : REAL;
+	fFeedTemperature : REAL;
+	fReturnTemperature : REAL;
+	fBufferTemperatureTop : REAL;
+	fBufferTemperatureBottom : REAL;
+	fPowersetpoint : REAL;
+	fOperatingHours	 : UDINT;
+	nCycles : UDINT;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

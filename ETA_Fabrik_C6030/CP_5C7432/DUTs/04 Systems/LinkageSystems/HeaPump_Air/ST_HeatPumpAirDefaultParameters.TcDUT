@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_HeatPumpAirDefaultParameters" Id="{5583f365-5330-4382-a3b1-ac3d7f8f2380}">
+    <Declaration><![CDATA[TYPE ST_HeatPumpAirDefaultParameters :
+STRUCT
+	aSetPointLimitsTemperature : ARRAY[1..2] OF REAL := [12,55];
+	fRampUpTemperatureOffset   : REAL := 4; //K, = standby hysteresis range, buffer is ready right away if standby worked
+	fStandbyHeatPumpOffset     : REAL := 2; //K, heat pump setpoint beyond the standby hysteresis range
+	fStandbyHysteresisRange    : REAL := 4; //K, standby keeps buffer between feed and feed -/+ hysteresis range
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

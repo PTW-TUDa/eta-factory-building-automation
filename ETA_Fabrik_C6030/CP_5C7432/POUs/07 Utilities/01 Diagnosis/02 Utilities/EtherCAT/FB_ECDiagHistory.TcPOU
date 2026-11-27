@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_ECDiagHistory" Id="{c6611506-8272-4d18-b9a5-6c73b81d4f90}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ECDiagHistory
+VAR_INPUT
+	bEnable			: BOOL;
+	sNetId          : T_AmsNetId;
+	nSlaveAddr      : UINT;
+END_VAR
+VAR_OUTPUT
+	bActiveMessage	: BOOL;
+	sMessageString	: STRING;
+END_VAR
+VAR
+	arCoE_DiagHistory_Entry : ARRAY [1..250] OF ST_CoE_DiagHistory_Entry;
+	fbCoE_DiagHistory_Read : FB_CoE_DiagHistory_Read;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbCoE_DiagHistory_Read(
+	sNetId:= sNetId, 
+	nSlaveAddr:=nSlaveAddr, 
+	bEnable:= bEnable , 
+	bAck:= , 
+	tTimeout:= , 
+	tReadInterval:= , 
+	stOptions:= , 
+	aDiagHistory:= arCoE_DiagHistory_Entry, 
+	bBusy=> , 
+	bValid=> , 
+	bError=> , 
+	hrErrorCode=> , 
+	ipErrorMessage=> , 
+	stInfo=> );
+
+bActiveMessage := FALSE;
+sMessageString := '';
+IF fbCoE_DiagHistory_Read.stInfo.bNewMsgsAvail THEN
+	bActiveMessage := TRUE;
+	sMessageString := 'Diag History Shows new Messages';
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

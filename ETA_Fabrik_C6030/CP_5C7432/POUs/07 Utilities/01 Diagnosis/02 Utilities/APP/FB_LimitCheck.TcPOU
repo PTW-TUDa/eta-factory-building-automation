@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_LimitCheck" Id="{07794348-adcb-40e6-a2f9-21f96d8baffb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_LimitCheck
+VAR_INPUT
+	sTerminalName		: STRING;
+	sChannel			: STRING;
+	fbTcMessage 		: REFERENCE TO FB_TcMessage;
+	fValue	: REAL;
+	fMax	: REAL;
+	fMin	: REAL;
+	bEnable: BOOL;
+END_VAR
+VAR_OUTPUT
+	bActiveError	: BOOL;
+END_VAR
+VAR
+	sErrorString	: STRING;
+	hr				: Tc3_Module.HRESULT;
+	hrLastError		: Tc3_Module.HRESULT;
+	fb_rtrig		: R_TRIG;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bEnable THEN
+	bActiveError := FALSE;
+	fb_rtrig(CLK:= bActiveError);
+	RETURN;
+END_IF
+IF fValue < fMin THEN
+	bActiveError := TRUE;
+	sErrorString := 'Below Min';
+ELSIF fValue > fMax THEN
+	bActiveError := TRUE;
+	sErrorString := 'Above Max';
+ELSE
+	bActiveError := FALSE;
+	sErrorString := '';
+END_IF
+
+fb_rtrig(CLK:= bActiveError);
+
+IF fb_rtrig.Q THEN
+	hr := fbTcMessage.CreateEx(TC_EVENTS.ETAMessageEvents.App_LimitCheck, 0);
+	IF FAILED(hr) THEN
+		hrLastError :=hr;
+	ELSE
+		fbTcMessage.ipArguments.Clear().AddString(sTerminalName).AddString(sChannel).AddString(sErrorString); 
+		fbTcMessage.Send();
+	END_IF
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

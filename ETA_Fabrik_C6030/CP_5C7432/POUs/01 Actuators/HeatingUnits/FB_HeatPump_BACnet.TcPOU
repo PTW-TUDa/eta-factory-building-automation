@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_HeatPump_BACnet" Id="{b72c0cb7-9bbd-410b-be57-c8d0ef60c41c}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'no_assign'}
+FUNCTION_BLOCK FB_HeatPump_BACnet EXTENDS FB_ActuatorContinous
+VAR_INPUT
+	nControlModeAutomatic : E_HeatPumpAirControlMode; //control mode: 2 = heating, 3 = cooling (according to Viessmann naming scheme)
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localState : ST_HeatPumpAirState;
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_HeatPumpAirSetParameters;
+	
+	//default parameters
+	localDefaultParameters : ST_HeatPumpAirDefaultParameters;
+	
+	//internal variables
+	nControlMode : E_HeatPumpAirControlMode;
+	bActivateHeating : BOOL;
+	bActivateCooling : BOOL;
+	
+	//BACnet communication
+	Client : FB_BACnet_Client := (
+		nDeviceInstance := 213,
+		tReadCycleTime := T#10S,
+		nMaxParallelRequests := 20); //use name client to use automatic Code generation
+	
+	//connect to device
+	fbHeatPumpDevice : FB_BACnetRM_Device := (Client := Client);
+	
+	//read values		
+	fbBufferTemperatureTop : FB_BACnetRM_AO := (Client := Client, nObjectInstance := 43); //Object name: Buffer_temperature_top
+	fbBufferTemperatureBottom : FB_BACnetRM_AO := (Client := Client, nObjectInstance := 46); //Object name: Buffer_temperature_bottom
+	fbAmbientTemperature: FB_BACnetRM_AI := (Client:=Client, nObjectInstance:=30); //General_outside_air_temperature
+	fbPowerSetPoint: FB_BACnetRM_AO := (Client:=Client,nObjectInstance:=33); //Heatpump1_power
+	fbOperationMode: FB_BACnetRM_MV := (Client:=Client,nObjectInstance:=93); //Heatpump1_operation_mode
+	fbFeedTemperature: FB_BACnetRM_AV := (Client:=Client,nObjectInstance:=36); //Heatpump1_flow_temperature
+	fbReturnTemperature: FB_BACnetRM_AV := (Client:=Client,nObjectInstance:=37); //Heatpump1_return_temperature
+	fbOperatingHours: FB_BACnetRM_UINT := (Client:=Client,nObjectInstance:=34); //Heatpump1_hours
+	fbCycles: FB_BACnetRM_UINT := (Client:=Client,nObjectInstance:=35); //Heatpump1_cylces
+	fbSystemMode: FB_BACnetRM_MV := (Client:=Client,nObjectInstance:=91); //General_actual_system_mode
+	fbPlantMode: FB_BACnetRM_MV := (Client:=Client,nObjectInstance:=90); //General_actual_plant_mode
+	fbError : FB_BACnetRM_BO := (Client:=Client,nObjectInstance:=10); //General_system_error_status
+	
+	//write values
+	fbExternalHeatingSetpoint: FB_BACnetRM_AV := (Client:=Client,nObjectInstance:=121); //General_system_external_heating_temperature_setpoint
+	fbExternalCoolingSetpoint: FB_BACnetRM_AV := (Client:=Client,nObjectInstance:=123); //General_system_external_cooling_temperatur_setpoint
+	fbExternalHeatingRequest: FB_BACnetRM_MV := (Client:=Client,nObjectInstance:=112); //General_system_external_heating_request
+	fbExternalCoolingRequest: FB_BACnetRM_MV := (Client:=Client,nObjectInstance:=111); //General_system_external_cooling_request
+
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SUPER^.MAIN();
+SelectLocalControlMode();
+LocalControl();
+Client();
+fbHeatPumpDevice();
+fbBufferTemperatureTop();
+fbBufferTemperatureBottom();
+fbAmbientTemperature();
+fbPowerSetPoint();
+fbOperationMode();
+fbFeedTemperature();
+fbReturnTemperature();
+fbOperatingHours();
+fbCycles();
+fbSystemMode();
+fbPlantMode();
+fbError();
+
+
+fbExternalHeatingRequest(bEnWrite := TRUE, nVal := SEL(bSetStatusOn AND bActivateHeating, 1, 2)); //1: off, 2: on
+fbExternalHeatingSetpoint(bEnWrite := bActivateHeating, fVal := fSetPoint);
+
+fbExternalCoolingRequest(bEnWrite := TRUE, nVal := SEL(bSetStatusOn AND bActivateCooling, 1, 2)); //1: off, 2: on
+fbExternalCoolingSetpoint(bEnWrite := bActivateCooling, fVal := fSetPoint);
+]]></ST>
+    </Implementation>
+    <Method Name="GetState" Id="{82b4639f-f64d-4c96-809e-9d0d6bc40ed3}">
+      <Declaration><![CDATA[METHOD GetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//local state
+localState.fBufferTemperatureTop := fbBufferTemperatureTop.fPresVal;
+localState.fBufferTemperatureBottom := fbBufferTemperatureBottom.fPresVal;
+localState.bSystemMode := fbSystemMode.nPresVal; //1: Standby, 2: Heating, 3: Cooling, ... 9: Off
+localState.bPlantMode := fbPlantMode.nPresVal; //1: Off, 2:Standby, 3: Automatic
+localState.fAmbientTemperature := fbAmbientTemperature.fPresVal;
+localState.fPowerSetpoint := fbPowerSetpoint.fPresVal; //in %
+localState.fFeedTemperature := fbFeedTemperature.fPresVal;
+localState.fReturnTemperature := fbReturnTemperature.fPresVal;
+localState.fOperatingHours := fbOperatingHours.nPresVal;
+localState.nCycles := fbCycles.nPresVal;
+localState.bError := fbError.bPresVal;
+
+//Check multiple variables for successfull communication
+localState.bCommunicationError := NOT (Client.bReady AND Client.bConnected AND fbHeatPumpDevice.bOperational);
+
+
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="LocalControl" Id="{c63d0ba2-2e44-4c74-a8cf-6089f3bca600}">
+      <Declaration><![CDATA[METHOD LocalControl : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE nControlMode OF
+	2: //heatingMode
+	bActivateHeating := TRUE;
+	bActivateCooling := FALSE;
+	
+	3: //coolingMode
+	bActivateHeating := FALSE;
+	bActivateCooling := TRUE;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{f4f9b5a6-511d-4293-bc03-c98f7addcaa7}">
+      <Declaration><![CDATA[METHOD SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	nControlMode := localSetParameters.nControlModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	nControlMode := localSetParameters.nControlModeAlgorithm;
+ELSE
+	nControlMode := nControlModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{245a45e7-1e6d-4686-9ddd-a10a2139c4bd}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{a4c30b75-978b-4a36-b066-a43afa6a4fb4}">
+      <Declaration><![CDATA[METHOD SetState : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ST_DefaultParameters" Id="{640dd77a-c81b-45ae-8781-98f69ac7098f}">
+      <Declaration><![CDATA[PROPERTY ST_DefaultParameters : REFERENCE TO ST_HeatPumpAirDefaultParameters]]></Declaration>
+      <Get Name="Get" Id="{fbf40839-8c40-4aa5-a8ac-bbf41dc7fd74}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ST_DefaultParameters REF= localDefaultParameters;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{90794bf0-313c-4f11-a090-93ac3b43da97}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[localDefaultParameters := ST_DefaultParameters;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

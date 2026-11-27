@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_HeatPumpSystem_Air" Id="{3f6cba4a-6b68-4dca-b94f-0b205a63b0fa}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HeatPumpSystem_Air EXTENDS FB_SystemContinous
+VAR_INPUT
+	nControlModeAutomatic: E_HeatPumpAirControlMode;
+	fFeedTemperature_HNLT : REAL; //degreeC, required HNLT feed temperature -> buffer must reach it before pumping in heating mode
+	fFeedTemperature_CN   : REAL; //degreeC, required CN feed temperature -> buffer must reach it before pumping in cooling mode
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	{attribute 'OPC.UA.DA' := '1'}
+	localSetParameters : ST_HeatPumpAirSetParameters;
+	
+	//default parameters
+	localDefaultParameters : ST_HeatPumpAirDefaultParameters;
+	
+	//heat pump Vitocal 250-A PRO
+	HeatPump : FB_HeatPump_BACnet;
+	
+	StandbyController_HeatPump_Heating : FB_CTRL_2POINT;
+	StandbyController_HeatPump_Cooling : FB_CTRL_2POINT;
+	StandbyController_HeatPump_Parameters : ST_CTRL_2POINT_PARAMS;
+	
+	TempLimitController_HeatPump_Cooling : FB_CTRL_2POINT;
+	TempLimitController_HeatPump_Heating : FB_CTRL_2POINT;
+	TempLimitController_HeatPump_Parameters : ST_CTRL_2POINT_PARAMS;
+	
+	//buffer between heat pump and basement
+	Buffer : FB_HeatPumpBuffer;
+	
+	//sensors
+	WMZ136 : FB_MollineC3HeatCounter();
+	WMZ236 : FB_MollineC3HeatCounter();
+	WMZ436 : FB_MollineC3HeatCounter();
+	
+	stPU136DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stPU236DefaultParameters : ST_PumpGrundfosMagna3DefaultParameters := (tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	PU136 : FB_PumpGrundfosMagna3_BACnet := (Client := (nDeviceInstance := 215), ST_DefaultParameters := stPU136DefaultParameters); // CN
+	PU236 : FB_PumpGrundfosMagna3_BACnet := (Client := (nDeviceInstance := 214), ST_DefaultParameters := stPU236DefaultParameters); // HNLT
+
+	
+	stRV136DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, fDefaultPosition := 100, fControllerAmplification := 10, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	stRV236DefaultParameters : ST_MixingValveDefaultParameters := (bFeedbackSignal := FALSE, fDefaultPosition := 100, fControllerAmplification := 10, tControllerIntegralTime := T#100S, tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN, tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN);
+	RV136 : FB_MixingValve := (ST_DefaultParameters := stRV136DefaultParameters);
+	RV236 : FB_MixingValve := (ST_DefaultParameters := stRV236DefaultParameters);
+	
+	//internal variables
+	nControlMode : E_HeatPumpAirControlMode; //requested mode (automatic / manual / algorithm)
+	nControlModeActive : E_HeatPumpAirControlMode; //mode latched in standby, used while system is running
+	bBufferReady       : BOOL; //buffer temperature fits the network
+	bSetStatusOn_HeatPump : BOOL;
+	bSetStatusOn_PU136 : BOOL;
+	bSetStatusOn_PU236 : BOOL;
+	bSetStatusOn_RV136 : BOOL;
+	bSetStatusOn_RV236 : BOOL;
+	
+	//timers
+	bStartRampUpTimer : BOOL;
+	RampUpTimer : TON;
+	bStartRampDownTimer : BOOL;
+	RampDownTimer : TON;
+
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Buffer(); //before the state machine so it uses the current temperature
+
+SUPER^.MAIN();
+
+HeatPump.GetState();
+HeatPump(bSetStatusOnAutomatic := bSetStatusOn_HeatPump,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := fSetPoint,
+	nControlModeAutomatic := nControlModeActive); //use active control mode to prevent switch while hp is running
+HeatPump.SetState();
+
+
+
+WMZ136(aHeatCounterTelegramm:=aTelegramm_WMZ136);
+WMZ236(aHeatCounterTelegramm:=aTelegramm_WMZ236);
+WMZ436(aHeatCounterTelegramm:=aTelegramm_WMZ436);
+
+PU136.GetState();
+PU136(bSetStatusOnAutomatic := bSetStatusOn_PU136,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 60,
+	nControlModeAutomatic := E_GrundfosMagna3ControlMode.constantSpeed);
+PU136.SetState();
+
+PU236.GetState();
+PU236(bSetStatusOnAutomatic := bSetStatusOn_PU236,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fSetPointAutomatic := 45,
+	nControlModeAutomatic := E_GrundfosMagna3ControlMode.constantSpeed);
+PU236.SetState();
+
+RV136.GetState_AI();
+RV136(fSetPointAutomatic := 0, //TODO: fSetPoint
+	bSetStatusOnAutomatic := bSetStatusOn_RV136,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := WMZ136.fFeedTemperature,
+	fThermalPowerExternal := WMZ136.fHeatFlowRate,
+	nControlModeAutomatic := 0); //TODO: position mode
+RV136.SetState_AO();
+
+RV236.GetState_AI();
+RV236(fSetPointAutomatic := 0, //TODO: fSetPoint
+	bSetStatusOnAutomatic := bSetStatusOn_RV236,
+	bAlgorithmPermission := bAlgorithmPermission,
+	fTemperatureExternal := WMZ236.fFeedTemperature,
+	fThermalPowerExternal := WMZ236.fHeatFlowRate,
+	nControlModeAutomatic := 0); //TODO: position mode
+RV236.SetState_AO();
+
+RampUpTimer(IN := bStartRampUpTimer,
+	PT := T#60S);
+
+RampDownTimer(IN := bStartRampDownTimer,
+	PT := T#500S); // user long ramp down timer, as heat pump takes some time
+
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="CheckError" Id="{a4d5aa88-d2a3-46f3-bf8a-a74c3e76fc72}">
+      <Declaration><![CDATA[METHOD PROTECTED  CheckError : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bError : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//empty method because system has no feedback signals]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Operational" Id="{f266b9ea-3038-4d63-b0de-28ecf215a8b5}">
+      <Declaration><![CDATA[METHOD PROTECTED  Operational : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToWorking : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_HeatPump := TRUE;
+bSwitchToWorking := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampDown" Id="{a2d08b28-796e-48c1-a322-5917c3625a20}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampDown : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampDownFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bSetStatusOn_HeatPump := FALSE;
+
+bStartRampUpTimer := FALSE; //ramp-up may have been interrupted
+
+bSetStatusOn_PU136 := FALSE;
+bSetStatusOn_PU236 := FALSE;
+bSetStatusOn_RV136 := FALSE;
+bSetStatusOn_RV236 := FALSE;
+
+bStartRampDownTimer := TRUE;
+IF RampDownTimer.Q THEN
+	bRampDownFinished := TRUE;
+	bStartRampDownTimer := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RampUp" Id="{234212eb-3c5b-4853-90e4-b3ec785c9c69}">
+      <Declaration><![CDATA[METHOD PROTECTED  RampUp : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bRampUpFinished : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//control mode of heat pump is already defined on system level
+
+bSetStatusOn_HeatPump := TRUE;
+
+bStartRampDownTimer := FALSE; //ramp-down may have been interrupted
+
+
+CASE nControlModeActive OF
+	E_HeatPumpAirControlMode.heatingMode:
+		bBufferReady := Buffer.localState.fMidTemperature >= fFeedTemperature_HNLT - localDefaultParameters.fRampUpTemperatureOffset;
+
+	E_HeatPumpAirControlMode.coolingMode:
+		bBufferReady := Buffer.localState.fMidTemperature <= fFeedTemperature_CN + localDefaultParameters.fRampUpTemperatureOffset;
+ELSE
+	bBufferReady := FALSE;
+END_CASE
+
+
+IF bBufferReady THEN
+	bStartRampUpTimer := TRUE;
+	CASE nControlModeActive OF
+	E_HeatPumpAirControlMode.heatingMode:
+		bSetStatusOn_RV236 := TRUE;
+	E_HeatPumpAirControlMode.coolingMode:
+		bSetStatusOn_RV136 := TRUE;
+END_CASE
+END_IF
+
+IF RampUpTimer.Q THEN
+	bStartRampUpTimer := FALSE;
+	CASE nControlModeActive OF
+		E_HeatPumpAirControlMode.heatingMode:
+			bSetStatusOn_PU236 := TRUE;
+		E_HeatPumpAirControlMode.coolingMode:
+			bSetStatusOn_PU136 := TRUE;
+	END_CASE
+	bRampUpFinished := TRUE;
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectControlMode" Id="{fe36be61-89c3-4ca8-8391-bf8f4124d8ff}">
+      <Declaration><![CDATA[METHOD PROTECTED SelectControlMode : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.SelectControlMode(); // call super method from base classes
+SelectLocalControlMode();   //nControlMode from automatic/algorithm/manual
+
+//mode switch: if the mode changes while the system is running, ramp down first, then ramp up in the new mode
+IF systemState.nOperatingState <> E_SystemOperatingState.standby AND nControlMode <> nControlModeActive THEN
+	bSetStatusOn := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SelectLocalControlMode" Id="{9e8e9083-5564-4ab7-9a2e-078275b79da6}">
+      <Declaration><![CDATA[METHOD PRIVATE SelectLocalControlMode : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF control.bManualModeActivated THEN
+	nControlMode := localSetParameters.nControlModeManual;
+ELSIF control.bAlgorithmModeActivated AND bAlgorithmPermission THEN
+	nControlMode := localSetParameters.nControlModeAlgorithm;
+ELSE
+	nControlMode := nControlModeAutomatic;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetSetPointLimits" Id="{8d52f2d5-7355-46f6-b44c-a8377a19de59}">
+      <Declaration><![CDATA[METHOD PROTECTED   SetSetPointLimits : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//heat pump has no continous setpoint (limits are not used) but must be implemented because of abstract method
+aSetPointLimits[1] := localDefaultParameters.aSetPointLimitsTemperature[1];
+aSetPointLimits[2] := localDefaultParameters.aSetPointLimitsTemperature[2];]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetState" Id="{7d5864af-651a-4b5b-9cdf-786180bffcb3}">
+      <Declaration><![CDATA[METHOD PROTECTED  SetState : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[controlState.bStatusOn := bSetStatusOn;
+setPointState.aSetPointLimits := aSetPointLimits;
+setPointState.fSetPoint := fSetPoint;
+fOperatingPoint := HeatPump.localState.fFeedTemperature;
+setPointState.fOperatingPoint := fOperatingPoint;
+setPointState.sSetPointUnit := 'degreeC';
+setPointState.sOperatingPointUnit := 'degreeC';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Standby" Id="{411892c0-ab53-44bc-8bfb-b69675c9add9}">
+      <Declaration><![CDATA[METHOD PROTECTED Standby : BOOL
+VAR_INPUT
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[nControlModeActive := nControlMode; //set active mode only in standby -> stays fixed while system is running
+
+
+// If the heat pump system is not on, the buffer should still be kept near the network feed temperature,
+// so that ramp-up can connect the network quickly
+StandbyController_HeatPump_Parameters.fHysteresisRange := localDefaultParameters.fStandbyHysteresisRange;
+StandbyController_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+StandbyController_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+//heating: on below feed - hysteresis range, off above feed
+StandbyController_HeatPump_Heating(fSetpointValue := fFeedTemperature_HNLT - localDefaultParameters.fStandbyHysteresisRange / 2,
+	fActualValue := Buffer.localState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := StandbyController_HeatPump_Parameters);
+
+//cooling: on above feed + hysteresis range, off below feed
+StandbyController_HeatPump_Cooling(fSetpointValue := Buffer.localState.fMidTemperature,
+	fActualValue := fFeedTemperature_CN + localDefaultParameters.fStandbyHysteresisRange / 2,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := StandbyController_HeatPump_Parameters);
+	
+//The standby mode is only used if the manual mode is not active, to prevent the heat pump from being accidentally turned on when controlling the heat pump system.
+IF NOT bSetStatusOn THEN
+	IF control.bManualModeActivated THEN
+		bSetStatusOn_HeatPump := FALSE; //no standby operation in manual mode
+	ELSE
+		CASE nControlModeActive OF
+			E_HeatPumpAirControlMode.heatingMode:
+				bSetStatusOn_HeatPump := StandbyController_HeatPump_Heating.bOut;
+				fSetPoint := LIMIT(aSetPointLimits[1], fFeedTemperature_HNLT + localDefaultParameters.fStandbyHeatPumpOffset, aSetPointLimits[2]);
+			E_HeatPumpAirControlMode.coolingMode:
+				bSetStatusOn_HeatPump := StandbyController_HeatPump_Cooling.bOut;
+				fSetPoint := LIMIT(aSetPointLimits[1], fFeedTemperature_CN - localDefaultParameters.fStandbyHeatPumpOffset, aSetPointLimits[2]);
+		ELSE
+			bSetStatusOn_HeatPump := FALSE;
+		END_CASE
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Working" Id="{c81ac331-19d4-4bed-9b22-80f4985f82c5}">
+      <Declaration><![CDATA[METHOD PROTECTED  Working : BOOL
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+	bSwitchToOperational : BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//turn off heat pump if it is too cold
+
+TempLimitController_HeatPump_Parameters.fHysteresisRange := 4;
+TempLimitController_HeatPump_Parameters.tCtrlCycleTime := GlobalVariables.tCtrlCycleTime_MAIN;
+TempLimitController_HeatPump_Parameters.tTaskCycleTime := GlobalVariables.tTaskCycleTime_MAIN;
+
+
+TempLimitController_HeatPump_Heating(fSetpointValue := fSetPoint,
+	fActualValue := Buffer.localState.fMidTemperature,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := TempLimitController_HeatPump_Parameters);
+	
+TempLimitController_HeatPump_Cooling(fSetpointValue := Buffer.localState.fMidTemperature,
+	fActualValue := fSetPoint,
+	eMode := eCTRL_MODE_ACTIVE,
+	stParams := TempLimitController_HeatPump_Parameters);
+
+CASE nControlModeActive OF
+	E_HeatPumpAirControlMode.heatingMode:
+		bSetStatusOn_HeatPump := TempLimitController_HeatPump_Heating.bOut;
+	E_HeatPumpAirControlMode.coolingMode:
+		bSetStatusOn_HeatPump := TempLimitController_HeatPump_Cooling.bOut;
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

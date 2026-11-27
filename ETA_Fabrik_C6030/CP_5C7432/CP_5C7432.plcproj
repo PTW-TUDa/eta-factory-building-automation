@@ -12,12 +12,14 @@
     <LibraryReferences>{c16575fc-6e5e-4ba6-99ed-5226ea66acce}</LibraryReferences>
     <FileVersion>1.0.0.0</FileVersion>
     <Released>false</Released>
+    <ProgramVersion>3.1.4026.24</ProgramVersion>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="DUTs\01 Actuators\pcmChiller" />
     <Folder Include="DUTs\03 Storages\BufferStorage" />
     <Folder Include="DUTs\03 Storages\HVFAStorage" />
+    <Folder Include="DUTs\03 Storages\HeatPumpBuffer" />
     <Folder Include="DUTs\03 Storages\PCMStorage" />
     <Folder Include="DUTs\03 Storages\VSIStorage" />
     <Folder Include="DUTs\04 Systems" />
@@ -34,6 +36,7 @@
     <Folder Include="DUTs\04 Systems\HeatingSystems\CondensingBoiler" />
     <Folder Include="DUTs\04 Systems\HeatingSystems\HeatPump" />
     <Folder Include="DUTs\04 Systems\LinkageSystems" />
+    <Folder Include="DUTs\04 Systems\LinkageSystems\HeaPump_Air" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\InnerCapillaryTubeMats" />
     <Folder Include="DUTs\04 Systems\LinkageSystems\PCMSystem" />
@@ -62,7 +65,6 @@
     <Folder Include="POUs\01 Actuators\ConsumerUnits" />
     <Folder Include="POUs\01 Actuators\CoolingUnits" />
     <Folder Include="POUs\01 Actuators\HeatingUnits" />
-    <Folder Include="POUs\01 Actuators\Pumps" />
     <Folder Include="POUs\02 Sensors" />
     <Folder Include="POUs\03 Storages" />
     <Folder Include="POUs\04 Systems" />
@@ -76,6 +78,13 @@
     <Folder Include="POUs\04 Systems\StorageSystems" />
     <Folder Include="POUs\05 Thermal Networks" />
     <Folder Include="POUs\06 Strategy" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\02 Utilities" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\APP" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\EtherCAT" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW" />
+    <Folder Include="POUs\07 Utilities\01 Diagnosis\03 Datatypes" />
     <Folder Include="POUs\08 Lighting\Einzelanlagen" />
     <Folder Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29" />
     <Folder Include="POUs\08 Lighting\Einzelanlagen\Beleuchtung %28Bel%29\Bel_RGBW" />
@@ -103,6 +112,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\03 Storages\BufferStorage\ST_BufferStorageState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\03 Storages\HeatPumpBuffer\ST_HeatPumpBufferState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\03 Storages\HVFAStorage\ST_HVFAStorageState.TcDUT">
@@ -178,6 +190,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\04 Systems\HeatingSystems\HeatPump\ST_HeatPumpState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeaPump_Air\E_HeatPumpAirControlMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeaPump_Air\ST_HeatPumpAirDefaultParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeaPump_Air\ST_HeatPumpAirSetParameters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\04 Systems\LinkageSystems\HeaPump_Air\ST_HeatPumpAirState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\04 Systems\LinkageSystems\HeatExchanger1\ST_HeatExchanger1DefaultParameters.TcDUT">
@@ -380,7 +404,7 @@
     <Compile Include="POUs\01 Actuators\HeatingUnits\FB_CondensingBoiler.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\01 Actuators\Pumps\FB_Pump2Point.TcPOU">
+    <Compile Include="POUs\01 Actuators\HeatingUnits\FB_HeatPump_BACnet.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\02 Sensors\FB_JanitzaSensor.TcPOU">
@@ -393,6 +417,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\03 Storages\FB_BufferStorage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\03 Storages\FB_HeatPumpBuffer.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\03 Storages\FB_PCMStorage.TcPOU">
@@ -449,6 +476,9 @@
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatExchanger1System.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_Air.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\04 Systems\LinkageSystems\FB_HeatPumpSystem_CN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -501,6 +531,66 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\06 Strategy\FB_StrategyController_Conventional.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_BK1250_Diag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_EL6731.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_PB_Slave.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_EL_AI_Diag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_EL_AODIDO_Diag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\01 TerminalTypes\FB_KL_AI_Diag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\APP\FB_DetectValueChange.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\APP\FB_LimitCheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\EtherCAT\FB_ECDiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\EtherCAT\FB_ECDiagHistory.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\FB_DiagBase.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW\FB_AnalogInputChDiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW\FB_BK1250Diag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW\FB_MBus_KL6781.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW\FB_ProfibusCommDiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\02 Utilities\HW\FB_ProfibusSlaveDiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\03 Datatypes\stAI_DataPoint_HW.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\03 Datatypes\stAI_DataPoint_APP.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\03 Datatypes\stPB_Slave.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\07 Utilities\01 Diagnosis\FB_DiagManager.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\07 Utilities\FB_OPC_UA_Read.TcPOU">
@@ -644,6 +734,9 @@
     <Compile Include="POUs\MBUS_WZaehler2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\MBUS_WZaehler_ShopFloor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\MBUS_WZaehler_Basement.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -717,6 +810,18 @@
       <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Utilities</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_BACnetRev14">
+      <DefaultResolution>Tc3_BACnetRev14, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_BACnetRev14</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_EtherCATDiag">
+      <DefaultResolution>Tc3_EtherCATDiag, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_EtherCATDiag</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_EventLogger">
+      <DefaultResolution>Tc3_EventLogger, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_EventLogger</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
@@ -727,12 +832,6 @@
     <PlaceholderReference Include="Tc3_PLCopen_OpcUa">
       <DefaultResolution>Tc3_PLCopen_OpcUa, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_PLCopen_OpcUa</Namespace>
-      <Parameters>
-        <Parameter ListName="PARAM" xmlns="">
-          <Key>NMAXNODEIDSINLIST</Key>
-          <Value>20</Value>
-        </Parameter>
-      </Parameters>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
@@ -747,6 +846,55 @@
           <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+        <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
+        <o>
+          <v n="Name">"{192FAD59-8248-4824-A8DE-9177C94C195A}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{29BD8D0C-3586-4548-BB48-497B9A01693F}</v>
+        <o>
+          <v n="Name">"{29BD8D0C-3586-4548-BB48-497B9A01693F}"</v>
+          <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
+            <v>NamingConventions</v>
+            <o>
+              <v n="Name">"NamingConventions"</v>
+              <d n="SubKeys" t="Hashtable" />
+              <d n="Values" t="Hashtable" />
+            </o>
+            <v>Rules</v>
+            <o>
+              <v n="Name">"Rules"</v>
+              <d n="SubKeys" t="Hashtable" />
+              <d n="Values" t="Hashtable" />
+            </o>
+          </d>
+          <d n="Values" t="Hashtable" />
+        </o>
+        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <o>
+          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="String">
+            <v>ActiveVisuProfile</v>
+            <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
+          </d>
+        </o>
+        <v>{8A0FB252-96EB-4DCC-A5B4-B4804D05E2D6}</v>
+        <o>
+          <v n="Name">"{8A0FB252-96EB-4DCC-A5B4-B4804D05E2D6}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
+            <v>WriteLineIDs</v>
+            <v>True</v>
+          </d>
+        </o>
+        <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
+        <o>
+          <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
+          <d n="SubKeys" t="Hashtable" />
+          <d n="Values" t="Hashtable" />
+        </o>
         <v>{A3BBA713-63D7-4de6-BEC2-E3BAAD8789F8}</v>
         <o>
           <v n="Name">"{A3BBA713-63D7-4de6-BEC2-E3BAAD8789F8}"</v>
@@ -762,22 +910,6 @@
             <v>true</v>
             <v>EnableMaxTimeOfInactivity</v>
             <v>true</v>
-            <v>UserList</v>
-            <o t="UserList">
-              <a n="Users" cet="User">
-                <o>
-                  <v n="Id">{ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8}</v>
-                  <v n="Name">"Owner"</v>
-                  <v n="FullName">""</v>
-                  <v n="Description">""</v>
-                  <v n="Active">true</v>
-                </o>
-              </a>
-            </o>
-            <v>MaxTimeOfInactivity</v>
-            <v>10</v>
-            <v>MaxAuthenticationTrials</v>
-            <v>3</v>
             <v>EnableNewHashFormat</v>
             <v>false</v>
             <v>GroupList</v>
@@ -807,6 +939,10 @@
                 </o>
               </a>
             </o>
+            <v>MaxAuthenticationTrials</v>
+            <v>3</v>
+            <v>MaxTimeOfInactivity</v>
+            <v>10</v>
             <v>UserAuthentication</v>
             <o t="UserAuthentication">
               <d n="UserToPasswordHash" t="Hashtable" ckt="Guid" cvt="String">
@@ -814,16 +950,25 @@
                 <v>d41d8cd98f00b204e9800998ecf8427e</v>
               </d>
             </o>
+            <v>UserList</v>
+            <o t="UserList">
+              <a n="Users" cet="User">
+                <o>
+                  <v n="Id">{ee0defe5-1868-4c7d-bc8c-8f284d8ae6a8}</v>
+                  <v n="Name">"Owner"</v>
+                  <v n="FullName">""</v>
+                  <v n="Description">""</v>
+                  <v n="Active">true</v>
+                </o>
+              </a>
+            </o>
           </d>
         </o>
-        <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
+        <v>{eeeeeeee-3909-4298-8022-501ac3238667}</v>
         <o>
-          <v n="Name">"{40450F57-0AA3-4216-96F3-5444ECB29763}"</v>
+          <v n="Name">"{eeeeeeee-3909-4298-8022-501ac3238667}"</v>
           <d n="SubKeys" t="Hashtable" />
-          <d n="Values" t="Hashtable" ckt="String" cvt="String">
-            <v>ActiveVisuProfile</v>
-            <v>IR0whWr8bwfwBwAAiD2qpQAAAABVAgAA37x72QAAAAABAAAAAAAAAAEaUwB5AHMAdABlAG0ALgBTAHQAcgBpAG4AZwACTHsAZgA5ADUAYgBiADQAMgA2AC0ANQA1ADIANAAtADQAYgA0ADUALQA5ADQAMAAwAC0AZgBiADAAZgAyAGUANwA3AGUANQAxAGIAfQADCE4AYQBtAGUABDBUAHcAaQBuAEMAQQBUACAAMwAuADEAIABCAHUAaQBsAGQAIAA0ADAAMgA0AC4ANwAFFlAAcgBvAGYAaQBsAGUARABhAHQAYQAGTHsAMQA2AGUANQA1AGIANgAwAC0ANwAwADQAMwAtADQAYQA2ADMALQBiADYANQBiAC0ANgAxADQANwAxADMAOAA3ADgAZAA0ADIAfQAHEkwAaQBiAHIAYQByAGkAZQBzAAhMewAzAGIAZgBkADUANAA1ADkALQBiADAANwBmAC0ANABkADYAZQAtAGEAZQAxAGEALQBhADgAMwAzADUANgBhADUANQAxADQAMgB9AAlMewA5AGMAOQA1ADgAOQA2ADgALQAyAGMAOAA1AC0ANAAxAGIAYgAtADgAOAA3ADEALQA4ADkANQBmAGYAMQBmAGUAZABlADEAYQB9AAoOVgBlAHIAcwBpAG8AbgALBmkAbgB0AAwKVQBzAGEAZwBlAA0KVABpAHQAbABlAA4aVgBpAHMAdQBFAGwAZQBtAE0AZQB0AGUAcgAPDkMAbwBtAHAAYQBuAHkAEAxTAHkAcwB0AGUAbQARElYAaQBzAHUARQBsAGUAbQBzABIwVgBpAHMAdQBFAGwAZQBtAHMAUwBwAGUAYwBpAGEAbABDAG8AbgB0AHIAbwBsAHMAEyhWAGkAcwB1AEUAbABlAG0AcwBXAGkAbgBDAG8AbgB0AHIAbwBsAHMAFCRWAGkAcwB1AEUAbABlAG0AVABlAHgAdABFAGQAaQB0AG8AcgAVIlYAaQBzAHUATgBhAHQAaQB2AGUAQwBvAG4AdAByAG8AbAAWFHYAaQBzAHUAaQBuAHAAdQB0AHMAFwxzAHkAcwB0AGUAbQAYGFYAaQBzAHUARQBsAGUAbQBCAGEAcwBlABkmRABlAHYAUABsAGEAYwBlAGgAbwBsAGQAZQByAHMAVQBzAGUAZAAaCGIAbwBvAGwAGyJQAGwAdQBnAGkAbgBDAG8AbgBzAHQAcgBhAGkAbgB0AHMAHEx7ADQAMwBkADUAMgBiAGMAZQAtADkANAAyAGMALQA0ADQAZAA3AC0AOQBlADkANAAtADEAYgBmAGQAZgAzADEAMABlADYAMwBjAH0AHRxBAHQATABlAGEAcwB0AFYAZQByAHMAaQBvAG4AHhRQAGwAdQBnAGkAbgBHAHUAaQBkAB8WUwB5AHMAdABlAG0ALgBHAHUAaQBkACBIYQBmAGMAZAA1ADQANAA2AC0ANAA5ADEANAAtADQAZgBlADcALQBiAGIANwA4AC0AOQBiAGYAZgBlAGIANwAwAGYAZAAxADcAIRRVAHAAZABhAHQAZQBJAG4AZgBvACJMewBiADAAMwAzADYANgBhADgALQBiADUAYwAwAC0ANABiADkAYQAtAGEAMAAwAGUALQBlAGIAOAA2ADAAMQAxADEAMAA0AGMAMwB9ACMOVQBwAGQAYQB0AGUAcwAkTHsAMQA4ADYAOABmAGYAYwA5AC0AZQA0AGYAYwAtADQANQAzADIALQBhAGMAMAA2AC0AMQBlADMAOQBiAGIANQA1ADcAYgA2ADkAfQAlTHsAYQA1AGIAZAA0ADgAYwAzAC0AMABkADEANwAtADQAMQBiADUALQBiADEANgA0AC0ANQBmAGMANgBhAGQAMgBiADkANgBiADcAfQAmFk8AYgBqAGUAYwB0AHMAVAB5AHAAZQAnVFUAcABkAGEAdABlAEwAYQBuAGcAdQBhAGcAZQBNAG8AZABlAGwARgBvAHIAQwBvAG4AdgBlAHIAdABpAGIAbABlAEwAaQBiAHIAYQByAGkAZQBzACgQTABpAGIAVABpAHQAbABlACkUTABpAGIAQwBvAG0AcABhAG4AeQAqHlUAcABkAGEAdABlAFAAcgBvAHYAaQBkAGUAcgBzACs4UwB5AHMAdABlAG0ALgBDAG8AbABsAGUAYwB0AGkAbwBuAHMALgBIAGEAcwBoAHQAYQBiAGwAZQAsEnYAaQBzAHUAZQBsAGUAbQBzAC1INgBjAGIAMQBjAGQAZQAxAC0AZAA1AGQAYwAtADQAYQAzAGIALQA5ADAANQA0AC0AMgAxAGYAYQA3ADUANgBhADMAZgBhADQALihJAG4AdABlAHIAZgBhAGMAZQBWAGUAcgBzAGkAbwBuAEkAbgBmAG8AL0x7AGMANgAxADEAZQA0ADAAMAAtADcAZgBiADkALQA0AGMAMwA1AC0AYgA5AGEAYwAtADQAZQAzADEANABiADUAOQA5ADYANAAzAH0AMBhNAGEAagBvAHIAVgBlAHIAcwBpAG8AbgAxGE0AaQBuAG8AcgBWAGUAcgBzAGkAbwBuADIMTABlAGcAYQBjAHkAMzBMAGEAbgBnAHUAYQBnAGUATQBvAGQAZQBsAFYAZQByAHMAaQBvAG4ASQBuAGYAbwA0MEwAbwBhAGQATABpAGIAcgBhAHIAaQBlAHMASQBuAHQAbwBQAHIAbwBqAGUAYwB0ADUaQwBvAG0AcABhAHQAaQBiAGkAbABpAHQAeQDQAAIaA9ADAS0E0AUGGgfQBwgaAUUHCQjQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtDtAPAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60BAAAA0A0BLRHQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0S0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAUAAAA0AwLrQIAAADQDQEtE9APAS0Q0AAJGgRFCgsEAwAAAAUAAAANAAAAAAAAANAMC60CAAAA0A0BLRTQDwEtENAACRoERQoLBAMAAAAFAAAADQAAAAAAAADQDAutAgAAANANAS0V0A8BLRDQAAkaBEUKCwQDAAAABQAAAA0AAAAAAAAA0AwLrQIAAADQDQEtFtAPAS0X0AAJGgRFCgsEAwAAAAUAAAANAAAAKAAAANAMC60EAAAA0A0BLRjQDwEtENAZGq0BRRscAdAAHBoCRR0LBAMAAAAFAAAADQAAAAAAAADQHh8tINAhIhoCRSMkAtAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAAAAANADAS0n0CgBLRHQKQEtENAAJRoFRQoLBAMAAAADAAAAAAAAAAoAAADQJgutAQAAANADAS0n0CgBLRHQKQEtEJoqKwFFAAEC0AABLSzQAAEtF9AAHy0t0C4vGgPQMAutAQAAANAxC60XAAAA0DIarQDQMy8aA9AwC60CAAAA0DELrQMAAADQMhqtANA0Gq0A0DUarQA=</v>
-          </d>
+          <d n="Values" t="Hashtable" />
         </o>
       </d>
       <d n="Values" t="Hashtable" />

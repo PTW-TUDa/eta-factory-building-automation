@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_EL_AODIDO_Diag" Id="{5f823738-9997-4f48-88db-9029e8ff4e7f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_EL_AODIDO_Diag EXTENDS FB_DiagBase
+VAR_OUTPUT
+END_VAR
+VAR
+	fbECDiag 		: FB_ECDiag;
+	ECDiagfbrtrig	: R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+IF bMute THEN
+	SUPER^.bAnyActiveMessage := FALSE;
+	RETURN;
+END_IF
+SUPER^.mMessage();
+SUPER^.bAnyActiveMessage := FALSE;
+//*****************************
+
+fbECDiag(
+	bEnable:= TRUE, 
+	sTerminalName:=sTerminalName , 
+	fbTcMessage:=SUPER^.fbTcMessage , 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbECDiag.bActiveError;
+ECDiagfbrtrig(CLK:= fbECDiag.bActiveError);
+fb_RS(SET := ECDiagfbrtrig.Q);
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+fb_RS(RESET1 := bConfirm OR NOT SUPER^.bAnyActiveMessage); 
+SUPER^.bAnyNewMessage := fb_RS.Q1;
+//*****************************
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

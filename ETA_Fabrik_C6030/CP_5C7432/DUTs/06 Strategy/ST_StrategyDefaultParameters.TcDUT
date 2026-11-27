@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+<TcPlcObject Version="1.1.0.1">
   <DUT Name="ST_StrategyDefaultParameters" Id="{630dbe9b-22aa-47bc-b8cf-4f1da4ac5818}">
     <Declaration><![CDATA[TYPE ST_StrategyDefaultParameters :
 STRUCT
@@ -31,9 +31,9 @@ STRUCT
 	fOffset_FeedTemperature_HNHT : REAL := 4;
 	fOffset_FeedTemperature_HNLT_Heating : REAL := 4;
 	fOffset_FeedTemperature_HNLT_Cooling : REAL := 6;
-	fOffset_FeedTemperature_CN : REAL := 5;
+	fOffset_FeedTemperature_CN : REAL := 2;
 	
-	fTargetTemperature_ProductionHall : REAL := 21; //before 19
+	fTargetTemperature_ProductionHall : REAL := 22;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

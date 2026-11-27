@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_PB_Slave" Id="{ce31e989-f9b0-464e-8780-64a7a8d76e6d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PB_Slave EXTENDS FB_DiagBase
+VAR_OUTPUT
+END_VAR
+VAR
+	arPB_Slave 				: stPB_Slave;
+	fbProfibusSlaveDiag 	: FB_ProfibusSlaveDiag;
+	ProfibusSlaveDiagfbrtrig: R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// DO NOT CHANGE THIS BLOCK
+//*****************************
+IF bMute THEN
+	SUPER^.bAnyActiveMessage := FALSE;
+	RETURN;
+END_IF
+SUPER^.mMessage();
+SUPER^.bAnyActiveMessage := FALSE;
+//*****************************
+
+fbProfibusSlaveDiag(
+	bEnable := TRUE,
+	sTerminalName:= sTerminalName, 
+	fbTcMessage:= SUPER^.fbTcMessage,
+	nFaultCode:= arPB_Slave.nFaultCode, 
+	nWarningCode:= arPB_Slave.nWarningCode, 
+	nDPState:= arPB_Slave.nDPState, 
+	bActiveError=> );
+SUPER^.bAnyActiveMessage	:= SUPER^.bAnyActiveMessage OR fbProfibusSlaveDiag.bActiveError;
+ProfibusSlaveDiagfbrtrig(CLK:= fbProfibusSlaveDiag.bActiveError);
+fb_RS(SET := ProfibusSlaveDiagfbrtrig.Q);
+
+// DO NOT CHANGE THIS BLOCK
+//*****************************
+fb_RS(RESET1 := bConfirm OR NOT SUPER^.bAnyActiveMessage); 
+SUPER^.bAnyNewMessage := fb_RS.Q1;
+//*****************************]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
